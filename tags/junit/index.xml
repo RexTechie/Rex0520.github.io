@@ -2,20 +2,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Junit on RexHub</title>
-    <link>https://rexhub.gitee.io/tags/junit/</link>
+    <link>https://rex0520.github.io/tags/junit/</link>
     <description>Recent content in Junit on RexHub</description>
     <image>
       <url>https://cdn.rexweb.xyz/img/20210820141535.jpg</url>
       <link>https://cdn.rexweb.xyz/img/20210820141535.jpg</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Mon, 04 Jan 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://rexhub.gitee.io/tags/junit/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 04 Jan 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://rex0520.github.io/tags/junit/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>SpringTest与Junit4整合</title>
-      <link>https://rexhub.gitee.io/posts/back/ssm2springboot/spring/springtest%E4%B8%8Ejunit4%E6%95%B4%E5%90%88/</link>
+      <link>https://rex0520.github.io/posts/back/ssm2springboot/spring/springtest%E4%B8%8Ejunit4%E6%95%B4%E5%90%88/</link>
       <pubDate>Mon, 04 Jan 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://rexhub.gitee.io/posts/back/ssm2springboot/spring/springtest%E4%B8%8Ejunit4%E6%95%B4%E5%90%88/</guid>
+      <guid>https://rex0520.github.io/posts/back/ssm2springboot/spring/springtest%E4%B8%8Ejunit4%E6%95%B4%E5%90%88/</guid>
       <description>Spring学习记录</description>
     </item>
     

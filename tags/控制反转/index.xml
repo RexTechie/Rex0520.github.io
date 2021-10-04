@@ -2,38 +2,38 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>控制反转 on RexHub</title>
-    <link>https://rexhub.gitee.io/tags/%E6%8E%A7%E5%88%B6%E5%8F%8D%E8%BD%AC/</link>
+    <link>https://rex0520.github.io/tags/%E6%8E%A7%E5%88%B6%E5%8F%8D%E8%BD%AC/</link>
     <description>Recent content in 控制反转 on RexHub</description>
     <image>
       <url>https://cdn.rexweb.xyz/img/20210820141535.jpg</url>
       <link>https://cdn.rexweb.xyz/img/20210820141535.jpg</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sun, 03 Jan 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://rexhub.gitee.io/tags/%E6%8E%A7%E5%88%B6%E5%8F%8D%E8%BD%AC/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 03 Jan 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://rex0520.github.io/tags/%E6%8E%A7%E5%88%B6%E5%8F%8D%E8%BD%AC/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>基于JavaConfig配置的IoC容器</title>
-      <link>https://rexhub.gitee.io/posts/back/ssm2springboot/spring/%E5%9F%BA%E4%BA%8Ejavaconfig%E9%85%8D%E7%BD%AE%E7%9A%84ioc%E5%AE%B9%E5%99%A8/</link>
+      <link>https://rex0520.github.io/posts/back/ssm2springboot/spring/%E5%9F%BA%E4%BA%8Ejavaconfig%E9%85%8D%E7%BD%AE%E7%9A%84ioc%E5%AE%B9%E5%99%A8/</link>
       <pubDate>Sun, 03 Jan 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://rexhub.gitee.io/posts/back/ssm2springboot/spring/%E5%9F%BA%E4%BA%8Ejavaconfig%E9%85%8D%E7%BD%AE%E7%9A%84ioc%E5%AE%B9%E5%99%A8/</guid>
+      <guid>https://rex0520.github.io/posts/back/ssm2springboot/spring/%E5%9F%BA%E4%BA%8Ejavaconfig%E9%85%8D%E7%BD%AE%E7%9A%84ioc%E5%AE%B9%E5%99%A8/</guid>
       <description>Spring学习记录</description>
     </item>
     
     <item>
       <title>基于注解配置IoC容器</title>
-      <link>https://rexhub.gitee.io/posts/back/ssm2springboot/spring/%E5%9F%BA%E4%BA%8E%E6%B3%A8%E8%A7%A3%E9%85%8D%E7%BD%AEioc%E5%AE%B9%E5%99%A8/</link>
+      <link>https://rex0520.github.io/posts/back/ssm2springboot/spring/%E5%9F%BA%E4%BA%8E%E6%B3%A8%E8%A7%A3%E9%85%8D%E7%BD%AEioc%E5%AE%B9%E5%99%A8/</link>
       <pubDate>Sun, 03 Jan 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://rexhub.gitee.io/posts/back/ssm2springboot/spring/%E5%9F%BA%E4%BA%8E%E6%B3%A8%E8%A7%A3%E9%85%8D%E7%BD%AEioc%E5%AE%B9%E5%99%A8/</guid>
+      <guid>https://rex0520.github.io/posts/back/ssm2springboot/spring/%E5%9F%BA%E4%BA%8E%E6%B3%A8%E8%A7%A3%E9%85%8D%E7%BD%AEioc%E5%AE%B9%E5%99%A8/</guid>
       <description>Spring学习记录</description>
     </item>
     
     <item>
       <title>Spring IoC与Bean管理</title>
-      <link>https://rexhub.gitee.io/posts/back/ssm2springboot/spring/springioc%E4%B8%8Ebean%E7%AE%A1%E7%90%86/</link>
+      <link>https://rex0520.github.io/posts/back/ssm2springboot/spring/springioc%E4%B8%8Ebean%E7%AE%A1%E7%90%86/</link>
       <pubDate>Fri, 01 Jan 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://rexhub.gitee.io/posts/back/ssm2springboot/spring/springioc%E4%B8%8Ebean%E7%AE%A1%E7%90%86/</guid>
+      <guid>https://rex0520.github.io/posts/back/ssm2springboot/spring/springioc%E4%B8%8Ebean%E7%AE%A1%E7%90%86/</guid>
       <description>Spring学习记录</description>
     </item>
     

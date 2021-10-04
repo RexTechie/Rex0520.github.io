@@ -2,20 +2,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>消息队列 on RexHub</title>
-    <link>https://rexhub.gitee.io/tags/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/</link>
+    <link>https://rex0520.github.io/tags/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/</link>
     <description>Recent content in 消息队列 on RexHub</description>
     <image>
       <url>https://cdn.rexweb.xyz/img/20210820141535.jpg</url>
       <link>https://cdn.rexweb.xyz/img/20210820141535.jpg</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Mon, 21 Jun 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://rexhub.gitee.io/tags/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 21 Jun 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://rex0520.github.io/tags/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>RabbitMQ学习</title>
-      <link>https://rexhub.gitee.io/posts/back/microservices/rabbitmq/</link>
+      <link>https://rex0520.github.io/posts/back/microservices/rabbitmq/</link>
       <pubDate>Mon, 21 Jun 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://rexhub.gitee.io/posts/back/microservices/rabbitmq/</guid>
+      <guid>https://rex0520.github.io/posts/back/microservices/rabbitmq/</guid>
       <description>后端开发</description>
     </item>
     

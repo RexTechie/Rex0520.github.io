@@ -2,20 +2,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>JPA on RexHub</title>
-    <link>https://rexhub.gitee.io/tags/jpa/</link>
+    <link>https://rex0520.github.io/tags/jpa/</link>
     <description>Recent content in JPA on RexHub</description>
     <image>
       <url>https://cdn.rexweb.xyz/img/20210820141535.jpg</url>
       <link>https://cdn.rexweb.xyz/img/20210820141535.jpg</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Mon, 22 Mar 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://rexhub.gitee.io/tags/jpa/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 22 Mar 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://rex0520.github.io/tags/jpa/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>JPA学习</title>
-      <link>https://rexhub.gitee.io/posts/back/jdbctool/jpa%E5%AD%A6%E4%B9%A0/</link>
+      <link>https://rex0520.github.io/posts/back/jdbctool/jpa%E5%AD%A6%E4%B9%A0/</link>
       <pubDate>Mon, 22 Mar 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://rexhub.gitee.io/posts/back/jdbctool/jpa%E5%AD%A6%E4%B9%A0/</guid>
+      <guid>https://rex0520.github.io/posts/back/jdbctool/jpa%E5%AD%A6%E4%B9%A0/</guid>
       <description>JDBC工具学习记录</description>
     </item>
     

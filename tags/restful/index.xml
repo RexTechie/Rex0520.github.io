@@ -2,20 +2,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Restful on RexHub</title>
-    <link>https://rexhub.gitee.io/tags/restful/</link>
+    <link>https://rex0520.github.io/tags/restful/</link>
     <description>Recent content in Restful on RexHub</description>
     <image>
       <url>https://cdn.rexweb.xyz/img/20210820141535.jpg</url>
       <link>https://cdn.rexweb.xyz/img/20210820141535.jpg</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Tue, 09 Mar 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://rexhub.gitee.io/tags/restful/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 09 Mar 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://rex0520.github.io/tags/restful/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Restful</title>
-      <link>https://rexhub.gitee.io/posts/back/restful/</link>
+      <link>https://rex0520.github.io/posts/back/restful/</link>
       <pubDate>Tue, 09 Mar 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://rexhub.gitee.io/posts/back/restful/</guid>
+      <guid>https://rex0520.github.io/posts/back/restful/</guid>
       <description>SpringMVC学习记录</description>
     </item>
     
