@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>docker on RexHub</title>
+    <link>https://rexhub.gitee.io/tags/docker/</link>
+    <description>Recent content in docker on RexHub</description>
+    <image>
+      <url>https://cdn.rexweb.xyz/img/20210820141535.jpg</url>
+      <link>https://cdn.rexweb.xyz/img/20210820141535.jpg</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sat, 26 Jun 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://rexhub.gitee.io/tags/docker/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Docker的安装</title>
+      <link>https://rexhub.gitee.io/posts/back/microservices/docker%E7%9A%84%E5%AE%89%E8%A3%85/</link>
+      <pubDate>Sat, 26 Jun 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rexhub.gitee.io/posts/back/microservices/docker%E7%9A%84%E5%AE%89%E8%A3%85/</guid>
+      <description>微服务学习记录</description>
+    </item>
+    
+    <item>
+      <title>Docker简介</title>
+      <link>https://rexhub.gitee.io/posts/back/microservices/docker/</link>
+      <pubDate>Sat, 26 Jun 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rexhub.gitee.io/posts/back/microservices/docker/</guid>
+      <description>微服务学习记录</description>
+    </item>
+    
+  </channel>
+</rss>

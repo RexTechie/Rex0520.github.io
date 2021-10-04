@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>数据库 | RexHub</title>
+<meta name="keywords" content="" />
+<meta name="description" content="Rex的个人博客">
+<meta name="author" content="Rex">
+<link rel="canonical" href="https://rexhub.gitee.io/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" />
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.6cba0d81b5f3f42bb578d49f402ba4175aa72b43def148780b8ad714c957c6f5.css" integrity="sha256-bLoNgbXz9Cu1eNSfQCukF1qnK0Pe8Uh4C4rXFMlXxvU=" rel="preload stylesheet" as="style">
+<link rel="preload" href="http://cdn.rexweb.xyz/img/20210821105340.png" as="image">
+<link rel="icon" href="https://cdn.rexweb.xyz/img/20210821105340.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://rexhub.gitee.io/%3Clink%20/%20abs%20url%3E">
+<link rel="icon" type="image/png" sizes="32x32" href="https://rexhub.gitee.io/%3Clink%20/%20abs%20url%3E">
+<link rel="apple-touch-icon" href="https://rexhub.gitee.io/%3Clink%20/%20abs%20url%3E">
+<link rel="mask-icon" href="https://rexhub.gitee.io/%3Clink%20/%20abs%20url%3E">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<meta name="generator" content="Hugo 0.87.0" />
+<link rel="alternate" type="application/rss+xml" href="https://rexhub.gitee.io/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/index.xml">
+<meta property="og:title" content="数据库" />
+<meta property="og:description" content="Rex的个人博客" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://rexhub.gitee.io/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" /><meta property="og:image" content="https://cdn.rexweb.xyz/img/20210820141535.jpg"/><meta property="og:site_name" content="RexHub" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://cdn.rexweb.xyz/img/20210820141535.jpg"/>
+
+<meta name="twitter:title" content="数据库"/>
+<meta name="twitter:description" content="Rex的个人博客"/>
+
+</head>
+
+<body class="list" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+<noscript>
+    <style type="text/css">
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: #1d1e20;
+                --entry: #2e2e33;
+                --primary: rgba(255, 255, 255, 0.84);
+                --secondary: rgba(255, 255, 255, 0.56);
+                --tertiary: rgba(255, 255, 255, 0.16);
+                --content: rgba(255, 255, 255, 0.74);
+                --hljs-bg: #2e2e33;
+                --code-bg: #37383e;
+                --border: #333;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://rexhub.gitee.io/" accesskey="h" title="Home (Alt + H)">
+                <img src="http://cdn.rexweb.xyz/img/20210821105340.png" alt="logo" aria-label="logo"
+                    height="35">Home</a>
+            <span class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </span>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://rexhub.gitee.io/posts/" title="文章">
+                    <span>文章</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://rexhub.gitee.io/categories/" title="分类">
+                    <span>分类</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://rexhub.gitee.io/tags/" title="标签">
+                    <span>标签</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://rexhub.gitee.io/archives/" title="时间轴">
+                    <span>时间轴</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://rexhub.gitee.io/search/" title="搜索 (Alt &#43; /)" accesskey=/>
+                    <span>搜索</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main"> 
+<header class="page-header"><div class="breadcrumbs"><a href="https://rexhub.gitee.io/">Home</a>&nbsp;»&nbsp;<a href="https://rexhub.gitee.io/tags/">Tags</a></div>
+  <h1>数据库</h1>
+</header>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2>Mongodb学习</h2>
+  </header>
+  <section class="entry-content">
+    <p>MongoDB 简介：   MongoDB是为快速开发互联网Web应用而设计的数据库系统。 MongoDB的设许目标是极简、灵活、作为Web应用栈的一部分。 MongoDB的数据模型是面向文档的,所谓文档是- - -种类似于JSON的结构,简单理解MongoDB这个数据库中存的是各种各样的JSON。 ( BSON )   三个概念   数据库( database )
+ 数据库是-个仓库,在仓库中可以存放集合。
+   集合( collection )
+ 集合类似于数组,在集合中可以存放文档。
+   文档( dotument )
+ 文档数据库中的最小单位,我们存储和操作的 内容都是文档。
+   基本指令   show dbs
+ 显示当前的所有数据库
+   use 数据库名
+ 进入指定的数据库中
+   db
+ 显示当前所处的数据库
+   show collections
+ 显示数据库中所有的集合
+   db....</p>
+  </section>
+  <footer class="entry-footer">2021-07-09&nbsp;·&nbsp;12 min&nbsp;·&nbsp;Rex</footer>
+  <a class="entry-link" aria-label="post link to Mongodb学习" href="https://rexhub.gitee.io/posts/back/nosql/mongodb/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2>Redis入门</h2>
+  </header>
+  <section class="entry-content">
+    <p>Redis入门 Redis介绍  Redis是Key-Value型NoSQL数据库 Redis将数据存储在内存中，同时也能持久化到磁盘 Redis常用于缓存，利用内存的高效提高程序的处理速度  Redis特点  速度快 持久化 主从复制 广泛的语言支持 多种数据结构 分布式与高可用  Redis的安装与使用 在Linux系统中安装Redis  https://redis.io/download
+ 在windows系统中安装Redis  https://github.com/microsoftarchive/redis/releases
+ Redis的常用基本配置    配置项 示例 说明     daemonize daemonize yes 是否启用后台允许，默认no   port port 6379 设置端口号，默认6379   logfile logfile 日志文件 设置日志文件   databases databases 255 设置redis数据库总量   dir dir数据文件目录 设置数据文件存储目录   requirepass requirepass 12345 设置使用密码    Redis通用命令    命令 示例 说明     select select 0 选择0号数据库   set set name lily 设置key=name,value=lily   get get hello 获得key=hello结果   keys keys he* 根据Pattern表达式查询符合条件的Key   dbsize dbsize 返回key的总数   exists exists a 检查key=a是否存在   del del a 删除key=a的数据   expire expire hello 20 设置key=hello 20秒后过期   ttl ttl 查看key=a的过期剩余时间    Redis数据类型  String - 字符串类型 Hash - Hash类型 List - 列表类型 Set - 集合类型 Zset - 有序集合类型  String字符串类型   String最大512mb 建议单个kv不超过100kb...</p>
+  </section>
+  <footer class="entry-footer">2021-07-09&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Rex</footer>
+  <a class="entry-link" aria-label="post link to Redis入门" href="https://rexhub.gitee.io/posts/back/nosql/redis/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2>JPA学习</h2>
+  </header>
+  <section class="entry-content">
+    <p>JPA 一、什么是jpa ​	JPA是Java Persistence API的意思，是一种ORM框架。是使用JDK 5.0注解或XML描述对象－关系表的映射关系的元数据，并将运行期的面向对象语言程序中的实体对象持久化到数据库中。
+二、基于注解的使用  JPA常用注解    注解 解释     @Entity 声明类为实体或表。   @Table 声明表名。   @Basic 指明非约束明确的各个字段。   @Embedded 指定类或它的值是一个可嵌入的类的实体的属性。   @Id 指定的类的属性，用于识别（一个表中的主键）。   @GeneratedValue 指定如何标识属性可以被初始化，例如自动、手动、或从序列表中获得的值。   @Transient 指定的属性，它是不持久的，即：该值永远不会存储再数据库中。   @Column 指定持久属性栏属性。   @SequenceGenerator 指定在@GeneratedValue注解中指定的属性的值。它创建了一个序列。   @TableGenerator 指定在@GeneratedValue批注指定属性的值发生器。它创造了的值生成的表。   @AccessType 这种类型的注释用于设置访问类型。如果设置@AccessType(FIELD)，则可以直接访问变量并且不需要getter和setter，但必须为public。如果设置@AccessType(PROPERTY)，通过getter和setter方法访问Entity的变量。   @JoinColumn 指定一个实体组织或实体的集合。这是用在多对一和一对多关联。   @UniqueConstraint 指定的字段和用于主要或辅助表的唯一约束。   @ColumnResult 参考使用select字句的SQL查询中的列明。   @ManyToMany 定义了连接表之间的多对多的的关系   @ManyToOne 定义了连接表之间的多对一的关系   @OneToMany 定义了连接表之间存在一个一对多的关系。   @OneToOne 定义了连接表之间有一个一对一的关系   @NamedQueries 指定命名查询的列表   @NamedQuery 指定使用静态名称的查询。      三、使用   在application....</p>
+  </section>
+  <footer class="entry-footer">2021-03-22&nbsp;·&nbsp;4 min&nbsp;·&nbsp;Rex</footer>
+  <a class="entry-link" aria-label="post link to JPA学习" href="https://rexhub.gitee.io/posts/back/jdbctool/jpa%E5%AD%A6%E4%B9%A0/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2>Mybatis入门</h2>
+  </header>
+  <section class="entry-content">
+    <p>MyBatis基础入门 软件开发中的框架  框架是可被应用开发者定制的应用骨架 框架是一种规则，保证开发者遵循相同的方式开发程序 框架提倡“不要重复造轮子”，对基础功能进行封装  框架的优点  极大提高了开发效率 统一的编码规则，有利于团队管理 灵活配置的应用，拥有更好的维护性  SSM开发框架  S -&gt; Spring S -&gt; Spring MVC M -&gt; MyBatis  什么是MyBatis  MyBatis是优秀的持久层框架 MyBatis使用XML将SQL与程序解耦，便于维护 MyBatis学习简单，执行高效，是JDBC的延展  MyBatis开发流程  引入MyBatis依赖 创建核心配置文件 创建实体(Entity)类 创建Mapper映射文件 初始化SessionFactory 利用SqlSession对象操作数据  MyBatis环境配置 mybatis-config.xml说明  MyBatis采用XML格式配置数据库环境信息 MyBatis环境配置标签 environment包含数据库驱动、URL、用户名于密码  mybatis-config.xml示例： 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31  &lt;?...</p>
+  </section>
+  <footer class="entry-footer">2020-10-28&nbsp;·&nbsp;10 min&nbsp;·&nbsp;Rex</footer>
+  <a class="entry-link" aria-label="post link to Mybatis入门" href="https://rexhub.gitee.io/posts/back/jdbctool/mybatis%E5%85%A5%E9%97%A8/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2>Mybatis进阶</h2>
+  </header>
+  <section class="entry-content">
+    <p>MyBatis进阶 什么是日志  日志文件是用于记录系统操作事件的记录文件或文件集合 日志保存历史数据，是诊断问题以及理解系统活动的重要依据  SLF4j与Logback 日志的使用:   引入logback依赖
+1 2 3 4 5  &lt;dependency&gt; &lt;groupId&gt;ch.qos.logback&lt;/groupId&gt; &lt;artifactId&gt;logback-classic&lt;/artifactId&gt; &lt;version&gt;1.2.3&lt;/version&gt; &lt;/dependency&gt;     创建logback.xml，并写入如下代码：
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19  &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34; ?&gt; &lt;configuration&gt; &lt;appender name=&#34;console&#34; class=&#34;ch.qos.logback.core.ConsoleAppender&#34;&gt; &lt;encoder&gt; &lt;pattern&gt;%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n&lt;/pattern&gt; &lt;/encoder&gt; &lt;/appender&gt; &lt;!-- 日志输出级别（优先级高到低） error: 错误 - 系统的故障日志 warn: 警告 - 存在风险或使用不当的日志 info: 一般性消息 debug: 程序内部用于调试信息 trace: 程序允许的跟踪信息 --&gt; &lt;root level=&#34;debug&#34;&gt; &lt;appender-ref ref=&#34;console&#34;&gt;&lt;/appender-ref&gt; &lt;/root&gt; &lt;/configuration&gt;     动态SQL  动态SQL是指根据参数数据动态组织SQL的技术  代码示例：  goods....</p>
+  </section>
+  <footer class="entry-footer">2020-10-28&nbsp;·&nbsp;10 min&nbsp;·&nbsp;Rex</footer>
+  <a class="entry-link" aria-label="post link to Mybatis进阶" href="https://rexhub.gitee.io/posts/back/jdbctool/mybatis%E8%BF%9B%E9%98%B6/"></a>
+</article>
+    </main>
+    <footer class="footer">
+    <span>&copy; 2021 <a href="https://rexhub.gitee.io/">RexHub</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://git.io/hugopapermod" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)">
+    <button class="top-link" id="top-link" type="button" accesskey="g">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+            <path d="M12 6H0l6-6z" />
+        </svg>
+    </button>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+    menu.onscroll = function () {
+        localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

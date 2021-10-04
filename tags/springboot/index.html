@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>SpringBoot | RexHub</title>
+<meta name="keywords" content="" />
+<meta name="description" content="Rex的个人博客">
+<meta name="author" content="Rex">
+<link rel="canonical" href="https://rexhub.gitee.io/tags/springboot/" />
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.6cba0d81b5f3f42bb578d49f402ba4175aa72b43def148780b8ad714c957c6f5.css" integrity="sha256-bLoNgbXz9Cu1eNSfQCukF1qnK0Pe8Uh4C4rXFMlXxvU=" rel="preload stylesheet" as="style">
+<link rel="preload" href="http://cdn.rexweb.xyz/img/20210821105340.png" as="image">
+<link rel="icon" href="https://cdn.rexweb.xyz/img/20210821105340.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://rexhub.gitee.io/%3Clink%20/%20abs%20url%3E">
+<link rel="icon" type="image/png" sizes="32x32" href="https://rexhub.gitee.io/%3Clink%20/%20abs%20url%3E">
+<link rel="apple-touch-icon" href="https://rexhub.gitee.io/%3Clink%20/%20abs%20url%3E">
+<link rel="mask-icon" href="https://rexhub.gitee.io/%3Clink%20/%20abs%20url%3E">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<meta name="generator" content="Hugo 0.87.0" />
+<link rel="alternate" type="application/rss+xml" href="https://rexhub.gitee.io/tags/springboot/index.xml">
+<meta property="og:title" content="SpringBoot" />
+<meta property="og:description" content="Rex的个人博客" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://rexhub.gitee.io/tags/springboot/" /><meta property="og:image" content="https://cdn.rexweb.xyz/img/20210820141535.jpg"/><meta property="og:site_name" content="RexHub" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://cdn.rexweb.xyz/img/20210820141535.jpg"/>
+
+<meta name="twitter:title" content="SpringBoot"/>
+<meta name="twitter:description" content="Rex的个人博客"/>
+
+</head>
+
+<body class="list" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+<noscript>
+    <style type="text/css">
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: #1d1e20;
+                --entry: #2e2e33;
+                --primary: rgba(255, 255, 255, 0.84);
+                --secondary: rgba(255, 255, 255, 0.56);
+                --tertiary: rgba(255, 255, 255, 0.16);
+                --content: rgba(255, 255, 255, 0.74);
+                --hljs-bg: #2e2e33;
+                --code-bg: #37383e;
+                --border: #333;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://rexhub.gitee.io/" accesskey="h" title="Home (Alt + H)">
+                <img src="http://cdn.rexweb.xyz/img/20210821105340.png" alt="logo" aria-label="logo"
+                    height="35">Home</a>
+            <span class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </span>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://rexhub.gitee.io/posts/" title="文章">
+                    <span>文章</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://rexhub.gitee.io/categories/" title="分类">
+                    <span>分类</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://rexhub.gitee.io/tags/" title="标签">
+                    <span>标签</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://rexhub.gitee.io/archives/" title="时间轴">
+                    <span>时间轴</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://rexhub.gitee.io/search/" title="搜索 (Alt &#43; /)" accesskey=/>
+                    <span>搜索</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main"> 
+<header class="page-header"><div class="breadcrumbs"><a href="https://rexhub.gitee.io/">Home</a>&nbsp;»&nbsp;<a href="https://rexhub.gitee.io/tags/">Tags</a></div>
+  <h1>SpringBoot</h1>
+</header>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2>Emos项目准备</h2>
+  </header>
+  <section class="entry-content">
+    <p>emos项目准备 项目结构 已有项目：  工作流项目(emos-workflow) 小程序项目(emos-wx) 小程序后端项目(emos-wx-api)  待开发项目  Web办公系统前端项目(emos-vue) Web办公系统后端项目(emos-api)  数据表分类：    序号 类型 特征 备注     1 工作流数据表 以 act_ 开头 存储工作流的各项数据   2 定时器数据表 以 qrtz_ 开头 存储QuartZ定时器数据   3 业务表 以 tb_ 开头 保存业务数据   4 系统表 以 sys_ 开头 保存系统配置信息    后端： 依赖库：   Lombok – 生成对象的Get/Set方法
+  Spring Web – spring的web开发框架...</p>
+  </section>
+  <footer class="entry-footer">2021-09-09&nbsp;·&nbsp;10 min&nbsp;·&nbsp;Rex</footer>
+  <a class="entry-link" aria-label="post link to Emos项目准备" href="https://rexhub.gitee.io/posts/proj/emos/emos%E9%A1%B9%E7%9B%AE%E5%87%86%E5%A4%87/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2>SpringBoot总结</h2>
+  </header>
+  <section class="entry-content">
+    <p>SpringBoot学习总结 使用SpringBoot的优缺点 优点：  简化配置 整合了很多工具，如redis 开发效率高  缺点：  因为内部封装了太多的东西，不容易找bug 不容易看到底层都做了什么  SpringBoot常用注解 Controller: ​	@Controller:通知Spring这个类为Controller类
+​	@ResponseBody：用于将函数的返回值转换为json格式的数据写入到http响应的body区中,若没有这个注解，会使用请求转发跳转到返回值的页面
+​	@RestController：Rest风格的Controller，@Controller &#43; @ResponseBody = @RestController
+​	@ControllerAdvice：环绕增强的Controller，一般用于全局异常处理、全局数据绑定、全局数据预处理
+​	@RequestMapping()：请求地址映射，一般用于描述url的前缀地址
+​	@PostMapping()：post请求的地址映射
+​	@GetMaping()：get请求的地址映射
+​	@Valid：用于校验参数，需要编写全局异常捕捉类
+​	@RequestBody：接收来自requestBody中的参数，即请求体中的参数
+​	@RequestParm：有三个参数，required表示是否必须，默认为true，defaultValue设置参数默认值，value为接受url的参数名
+​	@PathVariable：获取路径变量
+​	@Size：限制传入参数的最大值(max)和最小值(min)，指定异常的message信息，可被@Valid校验检测到
+​	@NotNull：限制传入的参数非空，指定异常的message信息，可被@Valid校验检测到
+​	@Max:指定最大值value，指定异常的message信息，可被@Valid校验检测到
+​	@Min：指定最小值value，指定异常的message信息，可被@Valid校验检测到
+Swagger: ​	@Api：用在类上，说明该类的作用。可以标记一个Controller类做为swagger 文档资源
+​	@ApiOperation：用在方法上，说明方法的作用，每一个url资源的定义
+​	@ApiParam：用在变量上，说明请求属性的作用
+​	@ApiResponse：响应配置信息
+​	@ApiReponses：响应集配置
+​	@ReponseHeader：响应头设置
+Service: ​	@Service：用在类上，说明该类为Service类
+Dao: ​	@Repository：用在类上，说明该类为Dao类
+Config: ​	@Configuration：用在类上，说明该类为配置类...</p>
+  </section>
+  <footer class="entry-footer">2021-02-19&nbsp;·&nbsp;5 min&nbsp;·&nbsp;Rex</footer>
+  <a class="entry-link" aria-label="post link to SpringBoot总结" href="https://rexhub.gitee.io/posts/back/ssm2springboot/springboot/springboot%E6%80%BB%E7%BB%93/"></a>
+</article>
+    </main>
+    <footer class="footer">
+    <span>&copy; 2021 <a href="https://rexhub.gitee.io/">RexHub</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://git.io/hugopapermod" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)">
+    <button class="top-link" id="top-link" type="button" accesskey="g">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+            <path d="M12 6H0l6-6z" />
+        </svg>
+    </button>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+    menu.onscroll = function () {
+        localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

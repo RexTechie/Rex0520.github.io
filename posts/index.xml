@@ -1,0 +1,374 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Posts on RexHub</title>
+    <link>https://rexhub.gitee.io/posts/</link>
+    <description>Recent content in Posts on RexHub</description>
+    <image>
+      <url>https://cdn.rexweb.xyz/img/20210820141535.jpg</url>
+      <link>https://cdn.rexweb.xyz/img/20210820141535.jpg</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Thu, 09 Sep 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://rexhub.gitee.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>线程池</title>
+      <link>https://rexhub.gitee.io/posts/back/threadpool/%E7%BA%BF%E7%A8%8B%E6%B1%A0/</link>
+      <pubDate>Tue, 08 Jun 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rexhub.gitee.io/posts/back/threadpool/%E7%BA%BF%E7%A8%8B%E6%B1%A0/</guid>
+      <description>线程池学习记录</description>
+    </item>
+    
+    <item>
+      <title>守护线程</title>
+      <link>https://rexhub.gitee.io/posts/back/threadpool/%E5%AE%88%E6%8A%A4%E7%BA%BF%E7%A8%8B/</link>
+      <pubDate>Tue, 08 Jun 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rexhub.gitee.io/posts/back/threadpool/%E5%AE%88%E6%8A%A4%E7%BA%BF%E7%A8%8B/</guid>
+      <description>线程池学习记录</description>
+    </item>
+    
+    <item>
+      <title>关于ReentrantLock和Condition</title>
+      <link>https://rexhub.gitee.io/posts/back/threadpool/%E5%85%B3%E4%BA%8Ereentrantlock%E5%92%8Ccondition/</link>
+      <pubDate>Tue, 08 Jun 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rexhub.gitee.io/posts/back/threadpool/%E5%85%B3%E4%BA%8Ereentrantlock%E5%92%8Ccondition/</guid>
+      <description>线程池学习记录</description>
+    </item>
+    
+    <item>
+      <title>Emos项目准备</title>
+      <link>https://rexhub.gitee.io/posts/proj/emos/emos%E9%A1%B9%E7%9B%AE%E5%87%86%E5%A4%87/</link>
+      <pubDate>Thu, 09 Sep 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rexhub.gitee.io/posts/proj/emos/emos%E9%A1%B9%E7%9B%AE%E5%87%86%E5%A4%87/</guid>
+      <description>emos项目开发笔记</description>
+    </item>
+    
+    <item>
+      <title>Dubbo</title>
+      <link>https://rexhub.gitee.io/posts/back/microservices/dubbo/</link>
+      <pubDate>Fri, 23 Jul 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rexhub.gitee.io/posts/back/microservices/dubbo/</guid>
+      <description>微服务学习记录</description>
+    </item>
+    
+    <item>
+      <title>Zookeeper</title>
+      <link>https://rexhub.gitee.io/posts/back/microservices/zookeeper/</link>
+      <pubDate>Thu, 22 Jul 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rexhub.gitee.io/posts/back/microservices/zookeeper/</guid>
+      <description>微服务学习记录</description>
+    </item>
+    
+    <item>
+      <title>Mongodb学习</title>
+      <link>https://rexhub.gitee.io/posts/back/nosql/mongodb/</link>
+      <pubDate>Fri, 09 Jul 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rexhub.gitee.io/posts/back/nosql/mongodb/</guid>
+      <description>数据库学习记录</description>
+    </item>
+    
+    <item>
+      <title>Redis入门</title>
+      <link>https://rexhub.gitee.io/posts/back/nosql/redis/</link>
+      <pubDate>Fri, 09 Jul 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rexhub.gitee.io/posts/back/nosql/redis/</guid>
+      <description>数据库学习记录</description>
+    </item>
+    
+    <item>
+      <title>Docker的安装</title>
+      <link>https://rexhub.gitee.io/posts/back/microservices/docker%E7%9A%84%E5%AE%89%E8%A3%85/</link>
+      <pubDate>Sat, 26 Jun 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rexhub.gitee.io/posts/back/microservices/docker%E7%9A%84%E5%AE%89%E8%A3%85/</guid>
+      <description>微服务学习记录</description>
+    </item>
+    
+    <item>
+      <title>Docker简介</title>
+      <link>https://rexhub.gitee.io/posts/back/microservices/docker/</link>
+      <pubDate>Sat, 26 Jun 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rexhub.gitee.io/posts/back/microservices/docker/</guid>
+      <description>微服务学习记录</description>
+    </item>
+    
+    <item>
+      <title>Nginx学习</title>
+      <link>https://rexhub.gitee.io/posts/back/microservices/nginx/</link>
+      <pubDate>Tue, 22 Jun 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rexhub.gitee.io/posts/back/microservices/nginx/</guid>
+      <description>微服务学习记录</description>
+    </item>
+    
+    <item>
+      <title>Nginx的安装</title>
+      <link>https://rexhub.gitee.io/posts/back/microservices/nginx%E7%9A%84%E5%AE%89%E8%A3%85/</link>
+      <pubDate>Tue, 22 Jun 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rexhub.gitee.io/posts/back/microservices/nginx%E7%9A%84%E5%AE%89%E8%A3%85/</guid>
+      <description>微服务学习记录</description>
+    </item>
+    
+    <item>
+      <title>微服务</title>
+      <link>https://rexhub.gitee.io/posts/back/microservices/%E5%BE%AE%E6%9C%8D%E5%8A%A1/</link>
+      <pubDate>Tue, 22 Jun 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rexhub.gitee.io/posts/back/microservices/%E5%BE%AE%E6%9C%8D%E5%8A%A1/</guid>
+      <description>微服务学习记录</description>
+    </item>
+    
+    <item>
+      <title>RabbitMQ学习</title>
+      <link>https://rexhub.gitee.io/posts/back/microservices/rabbitmq/</link>
+      <pubDate>Mon, 21 Jun 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rexhub.gitee.io/posts/back/microservices/rabbitmq/</guid>
+      <description>后端开发</description>
+    </item>
+    
+    <item>
+      <title>CSS3</title>
+      <link>https://rexhub.gitee.io/posts/front/css3/</link>
+      <pubDate>Fri, 18 Jun 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rexhub.gitee.io/posts/front/css3/</guid>
+      <description>网页学习记录</description>
+    </item>
+    
+    <item>
+      <title>ThreadLocal详解</title>
+      <link>https://rexhub.gitee.io/posts/back/threadpool/threadlocal%E8%AF%A6%E8%A7%A3/</link>
+      <pubDate>Thu, 10 Jun 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rexhub.gitee.io/posts/back/threadpool/threadlocal%E8%AF%A6%E8%A7%A3/</guid>
+      <description>线程池学习记录</description>
+    </item>
+    
+    <item>
+      <title>分布式</title>
+      <link>https://rexhub.gitee.io/posts/back/microservices/%E5%88%86%E5%B8%83%E5%BC%8F/</link>
+      <pubDate>Thu, 10 Jun 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rexhub.gitee.io/posts/back/microservices/%E5%88%86%E5%B8%83%E5%BC%8F/</guid>
+      <description>微服务学习记录</description>
+    </item>
+    
+    <item>
+      <title>CSS</title>
+      <link>https://rexhub.gitee.io/posts/front/css/</link>
+      <pubDate>Fri, 14 May 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rexhub.gitee.io/posts/front/css/</guid>
+      <description>网页学习记录</description>
+    </item>
+    
+    <item>
+      <title>HTML5</title>
+      <link>https://rexhub.gitee.io/posts/front/html5/</link>
+      <pubDate>Wed, 12 May 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rexhub.gitee.io/posts/front/html5/</guid>
+      <description>网页学习记录</description>
+    </item>
+    
+    <item>
+      <title>网页开发</title>
+      <link>https://rexhub.gitee.io/posts/front/%E7%BD%91%E9%A1%B5%E5%BC%80%E5%8F%91/</link>
+      <pubDate>Tue, 11 May 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rexhub.gitee.io/posts/front/%E7%BD%91%E9%A1%B5%E5%BC%80%E5%8F%91/</guid>
+      <description>网页学习记录</description>
+    </item>
+    
+    <item>
+      <title>Vue基础</title>
+      <link>https://rexhub.gitee.io/posts/front/vue/vue%E5%9F%BA%E7%A1%80/</link>
+      <pubDate>Thu, 25 Mar 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rexhub.gitee.io/posts/front/vue/vue%E5%9F%BA%E7%A1%80/</guid>
+      <description>VUE学习记录</description>
+    </item>
+    
+    <item>
+      <title>Vue进阶</title>
+      <link>https://rexhub.gitee.io/posts/front/vue/vue%E8%BF%9B%E9%98%B6/</link>
+      <pubDate>Thu, 25 Mar 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rexhub.gitee.io/posts/front/vue/vue%E8%BF%9B%E9%98%B6/</guid>
+      <description>VUE学习记录</description>
+    </item>
+    
+    <item>
+      <title>JPA学习</title>
+      <link>https://rexhub.gitee.io/posts/back/jdbctool/jpa%E5%AD%A6%E4%B9%A0/</link>
+      <pubDate>Mon, 22 Mar 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rexhub.gitee.io/posts/back/jdbctool/jpa%E5%AD%A6%E4%B9%A0/</guid>
+      <description>JDBC工具学习记录</description>
+    </item>
+    
+    <item>
+      <title>Restful</title>
+      <link>https://rexhub.gitee.io/posts/back/restful/</link>
+      <pubDate>Tue, 09 Mar 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rexhub.gitee.io/posts/back/restful/</guid>
+      <description>SpringMVC学习记录</description>
+    </item>
+    
+    <item>
+      <title>SpringMVC学习</title>
+      <link>https://rexhub.gitee.io/posts/back/ssm2springboot/springmvc/springmvc%E5%AD%A6%E4%B9%A0/</link>
+      <pubDate>Tue, 09 Mar 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rexhub.gitee.io/posts/back/ssm2springboot/springmvc/springmvc%E5%AD%A6%E4%B9%A0/</guid>
+      <description>SpringMVC学习记录</description>
+    </item>
+    
+    <item>
+      <title>SpringMVC拦截器</title>
+      <link>https://rexhub.gitee.io/posts/back/ssm2springboot/springmvc/springmvc%E6%8B%A6%E6%88%AA%E5%99%A8/</link>
+      <pubDate>Tue, 09 Mar 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rexhub.gitee.io/posts/back/ssm2springboot/springmvc/springmvc%E6%8B%A6%E6%88%AA%E5%99%A8/</guid>
+      <description>SpringMVC学习记录</description>
+    </item>
+    
+    <item>
+      <title>Vue动画</title>
+      <link>https://rexhub.gitee.io/posts/front/vue/vue%E5%8A%A8%E7%94%BB/</link>
+      <pubDate>Tue, 02 Mar 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rexhub.gitee.io/posts/front/vue/vue%E5%8A%A8%E7%94%BB/</guid>
+      <description>VUE学习记录</description>
+    </item>
+    
+    <item>
+      <title>SpringBoot总结</title>
+      <link>https://rexhub.gitee.io/posts/back/ssm2springboot/springboot/springboot%E6%80%BB%E7%BB%93/</link>
+      <pubDate>Fri, 19 Feb 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rexhub.gitee.io/posts/back/ssm2springboot/springboot/springboot%E6%80%BB%E7%BB%93/</guid>
+      <description>SpringBoot学习记录</description>
+    </item>
+    
+    <item>
+      <title>SpringJDBC</title>
+      <link>https://rexhub.gitee.io/posts/back/ssm2springboot/spring/springjdbc/</link>
+      <pubDate>Wed, 06 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rexhub.gitee.io/posts/back/ssm2springboot/spring/springjdbc/</guid>
+      <description>Spring学习记录</description>
+    </item>
+    
+    <item>
+      <title>SpringAOP面向切面编程</title>
+      <link>https://rexhub.gitee.io/posts/back/ssm2springboot/spring/springaop%E9%9D%A2%E5%90%91%E5%88%87%E9%9D%A2%E7%BC%96%E7%A8%8B/</link>
+      <pubDate>Mon, 04 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rexhub.gitee.io/posts/back/ssm2springboot/spring/springaop%E9%9D%A2%E5%90%91%E5%88%87%E9%9D%A2%E7%BC%96%E7%A8%8B/</guid>
+      <description>Spring学习记录</description>
+    </item>
+    
+    <item>
+      <title>SpringTest与Junit4整合</title>
+      <link>https://rexhub.gitee.io/posts/back/ssm2springboot/spring/springtest%E4%B8%8Ejunit4%E6%95%B4%E5%90%88/</link>
+      <pubDate>Mon, 04 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rexhub.gitee.io/posts/back/ssm2springboot/spring/springtest%E4%B8%8Ejunit4%E6%95%B4%E5%90%88/</guid>
+      <description>Spring学习记录</description>
+    </item>
+    
+    <item>
+      <title>基于JavaConfig配置的IoC容器</title>
+      <link>https://rexhub.gitee.io/posts/back/ssm2springboot/spring/%E5%9F%BA%E4%BA%8Ejavaconfig%E9%85%8D%E7%BD%AE%E7%9A%84ioc%E5%AE%B9%E5%99%A8/</link>
+      <pubDate>Sun, 03 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rexhub.gitee.io/posts/back/ssm2springboot/spring/%E5%9F%BA%E4%BA%8Ejavaconfig%E9%85%8D%E7%BD%AE%E7%9A%84ioc%E5%AE%B9%E5%99%A8/</guid>
+      <description>Spring学习记录</description>
+    </item>
+    
+    <item>
+      <title>基于注解配置IoC容器</title>
+      <link>https://rexhub.gitee.io/posts/back/ssm2springboot/spring/%E5%9F%BA%E4%BA%8E%E6%B3%A8%E8%A7%A3%E9%85%8D%E7%BD%AEioc%E5%AE%B9%E5%99%A8/</link>
+      <pubDate>Sun, 03 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rexhub.gitee.io/posts/back/ssm2springboot/spring/%E5%9F%BA%E4%BA%8E%E6%B3%A8%E8%A7%A3%E9%85%8D%E7%BD%AEioc%E5%AE%B9%E5%99%A8/</guid>
+      <description>Spring学习记录</description>
+    </item>
+    
+    <item>
+      <title>Spring IoC与Bean管理</title>
+      <link>https://rexhub.gitee.io/posts/back/ssm2springboot/spring/springioc%E4%B8%8Ebean%E7%AE%A1%E7%90%86/</link>
+      <pubDate>Fri, 01 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rexhub.gitee.io/posts/back/ssm2springboot/spring/springioc%E4%B8%8Ebean%E7%AE%A1%E7%90%86/</guid>
+      <description>Spring学习记录</description>
+    </item>
+    
+    <item>
+      <title>Spring框架概述</title>
+      <link>https://rexhub.gitee.io/posts/back/ssm2springboot/spring/spring%E6%A1%86%E6%9E%B6%E6%A6%82%E8%BF%B0/</link>
+      <pubDate>Fri, 01 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rexhub.gitee.io/posts/back/ssm2springboot/spring/spring%E6%A1%86%E6%9E%B6%E6%A6%82%E8%BF%B0/</guid>
+      <description>Spring学习记录</description>
+    </item>
+    
+    <item>
+      <title>Mybatis入门</title>
+      <link>https://rexhub.gitee.io/posts/back/jdbctool/mybatis%E5%85%A5%E9%97%A8/</link>
+      <pubDate>Wed, 28 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://rexhub.gitee.io/posts/back/jdbctool/mybatis%E5%85%A5%E9%97%A8/</guid>
+      <description>JDBC工具学习记录</description>
+    </item>
+    
+    <item>
+      <title>Mybatis进阶</title>
+      <link>https://rexhub.gitee.io/posts/back/jdbctool/mybatis%E8%BF%9B%E9%98%B6/</link>
+      <pubDate>Wed, 28 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://rexhub.gitee.io/posts/back/jdbctool/mybatis%E8%BF%9B%E9%98%B6/</guid>
+      <description>JDBC工具学习记录</description>
+    </item>
+    
+    <item>
+      <title>Java反射学习</title>
+      <link>https://rexhub.gitee.io/posts/back/java/reflect/</link>
+      <pubDate>Fri, 23 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://rexhub.gitee.io/posts/back/java/reflect/</guid>
+      <description>Java学习记录</description>
+    </item>
+    
+    <item>
+      <title>Lambda学习</title>
+      <link>https://rexhub.gitee.io/posts/back/java/lambda%E5%AD%A6%E4%B9%A0/</link>
+      <pubDate>Fri, 23 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://rexhub.gitee.io/posts/back/java/lambda%E5%AD%A6%E4%B9%A0/</guid>
+      <description>java学习记录</description>
+    </item>
+    
+    <item>
+      <title>Maven学习</title>
+      <link>https://rexhub.gitee.io/posts/back/maven/maven%E5%AD%A6%E4%B9%A0/</link>
+      <pubDate>Thu, 15 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://rexhub.gitee.io/posts/back/maven/maven%E5%AD%A6%E4%B9%A0/</guid>
+      <description>maven学习记录</description>
+    </item>
+    
+  </channel>
+</rss>

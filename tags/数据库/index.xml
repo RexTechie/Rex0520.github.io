@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>数据库 on RexHub</title>
+    <link>https://rexhub.gitee.io/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/</link>
+    <description>Recent content in 数据库 on RexHub</description>
+    <image>
+      <url>https://cdn.rexweb.xyz/img/20210820141535.jpg</url>
+      <link>https://cdn.rexweb.xyz/img/20210820141535.jpg</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Fri, 09 Jul 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://rexhub.gitee.io/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Mongodb学习</title>
+      <link>https://rexhub.gitee.io/posts/back/nosql/mongodb/</link>
+      <pubDate>Fri, 09 Jul 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rexhub.gitee.io/posts/back/nosql/mongodb/</guid>
+      <description>数据库学习记录</description>
+    </item>
+    
+    <item>
+      <title>Redis入门</title>
+      <link>https://rexhub.gitee.io/posts/back/nosql/redis/</link>
+      <pubDate>Fri, 09 Jul 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rexhub.gitee.io/posts/back/nosql/redis/</guid>
+      <description>数据库学习记录</description>
+    </item>
+    
+    <item>
+      <title>JPA学习</title>
+      <link>https://rexhub.gitee.io/posts/back/jdbctool/jpa%E5%AD%A6%E4%B9%A0/</link>
+      <pubDate>Mon, 22 Mar 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rexhub.gitee.io/posts/back/jdbctool/jpa%E5%AD%A6%E4%B9%A0/</guid>
+      <description>JDBC工具学习记录</description>
+    </item>
+    
+    <item>
+      <title>Mybatis入门</title>
+      <link>https://rexhub.gitee.io/posts/back/jdbctool/mybatis%E5%85%A5%E9%97%A8/</link>
+      <pubDate>Wed, 28 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://rexhub.gitee.io/posts/back/jdbctool/mybatis%E5%85%A5%E9%97%A8/</guid>
+      <description>JDBC工具学习记录</description>
+    </item>
+    
+    <item>
+      <title>Mybatis进阶</title>
+      <link>https://rexhub.gitee.io/posts/back/jdbctool/mybatis%E8%BF%9B%E9%98%B6/</link>
+      <pubDate>Wed, 28 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://rexhub.gitee.io/posts/back/jdbctool/mybatis%E8%BF%9B%E9%98%B6/</guid>
+      <description>JDBC工具学习记录</description>
+    </item>
+    
+  </channel>
+</rss>
