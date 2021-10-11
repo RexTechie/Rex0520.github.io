@@ -163,6 +163,23 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>Dubbo</h2>
+  </header>
+  <section class="entry-content">
+    <p>Dubbo 关于Dubbo  轻量级，高性能的RPC框架 并不是要成为一个微服务的全面解决发难 以Java语言而出名  Dubbo现状  全称是Apache Dubbo 微店，网易云音乐，考拉，滴滴，中国电信，人寿 star有30k&#43;个，fork有20k&#43;个  RPC   RPC—–远程过程调用
+  早期单机时代：IPC（Inter-Process Communication）
+单个电脑运行的各个进程之间相互通信
+  网络时代：把IPC扩展到网络上，这就是RPC
+    实现RPC很头疼，于是就有了RPC框架
+  调用其他机器上的程序和调用本地的程序一样方便
+  常见的RPC框架  阿里的Dubbo（性能好） 新浪的Montan（轻量级，项目架构复杂度低，适合RPC源码学习） Facebook的Thrift （可伸缩的跨语言框架，有很强的代码生成语言）  HTTP和RPC对比  普通话（HTTP，规范–效率低）和方言（RPC，传输效率和运行速度更高），普通话本质上也是一种方言，只不过它是官方的方言 传输效率：RPC可以自己定制，通过定制自己的请求，让整体传输的内容更少，这样的效率更高，而HTTP会传输一些无用的内容 性能消耗，主要在于序列化和反序列化的耗时：RPC可以实现高效的二进制传输，HTTP大部分要通过JSON格式来传输 负载均衡：RPC自带负载均衡策略，HTTP需要借助其他的组件，如Nginx  Dubbo工作原理    模块 说明     Provider 暴露服务的服务提供方   Consumer 调用远程服务的服务消费方   Registry 服务注册与发现的注册中心   Monitor 统计服务的调用次数和调用时间的监控中心   Container 服务运行容器     服务容器负责启动，加载，运行服务提供者 服务提供者在启动时，向注册中心注册自己提供的服务 服务消费者在启动时，向注册中心订阅自己所需的服务 注册中心返回服务提供者地址列表给消费者 从提供者地址列表中，选一台提供者进行调用 定期发送一次统计数据到监控中心  </p>
+  </section>
+  <footer class="entry-footer">2021-07-23&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Rex</footer>
+  <a class="entry-link" aria-label="post link to Dubbo" href="https://rex0520.github.io/posts/back/microservices/dubbo/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>Zookeeper</h2>
   </header>
   <section class="entry-content">
@@ -221,22 +238,6 @@ Zookeeper是开源的高性能的分布式应用协调系统，一个高性能�
   </section>
   <footer class="entry-footer">2021-06-26&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Rex</footer>
   <a class="entry-link" aria-label="post link to Docker的安装" href="https://rex0520.github.io/posts/back/microservices/docker%E7%9A%84%E5%AE%89%E8%A3%85/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>Docker简介</h2>
-  </header>
-  <section class="entry-content">
-    <p>Docker 概念  Docker是一个用来装程序及其环境的容器,属于Linux容器的 一种封装,提供简单易用的容器使用接口。它是目前最流行的 Linux容器解决方案。
- 痛点  环境配置 虚拟机  资源占用多 冗余步骤多 启动时间慢   Docker的基础 — Linux容器  启动快 占用资源少 体积小    用途  提供统一的环境 提供快速拓展、弹性伸缩的云服务 防止其他用户的进程把服务器资源占用过多  特点   标准化
- 运输方式（把程序和环境从一个机器运到另一个机器） 存储方式（程序和环境的存储） API接口（不需要Tomcat等应用的命令了，都标准化了）    灵活：即使是最复杂的应用也可以集装箱化
-  轻量级：容器利用并共享主机内核
-  便携式：可以在本地构建
-  Docker的组成、架构、重要概念 images（镜像）:  存储：联合文件系统，UnionFS    Container（容器）：  镜像类似于Java中的类，而容器就是实例 容器的这一层是可以修改的，而镜像是不可以修改的 同一个镜像可以生成多个容器独立运行，而他们之间没有任何的干扰  Repository（仓库）：        共有 vs 私有...</p>
-  </section>
-  <footer class="entry-footer">2021-06-26&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Rex</footer>
-  <a class="entry-link" aria-label="post link to Docker简介" href="https://rex0520.github.io/posts/back/microservices/docker/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
