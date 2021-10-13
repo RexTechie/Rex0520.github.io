@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>lambda on Rex</title>
+    <title>Lambda on Rex</title>
     <link>https://rex0520.github.io/tags/lambda/</link>
-    <description>Recent content in lambda on Rex</description>
+    <description>Recent content in Lambda on Rex</description>
     <image>
       <url>https://cdn.rexweb.xyz/img/20210820141535.jpg</url>
       <link>https://cdn.rexweb.xyz/img/20210820141535.jpg</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Fri, 23 Oct 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://rex0520.github.io/tags/lambda/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 09 Mar 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://rex0520.github.io/tags/lambda/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Lambda学习</title>
-      <link>https://rex0520.github.io/posts/back/java/lambda%E5%AD%A6%E4%B9%A0/</link>
-      <pubDate>Fri, 23 Oct 2020 00:00:00 +0000</pubDate>
+      <title>Lambda(java)</title>
+      <link>https://rex0520.github.io/posts/back/java/lambda/</link>
+      <pubDate>Tue, 09 Mar 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://rex0520.github.io/posts/back/java/lambda%E5%AD%A6%E4%B9%A0/</guid>
-      <description>java学习记录</description>
+      <guid>https://rex0520.github.io/posts/back/java/lambda/</guid>
+      <description>Lambda(java)</description>
     </item>
     
   </channel>

@@ -6,12 +6,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
 <title>Vue动画 | Rex</title>
-<meta name="keywords" content="vue, 前端, 动画" />
-<meta name="description" content="VUE学习记录">
+<meta name="keywords" content="Vue" />
+<meta name="description" content="Vue动画">
 <meta name="author" content="Rex">
 <link rel="canonical" href="https://rex0520.github.io/posts/front/vue/vue%E5%8A%A8%E7%94%BB/" />
 <link crossorigin="anonymous" href="/assets/css/stylesheet.min.css" rel="preload stylesheet" as="style">
 <link rel="preload" href="http://cdn.rexweb.xyz/img/20210821105340.png" as="image">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.min.js" onload="hljs.initHighlightingOnLoad();"></script>
 <link rel="icon" href="https://rex0520.github.io/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="https://rex0520.github.io/favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="https://rex0520.github.io/favicon-32x32.png">
@@ -21,17 +22,17 @@
 <meta name="msapplication-TileColor" content="#2e2e33">
 <meta name="generator" content="Hugo 0.87.0" />
 <meta property="og:title" content="Vue动画" />
-<meta property="og:description" content="VUE学习记录" />
+<meta property="og:description" content="Vue动画" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://rex0520.github.io/posts/front/vue/vue%E5%8A%A8%E7%94%BB/" /><meta property="og:image" content="https://cdn.rexweb.xyz/img/20210820141535.jpg"/><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2021-03-02T00:00:00&#43;00:00" />
-<meta property="article:modified_time" content="2021-03-02T00:00:00&#43;00:00" /><meta property="og:site_name" content="RexHub" />
+<meta property="article:published_time" content="2021-03-15T00:00:00&#43;00:00" />
+<meta property="article:modified_time" content="2021-03-15T00:00:00&#43;00:00" /><meta property="og:site_name" content="RexHub" />
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://cdn.rexweb.xyz/img/20210820141535.jpg"/>
 
 <meta name="twitter:title" content="Vue动画"/>
-<meta name="twitter:description" content="VUE学习记录"/>
+<meta name="twitter:description" content="Vue动画"/>
 
 
 <script type="application/ld+json">
@@ -60,15 +61,15 @@
   "@type": "BlogPosting",
   "headline": "Vue动画",
   "name": "Vue动画",
-  "description": "VUE学习记录",
+  "description": "Vue动画",
   "keywords": [
-    "vue", "前端", "动画"
+    "Vue"
   ],
-  "articleBody": "Vue动画 Vue过渡和动画 1. 过渡和动画基础   什么是过渡和动画\n  过渡：从一个状态向另一个状态变化的过程\n  动画：与过渡非常类似，只不过动画控制的过程更加细腻，更加精准\n  过渡语法：\n1 2 3 4  transition name=\"fade\"  divdiv transition   name指定的是过渡所需要的样式名的前提\n    transition组件\n  Vue给transition标签，提供了六个过度类\n   过渡类型 说明     v-enter 进入过渡的开始状态，作用于开始的一帧   v-enter-active 进入过渡生效时的状态，作用于整个过程   v-enter-to 进入过渡的结束状态，作用于结束的一帧   v-leave 离开过渡的开始状态，作用于开始的一帧   v-leave-active 离开过渡生效时的状态，作用于整个过程   v-leave-to 离开过渡的结束状态，作用于结束的一帧      过渡类分析图\n  代码示例：\nhtml：\n1 2 3 4 5 6  div id=\"app\" button @click=\"toggle\"调整box的宽度button transition name=\"box\" div v-if=\"show\" class=\"chart\"div transition div   css：\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21  /* 图形的初始状态 */ .chart { width: 200px; height: 50px; background-color: orange; } .box-enter-active, .box-leave-active { transition: width 3s; } .box-enter, .box-leave-to { width: 0px; } .box-enter-to, .box-leave { width: 200px; }   js：\n1 2 3 4 5 6 7 8 9 10 11  var vm = new Vue({ el: '#app', data: { show: true }, methods: { toggle() { this.show = !this.show; } }, })     总结\n v-enter 进入前的那一刻，和v-leave-to 离开结束的那一刻，就是隐藏的状态 v-enter-to 进入结束的那一刻，和v-leave 离开前的那一刻，就是显示的状态 v-enter-active 与 v-leave-active，是进入（显示）的整个过渡过程，与离开（隐藏）的整个过渡过程      自定义类名\n  transition允许使用自定义的类名\n  如果使用自定义类名，就不需要设置name属性\n  设置自定义类名的属性\n 进入：enter-class、enter-active-class、enter-to-class 离开：leave-class、leave-active-class、leave-to-class    初始化渲染动画\n1 2 3 4  transition appear appear-active-class=\"animated swing\" enter-active-class=\"animated bounceInLeft\" leave-active-class=\"animated bounceOutLeft\" p v-if=\"show\"动画效果过渡p transition   上述代码中，appear表示开启此特性，appear-class表示初始class样式，appear-to-class表示过渡完成的class样式，appear-active-class会应用在整个过渡过程中\n    使用@keyframes创建CSS动画\n  keyframes：关键帧，用于定义动画的每一帧\n  代码：\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23  .bounce-enter-active { animation: Anim 1s; } .bounce-leave-active { /* 反向 */ animation: Anim 1s reverse; } @keyframes Anim { /* 相当于v-enter和v-leave-to */ 0% { transform: scale(0); background-color: red; } /* 相当于 v-enter-to 和 v-leave */ 100% { transform: scale(1); background-color: blue; } }       钩子函数实现动画\n  在动画执行过程中的各个阶段会有不同的钩子函数，通过这些钩子函数也可以实现动画\n  钩子函数\n  入场钩子\n1 2 3 4 5 6  transition @before-enter=\"beforeEnter\" @enter=\"enter\" @after-enter=\"afterEnter\" @enter-cancelled=\"enterCancelled\" transition     出场钩子\n1 2 3 4 5 6 7  transition @before-leave=\"beforeLeave\" @leave=\"leave\" @after-leave=\"after-leave\" @leave-cancelled=\"leaveCancelled\"  transition     Vue会跳过CSS的检测\n1 2 3 4  transition v-bind:css=\"false\"  transition         Vue结合Velocity.js实现动画\n  Velocity.js是一个简单易用，高性能且功能丰富的轻量级JS动画库\n  代码：\n1 2 3 4 5 6 7 8 9 10 11 12 13  enter(el, done) { Velocity(el, { opacity: 1, fontSize: '1.4em' }, { duration: 300 }) Velocity(el, { fontSize: '1em' }, { complete: done }); },     注意\n 在动画钩子函数中可以利用velocity来确定执行的动画 velocity第一个参数是DOM元素，第二个参数是css样式，第三个参数表示动画的配置项 第三个参数可以配置duration动画时长，也可以配置动画完成complete      2. 多个元素过渡   不同标签名元素过渡\n  不同标签默元素可以使用v-if和v-else来进行过渡\n  代码\n1 2 3 4 5 6 7  transition ul v-if=\"items.length  0\" li项目1li li项目2li ul p v-else抱歉，没有找到您查询的内容p transition       相同标签名元素过渡\n  相同标签名的元素切换时，需要通过key设置唯一值\n  代码：\n1 2 3 4 5 6 7 8 9  button @click=\"isEdit=!isEdit\"切换编辑和保存button transition button v-if=\"isEdit\" key=\"edit\" 编辑 button button v-else key='save' 保存 button transition   1 2 3 4 5 6  var vm = new Vue({ el: '#app', data: { isEdit: \"true\" } });       过渡模式\n 过度模式描述  新旧俩个元素参与过渡的时候，新元素的进入和旧元素的离开会同时触发，这是因为的默认行为进入和离开同时发生了，如果要求离开的元素完全消失后，进入的元素再显示出来（如开始的切换），可以使用transition提供的过渡模式mode，来解决当一个组件离开后，另一个组件进来时发生的位置的闪动或阻塞问题 过渡模式的原理时，设置有序的过渡而不是同时发生过渡，在transition中加入mode属性，它的俩个值如下所示。 in-out：表示新元素先进行过渡，完成之后当前元素过渡离开 out-in：表示当前元素先进行过渡，完成之后新元素过渡进入      3. 多个组件过渡   什么是多个组件过渡\n  通过元素的is属性来切换组件，实现动态组件，然后给组件添加过渡，这就是多组件过渡\n  案例演示\n1 2 3  transition name=\"fade\" mode=\"out-in\" component :is=\"componentName\"component transition   1 2 3 4 5 6 7 8 9 10 11 12  Vue.component('example1', { template: \"#example1\" }) Vue.component('example2', { template: '#example2' }) var vm = new Vue({ el: '#app', data: { componentName: 'example1' } })       4. 列表过渡   什么是列表过渡\n通过v-for循环显示多个元素，并且通过transition-group组件来给这多个元素同时添加过渡效果\n  列表的进入和离开过渡\n1 2 3 4 5  transition-group name=\"list\" tag=\"p\" span v-for=\"item in items\" :key=\"item\" class=\"list-item\" {{item}} span transition-group   1 2 3 4 5 6 7 8 9 10 11 12  /* 插入或移除元素的过程 */ .list-enter-active, .list-leave-active { transition: all 1s; } /* 开始插入或移除结束的位置变化 */ .list-enter, .list-leave-to { opacity: 0; transform: translateY(30px); }     列表的排序过渡\n  排序过渡 - 其他元素平滑过渡\n当插入或移除元素的时候，虽然有过渡动画，但是周围的元素会瞬间移动到新的置，而不是平滑过渡。为了实现平滑过渡，可以借助v-move特性，v-move对于设置过渡的切换时机和过渡曲线非常有用。v-move特性会在元素改变定位的过程中应用，它同之前的类名一样，可以通过name属性来自定义前缀（例如name）\n1 2 3  .list-move { transition: transform 1s; }     Flip\nVue使用了FLIIP简单动画队列来实现排序过渡，所以即使没有插入或者移除元素，对于元素顺序的变化也支持过渡动画，FLIP动画能提高动画的流畅度，可以解决动画的卡顿，闪烁等不流畅的现象，它不禁可以实现单列过渡，也可以实现多维网络的过渡。FLIP代表First、Last、Invert、Play，有兴趣的读者可以自行研究学习\n    列表的交错过渡\n  列表的交错过渡，其实就是多个li在做动画时，每一个li做过渡时有时间差，依次过渡\n  延迟做过渡动画\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23  enter(el, done) { //交错过渡，每个li都做延迟过渡  var delay = el.dataset.index * 150; setTimeout(function () { Velocity(el, { opacity: 1, height: '1.6em' }, { complete: done }); }); }, leave(el, done) { var delay = el.dataset.index * 150; setTimeout(function () { Velocity(el, { opacity: 0, height: 0 }, { complete: done }) }) }       可复用的过渡\n template方式 函数式组件方式    ",
-  "wordCount" : "602",
+  "articleBody": "Vue动画 Vue过渡和动画 1. 过渡和动画基础   什么是过渡和动画\n  过渡：从一个状态向另一个状态变化的过程\n  动画：与过渡非常类似，只不过动画控制的过程更加细腻，更加精准\n  过渡语法：\ntransition name=\"fade\"  divdiv transition name指定的是过渡所需要的样式名的前提\n    transition组件\n  Vue给transition标签，提供了六个过度类\n   过渡类型 说明     v-enter 进入过渡的开始状态，作用于开始的一帧   v-enter-active 进入过渡生效时的状态，作用于整个过程   v-enter-to 进入过渡的结束状态，作用于结束的一帧   v-leave 离开过渡的开始状态，作用于开始的一帧   v-leave-active 离开过渡生效时的状态，作用于整个过程   v-leave-to 离开过渡的结束状态，作用于结束的一帧      过渡类分析图\n  代码示例：\nhtml：\ndiv id=\"app\" button @click=\"toggle\"调整box的宽度button transition name=\"box\" div v-if=\"show\" class=\"chart\"div transition div css：\n/* 图形的初始状态 */ .chart { width: 200px; height: 50px; background-color: orange; } .box-enter-active, .box-leave-active { transition: width 3s; } .box-enter, .box-leave-to { width: 0px; } .box-enter-to, .box-leave { width: 200px; } js：\nvar vm = new Vue({ el: '#app', data: { show: true }, methods: { toggle() { this.show = !this.show; } }, })   总结\n v-enter 进入前的那一刻，和v-leave-to 离开结束的那一刻，就是隐藏的状态 v-enter-to 进入结束的那一刻，和v-leave 离开前的那一刻，就是显示的状态 v-enter-active 与 v-leave-active，是进入（显示）的整个过渡过程，与离开（隐藏）的整个过渡过程      自定义类名\n  transition允许使用自定义的类名\n  如果使用自定义类名，就不需要设置name属性\n  设置自定义类名的属性\n 进入：enter-class、enter-active-class、enter-to-class 离开：leave-class、leave-active-class、leave-to-class    初始化渲染动画\ntransition appear appear-active-class=\"animated swing\" enter-active-class=\"animated bounceInLeft\" leave-active-class=\"animated bounceOutLeft\" p v-if=\"show\"动画效果过渡p transition 上述代码中，appear表示开启此特性，appear-class表示初始class样式，appear-to-class表示过渡完成的class样式，appear-active-class会应用在整个过渡过程中\n    使用@keyframes创建CSS动画\n  keyframes：关键帧，用于定义动画的每一帧\n  代码：\n.bounce-enter-active { animation: Anim 1s; } .bounce-leave-active { /* 反向 */ animation: Anim 1s reverse; } @keyframes Anim { /* 相当于v-enter和v-leave-to */ 0% { transform: scale(0); background-color: red; } /* 相当于 v-enter-to 和 v-leave */ 100% { transform: scale(1); background-color: blue; } }     钩子函数实现动画\n  在动画执行过程中的各个阶段会有不同的钩子函数，通过这些钩子函数也可以实现动画\n  钩子函数\n  入场钩子\ntransition @before-enter=\"beforeEnter\" @enter=\"enter\" @after-enter=\"afterEnter\" @enter-cancelled=\"enterCancelled\" transition   出场钩子\ntransition @before-leave=\"beforeLeave\" @leave=\"leave\" @after-leave=\"after-leave\" @leave-cancelled=\"leaveCancelled\"  transition   Vue会跳过CSS的检测\ntransition v-bind:css=\"false\"  transition       Vue结合Velocity.js实现动画\n  Velocity.js是一个简单易用，高性能且功能丰富的轻量级JS动画库\n  代码：\nenter(el, done) { Velocity(el, { opacity: 1, fontSize: '1.4em' }, { duration: 300 }) Velocity(el, { fontSize: '1em' }, { complete: done }); },   注意\n 在动画钩子函数中可以利用velocity来确定执行的动画 velocity第一个参数是DOM元素，第二个参数是css样式，第三个参数表示动画的配置项 第三个参数可以配置duration动画时长，也可以配置动画完成complete      2. 多个元素过渡   不同标签名元素过渡\n  不同标签默元素可以使用v-if和v-else来进行过渡\n  代码\ntransition ul v-if=\"items.length  0\" li项目1li li项目2li ul p v-else抱歉，没有找到您查询的内容p transition     相同标签名元素过渡\n  相同标签名的元素切换时，需要通过key设置唯一值\n  代码：\nbutton @click=\"isEdit=!isEdit\"切换编辑和保存button transition button v-if=\"isEdit\" key=\"edit\" 编辑 button button v-else key='save' 保存 button transition var vm = new Vue({ el: '#app', data: { isEdit: \"true\" } });     过渡模式\n 过度模式描述  新旧俩个元素参与过渡的时候，新元素的进入和旧元素的离开会同时触发，这是因为的默认行为进入和离开同时发生了，如果要求离开的元素完全消失后，进入的元素再显示出来（如开始的切换），可以使用transition提供的过渡模式mode，来解决当一个组件离开后，另一个组件进来时发生的位置的闪动或阻塞问题 过渡模式的原理时，设置有序的过渡而不是同时发生过渡，在transition中加入mode属性，它的俩个值如下所示。 in-out：表示新元素先进行过渡，完成之后当前元素过渡离开 out-in：表示当前元素先进行过渡，完成之后新元素过渡进入      3. 多个组件过渡   什么是多个组件过渡\n  通过元素的is属性来切换组件，实现动态组件，然后给组件添加过渡，这就是多组件过渡\n  案例演示\ntransition name=\"fade\" mode=\"out-in\" component :is=\"componentName\"component transition Vue.component('example1', { template: \"#example1\" }) Vue.component('example2', { template: '#example2' }) var vm = new Vue({ el: '#app', data: { componentName: 'example1' } })     4. 列表过渡   什么是列表过渡\n通过v-for循环显示多个元素，并且通过transition-group组件来给这多个元素同时添加过渡效果\n  列表的进入和离开过渡\ntransition-group name=\"list\" tag=\"p\" span v-for=\"item in items\" :key=\"item\" class=\"list-item\" {{item}} span transition-group /* 插入或移除元素的过程 */ .list-enter-active, .list-leave-active { transition: all 1s; } /* 开始插入或移除结束的位置变化 */ .list-enter, .list-leave-to { opacity: 0; transform: translateY(30px); }   列表的排序过渡\n  排序过渡 - 其他元素平滑过渡\n当插入或移除元素的时候，虽然有过渡动画，但是周围的元素会瞬间移动到新的置，而不是平滑过渡。为了实现平滑过渡，可以借助v-move特性，v-move对于设置过渡的切换时机和过渡曲线非常有用。v-move特性会在元素改变定位的过程中应用，它同之前的类名一样，可以通过name属性来自定义前缀（例如name）\n.list-move { transition: transform 1s; }   Flip\nVue使用了FLIIP简单动画队列来实现排序过渡，所以即使没有插入或者移除元素，对于元素顺序的变化也支持过渡动画，FLIP动画能提高动画的流畅度，可以解决动画的卡顿，闪烁等不流畅的现象，它不禁可以实现单列过渡，也可以实现多维网络的过渡。FLIP代表First、Last、Invert、Play，有兴趣的读者可以自行研究学习\n    列表的交错过渡\n  列表的交错过渡，其实就是多个li在做动画时，每一个li做过渡时有时间差，依次过渡\n  延迟做过渡动画\nenter(el, done) { //交错过渡，每个li都做延迟过渡  var delay = el.dataset.index * 150; setTimeout(function () { Velocity(el, { opacity: 1, height: '1.6em' }, { complete: done }); }); }, leave(el, done) { var delay = el.dataset.index * 150; setTimeout(function () { Velocity(el, { opacity: 0, height: 0 }, { complete: done }) }) }     可复用的过渡\n template方式 函数式组件方式    ",
+  "wordCount" : "423",
   "inLanguage": "en",
-  "datePublished": "2021-03-02T00:00:00Z",
-  "dateModified": "2021-03-02T00:00:00Z",
+  "datePublished": "2021-03-15T00:00:00Z",
+  "dateModified": "2021-03-15T00:00:00Z",
   "author":{
     "@type": "Person",
     "name": "Rex"
@@ -205,9 +206,9 @@
       Vue动画
     </h1>
     <div class="post-description">
-      VUE学习记录
+      Vue动画
     </div>
-    <div class="post-meta">2021-03-02&nbsp;·&nbsp;3 min&nbsp;·&nbsp;Rex&nbsp;|&nbsp;<a href="https://github.com/Rex0520/Rex0520.github.io" rel="noopener noreferrer" target="_blank">来这修改</a>
+    <div class="post-meta">2021-03-15&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Rex&nbsp;|&nbsp;<a href="https://github.com/Rex0520/Rex0520.github.io" rel="noopener noreferrer" target="_blank">来这修改</a>
 </div>
   </header> <div class="toc">
     <details  open>
@@ -254,21 +255,11 @@
 </li>
 <li>
 <p>过渡语法：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">transition</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;fade&#34;</span><span class="p">&gt;</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">transition</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;fade&#34;</span><span class="p">&gt;</span>
     <span class="c">&lt;!-- 需要添加过渡的div标签--&gt;</span>
     <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 <span class="p">&lt;/</span><span class="nt">transition</span><span class="p">&gt;</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>name指定的是过渡所需要的样式名的前提</p>
+</code></pre></div><p>name指定的是过渡所需要的样式名的前提</p>
 </li>
 </ol>
 </li>
@@ -320,51 +311,14 @@
 <li>
 <p>代码示例：</p>
 <p>html：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;app&#34;</span><span class="p">&gt;</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;app&#34;</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">button</span> <span class="err">@</span><span class="na">click</span><span class="o">=</span><span class="s">&#34;toggle&#34;</span><span class="p">&gt;</span>调整box的宽度<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">transition</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;box&#34;</span><span class="p">&gt;</span>
         <span class="p">&lt;</span><span class="nt">div</span> <span class="na">v-if</span><span class="o">=</span><span class="s">&#34;show&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;chart&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
     <span class="p">&lt;/</span><span class="nt">transition</span><span class="p">&gt;</span>
 <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>css：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-css" data-lang="css"><span class="c">/* 图形的初始状态 */</span>
+</code></pre></div><p>css：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-css" data-lang="css"><span class="c">/* 图形的初始状态 */</span>
 <span class="p">.</span><span class="nc">chart</span> <span class="p">{</span>
     <span class="k">width</span><span class="p">:</span> <span class="mi">200</span><span class="kt">px</span><span class="p">;</span>
     <span class="k">height</span><span class="p">:</span> <span class="mi">50</span><span class="kt">px</span><span class="p">;</span>
@@ -385,25 +339,8 @@
 <span class="p">.</span><span class="nc">box-leave</span> <span class="p">{</span>
     <span class="k">width</span><span class="p">:</span> <span class="mi">200</span><span class="kt">px</span><span class="p">;</span>
 <span class="p">}</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>js：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">vm</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
+</code></pre></div><p>js：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">vm</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
     <span class="nx">el</span><span class="o">:</span> <span class="s1">&#39;#app&#39;</span><span class="p">,</span>
     <span class="nx">data</span><span class="o">:</span> <span class="p">{</span>
         <span class="nx">show</span><span class="o">:</span> <span class="kc">true</span>
@@ -414,9 +351,7 @@
         <span class="p">}</span>
     <span class="p">},</span>
 <span class="p">})</span>
-</code></pre></td></tr></table>
-</div>
-</div></li>
+</code></pre></div></li>
 <li>
 <p>总结</p>
 <ol>
@@ -445,21 +380,11 @@
 </li>
 <li>
 <p>初始化渲染动画</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">transition</span> <span class="na">appear</span> <span class="na">appear-active-class</span><span class="o">=</span><span class="s">&#34;animated swing&#34;</span> <span class="na">enter-active-class</span><span class="o">=</span><span class="s">&#34;animated bounceInLeft&#34;</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">transition</span> <span class="na">appear</span> <span class="na">appear-active-class</span><span class="o">=</span><span class="s">&#34;animated swing&#34;</span> <span class="na">enter-active-class</span><span class="o">=</span><span class="s">&#34;animated bounceInLeft&#34;</span>
             <span class="na">leave-active-class</span><span class="o">=</span><span class="s">&#34;animated bounceOutLeft&#34;</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">p</span> <span class="na">v-if</span><span class="o">=</span><span class="s">&#34;show&#34;</span><span class="p">&gt;</span>动画效果过渡<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
 <span class="p">&lt;/</span><span class="nt">transition</span><span class="p">&gt;</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>上述代码中，appear表示开启此特性，appear-class表示初始class样式，appear-to-class表示过渡完成的class样式，appear-active-class会应用在整个过渡过程中</p>
+</code></pre></div><p>上述代码中，appear表示开启此特性，appear-class表示初始class样式，appear-to-class表示过渡完成的class样式，appear-active-class会应用在整个过渡过程中</p>
 </li>
 </ol>
 </li>
@@ -471,34 +396,7 @@
 </li>
 <li>
 <p>代码：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-css" data-lang="css"><span class="p">.</span><span class="nc">bounce-enter-active</span> <span class="p">{</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-css" data-lang="css"><span class="p">.</span><span class="nc">bounce-enter-active</span> <span class="p">{</span>
     <span class="k">animation</span><span class="p">:</span> <span class="n">Anim</span> <span class="mi">1</span><span class="kt">s</span><span class="p">;</span>
 <span class="p">}</span>
 
@@ -521,9 +419,7 @@
         <span class="k">background-color</span><span class="p">:</span> <span class="kc">blue</span><span class="p">;</span>
     <span class="p">}</span>
 <span class="p">}</span>
-</code></pre></td></tr></table>
-</div>
-</div></li>
+</code></pre></div></li>
 </ol>
 </li>
 <li>
@@ -537,65 +433,30 @@
 <ol>
 <li>
 <p>入场钩子</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">transition</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">transition</span>
             <span class="err">@</span><span class="na">before-enter</span><span class="o">=</span><span class="s">&#34;beforeEnter&#34;</span> 
             <span class="err">@</span><span class="na">enter</span><span class="o">=</span><span class="s">&#34;enter&#34;</span> 
             <span class="err">@</span><span class="na">after-enter</span><span class="o">=</span><span class="s">&#34;afterEnter&#34;</span>
             <span class="err">@</span><span class="na">enter-cancelled</span><span class="o">=</span><span class="s">&#34;enterCancelled&#34;</span> 
 <span class="err">&lt;/</span><span class="na">transition</span><span class="p">&gt;</span>
-</code></pre></td></tr></table>
-</div>
-</div></li>
+</code></pre></div></li>
 <li>
 <p>出场钩子</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">transition</span>             
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">transition</span>             
             <span class="err">@</span><span class="na">before-leave</span><span class="o">=</span><span class="s">&#34;beforeLeave&#34;</span> 
             <span class="err">@</span><span class="na">leave</span><span class="o">=</span><span class="s">&#34;leave&#34;</span> 
             <span class="err">@</span><span class="na">after-leave</span><span class="o">=</span><span class="s">&#34;after-leave&#34;</span>
             <span class="err">@</span><span class="na">leave-cancelled</span><span class="o">=</span><span class="s">&#34;leaveCancelled&#34;</span>
 <span class="p">&gt;</span>
 <span class="p">&lt;/</span><span class="nt">transition</span><span class="p">&gt;</span>
-</code></pre></td></tr></table>
-</div>
-</div></li>
+</code></pre></div></li>
 <li>
 <p>Vue会跳过CSS的检测</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">transition</span>             
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">transition</span>             
             <span class="na">v-bind:css</span><span class="o">=</span><span class="s">&#34;false&#34;</span><span class="p">&gt;</span>
 &gt;
 <span class="p">&lt;/</span><span class="nt">transition</span><span class="p">&gt;</span>
-</code></pre></td></tr></table>
-</div>
-</div></li>
+</code></pre></div></li>
 </ol>
 </li>
 </ol>
@@ -608,24 +469,7 @@
 </li>
 <li>
 <p>代码：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="nx">enter</span><span class="p">(</span><span class="nx">el</span><span class="p">,</span> <span class="nx">done</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="nx">enter</span><span class="p">(</span><span class="nx">el</span><span class="p">,</span> <span class="nx">done</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">Velocity</span><span class="p">(</span><span class="nx">el</span><span class="p">,</span> <span class="p">{</span>
         <span class="nx">opacity</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
         <span class="nx">fontSize</span><span class="o">:</span> <span class="s1">&#39;1.4em&#39;</span>
@@ -638,9 +482,7 @@
         <span class="nx">complete</span><span class="o">:</span> <span class="nx">done</span>
     <span class="p">});</span>
 <span class="p">},</span>
-</code></pre></td></tr></table>
-</div>
-</div></li>
+</code></pre></div></li>
 <li>
 <p>注意</p>
 <ol>
@@ -662,27 +504,14 @@
 </li>
 <li>
 <p>代码</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">transition</span><span class="p">&gt;</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">transition</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">ul</span> <span class="na">v-if</span><span class="o">=</span><span class="s">&#34;items.length &gt; 0&#34;</span><span class="p">&gt;</span>
         <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>项目1<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
         <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>项目2<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
     <span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">p</span> <span class="na">v-else</span><span class="p">&gt;</span>抱歉，没有找到您查询的内容<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
 <span class="p">&lt;/</span><span class="nt">transition</span><span class="p">&gt;</span>
-</code></pre></td></tr></table>
-</div>
-</div></li>
+</code></pre></div></li>
 </ol>
 </li>
 <li>
@@ -693,20 +522,7 @@
 </li>
 <li>
 <p>代码：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span><span class="lnt">8
-</span><span class="lnt">9
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">button</span> <span class="err">@</span><span class="na">click</span><span class="o">=</span><span class="s">&#34;isEdit=!isEdit&#34;</span><span class="p">&gt;</span>切换编辑和保存<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">button</span> <span class="err">@</span><span class="na">click</span><span class="o">=</span><span class="s">&#34;isEdit=!isEdit&#34;</span><span class="p">&gt;</span>切换编辑和保存<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
 <span class="p">&lt;</span><span class="nt">transition</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">button</span> <span class="na">v-if</span><span class="o">=</span><span class="s">&#34;isEdit&#34;</span> <span class="na">key</span><span class="o">=</span><span class="s">&#34;edit&#34;</span><span class="p">&gt;</span>
         编辑
@@ -715,27 +531,13 @@
         保存
     <span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
 <span class="p">&lt;/</span><span class="nt">transition</span><span class="p">&gt;</span>
-</code></pre></td></tr></table>
-</div>
-</div><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">vm</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
+</code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">vm</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
     <span class="nx">el</span><span class="o">:</span> <span class="s1">&#39;#app&#39;</span><span class="p">,</span>
     <span class="nx">data</span><span class="o">:</span> <span class="p">{</span>
         <span class="nx">isEdit</span><span class="o">:</span> <span class="s2">&#34;true&#34;</span>
     <span class="p">}</span>
 <span class="p">});</span>
-</code></pre></td></tr></table>
-</div>
-</div></li>
+</code></pre></div></li>
 </ol>
 </li>
 <li>
@@ -762,35 +564,10 @@
 </li>
 <li>
 <p>案例演示</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">transition</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;fade&#34;</span> <span class="na">mode</span><span class="o">=</span><span class="s">&#34;out-in&#34;</span><span class="p">&gt;</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">transition</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;fade&#34;</span> <span class="na">mode</span><span class="o">=</span><span class="s">&#34;out-in&#34;</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">component</span> <span class="na">:is</span><span class="o">=</span><span class="s">&#34;componentName&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">component</span><span class="p">&gt;</span>
 <span class="p">&lt;/</span><span class="nt">transition</span><span class="p">&gt;</span>
-</code></pre></td></tr></table>
-</div>
-</div><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="nx">Vue</span><span class="p">.</span><span class="nx">component</span><span class="p">(</span><span class="s1">&#39;example1&#39;</span><span class="p">,</span> <span class="p">{</span>
+</code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="nx">Vue</span><span class="p">.</span><span class="nx">component</span><span class="p">(</span><span class="s1">&#39;example1&#39;</span><span class="p">,</span> <span class="p">{</span>
     <span class="nx">template</span><span class="o">:</span> <span class="s2">&#34;#example1&#34;</span>
 <span class="p">})</span>
 <span class="nx">Vue</span><span class="p">.</span><span class="nx">component</span><span class="p">(</span><span class="s1">&#39;example2&#39;</span><span class="p">,</span> <span class="p">{</span>
@@ -802,9 +579,7 @@
         <span class="nx">componentName</span><span class="o">:</span> <span class="s1">&#39;example1&#39;</span>
     <span class="p">}</span>
 <span class="p">})</span>
-</code></pre></td></tr></table>
-</div>
-</div></li>
+</code></pre></div></li>
 </ol>
 </li>
 </ol>
@@ -816,39 +591,12 @@
 </li>
 <li>
 <p>列表的进入和离开过渡</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">transition-group</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;list&#34;</span> <span class="na">tag</span><span class="o">=</span><span class="s">&#34;p&#34;</span><span class="p">&gt;</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">transition-group</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;list&#34;</span> <span class="na">tag</span><span class="o">=</span><span class="s">&#34;p&#34;</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">span</span> <span class="na">v-for</span><span class="o">=</span><span class="s">&#34;item in items&#34;</span> <span class="na">:key</span><span class="o">=</span><span class="s">&#34;item&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;list-item&#34;</span><span class="p">&gt;</span>
         {{item}}
     <span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
 <span class="p">&lt;/</span><span class="nt">transition-group</span><span class="p">&gt;</span>
-</code></pre></td></tr></table>
-</div>
-</div><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-css" data-lang="css"><span class="c">/* 插入或移除元素的过程 */</span>
+</code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-css" data-lang="css"><span class="c">/* 插入或移除元素的过程 */</span>
 <span class="p">.</span><span class="nc">list-enter-active</span><span class="o">,</span>
 <span class="p">.</span><span class="nc">list-leave-active</span> <span class="p">{</span>
     <span class="k">transition</span><span class="p">:</span> <span class="kc">all</span> <span class="mi">1</span><span class="kt">s</span><span class="p">;</span>
@@ -860,28 +608,17 @@
     <span class="k">opacity</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
     <span class="k">transform</span><span class="p">:</span> <span class="nb">translateY</span><span class="p">(</span><span class="mi">30</span><span class="kt">px</span><span class="p">);</span>
 <span class="p">}</span>
-</code></pre></td></tr></table>
-</div>
-</div></li>
+</code></pre></div></li>
 <li>
 <p>列表的排序过渡</p>
 <ol>
 <li>
 <p>排序过渡 - 其他元素平滑过渡</p>
 <p>当插入或移除元素的时候，虽然有过渡动画，但是周围的元素会瞬间移动到新的置，而不是平滑过渡。为了实现平滑过渡，可以借助v-move特性，v-move对于设置过渡的切换时机和过渡曲线非常有用。v-move特性会在元素改变定位的过程中应用，它同之前的类名一样，可以通过name属性来自定义前缀（例如name）</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-css" data-lang="css"><span class="p">.</span><span class="nc">list-move</span> <span class="p">{</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-css" data-lang="css"><span class="p">.</span><span class="nc">list-move</span> <span class="p">{</span>
     <span class="k">transition</span><span class="p">:</span> <span class="k">transform</span> <span class="mi">1</span><span class="kt">s</span><span class="p">;</span>
 <span class="p">}</span>
-</code></pre></td></tr></table>
-</div>
-</div></li>
+</code></pre></div></li>
 <li>
 <p>Flip</p>
 <p>Vue使用了FLIIP简单动画队列来实现排序过渡，所以即使没有插入或者移除元素，对于元素顺序的变化也支持过渡动画，FLIP动画能提高动画的流畅度，可以解决动画的卡顿，闪烁等不流畅的现象，它不禁可以实现单列过渡，也可以实现多维网络的过渡。FLIP代表First、Last、Invert、Play，有兴趣的读者可以自行研究学习</p>
@@ -896,34 +633,7 @@
 </li>
 <li>
 <p>延迟做过渡动画</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="nx">enter</span><span class="p">(</span><span class="nx">el</span><span class="p">,</span> <span class="nx">done</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="nx">enter</span><span class="p">(</span><span class="nx">el</span><span class="p">,</span> <span class="nx">done</span><span class="p">)</span> <span class="p">{</span>
     <span class="c1">//交错过渡，每个li都做延迟过渡
 </span><span class="c1"></span>    <span class="kd">var</span> <span class="nx">delay</span> <span class="o">=</span> <span class="nx">el</span><span class="p">.</span><span class="nx">dataset</span><span class="p">.</span><span class="nx">index</span> <span class="o">*</span> <span class="mi">150</span><span class="p">;</span>
     <span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
@@ -946,9 +656,7 @@
             <span class="p">})</span>
         <span class="p">})</span>
     <span class="p">}</span>
-</code></pre></td></tr></table>
-</div>
-</div></li>
+</code></pre></div></li>
 </ol>
 </li>
 <li>
@@ -964,26 +672,24 @@
   </div>
   <footer class="post-footer">
     <ul class="post-tags">
-      <li><a href="https://rex0520.github.io/tags/vue/">vue</a></li>
-      <li><a href="https://rex0520.github.io/tags/%E5%89%8D%E7%AB%AF/">前端</a></li>
-      <li><a href="https://rex0520.github.io/tags/%E5%8A%A8%E7%94%BB/">动画</a></li>
+      <li><a href="https://rex0520.github.io/tags/vue/">Vue</a></li>
     </ul>
 <nav class="paginav">
-  <a class="prev" href="https://rex0520.github.io/posts/back/ssm2springboot/springmvc/springmvc%E6%8B%A6%E6%88%AA%E5%99%A8/">
+  <a class="prev" href="https://rex0520.github.io/posts/back/jdbctool/jpa%E5%AD%A6%E4%B9%A0/">
     <span class="title">« Prev Page</span>
     <br>
-    <span>SpringMVC拦截器</span>
+    <span>JPA学习</span>
   </a>
-  <a class="next" href="https://rex0520.github.io/posts/back/ssm2springboot/springboot/springboot%E6%80%BB%E7%BB%93/">
+  <a class="next" href="https://rex0520.github.io/posts/front/vue/vue%E5%9F%BA%E7%A1%80/">
     <span class="title">Next Page »</span>
     <br>
-    <span>SpringBoot总结</span>
+    <span>Vue基础</span>
   </a>
 </nav>
 
 <div class="share-buttons">
     <a target="_blank" rel="noopener noreferrer" aria-label="share Vue动画 on twitter"
-        href="https://twitter.com/intent/tweet/?text=Vue%e5%8a%a8%e7%94%bb&amp;url=https%3a%2f%2frex0520.github.io%2fposts%2ffront%2fvue%2fvue%25E5%258A%25A8%25E7%2594%25BB%2f&amp;hashtags=vue%2c%e5%89%8d%e7%ab%af%2c%e5%8a%a8%e7%94%bb">
+        href="https://twitter.com/intent/tweet/?text=Vue%e5%8a%a8%e7%94%bb&amp;url=https%3a%2f%2frex0520.github.io%2fposts%2ffront%2fvue%2fvue%25E5%258A%25A8%25E7%2594%25BB%2f&amp;hashtags=Vue">
         <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
             <path
                 d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-253.927,424.544c135.939,0 210.268,-112.643 210.268,-210.268c0,-3.218 0,-6.437 -0.153,-9.502c14.406,-10.421 26.973,-23.448 36.935,-38.314c-13.18,5.824 -27.433,9.809 -42.452,11.648c15.326,-9.196 26.973,-23.602 32.49,-40.92c-14.252,8.429 -30.038,14.56 -46.896,17.931c-13.487,-14.406 -32.644,-23.295 -53.946,-23.295c-40.767,0 -73.87,33.104 -73.87,73.87c0,5.824 0.613,11.494 1.992,16.858c-61.456,-3.065 -115.862,-32.49 -152.337,-77.241c-6.284,10.881 -9.962,23.601 -9.962,37.088c0,25.594 13.027,48.276 32.95,61.456c-12.107,-0.307 -23.448,-3.678 -33.41,-9.196l0,0.92c0,35.862 25.441,65.594 59.311,72.49c-6.13,1.686 -12.72,2.606 -19.464,2.606c-4.751,0 -9.348,-0.46 -13.946,-1.38c9.349,29.426 36.628,50.728 68.965,51.341c-25.287,19.771 -57.164,31.571 -91.8,31.571c-5.977,0 -11.801,-0.306 -17.625,-1.073c32.337,21.15 71.264,33.41 112.95,33.41Z" />

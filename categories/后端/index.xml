@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>后端 on Rex</title>
+    <link>https://rex0520.github.io/categories/%E5%90%8E%E7%AB%AF/</link>
+    <description>Recent content in 后端 on Rex</description>
+    <image>
+      <url>https://cdn.rexweb.xyz/img/20210820141535.jpg</url>
+      <link>https://cdn.rexweb.xyz/img/20210820141535.jpg</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sat, 21 Aug 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://rex0520.github.io/categories/%E5%90%8E%E7%AB%AF/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Zookeeper</title>
+      <link>https://rex0520.github.io/posts/back/microservices/zookeeper/</link>
+      <pubDate>Sat, 21 Aug 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rex0520.github.io/posts/back/microservices/zookeeper/</guid>
+      <description>Zookeeper</description>
+    </item>
+    
+    <item>
+      <title>Dubbo基础</title>
+      <link>https://rex0520.github.io/posts/back/microservices/dubbo%E5%9F%BA%E7%A1%80/</link>
+      <pubDate>Fri, 23 Jul 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rex0520.github.io/posts/back/microservices/dubbo%E5%9F%BA%E7%A1%80/</guid>
+      <description>Dubbo基础</description>
+    </item>
+    
+    <item>
+      <title>Docker基础</title>
+      <link>https://rex0520.github.io/posts/back/microservices/docker%E5%9F%BA%E7%A1%80/</link>
+      <pubDate>Fri, 25 Jun 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rex0520.github.io/posts/back/microservices/docker%E5%9F%BA%E7%A1%80/</guid>
+      <description>Docker基础</description>
+    </item>
+    
+    <item>
+      <title>Nginx使用</title>
+      <link>https://rex0520.github.io/posts/back/microservices/nginx%E4%BD%BF%E7%94%A8/</link>
+      <pubDate>Tue, 22 Jun 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rex0520.github.io/posts/back/microservices/nginx%E4%BD%BF%E7%94%A8/</guid>
+      <description>Nginx使用</description>
+    </item>
+    
+    <item>
+      <title>微服务</title>
+      <link>https://rex0520.github.io/posts/back/microservices/%E5%BE%AE%E6%9C%8D%E5%8A%A1/</link>
+      <pubDate>Tue, 22 Jun 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rex0520.github.io/posts/back/microservices/%E5%BE%AE%E6%9C%8D%E5%8A%A1/</guid>
+      <description>微服务</description>
+    </item>
+    
+    <item>
+      <title>Rabbitmq使用</title>
+      <link>https://rex0520.github.io/posts/back/microservices/rabbitmq/</link>
+      <pubDate>Mon, 21 Jun 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rex0520.github.io/posts/back/microservices/rabbitmq/</guid>
+      <description>Rabbitmq使用</description>
+    </item>
+    
+    <item>
+      <title>Nginx的入门</title>
+      <link>https://rex0520.github.io/posts/back/microservices/nginx%E7%9A%84%E5%AE%89%E8%A3%85/</link>
+      <pubDate>Sat, 12 Jun 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rex0520.github.io/posts/back/microservices/nginx%E7%9A%84%E5%AE%89%E8%A3%85/</guid>
+      <description>Nginx的入门</description>
+    </item>
+    
+    <item>
+      <title>Docker的安装</title>
+      <link>https://rex0520.github.io/posts/back/microservices/docker%E7%9A%84%E5%AE%89%E8%A3%85/</link>
+      <pubDate>Fri, 11 Jun 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rex0520.github.io/posts/back/microservices/docker%E7%9A%84%E5%AE%89%E8%A3%85/</guid>
+      <description>Docker的安装</description>
+    </item>
+    
+    <item>
+      <title>分布式</title>
+      <link>https://rex0520.github.io/posts/back/microservices/%E5%88%86%E5%B8%83%E5%BC%8F/</link>
+      <pubDate>Thu, 10 Jun 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rex0520.github.io/posts/back/microservices/%E5%88%86%E5%B8%83%E5%BC%8F/</guid>
+      <description>分布式</description>
+    </item>
+    
+    <item>
+      <title>Threadlocal详解</title>
+      <link>https://rex0520.github.io/posts/back/threadpool/threadlocal%E8%AF%A6%E8%A7%A3/</link>
+      <pubDate>Tue, 08 Jun 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rex0520.github.io/posts/back/threadpool/threadlocal%E8%AF%A6%E8%A7%A3/</guid>
+      <description>Threadlocal详解</description>
+    </item>
+    
+    <item>
+      <title>关于reentrantlock和condition</title>
+      <link>https://rex0520.github.io/posts/back/threadpool/%E5%85%B3%E4%BA%8Ereentrantlock%E5%92%8Ccondition/</link>
+      <pubDate>Tue, 08 Jun 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rex0520.github.io/posts/back/threadpool/%E5%85%B3%E4%BA%8Ereentrantlock%E5%92%8Ccondition/</guid>
+      <description>关于reentrantlock和condition</description>
+    </item>
+    
+    <item>
+      <title>守护线程</title>
+      <link>https://rex0520.github.io/posts/back/threadpool/%E5%AE%88%E6%8A%A4%E7%BA%BF%E7%A8%8B/</link>
+      <pubDate>Tue, 08 Jun 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rex0520.github.io/posts/back/threadpool/%E5%AE%88%E6%8A%A4%E7%BA%BF%E7%A8%8B/</guid>
+      <description>守护线程</description>
+    </item>
+    
+    <item>
+      <title>线程池</title>
+      <link>https://rex0520.github.io/posts/back/threadpool/%E7%BA%BF%E7%A8%8B%E6%B1%A0/</link>
+      <pubDate>Tue, 08 Jun 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rex0520.github.io/posts/back/threadpool/%E7%BA%BF%E7%A8%8B%E6%B1%A0/</guid>
+      <description>线程池</description>
+    </item>
+    
+    <item>
+      <title>JPA学习</title>
+      <link>https://rex0520.github.io/posts/back/jdbctool/jpa%E5%AD%A6%E4%B9%A0/</link>
+      <pubDate>Mon, 22 Mar 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rex0520.github.io/posts/back/jdbctool/jpa%E5%AD%A6%E4%B9%A0/</guid>
+      <description>JPA学习</description>
+    </item>
+    
+    <item>
+      <title>Lambda(java)</title>
+      <link>https://rex0520.github.io/posts/back/java/lambda/</link>
+      <pubDate>Tue, 09 Mar 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rex0520.github.io/posts/back/java/lambda/</guid>
+      <description>Lambda(java)</description>
+    </item>
+    
+    <item>
+      <title>Maven基础</title>
+      <link>https://rex0520.github.io/posts/back/maven/maven%E5%9F%BA%E7%A1%80/</link>
+      <pubDate>Tue, 09 Mar 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rex0520.github.io/posts/back/maven/maven%E5%9F%BA%E7%A1%80/</guid>
+      <description>Maven基础</description>
+    </item>
+    
+    <item>
+      <title>Mybatis基础</title>
+      <link>https://rex0520.github.io/posts/back/jdbctool/mybatis%E5%9F%BA%E7%A1%80/</link>
+      <pubDate>Tue, 09 Mar 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rex0520.github.io/posts/back/jdbctool/mybatis%E5%9F%BA%E7%A1%80/</guid>
+      <description>Mybatis基础</description>
+    </item>
+    
+    <item>
+      <title>Mybatis进阶</title>
+      <link>https://rex0520.github.io/posts/back/jdbctool/mybatis%E8%BF%9B%E9%98%B6/</link>
+      <pubDate>Tue, 09 Mar 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rex0520.github.io/posts/back/jdbctool/mybatis%E8%BF%9B%E9%98%B6/</guid>
+      <description>Mybatis基础</description>
+    </item>
+    
+    <item>
+      <title>Restful开发风格</title>
+      <link>https://rex0520.github.io/posts/back/framework/springmvc/restful/</link>
+      <pubDate>Tue, 09 Mar 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rex0520.github.io/posts/back/framework/springmvc/restful/</guid>
+      <description>Restful开发风格</description>
+    </item>
+    
+    <item>
+      <title>SpringMVC基础</title>
+      <link>https://rex0520.github.io/posts/back/framework/springmvc/springmvc%E5%9F%BA%E7%A1%80/</link>
+      <pubDate>Tue, 09 Mar 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rex0520.github.io/posts/back/framework/springmvc/springmvc%E5%9F%BA%E7%A1%80/</guid>
+      <description>SpringMVC记录</description>
+    </item>
+    
+    <item>
+      <title>SpringMVC拦截器</title>
+      <link>https://rex0520.github.io/posts/back/framework/springmvc/springmvc%E6%8B%A6%E6%88%AA%E5%99%A8/</link>
+      <pubDate>Tue, 09 Mar 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rex0520.github.io/posts/back/framework/springmvc/springmvc%E6%8B%A6%E6%88%AA%E5%99%A8/</guid>
+      <description>SpringMVC记录</description>
+    </item>
+    
+    <item>
+      <title>SpringBoot记录</title>
+      <link>https://rex0520.github.io/posts/back/framework/springboot/springboot%E8%AE%B0%E5%BD%95/</link>
+      <pubDate>Thu, 04 Feb 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rex0520.github.io/posts/back/framework/springboot/springboot%E8%AE%B0%E5%BD%95/</guid>
+      <description>SpringBoot记录</description>
+    </item>
+    
+    <item>
+      <title>Springjdbc</title>
+      <link>https://rex0520.github.io/posts/back/framework/spring/springjdbc/</link>
+      <pubDate>Wed, 06 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rex0520.github.io/posts/back/framework/spring/springjdbc/</guid>
+      <description>Springjdbc</description>
+    </item>
+    
+    <item>
+      <title>Spring框架概述</title>
+      <link>https://rex0520.github.io/posts/back/framework/spring/spring%E6%A1%86%E6%9E%B6%E6%A6%82%E8%BF%B0/</link>
+      <pubDate>Tue, 05 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rex0520.github.io/posts/back/framework/spring/spring%E6%A1%86%E6%9E%B6%E6%A6%82%E8%BF%B0/</guid>
+      <description>Spring框架概述</description>
+    </item>
+    
+    <item>
+      <title>Springaop面向切面编程</title>
+      <link>https://rex0520.github.io/posts/back/framework/spring/springaop%E9%9D%A2%E5%90%91%E5%88%87%E9%9D%A2%E7%BC%96%E7%A8%8B/</link>
+      <pubDate>Mon, 04 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rex0520.github.io/posts/back/framework/spring/springaop%E9%9D%A2%E5%90%91%E5%88%87%E9%9D%A2%E7%BC%96%E7%A8%8B/</guid>
+      <description>Springaop面向切面编程</description>
+    </item>
+    
+    <item>
+      <title>Springioc与bean管理</title>
+      <link>https://rex0520.github.io/posts/back/framework/spring/springioc%E4%B8%8Ebean%E7%AE%A1%E7%90%86/</link>
+      <pubDate>Mon, 04 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rex0520.github.io/posts/back/framework/spring/springioc%E4%B8%8Ebean%E7%AE%A1%E7%90%86/</guid>
+      <description>Springioc与bean管理</description>
+    </item>
+    
+    <item>
+      <title>Springtest与junit4整合</title>
+      <link>https://rex0520.github.io/posts/back/framework/spring/springtest%E4%B8%8Ejunit4%E6%95%B4%E5%90%88/</link>
+      <pubDate>Sun, 03 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rex0520.github.io/posts/back/framework/spring/springtest%E4%B8%8Ejunit4%E6%95%B4%E5%90%88/</guid>
+      <description>Springtest与junit4整合</description>
+    </item>
+    
+    <item>
+      <title>基于javaconfig配置的ioc容器</title>
+      <link>https://rex0520.github.io/posts/back/framework/spring/%E5%9F%BA%E4%BA%8Ejavaconfig%E9%85%8D%E7%BD%AE%E7%9A%84ioc%E5%AE%B9%E5%99%A8/</link>
+      <pubDate>Sun, 03 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rex0520.github.io/posts/back/framework/spring/%E5%9F%BA%E4%BA%8Ejavaconfig%E9%85%8D%E7%BD%AE%E7%9A%84ioc%E5%AE%B9%E5%99%A8/</guid>
+      <description>基于javaconfig配置的ioc容器</description>
+    </item>
+    
+    <item>
+      <title>基于注解配置ioc容器</title>
+      <link>https://rex0520.github.io/posts/back/framework/spring/%E5%9F%BA%E4%BA%8E%E6%B3%A8%E8%A7%A3%E9%85%8D%E7%BD%AEioc%E5%AE%B9%E5%99%A8/</link>
+      <pubDate>Sun, 03 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rex0520.github.io/posts/back/framework/spring/%E5%9F%BA%E4%BA%8E%E6%B3%A8%E8%A7%A3%E9%85%8D%E7%BD%AEioc%E5%AE%B9%E5%99%A8/</guid>
+      <description>基于注解配置ioc容器</description>
+    </item>
+    
+    <item>
+      <title>Reflect</title>
+      <link>https://rex0520.github.io/posts/back/java/reflect/</link>
+      <pubDate>Fri, 23 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://rex0520.github.io/posts/back/java/reflect/</guid>
+      <description>Reflect(java)</description>
+    </item>
+    
+  </channel>
+</rss>

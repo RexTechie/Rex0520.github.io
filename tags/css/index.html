@@ -148,16 +148,32 @@
 
 <article class="post-entry tag-entry"> 
   <header class="entry-header">
+    <h2>CSS3</h2>
+  </header>
+  <section class="entry-content">
+    <p>CSS3 CSS新增选择器 属性选择器    选择器 简介     E[attr] 选择具有attr属性的E元素   E[attr=“val”] 选择具有attr属性且属性值等于E的元素   E[attr^=“val”] 匹配具有attr属性且值以val开头的E元素   E[attr$=“val”] 匹配具有attr属性且值以val结尾的E元素   E[attr*=“val”] 匹配具有attr属性且值中含有val的E元素    属性选择器的权重为10
+结构伪类选择器    选择符 简介     E:first-child 匹配父元素中的第一个子元素E   E:last-child 匹配父元素中最后一个E元素   E:nth-child(n) 匹配父元素中的第n个子元素E   E:first-of-type 指定类型E的第一个   E:last-of-type 指定类型E的最后一个   E:nth-of-type(n) 指定类型E的第n个    nth-child(n)...</p>
+  </section>
+  <footer class="entry-footer">2021-06-18&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Rex</footer>
+  <a class="entry-link" aria-label="post link to CSS3" href="https://rex0520.github.io/posts/front/css3/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
     <h2>CSS</h2>
   </header>
   <section class="entry-content">
     <p>CSS CSS简介  层叠样式表(Cascading Style Sheets)的简称 美化HTML、布局网页 结构（HTML）-样式（CSS）分离  语法规范： ​	选择器{属性:值}
-1  h1{color: red;}   语法风格   紧凑格式
-1  h3 {color:red}     展开格式(强推)
-1 2 3 4  h3 { color: pink; font-size:20px; }     选择器： CSS引入方式  内部样式表 行内样式表 外部样式表  CSS常用选择器 基础选择器  标签选择器 类选择器 id选择器 通配符选择器  复合选择器   后代选择器
-元素1 元素2 { 样式声明 }...</p>
+h1{color: red;} 语法风格   紧凑格式
+h3 {color:red}   展开格式(强推)
+h3 { color: pink; font-size:20px; }   选择器： CSS引入方式  内部样式表 行内样式表 外部样式表  CSS常用选择器 基础选择器  标签选择器 类选择器 id选择器 通配符选择器  复合选择器   后代选择器
+元素1 元素2 { 样式声明 }
+  子选择器：只能选择作为某元素的最近一级 元素，
+元素1&gt;元素2 { 样式声明 }
+  并集选择器
+元素1,元素2 { 样式声明 }...</p>
   </section>
-  <footer class="entry-footer">2021-05-14&nbsp;·&nbsp;5 min&nbsp;·&nbsp;Rex</footer>
+  <footer class="entry-footer">2021-05-14&nbsp;·&nbsp;4 min&nbsp;·&nbsp;Rex</footer>
   <a class="entry-link" aria-label="post link to CSS" href="https://rex0520.github.io/posts/front/css/"></a>
 </article>
     </main>

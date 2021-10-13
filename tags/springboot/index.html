@@ -148,48 +148,13 @@
 
 <article class="post-entry tag-entry"> 
   <header class="entry-header">
-    <h2>Emos项目准备</h2>
+    <h2>SpringBoot记录</h2>
   </header>
   <section class="entry-content">
-    <p>emos项目准备 项目结构 已有项目：  工作流项目(emos-workflow) 小程序项目(emos-wx) 小程序后端项目(emos-wx-api)  待开发项目  Web办公系统前端项目(emos-vue) Web办公系统后端项目(emos-api)  数据表分类：    序号 类型 特征 备注     1 工作流数据表 以 act_ 开头 存储工作流的各项数据   2 定时器数据表 以 qrtz_ 开头 存储QuartZ定时器数据   3 业务表 以 tb_ 开头 保存业务数据   4 系统表 以 sys_ 开头 保存系统配置信息    后端： 依赖库：   Lombok – 生成对象的Get/Set方法
-  Spring Web – spring的web开发框架...</p>
+    <p>Spring Boot学习 SpringBoot概述 Spring Boot诞生历史  Spring的缺点：配置过于繁琐 Spring Boot开发团队：Pivotal  Spring Boot简洁  简化初始搭建以及开发过程 不再需要定义样板化的配置 快速应用开发领域 天下武功，唯快不破  Spring、Spring MVC和Spring Boot  Spring最初利用IOC和AOP解耦 按照这种模式搞了MVC框架 写很多样板代码很麻烦，就有了Spring Boot Spring Cloud是在Spring Boot基础上诞生的  Spring Boot核心特点  开箱即用 约定优于配置  Spring Boot版本介绍  CURRENT ：最新的GA版本 GA(General Availability)：发布版本 SNAPSHOP（快照）：该版本的内容会被随时的修改  Spring Boot 2.0都更新了什么  环境升级:java 8&#43;, tomcat 8&#43;，Thymeleaf 3,，Hibernate 5.2 默认的软件优化: Spring Security 新的功能:http2.0的支持 https://github.com/spring-projects/spring-boot/wiki/spring-boot-2.0-release-notes  </p>
   </section>
-  <footer class="entry-footer">2021-09-09&nbsp;·&nbsp;10 min&nbsp;·&nbsp;Rex</footer>
-  <a class="entry-link" aria-label="post link to Emos项目准备" href="https://rex0520.github.io/posts/proj/emos/emos%E9%A1%B9%E7%9B%AE%E5%87%86%E5%A4%87/"></a>
-</article>
-
-<article class="post-entry tag-entry"> 
-  <header class="entry-header">
-    <h2>SpringBoot总结</h2>
-  </header>
-  <section class="entry-content">
-    <p>SpringBoot学习总结 使用SpringBoot的优缺点 优点：  简化配置 整合了很多工具，如redis 开发效率高  缺点：  因为内部封装了太多的东西，不容易找bug 不容易看到底层都做了什么  SpringBoot常用注解 Controller: ​	@Controller:通知Spring这个类为Controller类
-​	@ResponseBody：用于将函数的返回值转换为json格式的数据写入到http响应的body区中,若没有这个注解，会使用请求转发跳转到返回值的页面
-​	@RestController：Rest风格的Controller，@Controller &#43; @ResponseBody = @RestController
-​	@ControllerAdvice：环绕增强的Controller，一般用于全局异常处理、全局数据绑定、全局数据预处理
-​	@RequestMapping()：请求地址映射，一般用于描述url的前缀地址
-​	@PostMapping()：post请求的地址映射
-​	@GetMaping()：get请求的地址映射
-​	@Valid：用于校验参数，需要编写全局异常捕捉类
-​	@RequestBody：接收来自requestBody中的参数，即请求体中的参数
-​	@RequestParm：有三个参数，required表示是否必须，默认为true，defaultValue设置参数默认值，value为接受url的参数名
-​	@PathVariable：获取路径变量
-​	@Size：限制传入参数的最大值(max)和最小值(min)，指定异常的message信息，可被@Valid校验检测到
-​	@NotNull：限制传入的参数非空，指定异常的message信息，可被@Valid校验检测到
-​	@Max:指定最大值value，指定异常的message信息，可被@Valid校验检测到
-​	@Min：指定最小值value，指定异常的message信息，可被@Valid校验检测到
-Swagger: ​	@Api：用在类上，说明该类的作用。可以标记一个Controller类做为swagger 文档资源
-​	@ApiOperation：用在方法上，说明方法的作用，每一个url资源的定义
-​	@ApiParam：用在变量上，说明请求属性的作用
-​	@ApiResponse：响应配置信息
-​	@ApiReponses：响应集配置
-​	@ReponseHeader：响应头设置
-Service: ​	@Service：用在类上，说明该类为Service类
-Dao: ​	@Repository：用在类上，说明该类为Dao类
-Config: ​	@Configuration：用在类上，说明该类为配置类...</p>
-  </section>
-  <footer class="entry-footer">2021-02-19&nbsp;·&nbsp;5 min&nbsp;·&nbsp;Rex</footer>
-  <a class="entry-link" aria-label="post link to SpringBoot总结" href="https://rex0520.github.io/posts/back/ssm2springboot/springboot/springboot%E6%80%BB%E7%BB%93/"></a>
+  <footer class="entry-footer">2021-02-04&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Rex</footer>
+  <a class="entry-link" aria-label="post link to SpringBoot记录" href="https://rex0520.github.io/posts/back/framework/springboot/springboot%E8%AE%B0%E5%BD%95/"></a>
 </article>
     </main>
     <footer class="footer">

@@ -149,7 +149,7 @@
                 </a>
             </li>
             <li>
-                <a href="https://rex0520.github.io/search/" title="搜索">
+                <a href="https://rex0520.github.io/search/" title="搜索 (Alt &#43; /)" accesskey=/>
                     <span>搜索</span>
                 </a>
             </li>
@@ -169,13 +169,90 @@
     <p>腾讯视频会议的使用-TRTC技术 概述：  TRTC全称(Tencent Real-Time Communication) 即腾讯实时音视频服务，定位是解决实时通信的云服务，主要功能就是通过互联网，接受、处理、转发和保存大流量的音视频流数据，主要用于直播、视频会议场景。本文简略说明TRTC技术的使用，案例基于前端-vue，后端-java的springboot框架，具体的内容参考一下文档
  后端的准备  首先前端调用TRTC服务需要创建TrtcClient对象来管理，创建TrtcClient需要用到三个参数，分别是AppID，用户UserId，还有用户签名(UserSig)。而这里的用户签名是用Trtc的AppID和密钥，任意开发者查看HTML都能看到这些信息，所以生成用户签名的工作不能在前端完成，正确的做法应该是在后端项目生成用户签名
  用户签名(UserSig) （UserSig）是腾讯云设计的一种安全保护签名，使用HMAC SHA256加密算法计算得出。
-1 2 3 4  //UserSig 计算公式，其中 secretkey 为计算 usersig 用的加密密钥  usersig = hmacsha256(secretkey, (userid &#43; sdkappid &#43; currtime &#43; expire &#43; base64(userid &#43; sdkappid &#43; currtime &#43; expire)))   关于userSig的各种语言生成方法在腾讯云的官方文档都有介绍
+&lt;html&gt;abc&lt;/html&gt; //UserSig 计算公式，其中 secretkey 为计算 usersig 用的加密密钥  usersig = hmacsha256(secretkey, (userid &#43; sdkappid &#43; currtime &#43; expire &#43; base64(userid &#43; sdkappid &#43; currtime &#43; expire))) 关于userSig的各种语言生成方法在腾讯云的官方文档都有介绍
 这边我使用的springboot框架，所以用是java生成userSig的方式，需要在项目中创建一个TrtcUtil.java
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 143 144 145 146 147 148  package com....</p>
+package com.example.emos.api.config.tencet; import cn.hutool.core.util.StrUtil; import cn.hutool.json.JSONObject; import org.bson.internal.Base64; import org.springframework.beans.factory.annotation.Value; import org.springframework.stereotype.Component; import javax.crypto.Mac; import javax.crypto.spec.SecretKeySpec; import java.nio.charset.StandardCharsets; import java.security.InvalidKeyException; import java.security.NoSuchAlgorithmException; import java.util.Arrays; import java.util.zip.Deflater; /** * Description: 腾讯TRTC工具类 * * @author Rex * @date 2021-09-29 10:48 */ import java....</p>
   </section>
-  <footer class="entry-footer">2021-10-12&nbsp;·&nbsp;7 min&nbsp;·&nbsp;Rex</footer>
-  <a class="entry-link" aria-label="post link to 腾讯TRTC" href="https://rex0520.github.io/posts/video/%E8%85%BE%E8%AE%AFtrtc/"></a>
+  <footer class="entry-footer">2021-10-12&nbsp;·&nbsp;5 min&nbsp;·&nbsp;Rex</footer>
+  <a class="entry-link" aria-label="post link to 腾讯TRTC" href="https://rex0520.github.io/posts/api/%E8%85%BE%E8%AE%AFtrtc/"></a>
 </article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>前端常用轮子</h2>
+  </header>
+  <section class="entry-content">
+    <p>前端常用轮子 简介  这篇文章主要是记录下一些常见的组件库，以后开发的时候方便点。（持续更新中……）
+ React UI组件库  Ant Design  文档齐全、社区生态好 支持PC端和手机端   详情见官网
+  React Bootstrap  可用于快速搭建个人项目   详情见官网
+  MATERIAL-UI(Mui)  实现了谷歌的Material Design github有超过50k的关注量，是目前最受欢迎的React组件库之一   详情见官网
+   Vue UI组件库  Element  饿了么旗下的组件库，国内最流行的Vue组件库 文档齐全 支持Vue3 同时有React版本和Angular版本   详情见官网
+  Vant  有赞公司旗下的开源组件库 适用于移动端开发 组件齐全，使用简单，UI美观   详情见官网
+  View UI  UI精美 含免费版和收费版   详情见官网...</p>
+  </section>
+  <footer class="entry-footer">2021-10-11&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Rex</footer>
+  <a class="entry-link" aria-label="post link to 前端常用轮子" href="https://rex0520.github.io/posts/front/tools/%E5%89%8D%E7%AB%AF%E5%B8%B8%E7%94%A8%E8%BD%AE%E5%AD%90/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>Zookeeper</h2>
+  </header>
+  <section class="entry-content">
+    <p>Zookeeper 定义：  Zookeeper：A Distributed Coordination Service for Distributed Applications(
+Zookeeper是开源的高性能的分布式应用协调系统，一个高性能的分布式数据一致性解决方案
+ 5大特点  顺序一致性：发出去的顺序==执行的顺序 原子性：请求同步到各个节点要么都成果要么都失败 单一视图：多个节点无论连哪个看的东西都是一致的 可靠性：给节点写了数据，这个数据会一直保留，直到有另外的操作把数据写掉，才会发生变化 及时性：在一定的时间段（可接受的时间段）内能从服务器上读到最新的数据状态  架构图、集群、工作过程 Zookeeper和CAP的关系  CP：一致性&#43;分区容错性 能得到一致的数据结果，同时系统对网络具备容错性 但是它不能保证每次服务请求的可用性  作用  分布式服务注册与订阅 统一配置文件 生成分布式唯一ID Master节点选举 分布式锁  节点znode 模型-树结构 节点性质  树形结构，也可以理解为linux的文件目录 每一个节点都是znode，里面可以包含数据，也可以有子节点 点分为永久节点和临时节点(session失效，也就是客户端段凯后，临时节点消失) 每个znode都有版本号，每当数据变化，版本号会累加（乐观锁） 删除或修改节点，版本号不匹配的话（版本号已过时），会报错 每个节点存储的数据不宜过大，几k即可 节点可以设置权限，来限制用户的访问 Zookeeper保证读和写都是原子操作，且每次读写操作都是对数据的完整读取或完整写入  节点类型  持久节点 临时节点 顺序节点  节点属性  dataVersion 数据版本号，每次对内容修改dataVersion&#43;1 cversion 子节点版本号，如果子节点内容发送变化cversion&#43;1 aclVersion acl-权限控制列表，权限发生变化的时候aclVersion&#43;1  常用命令  查看节点ls 查看节点的数据和状态get 创建(create [-s 顺序节点] [-e 临时节点])、修改(set)、删除(delete)节点  Watcher机制   触发器、监督者...</p>
+  </section>
+  <footer class="entry-footer">2021-08-21&nbsp;·&nbsp;4 min&nbsp;·&nbsp;Rex</footer>
+  <a class="entry-link" aria-label="post link to Zookeeper" href="https://rex0520.github.io/posts/back/microservices/zookeeper/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>Dubbo基础</h2>
+  </header>
+  <section class="entry-content">
+    <p>Dubbo 关于Dubbo  轻量级，高性能的RPC框架 并不是要成为一个微服务的全面解决发难 以Java语言而出名  Dubbo现状  全称是Apache Dubbo 微店，网易云音乐，考拉，滴滴，中国电信，人寿 star有30k&#43;个，fork有20k&#43;个  RPC   RPC—–远程过程调用
+  早期单机时代：IPC（Inter-Process Communication）
+单个电脑运行的各个进程之间相互通信
+  网络时代：把IPC扩展到网络上，这就是RPC
+    实现RPC很头疼，于是就有了RPC框架
+  调用其他机器上的程序和调用本地的程序一样方便
+  常见的RPC框架  阿里的Dubbo（性能好） 新浪的Montan（轻量级，项目架构复杂度低，适合RPC源码学习） Facebook的Thrift （可伸缩的跨语言框架，有很强的代码生成语言）  HTTP和RPC对比  普通话（HTTP，规范–效率低）和方言（RPC，传输效率和运行速度更高），普通话本质上也是一种方言，只不过它是官方的方言 传输效率：RPC可以自己定制，通过定制自己的请求，让整体传输的内容更少，这样的效率更高，而HTTP会传输一些无用的内容 性能消耗，主要在于序列化和反序列化的耗时：RPC可以实现高效的二进制传输，HTTP大部分要通过JSON格式来传输 负载均衡：RPC自带负载均衡策略，HTTP需要借助其他的组件，如Nginx  Dubbo工作原理    模块 说明     Provider 暴露服务的服务提供方   Consumer 调用远程服务的服务消费方   Registry 服务注册与发现的注册中心   Monitor 统计服务的调用次数和调用时间的监控中心   Container 服务运行容器     服务容器负责启动，加载，运行服务提供者 服务提供者在启动时，向注册中心注册自己提供的服务 服务消费者在启动时，向注册中心订阅自己所需的服务 注册中心返回服务提供者地址列表给消费者 从提供者地址列表中，选一台提供者进行调用 定期发送一次统计数据到监控中心  </p>
+  </section>
+  <footer class="entry-footer">2021-07-23&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Rex</footer>
+  <a class="entry-link" aria-label="post link to Dubbo基础" href="https://rex0520.github.io/posts/back/microservices/dubbo%E5%9F%BA%E7%A1%80/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>Mongodb基础</h2>
+  </header>
+  <section class="entry-content">
+    <p>MongoDB 简介：   MongoDB是为快速开发互联网Web应用而设计的数据库系统。 MongoDB的设许目标是极简、灵活、作为Web应用栈的一部分。 MongoDB的数据模型是面向文档的,所谓文档是- - -种类似于JSON的结构,简单理解MongoDB这个数据库中存的是各种各样的JSON。 ( BSON )   三个概念   数据库( database )
+ 数据库是-个仓库,在仓库中可以存放集合。
+   集合( collection )
+ 集合类似于数组,在集合中可以存放文档。
+   文档( dotument )
+ 文档数据库中的最小单位,我们存储和操作的 内容都是文档。
+   基本指令   show dbs
+ 显示当前的所有数据库
+   use 数据库名
+ 进入指定的数据库中
+   db
+ 显示当前所处的数据库
+   show collections
+ 显示数据库中所有的集合
+   db....</p>
+  </section>
+  <footer class="entry-footer">2021-07-09&nbsp;·&nbsp;8 min&nbsp;·&nbsp;Rex</footer>
+  <a class="entry-link" aria-label="post link to Mongodb基础" href="https://rex0520.github.io/posts/nosql/mongodb/"></a>
+</article>
+<footer class="page-footer">
+  <nav class="pagination">
+    <a class="next" href="https://rex0520.github.io/posts/page/2/">Next Page »</a>
+  </nav>
+</footer>
     </main>
     <footer class="footer">
     <span>&copy; 2021 <a href="https://rex0520.github.io/">Rex</a></span>

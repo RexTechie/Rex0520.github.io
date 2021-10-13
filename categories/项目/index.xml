@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>项目 on Rex</title>
+    <link>https://rex0520.github.io/categories/%E9%A1%B9%E7%9B%AE/</link>
+    <description>Recent content in 项目 on Rex</description>
+    <image>
+      <url>https://cdn.rexweb.xyz/img/20210820141535.jpg</url>
+      <link>https://cdn.rexweb.xyz/img/20210820141535.jpg</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator><atom:link href="https://rex0520.github.io/categories/%E9%A1%B9%E7%9B%AE/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Emos项目学习记录</title>
+      <link>https://rex0520.github.io/posts/proj/emos/emos%E9%A1%B9%E7%9B%AE%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://rex0520.github.io/posts/proj/emos/emos%E9%A1%B9%E7%9B%AE%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/</guid>
+      <description>Emos项目学习记录</description>
+    </item>
+    
+    <item>
+      <title>Emos项目搭建</title>
+      <link>https://rex0520.github.io/posts/proj/emos/emos%E9%A1%B9%E7%9B%AE%E6%90%AD%E5%BB%BA/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://rex0520.github.io/posts/proj/emos/emos%E9%A1%B9%E7%9B%AE%E6%90%AD%E5%BB%BA/</guid>
+      <description>Emos项目搭建</description>
+    </item>
+    
+  </channel>
+</rss>

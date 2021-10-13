@@ -6,12 +6,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
 <title>守护线程 | Rex</title>
-<meta name="keywords" content="java, 线程池, 后端, 多线程" />
-<meta name="description" content="线程池学习记录">
+<meta name="keywords" content="线程池" />
+<meta name="description" content="守护线程">
 <meta name="author" content="Rex">
 <link rel="canonical" href="https://rex0520.github.io/posts/back/threadpool/%E5%AE%88%E6%8A%A4%E7%BA%BF%E7%A8%8B/" />
 <link crossorigin="anonymous" href="/assets/css/stylesheet.min.css" rel="preload stylesheet" as="style">
 <link rel="preload" href="http://cdn.rexweb.xyz/img/20210821105340.png" as="image">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.min.js" onload="hljs.initHighlightingOnLoad();"></script>
 <link rel="icon" href="https://rex0520.github.io/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="https://rex0520.github.io/favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="https://rex0520.github.io/favicon-32x32.png">
@@ -21,7 +22,7 @@
 <meta name="msapplication-TileColor" content="#2e2e33">
 <meta name="generator" content="Hugo 0.87.0" />
 <meta property="og:title" content="守护线程" />
-<meta property="og:description" content="线程池学习记录" />
+<meta property="og:description" content="守护线程" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://rex0520.github.io/posts/back/threadpool/%E5%AE%88%E6%8A%A4%E7%BA%BF%E7%A8%8B/" /><meta property="og:image" content="https://cdn.rexweb.xyz/img/20210820141535.jpg"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2021-06-08T00:00:00&#43;00:00" />
@@ -31,7 +32,7 @@
 <meta name="twitter:image" content="https://cdn.rexweb.xyz/img/20210820141535.jpg"/>
 
 <meta name="twitter:title" content="守护线程"/>
-<meta name="twitter:description" content="线程池学习记录"/>
+<meta name="twitter:description" content="守护线程"/>
 
 
 <script type="application/ld+json">
@@ -60,9 +61,9 @@
   "@type": "BlogPosting",
   "headline": "守护线程",
   "name": "守护线程",
-  "description": "线程池学习记录",
+  "description": "守护线程",
   "keywords": [
-    "java", "线程池", "后端", "多线程"
+    "线程池"
   ],
   "articleBody": "守护线程 两类线程：  User Thread 用户线程 Daemon Thread 守护线程   分类标准是线程是否会阻止JVM的停止，只要当前JVM实例中尚存在任何一个非守护线程没有结束，守护线程就全部继续工作；只有当最后一个非守护线程结束时，所有守护线程才会随着JVM一同结束工作。（非守护线程等同于用户线程）\n JVM停止的情况  已调用System.exit()方法 所有非守护程序线程都已结束   而一般情况下我们不会调用System.exit()方法，所以大部分的Java程序的结束都是由于所有用户线程都结束而导致的。\n所以可以认为，任何一个守护线程都是整个JVM中所有用户线程（非守护线程）的管家。Daemon的作用是为其他线程的运行提供便利服务，守护线程最典型的应用就是 GC (垃圾回收器)，它是一个很称职的守护者。\n 守护线程的特性  线程类型默认继承自父线程 守护线程创建的线程为默认是守护线程，同样，用户线程创建的线程默认为用户线程。非守护线程如果想创建一个守护线程，需要调用Thread.setDaemon来设置它（Thread类用布尔值daemon属性来表示线程是否是守护线程），并且，该方法必须在start之前调用，否则会抛出 IllegalThreadStateException 异常。  被谁启动  通常由JVM启动，而不是由用户去启动。当JVM启动时，通常会有一个非守护线程（通常为执行main函数的线程）。\n 不影响JVM退出  当只剩下守护线程时，JVM就会退出，因为如果只剩下守护线程，就没必要继续运行程序了。\n守护线程没结束并不会影响JVM的正常停止:假设所有用户线程都结束了，那么就算有5个守护线程正在运行，JVM也会正常停止：\n 守护线程和普通线程的区别  虚拟机的离开：如果 User Thread已经全部退出运行了，只剩下Daemon Thread存在了，虚拟机也就退出了，这是因为没有了“被守护者”，Daemon也就没有工作可做了，也就没有继续运行程序的必要了。 这就是守护线程的作用：告诉JVM不需要等待它退出,当JVM中所有的线程都是守护线程的时候，JVM就可以正常的退出了。  我们是否需要给线程设置为守护线程？  我们通常不应把自己的线程设置为守护线程，因为设置为守护线程是很危险的。比如线程正在访问如文件、数据库的时候，所有用户线程都结束了，那么守护线程会在任何时候甚至在一个操作的中间发生中断，所以守护线程永远不应该去访问固有资源。\n ",
   "wordCount" : "34",
@@ -205,7 +206,7 @@
       守护线程
     </h1>
     <div class="post-description">
-      线程池学习记录
+      守护线程
     </div>
     <div class="post-meta">2021-06-08&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Rex&nbsp;|&nbsp;<a href="https://github.com/Rex0520/Rex0520.github.io" rel="noopener noreferrer" target="_blank">来这修改</a>
 </div>
@@ -286,27 +287,24 @@
   </div>
   <footer class="post-footer">
     <ul class="post-tags">
-      <li><a href="https://rex0520.github.io/tags/java/">java</a></li>
       <li><a href="https://rex0520.github.io/tags/%E7%BA%BF%E7%A8%8B%E6%B1%A0/">线程池</a></li>
-      <li><a href="https://rex0520.github.io/tags/%E5%90%8E%E7%AB%AF/">后端</a></li>
-      <li><a href="https://rex0520.github.io/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/">多线程</a></li>
     </ul>
 <nav class="paginav">
-  <a class="prev" href="https://rex0520.github.io/posts/back/threadpool/%E7%BA%BF%E7%A8%8B%E6%B1%A0/">
+  <a class="prev" href="https://rex0520.github.io/posts/back/threadpool/%E5%85%B3%E4%BA%8Ereentrantlock%E5%92%8Ccondition/">
     <span class="title">« Prev Page</span>
     <br>
-    <span>线程池</span>
+    <span>关于reentrantlock和condition</span>
   </a>
-  <a class="next" href="https://rex0520.github.io/posts/back/threadpool/%E5%85%B3%E4%BA%8Ereentrantlock%E5%92%8Ccondition/">
+  <a class="next" href="https://rex0520.github.io/posts/back/threadpool/%E7%BA%BF%E7%A8%8B%E6%B1%A0/">
     <span class="title">Next Page »</span>
     <br>
-    <span>关于ReentrantLock和Condition</span>
+    <span>线程池</span>
   </a>
 </nav>
 
 <div class="share-buttons">
     <a target="_blank" rel="noopener noreferrer" aria-label="share 守护线程 on twitter"
-        href="https://twitter.com/intent/tweet/?text=%e5%ae%88%e6%8a%a4%e7%ba%bf%e7%a8%8b&amp;url=https%3a%2f%2frex0520.github.io%2fposts%2fback%2fthreadpool%2f%25E5%25AE%2588%25E6%258A%25A4%25E7%25BA%25BF%25E7%25A8%258B%2f&amp;hashtags=java%2c%e7%ba%bf%e7%a8%8b%e6%b1%a0%2c%e5%90%8e%e7%ab%af%2c%e5%a4%9a%e7%ba%bf%e7%a8%8b">
+        href="https://twitter.com/intent/tweet/?text=%e5%ae%88%e6%8a%a4%e7%ba%bf%e7%a8%8b&amp;url=https%3a%2f%2frex0520.github.io%2fposts%2fback%2fthreadpool%2f%25E5%25AE%2588%25E6%258A%25A4%25E7%25BA%25BF%25E7%25A8%258B%2f&amp;hashtags=%e7%ba%bf%e7%a8%8b%e6%b1%a0">
         <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
             <path
                 d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-253.927,424.544c135.939,0 210.268,-112.643 210.268,-210.268c0,-3.218 0,-6.437 -0.153,-9.502c14.406,-10.421 26.973,-23.448 36.935,-38.314c-13.18,5.824 -27.433,9.809 -42.452,11.648c15.326,-9.196 26.973,-23.602 32.49,-40.92c-14.252,8.429 -30.038,14.56 -46.896,17.931c-13.487,-14.406 -32.644,-23.295 -53.946,-23.295c-40.767,0 -73.87,33.104 -73.87,73.87c0,5.824 0.613,11.494 1.992,16.858c-61.456,-3.065 -115.862,-32.49 -152.337,-77.241c-6.284,10.881 -9.962,23.601 -9.962,37.088c0,25.594 13.027,48.276 32.95,61.456c-12.107,-0.307 -23.448,-3.678 -33.41,-9.196l0,0.92c0,35.862 25.441,65.594 59.311,72.49c-6.13,1.686 -12.72,2.606 -19.464,2.606c-4.751,0 -9.348,-0.46 -13.946,-1.38c9.349,29.426 36.628,50.728 68.965,51.341c-25.287,19.771 -57.164,31.571 -91.8,31.571c-5.977,0 -11.801,-0.306 -17.625,-1.073c32.337,21.15 71.264,33.41 112.95,33.41Z" />

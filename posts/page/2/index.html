@@ -163,82 +163,71 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2>Emos项目准备</h2>
+    <h2>Docker基础</h2>
   </header>
   <section class="entry-content">
-    <p>emos项目准备 项目结构 已有项目：  工作流项目(emos-workflow) 小程序项目(emos-wx) 小程序后端项目(emos-wx-api)  待开发项目  Web办公系统前端项目(emos-vue) Web办公系统后端项目(emos-api)  数据表分类：    序号 类型 特征 备注     1 工作流数据表 以 act_ 开头 存储工作流的各项数据   2 定时器数据表 以 qrtz_ 开头 存储QuartZ定时器数据   3 业务表 以 tb_ 开头 保存业务数据   4 系统表 以 sys_ 开头 保存系统配置信息    后端： 依赖库：   Lombok – 生成对象的Get/Set方法
-  Spring Web – spring的web开发框架...</p>
+    <p>Docker 概念  Docker是一个用来装程序及其环境的容器,属于Linux容器的 一种封装,提供简单易用的容器使用接口。它是目前最流行的 Linux容器解决方案。
+ 痛点  环境配置 虚拟机  资源占用多 冗余步骤多 启动时间慢   Docker的基础 — Linux容器  启动快 占用资源少 体积小    用途  提供统一的环境 提供快速拓展、弹性伸缩的云服务 防止其他用户的进程把服务器资源占用过多  特点   标准化
+ 运输方式（把程序和环境从一个机器运到另一个机器） 存储方式（程序和环境的存储） API接口（不需要Tomcat等应用的命令了，都标准化了）    灵活：即使是最复杂的应用也可以集装箱化
+  轻量级：容器利用并共享主机内核
+  便携式：可以在本地构建
+  Docker的组成、架构、重要概念 images（镜像）:  存储：联合文件系统，UnionFS    Container（容器）：  镜像类似于Java中的类，而容器就是实例 容器的这一层是可以修改的，而镜像是不可以修改的 同一个镜像可以生成多个容器独立运行，而他们之间没有任何的干扰  Repository（仓库）：        共有 vs 私有...</p>
   </section>
-  <footer class="entry-footer">2021-09-09&nbsp;·&nbsp;10 min&nbsp;·&nbsp;Rex</footer>
-  <a class="entry-link" aria-label="post link to Emos项目准备" href="https://rex0520.github.io/posts/proj/emos/emos%E9%A1%B9%E7%9B%AE%E5%87%86%E5%A4%87/"></a>
+  <footer class="entry-footer">2021-06-25&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Rex</footer>
+  <a class="entry-link" aria-label="post link to Docker基础" href="https://rex0520.github.io/posts/back/microservices/docker%E5%9F%BA%E7%A1%80/"></a>
 </article>
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2>Dubbo</h2>
+    <h2>Nginx使用</h2>
   </header>
   <section class="entry-content">
-    <p>Dubbo 关于Dubbo  轻量级，高性能的RPC框架 并不是要成为一个微服务的全面解决发难 以Java语言而出名  Dubbo现状  全称是Apache Dubbo 微店，网易云音乐，考拉，滴滴，中国电信，人寿 star有30k&#43;个，fork有20k&#43;个  RPC   RPC—–远程过程调用
-  早期单机时代：IPC（Inter-Process Communication）
-单个电脑运行的各个进程之间相互通信
-  网络时代：把IPC扩展到网络上，这就是RPC
-    实现RPC很头疼，于是就有了RPC框架
-  调用其他机器上的程序和调用本地的程序一样方便
-  常见的RPC框架  阿里的Dubbo（性能好） 新浪的Montan（轻量级，项目架构复杂度低，适合RPC源码学习） Facebook的Thrift （可伸缩的跨语言框架，有很强的代码生成语言）  HTTP和RPC对比  普通话（HTTP，规范–效率低）和方言（RPC，传输效率和运行速度更高），普通话本质上也是一种方言，只不过它是官方的方言 传输效率：RPC可以自己定制，通过定制自己的请求，让整体传输的内容更少，这样的效率更高，而HTTP会传输一些无用的内容 性能消耗，主要在于序列化和反序列化的耗时：RPC可以实现高效的二进制传输，HTTP大部分要通过JSON格式来传输 负载均衡：RPC自带负载均衡策略，HTTP需要借助其他的组件，如Nginx  Dubbo工作原理    模块 说明     Provider 暴露服务的服务提供方   Consumer 调用远程服务的服务消费方   Registry 服务注册与发现的注册中心   Monitor 统计服务的调用次数和调用时间的监控中心   Container 服务运行容器     服务容器负责启动，加载，运行服务提供者 服务提供者在启动时，向注册中心注册自己提供的服务 服务消费者在启动时，向注册中心订阅自己所需的服务 注册中心返回服务提供者地址列表给消费者 从提供者地址列表中，选一台提供者进行调用 定期发送一次统计数据到监控中心  </p>
+    <p>Nginx Nginx介绍 使用场景  HTTP的反向代理服务器  负载均衡 缓存   动态静态资源分离  优点  高并发、高性能 可扩展性好，体现在模块化设计 高可靠性，可以持续不断数十年运行 热部署，不停止服务来升级nginx 开源、可商用  Nginx常用命令 ./nginx # 启动nginx ps -aux|grep nginx # 查看nginx相关进程，也可以查到nginx运行的路径 nginx -h # 帮助 nginx -c # 读取指定配置文件 nginx -s stop # 关闭nginx nginx -t # 检查当前配置文件是否有问题，查看当前配置文件路径 nginx -v # 简要版本信息 -V详细信息 nginx -s stop|quit| # -s信号 stop立即停止，quit优雅停止，reload重启，reopen更换日志文件 Nginx配置文件   语法
+ ;结尾 {}组织多条指令 include 引入 #注释 $ 变量    默认配置文件分析...</p>
   </section>
-  <footer class="entry-footer">2021-07-23&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Rex</footer>
-  <a class="entry-link" aria-label="post link to Dubbo" href="https://rex0520.github.io/posts/back/microservices/dubbo/"></a>
+  <footer class="entry-footer">2021-06-22&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Rex</footer>
+  <a class="entry-link" aria-label="post link to Nginx使用" href="https://rex0520.github.io/posts/back/microservices/nginx%E4%BD%BF%E7%94%A8/"></a>
 </article>
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2>Zookeeper</h2>
+    <h2>微服务</h2>
   </header>
   <section class="entry-content">
-    <p>Zookeeper 定义：  Zookeeper：A Distributed Coordination Service for Distributed Applications(
-Zookeeper是开源的高性能的分布式应用协调系统，一个高性能的分布式数据一致性解决方案
- 5大特点  顺序一致性：发出去的顺序==执行的顺序 原子性：请求同步到各个节点要么都成果要么都失败 单一视图：多个节点无论连哪个看的东西都是一致的 可靠性：给节点写了数据，这个数据会一直保留，直到有另外的操作把数据写掉，才会发生变化 及时性：在一定的时间段（可接受的时间段）内能从服务器上读到最新的数据状态  架构图、集群、工作过程 Zookeeper和CAP的关系  CP：一致性&#43;分区容错性 能得到一致的数据结果，同时系统对网络具备容错性 但是它不能保证每次服务请求的可用性  作用  分布式服务注册与订阅 统一配置文件 生成分布式唯一ID Master节点选举 分布式锁  节点znode 模型-树结构 节点性质  树形结构，也可以理解为linux的文件目录 每一个节点都是znode，里面可以包含数据，也可以有子节点 点分为永久节点和临时节点(session失效，也就是客户端段凯后，临时节点消失) 每个znode都有版本号，每当数据变化，版本号会累加（乐观锁） 删除或修改节点，版本号不匹配的话（版本号已过时），会报错 每个节点存储的数据不宜过大，几k即可 节点可以设置权限，来限制用户的访问 Zookeeper保证读和写都是原子操作，且每次读写操作都是对数据的完整读取或完整写入  节点类型  持久节点 临时节点 顺序节点  节点属性  dataVersion 数据版本号，每次对内容修改dataVersion&#43;1 cversion 子节点版本号，如果子节点内容发送变化cversion&#43;1 aclVersion acl-权限控制列表，权限发生变化的时候aclVersion&#43;1  常用命令  查看节点ls 查看节点的数据和状态get 创建(create [-s 顺序节点] [-e 临时节点])、修改(set)、删除(delete)节点  Watcher机制   触发器、监督者...</p>
+    <p>微服务 微服务概述 单体应用的痛点  部署效率低下 团队写作开发成本高 系统高可用性差  服务化  把传统的单机应用中的本地方法调用，改造成通过RPC、HTTP产生的远程方法调用 把模块从单体应用中拆分出来，独立成一个服务部署 用户模块就可以独立开发、测试、上线和运维，可以交由专门的团队来做，与主模块不耦合  从单体到微服务架构 微服务   一种架构风格 开发单个应用作为一系列小型服务的套件，其中每个服务都运行在自己的进程中，并且通过轻量级的机制实现彼此间的通信，这通常是HTTP资源API 这些服务是围绕着业务功能构建的，并且可以通过完全自动化的部署机制进行独立部署 这些服务的集中式管理做到了最小化（例如docker相关技术），每一种服务都可以通过不同的变成语言进行编写，并且可以使用不同的数据存储技术   微服务的特点   组件以服务形式来提供
+  产品不是项目
+  轻量级通信、独立进程
+  分散治理、去中心化治理
+  容错性设计
+  会带来团队组织架构的调整
+  微服务优点  服务简单、便于学习和上手，先对易于维护 独立部署，灵活扩展 技术栈丰富  微服务缺点  运维成本过高 接口可能不匹配 代码可能重复 架构复杂度提高  微服务有两大门派  Spring Cloud：众多子项目 dubbo：高性能、轻量级的开源Java RPC框架，它提供了三大核心能力：面向接口的远程方法调用，智能容错和负载均衡以及服务自动注册和发现     核心组件 Dubbo Spring Cloud     服务注册中心 Zookeeper Spring Cloud Netflix Eureka   服务调用方式 RPC REST API   服务网关 无 Spring Cloud Netflix Zuul   断路器 不完善 Spring Cloud Netflix Hystrix   分布式配置 无/百度的disconf、百度的diamond Spring Cloud Config   服务跟踪 无/京东开源Hydra Spring Cloud Sleuth   消息总线 无 Spring Cloud Bus   数据流 无 Spring Cloud Stream   批量任务 无/当当开源Elastic-Job Spring Cloud Task    通信协议对比  RPC vs REST 服务提供方与调用方接口依赖方式太强 服务对平台敏感，难以简单服务  微服务拆分 服务化拆分  第一阶段的主要目标是快速开发和验证想法 进一步增加更多的新特性来吸引更多的目标用户 同时进行开发的人员超过10人，这个时候就该考虑服务化拆分了  不适合拆分的情况  小团队，技术基础较薄弱 流量不够，压力小，业务变化也不大 对延迟很敏感的低延迟高并发系统  拆分方式  纵向拆分，按照业务维度拆分 横向拆分，按照公共领域拆分 结合业务综合分析  服务扩展  x轴-水平复制，作为整体复制多个系统，重新部署几套，加一个负载均衡器 y轴-功能解耦，微服务拆解 z轴-数据分区，拆分数据库  自动按需扩展  根据CPU负载程度、特定时间（比如周末）、消息中间件的队列长度、业务具体规则、预测等来决定是否扩展 自动分配了一个新的服务实例，提高可用性 提高了可伸缩性（双11之后，自动减少了服务器） 具有最佳使用率，节约成本  微服务重要模块  服务描述 注册服务中心 服务框架 负载均衡 熔断和降级，兜底策略 网关：统一转换，校验，过滤器  </p>
   </section>
-  <footer class="entry-footer">2021-07-22&nbsp;·&nbsp;5 min&nbsp;·&nbsp;Rex</footer>
-  <a class="entry-link" aria-label="post link to Zookeeper" href="https://rex0520.github.io/posts/back/microservices/zookeeper/"></a>
+  <footer class="entry-footer">2021-06-22&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Rex</footer>
+  <a class="entry-link" aria-label="post link to 微服务" href="https://rex0520.github.io/posts/back/microservices/%E5%BE%AE%E6%9C%8D%E5%8A%A1/"></a>
 </article>
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2>Mongodb学习</h2>
+    <h2>Rabbitmq使用</h2>
   </header>
   <section class="entry-content">
-    <p>MongoDB 简介：   MongoDB是为快速开发互联网Web应用而设计的数据库系统。 MongoDB的设许目标是极简、灵活、作为Web应用栈的一部分。 MongoDB的数据模型是面向文档的,所谓文档是- - -种类似于JSON的结构,简单理解MongoDB这个数据库中存的是各种各样的JSON。 ( BSON )   三个概念   数据库( database )
- 数据库是-个仓库,在仓库中可以存放集合。
-   集合( collection )
- 集合类似于数组,在集合中可以存放文档。
-   文档( dotument )
- 文档数据库中的最小单位,我们存储和操作的 内容都是文档。
-   基本指令   show dbs
- 显示当前的所有数据库
-   use 数据库名
- 进入指定的数据库中
-   db
- 显示当前所处的数据库
-   show collections
- 显示数据库中所有的集合
-   db....</p>
+    <p>RabbitMQ RabbitMQ简介 核心思想  接受并转发消息。
+ producer: P queue: queue_name Consumer: C 消息队列：  业务无关 FIFO 容灾 性能  特点：  开源、跨语言 Erlang语言编写 应用广泛 社区活跃、API丰富  AMBQ协议  Advanced Message Queue Protocol   RabbitMQ核心概念  Server：服务 connection：与Server建立连接 channel：信道，几乎所有的操作都在信道上进行，客户端可以建立多个信道 message：消息，有properties和body组成 virtual host：虚拟主机，顶层隔离。同一个虚拟主机下，不能有重复的交换机和queue Exchange：交换机，接收生产者的消息的，然后根据指定的路由器去把消息转发到锁绑定的队列上 binding：绑定交换机和队列 routing key：路由键，路由规则，虚拟机可以用它来确定这个消息如何进行一个路由 queue：队列，消费者只需要监听队列来消费信息，不需要关注消息来自于哪个Exchange Exchange和Message Queue存在着绑定的关系，一个Exchange可以绑定多个消息队列 消息流转过程      RabbitMQ常用命令 systemctl start rabbitmq-server # 启动rabbitmq rabbitmqctl status # 查看状态 RabbitMQ后台管理  http://1.117.91.88:15672/#/connections rabbitmq management...</p>
   </section>
-  <footer class="entry-footer">2021-07-09&nbsp;·&nbsp;12 min&nbsp;·&nbsp;Rex</footer>
-  <a class="entry-link" aria-label="post link to Mongodb学习" href="https://rex0520.github.io/posts/back/nosql/mongodb/"></a>
+  <footer class="entry-footer">2021-06-21&nbsp;·&nbsp;11 min&nbsp;·&nbsp;Rex</footer>
+  <a class="entry-link" aria-label="post link to Rabbitmq使用" href="https://rex0520.github.io/posts/back/microservices/rabbitmq/"></a>
 </article>
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2>Redis入门</h2>
+    <h2>CSS3</h2>
   </header>
   <section class="entry-content">
-    <p>Redis入门 Redis介绍  Redis是Key-Value型NoSQL数据库 Redis将数据存储在内存中，同时也能持久化到磁盘 Redis常用于缓存，利用内存的高效提高程序的处理速度  Redis特点  速度快 持久化 主从复制 广泛的语言支持 多种数据结构 分布式与高可用  Redis的安装与使用 在Linux系统中安装Redis  https://redis.io/download
- 在windows系统中安装Redis  https://github.com/microsoftarchive/redis/releases
- Redis的常用基本配置    配置项 示例 说明     daemonize daemonize yes 是否启用后台允许，默认no   port port 6379 设置端口号，默认6379   logfile logfile 日志文件 设置日志文件   databases databases 255 设置redis数据库总量   dir dir数据文件目录 设置数据文件存储目录   requirepass requirepass 12345 设置使用密码    Redis通用命令    命令 示例 说明     select select 0 选择0号数据库   set set name lily 设置key=name,value=lily   get get hello 获得key=hello结果   keys keys he* 根据Pattern表达式查询符合条件的Key   dbsize dbsize 返回key的总数   exists exists a 检查key=a是否存在   del del a 删除key=a的数据   expire expire hello 20 设置key=hello 20秒后过期   ttl ttl 查看key=a的过期剩余时间    Redis数据类型  String - 字符串类型 Hash - Hash类型 List - 列表类型 Set - 集合类型 Zset - 有序集合类型  String字符串类型   String最大512mb 建议单个kv不超过100kb...</p>
+    <p>CSS3 CSS新增选择器 属性选择器    选择器 简介     E[attr] 选择具有attr属性的E元素   E[attr=“val”] 选择具有attr属性且属性值等于E的元素   E[attr^=“val”] 匹配具有attr属性且值以val开头的E元素   E[attr$=“val”] 匹配具有attr属性且值以val结尾的E元素   E[attr*=“val”] 匹配具有attr属性且值中含有val的E元素    属性选择器的权重为10
+结构伪类选择器    选择符 简介     E:first-child 匹配父元素中的第一个子元素E   E:last-child 匹配父元素中最后一个E元素   E:nth-child(n) 匹配父元素中的第n个子元素E   E:first-of-type 指定类型E的第一个   E:last-of-type 指定类型E的最后一个   E:nth-of-type(n) 指定类型E的第n个    nth-child(n)...</p>
   </section>
-  <footer class="entry-footer">2021-07-09&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Rex</footer>
-  <a class="entry-link" aria-label="post link to Redis入门" href="https://rex0520.github.io/posts/back/nosql/redis/"></a>
+  <footer class="entry-footer">2021-06-18&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Rex</footer>
+  <a class="entry-link" aria-label="post link to CSS3" href="https://rex0520.github.io/posts/front/css3/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

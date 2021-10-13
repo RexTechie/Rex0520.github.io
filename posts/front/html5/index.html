@@ -6,12 +6,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
 <title>HTML5 | Rex</title>
-<meta name="keywords" content="html5, 网页" />
-<meta name="description" content="网页学习记录">
+<meta name="keywords" content="HTML5" />
+<meta name="description" content="HTML5">
 <meta name="author" content="Rex">
 <link rel="canonical" href="https://rex0520.github.io/posts/front/html5/" />
 <link crossorigin="anonymous" href="/assets/css/stylesheet.min.css" rel="preload stylesheet" as="style">
 <link rel="preload" href="http://cdn.rexweb.xyz/img/20210821105340.png" as="image">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.min.js" onload="hljs.initHighlightingOnLoad();"></script>
 <link rel="icon" href="https://rex0520.github.io/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="https://rex0520.github.io/favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="https://rex0520.github.io/favicon-32x32.png">
@@ -21,7 +22,7 @@
 <meta name="msapplication-TileColor" content="#2e2e33">
 <meta name="generator" content="Hugo 0.87.0" />
 <meta property="og:title" content="HTML5" />
-<meta property="og:description" content="网页学习记录" />
+<meta property="og:description" content="HTML5" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://rex0520.github.io/posts/front/html5/" /><meta property="og:image" content="https://cdn.rexweb.xyz/img/20210820141535.jpg"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2021-05-12T00:00:00&#43;00:00" />
@@ -31,7 +32,7 @@
 <meta name="twitter:image" content="https://cdn.rexweb.xyz/img/20210820141535.jpg"/>
 
 <meta name="twitter:title" content="HTML5"/>
-<meta name="twitter:description" content="网页学习记录"/>
+<meta name="twitter:description" content="HTML5"/>
 
 
 <script type="application/ld+json">
@@ -60,9 +61,9 @@
   "@type": "BlogPosting",
   "headline": "HTML5",
   "name": "HTML5",
-  "description": "网页学习记录",
+  "description": "HTML5",
   "keywords": [
-    "html5", "网页"
+    "HTML5"
   ],
   "articleBody": "HTML5 TIP: 存在兼容性问题，基本上IE+9以上版本的浏览器才支持\n语义化标签  : 头部标签 : 导航标签 : 内容标签 : 定义文档某个区域 : 侧边栏标签 : 尾部标签  注意：\n 这种语义化标准主要是针对搜索引擎的 这些新标签页面可以使用多次 在IE9中，需要把这些元素转换为块级元素 移动端更喜欢使用这些标签  多媒体标签   \n   浏览器 MP4 Webm ogg     Internet Explore Yes No No   Chrome Yes Yes Yes   Firefox Yes从Firefox21版本开始Linux系统从Firefox30开始 Yes Yes   Safari Yes No No   Opera Yes Yes Yes    语法：\n\n属性：\n   属性 值 描述     autoplay autoplay 如果出现该属性，则视频在就绪后马上播放。   controls controls 如果出现该属性，则向用户显示控件，比如播放按钮。   height pixels 设置视频播放器的高度。   loop loop 如果出现该属性，则当媒介文件完成播放后再次开始播放。   muted muted 规定视频的音频输出应该被静音。   poster URL 规定视频下载时显示的图像，或者在用户点击播放按钮前显示的图像。   preload preload 如果出现该属性，则视频在页面加载时进行加载，并预备播放。如果使用 “autoplay”，则忽略该属性。   src url 要播放的视频的 URL。   width pixels 设置视频播放器的宽度。      \n   浏览器 MP3 wav ogg     Internet Explore Yes No No   Chrome Yes Yes Yes   Firefox Yes Yes Yes   Safari Yes YES No   Opera Yes Yes Yes    语法：\n\n属性\n   属性 值 描述     autoplay autoplay 如果出现该属性，则音频在就绪后马上播放。   controls controls 如果出现该属性，则向用户显示控件，比如播放按钮。   loop loop 如果出现该属性，则每当音频结束时重新开始播放。   muted muted 规定视频输出应该被静音。   preload preload 如果出现该属性，则音频在页面加载时进行加载，并预备播放。如果使用 “autoplay”，则忽略该属性。   src url 要播放的音频的 URL。      多媒体标签总结\n 音频和视频使用方式基本一致 浏览器支持情况不同 谷歌浏览器把音频和视频自动播放了 我们可以给视频标签添加muted属性来静音播放视频，音频不可以（可以通过JavaScript解决） 视频标签是重点，我们经常设置自动播放，不适用controls控件，循环和设置大小属性    input类型    属性值 说明     type=“email” 限制用户输入必须为Email类型   type=“url” 限制用户输入必须为URL类型   type=“date” 限制用户输入必须为日期类型   type=“time” 限制用户输入必须为时间类型   type=“month” 限制用户输入必须为月类型   type=“week” 限制用户输入必须为周类型   type=“number” 限制用户输入必须为数字类型   type=“tel” 手机号   type=“search” 搜索框   type=“color” 生成一个颜色选择表单    新增的表单属性    属性 值 说明     required required 表单拥有该属性表示其内容不能为空，必填   placeholder 提示文本 表单的提示信息，存在默认值将不显示   autofocus autofocus 自动聚焦属性，页面加载完成自动聚焦到指定表单   autocomplate off/on 当用户在字段开始键入时，浏览器基于之前键入过的值，应该显示出在字段中填写的选项。默认已经打开，如autocomplete=“on”, 关闭autocomplete=“off\"需要放在表单内，同时加上name属性，同时成提交   multiple mltiple 可以多选文件提交    ",
   "wordCount" : "188",
@@ -205,7 +206,7 @@
       HTML5
     </h1>
     <div class="post-description">
-      网页学习记录
+      HTML5
     </div>
     <div class="post-meta">2021-05-12&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Rex&nbsp;|&nbsp;<a href="https://github.com/Rex0520/Rex0520.github.io" rel="noopener noreferrer" target="_blank">来这修改</a>
 </div>
@@ -551,25 +552,24 @@
   </div>
   <footer class="post-footer">
     <ul class="post-tags">
-      <li><a href="https://rex0520.github.io/tags/html5/">html5</a></li>
-      <li><a href="https://rex0520.github.io/tags/%E7%BD%91%E9%A1%B5/">网页</a></li>
+      <li><a href="https://rex0520.github.io/tags/html5/">HTML5</a></li>
     </ul>
 <nav class="paginav">
-  <a class="prev" href="https://rex0520.github.io/posts/front/css/">
+  <a class="prev" href="https://rex0520.github.io/posts/front/%E7%BD%91%E9%A1%B5%E5%BC%80%E5%8F%91/">
     <span class="title">« Prev Page</span>
     <br>
-    <span>CSS</span>
+    <span>网页开发</span>
   </a>
-  <a class="next" href="https://rex0520.github.io/posts/front/%E7%BD%91%E9%A1%B5%E5%BC%80%E5%8F%91/">
+  <a class="next" href="https://rex0520.github.io/posts/front/vue/vue%E8%BF%9B%E9%98%B6/">
     <span class="title">Next Page »</span>
     <br>
-    <span>网页开发</span>
+    <span>Vue进阶</span>
   </a>
 </nav>
 
 <div class="share-buttons">
     <a target="_blank" rel="noopener noreferrer" aria-label="share HTML5 on twitter"
-        href="https://twitter.com/intent/tweet/?text=HTML5&amp;url=https%3a%2f%2frex0520.github.io%2fposts%2ffront%2fhtml5%2f&amp;hashtags=html5%2c%e7%bd%91%e9%a1%b5">
+        href="https://twitter.com/intent/tweet/?text=HTML5&amp;url=https%3a%2f%2frex0520.github.io%2fposts%2ffront%2fhtml5%2f&amp;hashtags=HTML5">
         <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
             <path
                 d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-253.927,424.544c135.939,0 210.268,-112.643 210.268,-210.268c0,-3.218 0,-6.437 -0.153,-9.502c14.406,-10.421 26.973,-23.448 36.935,-38.314c-13.18,5.824 -27.433,9.809 -42.452,11.648c15.326,-9.196 26.973,-23.602 32.49,-40.92c-14.252,8.429 -30.038,14.56 -46.896,17.931c-13.487,-14.406 -32.644,-23.295 -53.946,-23.295c-40.767,0 -73.87,33.104 -73.87,73.87c0,5.824 0.613,11.494 1.992,16.858c-61.456,-3.065 -115.862,-32.49 -152.337,-77.241c-6.284,10.881 -9.962,23.601 -9.962,37.088c0,25.594 13.027,48.276 32.95,61.456c-12.107,-0.307 -23.448,-3.678 -33.41,-9.196l0,0.92c0,35.862 25.441,65.594 59.311,72.49c-6.13,1.686 -12.72,2.606 -19.464,2.606c-4.751,0 -9.348,-0.46 -13.946,-1.38c9.349,29.426 36.628,50.728 68.965,51.341c-25.287,19.771 -57.164,31.571 -91.8,31.571c-5.977,0 -11.801,-0.306 -17.625,-1.073c32.337,21.15 71.264,33.41 112.95,33.41Z" />

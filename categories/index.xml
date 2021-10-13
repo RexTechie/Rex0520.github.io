@@ -19,5 +19,41 @@
       <description></description>
     </item>
     
+    <item>
+      <title>前端</title>
+      <link>https://rex0520.github.io/categories/%E5%89%8D%E7%AB%AF/</link>
+      <pubDate>Mon, 11 Oct 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rex0520.github.io/categories/%E5%89%8D%E7%AB%AF/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>后端</title>
+      <link>https://rex0520.github.io/categories/%E5%90%8E%E7%AB%AF/</link>
+      <pubDate>Sat, 21 Aug 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rex0520.github.io/categories/%E5%90%8E%E7%AB%AF/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>数据库</title>
+      <link>https://rex0520.github.io/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/</link>
+      <pubDate>Fri, 09 Jul 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rex0520.github.io/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>项目</title>
+      <link>https://rex0520.github.io/categories/%E9%A1%B9%E7%9B%AE/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://rex0520.github.io/categories/%E9%A1%B9%E7%9B%AE/</guid>
+      <description></description>
+    </item>
+    
   </channel>
 </rss>

@@ -6,12 +6,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
 <title>微服务 | Rex</title>
-<meta name="keywords" content="java, 微服务, spring, 后端" />
-<meta name="description" content="微服务学习记录">
+<meta name="keywords" content="微服务" />
+<meta name="description" content="微服务">
 <meta name="author" content="Rex">
 <link rel="canonical" href="https://rex0520.github.io/posts/back/microservices/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" />
 <link crossorigin="anonymous" href="/assets/css/stylesheet.min.css" rel="preload stylesheet" as="style">
 <link rel="preload" href="http://cdn.rexweb.xyz/img/20210821105340.png" as="image">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.min.js" onload="hljs.initHighlightingOnLoad();"></script>
 <link rel="icon" href="https://rex0520.github.io/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="https://rex0520.github.io/favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="https://rex0520.github.io/favicon-32x32.png">
@@ -21,7 +22,7 @@
 <meta name="msapplication-TileColor" content="#2e2e33">
 <meta name="generator" content="Hugo 0.87.0" />
 <meta property="og:title" content="微服务" />
-<meta property="og:description" content="微服务学习记录" />
+<meta property="og:description" content="微服务" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://rex0520.github.io/posts/back/microservices/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" /><meta property="og:image" content="https://cdn.rexweb.xyz/img/20210820141535.jpg"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2021-06-22T00:00:00&#43;00:00" />
@@ -31,7 +32,7 @@
 <meta name="twitter:image" content="https://cdn.rexweb.xyz/img/20210820141535.jpg"/>
 
 <meta name="twitter:title" content="微服务"/>
-<meta name="twitter:description" content="微服务学习记录"/>
+<meta name="twitter:description" content="微服务"/>
 
 
 <script type="application/ld+json">
@@ -60,9 +61,9 @@
   "@type": "BlogPosting",
   "headline": "微服务",
   "name": "微服务",
-  "description": "微服务学习记录",
+  "description": "微服务",
   "keywords": [
-    "java", "微服务", "spring", "后端"
+    "微服务"
   ],
   "articleBody": "微服务 微服务概述 单体应用的痛点  部署效率低下 团队写作开发成本高 系统高可用性差  服务化  把传统的单机应用中的本地方法调用，改造成通过RPC、HTTP产生的远程方法调用 把模块从单体应用中拆分出来，独立成一个服务部署 用户模块就可以独立开发、测试、上线和运维，可以交由专门的团队来做，与主模块不耦合  从单体到微服务架构 微服务   一种架构风格 开发单个应用作为一系列小型服务的套件，其中每个服务都运行在自己的进程中，并且通过轻量级的机制实现彼此间的通信，这通常是HTTP资源API 这些服务是围绕着业务功能构建的，并且可以通过完全自动化的部署机制进行独立部署 这些服务的集中式管理做到了最小化（例如docker相关技术），每一种服务都可以通过不同的变成语言进行编写，并且可以使用不同的数据存储技术   微服务的特点   组件以服务形式来提供\n  产品不是项目\n  轻量级通信、独立进程\n  分散治理、去中心化治理\n  容错性设计\n  会带来团队组织架构的调整\n  微服务优点  服务简单、便于学习和上手，先对易于维护 独立部署，灵活扩展 技术栈丰富  微服务缺点  运维成本过高 接口可能不匹配 代码可能重复 架构复杂度提高  微服务有两大门派  Spring Cloud：众多子项目 dubbo：高性能、轻量级的开源Java RPC框架，它提供了三大核心能力：面向接口的远程方法调用，智能容错和负载均衡以及服务自动注册和发现     核心组件 Dubbo Spring Cloud     服务注册中心 Zookeeper Spring Cloud Netflix Eureka   服务调用方式 RPC REST API   服务网关 无 Spring Cloud Netflix Zuul   断路器 不完善 Spring Cloud Netflix Hystrix   分布式配置 无/百度的disconf、百度的diamond Spring Cloud Config   服务跟踪 无/京东开源Hydra Spring Cloud Sleuth   消息总线 无 Spring Cloud Bus   数据流 无 Spring Cloud Stream   批量任务 无/当当开源Elastic-Job Spring Cloud Task    通信协议对比  RPC vs REST 服务提供方与调用方接口依赖方式太强 服务对平台敏感，难以简单服务  微服务拆分 服务化拆分  第一阶段的主要目标是快速开发和验证想法 进一步增加更多的新特性来吸引更多的目标用户 同时进行开发的人员超过10人，这个时候就该考虑服务化拆分了  不适合拆分的情况  小团队，技术基础较薄弱 流量不够，压力小，业务变化也不大 对延迟很敏感的低延迟高并发系统  拆分方式  纵向拆分，按照业务维度拆分 横向拆分，按照公共领域拆分 结合业务综合分析  服务扩展  x轴-水平复制，作为整体复制多个系统，重新部署几套，加一个负载均衡器 y轴-功能解耦，微服务拆解 z轴-数据分区，拆分数据库  自动按需扩展  根据CPU负载程度、特定时间（比如周末）、消息中间件的队列长度、业务具体规则、预测等来决定是否扩展 自动分配了一个新的服务实例，提高可用性 提高了可伸缩性（双11之后，自动减少了服务器） 具有最佳使用率，节约成本  微服务重要模块  服务描述 注册服务中心 服务框架 负载均衡 熔断和降级，兜底策略 网关：统一转换，校验，过滤器  ",
   "wordCount" : "123",
@@ -205,7 +206,7 @@
       微服务
     </h1>
     <div class="post-description">
-      微服务学习记录
+      微服务
     </div>
     <div class="post-meta">2021-06-22&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Rex&nbsp;|&nbsp;<a href="https://github.com/Rex0520/Rex0520.github.io" rel="noopener noreferrer" target="_blank">来这修改</a>
 </div>
@@ -450,27 +451,24 @@
   </div>
   <footer class="post-footer">
     <ul class="post-tags">
-      <li><a href="https://rex0520.github.io/tags/java/">java</a></li>
       <li><a href="https://rex0520.github.io/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/">微服务</a></li>
-      <li><a href="https://rex0520.github.io/tags/spring/">spring</a></li>
-      <li><a href="https://rex0520.github.io/tags/%E5%90%8E%E7%AB%AF/">后端</a></li>
     </ul>
 <nav class="paginav">
-  <a class="prev" href="https://rex0520.github.io/posts/back/microservices/nginx%E7%9A%84%E5%AE%89%E8%A3%85/">
+  <a class="prev" href="https://rex0520.github.io/posts/back/microservices/nginx%E4%BD%BF%E7%94%A8/">
     <span class="title">« Prev Page</span>
     <br>
-    <span>Nginx的安装</span>
+    <span>Nginx使用</span>
   </a>
   <a class="next" href="https://rex0520.github.io/posts/back/microservices/rabbitmq/">
     <span class="title">Next Page »</span>
     <br>
-    <span>RabbitMQ学习</span>
+    <span>Rabbitmq使用</span>
   </a>
 </nav>
 
 <div class="share-buttons">
     <a target="_blank" rel="noopener noreferrer" aria-label="share 微服务 on twitter"
-        href="https://twitter.com/intent/tweet/?text=%e5%be%ae%e6%9c%8d%e5%8a%a1&amp;url=https%3a%2f%2frex0520.github.io%2fposts%2fback%2fmicroservices%2f%25E5%25BE%25AE%25E6%259C%258D%25E5%258A%25A1%2f&amp;hashtags=java%2c%e5%be%ae%e6%9c%8d%e5%8a%a1%2cspring%2c%e5%90%8e%e7%ab%af">
+        href="https://twitter.com/intent/tweet/?text=%e5%be%ae%e6%9c%8d%e5%8a%a1&amp;url=https%3a%2f%2frex0520.github.io%2fposts%2fback%2fmicroservices%2f%25E5%25BE%25AE%25E6%259C%258D%25E5%258A%25A1%2f&amp;hashtags=%e5%be%ae%e6%9c%8d%e5%8a%a1">
         <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
             <path
                 d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-253.927,424.544c135.939,0 210.268,-112.643 210.268,-210.268c0,-3.218 0,-6.437 -0.153,-9.502c14.406,-10.421 26.973,-23.448 36.935,-38.314c-13.18,5.824 -27.433,9.809 -42.452,11.648c15.326,-9.196 26.973,-23.602 32.49,-40.92c-14.252,8.429 -30.038,14.56 -46.896,17.931c-13.487,-14.406 -32.644,-23.295 -53.946,-23.295c-40.767,0 -73.87,33.104 -73.87,73.87c0,5.824 0.613,11.494 1.992,16.858c-61.456,-3.065 -115.862,-32.49 -152.337,-77.241c-6.284,10.881 -9.962,23.601 -9.962,37.088c0,25.594 13.027,48.276 32.95,61.456c-12.107,-0.307 -23.448,-3.678 -33.41,-9.196l0,0.92c0,35.862 25.441,65.594 59.311,72.49c-6.13,1.686 -12.72,2.606 -19.464,2.606c-4.751,0 -9.348,-0.46 -13.946,-1.38c9.349,29.426 36.628,50.728 68.965,51.341c-25.287,19.771 -57.164,31.571 -91.8,31.571c-5.977,0 -11.801,-0.306 -17.625,-1.073c32.337,21.15 71.264,33.41 112.95,33.41Z" />

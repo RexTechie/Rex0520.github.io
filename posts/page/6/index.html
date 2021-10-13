@@ -163,91 +163,62 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2>Restful</h2>
+    <h2>Maven基础</h2>
+  </header>
+  <section class="entry-content">
+    <p>Maven入门 Maven介绍  Maven是项目管理工具，对软件项目提供构建与依赖管理 Maven是Apache下的Java开源项目 Maven为Java项目提供了统一的管理方式，已成为业界标准  解决了的问题  工程的结构不统一 第三方jar包多的时候，不便于管理 工程打包的困难  Maven核心特性  项目设置遵循统一的规则，保证不同开发环境的兼容性 强大的依赖管理，项目依赖组件自动下载、自动更新 可扩展的插件机制，使用简单，功能丰富  Maven的坐标： GroupId：机构或者团队的英文，采用&#34;逆向域名&#34;形式书写 ArtifactId：项目名称，说明其用途，例如：cms(内容管理系统)，oa(办公自动化系统) Version：版本号，一般采用“版本&#43;单词”形式，例如：1.0.0.RELEASE Maven项目标准结构    目录 用途     ${basedir} 根目录，用于保存pom.xml   ${basedir}/src/main/java Java源代码目录   ${basedir}/src/main/resources 资源目录，保存配置文件、静态图片等   ${basedir}/src/test/java 测试类的源代码   ${basedir}/src/test/resources 测试时需要使用的资源文件   ${basedir}/target 项目输出的目录，用于存储jar、war文件   ${basedir}/target/classes 字节码(.class)的编译输出目录   ${basedir}/pom.xml 项目(Project)对象(Object)模型(Model)文件    Maven的依赖管理 说明  Maven利用dependency(依赖)自动下载、管理第三方Jar 在pom....</p>
+  </section>
+  <footer class="entry-footer">2021-03-09&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Rex</footer>
+  <a class="entry-link" aria-label="post link to Maven基础" href="https://rex0520.github.io/posts/back/maven/maven%E5%9F%BA%E7%A1%80/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>Mybatis基础</h2>
+  </header>
+  <section class="entry-content">
+    <p>MyBatis基础入门 软件开发中的框架  框架是可被应用开发者定制的应用骨架 框架是一种规则，保证开发者遵循相同的方式开发程序 框架提倡“不要重复造轮子”，对基础功能进行封装  框架的优点  极大提高了开发效率 统一的编码规则，有利于团队管理 灵活配置的应用，拥有更好的维护性  SSM开发框架  S -&gt; Spring S -&gt; Spring MVC M -&gt; MyBatis  什么是MyBatis  MyBatis是优秀的持久层框架 MyBatis使用XML将SQL与程序解耦，便于维护 MyBatis学习简单，执行高效，是JDBC的延展  MyBatis开发流程  引入MyBatis依赖 创建核心配置文件 创建实体(Entity)类 创建Mapper映射文件 初始化SessionFactory 利用SqlSession对象操作数据  MyBatis环境配置 mybatis-config.xml说明  MyBatis采用XML格式配置数据库环境信息 MyBatis环境配置标签 environment包含数据库驱动、URL、用户名于密码  mybatis-config.xml示例： &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34; ?&gt; &lt;!DOCTYPE configuration PUBLIC &#34;-//mybatis.org//DTD Config 3.0//EN&#34; &#34;http://mybatis.org/dtd/mybatis-3-config.dtd&#34;&gt; &lt;configuration&gt; &lt;environments default=&#34;dev&#34;&gt; &lt;!--根据环境，不同的环境不同的id，dev-&gt;开发环境 prd-&gt;生产环境 --&gt; &lt;environment id=&#34;dev&#34;&gt; &lt;!--采用JDBC方式对数据库事务进行commit/rollback--&gt; &lt;transactionManager type=&#34;JDBC&#34;&gt;&lt;/transactionManager&gt; &lt;!...</p>
+  </section>
+  <footer class="entry-footer">2021-03-09&nbsp;·&nbsp;8 min&nbsp;·&nbsp;Rex</footer>
+  <a class="entry-link" aria-label="post link to Mybatis基础" href="https://rex0520.github.io/posts/back/jdbctool/mybatis%E5%9F%BA%E7%A1%80/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>Mybatis进阶</h2>
+  </header>
+  <section class="entry-content">
+    <p>MyBatis进阶 什么是日志  日志文件是用于记录系统操作事件的记录文件或文件集合 日志保存历史数据，是诊断问题以及理解系统活动的重要依据  SLF4j与Logback 日志的使用:   引入logback依赖
+&lt;dependency&gt; &lt;groupId&gt;ch.qos.logback&lt;/groupId&gt; &lt;artifactId&gt;logback-classic&lt;/artifactId&gt; &lt;version&gt;1.2.3&lt;/version&gt; &lt;/dependency&gt;   创建logback.xml，并写入如下代码：
+&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34; ?&gt; &lt;configuration&gt; &lt;appender name=&#34;console&#34; class=&#34;ch.qos.logback.core.ConsoleAppender&#34;&gt; &lt;encoder&gt; &lt;pattern&gt;%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n&lt;/pattern&gt; &lt;/encoder&gt; &lt;/appender&gt; &lt;!-- 日志输出级别（优先级高到低） error: 错误 - 系统的故障日志 warn: 警告 - 存在风险或使用不当的日志 info: 一般性消息 debug: 程序内部用于调试信息 trace: 程序允许的跟踪信息 --&gt; &lt;root level=&#34;debug&#34;&gt; &lt;appender-ref ref=&#34;console&#34;&gt;&lt;/appender-ref&gt; &lt;/root&gt; &lt;/configuration&gt;   动态SQL  动态SQL是指根据参数数据动态组织SQL的技术  代码示例：  goods.xml中加入如下sql语句
+&lt;select id=&#34;dynamicSelect&#34; parameterType=&#34;java....</p>
+  </section>
+  <footer class="entry-footer">2021-03-09&nbsp;·&nbsp;7 min&nbsp;·&nbsp;Rex</footer>
+  <a class="entry-link" aria-label="post link to Mybatis进阶" href="https://rex0520.github.io/posts/back/jdbctool/mybatis%E8%BF%9B%E9%98%B6/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>Restful开发风格</h2>
   </header>
   <section class="entry-content">
     <p>RESTful开发风格 REST与RESTful  REST(Representational State Transfer)-表现层状态转换，资源在网络中以某种表现形式进行状态转移 RESTful是基于REST理念的一套开发风格，是具体的开发规则  RESTful传输数据 RESTful开发规范  使用URL作为用户交互入口 明确的语义规范(GET|POST|PUT|DELETE-&gt;查|增|改|删) 只返回数据(JSON|XML)，不包含任何展现  RESTful命名要求    URI 说明 修改建议     GET /articles?au=lily 正确用法    GET /a/1 URI必须具有语义 GET /student/1   POST /createArticle/1 URI必须使用名词 POST /article/1   GET /articles/author/1 URI扁平化，不超两级 GET /articles/author?id=1   DELETE /articles/1 URI名词区分单复数 GET /articles?au=lilyDELETE /article/1    开发第一个RESTful应用  RestfulController.java
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40  package com....</p>
+package com.imooc.restful.controller; import org.springframework.stereotype.Controller; import org....</p>
   </section>
-  <footer class="entry-footer">2021-03-09&nbsp;·&nbsp;5 min&nbsp;·&nbsp;Rex</footer>
-  <a class="entry-link" aria-label="post link to Restful" href="https://rex0520.github.io/posts/back/restful/"></a>
+  <footer class="entry-footer">2021-03-09&nbsp;·&nbsp;3 min&nbsp;·&nbsp;Rex</footer>
+  <a class="entry-link" aria-label="post link to Restful开发风格" href="https://rex0520.github.io/posts/back/framework/springmvc/restful/"></a>
 </article>
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2>SpringMVC学习</h2>
+    <h2>SpringMVC基础</h2>
   </header>
   <section class="entry-content">
     <p>Spring MVC Spring MVC介绍 MVC是什么 Spring MVC  Spring MVC是Spring体系的轻量级WEB MVC框架 Spring MVC的核心Controller控制器，用于处理请求，产生响应 Spring MVC基于Spring IoC容器运行，所有对象被IoC管理  Spring 5.X版本变化  Spring 5.x最低要求JDK8与J2EE 7(Servlet 3.1/Tomcat 8.5&#43;) Spring 5.x支持JDK8/9,可以使用新特性 Spring 5.x最重要的新特性支持响应式编程  Spring MVC环境配置  Maven依赖spring-webmvc web.xml配置DispatcherServlet 配置applicationContext的mvc标记 开发Controller控制器  简单示例：  applicationContext.xml:
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26  &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?...</p>
+&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt; &lt;beans xmlns=&#34;http://www.springframework.org/schema/beans&#34; xmlns:mvc=&#34;http://www.springframework.org/schema/mvc&#34; xmlns:context=&#34;http://www.springframework.org/schema/context&#34; xmlns:xsi=&#34;http://www.w3.org/2001/XMLSchema-instance&#34; xmlns:mv=&#34;http://www.springframework.org/schema/mvc&#34; xsi:schemaLocation=&#34;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd&#34;&gt; &lt;!-- context:component-scan 标签作用 在Spring IOC初始化过程中，自动创建并管理com.imooc.springmvc及子包 拥有以下注解的对象 @Repository @Service @Controller @Component --&gt; &lt;context:component-scan base-package=&#34;com.imooc.springmvc&#34;/&gt; &lt;!--启用Spring MVC的注解开发模式--&gt; &lt;mvc:annotation-driven/&gt; &lt;!...</p>
   </section>
-  <footer class="entry-footer">2021-03-09&nbsp;·&nbsp;4 min&nbsp;·&nbsp;Rex</footer>
-  <a class="entry-link" aria-label="post link to SpringMVC学习" href="https://rex0520.github.io/posts/back/ssm2springboot/springmvc/springmvc%E5%AD%A6%E4%B9%A0/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>SpringMVC拦截器</h2>
-  </header>
-  <section class="entry-content">
-    <p>SpringMVC拦截器 拦截器-Interceptor  拦截器(Interveptor)用于对URL请求进行前置/后置过滤 Interceptor与Filter用途相似，但实现方式不同 Interceptor底层就是基于Spring AOP面向切面编程实现  拦截器开发流程   Maven依赖servlet-api
-1 2 3 4 5 6  &lt;dependency&gt; &lt;groupId&gt;javax.servlet&lt;/groupId&gt; &lt;artifactId&gt;javax.servlet-api&lt;/artifactId&gt; &lt;version&gt;4.0.1&lt;/version&gt; &lt;scope&gt;provided&lt;/scope&gt; &lt;/dependency&gt;     实现HandlerInterceptor
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29  package com.imooc.restful.interceptor; import org.springframework.web.servlet.HandlerInterceptor; import org.springframework.web.servlet.ModelAndView; import javax.servlet.http.HttpServletRequest; import javax.servlet.http.HttpServletResponse; /** * @author Rex * @create 2021-01-12 17:55 */ public class MyInterceptor implements HandlerInterceptor { @Override public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception { System....</p>
-  </section>
-  <footer class="entry-footer">2021-03-09&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Rex</footer>
-  <a class="entry-link" aria-label="post link to SpringMVC拦截器" href="https://rex0520.github.io/posts/back/ssm2springboot/springmvc/springmvc%E6%8B%A6%E6%88%AA%E5%99%A8/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>Vue动画</h2>
-  </header>
-  <section class="entry-content">
-    <p>Vue动画 Vue过渡和动画 1. 过渡和动画基础   什么是过渡和动画
-  过渡：从一个状态向另一个状态变化的过程
-  动画：与过渡非常类似，只不过动画控制的过程更加细腻，更加精准
-  过渡语法：
-1 2 3 4  &lt;transition name=&#34;fade&#34;&gt; &lt;!-- 需要添加过渡的div标签--&gt; &lt;div&gt;&lt;/div&gt; &lt;/transition&gt;   name指定的是过渡所需要的样式名的前提
-    transition组件
-  Vue给transition标签，提供了六个过度类
-   过渡类型 说明     v-enter 进入过渡的开始状态，作用于开始的一帧   v-enter-active 进入过渡生效时的状态，作用于整个过程   v-enter-to 进入过渡的结束状态，作用于结束的一帧   v-leave 离开过渡的开始状态，作用于开始的一帧   v-leave-active 离开过渡生效时的状态，作用于整个过程   v-leave-to 离开过渡的结束状态，作用于结束的一帧      过渡类分析图...</p>
-  </section>
-  <footer class="entry-footer">2021-03-02&nbsp;·&nbsp;3 min&nbsp;·&nbsp;Rex</footer>
-  <a class="entry-link" aria-label="post link to Vue动画" href="https://rex0520.github.io/posts/front/vue/vue%E5%8A%A8%E7%94%BB/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>SpringBoot总结</h2>
-  </header>
-  <section class="entry-content">
-    <p>SpringBoot学习总结 使用SpringBoot的优缺点 优点：  简化配置 整合了很多工具，如redis 开发效率高  缺点：  因为内部封装了太多的东西，不容易找bug 不容易看到底层都做了什么  SpringBoot常用注解 Controller: ​	@Controller:通知Spring这个类为Controller类
-​	@ResponseBody：用于将函数的返回值转换为json格式的数据写入到http响应的body区中,若没有这个注解，会使用请求转发跳转到返回值的页面
-​	@RestController：Rest风格的Controller，@Controller &#43; @ResponseBody = @RestController
-​	@ControllerAdvice：环绕增强的Controller，一般用于全局异常处理、全局数据绑定、全局数据预处理
-​	@RequestMapping()：请求地址映射，一般用于描述url的前缀地址
-​	@PostMapping()：post请求的地址映射
-​	@GetMaping()：get请求的地址映射
-​	@Valid：用于校验参数，需要编写全局异常捕捉类
-​	@RequestBody：接收来自requestBody中的参数，即请求体中的参数
-​	@RequestParm：有三个参数，required表示是否必须，默认为true，defaultValue设置参数默认值，value为接受url的参数名
-​	@PathVariable：获取路径变量
-​	@Size：限制传入参数的最大值(max)和最小值(min)，指定异常的message信息，可被@Valid校验检测到
-​	@NotNull：限制传入的参数非空，指定异常的message信息，可被@Valid校验检测到
-​	@Max:指定最大值value，指定异常的message信息，可被@Valid校验检测到
-​	@Min：指定最小值value，指定异常的message信息，可被@Valid校验检测到
-Swagger: ​	@Api：用在类上，说明该类的作用。可以标记一个Controller类做为swagger 文档资源
-​	@ApiOperation：用在方法上，说明方法的作用，每一个url资源的定义
-​	@ApiParam：用在变量上，说明请求属性的作用
-​	@ApiResponse：响应配置信息
-​	@ApiReponses：响应集配置
-​	@ReponseHeader：响应头设置
-Service: ​	@Service：用在类上，说明该类为Service类
-Dao: ​	@Repository：用在类上，说明该类为Dao类
-Config: ​	@Configuration：用在类上，说明该类为配置类...</p>
-  </section>
-  <footer class="entry-footer">2021-02-19&nbsp;·&nbsp;5 min&nbsp;·&nbsp;Rex</footer>
-  <a class="entry-link" aria-label="post link to SpringBoot总结" href="https://rex0520.github.io/posts/back/ssm2springboot/springboot/springboot%E6%80%BB%E7%BB%93/"></a>
+  <footer class="entry-footer">2021-03-09&nbsp;·&nbsp;3 min&nbsp;·&nbsp;Rex</footer>
+  <a class="entry-link" aria-label="post link to SpringMVC基础" href="https://rex0520.github.io/posts/back/framework/springmvc/springmvc%E5%9F%BA%E7%A1%80/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

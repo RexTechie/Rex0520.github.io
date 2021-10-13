@@ -6,12 +6,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
 <title>Vue基础 | Rex</title>
-<meta name="keywords" content="vue, 前端" />
-<meta name="description" content="VUE学习记录">
+<meta name="keywords" content="Vue" />
+<meta name="description" content="Vue基础">
 <meta name="author" content="Rex">
 <link rel="canonical" href="https://rex0520.github.io/posts/front/vue/vue%E5%9F%BA%E7%A1%80/" />
 <link crossorigin="anonymous" href="/assets/css/stylesheet.min.css" rel="preload stylesheet" as="style">
 <link rel="preload" href="http://cdn.rexweb.xyz/img/20210821105340.png" as="image">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.min.js" onload="hljs.initHighlightingOnLoad();"></script>
 <link rel="icon" href="https://rex0520.github.io/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="https://rex0520.github.io/favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="https://rex0520.github.io/favicon-32x32.png">
@@ -21,17 +22,17 @@
 <meta name="msapplication-TileColor" content="#2e2e33">
 <meta name="generator" content="Hugo 0.87.0" />
 <meta property="og:title" content="Vue基础" />
-<meta property="og:description" content="VUE学习记录" />
+<meta property="og:description" content="Vue基础" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://rex0520.github.io/posts/front/vue/vue%E5%9F%BA%E7%A1%80/" /><meta property="og:image" content="https://cdn.rexweb.xyz/img/20210820141535.jpg"/><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2021-03-25T00:00:00&#43;00:00" />
-<meta property="article:modified_time" content="2021-03-25T00:00:00&#43;00:00" /><meta property="og:site_name" content="RexHub" />
+<meta property="article:published_time" content="2021-03-10T00:00:00&#43;00:00" />
+<meta property="article:modified_time" content="2021-03-10T00:00:00&#43;00:00" /><meta property="og:site_name" content="RexHub" />
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://cdn.rexweb.xyz/img/20210820141535.jpg"/>
 
 <meta name="twitter:title" content="Vue基础"/>
-<meta name="twitter:description" content="VUE学习记录"/>
+<meta name="twitter:description" content="Vue基础"/>
 
 
 <script type="application/ld+json">
@@ -60,15 +61,15 @@
   "@type": "BlogPosting",
   "headline": "Vue基础",
   "name": "Vue基础",
-  "description": "VUE学习记录",
+  "description": "Vue基础",
   "keywords": [
-    "vue", "前端"
+    "Vue"
   ],
-  "articleBody": "Vue基础 初始Vue 前端技术的发展   HTML：用于编写网页的结构\n  CSS：用于美化网页\n  JS：用于处理页面的交互效果\n  JQuery：JS的升级版，代码简洁，更高效的开发项目\n  Vue：采用虚拟DOM技术，代码更加简洁\n虚拟DOM技术\n 和真实DOM结构类似的JS对象 可以提高浏览器的渲染速度    什么是Vue   一条基于构建用户界面的渐进式框架\n 渐进式理解：Vue提供的一系列技术，可以渐渐的，一步一步的使用这个框架 框架理解：解决一类问题的解决方案，理解为工具    Vue的数据绑定基于MVVM设计思想\nMVVM：Model，View，ViewModel\n可以将模型数据与视图连接起来\n 模型数据变化会影响视图 视图数据变化会影响模型    Vue的优势  轻量级：Vue简单、直接，所以Vue使用起来更加友好 数据绑定：数据驱动视图，视图也可以驱动数据 指令：指令绑定在元素上时，指令会给绑定的元素添加一些特殊的行为 插件：插件用于对Vue框架功能进行扩展  Vue、Angular和React的区别：  Angular相对Vue学习成本高，更复杂，性能稍差 React采用了特殊的JSX语法，Vue中推崇编写以*.vue后缀命名的文件格式  Vue开发基础上 1.Vue实例   说明\n  Vue实例：通过new关键字实例化Vue({})构造函数\n  实例化Vue时的参数内的属性，我们称之为选项：\n       选项 说明     data Vue实例数据对象   methods 定义Vue实例中的方法   component 定义子组件   computed 计算属性   filters 过滤器   el 唯一根元素   watch 监听数据变化    el唯一根标签：在创建Vue实例时，el表示唯一根标签，通过指定class或id选择器可用来将页面结构与Vue实例对象vm进行绑定。  el：element，元素 el选项表示：当前Vue实例绑定的页面怨怒是 绑定的这个元素，作为Vue实例在界面上的元素 el选项的值：“id或类选择器” 注意：Vue的数据只能在el绑定的元素内部使用   data初始数据：Vue实例的数据对象为data，Vue会将data的属性转换为getter、setter，从而让data的属性能够响应数据变化。  data：数据 data选项表示：当前Vue实例可以使用的数据 data选项的值：对象，对象中可以定义多个数据 js中获取data数据：vm.$data.name、vm.name   methods定义方法：  method：方法，为啥加s，因为可以有多个方法 methods选项表示：当前Vue实例可以用到的方法 methods选项的值：对象，对象中定义方法   computed计算属性：计算属性结果会被缓存起来，当依赖的响应式属性发生变化时，才会重新计算，返回最终结果。  computed：计算 computed选项表示：当前Vue实例可以用到的计算属性 computed选项的值：对象，对象中定义方法 应用场景：当有些数据需要随着其他数据变动而变动时，就需要使用computed计算数学；一般处理计算逻辑 注意：计算属性，定义时是一个方法，但是当属性使用（所以才叫计算属性）；计算属性需要将结果放回；计算属性具有缓存，这就意味着只要计算属性的依赖没有进行相应的数据更新，那么computed会直接从缓存中获取值，多次访问都会返回之前的计算结果   watch状态监听：用来检测Vue实例中的数据变动  watch：观察、检测 watch选项表示：检测data选项中的数据变化 watch选项的值：对象，对象中定义方法 应用场景：要在数据变化同时进行异步操作或者是比较大的开销时使用 注意：watch是检测data的数据变化，watch的方法必须与data的属性名一致   filter过滤器：对数据进行格式化，比如字符串字母变大写，日期格式化等。  filter：过滤器 filters选项表示：对data选项中的数据进行格式化 filters选项的值：对象，对象中定义方法 应用场景：对数据格式化（字符串中首字母大写，字符串大小写转换、日期格式化） 注意：过滤器函数，必须定义一个参数，此参数就是使用过滤器的数据，将格式化的结果返回 使用过滤器：插值表达式使用：{{data属性名 | 过滤器名称}}或属性绑定使用 v-bind=\"{{data属性名 | 过滤器名称}}\"    2.Vue数据绑定   绑定样式：内联样式和绑定样式\n 绑定行内样式style  绑定对象语法：v-bind:style=\"{backgroundColor:pink, width:width, height:height} 绑定数组语法：v-bind:style=\"[myDiv, xxx]\"，数组中是一个一个的样式对象，如果只绑定一个对象中括号可以省略 上述语法中：pink，width，myDiv均为data数据 为什么要进行样式绑定：绑定之后可以通过操作data数据来改变样式，理解为绑定样式就是为了操作样式   绑定类样式class  绑定对象语法：v-bind:class=\"{box}\",data中需要有一个属性：box:“box”,这里的大括号可以省略 绑定数组语法：v-bind:class=\"[box1,box2]\"      内置指令\n  常用内置指令：\n   路径 说明     v-model 双向数据绑定   v-on 监听事件   v-bind 单向事件绑定   v-text 插入文本内容   v-html 插入包含html的内容   v-for 列表渲染   v-if 条件渲染   v-show 显示隐藏      详解\n v-model  v-model主要实现数据双向绑定，通常用在表单元素上，例如input、textarea、select等 双向数据绑定：数据改变影响界面，界面改变影响数据   v-text指令：  v-text是在DOM元素内部插入文本内容，类似于之前的innerText，理解：v-text是将元素内部文本与data属性进行数据绑定 这个实现的是单项绑定：数据改变影响界面，处理v-model其他的数据绑定都是单向的   v-html指令：  v-html是在DOM元素内部插入HTML内容，类似于之前的innerHTML，理解：v-text是将元素内部HTML与data属性进行单向数据绑定   v-bind指令：  v-bind可以实现属性单向数据绑定 目的是为了操作DOM元素的属性   v-on指令：  v-on是事件监听指令，负责给DOM元素绑定事件，配合事件类型使用 语法：v-on:事件名 = “事件处理程序”   v-for指令：  v-for可以实现页面列表渲染，常用来循环数组 语法：v-for = “(value, key) in xxx”;   v-if和v-show指令：  用来控制元素显示或隐藏，属性为布尔值 语法：v-if=“isShow”，isShow是data中的一个布尔类型数据 区别：v-if控制元素是否渲染，v-show控制元素是否显示，操作display属性        3.Vue事件   事件监听：在Vue中可使用内置指令v-on监听DOM事件，并在触发时运行一些Javascript代码，或绑定事件处理方法。\n  语法：v-on:事件名 = “事件函数”；v-on:事件名 = “js代码”\n  按键修饰符\n 监听哪个键盘/抬起 v-on:keyup.案件修饰符 = ‘xxx’ 案件修饰符其实就是按键名，代表监听哪个按键    事件修饰符\n常用事件修饰符：\n   修饰符 说明     .stop 阻止事件冒泡（如:阻止点击子元素触发父元素的点击事件）   .prevent 阻止默认事件行为（a标签单击的默认跳转）   .capture 事件捕获（如：先执行父元素的点击事件再执行子元素的点击事件）   .self 将事件绑定到自身，只有自身才能触发（不能冒泡触发）   .once 事件只触发一次      4.Vue组件   什么是组件\n  组件是构成页面中独立结构单元，组件主要以页面结构形式存在，不同组件也具有基本交互功能\n  组件理解为自定义标签即可，可以是一个标签组成，也可以是多个标签组成\n  组件的定义：Vue.component(id, [definition]);\n参数id：组件名称\n参数[definition]：组件配置对象，包括data、template\n    局部注册组件\n 局部组件，通过components选项来定义 全局组件与局部组件的区别  全局组件再项目中的任何界面都可以使用 局部组件只能在当前界面中使用      template模板\n Vue提供了template标签，可以编写组件的结构 优势  改善开发体验：之前的组件模板都是直接以字符串形式书写，这种方式很容易出错 有代码提示，代码高亮，提高开发效率      组件之间数据传递：在Vue开发中，我们会使用大量的组件，所以会存在组件嵌套的情况，那么子组件之间经常需要传递数据\n props传值  props：properties：意为通过属性传智 这种方式是父组件向子组件传值  my-parent是父组件 template中的标签就是子组件 父组件在使用的时候，通过属性，给子组件div传递值     $emit传值  emit：发射，理解为触发 Vue实例中提供了一个$emit方法，专门用于触发自定义事件的执行      组件切换\n 通过v-if和v-else来控制是否显示组件    5.Vue生命周期  钩子函数：钩子函数用来描述Vue实例从创建到销毁的整个生命周期  Vue生命周期：Vue从创建到销毁的整个过程 在生命周期过程中，会执行很多回调函数，这些回调函数叫钩子函数   实例创建  beforeCreate:创建实例对象之前执行，【此时数据不能使用】 created:建实例对象之后执行，【此时数据可以使用】   页面挂载  beforeMount:页面挂载成功之前执行，【无法展示数据】 Mounted: 页面挂载成功之后执行，【可以展示数据】   数据更新  beforeUpdate:组件更新之前执行，【数据更新之前】 update:组件更新之后执行，【数据更新之后】   实例销毁  beforeDestroy:实例销毁之前执行，【可以操作DOM】 destroyed:实例销毁之后执行，【无法操作DOM】    Vue开发基础下 1.全局API   Vue.directive\n  用来注册指令\n  注册语法\n1 2 3 4 5 6 7  Vue.directive('focus', { inserted(el, binding){ if(binding.value){ el.focus(); } } })   参数1：自定义指令的名称\n参数2：配置对象\n 配置对象中使用inserted函数处理 inserted函数：会在使用指令的元素被插入到DOM中的时候被带哦用 inserted参数el：使用指令的元素 inserted参数binding：指令相关的配置    使用：\n1 2 3  div input type='text' v-foucs/ div       Vue.use\n  用于给Vue安装插件\n  自定义插件\n1 2  //定义一个MyPlugin(自定义插件)对象 let MyPlugin = {};     安装插件\n1 2 3 4 5 6 7 8 9 10 11 12  //编写插件对象的install方法 MyPlugin.install = function (Vue, options) { console.log(options); //在插件中为Vue添加自定义指令  Vue.directive('my-directive', { bind(el, binding) { //为自定义指令v-my-directive绑定的DOM元素设置style样式  el.style = \"width:100px; height:100px; background-color:#ccc;\"; } }); } Vue.use(MyPlugin, { options: true });     使用插件中的指令\n1  div id=\"app\" v-my-directivediv       Vue.extend\n  用于创建Vue的子类，对Vue进行扩展\n  创建子类\n1 2 3 4 5 6 7  Vue2 = Vue.extend({ data() { return { title: 'hello，我是vue的子类' } } })   这个Vue2子类中，默认携带title数据\n  使用子类：\n1 2 3  var vm = new Vue2({ el: '#app2', });   1 2 3  div id=\"app2\" app2:{{title}} div       Vue.set\n  用于响应式对象中增加新属性，确保属性也具备响应式特点\n  语法：Vue.set(target, key, value)\n target：要更改的数据源（可以是对象或者数组） key：要更改或新增的属性 value：新值    代码\n1 2 3 4 5 6 7 8  var vm = new Vue({ el: '#app', data: { a: \"我是根级响应式属性a\", obj: {} } }); Vue.set(vm.obj, 'b', '我是Vue.set添加的响应式的属性b')     注意\n data中的根数据是响应式的：a和obj 如果是新增加的obj的属性，这个属于二级数据，而新增加的二级数据默认不是响应式的，即直接通过vm.obj.b=“我是xxx”，是无法做到响应的 通过Vue.set添加的二级数据可以是响应式的      Vue.mixin\n  mix：混合，in：进入，minxin：混入\n  Vue.mixin：用于给Vue增加混入对象\n  理解：在Vue中混进去一个拓展的对象，增加功能\n  定义混入：\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15  Vue.mixin({ //混入对象可以有组件的选项  data() { return { msg: '混入的数据' } }, created() { console.log(\"混入的created\"); var myOption = this.$options.myOption; if (myOption) { console.log(myOption.toUpperCase()); } }, })     Vue实例化：\n1 2 3 4 5 6 7 8 9 10  var vm = new Vue({ el: '#app', myOption: 'hello vue！', data: { title: '我是title' }, created() { console.log(\"Vue的created钩子函数\"); }, });       2.实例属性   vm.$props\n  用于接受父组件向子组件传递的数据\n  代码：\n1 2 3 4 5 6 7 8 9 10 11 12 13 14  Vue.component('my-child', { props: [\"name\"], watch: { name() { var brand = this.$props.name; var found = false; this.content.forEach((value, index) = { if (value.brand == brand) { found = value; } }); this.show = found ? found : { brand: '', type: '', price: '' } } }    props定义可以通过name传递数据 然后在方法或watch中可以通过this.$props.name获取name属性 其实也可以通过this.name直接获取      vm.$options\n  用于获取Vue实例化时传入的选项的值\n  代码\n1 2 3 4 5 6 7 8 9 10  var vm = new Vue({ el: '#app', customOption: '我是自定义数据', data: { base: \"我是data里的基础数据\" }, created() { this.noBase = this.$options.customOption; }, });   1 2 3 4  div id=\"app\" p{{base}}p p{{noBase}}p div       vm.$el\n  用于获取Vue绑定的根元素\n  代码\n1 2 3 4 5  var vm = new Vue({ el: '#app', data: {} }); vm.$el.innerHTML = \"我是替换后的div标签\"   通过vm.$el修改根元素的内部标签\n    vm.$children\n  用于获取当前实例的直接子组件\n  什么是直接子组件\n1 2 3 4  div id=\"app\" button @click=\"child\"查看子组件button my-componetmy-componet div   在app根元素下的my-componet就是直接子组件\n  通过vm.$children可以获取到my-componet\n    vm.$root\n  用于获取当前组件树的根Vue实例\n  组件实例对象和Vue实例对象都有$root属性\n  代码\n1 2 3 4 5 6 7 8 9  Vue.component('my-component', { template: '查看根实例', methods: { root() { console.log(this.$root); console.log(this.$root == vm.$root); } } })       vm.$slot\n  用于获取插槽\n  插槽是用于父组件向子组件传递内容\n  代码\n1 2 3 4 5 6 7 8 9  div id=\"app\" my-component你好my-component div template id='first' div  slotslot div template   获取插槽的内容：vm.$children[0].slots.default[0].text\n    vm.$attrs\n  用于获取组件的属性，但不包含class、style以及被声明为props的属性\n  定义属性\n1 2 3  div id=\"app\" my-component id=\"test\"my-component div     获取属性\n1 2 3 4 5 6 7 8  Vue.component('my-component', { template: '查看属性', methods: { showAttrs() { console.log(this.$attrs); } }, })       3.全局配置   productionTip\n  用于配置是否显示生产信息提示，默认打开\n  关闭生产信息提示：\n1  Vue.config.productionTip = false     productionTip：生产信息提示\n    silent\n  用于配置是否显示Vue日志和警告，默认打开\n  关闭日志和警告：\n1  Vue.config.silent = true     slient：沉默的\n  注意：配置要写在Vue实例的上方，在Vue实例下方不生效\n    devtools\n  用于配置是否允许使用开发工具调试代码，默认允许\n  关闭调试\n1  Vue.config.devtools = false     devtools: development tools, 开发工具\n    4.组件进阶   mixins\n  用于注册混入对象，混入对象：包含公共的方法或者数据，计算属性等，然后混入到多个组件中使用，方便管理与统一修改\n  定义混入对象并注册\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16  var myMixin = { data() { return { message: 'mixin的数据' } } } var vm = new Vue({ data: { message: 'Vue的数据' }, mixins: [myMixin], created() { console.log(this.message); } })       render\n  实现对虚拟DOM的操作，通过JS来渲染界面元素\n  代码\n1 2 3 4 5 6 7 8 9  render(createElement) { return createElement('p', { style: { color: 'red', fontSize: '16px', backgroundColor: '#eee' } }, this.$slots.default); },     说明\n render是一个函数，他作为一个选项存在，可以在Vue和组件中使用这个选项 render的参数：createElment是一个用于创建元素的函数      createElement\n  用于创建元素\n  说明\ncreateElement，createElement()函数返回的并不是一个实际的DOM元素，\n他返回的其实是一个描述节点(createNodeDescription)。\n 第1个参数可以是一个HTML标签名或组件选项对象 第2个参数是可选的，可以传入一个与模板中属性对应的数据对象。 第3个参数是由createElement()构建而成的子级虚拟节点，也可以使用字符串来生成文本虚拟节点。      ",
-  "wordCount" : "827",
+  "articleBody": "Vue基础 初始Vue 前端技术的发展   HTML：用于编写网页的结构\n  CSS：用于美化网页\n  JS：用于处理页面的交互效果\n  JQuery：JS的升级版，代码简洁，更高效的开发项目\n  Vue：采用虚拟DOM技术，代码更加简洁\n虚拟DOM技术\n 和真实DOM结构类似的JS对象 可以提高浏览器的渲染速度    什么是Vue   一条基于构建用户界面的渐进式框架\n 渐进式理解：Vue提供的一系列技术，可以渐渐的，一步一步的使用这个框架 框架理解：解决一类问题的解决方案，理解为工具    Vue的数据绑定基于MVVM设计思想\nMVVM：Model，View，ViewModel\n可以将模型数据与视图连接起来\n 模型数据变化会影响视图 视图数据变化会影响模型    Vue的优势  轻量级：Vue简单、直接，所以Vue使用起来更加友好 数据绑定：数据驱动视图，视图也可以驱动数据 指令：指令绑定在元素上时，指令会给绑定的元素添加一些特殊的行为 插件：插件用于对Vue框架功能进行扩展  Vue、Angular和React的区别：  Angular相对Vue学习成本高，更复杂，性能稍差 React采用了特殊的JSX语法，Vue中推崇编写以*.vue后缀命名的文件格式  Vue开发基础上 1.Vue实例   说明\n  Vue实例：通过new关键字实例化Vue({})构造函数\n  实例化Vue时的参数内的属性，我们称之为选项：\n       选项 说明     data Vue实例数据对象   methods 定义Vue实例中的方法   component 定义子组件   computed 计算属性   filters 过滤器   el 唯一根元素   watch 监听数据变化    el唯一根标签：在创建Vue实例时，el表示唯一根标签，通过指定class或id选择器可用来将页面结构与Vue实例对象vm进行绑定。  el：element，元素 el选项表示：当前Vue实例绑定的页面怨怒是 绑定的这个元素，作为Vue实例在界面上的元素 el选项的值：“id或类选择器” 注意：Vue的数据只能在el绑定的元素内部使用   data初始数据：Vue实例的数据对象为data，Vue会将data的属性转换为getter、setter，从而让data的属性能够响应数据变化。  data：数据 data选项表示：当前Vue实例可以使用的数据 data选项的值：对象，对象中可以定义多个数据 js中获取data数据：vm.$data.name、vm.name   methods定义方法：  method：方法，为啥加s，因为可以有多个方法 methods选项表示：当前Vue实例可以用到的方法 methods选项的值：对象，对象中定义方法   computed计算属性：计算属性结果会被缓存起来，当依赖的响应式属性发生变化时，才会重新计算，返回最终结果。  computed：计算 computed选项表示：当前Vue实例可以用到的计算属性 computed选项的值：对象，对象中定义方法 应用场景：当有些数据需要随着其他数据变动而变动时，就需要使用computed计算数学；一般处理计算逻辑 注意：计算属性，定义时是一个方法，但是当属性使用（所以才叫计算属性）；计算属性需要将结果放回；计算属性具有缓存，这就意味着只要计算属性的依赖没有进行相应的数据更新，那么computed会直接从缓存中获取值，多次访问都会返回之前的计算结果   watch状态监听：用来检测Vue实例中的数据变动  watch：观察、检测 watch选项表示：检测data选项中的数据变化 watch选项的值：对象，对象中定义方法 应用场景：要在数据变化同时进行异步操作或者是比较大的开销时使用 注意：watch是检测data的数据变化，watch的方法必须与data的属性名一致   filter过滤器：对数据进行格式化，比如字符串字母变大写，日期格式化等。  filter：过滤器 filters选项表示：对data选项中的数据进行格式化 filters选项的值：对象，对象中定义方法 应用场景：对数据格式化（字符串中首字母大写，字符串大小写转换、日期格式化） 注意：过滤器函数，必须定义一个参数，此参数就是使用过滤器的数据，将格式化的结果返回 使用过滤器：插值表达式使用：{{data属性名 | 过滤器名称}}或属性绑定使用 v-bind=\"{{data属性名 | 过滤器名称}}\"    2.Vue数据绑定   绑定样式：内联样式和绑定样式\n 绑定行内样式style  绑定对象语法：v-bind:style=\"{backgroundColor:pink, width:width, height:height} 绑定数组语法：v-bind:style=\"[myDiv, xxx]\"，数组中是一个一个的样式对象，如果只绑定一个对象中括号可以省略 上述语法中：pink，width，myDiv均为data数据 为什么要进行样式绑定：绑定之后可以通过操作data数据来改变样式，理解为绑定样式就是为了操作样式   绑定类样式class  绑定对象语法：v-bind:class=\"{box}\",data中需要有一个属性：box:“box”,这里的大括号可以省略 绑定数组语法：v-bind:class=\"[box1,box2]\"      内置指令\n  常用内置指令：\n   路径 说明     v-model 双向数据绑定   v-on 监听事件   v-bind 单向事件绑定   v-text 插入文本内容   v-html 插入包含html的内容   v-for 列表渲染   v-if 条件渲染   v-show 显示隐藏      详解\n v-model  v-model主要实现数据双向绑定，通常用在表单元素上，例如input、textarea、select等 双向数据绑定：数据改变影响界面，界面改变影响数据   v-text指令：  v-text是在DOM元素内部插入文本内容，类似于之前的innerText，理解：v-text是将元素内部文本与data属性进行数据绑定 这个实现的是单项绑定：数据改变影响界面，处理v-model其他的数据绑定都是单向的   v-html指令：  v-html是在DOM元素内部插入HTML内容，类似于之前的innerHTML，理解：v-text是将元素内部HTML与data属性进行单向数据绑定   v-bind指令：  v-bind可以实现属性单向数据绑定 目的是为了操作DOM元素的属性   v-on指令：  v-on是事件监听指令，负责给DOM元素绑定事件，配合事件类型使用 语法：v-on:事件名 = “事件处理程序”   v-for指令：  v-for可以实现页面列表渲染，常用来循环数组 语法：v-for = “(value, key) in xxx”;   v-if和v-show指令：  用来控制元素显示或隐藏，属性为布尔值 语法：v-if=“isShow”，isShow是data中的一个布尔类型数据 区别：v-if控制元素是否渲染，v-show控制元素是否显示，操作display属性        3.Vue事件   事件监听：在Vue中可使用内置指令v-on监听DOM事件，并在触发时运行一些Javascript代码，或绑定事件处理方法。\n  语法：v-on:事件名 = “事件函数”；v-on:事件名 = “js代码”\n  按键修饰符\n 监听哪个键盘/抬起 v-on:keyup.案件修饰符 = ‘xxx’ 案件修饰符其实就是按键名，代表监听哪个按键    事件修饰符\n常用事件修饰符：\n   修饰符 说明     .stop 阻止事件冒泡（如:阻止点击子元素触发父元素的点击事件）   .prevent 阻止默认事件行为（a标签单击的默认跳转）   .capture 事件捕获（如：先执行父元素的点击事件再执行子元素的点击事件）   .self 将事件绑定到自身，只有自身才能触发（不能冒泡触发）   .once 事件只触发一次      4.Vue组件   什么是组件\n  组件是构成页面中独立结构单元，组件主要以页面结构形式存在，不同组件也具有基本交互功能\n  组件理解为自定义标签即可，可以是一个标签组成，也可以是多个标签组成\n  组件的定义：Vue.component(id, [definition]);\n参数id：组件名称\n参数[definition]：组件配置对象，包括data、template\n    局部注册组件\n 局部组件，通过components选项来定义 全局组件与局部组件的区别  全局组件再项目中的任何界面都可以使用 局部组件只能在当前界面中使用      template模板\n Vue提供了template标签，可以编写组件的结构 优势  改善开发体验：之前的组件模板都是直接以字符串形式书写，这种方式很容易出错 有代码提示，代码高亮，提高开发效率      组件之间数据传递：在Vue开发中，我们会使用大量的组件，所以会存在组件嵌套的情况，那么子组件之间经常需要传递数据\n props传值  props：properties：意为通过属性传智 这种方式是父组件向子组件传值  my-parent是父组件 template中的标签就是子组件 父组件在使用的时候，通过属性，给子组件div传递值     $emit传值  emit：发射，理解为触发 Vue实例中提供了一个$emit方法，专门用于触发自定义事件的执行      组件切换\n 通过v-if和v-else来控制是否显示组件    5.Vue生命周期  钩子函数：钩子函数用来描述Vue实例从创建到销毁的整个生命周期  Vue生命周期：Vue从创建到销毁的整个过程 在生命周期过程中，会执行很多回调函数，这些回调函数叫钩子函数   实例创建  beforeCreate:创建实例对象之前执行，【此时数据不能使用】 created:建实例对象之后执行，【此时数据可以使用】   页面挂载  beforeMount:页面挂载成功之前执行，【无法展示数据】 Mounted: 页面挂载成功之后执行，【可以展示数据】   数据更新  beforeUpdate:组件更新之前执行，【数据更新之前】 update:组件更新之后执行，【数据更新之后】   实例销毁  beforeDestroy:实例销毁之前执行，【可以操作DOM】 destroyed:实例销毁之后执行，【无法操作DOM】    Vue开发基础下 1.全局API   Vue.directive\n  用来注册指令\n  注册语法\nVue.directive('focus', { inserted(el, binding){ if(binding.value){ el.focus(); } } }) 参数1：自定义指令的名称\n参数2：配置对象\n 配置对象中使用inserted函数处理 inserted函数：会在使用指令的元素被插入到DOM中的时候被带哦用 inserted参数el：使用指令的元素 inserted参数binding：指令相关的配置    使用：\ndiv input type='text' v-foucs/ div     Vue.use\n  用于给Vue安装插件\n  自定义插件\n//定义一个MyPlugin(自定义插件)对象 let MyPlugin = {};   安装插件\n//编写插件对象的install方法 MyPlugin.install = function (Vue, options) { console.log(options); //在插件中为Vue添加自定义指令  Vue.directive('my-directive', { bind(el, binding) { //为自定义指令v-my-directive绑定的DOM元素设置style样式  el.style = \"width:100px; height:100px; background-color:#ccc;\"; } }); } Vue.use(MyPlugin, { options: true });   使用插件中的指令\ndiv id=\"app\" v-my-directivediv     Vue.extend\n  用于创建Vue的子类，对Vue进行扩展\n  创建子类\nVue2 = Vue.extend({ data() { return { title: 'hello，我是vue的子类' } } }) 这个Vue2子类中，默认携带title数据\n  使用子类：\nvar vm = new Vue2({ el: '#app2', }); div id=\"app2\" app2:{{title}} div     Vue.set\n  用于响应式对象中增加新属性，确保属性也具备响应式特点\n  语法：Vue.set(target, key, value)\n target：要更改的数据源（可以是对象或者数组） key：要更改或新增的属性 value：新值    代码\nvar vm = new Vue({ el: '#app', data: { a: \"我是根级响应式属性a\", obj: {} } }); Vue.set(vm.obj, 'b', '我是Vue.set添加的响应式的属性b')   注意\n data中的根数据是响应式的：a和obj 如果是新增加的obj的属性，这个属于二级数据，而新增加的二级数据默认不是响应式的，即直接通过vm.obj.b=“我是xxx”，是无法做到响应的 通过Vue.set添加的二级数据可以是响应式的      Vue.mixin\n  mix：混合，in：进入，minxin：混入\n  Vue.mixin：用于给Vue增加混入对象\n  理解：在Vue中混进去一个拓展的对象，增加功能\n  定义混入：\nVue.mixin({ //混入对象可以有组件的选项  data() { return { msg: '混入的数据' } }, created() { console.log(\"混入的created\"); var myOption = this.$options.myOption; if (myOption) { console.log(myOption.toUpperCase()); } }, })   Vue实例化：\nvar vm = new Vue({ el: '#app', myOption: 'hello vue！', data: { title: '我是title' }, created() { console.log(\"Vue的created钩子函数\"); }, });     2.实例属性   vm.$props\n  用于接受父组件向子组件传递的数据\n  代码：\nVue.component('my-child', { props: [\"name\"], watch: { name() { var brand = this.$props.name; var found = false; this.content.forEach((value, index) = { if (value.brand == brand) { found = value; } }); this.show = found ? found : { brand: '', type: '', price: '' } } }  props定义可以通过name传递数据 然后在方法或watch中可以通过this.$props.name获取name属性 其实也可以通过this.name直接获取      vm.$options\n  用于获取Vue实例化时传入的选项的值\n  代码\nvar vm = new Vue({ el: '#app', customOption: '我是自定义数据', data: { base: \"我是data里的基础数据\" }, created() { this.noBase = this.$options.customOption; }, }); div id=\"app\" p{{base}}p p{{noBase}}p div     vm.$el\n  用于获取Vue绑定的根元素\n  代码\nvar vm = new Vue({ el: '#app', data: {} }); vm.$el.innerHTML = \"我是替换后的div标签\" 通过vm.$el修改根元素的内部标签\n    vm.$children\n  用于获取当前实例的直接子组件\n  什么是直接子组件\ndiv id=\"app\" button @click=\"child\"查看子组件button my-componetmy-componet div 在app根元素下的my-componet就是直接子组件\n  通过vm.$children可以获取到my-componet\n    vm.$root\n  用于获取当前组件树的根Vue实例\n  组件实例对象和Vue实例对象都有$root属性\n  代码\nVue.component('my-component', { template: '查看根实例', methods: { root() { console.log(this.$root); console.log(this.$root == vm.$root); } } })     vm.$slot\n  用于获取插槽\n  插槽是用于父组件向子组件传递内容\n  代码\ndiv id=\"app\" my-component你好my-component div template id='first' div  slotslot div template 获取插槽的内容：vm.$children[0].slots.default[0].text\n    vm.$attrs\n  用于获取组件的属性，但不包含class、style以及被声明为props的属性\n  定义属性\ndiv id=\"app\" my-component id=\"test\"my-component div   获取属性\nVue.component('my-component', { template: '查看属性', methods: { showAttrs() { console.log(this.$attrs); } }, })     3.全局配置   productionTip\n  用于配置是否显示生产信息提示，默认打开\n  关闭生产信息提示：\nVue.config.productionTip = false   productionTip：生产信息提示\n    silent\n  用于配置是否显示Vue日志和警告，默认打开\n  关闭日志和警告：\nVue.config.silent = true   slient：沉默的\n  注意：配置要写在Vue实例的上方，在Vue实例下方不生效\n    devtools\n  用于配置是否允许使用开发工具调试代码，默认允许\n  关闭调试\nVue.config.devtools = false   devtools: development tools, 开发工具\n    4.组件进阶   mixins\n  用于注册混入对象，混入对象：包含公共的方法或者数据，计算属性等，然后混入到多个组件中使用，方便管理与统一修改\n  定义混入对象并注册\nvar myMixin = { data() { return { message: 'mixin的数据' } } } var vm = new Vue({ data: { message: 'Vue的数据' }, mixins: [myMixin], created() { console.log(this.message); } })     render\n  实现对虚拟DOM的操作，通过JS来渲染界面元素\n  代码\nrender(createElement) { return createElement('p', { style: { color: 'red', fontSize: '16px', backgroundColor: '#eee' } }, this.$slots.default); },   说明\n render是一个函数，他作为一个选项存在，可以在Vue和组件中使用这个选项 render的参数：createElment是一个用于创建元素的函数      createElement\n  用于创建元素\n  说明\ncreateElement，createElement()函数返回的并不是一个实际的DOM元素，\n他返回的其实是一个描述节点(createNodeDescription)。\n 第1个参数可以是一个HTML标签名或组件选项对象 第2个参数是可选的，可以传入一个与模板中属性对应的数据对象。 第3个参数是由createElement()构建而成的子级虚拟节点，也可以使用字符串来生成文本虚拟节点。      ",
+  "wordCount" : "662",
   "inLanguage": "en",
-  "datePublished": "2021-03-25T00:00:00Z",
-  "dateModified": "2021-03-25T00:00:00Z",
+  "datePublished": "2021-03-10T00:00:00Z",
+  "dateModified": "2021-03-10T00:00:00Z",
   "author":{
     "@type": "Person",
     "name": "Rex"
@@ -205,9 +206,9 @@
       Vue基础
     </h1>
     <div class="post-description">
-      VUE学习记录
+      Vue基础
     </div>
-    <div class="post-meta">2021-03-25&nbsp;·&nbsp;4 min&nbsp;·&nbsp;Rex&nbsp;|&nbsp;<a href="https://github.com/Rex0520/Rex0520.github.io" rel="noopener noreferrer" target="_blank">来这修改</a>
+    <div class="post-meta">2021-03-10&nbsp;·&nbsp;4 min&nbsp;·&nbsp;Rex&nbsp;|&nbsp;<a href="https://github.com/Rex0520/Rex0520.github.io" rel="noopener noreferrer" target="_blank">来这修改</a>
 </div>
   </header> <div class="toc">
     <details  open>
@@ -714,27 +715,14 @@
 </li>
 <li>
 <p>注册语法</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="nx">Vue</span><span class="p">.</span><span class="nx">directive</span><span class="p">(</span><span class="s1">&#39;focus&#39;</span><span class="p">,</span> <span class="p">{</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="nx">Vue</span><span class="p">.</span><span class="nx">directive</span><span class="p">(</span><span class="s1">&#39;focus&#39;</span><span class="p">,</span> <span class="p">{</span>
     <span class="nx">inserted</span><span class="p">(</span><span class="nx">el</span><span class="p">,</span> <span class="nx">binding</span><span class="p">){</span>
         <span class="k">if</span><span class="p">(</span><span class="nx">binding</span><span class="p">.</span><span class="nx">value</span><span class="p">){</span>
             <span class="nx">el</span><span class="p">.</span><span class="nx">focus</span><span class="p">();</span>
         <span class="p">}</span>
     <span class="p">}</span>
 <span class="p">})</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>参数1：自定义指令的名称</p>
+</code></pre></div><p>参数1：自定义指令的名称</p>
 <p>参数2：配置对象</p>
 <ul>
 <li>配置对象中使用inserted函数处理</li>
@@ -745,19 +733,10 @@
 </li>
 <li>
 <p>使用：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
 	<span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&#39;text&#39;</span> <span class="na">v-foucs</span><span class="p">/&gt;</span>
 <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</code></pre></td></tr></table>
-</div>
-</div></li>
+</code></pre></div></li>
 </ol>
 </li>
 <li>
@@ -768,36 +747,12 @@
 </li>
 <li>
 <p>自定义插件</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="c1">//定义一个MyPlugin(自定义插件)对象
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="c1">//定义一个MyPlugin(自定义插件)对象
 </span><span class="c1"></span><span class="kd">let</span> <span class="nx">MyPlugin</span> <span class="o">=</span> <span class="p">{};</span>
-</code></pre></td></tr></table>
-</div>
-</div></li>
+</code></pre></div></li>
 <li>
 <p>安装插件</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="c1">//编写插件对象的install方法
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="c1">//编写插件对象的install方法
 </span><span class="c1"></span><span class="nx">MyPlugin</span><span class="p">.</span><span class="nx">install</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">Vue</span><span class="p">,</span> <span class="nx">options</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">options</span><span class="p">);</span>
     <span class="c1">//在插件中为Vue添加自定义指令
@@ -809,20 +764,11 @@
     <span class="p">});</span>
 <span class="p">}</span>
 <span class="nx">Vue</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">MyPlugin</span><span class="p">,</span> <span class="p">{</span> <span class="nx">options</span><span class="o">:</span> <span class="kc">true</span> <span class="p">});</span>
-</code></pre></td></tr></table>
-</div>
-</div></li>
+</code></pre></div></li>
 <li>
 <p>使用插件中的指令</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;app&#34;</span> <span class="na">v-my-directive</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</code></pre></td></tr></table>
-</div>
-</div></li>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;app&#34;</span> <span class="na">v-my-directive</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</code></pre></div></li>
 </ol>
 </li>
 <li>
@@ -833,55 +779,24 @@
 </li>
 <li>
 <p>创建子类</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="nx">Vue2</span> <span class="o">=</span> <span class="nx">Vue</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="nx">Vue2</span> <span class="o">=</span> <span class="nx">Vue</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
     <span class="nx">data</span><span class="p">()</span> <span class="p">{</span>
         <span class="k">return</span> <span class="p">{</span>
             <span class="nx">title</span><span class="o">:</span> <span class="s1">&#39;hello，我是vue的子类&#39;</span>
         <span class="p">}</span>
     <span class="p">}</span>
 <span class="p">})</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>这个Vue2子类中，默认携带title数据</p>
+</code></pre></div><p>这个Vue2子类中，默认携带title数据</p>
 </li>
 <li>
 <p>使用子类：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">vm</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Vue2</span><span class="p">({</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">vm</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Vue2</span><span class="p">({</span>
     <span class="nx">el</span><span class="o">:</span> <span class="s1">&#39;#app2&#39;</span><span class="p">,</span>
 <span class="p">});</span>
-</code></pre></td></tr></table>
-</div>
-</div><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;app2&#34;</span><span class="p">&gt;</span>
+</code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;app2&#34;</span><span class="p">&gt;</span>
     app2:{{title}}
 <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</code></pre></td></tr></table>
-</div>
-</div></li>
+</code></pre></div></li>
 </ol>
 </li>
 <li>
@@ -900,19 +815,7 @@
 </li>
 <li>
 <p>代码</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span><span class="lnt">8
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">vm</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">vm</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
     <span class="nx">el</span><span class="o">:</span> <span class="s1">&#39;#app&#39;</span><span class="p">,</span>
     <span class="nx">data</span><span class="o">:</span> <span class="p">{</span>
         <span class="nx">a</span><span class="o">:</span> <span class="s2">&#34;我是根级响应式属性a&#34;</span><span class="p">,</span>
@@ -920,9 +823,7 @@
     <span class="p">}</span>
 <span class="p">});</span>
 <span class="nx">Vue</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">vm</span><span class="p">.</span><span class="nx">obj</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;我是Vue.set添加的响应式的属性b&#39;</span><span class="p">)</span>
-</code></pre></td></tr></table>
-</div>
-</div></li>
+</code></pre></div></li>
 <li>
 <p>注意</p>
 <ol>
@@ -947,26 +848,7 @@
 </li>
 <li>
 <p>定义混入：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="nx">Vue</span><span class="p">.</span><span class="nx">mixin</span><span class="p">({</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="nx">Vue</span><span class="p">.</span><span class="nx">mixin</span><span class="p">({</span>
     <span class="c1">//混入对象可以有组件的选项
 </span><span class="c1"></span>    <span class="nx">data</span><span class="p">()</span> <span class="p">{</span>
         <span class="k">return</span> <span class="p">{</span>
@@ -981,26 +863,10 @@
         <span class="p">}</span>
     <span class="p">},</span>
 <span class="p">})</span>
-</code></pre></td></tr></table>
-</div>
-</div></li>
+</code></pre></div></li>
 <li>
 <p>Vue实例化：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">vm</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">vm</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
     <span class="nx">el</span><span class="o">:</span> <span class="s1">&#39;#app&#39;</span><span class="p">,</span>
     <span class="nx">myOption</span><span class="o">:</span> <span class="s1">&#39;hello vue！&#39;</span><span class="p">,</span>
     <span class="nx">data</span><span class="o">:</span> <span class="p">{</span>
@@ -1010,9 +876,7 @@
         <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&#34;Vue的created钩子函数&#34;</span><span class="p">);</span>
     <span class="p">},</span>
 <span class="p">});</span>
-</code></pre></td></tr></table>
-</div>
-</div></li>
+</code></pre></div></li>
 </ol>
 </li>
 </ol>
@@ -1026,25 +890,7 @@
 </li>
 <li>
 <p>代码：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"> <span class="nx">Vue</span><span class="p">.</span><span class="nx">component</span><span class="p">(</span><span class="s1">&#39;my-child&#39;</span><span class="p">,</span> <span class="p">{</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"> <span class="nx">Vue</span><span class="p">.</span><span class="nx">component</span><span class="p">(</span><span class="s1">&#39;my-child&#39;</span><span class="p">,</span> <span class="p">{</span>
      <span class="nx">props</span><span class="o">:</span> <span class="p">[</span><span class="s2">&#34;name&#34;</span><span class="p">],</span>
      <span class="nx">watch</span><span class="o">:</span> <span class="p">{</span>
          <span class="nx">name</span><span class="p">()</span> <span class="p">{</span>
@@ -1058,9 +904,7 @@
              <span class="k">this</span><span class="p">.</span><span class="nx">show</span> <span class="o">=</span> <span class="nx">found</span> <span class="o">?</span> <span class="nx">found</span> <span class="o">:</span> <span class="p">{</span> <span class="nx">brand</span><span class="o">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="nx">price</span><span class="o">:</span> <span class="s1">&#39;&#39;</span> <span class="p">}</span>
          <span class="p">}</span>
      <span class="p">}</span>
-</code></pre></td></tr></table>
-</div>
-</div><ol>
+</code></pre></div><ol>
 <li>props定义可以通过name传递数据</li>
 <li>然后在方法或watch中可以通过this.$props.name获取name属性</li>
 <li>其实也可以通过this.name直接获取</li>
@@ -1076,21 +920,7 @@
 </li>
 <li>
 <p>代码</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">vm</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">vm</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
     <span class="nx">el</span><span class="o">:</span> <span class="s1">&#39;#app&#39;</span><span class="p">,</span>
     <span class="nx">customOption</span><span class="o">:</span> <span class="s1">&#39;我是自定义数据&#39;</span><span class="p">,</span>
     <span class="nx">data</span><span class="o">:</span> <span class="p">{</span>
@@ -1100,23 +930,11 @@
         <span class="k">this</span><span class="p">.</span><span class="nx">noBase</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">$options</span><span class="p">.</span><span class="nx">customOption</span><span class="p">;</span>
     <span class="p">},</span>
 <span class="p">});</span>
-</code></pre></td></tr></table>
-</div>
-</div><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;app&#34;</span><span class="p">&gt;</span>
+</code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;app&#34;</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>{{base}}<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>{{noBase}}<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
 <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</code></pre></td></tr></table>
-</div>
-</div></li>
+</code></pre></div></li>
 </ol>
 </li>
 <li>
@@ -1127,23 +945,12 @@
 </li>
 <li>
 <p>代码</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">vm</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">vm</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
     <span class="nx">el</span><span class="o">:</span> <span class="s1">&#39;#app&#39;</span><span class="p">,</span>
     <span class="nx">data</span><span class="o">:</span> <span class="p">{}</span>
 <span class="p">});</span>
 <span class="nx">vm</span><span class="p">.</span><span class="nx">$el</span><span class="p">.</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="s2">&#34;&lt;div&gt;我是替换后的div标签&lt;/div&gt;&#34;</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>通过vm.$el修改根元素的内部标签</p>
+</code></pre></div><p>通过vm.$el修改根元素的内部标签</p>
 </li>
 </ol>
 </li>
@@ -1155,21 +962,11 @@
 </li>
 <li>
 <p>什么是直接子组件</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;app&#34;</span><span class="p">&gt;</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;app&#34;</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">button</span> <span class="err">@</span><span class="na">click</span><span class="o">=</span><span class="s">&#34;child&#34;</span><span class="p">&gt;</span>查看子组件<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">my-componet</span><span class="p">&gt;&lt;/</span><span class="nt">my-componet</span><span class="p">&gt;</span>
 <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>在app根元素下的my-componet就是直接子组件</p>
+</code></pre></div><p>在app根元素下的my-componet就是直接子组件</p>
 </li>
 <li>
 <p>通过vm.$children可以获取到my-componet</p>
@@ -1187,20 +984,7 @@
 </li>
 <li>
 <p>代码</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span><span class="lnt">8
-</span><span class="lnt">9
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="nx">Vue</span><span class="p">.</span><span class="nx">component</span><span class="p">(</span><span class="s1">&#39;my-component&#39;</span><span class="p">,</span> <span class="p">{</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="nx">Vue</span><span class="p">.</span><span class="nx">component</span><span class="p">(</span><span class="s1">&#39;my-component&#39;</span><span class="p">,</span> <span class="p">{</span>
     <span class="nx">template</span><span class="o">:</span> <span class="s1">&#39;&lt;button @click=&#34;root&#34;&gt;查看根实例&lt;/button&gt;&#39;</span><span class="p">,</span>
     <span class="nx">methods</span><span class="o">:</span> <span class="p">{</span>
         <span class="nx">root</span><span class="p">()</span> <span class="p">{</span>
@@ -1209,9 +993,7 @@
         <span class="p">}</span>
     <span class="p">}</span>
 <span class="p">})</span>
-</code></pre></td></tr></table>
-</div>
-</div></li>
+</code></pre></div></li>
 </ol>
 </li>
 <li>
@@ -1225,20 +1007,7 @@
 </li>
 <li>
 <p>代码</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span><span class="lnt">8
-</span><span class="lnt">9
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;app&#34;</span><span class="p">&gt;</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;app&#34;</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">my-component</span><span class="p">&gt;</span>你好<span class="p">&lt;/</span><span class="nt">my-component</span><span class="p">&gt;</span>
 <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 <span class="p">&lt;</span><span class="nt">template</span> <span class="na">id</span><span class="o">=</span><span class="s">&#39;first&#39;</span><span class="p">&gt;</span>
@@ -1247,9 +1016,7 @@
         <span class="p">&lt;</span><span class="nt">slot</span><span class="p">&gt;&lt;/</span><span class="nt">slot</span><span class="p">&gt;</span>
     <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 <span class="p">&lt;/</span><span class="nt">template</span><span class="p">&gt;</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>获取插槽的内容：vm.$children[0].slots.default[0].text</p>
+</code></pre></div><p>获取插槽的内容：vm.$children[0].slots.default[0].text</p>
 </li>
 </ol>
 </li>
@@ -1261,34 +1028,13 @@
 </li>
 <li>
 <p>定义属性</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;app&#34;</span><span class="p">&gt;</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;app&#34;</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">my-component</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;test&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">my-component</span><span class="p">&gt;</span>
 <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</code></pre></td></tr></table>
-</div>
-</div></li>
+</code></pre></div></li>
 <li>
 <p>获取属性</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span><span class="lnt">8
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="nx">Vue</span><span class="p">.</span><span class="nx">component</span><span class="p">(</span><span class="s1">&#39;my-component&#39;</span><span class="p">,</span> <span class="p">{</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="nx">Vue</span><span class="p">.</span><span class="nx">component</span><span class="p">(</span><span class="s1">&#39;my-component&#39;</span><span class="p">,</span> <span class="p">{</span>
     <span class="nx">template</span><span class="o">:</span> <span class="s1">&#39;&lt;button @click=&#34;showAttrs&#34;&gt;查看属性&lt;/button&gt;&#39;</span><span class="p">,</span>
     <span class="nx">methods</span><span class="o">:</span> <span class="p">{</span>
         <span class="nx">showAttrs</span><span class="p">()</span> <span class="p">{</span>
@@ -1296,9 +1042,7 @@
         <span class="p">}</span>
     <span class="p">},</span>
 <span class="p">})</span>
-</code></pre></td></tr></table>
-</div>
-</div></li>
+</code></pre></div></li>
 </ol>
 </li>
 </ol>
@@ -1312,15 +1056,8 @@
 </li>
 <li>
 <p>关闭生产信息提示：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="nx">Vue</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">productionTip</span> <span class="o">=</span> <span class="kc">false</span>
-</code></pre></td></tr></table>
-</div>
-</div></li>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="nx">Vue</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">productionTip</span> <span class="o">=</span> <span class="kc">false</span>
+</code></pre></div></li>
 <li>
 <p>productionTip：生产信息提示</p>
 </li>
@@ -1334,15 +1071,8 @@
 </li>
 <li>
 <p>关闭日志和警告：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="nx">Vue</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">silent</span> <span class="o">=</span> <span class="kc">true</span>
-</code></pre></td></tr></table>
-</div>
-</div></li>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="nx">Vue</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">silent</span> <span class="o">=</span> <span class="kc">true</span>
+</code></pre></div></li>
 <li>
 <p>slient：沉默的</p>
 </li>
@@ -1359,15 +1089,8 @@
 </li>
 <li>
 <p>关闭调试</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="nx">Vue</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">devtools</span> <span class="o">=</span> <span class="kc">false</span>
-</code></pre></td></tr></table>
-</div>
-</div></li>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="nx">Vue</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">devtools</span> <span class="o">=</span> <span class="kc">false</span>
+</code></pre></div></li>
 <li>
 <p>devtools: development tools, 开发工具</p>
 </li>
@@ -1384,27 +1107,7 @@
 </li>
 <li>
 <p>定义混入对象并注册</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">myMixin</span> <span class="o">=</span> <span class="p">{</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">myMixin</span> <span class="o">=</span> <span class="p">{</span>
     <span class="nx">data</span><span class="p">()</span> <span class="p">{</span>
         <span class="k">return</span> <span class="p">{</span>
             <span class="nx">message</span><span class="o">:</span> <span class="s1">&#39;mixin的数据&#39;</span>
@@ -1420,9 +1123,7 @@
         <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>
     <span class="p">}</span>
 <span class="p">})</span>
-</code></pre></td></tr></table>
-</div>
-</div></li>
+</code></pre></div></li>
 </ol>
 </li>
 <li>
@@ -1433,20 +1134,7 @@
 </li>
 <li>
 <p>代码</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span><span class="lnt">8
-</span><span class="lnt">9
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="nx">render</span><span class="p">(</span><span class="nx">createElement</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="nx">render</span><span class="p">(</span><span class="nx">createElement</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">return</span> <span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;p&#39;</span><span class="p">,</span> <span class="p">{</span>
         <span class="nx">style</span><span class="o">:</span> <span class="p">{</span>
             <span class="nx">color</span><span class="o">:</span> <span class="s1">&#39;red&#39;</span><span class="p">,</span>
@@ -1455,9 +1143,7 @@
         <span class="p">}</span>
     <span class="p">},</span> <span class="k">this</span><span class="p">.</span><span class="nx">$slots</span><span class="p">.</span><span class="k">default</span><span class="p">);</span>
 <span class="p">},</span>
-</code></pre></td></tr></table>
-</div>
-</div></li>
+</code></pre></div></li>
 <li>
 <p>说明</p>
 <ol>
@@ -1491,25 +1177,24 @@
   </div>
   <footer class="post-footer">
     <ul class="post-tags">
-      <li><a href="https://rex0520.github.io/tags/vue/">vue</a></li>
-      <li><a href="https://rex0520.github.io/tags/%E5%89%8D%E7%AB%AF/">前端</a></li>
+      <li><a href="https://rex0520.github.io/tags/vue/">Vue</a></li>
     </ul>
 <nav class="paginav">
-  <a class="prev" href="https://rex0520.github.io/posts/front/%E7%BD%91%E9%A1%B5%E5%BC%80%E5%8F%91/">
+  <a class="prev" href="https://rex0520.github.io/posts/front/vue/vue%E5%8A%A8%E7%94%BB/">
     <span class="title">« Prev Page</span>
     <br>
-    <span>网页开发</span>
+    <span>Vue动画</span>
   </a>
-  <a class="next" href="https://rex0520.github.io/posts/front/vue/vue%E8%BF%9B%E9%98%B6/">
+  <a class="next" href="https://rex0520.github.io/posts/back/java/lambda/">
     <span class="title">Next Page »</span>
     <br>
-    <span>Vue进阶</span>
+    <span>Lambda(java)</span>
   </a>
 </nav>
 
 <div class="share-buttons">
     <a target="_blank" rel="noopener noreferrer" aria-label="share Vue基础 on twitter"
-        href="https://twitter.com/intent/tweet/?text=Vue%e5%9f%ba%e7%a1%80&amp;url=https%3a%2f%2frex0520.github.io%2fposts%2ffront%2fvue%2fvue%25E5%259F%25BA%25E7%25A1%2580%2f&amp;hashtags=vue%2c%e5%89%8d%e7%ab%af">
+        href="https://twitter.com/intent/tweet/?text=Vue%e5%9f%ba%e7%a1%80&amp;url=https%3a%2f%2frex0520.github.io%2fposts%2ffront%2fvue%2fvue%25E5%259F%25BA%25E7%25A1%2580%2f&amp;hashtags=Vue">
         <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
             <path
                 d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-253.927,424.544c135.939,0 210.268,-112.643 210.268,-210.268c0,-3.218 0,-6.437 -0.153,-9.502c14.406,-10.421 26.973,-23.448 36.935,-38.314c-13.18,5.824 -27.433,9.809 -42.452,11.648c15.326,-9.196 26.973,-23.602 32.49,-40.92c-14.252,8.429 -30.038,14.56 -46.896,17.931c-13.487,-14.406 -32.644,-23.295 -53.946,-23.295c-40.767,0 -73.87,33.104 -73.87,73.87c0,5.824 0.613,11.494 1.992,16.858c-61.456,-3.065 -115.862,-32.49 -152.337,-77.241c-6.284,10.881 -9.962,23.601 -9.962,37.088c0,25.594 13.027,48.276 32.95,61.456c-12.107,-0.307 -23.448,-3.678 -33.41,-9.196l0,0.92c0,35.862 25.441,65.594 59.311,72.49c-6.13,1.686 -12.72,2.606 -19.464,2.606c-4.751,0 -9.348,-0.46 -13.946,-1.38c9.349,29.426 36.628,50.728 68.965,51.341c-25.287,19.771 -57.164,31.571 -91.8,31.571c-5.977,0 -11.801,-0.306 -17.625,-1.073c32.337,21.15 71.264,33.41 112.95,33.41Z" />

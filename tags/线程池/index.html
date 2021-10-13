@@ -148,17 +148,30 @@
 
 <article class="post-entry tag-entry"> 
   <header class="entry-header">
-    <h2>线程池</h2>
+    <h2>Threadlocal详解</h2>
   </header>
   <section class="entry-content">
-    <p>线程池 线程池介绍 软件中的池可以理解为计划经济
-优点：
- 复用线程 控制资源总量  好处：
- 加快响应速度 合理利用CPU和内存 统一管理  适用场合
- 服务器接收到大量请求时，使用线程池技术是非常合适的，它可以大大减少线程的创建和销毁次数，提高服务器的工作效率 实际上，在开发中，如果需要创建5个以上的线程，那么就可以使用线程池来管理  创建和停止线程池 线程池构造方法的参数    参数名 类型 含义     corePoolSize int 核心线程数   maxPoolSize int 最大线程数   keepAliveTime long 保持存活时间   workQueue BlockingQueue 任务存储队列   threadFactory ThreadFactory 当线程池需要新的线程的时候，会使用threadFactory来生成新的线程   Handler RejectedExecutionHandler 由于线程池无法接受你所提交的任务的拒绝策略    添加线程规则  如果线程数小于corePoolSize，创建一个新线程来运行新任务。 如果线程数等于（或大于）corePoolSize但少于maxmumPoolSize，则将任务放入队列。 如果队列已满，并且线程数小于maxPoolSize，则创建一个新线程。 如果队列已满，并且线程数大于或等于maxPoolSize，则拒绝。  是否需要增加线程的判断顺序是：...</p>
+    <p>ThreadLocal详解 使用场景：   每个线程需要一个独享的对象（通常是工具类，典型需要使用的类有SimpleDateFormat和Random）
+ 每个Thread内有自己的实例副本，不共享 比喻：教材只有一本，一起做笔记有线程安全问题。复印后没有问题，ThreadLocal相当于生成了一个副本  重写initialValue方法
+package treadlocal; import java.text.SimpleDateFormat; import java.util.Date; import java.util.concurrent.ExecutorService; import java.util.concurrent.Executors; /** * @Description: 利用ThreadLocal，给每个线程分配自己的dateFormat对象，保证了线程安全，高效利用内存 * @Author: Rex * @Create: 2021-06-09 14:43 */ public class ThreadLocalNormalUsage05 { public static ExecutorService executor = Executors.newFixedThreadPool(10); public static void main(String[] args) throws InterruptedException { for (int i = 0; i &lt; 1000; i&#43;&#43;) { int finalI = i; executor.submit(new Thread(new Runnable() { @Override public void run() { String date = new ThreadLocalNormalUsage05()....</p>
   </section>
-  <footer class="entry-footer">2021-06-08&nbsp;·&nbsp;3 min&nbsp;·&nbsp;Rex</footer>
-  <a class="entry-link" aria-label="post link to 线程池" href="https://rex0520.github.io/posts/back/threadpool/%E7%BA%BF%E7%A8%8B%E6%B1%A0/"></a>
+  <footer class="entry-footer">2021-06-08&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Rex</footer>
+  <a class="entry-link" aria-label="post link to Threadlocal详解" href="https://rex0520.github.io/posts/back/threadpool/threadlocal%E8%AF%A6%E8%A7%A3/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2>关于reentrantlock和condition</h2>
+  </header>
+  <section class="entry-content">
+    <p>关于ReentrantLock和Condition ReentrantLock是Java中一种常见的“锁”，锁是什么？  并发编程的时候，比如说有一个业务是读写操作，那多个线程执行这个业务就会造成已经写入的数据又写一遍，就会造成数据错乱。
+所以需要引入锁，进行数据同步，强制使得该业务执行的时候只有一个线程在执行，从而保证不会插入多条重复数据。
+一些共享资源也是需要加锁，从而保证数据的一致性。
+ 使用Condition实现线程等待和唤醒  通常在开发并发程序的时候，会碰到需要停止正在执行业务A，来执行另一个业务B，当业务B执行完成后业务A继续执行。ReentrantLock通过Condtion等待/唤醒这样的机制。
+ </p>
+  </section>
+  <footer class="entry-footer">2021-06-08&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Rex</footer>
+  <a class="entry-link" aria-label="post link to 关于reentrantlock和condition" href="https://rex0520.github.io/posts/back/threadpool/%E5%85%B3%E4%BA%8Ereentrantlock%E5%92%8Ccondition/"></a>
 </article>
 
 <article class="post-entry tag-entry"> 
@@ -181,30 +194,17 @@
 
 <article class="post-entry tag-entry"> 
   <header class="entry-header">
-    <h2>关于ReentrantLock和Condition</h2>
+    <h2>线程池</h2>
   </header>
   <section class="entry-content">
-    <p>关于ReentrantLock和Condition ReentrantLock是Java中一种常见的“锁”，锁是什么？  并发编程的时候，比如说有一个业务是读写操作，那多个线程执行这个业务就会造成已经写入的数据又写一遍，就会造成数据错乱。
-所以需要引入锁，进行数据同步，强制使得该业务执行的时候只有一个线程在执行，从而保证不会插入多条重复数据。
-一些共享资源也是需要加锁，从而保证数据的一致性。
- 使用Condition实现线程等待和唤醒  通常在开发并发程序的时候，会碰到需要停止正在执行业务A，来执行另一个业务B，当业务B执行完成后业务A继续执行。ReentrantLock通过Condtion等待/唤醒这样的机制。
- </p>
+    <p>线程池 线程池介绍 软件中的池可以理解为计划经济
+优点：
+ 复用线程 控制资源总量  好处：
+ 加快响应速度 合理利用CPU和内存 统一管理  适用场合
+ 服务器接收到大量请求时，使用线程池技术是非常合适的，它可以大大减少线程的创建和销毁次数，提高服务器的工作效率 实际上，在开发中，如果需要创建5个以上的线程，那么就可以使用线程池来管理  创建和停止线程池 线程池构造方法的参数    参数名 类型 含义     corePoolSize int 核心线程数   maxPoolSize int 最大线程数   keepAliveTime long 保持存活时间   workQueue BlockingQueue 任务存储队列   threadFactory ThreadFactory 当线程池需要新的线程的时候，会使用threadFactory来生成新的线程   Handler RejectedExecutionHandler 由于线程池无法接受你所提交的任务的拒绝策略    添加线程规则  如果线程数小于corePoolSize，创建一个新线程来运行新任务。 如果线程数等于（或大于）corePoolSize但少于maxmumPoolSize，则将任务放入队列。 如果队列已满，并且线程数小于maxPoolSize，则创建一个新线程。 如果队列已满，并且线程数大于或等于maxPoolSize，则拒绝。  是否需要增加线程的判断顺序是：...</p>
   </section>
-  <footer class="entry-footer">2021-06-08&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Rex</footer>
-  <a class="entry-link" aria-label="post link to 关于ReentrantLock和Condition" href="https://rex0520.github.io/posts/back/threadpool/%E5%85%B3%E4%BA%8Ereentrantlock%E5%92%8Ccondition/"></a>
-</article>
-
-<article class="post-entry tag-entry"> 
-  <header class="entry-header">
-    <h2>ThreadLocal详解</h2>
-  </header>
-  <section class="entry-content">
-    <p>ThreadLocal详解 使用场景：   每个线程需要一个独享的对象（通常是工具类，典型需要使用的类有SimpleDateFormat和Random）
- 每个Thread内有自己的实例副本，不共享 比喻：教材只有一本，一起做笔记有线程安全问题。复印后没有问题，ThreadLocal相当于生成了一个副本  重写initialValue方法
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45  package treadlocal; import java.text.SimpleDateFormat; import java.util.Date; import java.util.concurrent.ExecutorService; import java.util.concurrent.Executors; /** * @Description: 利用ThreadLocal，给每个线程分配自己的dateFormat对象，保证了线程安全，高效利用内存 * @Author: Rex * @Create: 2021-06-09 14:43 */ public class ThreadLocalNormalUsage05 { public static ExecutorService executor = Executors....</p>
-  </section>
-  <footer class="entry-footer">2021-06-10&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Rex</footer>
-  <a class="entry-link" aria-label="post link to ThreadLocal详解" href="https://rex0520.github.io/posts/back/threadpool/threadlocal%E8%AF%A6%E8%A7%A3/"></a>
+  <footer class="entry-footer">2021-06-08&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Rex</footer>
+  <a class="entry-link" aria-label="post link to 线程池" href="https://rex0520.github.io/posts/back/threadpool/%E7%BA%BF%E7%A8%8B%E6%B1%A0/"></a>
 </article>
     </main>
     <footer class="footer">

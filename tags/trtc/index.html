@@ -134,7 +134,7 @@
                 </a>
             </li>
             <li>
-                <a href="https://rex0520.github.io/search/" title="搜索">
+                <a href="https://rex0520.github.io/search/" title="搜索 (Alt &#43; /)" accesskey=/>
                     <span>搜索</span>
                 </a>
             </li>
@@ -154,12 +154,12 @@
     <p>腾讯视频会议的使用-TRTC技术 概述：  TRTC全称(Tencent Real-Time Communication) 即腾讯实时音视频服务，定位是解决实时通信的云服务，主要功能就是通过互联网，接受、处理、转发和保存大流量的音视频流数据，主要用于直播、视频会议场景。本文简略说明TRTC技术的使用，案例基于前端-vue，后端-java的springboot框架，具体的内容参考一下文档
  后端的准备  首先前端调用TRTC服务需要创建TrtcClient对象来管理，创建TrtcClient需要用到三个参数，分别是AppID，用户UserId，还有用户签名(UserSig)。而这里的用户签名是用Trtc的AppID和密钥，任意开发者查看HTML都能看到这些信息，所以生成用户签名的工作不能在前端完成，正确的做法应该是在后端项目生成用户签名
  用户签名(UserSig) （UserSig）是腾讯云设计的一种安全保护签名，使用HMAC SHA256加密算法计算得出。
-1 2 3 4  //UserSig 计算公式，其中 secretkey 为计算 usersig 用的加密密钥  usersig = hmacsha256(secretkey, (userid &#43; sdkappid &#43; currtime &#43; expire &#43; base64(userid &#43; sdkappid &#43; currtime &#43; expire)))   关于userSig的各种语言生成方法在腾讯云的官方文档都有介绍
+&lt;html&gt;abc&lt;/html&gt; //UserSig 计算公式，其中 secretkey 为计算 usersig 用的加密密钥  usersig = hmacsha256(secretkey, (userid &#43; sdkappid &#43; currtime &#43; expire &#43; base64(userid &#43; sdkappid &#43; currtime &#43; expire))) 关于userSig的各种语言生成方法在腾讯云的官方文档都有介绍
 这边我使用的springboot框架，所以用是java生成userSig的方式，需要在项目中创建一个TrtcUtil.java
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 143 144 145 146 147 148  package com....</p>
+package com.example.emos.api.config.tencet; import cn.hutool.core.util.StrUtil; import cn.hutool.json.JSONObject; import org.bson.internal.Base64; import org.springframework.beans.factory.annotation.Value; import org.springframework.stereotype.Component; import javax.crypto.Mac; import javax.crypto.spec.SecretKeySpec; import java.nio.charset.StandardCharsets; import java.security.InvalidKeyException; import java.security.NoSuchAlgorithmException; import java.util.Arrays; import java.util.zip.Deflater; /** * Description: 腾讯TRTC工具类 * * @author Rex * @date 2021-09-29 10:48 */ import java....</p>
   </section>
-  <footer class="entry-footer">2021-10-12&nbsp;·&nbsp;7 min&nbsp;·&nbsp;Rex</footer>
-  <a class="entry-link" aria-label="post link to 腾讯TRTC" href="https://rex0520.github.io/posts/video/%E8%85%BE%E8%AE%AFtrtc/"></a>
+  <footer class="entry-footer">2021-10-12&nbsp;·&nbsp;5 min&nbsp;·&nbsp;Rex</footer>
+  <a class="entry-link" aria-label="post link to 腾讯TRTC" href="https://rex0520.github.io/posts/api/%E8%85%BE%E8%AE%AFtrtc/"></a>
 </article>
     </main>
     <footer class="footer">

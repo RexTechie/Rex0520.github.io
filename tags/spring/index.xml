@@ -1,112 +1,76 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>spring on Rex</title>
+    <title>Spring on Rex</title>
     <link>https://rex0520.github.io/tags/spring/</link>
-    <description>Recent content in spring on Rex</description>
+    <description>Recent content in Spring on Rex</description>
     <image>
       <url>https://cdn.rexweb.xyz/img/20210820141535.jpg</url>
       <link>https://cdn.rexweb.xyz/img/20210820141535.jpg</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Fri, 23 Jul 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://rex0520.github.io/tags/spring/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 06 Jan 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://rex0520.github.io/tags/spring/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Dubbo</title>
-      <link>https://rex0520.github.io/posts/back/microservices/dubbo/</link>
-      <pubDate>Fri, 23 Jul 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://rex0520.github.io/posts/back/microservices/dubbo/</guid>
-      <description>微服务学习记录</description>
-    </item>
-    
-    <item>
-      <title>Zookeeper</title>
-      <link>https://rex0520.github.io/posts/back/microservices/zookeeper/</link>
-      <pubDate>Thu, 22 Jul 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://rex0520.github.io/posts/back/microservices/zookeeper/</guid>
-      <description>微服务学习记录</description>
-    </item>
-    
-    <item>
-      <title>微服务</title>
-      <link>https://rex0520.github.io/posts/back/microservices/%E5%BE%AE%E6%9C%8D%E5%8A%A1/</link>
-      <pubDate>Tue, 22 Jun 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://rex0520.github.io/posts/back/microservices/%E5%BE%AE%E6%9C%8D%E5%8A%A1/</guid>
-      <description>微服务学习记录</description>
-    </item>
-    
-    <item>
-      <title>分布式</title>
-      <link>https://rex0520.github.io/posts/back/microservices/%E5%88%86%E5%B8%83%E5%BC%8F/</link>
-      <pubDate>Thu, 10 Jun 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://rex0520.github.io/posts/back/microservices/%E5%88%86%E5%B8%83%E5%BC%8F/</guid>
-      <description>微服务学习记录</description>
-    </item>
-    
-    <item>
-      <title>SpringJDBC</title>
-      <link>https://rex0520.github.io/posts/back/ssm2springboot/spring/springjdbc/</link>
+      <title>Springjdbc</title>
+      <link>https://rex0520.github.io/posts/back/framework/spring/springjdbc/</link>
       <pubDate>Wed, 06 Jan 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://rex0520.github.io/posts/back/ssm2springboot/spring/springjdbc/</guid>
-      <description>Spring学习记录</description>
-    </item>
-    
-    <item>
-      <title>SpringAOP面向切面编程</title>
-      <link>https://rex0520.github.io/posts/back/ssm2springboot/spring/springaop%E9%9D%A2%E5%90%91%E5%88%87%E9%9D%A2%E7%BC%96%E7%A8%8B/</link>
-      <pubDate>Mon, 04 Jan 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://rex0520.github.io/posts/back/ssm2springboot/spring/springaop%E9%9D%A2%E5%90%91%E5%88%87%E9%9D%A2%E7%BC%96%E7%A8%8B/</guid>
-      <description>Spring学习记录</description>
-    </item>
-    
-    <item>
-      <title>SpringTest与Junit4整合</title>
-      <link>https://rex0520.github.io/posts/back/ssm2springboot/spring/springtest%E4%B8%8Ejunit4%E6%95%B4%E5%90%88/</link>
-      <pubDate>Mon, 04 Jan 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://rex0520.github.io/posts/back/ssm2springboot/spring/springtest%E4%B8%8Ejunit4%E6%95%B4%E5%90%88/</guid>
-      <description>Spring学习记录</description>
-    </item>
-    
-    <item>
-      <title>基于JavaConfig配置的IoC容器</title>
-      <link>https://rex0520.github.io/posts/back/ssm2springboot/spring/%E5%9F%BA%E4%BA%8Ejavaconfig%E9%85%8D%E7%BD%AE%E7%9A%84ioc%E5%AE%B9%E5%99%A8/</link>
-      <pubDate>Sun, 03 Jan 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://rex0520.github.io/posts/back/ssm2springboot/spring/%E5%9F%BA%E4%BA%8Ejavaconfig%E9%85%8D%E7%BD%AE%E7%9A%84ioc%E5%AE%B9%E5%99%A8/</guid>
-      <description>Spring学习记录</description>
-    </item>
-    
-    <item>
-      <title>基于注解配置IoC容器</title>
-      <link>https://rex0520.github.io/posts/back/ssm2springboot/spring/%E5%9F%BA%E4%BA%8E%E6%B3%A8%E8%A7%A3%E9%85%8D%E7%BD%AEioc%E5%AE%B9%E5%99%A8/</link>
-      <pubDate>Sun, 03 Jan 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://rex0520.github.io/posts/back/ssm2springboot/spring/%E5%9F%BA%E4%BA%8E%E6%B3%A8%E8%A7%A3%E9%85%8D%E7%BD%AEioc%E5%AE%B9%E5%99%A8/</guid>
-      <description>Spring学习记录</description>
-    </item>
-    
-    <item>
-      <title>Spring IoC与Bean管理</title>
-      <link>https://rex0520.github.io/posts/back/ssm2springboot/spring/springioc%E4%B8%8Ebean%E7%AE%A1%E7%90%86/</link>
-      <pubDate>Fri, 01 Jan 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://rex0520.github.io/posts/back/ssm2springboot/spring/springioc%E4%B8%8Ebean%E7%AE%A1%E7%90%86/</guid>
-      <description>Spring学习记录</description>
+      <guid>https://rex0520.github.io/posts/back/framework/spring/springjdbc/</guid>
+      <description>Springjdbc</description>
     </item>
     
     <item>
       <title>Spring框架概述</title>
-      <link>https://rex0520.github.io/posts/back/ssm2springboot/spring/spring%E6%A1%86%E6%9E%B6%E6%A6%82%E8%BF%B0/</link>
-      <pubDate>Fri, 01 Jan 2021 00:00:00 +0000</pubDate>
+      <link>https://rex0520.github.io/posts/back/framework/spring/spring%E6%A1%86%E6%9E%B6%E6%A6%82%E8%BF%B0/</link>
+      <pubDate>Tue, 05 Jan 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://rex0520.github.io/posts/back/ssm2springboot/spring/spring%E6%A1%86%E6%9E%B6%E6%A6%82%E8%BF%B0/</guid>
-      <description>Spring学习记录</description>
+      <guid>https://rex0520.github.io/posts/back/framework/spring/spring%E6%A1%86%E6%9E%B6%E6%A6%82%E8%BF%B0/</guid>
+      <description>Spring框架概述</description>
+    </item>
+    
+    <item>
+      <title>Springaop面向切面编程</title>
+      <link>https://rex0520.github.io/posts/back/framework/spring/springaop%E9%9D%A2%E5%90%91%E5%88%87%E9%9D%A2%E7%BC%96%E7%A8%8B/</link>
+      <pubDate>Mon, 04 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rex0520.github.io/posts/back/framework/spring/springaop%E9%9D%A2%E5%90%91%E5%88%87%E9%9D%A2%E7%BC%96%E7%A8%8B/</guid>
+      <description>Springaop面向切面编程</description>
+    </item>
+    
+    <item>
+      <title>Springioc与bean管理</title>
+      <link>https://rex0520.github.io/posts/back/framework/spring/springioc%E4%B8%8Ebean%E7%AE%A1%E7%90%86/</link>
+      <pubDate>Mon, 04 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rex0520.github.io/posts/back/framework/spring/springioc%E4%B8%8Ebean%E7%AE%A1%E7%90%86/</guid>
+      <description>Springioc与bean管理</description>
+    </item>
+    
+    <item>
+      <title>Springtest与junit4整合</title>
+      <link>https://rex0520.github.io/posts/back/framework/spring/springtest%E4%B8%8Ejunit4%E6%95%B4%E5%90%88/</link>
+      <pubDate>Sun, 03 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rex0520.github.io/posts/back/framework/spring/springtest%E4%B8%8Ejunit4%E6%95%B4%E5%90%88/</guid>
+      <description>Springtest与junit4整合</description>
+    </item>
+    
+    <item>
+      <title>基于javaconfig配置的ioc容器</title>
+      <link>https://rex0520.github.io/posts/back/framework/spring/%E5%9F%BA%E4%BA%8Ejavaconfig%E9%85%8D%E7%BD%AE%E7%9A%84ioc%E5%AE%B9%E5%99%A8/</link>
+      <pubDate>Sun, 03 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rex0520.github.io/posts/back/framework/spring/%E5%9F%BA%E4%BA%8Ejavaconfig%E9%85%8D%E7%BD%AE%E7%9A%84ioc%E5%AE%B9%E5%99%A8/</guid>
+      <description>基于javaconfig配置的ioc容器</description>
+    </item>
+    
+    <item>
+      <title>基于注解配置ioc容器</title>
+      <link>https://rex0520.github.io/posts/back/framework/spring/%E5%9F%BA%E4%BA%8E%E6%B3%A8%E8%A7%A3%E9%85%8D%E7%BD%AEioc%E5%AE%B9%E5%99%A8/</link>
+      <pubDate>Sun, 03 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rex0520.github.io/posts/back/framework/spring/%E5%9F%BA%E4%BA%8E%E6%B3%A8%E8%A7%A3%E9%85%8D%E7%BD%AEioc%E5%AE%B9%E5%99%A8/</guid>
+      <description>基于注解配置ioc容器</description>
     </item>
     
   </channel>

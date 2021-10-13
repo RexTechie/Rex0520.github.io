@@ -163,73 +163,70 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>Nginx的入门</h2>
+  </header>
+  <section class="entry-content">
+    <p>Nginx的安装 Linux安装  登录root账号 执行yum install yum-utils 运行vim /etc/yum.repos.d/nginx.repo [nginx-stable] name=nginx stable repo baseurl=http://nginx.org/packages/centos/7/$basearch/ gpgcheck=1 enabled=1 gpgkey=https://nginx.org/keys/nginx_signing.key module_hotfixes=true [nginx-mainline] name=nginx mainline repo baseurl=http://nginx.org/packages/mainline/centos/7/$basearch/ gpgcheck=1 enabled=0 gpgkey=https://nginx.org/keys/nginx_signing.key module_hotfixes=true  然后查看源 yum list | grep nginx 看到存在稳定版的源，确认无误。 运行安装命令 yum install nginx 1:1.16.1-1.el7.ngx 过程中输入y，确认 查看版本，若出现版本号，则安装成功 用whereis nginx可以查看到目录： nginx: /usr/sbin/nginx /usr/lib64/nginx /etc/nginx /usr/share/nginx /usr/share/man/man8/nginx.8.gz  MacOS的安装  安装homebrew，然后nginx使用安装brew： $ brew install nginx  笔记：
+ nginx的配置文件位于中/usr/local/etc/nginx/nginx.conf。 要编辑配置文件或运行nginx，您需要使用sudo： sudo nano /usr/local/etc/nginx/nginx.conf和 sudo nginx …
+ Windows下的安装 不推荐，nginx不适合运行在Windows上，功能不完整，我们尽量运行在linux上。</p>
+  </section>
+  <footer class="entry-footer">2021-06-12&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Rex</footer>
+  <a class="entry-link" aria-label="post link to Nginx的入门" href="https://rex0520.github.io/posts/back/microservices/nginx%E7%9A%84%E5%AE%89%E8%A3%85/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>Docker的安装</h2>
   </header>
   <section class="entry-content">
-    <p>Docker的安装（CentOS）  先有一个Cent OS 7.6系统 这个很重要，不同版本按照的时候是不一样的。查看CentOS版本 cat /etc/redhat-release 用root账户登录进去 配置国内yum源  1 2 3  wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo yum clean all yum makecache   卸载旧版本   较旧的Docker版本称为docker或docker-engine。如果已安装这些程序，请卸载它们以及相关的依赖项。  1 2 3 4 5 6 7 8  yum remove docker \ docker-client \ docker-client-latest \ docker-common \ docker-latest \ docker-latest-logrotate \ docker-logrotate \ docker-engine    如果yum报告未安装这些软件包，也没问题。  更新yum  1 2  yum check-update yum update   安装所需的软件包  1  yum install -y yum-utils\device-mapper-persistent-data\lvm2   使用以下命令来设置稳定的存储库  1  sudo yum-config-manager --add-repo http://mirrors....</p>
+    <p>Docker的安装 在Cent OS安装docker  先有一个Cent OS 7.6系统   这个很重要，不同版本按照的时候是不一样的。查看CentOS版本 cat /etc/redhat-release
+ 用root账户登录进去 配置国内yum源   wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo yum clean all yum makecache
+ 卸载旧版本   较旧的Docker版本称为docker或docker-engine。如果已安装这些程序，请卸载它们以及相关的依赖项。 如果yum报告未安装这些软件包，也没问题。
+ docker-client \ docker-client-latest \ docker-common \ docker-latest \ docker-latest-logrotate \ docker-logrotate \ docker-engine 更新yum   yum check-update yum update
+ 安装所需的软件包  yum install -y yum-utils \ device-mapper-persistent-data \ lvm2 使用以下命令来设置稳定的存储库。   sudo yum-config-manager –add-repo http://mirrors....</p>
   </section>
-  <footer class="entry-footer">2021-06-26&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Rex</footer>
+  <footer class="entry-footer">2021-06-11&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Rex</footer>
   <a class="entry-link" aria-label="post link to Docker的安装" href="https://rex0520.github.io/posts/back/microservices/docker%E7%9A%84%E5%AE%89%E8%A3%85/"></a>
 </article>
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2>Docker简介</h2>
+    <h2>分布式</h2>
   </header>
   <section class="entry-content">
-    <p>Docker 概念  Docker是一个用来装程序及其环境的容器,属于Linux容器的 一种封装,提供简单易用的容器使用接口。它是目前最流行的 Linux容器解决方案。
- 痛点  环境配置 虚拟机  资源占用多 冗余步骤多 启动时间慢   Docker的基础 — Linux容器  启动快 占用资源少 体积小    用途  提供统一的环境 提供快速拓展、弹性伸缩的云服务 防止其他用户的进程把服务器资源占用过多  特点   标准化
- 运输方式（把程序和环境从一个机器运到另一个机器） 存储方式（程序和环境的存储） API接口（不需要Tomcat等应用的命令了，都标准化了）    灵活：即使是最复杂的应用也可以集装箱化
-  轻量级：容器利用并共享主机内核
-  便携式：可以在本地构建
-  Docker的组成、架构、重要概念 images（镜像）:  存储：联合文件系统，UnionFS    Container（容器）：  镜像类似于Java中的类，而容器就是实例 容器的这一层是可以修改的，而镜像是不可以修改的 同一个镜像可以生成多个容器独立运行，而他们之间没有任何的干扰  Repository（仓库）：        共有 vs 私有...</p>
+    <p>分布式 定义：  利用物理架构形成多个自治的处理元素，不共享主内存, 但是通过发送信息合作。— Leslie Lamport
+ 实际项目的演进过程  一个项目，大而全 多台机器，部署同样的应用 分布式：权限系统、员工系统、请假系统  分布式的作用 为什么需要分布式  解决单体应用的问题  应用代码耦合严重，功能扩展难 新需求开发交互周期长，测试工程量大 新加入的开发同事需要很长时间才能属性系统 升级维护困难（改动任何一点地方都要升级整个系统） 系统性能提升艰难，可用性低，不稳定    分布式的好处  增大系统容量 加强系统可用 因为模块化，所以系统模块重用度高 因为软件服务模块被拆分，开发和发布速度可以并行变得更块 系统拓展性更高 团队协作流程也会得到改善 技术升级  分布式和单体结构的对比     传统单体结构 分布式架构     新人的学习成本 业务逻辑成本高 架构逻辑成本高   部署、运维 容易 发布频繁，发布顺序复杂、运维难   隔离性 一损俱损，殃及鱼塘 故障影响范围小   架构设计 难度低 难度指数级上升   系统性能 响应快、吞吐量小 响应慢、吞吐量大   测试成本 低 很高   技术多样性 技术单一且封闭 技术多样且开放   系统扩展性 扩展性差 扩展性很好   系统管理成本 成本低 成本高    CAP定理   CAP理论：三者不可兼得...</p>
   </section>
-  <footer class="entry-footer">2021-06-26&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Rex</footer>
-  <a class="entry-link" aria-label="post link to Docker简介" href="https://rex0520.github.io/posts/back/microservices/docker/"></a>
+  <footer class="entry-footer">2021-06-10&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Rex</footer>
+  <a class="entry-link" aria-label="post link to 分布式" href="https://rex0520.github.io/posts/back/microservices/%E5%88%86%E5%B8%83%E5%BC%8F/"></a>
 </article>
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2>Nginx学习</h2>
+    <h2>Threadlocal详解</h2>
   </header>
   <section class="entry-content">
-    <p>Nginx Nginx介绍 使用场景  HTTP的反向代理服务器  负载均衡 缓存   动态静态资源分离  优点  高并发、高性能 可扩展性好，体现在模块化设计 高可靠性，可以持续不断数十年运行 热部署，不停止服务来升级nginx 开源、可商用  Nginx常用命令 1 2 3 4 5 6 7 8  ./nginx # 启动nginx ps -aux|grep nginx # 查看nginx相关进程，也可以查到nginx运行的路径 nginx -h # 帮助 nginx -c # 读取指定配置文件 nginx -s stop # 关闭nginx nginx -t # 检查当前配置文件是否有问题，查看当前配置文件路径 nginx -v # 简要版本信息 -V详细信息 nginx -s stop|quit| # -s信号 stop立即停止，quit优雅停止，reload重启，reopen更换日志文件   Nginx配置文件   语法...</p>
+    <p>ThreadLocal详解 使用场景：   每个线程需要一个独享的对象（通常是工具类，典型需要使用的类有SimpleDateFormat和Random）
+ 每个Thread内有自己的实例副本，不共享 比喻：教材只有一本，一起做笔记有线程安全问题。复印后没有问题，ThreadLocal相当于生成了一个副本  重写initialValue方法
+package treadlocal; import java.text.SimpleDateFormat; import java.util.Date; import java.util.concurrent.ExecutorService; import java.util.concurrent.Executors; /** * @Description: 利用ThreadLocal，给每个线程分配自己的dateFormat对象，保证了线程安全，高效利用内存 * @Author: Rex * @Create: 2021-06-09 14:43 */ public class ThreadLocalNormalUsage05 { public static ExecutorService executor = Executors.newFixedThreadPool(10); public static void main(String[] args) throws InterruptedException { for (int i = 0; i &lt; 1000; i&#43;&#43;) { int finalI = i; executor.submit(new Thread(new Runnable() { @Override public void run() { String date = new ThreadLocalNormalUsage05()....</p>
   </section>
-  <footer class="entry-footer">2021-06-22&nbsp;·&nbsp;3 min&nbsp;·&nbsp;Rex</footer>
-  <a class="entry-link" aria-label="post link to Nginx学习" href="https://rex0520.github.io/posts/back/microservices/nginx/"></a>
+  <footer class="entry-footer">2021-06-08&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Rex</footer>
+  <a class="entry-link" aria-label="post link to Threadlocal详解" href="https://rex0520.github.io/posts/back/threadpool/threadlocal%E8%AF%A6%E8%A7%A3/"></a>
 </article>
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2>Nginx的安装</h2>
+    <h2>关于reentrantlock和condition</h2>
   </header>
   <section class="entry-content">
-    <p>Nginx的安装 Linux的安装   登录root账号
-  执行yum install yum-utils
-  运行vim /etc/yum.repos.d/nginx.repo
-  输入：
- [nginx-stable]  1 2 3 4 5 6  name=nginx stable repo baseurl=http://nginx.org/packages/centos/7/$basearch/ gpgcheck=1 enabled=1 gpgkey=https://nginx.org/keys/nginx_signing.key module_hotfixes=true    [nginx-mainline]  1 2 3 4 5 6  name=nginx mainline repo baseurl=http://nginx.org/packages/mainline/centos/7/$basearch/ gpgcheck=1 enabled=0 gpgkey=https://nginx.org/keys/nginx_signing.key module_hotfixes=true     然后查看源 yum list | grep nginx 看到存在稳定版的源，确认无误。
-  运行安装命令 yum install nginx 1:1....</p>
+    <p>关于ReentrantLock和Condition ReentrantLock是Java中一种常见的“锁”，锁是什么？  并发编程的时候，比如说有一个业务是读写操作，那多个线程执行这个业务就会造成已经写入的数据又写一遍，就会造成数据错乱。
+所以需要引入锁，进行数据同步，强制使得该业务执行的时候只有一个线程在执行，从而保证不会插入多条重复数据。
+一些共享资源也是需要加锁，从而保证数据的一致性。
+ 使用Condition实现线程等待和唤醒  通常在开发并发程序的时候，会碰到需要停止正在执行业务A，来执行另一个业务B，当业务B执行完成后业务A继续执行。ReentrantLock通过Condtion等待/唤醒这样的机制。
+ </p>
   </section>
-  <footer class="entry-footer">2021-06-22&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Rex</footer>
-  <a class="entry-link" aria-label="post link to Nginx的安装" href="https://rex0520.github.io/posts/back/microservices/nginx%E7%9A%84%E5%AE%89%E8%A3%85/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>微服务</h2>
-  </header>
-  <section class="entry-content">
-    <p>微服务 微服务概述 单体应用的痛点  部署效率低下 团队写作开发成本高 系统高可用性差  服务化  把传统的单机应用中的本地方法调用，改造成通过RPC、HTTP产生的远程方法调用 把模块从单体应用中拆分出来，独立成一个服务部署 用户模块就可以独立开发、测试、上线和运维，可以交由专门的团队来做，与主模块不耦合  从单体到微服务架构 微服务   一种架构风格 开发单个应用作为一系列小型服务的套件，其中每个服务都运行在自己的进程中，并且通过轻量级的机制实现彼此间的通信，这通常是HTTP资源API 这些服务是围绕着业务功能构建的，并且可以通过完全自动化的部署机制进行独立部署 这些服务的集中式管理做到了最小化（例如docker相关技术），每一种服务都可以通过不同的变成语言进行编写，并且可以使用不同的数据存储技术   微服务的特点   组件以服务形式来提供
-  产品不是项目
-  轻量级通信、独立进程
-  分散治理、去中心化治理
-  容错性设计
-  会带来团队组织架构的调整
-  微服务优点  服务简单、便于学习和上手，先对易于维护 独立部署，灵活扩展 技术栈丰富  微服务缺点  运维成本过高 接口可能不匹配 代码可能重复 架构复杂度提高  微服务有两大门派  Spring Cloud：众多子项目 dubbo：高性能、轻量级的开源Java RPC框架，它提供了三大核心能力：面向接口的远程方法调用，智能容错和负载均衡以及服务自动注册和发现     核心组件 Dubbo Spring Cloud     服务注册中心 Zookeeper Spring Cloud Netflix Eureka   服务调用方式 RPC REST API   服务网关 无 Spring Cloud Netflix Zuul   断路器 不完善 Spring Cloud Netflix Hystrix   分布式配置 无/百度的disconf、百度的diamond Spring Cloud Config   服务跟踪 无/京东开源Hydra Spring Cloud Sleuth   消息总线 无 Spring Cloud Bus   数据流 无 Spring Cloud Stream   批量任务 无/当当开源Elastic-Job Spring Cloud Task    通信协议对比  RPC vs REST 服务提供方与调用方接口依赖方式太强 服务对平台敏感，难以简单服务  微服务拆分 服务化拆分  第一阶段的主要目标是快速开发和验证想法 进一步增加更多的新特性来吸引更多的目标用户 同时进行开发的人员超过10人，这个时候就该考虑服务化拆分了  不适合拆分的情况  小团队，技术基础较薄弱 流量不够，压力小，业务变化也不大 对延迟很敏感的低延迟高并发系统  拆分方式  纵向拆分，按照业务维度拆分 横向拆分，按照公共领域拆分 结合业务综合分析  服务扩展  x轴-水平复制，作为整体复制多个系统，重新部署几套，加一个负载均衡器 y轴-功能解耦，微服务拆解 z轴-数据分区，拆分数据库  自动按需扩展  根据CPU负载程度、特定时间（比如周末）、消息中间件的队列长度、业务具体规则、预测等来决定是否扩展 自动分配了一个新的服务实例，提高可用性 提高了可伸缩性（双11之后，自动减少了服务器） 具有最佳使用率，节约成本  微服务重要模块  服务描述 注册服务中心 服务框架 负载均衡 熔断和降级，兜底策略 网关：统一转换，校验，过滤器  </p>
-  </section>
-  <footer class="entry-footer">2021-06-22&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Rex</footer>
-  <a class="entry-link" aria-label="post link to 微服务" href="https://rex0520.github.io/posts/back/microservices/%E5%BE%AE%E6%9C%8D%E5%8A%A1/"></a>
+  <footer class="entry-footer">2021-06-08&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Rex</footer>
+  <a class="entry-link" aria-label="post link to 关于reentrantlock和condition" href="https://rex0520.github.io/posts/back/threadpool/%E5%85%B3%E4%BA%8Ereentrantlock%E5%92%8Ccondition/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

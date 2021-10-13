@@ -163,51 +163,35 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2>RabbitMQ学习</h2>
+    <h2>守护线程</h2>
   </header>
   <section class="entry-content">
-    <p>RabbitMQ RabbitMQ简介 核心思想  接受并转发消息。
- producer: P queue: queue_name Consumer: C 消息队列：  业务无关 FIFO 容灾 性能  特点：  开源、跨语言 Erlang语言编写 应用广泛 社区活跃、API丰富  AMBQ协议  Advanced Message Queue Protocol   RabbitMQ核心概念  Server：服务 connection：与Server建立连接 channel：信道，几乎所有的操作都在信道上进行，客户端可以建立多个信道 message：消息，有properties和body组成 virtual host：虚拟主机，顶层隔离。同一个虚拟主机下，不能有重复的交换机和queue Exchange：交换机，接收生产者的消息的，然后根据指定的路由器去把消息转发到锁绑定的队列上 binding：绑定交换机和队列 routing key：路由键，路由规则，虚拟机可以用它来确定这个消息如何进行一个路由 queue：队列，消费者只需要监听队列来消费信息，不需要关注消息来自于哪个Exchange Exchange和Message Queue存在着绑定的关系，一个Exchange可以绑定多个消息队列 消息流转过程      RabbitMQ常用命令 1 2  systemctl start rabbitmq-server # 启动rabbitmq rabbitmqctl status # 查看状态   RabbitMQ后台管理  http://1....</p>
+    <p>守护线程 两类线程：  User Thread 用户线程 Daemon Thread 守护线程   分类标准是线程是否会阻止JVM的停止，只要当前JVM实例中尚存在任何一个非守护线程没有结束，守护线程就全部继续工作；只有当最后一个非守护线程结束时，所有守护线程才会随着JVM一同结束工作。（非守护线程等同于用户线程）
+ JVM停止的情况  已调用System.exit()方法 所有非守护程序线程都已结束   而一般情况下我们不会调用System.exit()方法，所以大部分的Java程序的结束都是由于所有用户线程都结束而导致的。
+所以可以认为，任何一个守护线程都是整个JVM中所有用户线程（非守护线程）的管家。Daemon的作用是为其他线程的运行提供便利服务，守护线程最典型的应用就是 GC (垃圾回收器)，它是一个很称职的守护者。
+ 守护线程的特性  线程类型默认继承自父线程 守护线程创建的线程为默认是守护线程，同样，用户线程创建的线程默认为用户线程。非守护线程如果想创建一个守护线程，需要调用Thread.setDaemon来设置它（Thread类用布尔值daemon属性来表示线程是否是守护线程），并且，该方法必须在start之前调用，否则会抛出 IllegalThreadStateException 异常。  被谁启动  通常由JVM启动，而不是由用户去启动。当JVM启动时，通常会有一个非守护线程（通常为执行main函数的线程）。
+ 不影响JVM退出  当只剩下守护线程时，JVM就会退出，因为如果只剩下守护线程，就没必要继续运行程序了。
+守护线程没结束并不会影响JVM的正常停止:假设所有用户线程都结束了，那么就算有5个守护线程正在运行，JVM也会正常停止：
+ 守护线程和普通线程的区别  虚拟机的离开：如果 User Thread已经全部退出运行了，只剩下Daemon Thread存在了，虚拟机也就退出了，这是因为没有了“被守护者”，Daemon也就没有工作可做了，也就没有继续运行程序的必要了。 这就是守护线程的作用：告诉JVM不需要等待它退出,当JVM中所有的线程都是守护线程的时候，JVM就可以正常的退出了。  我们是否需要给线程设置为守护线程？  我们通常不应把自己的线程设置为守护线程，因为设置为守护线程是很危险的。比如线程正在访问如文件、数据库的时候，所有用户线程都结束了，那么守护线程会在任何时候甚至在一个操作的中间发生中断，所以守护线程永远不应该去访问固有资源。
+ </p>
   </section>
-  <footer class="entry-footer">2021-06-21&nbsp;·&nbsp;14 min&nbsp;·&nbsp;Rex</footer>
-  <a class="entry-link" aria-label="post link to RabbitMQ学习" href="https://rex0520.github.io/posts/back/microservices/rabbitmq/"></a>
+  <footer class="entry-footer">2021-06-08&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Rex</footer>
+  <a class="entry-link" aria-label="post link to 守护线程" href="https://rex0520.github.io/posts/back/threadpool/%E5%AE%88%E6%8A%A4%E7%BA%BF%E7%A8%8B/"></a>
 </article>
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2>CSS3</h2>
+    <h2>线程池</h2>
   </header>
   <section class="entry-content">
-    <p>CSS3 CSS新增选择器 属性选择器    选择器 简介     E[attr] 选择具有attr属性的E元素   E[attr=“val”] 选择具有attr属性且属性值等于E的元素   E[attr^=“val”] 匹配具有attr属性且值以val开头的E元素   E[attr$=“val”] 匹配具有attr属性且值以val结尾的E元素   E[attr*=“val”] 匹配具有attr属性且值中含有val的E元素    属性选择器的权重为10
-结构伪类选择器    选择符 简介     E:first-child 匹配父元素中的第一个子元素E   E:last-child 匹配父元素中最后一个E元素   E:nth-child(n) 匹配父元素中的第n个子元素E   E:first-of-type 指定类型E的第一个   E:last-of-type 指定类型E的最后一个   E:nth-of-type(n) 指定类型E的第n个    nth-child(n)...</p>
+    <p>线程池 线程池介绍 软件中的池可以理解为计划经济
+优点：
+ 复用线程 控制资源总量  好处：
+ 加快响应速度 合理利用CPU和内存 统一管理  适用场合
+ 服务器接收到大量请求时，使用线程池技术是非常合适的，它可以大大减少线程的创建和销毁次数，提高服务器的工作效率 实际上，在开发中，如果需要创建5个以上的线程，那么就可以使用线程池来管理  创建和停止线程池 线程池构造方法的参数    参数名 类型 含义     corePoolSize int 核心线程数   maxPoolSize int 最大线程数   keepAliveTime long 保持存活时间   workQueue BlockingQueue 任务存储队列   threadFactory ThreadFactory 当线程池需要新的线程的时候，会使用threadFactory来生成新的线程   Handler RejectedExecutionHandler 由于线程池无法接受你所提交的任务的拒绝策略    添加线程规则  如果线程数小于corePoolSize，创建一个新线程来运行新任务。 如果线程数等于（或大于）corePoolSize但少于maxmumPoolSize，则将任务放入队列。 如果队列已满，并且线程数小于maxPoolSize，则创建一个新线程。 如果队列已满，并且线程数大于或等于maxPoolSize，则拒绝。  是否需要增加线程的判断顺序是：...</p>
   </section>
-  <footer class="entry-footer">2021-06-18&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Rex</footer>
-  <a class="entry-link" aria-label="post link to CSS3" href="https://rex0520.github.io/posts/front/css3/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>ThreadLocal详解</h2>
-  </header>
-  <section class="entry-content">
-    <p>ThreadLocal详解 使用场景：   每个线程需要一个独享的对象（通常是工具类，典型需要使用的类有SimpleDateFormat和Random）
- 每个Thread内有自己的实例副本，不共享 比喻：教材只有一本，一起做笔记有线程安全问题。复印后没有问题，ThreadLocal相当于生成了一个副本  重写initialValue方法
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45  package treadlocal; import java.text.SimpleDateFormat; import java.util.Date; import java.util.concurrent.ExecutorService; import java.util.concurrent.Executors; /** * @Description: 利用ThreadLocal，给每个线程分配自己的dateFormat对象，保证了线程安全，高效利用内存 * @Author: Rex * @Create: 2021-06-09 14:43 */ public class ThreadLocalNormalUsage05 { public static ExecutorService executor = Executors....</p>
-  </section>
-  <footer class="entry-footer">2021-06-10&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Rex</footer>
-  <a class="entry-link" aria-label="post link to ThreadLocal详解" href="https://rex0520.github.io/posts/back/threadpool/threadlocal%E8%AF%A6%E8%A7%A3/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>分布式</h2>
-  </header>
-  <section class="entry-content">
-    <p>分布式 定义：  利用物理架构形成多个自治的处理元素，不共享主内存, 但是通过发送信息合作。— Leslie Lamport
- 实际项目的演进过程  一个项目，大而全 多台机器，部署同样的应用 分布式：权限系统、员工系统、请假系统  分布式的作用 为什么需要分布式  解决单体应用的问题  应用代码耦合严重，功能扩展难 新需求开发交互周期长，测试工程量大 新加入的开发同事需要很长时间才能属性系统 升级维护困难（改动任何一点地方都要升级整个系统） 系统性能提升艰难，可用性低，不稳定    分布式的好处  增大系统容量 加强系统可用 因为模块化，所以系统模块重用度高 因为软件服务模块被拆分，开发和发布速度可以并行变得更块 系统拓展性更高 团队协作流程也会得到改善 技术升级  分布式和单体结构的对比     传统单体结构 分布式架构     新人的学习成本 业务逻辑成本高 架构逻辑成本高   部署、运维 容易 发布频繁，发布顺序复杂、运维难   隔离性 一损俱损，殃及鱼塘 故障影响范围小   架构设计 难度低 难度指数级上升   系统性能 响应快、吞吐量小 响应慢、吞吐量大   测试成本 低 很高   技术多样性 技术单一且封闭 技术多样且开放   系统扩展性 扩展性差 扩展性很好   系统管理成本 成本低 成本高    CAP定理   CAP理论：三者不可兼得...</p>
-  </section>
-  <footer class="entry-footer">2021-06-10&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Rex</footer>
-  <a class="entry-link" aria-label="post link to 分布式" href="https://rex0520.github.io/posts/back/microservices/%E5%88%86%E5%B8%83%E5%BC%8F/"></a>
+  <footer class="entry-footer">2021-06-08&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Rex</footer>
+  <a class="entry-link" aria-label="post link to 线程池" href="https://rex0520.github.io/posts/back/threadpool/%E7%BA%BF%E7%A8%8B%E6%B1%A0/"></a>
 </article>
 
 <article class="post-entry"> 
@@ -216,13 +200,52 @@
   </header>
   <section class="entry-content">
     <p>CSS CSS简介  层叠样式表(Cascading Style Sheets)的简称 美化HTML、布局网页 结构（HTML）-样式（CSS）分离  语法规范： ​	选择器{属性:值}
-1  h1{color: red;}   语法风格   紧凑格式
-1  h3 {color:red}     展开格式(强推)
-1 2 3 4  h3 { color: pink; font-size:20px; }     选择器： CSS引入方式  内部样式表 行内样式表 外部样式表  CSS常用选择器 基础选择器  标签选择器 类选择器 id选择器 通配符选择器  复合选择器   后代选择器
-元素1 元素2 { 样式声明 }...</p>
+h1{color: red;} 语法风格   紧凑格式
+h3 {color:red}   展开格式(强推)
+h3 { color: pink; font-size:20px; }   选择器： CSS引入方式  内部样式表 行内样式表 外部样式表  CSS常用选择器 基础选择器  标签选择器 类选择器 id选择器 通配符选择器  复合选择器   后代选择器
+元素1 元素2 { 样式声明 }
+  子选择器：只能选择作为某元素的最近一级 元素，
+元素1&gt;元素2 { 样式声明 }
+  并集选择器
+元素1,元素2 { 样式声明 }...</p>
   </section>
-  <footer class="entry-footer">2021-05-14&nbsp;·&nbsp;5 min&nbsp;·&nbsp;Rex</footer>
+  <footer class="entry-footer">2021-05-14&nbsp;·&nbsp;4 min&nbsp;·&nbsp;Rex</footer>
   <a class="entry-link" aria-label="post link to CSS" href="https://rex0520.github.io/posts/front/css/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>网页开发</h2>
+  </header>
+  <section class="entry-content">
+    <p>网页开发 浏览器内核    浏览器 内核 备注     IE Trident IE、猎豹、360极速浏览器、百度浏览器   firefox Gecko 火狐浏览器内核   Safari Webkit 苹果浏览器内核   Chrome/Opera Blink Chrome/Opera浏览器内核。Blink其实是Webkit的分支    Web标准 目的： ​	浏览器不同，他们显示页面或者排版不同
+构成：  结构 - HTML 表现 - CSS 行为 - JavaScript  SEO优化 TDK三大标签   title
+title是搜索引擎了解网页入口和网页主题归属的最佳判断点
+建议：网站名（产品名）-网站的介绍（尽量不超过30个汉字）
+  description
+简要说明我们网站主要是做什么的。
+我们提倡，description作为网站的总体业务和主题概况
+  keyword
+keywords是页面关键字，是搜索引擎的关注点之一。
+keywords最好限制为6~8个关键字，关键字之间用英文逗号隔开，采用关键词1，关键词2的形式
+  LOGO SEO优化  logo里面首先放一个h1标签，目的是为了提权，告诉搜索引擎，这个地方很重要 h1里面再放一个链接，可以返回首页的，把logo的背景图片给链接即可。 为了搜索引擎收录我们，我们链接里面要放文字（网站名称），但是文字不要显示出来  方法1：text-index移到盒子外面（text-indent:-9999px），然后overflow:hidden，淘宝的做法 方法2：直接给font-size:0;就看不到文字了，京东的做法。   最后给链接一个title属性，这样鼠标放到logo上就可以看到提示文字了  HTML标签 声明部分 文档类型声明标签 ​	&lt;!...</p>
+  </section>
+  <footer class="entry-footer">2021-05-14&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Rex</footer>
+  <a class="entry-link" aria-label="post link to 网页开发" href="https://rex0520.github.io/posts/front/%E7%BD%91%E9%A1%B5%E5%BC%80%E5%8F%91/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>HTML5</h2>
+  </header>
+  <section class="entry-content">
+    <p>HTML5 TIP: 存在兼容性问题，基本上IE&#43;9以上版本的浏览器才支持
+语义化标签  &lt;head&gt;: 头部标签 &lt;nav&gt;: 导航标签 &lt;artivle&gt;: 内容标签 &lt;section&gt;: 定义文档某个区域 &lt;aside&gt;: 侧边栏标签 &lt;footer&gt;: 尾部标签  注意：
+ 这种语义化标准主要是针对搜索引擎的 这些新标签页面可以使用多次 在IE9中，需要把这些元素转换为块级元素 移动端更喜欢使用这些标签  多媒体标签   &lt;vedio&gt;
+   浏览器 MP4 Webm ogg     Internet Explore Yes No No   Chrome Yes Yes Yes   Firefox Yes从Firefox21版本开始Linux系统从Firefox30开始 Yes Yes   Safari Yes No No   Opera Yes Yes Yes    语法：...</p>
+  </section>
+  <footer class="entry-footer">2021-05-12&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Rex</footer>
+  <a class="entry-link" aria-label="post link to HTML5" href="https://rex0520.github.io/posts/front/html5/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

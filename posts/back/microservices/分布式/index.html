@@ -6,12 +6,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
 <title>分布式 | Rex</title>
-<meta name="keywords" content="java, 微服务, spring, 后端" />
-<meta name="description" content="微服务学习记录">
+<meta name="keywords" content="微服务" />
+<meta name="description" content="分布式">
 <meta name="author" content="Rex">
 <link rel="canonical" href="https://rex0520.github.io/posts/back/microservices/%E5%88%86%E5%B8%83%E5%BC%8F/" />
 <link crossorigin="anonymous" href="/assets/css/stylesheet.min.css" rel="preload stylesheet" as="style">
 <link rel="preload" href="http://cdn.rexweb.xyz/img/20210821105340.png" as="image">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.min.js" onload="hljs.initHighlightingOnLoad();"></script>
 <link rel="icon" href="https://rex0520.github.io/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="https://rex0520.github.io/favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="https://rex0520.github.io/favicon-32x32.png">
@@ -21,7 +22,7 @@
 <meta name="msapplication-TileColor" content="#2e2e33">
 <meta name="generator" content="Hugo 0.87.0" />
 <meta property="og:title" content="分布式" />
-<meta property="og:description" content="微服务学习记录" />
+<meta property="og:description" content="分布式" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://rex0520.github.io/posts/back/microservices/%E5%88%86%E5%B8%83%E5%BC%8F/" /><meta property="og:image" content="https://cdn.rexweb.xyz/img/20210820141535.jpg"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2021-06-10T00:00:00&#43;00:00" />
@@ -31,7 +32,7 @@
 <meta name="twitter:image" content="https://cdn.rexweb.xyz/img/20210820141535.jpg"/>
 
 <meta name="twitter:title" content="分布式"/>
-<meta name="twitter:description" content="微服务学习记录"/>
+<meta name="twitter:description" content="分布式"/>
 
 
 <script type="application/ld+json">
@@ -60,9 +61,9 @@
   "@type": "BlogPosting",
   "headline": "分布式",
   "name": "分布式",
-  "description": "微服务学习记录",
+  "description": "分布式",
   "keywords": [
-    "java", "微服务", "spring", "后端"
+    "微服务"
   ],
   "articleBody": "分布式 定义：  利用物理架构形成多个自治的处理元素，不共享主内存, 但是通过发送信息合作。— Leslie Lamport\n 实际项目的演进过程  一个项目，大而全 多台机器，部署同样的应用 分布式：权限系统、员工系统、请假系统  分布式的作用 为什么需要分布式  解决单体应用的问题  应用代码耦合严重，功能扩展难 新需求开发交互周期长，测试工程量大 新加入的开发同事需要很长时间才能属性系统 升级维护困难（改动任何一点地方都要升级整个系统） 系统性能提升艰难，可用性低，不稳定    分布式的好处  增大系统容量 加强系统可用 因为模块化，所以系统模块重用度高 因为软件服务模块被拆分，开发和发布速度可以并行变得更块 系统拓展性更高 团队协作流程也会得到改善 技术升级  分布式和单体结构的对比     传统单体结构 分布式架构     新人的学习成本 业务逻辑成本高 架构逻辑成本高   部署、运维 容易 发布频繁，发布顺序复杂、运维难   隔离性 一损俱损，殃及鱼塘 故障影响范围小   架构设计 难度低 难度指数级上升   系统性能 响应快、吞吐量小 响应慢、吞吐量大   测试成本 低 很高   技术多样性 技术单一且封闭 技术多样且开放   系统扩展性 扩展性差 扩展性很好   系统管理成本 成本低 成本高    CAP定理   CAP理论：三者不可兼得\n C：（Consistency，一致性）：读操作是否总能读到前一个写操作的结果 A：（Availbilty，可用性）：非故障节点应该在合理的时间内做出合理的响应，但是可能不是最新的数据 P：（Partition tolerance，分区容错性）：当出现网络分区现象后，系统能够继续运行    分区容错（P）\n  一致性（C）\n  可用性(A)\n  CAP的选取\n 火车票 C 银行转账 A    集群、分布式、微服务的区别 集群与分布式  集群：一个业拆分多个子业务，部署在不同的服务器上 分布式：同一个业务，部署在多个服务器上  集群和微服务  集群：分散压力 微服务：分散能力  分布式和微服务  分布式：系统部署方式，部署角度（后） 微服务：架构设计方式，逻辑角度（先）  ",
   "wordCount" : "80",
@@ -205,7 +206,7 @@
       分布式
     </h1>
     <div class="post-description">
-      微服务学习记录
+      分布式
     </div>
     <div class="post-meta">2021-06-10&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Rex&nbsp;|&nbsp;<a href="https://github.com/Rex0520/Rex0520.github.io" rel="noopener noreferrer" target="_blank">来这修改</a>
 </div>
@@ -394,27 +395,24 @@
   </div>
   <footer class="post-footer">
     <ul class="post-tags">
-      <li><a href="https://rex0520.github.io/tags/java/">java</a></li>
       <li><a href="https://rex0520.github.io/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/">微服务</a></li>
-      <li><a href="https://rex0520.github.io/tags/spring/">spring</a></li>
-      <li><a href="https://rex0520.github.io/tags/%E5%90%8E%E7%AB%AF/">后端</a></li>
     </ul>
 <nav class="paginav">
-  <a class="prev" href="https://rex0520.github.io/posts/back/threadpool/threadlocal%E8%AF%A6%E8%A7%A3/">
+  <a class="prev" href="https://rex0520.github.io/posts/back/microservices/docker%E7%9A%84%E5%AE%89%E8%A3%85/">
     <span class="title">« Prev Page</span>
     <br>
-    <span>ThreadLocal详解</span>
+    <span>Docker的安装</span>
   </a>
-  <a class="next" href="https://rex0520.github.io/posts/front/css/">
+  <a class="next" href="https://rex0520.github.io/posts/back/threadpool/threadlocal%E8%AF%A6%E8%A7%A3/">
     <span class="title">Next Page »</span>
     <br>
-    <span>CSS</span>
+    <span>Threadlocal详解</span>
   </a>
 </nav>
 
 <div class="share-buttons">
     <a target="_blank" rel="noopener noreferrer" aria-label="share 分布式 on twitter"
-        href="https://twitter.com/intent/tweet/?text=%e5%88%86%e5%b8%83%e5%bc%8f&amp;url=https%3a%2f%2frex0520.github.io%2fposts%2fback%2fmicroservices%2f%25E5%2588%2586%25E5%25B8%2583%25E5%25BC%258F%2f&amp;hashtags=java%2c%e5%be%ae%e6%9c%8d%e5%8a%a1%2cspring%2c%e5%90%8e%e7%ab%af">
+        href="https://twitter.com/intent/tweet/?text=%e5%88%86%e5%b8%83%e5%bc%8f&amp;url=https%3a%2f%2frex0520.github.io%2fposts%2fback%2fmicroservices%2f%25E5%2588%2586%25E5%25B8%2583%25E5%25BC%258F%2f&amp;hashtags=%e5%be%ae%e6%9c%8d%e5%8a%a1">
         <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
             <path
                 d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-253.927,424.544c135.939,0 210.268,-112.643 210.268,-210.268c0,-3.218 0,-6.437 -0.153,-9.502c14.406,-10.421 26.973,-23.448 36.935,-38.314c-13.18,5.824 -27.433,9.809 -42.452,11.648c15.326,-9.196 26.973,-23.602 32.49,-40.92c-14.252,8.429 -30.038,14.56 -46.896,17.931c-13.487,-14.406 -32.644,-23.295 -53.946,-23.295c-40.767,0 -73.87,33.104 -73.87,73.87c0,5.824 0.613,11.494 1.992,16.858c-61.456,-3.065 -115.862,-32.49 -152.337,-77.241c-6.284,10.881 -9.962,23.601 -9.962,37.088c0,25.594 13.027,48.276 32.95,61.456c-12.107,-0.307 -23.448,-3.678 -33.41,-9.196l0,0.92c0,35.862 25.441,65.594 59.311,72.49c-6.13,1.686 -12.72,2.606 -19.464,2.606c-4.751,0 -9.348,-0.46 -13.946,-1.38c9.349,29.426 36.628,50.728 68.965,51.341c-25.287,19.771 -57.164,31.571 -91.8,31.571c-5.977,0 -11.801,-0.306 -17.625,-1.073c32.337,21.15 71.264,33.41 112.95,33.41Z" />
