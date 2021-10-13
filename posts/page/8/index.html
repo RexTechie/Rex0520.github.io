@@ -163,6 +163,22 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>Spring IoC与Bean管理</h2>
+  </header>
+  <section class="entry-content">
+    <p>Spring IoC与Bean管理 Spring快速入门 IoC控制反转  IoC控制反转，全称Inverse of Control，是一种设计理念，把对象创建和对象之间的调用过程，交给spring进行管理 由代理人来创建与管理对象，消费者通过代理人来获取对象 IoC的目的是降低对象之间直接耦合 加入IoC容器将对象统一管理，让对象关联变为弱耦合  DI依赖注入  IoC是设计理念，是现代程序设计遵循的标准，是宏观目标 DI(Dependency Injection)是具体技术实现，是微观实现 DI在Java中利用反射技术实现对象注入（Injection）  Spring Spring的含义  Spring可从狭义与广义俩个角度看待 狭义的Spring是指Spring框架（Spring Framework） 广义的Spring是指Spring生态体系  狭义的Spring  Spring框架是企业开发复杂性的一站式解决方案 Spring框架的核心是IoC容器与AOP面向切面变成 Spring IoC负责创建与管理系统对象，并在此基础上扩展功能  传统开发方式  对象直接引用导致对象硬性关联，程序难以扩展维护  Spring IoC  IoC容器是Spring生态的地基用于统一创建与管理对象依赖  Spring IoC容器职责  对象的控制器交由第三方统一管理（IoC控制反转） 利用Java反射技术实现运行时对象创建与关联（DI依赖注入） 基于配置提高应用程序的可维护性与扩展性  IOC底层原理：  xml解析、工厂模式、反射  IOC(接口)   IOC思想基于IOC容器完成，IOC容器底层就是对象工厂
+  Spring提供IOC容器实现两种方式：（两个接口）
+  BeanFactory：IOC容器基本实现方式，是Spring内部的使用的接口，不提供给开发人员使用
+特点：
+​	加载配置文件时候不会创建对象，在获取对象（使用）才去创建对象
+  ApplicationContext：BeanFactory接口的子接口，提供更多更强大的功能， 一般由开发人员进行使用...</p>
+  </section>
+  <footer class="entry-footer">2021-01-01&nbsp;·&nbsp;6 min&nbsp;·&nbsp;Rex</footer>
+  <a class="entry-link" aria-label="post link to Spring IoC与Bean管理" href="https://rex0520.github.io/posts/back/ssm2springboot/spring/springioc%E4%B8%8Ebean%E7%AE%A1%E7%90%86/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>Spring框架概述</h2>
   </header>
   <section class="entry-content">
@@ -206,19 +222,6 @@
   </section>
   <footer class="entry-footer">2020-10-23&nbsp;·&nbsp;6 min&nbsp;·&nbsp;Rex</footer>
   <a class="entry-link" aria-label="post link to Java反射学习" href="https://rex0520.github.io/posts/back/java/reflect/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>Lambda学习</h2>
-  </header>
-  <section class="entry-content">
-    <p>Lambda表达式 什么是Lambda表达式  JDK8开始支持Lambda表达式，用来让程序编写更优雅 利用Lambda可以更简洁的实现匿名内部类与函数声明与调用 基于Lambda提供stream流式处理极大简化对集合的操作  Lambda表达式语法格式： 说明： 代码示例：  MathOperation.java
-1 2 3 4 5 6 7 8 9 10 11 12  package com.imooc.lambda; /** * 四则运算接口 * @author CubeMonkey * @create 2020-10-23 17:39 */ @FunctionalInterface //通知编译器这是函数式接口，进行抽象方法检查 public interface MathOperation { public Float operate(Integer a, Integer b); }   LambdaSample.java
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36  package com....</p>
-  </section>
-  <footer class="entry-footer">2020-10-23&nbsp;·&nbsp;5 min&nbsp;·&nbsp;Rex</footer>
-  <a class="entry-link" aria-label="post link to Lambda学习" href="https://rex0520.github.io/posts/back/java/lambda%E5%AD%A6%E4%B9%A0/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

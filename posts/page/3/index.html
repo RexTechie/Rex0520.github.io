@@ -163,6 +163,17 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>Docker的安装</h2>
+  </header>
+  <section class="entry-content">
+    <p>Docker的安装（CentOS）  先有一个Cent OS 7.6系统 这个很重要，不同版本按照的时候是不一样的。查看CentOS版本 cat /etc/redhat-release 用root账户登录进去 配置国内yum源  1 2 3  wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo yum clean all yum makecache   卸载旧版本   较旧的Docker版本称为docker或docker-engine。如果已安装这些程序，请卸载它们以及相关的依赖项。  1 2 3 4 5 6 7 8  yum remove docker \ docker-client \ docker-client-latest \ docker-common \ docker-latest \ docker-latest-logrotate \ docker-logrotate \ docker-engine    如果yum报告未安装这些软件包，也没问题。  更新yum  1 2  yum check-update yum update   安装所需的软件包  1  yum install -y yum-utils\device-mapper-persistent-data\lvm2   使用以下命令来设置稳定的存储库  1  sudo yum-config-manager --add-repo http://mirrors....</p>
+  </section>
+  <footer class="entry-footer">2021-06-26&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Rex</footer>
+  <a class="entry-link" aria-label="post link to Docker的安装" href="https://rex0520.github.io/posts/back/microservices/docker%E7%9A%84%E5%AE%89%E8%A3%85/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>Docker简介</h2>
   </header>
   <section class="entry-content">
@@ -219,18 +230,6 @@
   </section>
   <footer class="entry-footer">2021-06-22&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Rex</footer>
   <a class="entry-link" aria-label="post link to 微服务" href="https://rex0520.github.io/posts/back/microservices/%E5%BE%AE%E6%9C%8D%E5%8A%A1/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>RabbitMQ学习</h2>
-  </header>
-  <section class="entry-content">
-    <p>RabbitMQ RabbitMQ简介 核心思想  接受并转发消息。
- producer: P queue: queue_name Consumer: C 消息队列：  业务无关 FIFO 容灾 性能  特点：  开源、跨语言 Erlang语言编写 应用广泛 社区活跃、API丰富  AMBQ协议  Advanced Message Queue Protocol   RabbitMQ核心概念  Server：服务 connection：与Server建立连接 channel：信道，几乎所有的操作都在信道上进行，客户端可以建立多个信道 message：消息，有properties和body组成 virtual host：虚拟主机，顶层隔离。同一个虚拟主机下，不能有重复的交换机和queue Exchange：交换机，接收生产者的消息的，然后根据指定的路由器去把消息转发到锁绑定的队列上 binding：绑定交换机和队列 routing key：路由键，路由规则，虚拟机可以用它来确定这个消息如何进行一个路由 queue：队列，消费者只需要监听队列来消费信息，不需要关注消息来自于哪个Exchange Exchange和Message Queue存在着绑定的关系，一个Exchange可以绑定多个消息队列 消息流转过程      RabbitMQ常用命令 1 2  systemctl start rabbitmq-server # 启动rabbitmq rabbitmqctl status # 查看状态   RabbitMQ后台管理  http://1....</p>
-  </section>
-  <footer class="entry-footer">2021-06-21&nbsp;·&nbsp;14 min&nbsp;·&nbsp;Rex</footer>
-  <a class="entry-link" aria-label="post link to RabbitMQ学习" href="https://rex0520.github.io/posts/back/microservices/rabbitmq/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
