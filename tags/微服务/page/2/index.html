@@ -21,7 +21,43 @@
 <meta name="msapplication-TileColor" content="#2e2e33">
 <meta name="generator" content="Hugo 0.87.0" />
 <link rel="alternate" type="application/rss+xml" href="https://rex0520.github.io/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/index.xml">
-<meta property="og:title" content="微服务" />
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:title" content="微服务" />
 <meta property="og:description" content="Rex的个人博客" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://rex0520.github.io/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" /><meta property="og:image" content="https://cdn.rexweb.xyz/img/20210820141535.jpg"/><meta property="og:site_name" content="RexHub" />
@@ -45,43 +81,6 @@
     }
 
 </script>
-<noscript>
-    <style type="text/css">
-        #theme-toggle,
-        .top-link {
-            display: none;
-        }
-
-    </style>
-    <style>
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --theme: #1d1e20;
-                --entry: #2e2e33;
-                --primary: rgba(255, 255, 255, 0.84);
-                --secondary: rgba(255, 255, 255, 0.56);
-                --tertiary: rgba(255, 255, 255, 0.16);
-                --content: rgba(255, 255, 255, 0.74);
-                --hljs-bg: #2e2e33;
-                --code-bg: #37383e;
-                --border: #333;
-            }
-
-            .list {
-                background: var(--theme);
-            }
-
-            .list:not(.dark)::-webkit-scrollbar-track {
-                background: 0 0;
-            }
-
-            .list:not(.dark)::-webkit-scrollbar-thumb {
-                border-color: var(--theme);
-            }
-        }
-
-    </style>
-</noscript>
 
 <header class="header">
     <nav class="nav">
@@ -148,7 +147,8 @@
 
 <article class="post-entry tag-entry"> 
   <header class="entry-header">
-    <h2>Rabbitmq使用</h2>
+    <h2>Rabbitmq使用
+    </h2>
   </header>
   <section class="entry-content">
     <p>RabbitMQ RabbitMQ简介 核心思想  接受并转发消息。
@@ -160,7 +160,8 @@
 
 <article class="post-entry tag-entry"> 
   <header class="entry-header">
-    <h2>Nginx的入门</h2>
+    <h2>Nginx的入门
+    </h2>
   </header>
   <section class="entry-content">
     <p>Nginx的安装 Linux安装  登录root账号 执行yum install yum-utils 运行vim /etc/yum.repos.d/nginx.repo [nginx-stable] name=nginx stable repo baseurl=http://nginx.org/packages/centos/7/$basearch/ gpgcheck=1 enabled=1 gpgkey=https://nginx.org/keys/nginx_signing.key module_hotfixes=true [nginx-mainline] name=nginx mainline repo baseurl=http://nginx.org/packages/mainline/centos/7/$basearch/ gpgcheck=1 enabled=0 gpgkey=https://nginx.org/keys/nginx_signing.key module_hotfixes=true  然后查看源 yum list | grep nginx 看到存在稳定版的源，确认无误。 运行安装命令 yum install nginx 1:1.16.1-1.el7.ngx 过程中输入y，确认 查看版本，若出现版本号，则安装成功 用whereis nginx可以查看到目录： nginx: /usr/sbin/nginx /usr/lib64/nginx /etc/nginx /usr/share/nginx /usr/share/man/man8/nginx.8.gz  MacOS的安装  安装homebrew，然后nginx使用安装brew： $ brew install nginx  笔记：
@@ -173,7 +174,8 @@
 
 <article class="post-entry tag-entry"> 
   <header class="entry-header">
-    <h2>Docker的安装</h2>
+    <h2>Docker的安装
+    </h2>
   </header>
   <section class="entry-content">
     <p>Docker的安装 在Cent OS安装docker  先有一个Cent OS 7.6系统   这个很重要，不同版本按照的时候是不一样的。查看CentOS版本 cat /etc/redhat-release
@@ -188,7 +190,8 @@
 
 <article class="post-entry tag-entry"> 
   <header class="entry-header">
-    <h2>分布式</h2>
+    <h2>分布式
+    </h2>
   </header>
   <section class="entry-content">
     <p>分布式 定义：  利用物理架构形成多个自治的处理元素，不共享主内存, 但是通过发送信息合作。— Leslie Lamport
@@ -203,7 +206,8 @@
   </nav>
 </footer>
     </main>
-    <footer class="footer">
+    
+<footer class="footer">
     <span>&copy; 2021 <a href="https://rex0520.github.io/">Rex</a></span>
     <span>
         Powered by
@@ -211,12 +215,10 @@
         <a href="https://git.io/hugopapermod" rel="noopener" target="_blank">PaperMod</a>
     </span>
 </footer>
-<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)">
-    <button class="top-link" id="top-link" type="button" accesskey="g">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
-            <path d="M12 6H0l6-6z" />
-        </svg>
-    </button>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
 </a>
 
 <script>

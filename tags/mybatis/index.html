@@ -21,7 +21,43 @@
 <meta name="msapplication-TileColor" content="#2e2e33">
 <meta name="generator" content="Hugo 0.87.0" />
 <link rel="alternate" type="application/rss+xml" href="https://rex0520.github.io/tags/mybatis/index.xml">
-<meta property="og:title" content="Mybatis" />
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:title" content="Mybatis" />
 <meta property="og:description" content="Rex的个人博客" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://rex0520.github.io/tags/mybatis/" /><meta property="og:image" content="https://cdn.rexweb.xyz/img/20210820141535.jpg"/><meta property="og:site_name" content="RexHub" />
@@ -45,43 +81,6 @@
     }
 
 </script>
-<noscript>
-    <style type="text/css">
-        #theme-toggle,
-        .top-link {
-            display: none;
-        }
-
-    </style>
-    <style>
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --theme: #1d1e20;
-                --entry: #2e2e33;
-                --primary: rgba(255, 255, 255, 0.84);
-                --secondary: rgba(255, 255, 255, 0.56);
-                --tertiary: rgba(255, 255, 255, 0.16);
-                --content: rgba(255, 255, 255, 0.74);
-                --hljs-bg: #2e2e33;
-                --code-bg: #37383e;
-                --border: #333;
-            }
-
-            .list {
-                background: var(--theme);
-            }
-
-            .list:not(.dark)::-webkit-scrollbar-track {
-                background: 0 0;
-            }
-
-            .list:not(.dark)::-webkit-scrollbar-thumb {
-                border-color: var(--theme);
-            }
-        }
-
-    </style>
-</noscript>
 
 <header class="header">
     <nav class="nav">
@@ -148,7 +147,8 @@
 
 <article class="post-entry tag-entry"> 
   <header class="entry-header">
-    <h2>Mybatis基础</h2>
+    <h2>Mybatis基础
+    </h2>
   </header>
   <section class="entry-content">
     <p>MyBatis基础入门 软件开发中的框架  框架是可被应用开发者定制的应用骨架 框架是一种规则，保证开发者遵循相同的方式开发程序 框架提倡“不要重复造轮子”，对基础功能进行封装  框架的优点  极大提高了开发效率 统一的编码规则，有利于团队管理 灵活配置的应用，拥有更好的维护性  SSM开发框架  S -&gt; Spring S -&gt; Spring MVC M -&gt; MyBatis  什么是MyBatis  MyBatis是优秀的持久层框架 MyBatis使用XML将SQL与程序解耦，便于维护 MyBatis学习简单，执行高效，是JDBC的延展  MyBatis开发流程  引入MyBatis依赖 创建核心配置文件 创建实体(Entity)类 创建Mapper映射文件 初始化SessionFactory 利用SqlSession对象操作数据  MyBatis环境配置 mybatis-config.xml说明  MyBatis采用XML格式配置数据库环境信息 MyBatis环境配置标签 environment包含数据库驱动、URL、用户名于密码  mybatis-config.xml示例： &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34; ?&gt; &lt;!DOCTYPE configuration PUBLIC &#34;-//mybatis.org//DTD Config 3.0//EN&#34; &#34;http://mybatis.org/dtd/mybatis-3-config.dtd&#34;&gt; &lt;configuration&gt; &lt;environments default=&#34;dev&#34;&gt; &lt;!--根据环境，不同的环境不同的id，dev-&gt;开发环境 prd-&gt;生产环境 --&gt; &lt;environment id=&#34;dev&#34;&gt; &lt;!--采用JDBC方式对数据库事务进行commit/rollback--&gt; &lt;transactionManager type=&#34;JDBC&#34;&gt;&lt;/transactionManager&gt; &lt;!...</p>
@@ -159,7 +159,8 @@
 
 <article class="post-entry tag-entry"> 
   <header class="entry-header">
-    <h2>Mybatis进阶</h2>
+    <h2>Mybatis进阶
+    </h2>
   </header>
   <section class="entry-content">
     <p>MyBatis进阶 什么是日志  日志文件是用于记录系统操作事件的记录文件或文件集合 日志保存历史数据，是诊断问题以及理解系统活动的重要依据  SLF4j与Logback 日志的使用:   引入logback依赖
@@ -171,7 +172,8 @@
   <a class="entry-link" aria-label="post link to Mybatis进阶" href="https://rex0520.github.io/posts/back/jdbctool/mybatis%E8%BF%9B%E9%98%B6/"></a>
 </article>
     </main>
-    <footer class="footer">
+    
+<footer class="footer">
     <span>&copy; 2021 <a href="https://rex0520.github.io/">Rex</a></span>
     <span>
         Powered by
@@ -179,12 +181,10 @@
         <a href="https://git.io/hugopapermod" rel="noopener" target="_blank">PaperMod</a>
     </span>
 </footer>
-<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)">
-    <button class="top-link" id="top-link" type="button" accesskey="g">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
-            <path d="M12 6H0l6-6z" />
-        </svg>
-    </button>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
 </a>
 
 <script>

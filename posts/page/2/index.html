@@ -7,7 +7,7 @@
 <meta name="robots" content="index, follow">
 <title>Posts | Rex</title>
 <meta name="keywords" content="" />
-<meta name="description" content="Rex的个人博客">
+<meta name="description" content="Posts - Rex">
 <meta name="author" content="Rex">
 <link rel="canonical" href="https://rex0520.github.io/posts/" />
 <link crossorigin="anonymous" href="/assets/css/stylesheet.min.css" rel="preload stylesheet" as="style">
@@ -21,7 +21,43 @@
 <meta name="msapplication-TileColor" content="#2e2e33">
 <meta name="generator" content="Hugo 0.87.0" />
 <link rel="alternate" type="application/rss+xml" href="https://rex0520.github.io/posts/index.xml">
-<meta property="og:title" content="Posts" />
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:title" content="Posts" />
 <meta property="og:description" content="Rex的个人博客" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://rex0520.github.io/posts/" /><meta property="og:image" content="https://cdn.rexweb.xyz/img/20210820141535.jpg"/><meta property="og:site_name" content="RexHub" />
@@ -60,43 +96,6 @@
     }
 
 </script>
-<noscript>
-    <style type="text/css">
-        #theme-toggle,
-        .top-link {
-            display: none;
-        }
-
-    </style>
-    <style>
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --theme: #1d1e20;
-                --entry: #2e2e33;
-                --primary: rgba(255, 255, 255, 0.84);
-                --secondary: rgba(255, 255, 255, 0.56);
-                --tertiary: rgba(255, 255, 255, 0.16);
-                --content: rgba(255, 255, 255, 0.74);
-                --hljs-bg: #2e2e33;
-                --code-bg: #37383e;
-                --border: #333;
-            }
-
-            .list {
-                background: var(--theme);
-            }
-
-            .list:not(.dark)::-webkit-scrollbar-track {
-                background: 0 0;
-            }
-
-            .list:not(.dark)::-webkit-scrollbar-thumb {
-                border-color: var(--theme);
-            }
-        }
-
-    </style>
-</noscript>
 
 <header class="header">
     <nav class="nav">
@@ -163,7 +162,8 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2>Docker基础</h2>
+    <h2>Docker基础
+    </h2>
   </header>
   <section class="entry-content">
     <p>Docker 概念  Docker是一个用来装程序及其环境的容器,属于Linux容器的 一种封装,提供简单易用的容器使用接口。它是目前最流行的 Linux容器解决方案。
@@ -179,7 +179,8 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2>Nginx使用</h2>
+    <h2>Nginx使用
+    </h2>
   </header>
   <section class="entry-content">
     <p>Nginx Nginx介绍 使用场景  HTTP的反向代理服务器  负载均衡 缓存   动态静态资源分离  优点  高并发、高性能 可扩展性好，体现在模块化设计 高可靠性，可以持续不断数十年运行 热部署，不停止服务来升级nginx 开源、可商用  Nginx常用命令 ./nginx # 启动nginx ps -aux|grep nginx # 查看nginx相关进程，也可以查到nginx运行的路径 nginx -h # 帮助 nginx -c # 读取指定配置文件 nginx -s stop # 关闭nginx nginx -t # 检查当前配置文件是否有问题，查看当前配置文件路径 nginx -v # 简要版本信息 -V详细信息 nginx -s stop|quit| # -s信号 stop立即停止，quit优雅停止，reload重启，reopen更换日志文件 Nginx配置文件   语法
@@ -191,7 +192,8 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2>微服务</h2>
+    <h2>微服务
+    </h2>
   </header>
   <section class="entry-content">
     <p>微服务 微服务概述 单体应用的痛点  部署效率低下 团队写作开发成本高 系统高可用性差  服务化  把传统的单机应用中的本地方法调用，改造成通过RPC、HTTP产生的远程方法调用 把模块从单体应用中拆分出来，独立成一个服务部署 用户模块就可以独立开发、测试、上线和运维，可以交由专门的团队来做，与主模块不耦合  从单体到微服务架构 微服务   一种架构风格 开发单个应用作为一系列小型服务的套件，其中每个服务都运行在自己的进程中，并且通过轻量级的机制实现彼此间的通信，这通常是HTTP资源API 这些服务是围绕着业务功能构建的，并且可以通过完全自动化的部署机制进行独立部署 这些服务的集中式管理做到了最小化（例如docker相关技术），每一种服务都可以通过不同的变成语言进行编写，并且可以使用不同的数据存储技术   微服务的特点   组件以服务形式来提供
@@ -208,7 +210,8 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2>Rabbitmq使用</h2>
+    <h2>Rabbitmq使用
+    </h2>
   </header>
   <section class="entry-content">
     <p>RabbitMQ RabbitMQ简介 核心思想  接受并转发消息。
@@ -220,7 +223,8 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2>CSS3</h2>
+    <h2>CSS3
+    </h2>
   </header>
   <section class="entry-content">
     <p>CSS3 CSS新增选择器 属性选择器    选择器 简介     E[attr] 选择具有attr属性的E元素   E[attr=“val”] 选择具有attr属性且属性值等于E的元素   E[attr^=“val”] 匹配具有attr属性且值以val开头的E元素   E[attr$=“val”] 匹配具有attr属性且值以val结尾的E元素   E[attr*=“val”] 匹配具有attr属性且值中含有val的E元素    属性选择器的权重为10
@@ -236,7 +240,8 @@
   </nav>
 </footer>
     </main>
-    <footer class="footer">
+    
+<footer class="footer">
     <span>&copy; 2021 <a href="https://rex0520.github.io/">Rex</a></span>
     <span>
         Powered by
@@ -244,12 +249,10 @@
         <a href="https://git.io/hugopapermod" rel="noopener" target="_blank">PaperMod</a>
     </span>
 </footer>
-<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)">
-    <button class="top-link" id="top-link" type="button" accesskey="g">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
-            <path d="M12 6H0l6-6z" />
-        </svg>
-    </button>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
 </a>
 
 <script>
