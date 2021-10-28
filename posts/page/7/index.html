@@ -162,6 +162,19 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>SpringMVC基础
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>Spring MVC Spring MVC介绍 MVC是什么 Spring MVC  Spring MVC是Spring体系的轻量级WEB MVC框架 Spring MVC的核心Controller控制器，用于处理请求，产生响应 Spring MVC基于Spring IoC容器运行，所有对象被IoC管理  Spring 5.X版本变化  Spring 5.x最低要求JDK8与J2EE 7(Servlet 3.1/Tomcat 8.5&#43;) Spring 5.x支持JDK8/9,可以使用新特性 Spring 5.x最重要的新特性支持响应式编程  Spring MVC环境配置  Maven依赖spring-webmvc web.xml配置DispatcherServlet 配置applicationContext的mvc标记 开发Controller控制器  简单示例：  applicationContext.xml:
+&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt; &lt;beans xmlns=&#34;http://www.springframework.org/schema/beans&#34; xmlns:mvc=&#34;http://www.springframework.org/schema/mvc&#34; xmlns:context=&#34;http://www.springframework.org/schema/context&#34; xmlns:xsi=&#34;http://www.w3.org/2001/XMLSchema-instance&#34; xmlns:mv=&#34;http://www.springframework.org/schema/mvc&#34; xsi:schemaLocation=&#34;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd&#34;&gt; &lt;!-- context:component-scan 标签作用 在Spring IOC初始化过程中，自动创建并管理com.imooc.springmvc及子包 拥有以下注解的对象 @Repository @Service @Controller @Component --&gt; &lt;context:component-scan base-package=&#34;com.imooc.springmvc&#34;/&gt; &lt;!--启用Spring MVC的注解开发模式--&gt; &lt;mvc:annotation-driven/&gt; &lt;!...</p>
+  </section>
+  <footer class="entry-footer">2021-03-09&nbsp;·&nbsp;3 min&nbsp;·&nbsp;Rex</footer>
+  <a class="entry-link" aria-label="post link to SpringMVC基础" href="https://rex0520.github.io/posts/back/framework/springmvc/springmvc%E5%9F%BA%E7%A1%80/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>SpringMVC拦截器
     </h2>
   </header>
@@ -211,18 +224,6 @@ package com.imooc.restful.interceptor; import org.springframework.web.servlet.Ha
   </section>
   <footer class="entry-footer">2021-01-06&nbsp;·&nbsp;9 min&nbsp;·&nbsp;Rex</footer>
   <a class="entry-link" aria-label="post link to Springjdbc" href="https://rex0520.github.io/posts/back/framework/spring/springjdbc/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>Spring框架概述
-    </h2>
-  </header>
-  <section class="entry-content">
-    <p>Spring 框架概述 1、Spring 是轻量级的开源的JavaEE框架 2、Spring 解决企业应用开发的复杂性 3、Spring有两个核心的部分：IOC和AOP （1）IOC：控制反转，把创建对象的过程交给Spring进行管理 （2）AOP：面向切面，不修改源代码进行功能增强 4、Spring特点 （1）方便解耦，简化开发 （2）AOP编程支持 （3）方便程序测试 （4）方便和其他框架进行整合 （5）方便进行事务操作 （6）降低API的开发难度 Core Container  Beans Core Context Expression  </p>
-  </section>
-  <footer class="entry-footer">2021-01-05&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Rex</footer>
-  <a class="entry-link" aria-label="post link to Spring框架概述" href="https://rex0520.github.io/posts/back/framework/spring/spring%E6%A1%86%E6%9E%B6%E6%A6%82%E8%BF%B0/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

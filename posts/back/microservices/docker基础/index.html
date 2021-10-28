@@ -101,8 +101,8 @@
   "keywords": [
     "微服务"
   ],
-  "articleBody": "Docker 概念  Docker是一个用来装程序及其环境的容器,属于Linux容器的 一种封装,提供简单易用的容器使用接口。它是目前最流行的 Linux容器解决方案。\n 痛点  环境配置 虚拟机  资源占用多 冗余步骤多 启动时间慢   Docker的基础 — Linux容器  启动快 占用资源少 体积小    用途  提供统一的环境 提供快速拓展、弹性伸缩的云服务 防止其他用户的进程把服务器资源占用过多  特点   标准化\n 运输方式（把程序和环境从一个机器运到另一个机器） 存储方式（程序和环境的存储） API接口（不需要Tomcat等应用的命令了，都标准化了）    灵活：即使是最复杂的应用也可以集装箱化\n  轻量级：容器利用并共享主机内核\n  便携式：可以在本地构建\n  Docker的组成、架构、重要概念 images（镜像）:  存储：联合文件系统，UnionFS    Container（容器）：  镜像类似于Java中的类，而容器就是实例 容器的这一层是可以修改的，而镜像是不可以修改的 同一个镜像可以生成多个容器独立运行，而他们之间没有任何的干扰  Repository（仓库）：        共有 vs 私有\n  client和daemon  client提供给用户一个终端，用户输入Docker提供的命令来管理本地或远程的服务 daemon：服务端守护进程，接受client发送的命令并执行相应的操作  Docker的网络模式  Bridge 桥接：独立（网卡独立、路由独立、iptable规则独立）的网络，与主机桥接 Host 主机：不是独立的网络，与主机使用同一个网络 None 没有网络 端口映射技术  制作自己的Docker容器，dockerfile实战   dockerfile作用：文本文件，用来配置镜像，docker根据这个来生成对应的镜像文件\n  dockerfile的好处：\n 便于版本控制 便于维护环境 便于新人初步了解程序    写自己的dockerfile\n  FROMalpine:latest # alpine--极小型的Linux环境，表示这个镜像基于这个系统MAINTAINERimooc # 描述这个镜像由谁来维护CMD echo 'hello my dockerfile' # 根据自己的业务需求来写    常用命令 docker images # 查询当前镜像列表 docker pull image # 拉取镜像到本地 docker run images image # 前台运行 docker run -d image # 后台运行 d表示detech docker ps # 查看当前后台运行的容器 docker exec -it status bash # -i代表容器输入有效 -t分配一个终端 docker stop status # 关闭容器 docker run -p 8080:80 # 本机8080端口映射到容器的80端口 -p自己定义 -P随机分配主机端口 netstat -na|grep 8080 # 查询端口状态 docker build -t hello_docker . #编译当前的Dockerfile文件，-t指定镜像名字 systemctl stop docker # 停止docker服务 ",
-  "wordCount" : "133",
+  "articleBody": "Docker 概念  Docker是一个用来装程序及其环境的容器,属于Linux容器的 一种封装,提供简单易用的容器使用接口。它是目前最流行的 Linux容器解决方案。\n 痛点  环境配置 虚拟机  资源占用多 冗余步骤多 启动时间慢   Docker的基础 — Linux容器  启动快 占用资源少 体积小    用途  提供统一的环境 提供快速拓展、弹性伸缩的云服务 防止其他用户的进程把服务器资源占用过多  特点   标准化\n 运输方式（把程序和环境从一个机器运到另一个机器） 存储方式（程序和环境的存储） API接口（不需要Tomcat等应用的命令了，都标准化了）    灵活：即使是最复杂的应用也可以集装箱化\n  轻量级：容器利用并共享主机内核\n  便携式：可以在本地构建\n  Docker的组成、架构、重要概念 images（镜像）:  存储：联合文件系统，UnionFS    Container（容器）：  镜像类似于Java中的类，而容器就是实例 容器的这一层是可以修改的，而镜像是不可以修改的 同一个镜像可以生成多个容器独立运行，而他们之间没有任何的干扰  Repository（仓库）：   官方仓库\n  阿里云仓库\n  网易云仓库\n  时速云\n  DaoCloud\n  共有 vs 私有\n  client和daemon  client提供给用户一个终端，用户输入Docker提供的命令来管理本地或远程的服务 daemon：服务端守护进程，接受client发送的命令并执行相应的操作  Docker的网络模式  Bridge 桥接：独立（网卡独立、路由独立、iptable规则独立）的网络，与主机桥接 Host 主机：不是独立的网络，与主机使用同一个网络 None 没有网络 端口映射技术  制作自己的Docker容器，dockerfile实战   dockerfile作用：文本文件，用来配置镜像，docker根据这个来生成对应的镜像文件\n  dockerfile的好处：\n 便于版本控制 便于维护环境 便于新人初步了解程序    写自己的dockerfile\n  FROMalpine:latest # alpine--极小型的Linux环境，表示这个镜像基于这个系统MAINTAINERimooc # 描述这个镜像由谁来维护CMD echo 'hello my dockerfile' # 根据自己的业务需求来写    常用命令 docker images # 查询当前镜像列表 docker pull image # 拉取镜像到本地 docker run images image # 前台运行 docker run -d image # 后台运行 d表示detech docker ps # 查看当前后台运行的容器 docker exec -it status bash # -i代表容器输入有效 -t分配一个终端 docker stop status # 关闭容器 docker run -p 8080:80 # 本机8080端口映射到容器的80端口 -p自己定义 -P随机分配主机端口 netstat -na|grep 8080 # 查询端口状态 docker build -t hello_docker . #编译当前的Dockerfile文件，-t指定镜像名字 systemctl stop docker # 停止docker服务 ",
+  "wordCount" : "138",
   "inLanguage": "en",
   "datePublished": "2021-06-25T00:00:00Z",
   "dateModified": "2021-06-25T00:00:00Z",
@@ -325,11 +325,21 @@ Linux容器解决方案。</p>
 </ul>
 <h3 id="repository仓库">Repository（仓库）：<a hidden class="anchor" aria-hidden="true" href="#repository仓库">#</a></h3>
 <ul>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
+<li>
+<p><a href="http://hub.docker.com">官方仓库</a></p>
+</li>
+<li>
+<p><a href="https://dev.aliyun.com/search.html">阿里云仓库</a></p>
+</li>
+<li>
+<p><a href="https://c.163yun.com/hub#/m/home/">网易云仓库</a></p>
+</li>
+<li>
+<p><a href="https://hub.tenxcloud.com/">时速云</a></p>
+</li>
+<li>
+<p><a href="https://hub.daocloud.io/">DaoCloud</a></p>
+</li>
 <li>
 <p>共有 vs 私有</p>
 </li>
