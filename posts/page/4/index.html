@@ -162,6 +162,20 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>Threadlocal详解
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>ThreadLocal详解 使用场景：   每个线程需要一个独享的对象（通常是工具类，典型需要使用的类有SimpleDateFormat和Random）
+ 每个Thread内有自己的实例副本，不共享 比喻：教材只有一本，一起做笔记有线程安全问题。复印后没有问题，ThreadLocal相当于生成了一个副本  重写initialValue方法
+package treadlocal; import java.text.SimpleDateFormat; import java.util.Date; import java.util.concurrent.ExecutorService; import java.util.concurrent.Executors; /** * @Description: 利用ThreadLocal，给每个线程分配自己的dateFormat对象，保证了线程安全，高效利用内存 * @Author: Rex * @Create: 2021-06-09 14:43 */ public class ThreadLocalNormalUsage05 { public static ExecutorService executor = Executors.newFixedThreadPool(10); public static void main(String[] args) throws InterruptedException { for (int i = 0; i &lt; 1000; i&#43;&#43;) { int finalI = i; executor.submit(new Thread(new Runnable() { @Override public void run() { String date = new ThreadLocalNormalUsage05()....</p>
+  </section>
+  <footer class="entry-footer">2021-06-08&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Rex</footer>
+  <a class="entry-link" aria-label="post link to Threadlocal详解" href="https://rex0520.github.io/posts/back/threadpool/threadlocal%E8%AF%A6%E8%A7%A3/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>关于reentrantlock和condition
     </h2>
   </header>
@@ -229,28 +243,6 @@ h3 { color: pink; font-size:20px; }   选择器： CSS引入方式  内部样式
   </section>
   <footer class="entry-footer">2021-05-14&nbsp;·&nbsp;4 min&nbsp;·&nbsp;Rex</footer>
   <a class="entry-link" aria-label="post link to CSS" href="https://rex0520.github.io/posts/front/css/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>网页开发
-    </h2>
-  </header>
-  <section class="entry-content">
-    <p>网页开发 浏览器内核    浏览器 内核 备注     IE Trident IE、猎豹、360极速浏览器、百度浏览器   firefox Gecko 火狐浏览器内核   Safari Webkit 苹果浏览器内核   Chrome/Opera Blink Chrome/Opera浏览器内核。Blink其实是Webkit的分支    Web标准 目的： ​	浏览器不同，他们显示页面或者排版不同
-构成：  结构 - HTML 表现 - CSS 行为 - JavaScript  SEO优化 TDK三大标签   title
-title是搜索引擎了解网页入口和网页主题归属的最佳判断点
-建议：网站名（产品名）-网站的介绍（尽量不超过30个汉字）
-  description
-简要说明我们网站主要是做什么的。
-我们提倡，description作为网站的总体业务和主题概况
-  keyword
-keywords是页面关键字，是搜索引擎的关注点之一。
-keywords最好限制为6~8个关键字，关键字之间用英文逗号隔开，采用关键词1，关键词2的形式
-  LOGO SEO优化  logo里面首先放一个h1标签，目的是为了提权，告诉搜索引擎，这个地方很重要 h1里面再放一个链接，可以返回首页的，把logo的背景图片给链接即可。 为了搜索引擎收录我们，我们链接里面要放文字（网站名称），但是文字不要显示出来  方法1：text-index移到盒子外面（text-indent:-9999px），然后overflow:hidden，淘宝的做法 方法2：直接给font-size:0;就看不到文字了，京东的做法。   最后给链接一个title属性，这样鼠标放到logo上就可以看到提示文字了  HTML标签 声明部分 文档类型声明标签 ​	&lt;!...</p>
-  </section>
-  <footer class="entry-footer">2021-05-14&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Rex</footer>
-  <a class="entry-link" aria-label="post link to 网页开发" href="https://rex0520.github.io/posts/front/%E7%BD%91%E9%A1%B5%E5%BC%80%E5%8F%91/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

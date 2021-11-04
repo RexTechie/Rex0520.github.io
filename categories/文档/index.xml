@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>文档 on Rex</title>
+    <link>https://rex0520.github.io/categories/%E6%96%87%E6%A1%A3/</link>
+    <description>Recent content in 文档 on Rex</description>
+    <image>
+      <url>https://cdn.rexweb.xyz/img/20210820141535.jpg</url>
+      <link>https://cdn.rexweb.xyz/img/20210820141535.jpg</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Thu, 04 Nov 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://rex0520.github.io/categories/%E6%96%87%E6%A1%A3/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>FraudPrevention开发文档</title>
+      <link>https://rex0520.github.io/posts/proj/doc/fraudprevention%E5%BC%80%E5%8F%91%E6%96%87%E6%A1%A3/</link>
+      <pubDate>Thu, 04 Nov 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rex0520.github.io/posts/proj/doc/fraudprevention%E5%BC%80%E5%8F%91%E6%96%87%E6%A1%A3/</guid>
+      <description>反诈项目文档</description>
+    </item>
+    
+  </channel>
+</rss>

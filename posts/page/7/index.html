@@ -162,6 +162,19 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>Restful开发风格
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>RESTful开发风格 REST与RESTful  REST(Representational State Transfer)-表现层状态转换，资源在网络中以某种表现形式进行状态转移 RESTful是基于REST理念的一套开发风格，是具体的开发规则  RESTful传输数据 RESTful开发规范  使用URL作为用户交互入口 明确的语义规范(GET|POST|PUT|DELETE-&gt;查|增|改|删) 只返回数据(JSON|XML)，不包含任何展现  RESTful命名要求    URI 说明 修改建议     GET /articles?au=lily 正确用法    GET /a/1 URI必须具有语义 GET /student/1   POST /createArticle/1 URI必须使用名词 POST /article/1   GET /articles/author/1 URI扁平化，不超两级 GET /articles/author?id=1   DELETE /articles/1 URI名词区分单复数 GET /articles?au=lilyDELETE /article/1    开发第一个RESTful应用  RestfulController.java
+package com.imooc.restful.controller; import org.springframework.stereotype.Controller; import org....</p>
+  </section>
+  <footer class="entry-footer">2021-03-09&nbsp;·&nbsp;3 min&nbsp;·&nbsp;Rex</footer>
+  <a class="entry-link" aria-label="post link to Restful开发风格" href="https://rex0520.github.io/posts/back/framework/springmvc/restful/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>SpringMVC基础
     </h2>
   </header>
@@ -211,19 +224,6 @@ package com.imooc.restful.interceptor; import org.springframework.web.servlet.Ha
   </section>
   <footer class="entry-footer">2021-02-04&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Rex</footer>
   <a class="entry-link" aria-label="post link to SpringBoot记录" href="https://rex0520.github.io/posts/back/framework/springboot/springboot%E8%AE%B0%E5%BD%95/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>Springjdbc
-    </h2>
-  </header>
-  <section class="entry-content">
-    <p>Spring JDBC与事务管理 Spring JDBC  Spring JDBC是Spring框架用于处理关系型数据库的模块 Spring JDBC对JDBC API进行封装，极大简化开发工作量 JdbcTemplate是Spring JDBC核心类，提供数据CRUD方法  Spring JDBC的使用步骤  Maven工程引入依赖spring-jdbc applicationContext.xml配置DataSource数据源 在Dao注入JdbcTemplate对象，实现数据CRUD  JdbcTemplate实现增删改查 Spring JDBC配置过程代码示例：  applicationContext.xml
-&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt; &lt;beans xmlns=&#34;http://www.springframework.org/schema/beans&#34; xmlns:xsi=&#34;http://www.w3.org/2001/XMLSchema-instance&#34; xmlns:context=&#34;http://www.springframework.org/schema/context&#34; xsi:schemaLocation=&#34; http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd&#34;&gt; &lt;!-- 数据源 --&gt; &lt;bean id=&#34;dataSource&#34; class=&#34;org.springframework.jdbc.datasource.DriverManagerDataSource&#34;&gt; &lt;property name=&#34;driverClassName&#34; value=&#34;com.mysql.cj.jdbc.Driver&#34;&gt;&lt;/property&gt; &lt;property name=&#34;url&#34; value=&#34;jdbc:mysql://localhost:3306/imooc?useSSL=false&amp;amp;useUnicode=true&amp;amp;characterEncoding=UTF-8&amp;amp;serverTimezone=Asia/Shanghai&amp;amp;allowPublicKeyRetrieval=true&#34;&gt;&lt;/property&gt; &lt;property name=&#34;username&#34; value=&#34;root&#34;&gt;&lt;/property&gt; &lt;property name=&#34;password&#34; value=&#34;root&#34;&gt;&lt;/property&gt; &lt;/bean&gt; &lt;!--JdbcTemplate提供CRUD的API--&gt; &lt;bean id=&#34;jdbcTemplate&#34; class=&#34;org.springframework.jdbc.core.JdbcTemplate&#34;&gt; &lt;property name=&#34;dataSource&#34; ref=&#34;dataSource&#34;&gt;&lt;/property&gt; &lt;/bean&gt; &lt;bean id=&#34;employeeDao&#34; class=&#34;com.imooc.spring.jdbc.dao.EmployeeDao&#34;&gt; &lt;!--为Dao注入JdbcTemplate对象--&gt; &lt;property name=&#34;jdbcTemplate&#34; ref=&#34;jdbcTemplate&#34;&gt;&lt;/property&gt; &lt;/bean&gt; &lt;/beans&gt; Employee....</p>
-  </section>
-  <footer class="entry-footer">2021-01-06&nbsp;·&nbsp;9 min&nbsp;·&nbsp;Rex</footer>
-  <a class="entry-link" aria-label="post link to Springjdbc" href="https://rex0520.github.io/posts/back/framework/spring/springjdbc/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

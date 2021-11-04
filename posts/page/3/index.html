@@ -162,6 +162,19 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>Rabbitmq使用
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>RabbitMQ RabbitMQ简介 核心思想  接受并转发消息。
+ producer: P queue: queue_name Consumer: C 消息队列：  业务无关 FIFO 容灾 性能  特点：  开源、跨语言 Erlang语言编写 应用广泛 社区活跃、API丰富  AMBQ协议  Advanced Message Queue Protocol   RabbitMQ核心概念  Server：服务 connection：与Server建立连接 channel：信道，几乎所有的操作都在信道上进行，客户端可以建立多个信道 message：消息，有properties和body组成 virtual host：虚拟主机，顶层隔离。同一个虚拟主机下，不能有重复的交换机和queue Exchange：交换机，接收生产者的消息的，然后根据指定的路由器去把消息转发到锁绑定的队列上 binding：绑定交换机和队列 routing key：路由键，路由规则，虚拟机可以用它来确定这个消息如何进行一个路由 queue：队列，消费者只需要监听队列来消费信息，不需要关注消息来自于哪个Exchange Exchange和Message Queue存在着绑定的关系，一个Exchange可以绑定多个消息队列 消息流转过程      RabbitMQ常用命令 systemctl start rabbitmq-server # 启动rabbitmq rabbitmqctl status # 查看状态 RabbitMQ后台管理  http://1.117.91.88:15672/#/connections rabbitmq management...</p>
+  </section>
+  <footer class="entry-footer">2021-06-21&nbsp;·&nbsp;11 min&nbsp;·&nbsp;Rex</footer>
+  <a class="entry-link" aria-label="post link to Rabbitmq使用" href="https://rex0520.github.io/posts/back/microservices/rabbitmq/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>CSS3
     </h2>
   </header>
@@ -214,20 +227,6 @@
   </section>
   <footer class="entry-footer">2021-06-10&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Rex</footer>
   <a class="entry-link" aria-label="post link to 分布式" href="https://rex0520.github.io/posts/back/microservices/%E5%88%86%E5%B8%83%E5%BC%8F/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>Threadlocal详解
-    </h2>
-  </header>
-  <section class="entry-content">
-    <p>ThreadLocal详解 使用场景：   每个线程需要一个独享的对象（通常是工具类，典型需要使用的类有SimpleDateFormat和Random）
- 每个Thread内有自己的实例副本，不共享 比喻：教材只有一本，一起做笔记有线程安全问题。复印后没有问题，ThreadLocal相当于生成了一个副本  重写initialValue方法
-package treadlocal; import java.text.SimpleDateFormat; import java.util.Date; import java.util.concurrent.ExecutorService; import java.util.concurrent.Executors; /** * @Description: 利用ThreadLocal，给每个线程分配自己的dateFormat对象，保证了线程安全，高效利用内存 * @Author: Rex * @Create: 2021-06-09 14:43 */ public class ThreadLocalNormalUsage05 { public static ExecutorService executor = Executors.newFixedThreadPool(10); public static void main(String[] args) throws InterruptedException { for (int i = 0; i &lt; 1000; i&#43;&#43;) { int finalI = i; executor.submit(new Thread(new Runnable() { @Override public void run() { String date = new ThreadLocalNormalUsage05()....</p>
-  </section>
-  <footer class="entry-footer">2021-06-08&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Rex</footer>
-  <a class="entry-link" aria-label="post link to Threadlocal详解" href="https://rex0520.github.io/posts/back/threadpool/threadlocal%E8%AF%A6%E8%A7%A3/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
