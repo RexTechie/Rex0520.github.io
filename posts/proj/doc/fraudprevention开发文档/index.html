@@ -101,8 +101,8 @@
   "keywords": [
     "文档"
   ],
-  "articleBody": "后台管理系统  baseUrl = “http://localhost:8090/fraud-prevention/api”\n 用户模块 获取验证码   url: /admin/captcha\n  method: Get\n  request body: 空\n  response body\n{ \"code\": 200, \"msg\": \"success\", \"data\": { token: \"xxxxxx\", //验证码token captchaImg: \"data:image/jpeg;base64,xxxxxx\", //base64格式的验证码图片 } }   登录   url: /admin/login\n  method: Post\n  request body\n   参数 说明 示例     username 用户名 admin   password 密码 admin   token 验证码的token    code 验证码 cwca1      response header\n   参数 说明 示例     Authorization 用户登录的token，其他的请求，请求头都要带上 xxxxx      response body\n{ \"code\": 200, \"msg\": \"success\", \"data\": null }   登出   url: /admin/logout\n  method: Get\n  request body：空\n  response body\n{ \"code\": 200, \"msg\": \"success\", \"data\": null }   新增用户：   url: /admin/user\n  method: Post\n  request body:\n   参数 说明 示例     username 必填，用户名 ceshi   name 必填，名字 测试   password 不用填，密码初始化为8888888    avatarUrl 非必填，头像地址，若无，有默认头像地址 https://xxx/xx.jpg   sex 非必填，性别，0-男，1-女 0   tel 非必填，手机号，11位 17777777777   email 非必填，邮箱 ceshi@163com      response body:\n{ \"code\": 200, \"msg\": \"success\", \"data\": null }   删除用户：   url: /admin/user/{id}\n  method: Delete\n  request body:\n  response body\n{ \"code\": 200, \"msg\": \"success\", \"data\": null }   修改用户：   url: /admin/user\n  method: Put\n  request body:\n   参数 说明 示例     id 必填，待修改用户编号 xxxxx   name 非必填，名字 测试   avatarUrl 非必填，头像地址，若无，有默认头像地址 https://xxx/xx.jpg   sex 非必填，性别，0-男，1-女 0   tel 非必填，手机号，11位 17777777777   email 非必填，邮箱 ceshi@163com      response body:\n{ \"code\": 200, \"msg\": \"success\", \"data\": null }   查询用户：   url: /admin/user/{userId}\n  method: Get\n  request body:空\n  response body:\n{ \"code\": 200, \"msg\": \"success\", \"data\": { \"id\": \"xxxxxxx\", \"username\": \"ceshi\", \"name\": \"测试\", \"avatarUrl\": \"https://xxx/xx.jpg\", \"sex\": 0, \"tel\": \"17777777777\", \"email\": \"ceshi@163com\" } }   分页查询：   url: /admin/users\n  method: Post\n  request body\n   参数 说明 示例     page 非必填，页数，默认5 5   size 非必填，每页数量，默认10，不能超过50 10   username 非必填，用户名模糊查询 ce      response body\n{ \"code\": 200, \"msg\": \"success\", \"data\": { \"records\": [{ \"id\": \"xxxxxxx\", \"username\": \"ceshi1\", \"name\": \"测试1\", \"avatarUrl\": \"https://xxx/xx.jpg\", \"sex\": 0, \"tel\": \"17777777777\", \"email\": \"ceshi1@163com\" },{ \"id\": \"xxxxxxx\", \"username\": \"ceshi2\", \"name\": \"测试2\", \"avatarUrl\": \"https://xxx/xx.jpg\", \"sex\": 0, \"tel\": \"17777777778\", \"email\": \"ceshi2@163com\" }], \"total\": 2, \"size\": 5, \"current\": 1, \"pages\": 1 } }   分配用户角色：   url:/admin/user/perm/{userId}\n  method: Put\n  request body:\n   参数 说明 示例     roleIds 必填，角色id数组 [1, 2, 3]      response body\n{ \"code\": 200, \"msg\": \"success\", \"data\": null }   重置密码（88888888）：   url: /admin/user/repass/{userId}\n  method: Put\n  request body：空\n  response body：\n{ \"code\": 200, \"msg\": \"success\", \"data\": null }   tip：修改后，需重新登录，后端会使token失效；\n  修改密码：   url: /admin/user/updatepass\n  method: Put\n  request body：\n   参数 说明 示例     password 必填，新密码 xxxxxx   currentPass 必填，旧密码 xxxxx      response body：\n{ \"code\": 200, \"msg\": \"success\", \"data\": null }   tip：修改后，需重新登录，后端会使token失效；\n  ",
-  "wordCount" : "352",
+  "articleBody": "后台管理系统  baseUrl = “http://localhost:8090/fraud-prevention/api” 服务器baseUrl = “http://1.117.91.88:52016/fraud-prevention/api”\n 用户模块 获取验证码   url: /admin/captcha\n  method: Get\n  request body: 空\n  response body\n{ \"code\": 200, \"msg\": \"success\", \"data\": { token: \"xxxxxx\", //验证码token captchaImg: \"data:image/jpeg;base64,xxxxxx\", //base64格式的验证码图片 } }   登录   url: /admin/login\n  method: Post\n  request body\n   参数 说明 示例     username 用户名 admin   password 密码 admin   token 验证码的token    code 验证码 cwca1      response header\n   参数 说明 示例     Authorization 用户登录的token，其他的请求，请求头都要带上 xxxxx      response body\n{ \"code\": 200, \"msg\": \"success\", \"data\": null }   登出   url: /admin/logout\n  method: Get\n  request body：空\n  response body\n{ \"code\": 200, \"msg\": \"success\", \"data\": null }   新增用户：   url: /admin/user\n  method: Post\n  request body:\n   参数 说明 示例     username 必填，用户名 ceshi   name 必填，名字 测试   password 不用填，密码初始化为8888888    avatarUrl 非必填，头像地址，若无，有默认头像地址 https://xxx/xx.jpg   sex 非必填，性别，0-男，1-女 0   tel 非必填，手机号，11位 17777777777   email 非必填，邮箱 ceshi@163com      response body:\n{ \"code\": 200, \"msg\": \"success\", \"data\": null }   删除用户：   url: /admin/user/{id}\n  method: Delete\n  request body:\n  response body\n{ \"code\": 200, \"msg\": \"success\", \"data\": null }   修改用户：   url: /admin/user\n  method: Put\n  request body:\n   参数 说明 示例     id 必填，待修改用户编号 xxxxx   name 非必填，名字 测试   avatarUrl 非必填，头像地址，若无，有默认头像地址 https://xxx/xx.jpg   sex 非必填，性别，0-男，1-女 0   tel 非必填，手机号，11位 17777777777   email 非必填，邮箱 ceshi@163com      response body:\n{ \"code\": 200, \"msg\": \"success\", \"data\": null }   查询用户：   url: /admin/user/{userId}\n  method: Get\n  request body:空\n  response body:\n{ \"code\": 200, \"msg\": \"success\", \"data\": { \"id\": \"xxxxxxx\", \"username\": \"ceshi\", \"name\": \"测试\", \"avatarUrl\": \"https://xxx/xx.jpg\", \"sex\": 0, \"tel\": \"17777777777\", \"email\": \"ceshi@163com\" } }   分页查询：   url: /admin/users\n  method: Post\n  request body\n   参数 说明 示例     page 非必填，页数，默认5 5   size 非必填，每页数量，默认10，不能超过50 10   username 非必填，用户名模糊查询 ce      response body\n{ \"code\": 200, \"msg\": \"success\", \"data\": { \"records\": [{ \"id\": \"xxxxxxx\", \"username\": \"ceshi1\", \"name\": \"测试1\", \"avatarUrl\": \"https://xxx/xx.jpg\", \"sex\": 0, \"tel\": \"17777777777\", \"email\": \"ceshi1@163com\" },{ \"id\": \"xxxxxxx\", \"username\": \"ceshi2\", \"name\": \"测试2\", \"avatarUrl\": \"https://xxx/xx.jpg\", \"sex\": 0, \"tel\": \"17777777778\", \"email\": \"ceshi2@163com\" }], \"total\": 2, \"size\": 5, \"current\": 1, \"pages\": 1 } }   分配用户角色：   url:/admin/user/perm/{userId}\n  method: Put\n  request body:\n   参数 说明 示例     roleIds 必填，角色id数组 [1, 2, 3]      response body\n{ \"code\": 200, \"msg\": \"success\", \"data\": null }   重置密码（88888888）：   url: /admin/user/repass/{userId}\n  method: Put\n  request body：空\n  response body：\n{ \"code\": 200, \"msg\": \"success\", \"data\": null }   tip：修改后，需重新登录，后端会使token失效；\n  修改密码：   url: /admin/user/updatepass\n  method: Put\n  request body：\n   参数 说明 示例     password 必填，新密码 xxxxxx   currentPass 必填，旧密码 xxxxx      response body：\n{ \"code\": 200, \"msg\": \"success\", \"data\": null }   tip：修改后，需重新登录，后端会使token失效；\n  ",
+  "wordCount" : "355",
   "inLanguage": "en",
   "datePublished": "2021-11-04T00:00:00Z",
   "dateModified": "2021-11-04T00:00:00Z",
@@ -256,7 +256,8 @@
 
   <div class="post-content"><h1 id="后台管理系统">后台管理系统<a hidden class="anchor" aria-hidden="true" href="#后台管理系统">#</a></h1>
 <blockquote>
-<p>baseUrl = &ldquo;http://localhost:8090/fraud-prevention/api&rdquo;</p>
+<p>baseUrl = &ldquo;http://localhost:8090/fraud-prevention/api&rdquo;
+服务器baseUrl = &ldquo;http://1.117.91.88:52016/fraud-prevention/api&rdquo;</p>
 </blockquote>
 <h2 id="用户模块">用户模块<a hidden class="anchor" aria-hidden="true" href="#用户模块">#</a></h2>
 <h3 id="获取验证码">获取验证码<a hidden class="anchor" aria-hidden="true" href="#获取验证码">#</a></h3>
@@ -533,7 +534,7 @@
 <li>
 <p>response body:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
-	<span class="nt">&#34;code&#34;</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span>
+  <span class="nt">&#34;code&#34;</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span>
   <span class="nt">&#34;msg&#34;</span><span class="p">:</span> <span class="s2">&#34;success&#34;</span><span class="p">,</span>
   <span class="nt">&#34;data&#34;</span><span class="p">:</span> <span class="p">{</span>
       <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;xxxxxxx&#34;</span><span class="p">,</span>
@@ -587,7 +588,7 @@
 <li>
 <p>response body</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
-	<span class="nt">&#34;code&#34;</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span>
+  <span class="nt">&#34;code&#34;</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span>
   <span class="nt">&#34;msg&#34;</span><span class="p">:</span> <span class="s2">&#34;success&#34;</span><span class="p">,</span>
   <span class="nt">&#34;data&#34;</span><span class="p">:</span> <span class="p">{</span>
       <span class="nt">&#34;records&#34;</span><span class="p">:</span> <span class="p">[{</span>
@@ -645,7 +646,7 @@
 <li>
 <p>response body</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
-	<span class="nt">&#34;code&#34;</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span>
+  <span class="nt">&#34;code&#34;</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span>
   <span class="nt">&#34;msg&#34;</span><span class="p">:</span> <span class="s2">&#34;success&#34;</span><span class="p">,</span>
   <span class="nt">&#34;data&#34;</span><span class="p">:</span> <span class="kc">null</span>
 <span class="p">}</span>
@@ -665,7 +666,7 @@
 <li>
 <p>response body：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
-	<span class="nt">&#34;code&#34;</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span>
+  <span class="nt">&#34;code&#34;</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span>
   <span class="nt">&#34;msg&#34;</span><span class="p">:</span> <span class="s2">&#34;success&#34;</span><span class="p">,</span>
   <span class="nt">&#34;data&#34;</span><span class="p">:</span> <span class="kc">null</span>
 <span class="p">}</span>
@@ -709,7 +710,7 @@
 <li>
 <p>response body：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
-	<span class="nt">&#34;code&#34;</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span>
+  <span class="nt">&#34;code&#34;</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span>
   <span class="nt">&#34;msg&#34;</span><span class="p">:</span> <span class="s2">&#34;success&#34;</span><span class="p">,</span>
   <span class="nt">&#34;data&#34;</span><span class="p">:</span> <span class="kc">null</span>
 <span class="p">}</span>
