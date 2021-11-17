@@ -101,8 +101,8 @@
   "keywords": [
     "文档"
   ],
-  "articleBody": "后台管理系统    baseUrl = “http://localhost:8090/fraud-prevention/api”\n  服务器Url=“http://1.117.91.88:52016/fraud-prevention/api”\n   通用模块 获取验证码   url: /admin/captcha\n  method: Get\n  request body: 空\n  response body\n{ \"code\": 200, \"msg\": \"success\", \"data\": { token: \"xxxxxx\", //验证码token captchaImg: \"data:image/jpeg;base64,xxxxxx\", //base64格式的验证码图片 } }   获取所有模块信息   url: /admin/modules\n  method: Get\n  request body: 空\n  response body:\n{ \"code\": 200, \"msg\": \"success\", \"data\": [ { \"id\": 1, \"moduleCode\": \"USER\", \"moduleName\": \"用户管理\" }, { \"id\": 2, \"moduleCode\": \"ROLE\", \"moduleName\": \"角色管理\" }, { \"id\": 3, \"moduleCode\": \"PERM\", \"moduleName\": \"权限管理\" }, { \"id\": 4, \"moduleCode\": \"TEACHER\", \"moduleName\": \"教师管理\" } ] }   需提前登录\n  获取所有行为(增删改查)信息   url: /admin/actions\n  method: Get\n  request body: 空\n  response body:\n{ \"code\": 200, \"msg\": \"success\", \"data\": [ { \"id\": 1, \"actionCode\": \"INSERT\", \"actionName\": \"添加\" }, { \"id\": 2, \"actionCode\": \"DELETE\", \"actionName\": \"删除\" }, { \"id\": 3, \"actionCode\": \"UPDATE\", \"actionName\": \"修改\" }, { \"id\": 4, \"actionCode\": \"SELETE\", \"actionName\": \"查询\" } ] }   需提前登录\n  上传图片（上传头像的时候需要）：   url: /admin/image\n  method: Post\n  request body :\n   参数 说明 示例     file 必填，图片       response body：\n{ \"code\": 200, \"msg\": \"success\", \"data\": \"https://cdn.rexweb.xyz/xxxx\" }   删除图片（点击取消后需要）   url: /admin/image\n  method: Delete\n  request param:\n   参数 说明 示例     url 必填，图片的地址 https://cdn.rexweb.xyz/xxxx      response body:\n{ \"code\": 200, \"msg\": \"success\", \"data\": null }   用户模块 登录   url: /admin/login\n  method: Post\n  request body\n   参数 说明 示例     username 用户名 admin   password 密码 admin   token 验证码的token    code 验证码 cwca1      response header\n   参数 说明 示例     Authorization 用户登录的token，其他的请求，请求头都要带上 xxxxx      response body\n{ \"code\": 200, \"msg\": \"success\", \"data\": null }   获取当前登录用户信息   url:/admin/currentuser\n  method: Get\n  request body: 空\n  response body:\n{ \"code\": 200, \"msg\": \"success\", \"data\": { \"id\": \"0\", \"name\": \"管理员\", \"password\": null, \"username\": \"root\", \"avatarUrl\": \"http://cdn.rexweb.xyz/img/20210823181936.png\", \"sex\": 1, \"tel\": \"1377777777\", \"email\": \"root@163.com\", \"roles\": [ \"admin\" ], \"perms\": [ \"ROOT\" ] } }   登出   url: /admin/logout\n  method: Get\n  request body：空\n  response body\n{ \"code\": 200, \"msg\": \"success\", \"data\": null }   新增用户（初始化密码88888888）：   url: /admin/user\n  method: Post\n  request body:\n   参数 说明 示例     username 必填，用户名 ceshi   name 必填，名字，2-10位英文、中文、数字 测试   avatarUrl 非必填，头像地址，若无，有默认头像地址 https://xxx/xx.jpg   sex 必填，性别，0-男，1-女 0   tel 必填，手机号，11位 17777777777   email 必填，邮箱 ceshi@163com   roles 必填，数组，角色id [0]      response body:\n{ \"code\": 200, \"msg\": \"success\", \"data\": null }   删除用户：   url: /admin/users\n  method: Delete\n  request body:\n   参数 说明 示例     ids 必填，用户的id [0]      response body\n{ \"code\": 200, \"msg\": \"success\", \"data\": null }   修改用户：   url: /admin/user\n  method: Put\n  request body:\n   参数 说明 示例     id 必填，待修改用户编号 xxxxx   name 非必填，名字 测试   avatarUrl 非必填，头像地址，若无，有默认头像地址 https://xxx/xx.jpg   sex 非必填，性别，0-男，1-女 0   tel 非必填，手机号，11位 17777777777   email 非必填，邮箱 ceshi@163com      response body:\n{ \"code\": 200, \"msg\": \"success\", \"data\": null }   查询用户：   url: /admin/user/{userId}\n  method: Get\n  request body:空\n  response body:\n{ \"code\": 200, \"msg\": \"success\", \"data\": { \"id\": \"0\", \"name\": \"管理员\", \"username\": \"root\", \"avatarUrl\": \"http://cdn.rexweb.xyz/img/20210823181936.png\", \"sex\": 1, \"tel\": \"1377777777\", \"email\": \"root@163.com\", \"roles\": [ \"admin\" ] } }   分页查询：   url: /admin/users\n  method: Get\n  request params(url 路径传参)\n   参数 说明 示例     page 非必填，页数，默认5 5   size 非必填，每页数量，默认10，不能超过50 10   orderFiled 非必填，排序字段，默认id id   order 非必填，排序方式，可选值asc, desc，默认asc asc   username 非必填，用户名模糊查询 ce      response body\n{ \"code\": 200, \"msg\": \"success\", \"data\": { \"records\": [ { \"id\": \"0\", \"name\": \"管理员\", \"username\": \"root\", \"avatarUrl\": \"http://cdn.rexweb.xyz/img/20210823181936.png\", \"sex\": 1, \"tel\": \"1377777777\", \"email\": \"root@163.com\", \"roles\": [ \"admin\" ] } ], \"total\": \"1\", \"size\": \"10\", \"current\": \"1\", \"orders\": [ { \"column\": \"id\", \"asc\": true } ], \"optimizeCountSql\": true, \"hitCount\": false, \"countId\": null, \"maxLimit\": null, \"searchCount\": true, \"pages\": \"1\" } }   分配用户角色：   url:/admin/user/role\n  method: Put\n  request body:\n   参数 说明 示例     id 必填，用户id 0   roles 必填，角色id数组 [1, 2, 3]      response body\n{ \"code\": 200, \"msg\": \"success\", \"data\": null }   重置密码（88888888）：   url: /admin/repass/{userId}\n  method: Put\n  request body：空\n  response body：\n{ \"code\": 200, \"msg\": \"success\", \"data\": null }   tip：修改后，需重新登录，后端会使token失效；\n  修改密码：   url: /admin/user/updatepass\n  method: Put\n  request body：\n   参数 说明 示例     newPassword 必填，新密码 xxxxxx   oldPassword 必填，旧密码 xxxxx      response body：\n{ \"code\": 200, \"msg\": \"success\", \"data\": null }   tip：修改后，需重新登录，后端会使token失效；\n  角色模块 查询所有角色（用于给用户分配权限）   url:/admin/role/all\n  method: Get\n  request body\n  resposne body\n{ \"code\": 200, \"msg\": \"success\", \"data\": [ { \"id\": \"0\", \"createTime\": 1635994114000, \"updateTime\": 1635994120000, \"creator\": \"0\", \"updater\": \"0\", \"name\": \"admin\", \"desc\": \"超级管理员\", \"systemic\": 1 } ] }   分页查询角色   url: /admin/roles\n  method: Get\n  request param(注意这里用的url传参)\n   参数 说明 示例     name 非必填，1-10位中文、英文组成 root   page 非必填，不能小于1 1   size 非必填，必须在10~50之间 20   orderFiled 非必填，排序字段，默认id id   order 非必填，排序方式，可选值asc, desc，默认asc asc      response body\n{ \"code\": 200, \"msg\": \"success\", \"data\": { \"records\": [ { \"id\": \"0\", \"roleName\": \"admin\", \"users\": 1, \"permissions\": 1, \"desc\": \"超级管理员\", \"systemic\": 1 } ], \"total\": \"1\", \"size\": \"10\", \"current\": \"1\", \"orders\": [ { \"column\": \"id\", \"asc\": true } ], \"optimizeCountSql\": true, \"hitCount\": false, \"countId\": null, \"maxLimit\": null, \"searchCount\": true, \"pages\": \"1\" } }   查询角色详情   url:/admin/role/{id}\n  method: Get\n  request body: 空\n  response body:\n{ \"code\": 200, \"msg\": \"success\", \"data\": { \"id\": \"0\", \"name\": \"admin\", \"permissions\": [ \"0\" ], \"desc\": \"超级管理员\" } }   新增角色   url:/admin/role\n  method: Post\n  request body\n   参数 说明 示例     name 必填，角色名称，2-10位英文、中文、数字 test   permissions 必填非空，权限数组 [0]   desc 必填，角色描述，不能超过20个字符 test      response body\n{ \"code\": 200, \"msg\": \"success\", \"data\": null }   删除角色   url: /admin/role\n  method: Delete\n  request body:\n   参数 说明 示例     ids 必填非空，但删除权限id数组 [1457736051796123650]      response body：\n{ \"code\": 200, \"msg\": \"success\", \"data\": null }   修改角色   url: /admin/role\n  method: Put\n  request body\n   参数 说明 示例     id 必填，待修改的角色id    name 非必填，角色名称，2-10位英文、中文、数字 test   permissions 非必填，权限数组 [0]   desc 非必填，角色描述，不能超过20个字符 test      response body\n{ \"code\": 200, \"msg\": \"success\", \"data\": null }   权限模块 查询所有权限（用于给角色分配权限）   url：/admin/perms\n  method: Get\n  request body: 空\n  response body：\n{ \"code\": 200, \"msg\": \"success\", \"data\": [ { \"id\": \"1\", \"moduleName\": \"用户管理\", \"actionName\": \"添加\" }, { \"id\": \"2\", \"moduleName\": \"用户管理\", \"actionName\": \"删除\" }, { \"id\": \"3\", \"moduleName\": \"用户管理\", \"actionName\": \"修改\" }, { \"id\": \"4\", \"moduleName\": \"用户管理\", \"actionName\": \"查询\" }, { \"id\": \"5\", \"moduleName\": \"角色管理\", \"actionName\": \"添加\" }, { \"id\": \"6\", \"moduleName\": \"角色管理\", \"actionName\": \"删除\" }, { \"id\": \"7\", \"moduleName\": \"角色管理\", \"actionName\": \"修改\" }, { \"id\": \"8\", \"moduleName\": \"角色管理\", \"actionName\": \"查询\" }, { \"id\": \"9\", \"moduleName\": \"教师管理\", \"actionName\": \"添加\" }, { \"id\": \"10\", \"moduleName\": \"教师管理\", \"actionName\": \"删除\" }, { \"id\": \"11\", \"moduleName\": \"教师管理\", \"actionName\": \"修改\" }, { \"id\": \"12\", \"moduleName\": \"教师管理\", \"actionName\": \"查询\" } ] }   学校管理模块 查询学校列表   url:/front/school/all\n  method: Get\n  request body: 无\n  response body\n{ \"code\": 200, \"msg\": \"success\", \"data\": [ { \"id\": \"1410909562636140546\", \"name\": \"温州职业技术学院\", \"depts\": null }, { \"id\": \"1412948512863797249\", \"name\": \"温州理工学院\", \"depts\": null }, { \"id\": \"1460131595630436353\", \"name\": \"温州医科大学\", \"depts\": null }, { \"id\": \"1460132183478919170\", \"name\": \"宁波理工学院\", \"depts\": null } ] }   查询学校详情   url:/admin/school/{schoolId}\n  method: Get\n  request body: 空\n  response body:\n{ \"code\": 200, \"msg\": \"success\", \"data\": { \"id\": \"1410909562636140546\", \"name\": \"温州职业技术学院\", \"depts\": null } }   分页查询   url:/admin/schools\n  method: Get\n  request body\n   参数 说明 示例     name 非必填，学校名称，1-20位中文、英文、数字组成，用于模糊匹配 温州   page 非必填，不能小于1 1   size 非必填，必须在10~50之间 20   orderFiled 非必填，排序字段，默认id id   order 非必填，排序方式，可选值asc, desc，默认asc asc      response body\n{ \"code\": 200, \"msg\": \"success\", \"data\": { \"records\": [ { \"id\": \"1410909562636140546\", \"name\": \"温州职业技术学院\", \"depts\": 1 }, { \"id\": \"1412948512863797249\", \"name\": \"温州理工学院\", \"depts\": 2 }, { \"id\": \"1460131595630436353\", \"name\": \"温州医科大学\", \"depts\": 0 } ], \"total\": \"3\", \"size\": \"10\", \"current\": \"1\", \"orders\": [ { \"column\": \"id\", \"asc\": true } ], \"optimizeCountSql\": true, \"hitCount\": false, \"countId\": null, \"maxLimit\": null, \"searchCount\": true, \"pages\": \"1\" } }   新增学校信息   url: /admin/school\n  method: Post\n  request body:\n   参数 说明 示例     name 必填，学校名称，2-20位中文、英文、数字组成 浙江大学      response body:\n{ \"code\": 200, \"msg\": \"success\", \"data\": null }   修改学校信息   url: /admin/school\n  method: Put\n  request body:\n   参数 说明 示例     id 必填，学校id 0   name 必填，学校名称，2-20位中文、英文、数字组成 浙江大学      response body:\n{ \"code\": 200, \"msg\": \"success\", \"data\": null }   删除学校信息   url: /admin/school\n  method: Delete\n  request body\n   参数 说明 示例     ids 必填非空，待删除学校id数组 [1457736051796123650]      response body:\n{ \"code\": 200, \"msg\": \"success\", \"data\": null }   系部管理模块 查询系部列表   url: front/dept/all\n  method: Get\n  request param:\n   参数 说明 示例     schoolId 必填，学校id 1412948512863797249      response body\n{ \"code\": 200, \"msg\": \"success\", \"data\": [ { \"id\": \"1412948697090220034\", \"name\": \"信息技术系\", \"school\": null, \"classes\": null }, { \"id\": \"1412949051445972994\", \"name\": \"工商系\", \"school\": null, \"classes\": null } ] }   查询系部详情   url:/admin/school/{schoolId}\n  method: Get\n  request body: 空\n  response body:\n{ \"code\": 200, \"msg\": \"success\", \"data\": { \"id\": \"1460183015209611266\", \"name\": \"计算机\", \"school\": null, \"classes\": null } }   分页查询   url: /admin/depts\n  method: Get\n  request body:\n   参数 说明 示例     name 非必填，系部名称，1-20位中文、英文、数字组成，用于模糊匹配 信息   school 非必填，学校名称，1-20位中文、英文、数字组成，用于模糊匹配 温州   page 非必填，不能小于1 1   size 非必填，必须在10~50之间 20   orderFiled 非必填，排序字段，默认id id   order 非必填，排序方式，可选值asc, desc，默认asc asc      response body:\n{ \"code\": 200, \"msg\": \"success\", \"data\": { \"records\": [ { \"id\": \"1410910929379442690\", \"name\": \"信息技术系\", \"school\": \"温州职业技术学院\", \"classes\": 8 }, { \"id\": \"1412948697090220034\", \"name\": \"信息技术系\", \"school\": \"温州理工学院\", \"classes\": 0 } ], \"total\": \"2\", \"size\": \"10\", \"current\": \"1\", \"orders\": [ { \"column\": \"id\", \"asc\": true } ], \"optimizeCountSql\": true, \"hitCount\": false, \"countId\": null, \"maxLimit\": null, \"searchCount\": true, \"pages\": \"1\" } }   新增系部信息   url: /admin/dept\n  method: Post\n  request body:\n   参数 说明 示例     name 必填，系部名称，2-20位中文、英文、数字组成 设计创意学院   schoolId 必填，学校编号 1410909562636140546      response body:\n{ \"code\": 200, \"msg\": \"success\", \"data\": null }   修改系部信息   url: /admin/dept\n  method: Put\n  request body:\n   参数 说明 示例     id 必填，系部id 1410910929379442690   name 必填，系部名称，2-20位中文、英文、数字组成 人工智能学院      response body\n{ \"code\": 200, \"msg\": \"success\", \"data\": null }   删除系部信息   url: /admin/dept\n  method: Delete\n  request body\n   参数 说明 示例     ids 必填非空，待删除系部id数组 [1460218569095688193]      response body:\n{ \"code\": 200, \"msg\": \"success\", \"data\": null }   班级管理模块 查询班级列表   url:/front/class/all\n  method: Get\n  request param:\n   参数 说明 示例     deptId 必填，系部编号 1412948512863797249      response body\n{ \"code\": 200, \"msg\": \"success\", \"data\": [ { \"id\": \"1410913476450226178\", \"name\": \"软件1901\", \"school\": null, \"dept\": null, \"students\": null, \"teachers\": null }, { \"id\": \"1410913678187843585\", \"name\": \"软件1902\", \"school\": null, \"dept\": null, \"students\": null, \"teachers\": null }, { \"id\": \"1412947584844611586\", \"name\": \"大数据1902\", \"school\": null, \"dept\": null, \"students\": null, \"teachers\": null }, { \"id\": \"1412947735629869057\", \"name\": \"大数据1901\", \"school\": null, \"dept\": null, \"students\": null, \"teachers\": null }, { \"id\": \"1412948099783573506\", \"name\": \"数媒1901\", \"school\": null, \"dept\": null, \"students\": null, \"teachers\": null }, { \"id\": \"1412948245002862593\", \"name\": \"数媒1902\", \"school\": null, \"dept\": null, \"students\": null, \"teachers\": null }, { \"id\": \"1414833835378409474\", \"name\": \"电子商务1901\", \"school\": null, \"dept\": null, \"students\": null, \"teachers\": null }, { \"id\": \"1414855420751523841\", \"name\": \"电子商务1902\", \"school\": null, \"dept\": null, \"students\": null, \"teachers\": null } ] }   查询班级详情   url: /admin/class/{classId}\n  method: Get\n  request body: 空\n  response body:\n{ \"code\": 200, \"msg\": \"success\", \"data\": { \"id\": \"1414855420751523841\", \"name\": \"电子商务1902\", \"school\": null, \"dept\": null, \"students\": null, \"teachers\": null } }   分页查询   url: /admin/classes\n  method: Get\n  request body:\n   参数 说明 示例     name 非必填，系部名称，1-20位中文、英文、数字组成，用于模糊匹配 19   school 非必填，学校名称，1-20位中文、英文、数字组成，用于模糊匹配 温州   dept 非必填，班级名称，1-20位中文、英文、数字组成，用于模糊匹配 人工   page 非必填，不能小于1 1   size 非必填，必须在10~50之间 20   orderFiled 非必填，排序字段，默认id id   order 非必填，排序方式，可选值asc, desc，默认asc asc      response body:\n{ \"code\": 200, \"msg\": \"success\", \"data\": { \"records\": [ { \"id\": \"1410913476450226178\", \"name\": \"软件1901\", \"school\": \"温州职业技术学院\", \"dept\": \"人工智能学院\", \"students\": 2, \"teachers\": 0 }, { \"id\": \"1410913678187843585\", \"name\": \"软件1902\", \"school\": \"温州职业技术学院\", \"dept\": \"人工智能学院\", \"students\": 0, \"teachers\": 0 }, { \"id\": \"1412947584844611586\", \"name\": \"大数据1902\", \"school\": \"温州职业技术学院\", \"dept\": \"人工智能学院\", \"students\": 0, \"teachers\": 0 }, { \"id\": \"1412947735629869057\", \"name\": \"大数据1901\", \"school\": \"温州职业技术学院\", \"dept\": \"人工智能学院\", \"students\": 0, \"teachers\": 0 }, { \"id\": \"1412948099783573506\", \"name\": \"数媒1901\", \"school\": \"温州职业技术学院\", \"dept\": \"人工智能学院\", \"students\": 0, \"teachers\": 0 }, { \"id\": \"1412948245002862593\", \"name\": \"数媒1902\", \"school\": \"温州职业技术学院\", \"dept\": \"人工智能学院\", \"students\": 0, \"teachers\": 0 }, { \"id\": \"1414833835378409474\", \"name\": \"电子商务1901\", \"school\": \"温州职业技术学院\", \"dept\": \"人工智能学院\", \"students\": 0, \"teachers\": 0 }, { \"id\": \"1414855420751523841\", \"name\": \"电子商务1902\", \"school\": \"温州职业技术学院\", \"dept\": \"人工智能学院\", \"students\": 0, \"teachers\": 0 } ], \"total\": \"8\", \"size\": \"10\", \"current\": \"1\", \"orders\": [ { \"column\": \"id\", \"asc\": true } ], \"optimizeCountSql\": true, \"hitCount\": false, \"countId\": null, \"maxLimit\": null, \"searchCount\": true, \"pages\": \"1\" } }   新增班级信息   url: /admin/class\n  method: Post\n  request body:\n   参数 说明 示例     name 必填，班级名称，2-20位中文、英文、数字组成 软件2001   deptId 必填，系部编号 1410910929379442690      response body:\n{ \"code\": 200, \"msg\": \"success\", \"data\": null }   修改班级信息   url: /admin/class\n  method: Put\n  request body:\n   参数 说明 示例     id 必填，班级id 1460221775330717697   name 必填，班级名称，2-20位中文、英文、数字组成 软件2002      response body\n{ \"code\": 200, \"msg\": \"success\", \"data\": null }   删除班级信息   url: /admin/class\n  method: Delete\n  request body\n   参数 说明 示例     ids 必填非空，待删除班级id数组 [1460221775330717697]      response body:\n{ \"code\": 200, \"msg\": \"success\", \"data\": null }   ",
-  "wordCount" : "1820",
+  "articleBody": "后台管理系统    baseUrl = “http://localhost:8090/fraud-prevention/api”\n  服务器Url=“http://1.117.91.88:52016/fraud-prevention/api”\n   通用模块 获取验证码   url: /admin/captcha\n  method: Get\n  request body: 空\n  response body\n\"code\": 200, \"msg\": \"success\", \"data\": { token: \"xxxxxx\", //验证码token captchaImg: \"data:image/jpeg;base64,xxxxxx\", //base64格式的验证码图片 } }   获取所有模块信息   url: /admin/modules\n  method: Get\n  request body: 空\n  response body:\n{ \"code\": 200, \"msg\": \"success\", \"data\": [ { \"id\": 1, \"moduleCode\": \"USER\", \"moduleName\": \"用户管理\" }, { \"id\": 2, \"moduleCode\": \"ROLE\", \"moduleName\": \"角色管理\" }, { \"id\": 3, \"moduleCode\": \"PERM\", \"moduleName\": \"权限管理\" }, { \"id\": 4, \"moduleCode\": \"TEACHER\", \"moduleName\": \"教师管理\" } ] }   需提前登录\n  获取所有行为(增删改查)信息   url: /admin/actions\n  method: Get\n  request body: 空\n  response body:\n{ \"code\": 200, \"msg\": \"success\", \"data\": [ { \"id\": 1, \"actionCode\": \"INSERT\", \"actionName\": \"添加\" }, { \"id\": 2, \"actionCode\": \"DELETE\", \"actionName\": \"删除\" }, { \"id\": 3, \"actionCode\": \"UPDATE\", \"actionName\": \"修改\" }, { \"id\": 4, \"actionCode\": \"SELETE\", \"actionName\": \"查询\" } ] }   需提前登录\n  上传图片（上传头像的时候需要）：   url: /admin/image\n  method: Post\n  request body :\n   参数 说明 示例     file 必填，图片       response body：\n{ \"code\": 200, \"msg\": \"success\", \"data\": \"https://cdn.rexweb.xyz/xxxx\" }   删除图片（点击取消后需要）   url: /admin/image\n  method: Delete\n  request param:\n   参数 说明 示例     url 必填，图片的地址 https://cdn.rexweb.xyz/xxxx      response body:\n{ \"code\": 200, \"msg\": \"success\", \"data\": null }   用户模块 登录   url: /admin/login\n  method: Post\n  request body\n   参数 说明 示例     username 用户名 admin   password 密码 admin   token 验证码的token    code 验证码 cwca1      response header\n   参数 说明 示例     Authorization 用户登录的token，其他的请求，请求头都要带上 xxxxx      response body\n{ \"code\": 200, \"msg\": \"success\", \"data\": null }   获取当前登录用户信息   url:/admin/currentuser\n  method: Get\n  request body: 空\n  response body:\n{ \"code\": 200, \"msg\": \"success\", \"data\": { \"id\": \"0\", \"name\": \"管理员\", \"password\": null, \"username\": \"root\", \"avatarUrl\": \"http://cdn.rexweb.xyz/img/20210823181936.png\", \"sex\": 1, \"tel\": \"1377777777\", \"email\": \"root@163.com\", \"roles\": [ \"admin\" ], \"perms\": [ \"ROOT\" ] } }   登出   url: /admin/logout\n  method: Get\n  request body：空\n  response body\n{ \"code\": 200, \"msg\": \"success\", \"data\": null }   新增用户（初始化密码88888888）：   url: /admin/user\n  method: Post\n  request body:\n   参数 说明 示例     username 必填，用户名 ceshi   name 必填，名字，2-10位英文、中文、数字 测试   avatarUrl 非必填，头像地址，若无，有默认头像地址 https://xxx/xx.jpg   sex 必填，性别，0-男，1-女 0   tel 必填，手机号，11位 17777777777   email 必填，邮箱 ceshi@163com   roles 必填，数组，角色id [0]      response body:\n{ \"code\": 200, \"msg\": \"success\", \"data\": null }   删除用户：   url: /admin/users\n  method: Delete\n  request body:\n   参数 说明 示例     ids 必填，用户的id [0]      response body\n{ \"code\": 200, \"msg\": \"success\", \"data\": null }   修改用户：   url: /admin/user\n  method: Put\n  request body:\n   参数 说明 示例     id 必填，待修改用户编号 xxxxx   name 非必填，名字 测试   avatarUrl 非必填，头像地址，若无，有默认头像地址 https://xxx/xx.jpg   sex 非必填，性别，0-男，1-女 0   tel 非必填，手机号，11位 17777777777   email 非必填，邮箱 ceshi@163com      response body:\n{ \"code\": 200, \"msg\": \"success\", \"data\": null }   查询用户：   url: /admin/user/{userId}\n  method: Get\n  request body:空\n  response body:\n{ \"code\": 200, \"msg\": \"success\", \"data\": { \"id\": \"0\", \"name\": \"管理员\", \"username\": \"root\", \"avatarUrl\": \"http://cdn.rexweb.xyz/img/20210823181936.png\", \"sex\": 1, \"tel\": \"1377777777\", \"email\": \"root@163.com\", \"roles\": [ \"admin\" ] } }   分页查询：   url: /admin/users\n  method: Get\n  request params(url 路径传参)\n   参数 说明 示例     page 非必填，页数，默认5 5   size 非必填，每页数量，默认10，不能超过50 10   orderFiled 非必填，排序字段，默认id id   order 非必填，排序方式，可选值asc, desc，默认asc asc   username 非必填，用户名模糊查询 ce      response body\n{ \"code\": 200, \"msg\": \"success\", \"data\": { \"records\": [ { \"id\": \"0\", \"name\": \"管理员\", \"username\": \"root\", \"avatarUrl\": \"http://cdn.rexweb.xyz/img/20210823181936.png\", \"sex\": 1, \"tel\": \"1377777777\", \"email\": \"root@163.com\", \"roles\": [ \"admin\" ] } ], \"total\": \"1\", \"size\": \"10\", \"current\": \"1\", \"orders\": [ { \"column\": \"id\", \"asc\": true } ], \"optimizeCountSql\": true, \"hitCount\": false, \"countId\": null, \"maxLimit\": null, \"searchCount\": true, \"pages\": \"1\" } }   分配用户角色：   url:/admin/user/role\n  method: Put\n  request body:\n   参数 说明 示例     id 必填，用户id 0   roles 必填，角色id数组 [1, 2, 3]      response body\n{ \"code\": 200, \"msg\": \"success\", \"data\": null }   重置密码（88888888）：   url: /admin/repass/{userId}\n  method: Put\n  request body：空\n  response body：\n{ \"code\": 200, \"msg\": \"success\", \"data\": null }   tip：修改后，需重新登录，后端会使token失效；\n  修改密码：   url: /admin/user/updatepass\n  method: Put\n  request body：\n   参数 说明 示例     newPassword 必填，新密码 xxxxxx   oldPassword 必填，旧密码 xxxxx      response body：\n{ \"code\": 200, \"msg\": \"success\", \"data\": null }   tip：修改后，需重新登录，后端会使token失效；\n  角色模块 查询所有角色（用于给用户分配权限）   url:/admin/role/all\n  method: Get\n  request body\n  resposne body\n{ \"code\": 200, \"msg\": \"success\", \"data\": [ { \"id\": \"0\", \"createTime\": 1635994114000, \"updateTime\": 1635994120000, \"creator\": \"0\", \"updater\": \"0\", \"name\": \"admin\", \"desc\": \"超级管理员\", \"systemic\": 1 } ] }   分页查询角色   url: /admin/roles\n  method: Get\n  request param(注意这里用的url传参)\n   参数 说明 示例     name 非必填，1-10位中文、英文组成 root   page 非必填，不能小于1 1   size 非必填，必须在10~50之间 20   orderFiled 非必填，排序字段，默认id id   order 非必填，排序方式，可选值asc, desc，默认asc asc      response body\n{ \"code\": 200, \"msg\": \"success\", \"data\": { \"records\": [ { \"id\": \"0\", \"roleName\": \"admin\", \"users\": 1, \"permissions\": 1, \"desc\": \"超级管理员\", \"systemic\": 1 } ], \"total\": \"1\", \"size\": \"10\", \"current\": \"1\", \"orders\": [ { \"column\": \"id\", \"asc\": true } ], \"optimizeCountSql\": true, \"hitCount\": false, \"countId\": null, \"maxLimit\": null, \"searchCount\": true, \"pages\": \"1\" } }   查询角色详情   url:/admin/role/{id}\n  method: Get\n  request body: 空\n  response body:\n{ \"code\": 200, \"msg\": \"success\", \"data\": { \"id\": \"0\", \"name\": \"admin\", \"permissions\": [ \"0\" ], \"desc\": \"超级管理员\" } }   新增角色   url:/admin/role\n  method: Post\n  request body\n   参数 说明 示例     name 必填，角色名称，2-10位英文、中文、数字 test   permissions 必填非空，权限数组 [0]   desc 必填，角色描述，不能超过20个字符 test      response body\n{ \"code\": 200, \"msg\": \"success\", \"data\": null }   删除角色   url: /admin/roles\n  method: Delete\n  request body:\n   参数 说明 示例     ids 必填非空，但删除权限id数组 [1457736051796123650]      response body：\n{ \"code\": 200, \"msg\": \"success\", \"data\": null }   修改角色   url: /admin/role\n  method: Put\n  request body\n   参数 说明 示例     id 必填，待修改的角色id    name 非必填，角色名称，2-10位英文、中文、数字 test   permissions 非必填，权限数组 [0]   desc 非必填，角色描述，不能超过20个字符 test      response body\n{ \"code\": 200, \"msg\": \"success\", \"data\": null }   权限模块 查询所有权限（用于给角色分配权限）   url：/admin/perms\n  method: Get\n  request body: 空\n  response body：\n{ \"code\": 200, \"msg\": \"success\", \"data\": [ { \"id\": \"1\", \"moduleName\": \"用户管理\", \"actionName\": \"添加\" }, { \"id\": \"2\", \"moduleName\": \"用户管理\", \"actionName\": \"删除\" }, { \"id\": \"3\", \"moduleName\": \"用户管理\", \"actionName\": \"修改\" }, { \"id\": \"4\", \"moduleName\": \"用户管理\", \"actionName\": \"查询\" }, { \"id\": \"5\", \"moduleName\": \"角色管理\", \"actionName\": \"添加\" }, { \"id\": \"6\", \"moduleName\": \"角色管理\", \"actionName\": \"删除\" }, { \"id\": \"7\", \"moduleName\": \"角色管理\", \"actionName\": \"修改\" }, { \"id\": \"8\", \"moduleName\": \"角色管理\", \"actionName\": \"查询\" }, { \"id\": \"9\", \"moduleName\": \"教师管理\", \"actionName\": \"添加\" }, { \"id\": \"10\", \"moduleName\": \"教师管理\", \"actionName\": \"删除\" }, { \"id\": \"11\", \"moduleName\": \"教师管理\", \"actionName\": \"修改\" }, { \"id\": \"12\", \"moduleName\": \"教师管理\", \"actionName\": \"查询\" } ] }   学校管理模块 查询学校列表   url:/front/school/all\n  method: Get\n  request body: 无\n  response body\n{ \"code\": 200, \"msg\": \"success\", \"data\": [ { \"id\": \"1410909562636140546\", \"name\": \"温州职业技术学院\", \"depts\": null }, { \"id\": \"1412948512863797249\", \"name\": \"温州理工学院\", \"depts\": null }, { \"id\": \"1460131595630436353\", \"name\": \"温州医科大学\", \"depts\": null }, { \"id\": \"1460132183478919170\", \"name\": \"宁波理工学院\", \"depts\": null } ] }   查询学校详情   url:/admin/school/{schoolId}\n  method: Get\n  request body: 空\n  response body:\n{ \"code\": 200, \"msg\": \"success\", \"data\": { \"id\": \"1410909562636140546\", \"name\": \"温州职业技术学院\", \"depts\": null } }   分页查询   url:/admin/school\n  method: Get\n  request body\n   参数 说明 示例     name 非必填，学校名称，1-20位中文、英文、数字组成，用于模糊匹配 温州   page 非必填，不能小于1 1   size 非必填，必须在10~50之间 20   orderFiled 非必填，排序字段，默认id id   order 非必填，排序方式，可选值asc, desc，默认asc asc      response body\n{ \"code\": 200, \"msg\": \"success\", \"data\": { \"records\": [ { \"id\": \"1410909562636140546\", \"name\": \"温州职业技术学院\", \"depts\": 1 }, { \"id\": \"1412948512863797249\", \"name\": \"温州理工学院\", \"depts\": 2 }, { \"id\": \"1460131595630436353\", \"name\": \"温州医科大学\", \"depts\": 0 } ], \"total\": \"3\", \"size\": \"10\", \"current\": \"1\", \"orders\": [ { \"column\": \"id\", \"asc\": true } ], \"optimizeCountSql\": true, \"hitCount\": false, \"countId\": null, \"maxLimit\": null, \"searchCount\": true, \"pages\": \"1\" } }   新增学校信息   url: /admin/school\n  method: Post\n  request body:\n   参数 说明 示例     name 必填，学校名称，2-20位中文、英文、数字组成 浙江大学      response body:\n{ \"code\": 200, \"msg\": \"success\", \"data\": null }   修改学校信息   url: /admin/school\n  method: Put\n  request body:\n   参数 说明 示例     id 必填，学校id 0   name 必填，学校名称，2-20位中文、英文、数字组成 浙江大学      response body:\n{ \"code\": 200, \"msg\": \"success\", \"data\": null }   删除学校信息   url: /admin/schools\n  method: Delete\n  request body\n   参数 说明 示例     ids 必填非空，待删除学校id数组 [1457736051796123650]      response body:\n{ \"code\": 200, \"msg\": \"success\", \"data\": null }   系部管理模块 查询系部列表   url: front/dept/all\n  method: Get\n  request param:\n   参数 说明 示例     schoolId 必填，学校id 1412948512863797249      response body\n{ \"code\": 200, \"msg\": \"success\", \"data\": [ { \"id\": \"1412948697090220034\", \"name\": \"信息技术系\", \"school\": null, \"classes\": null }, { \"id\": \"1412949051445972994\", \"name\": \"工商系\", \"school\": null, \"classes\": null } ] }   查询系部详情   url:/admin/school/{schoolId}\n  method: Get\n  request body: 空\n  response body:\n{ \"code\": 200, \"msg\": \"success\", \"data\": { \"id\": \"1460183015209611266\", \"name\": \"计算机\", \"school\": null, \"classes\": null } }   分页查询   url: /admin/depts\n  method: Get\n  request body:\n   参数 说明 示例     name 非必填，系部名称，1-20位中文、英文、数字组成，用于模糊匹配 信息   school 非必填，学校名称，1-20位中文、英文、数字组成，用于模糊匹配 温州   page 非必填，不能小于1 1   size 非必填，必须在10~50之间 20   orderFiled 非必填，排序字段，默认id id   order 非必填，排序方式，可选值asc, desc，默认asc asc      response body:\n{ \"code\": 200, \"msg\": \"success\", \"data\": { \"records\": [ { \"id\": \"1410910929379442690\", \"name\": \"信息技术系\", \"school\": \"温州职业技术学院\", \"classes\": 8 }, { \"id\": \"1412948697090220034\", \"name\": \"信息技术系\", \"school\": \"温州理工学院\", \"classes\": 0 } ], \"total\": \"2\", \"size\": \"10\", \"current\": \"1\", \"orders\": [ { \"column\": \"id\", \"asc\": true } ], \"optimizeCountSql\": true, \"hitCount\": false, \"countId\": null, \"maxLimit\": null, \"searchCount\": true, \"pages\": \"1\" } }   新增系部信息   url: /admin/dept\n  method: Post\n  request body:\n   参数 说明 示例     name 必填，系部名称，2-20位中文、英文、数字组成 设计创意学院   schoolId 必填，学校编号 1410909562636140546      response body:\n{ \"code\": 200, \"msg\": \"success\", \"data\": null }   修改系部信息   url: /admin/depts\n  method: Put\n  request body:\n   参数 说明 示例     id 必填，系部id 1410910929379442690   name 必填，系部名称，2-20位中文、英文、数字组成 人工智能学院      response body\n{ \"code\": 200, \"msg\": \"success\", \"data\": null }   删除系部信息   url: /admin/dept\n  method: Delete\n  request body\n   参数 说明 示例     ids 必填非空，待删除系部id数组 [1460218569095688193]      response body:\n{ \"code\": 200, \"msg\": \"success\", \"data\": null }   班级管理模块 查询班级列表   url:/front/class/all\n  method: Get\n  request param:\n   参数 说明 示例     deptId 必填，系部编号 1412948512863797249      response body\n{ \"code\": 200, \"msg\": \"success\", \"data\": [ { \"id\": \"1410913476450226178\", \"name\": \"软件1901\", \"school\": null, \"dept\": null, \"students\": null, \"teachers\": null }, { \"id\": \"1410913678187843585\", \"name\": \"软件1902\", \"school\": null, \"dept\": null, \"students\": null, \"teachers\": null }, { \"id\": \"1412947584844611586\", \"name\": \"大数据1902\", \"school\": null, \"dept\": null, \"students\": null, \"teachers\": null }, { \"id\": \"1412947735629869057\", \"name\": \"大数据1901\", \"school\": null, \"dept\": null, \"students\": null, \"teachers\": null }, { \"id\": \"1412948099783573506\", \"name\": \"数媒1901\", \"school\": null, \"dept\": null, \"students\": null, \"teachers\": null }, { \"id\": \"1412948245002862593\", \"name\": \"数媒1902\", \"school\": null, \"dept\": null, \"students\": null, \"teachers\": null }, { \"id\": \"1414833835378409474\", \"name\": \"电子商务1901\", \"school\": null, \"dept\": null, \"students\": null, \"teachers\": null }, { \"id\": \"1414855420751523841\", \"name\": \"电子商务1902\", \"school\": null, \"dept\": null, \"students\": null, \"teachers\": null } ] }   查询班级详情   url: /admin/class/{classId}\n  method: Get\n  request body: 空\n  response body:\n{ \"code\": 200, \"msg\": \"success\", \"data\": { \"id\": \"1414855420751523841\", \"name\": \"电子商务1902\", \"school\": null, \"dept\": null, \"students\": null, \"teachers\": null } }   分页查询   url: /admin/classes\n  method: Get\n  request body:\n   参数 说明 示例     name 非必填，系部名称，1-20位中文、英文、数字组成，用于模糊匹配 19   school 非必填，学校名称，1-20位中文、英文、数字组成，用于模糊匹配 温州   dept 非必填，班级名称，1-20位中文、英文、数字组成，用于模糊匹配 人工   page 非必填，不能小于1 1   size 非必填，必须在10~50之间 20   orderFiled 非必填，排序字段，默认id id   order 非必填，排序方式，可选值asc, desc，默认asc asc      response body:\n{ \"code\": 200, \"msg\": \"success\", \"data\": { \"records\": [ { \"id\": \"1410913476450226178\", \"name\": \"软件1901\", \"school\": \"温州职业技术学院\", \"dept\": \"人工智能学院\", \"students\": 2, \"teachers\": 0 }, { \"id\": \"1410913678187843585\", \"name\": \"软件1902\", \"school\": \"温州职业技术学院\", \"dept\": \"人工智能学院\", \"students\": 0, \"teachers\": 0 }, { \"id\": \"1412947584844611586\", \"name\": \"大数据1902\", \"school\": \"温州职业技术学院\", \"dept\": \"人工智能学院\", \"students\": 0, \"teachers\": 0 }, { \"id\": \"1412947735629869057\", \"name\": \"大数据1901\", \"school\": \"温州职业技术学院\", \"dept\": \"人工智能学院\", \"students\": 0, \"teachers\": 0 }, { \"id\": \"1412948099783573506\", \"name\": \"数媒1901\", \"school\": \"温州职业技术学院\", \"dept\": \"人工智能学院\", \"students\": 0, \"teachers\": 0 }, { \"id\": \"1412948245002862593\", \"name\": \"数媒1902\", \"school\": \"温州职业技术学院\", \"dept\": \"人工智能学院\", \"students\": 0, \"teachers\": 0 }, { \"id\": \"1414833835378409474\", \"name\": \"电子商务1901\", \"school\": \"温州职业技术学院\", \"dept\": \"人工智能学院\", \"students\": 0, \"teachers\": 0 }, { \"id\": \"1414855420751523841\", \"name\": \"电子商务1902\", \"school\": \"温州职业技术学院\", \"dept\": \"人工智能学院\", \"students\": 0, \"teachers\": 0 } ], \"total\": \"8\", \"size\": \"10\", \"current\": \"1\", \"orders\": [ { \"column\": \"id\", \"asc\": true } ], \"optimizeCountSql\": true, \"hitCount\": false, \"countId\": null, \"maxLimit\": null, \"searchCount\": true, \"pages\": \"1\" } }   新增班级信息   url: /admin/classes\n  method: Post\n  request body:\n   参数 说明 示例     name 必填，班级名称，2-20位中文、英文、数字组成 软件2001   deptId 必填，系部编号 1410910929379442690      response body:\n{ \"code\": 200, \"msg\": \"success\", \"data\": null }   修改班级信息   url: /admin/class\n  method: Put\n  request body:\n   参数 说明 示例     id 必填，班级id 1460221775330717697   name 必填，班级名称，2-20位中文、英文、数字组成 软件2002      response body\n{ \"code\": 200, \"msg\": \"success\", \"data\": null }   删除班级信息   url: /admin/class\n  method: Delete\n  request body\n   参数 说明 示例     ids 必填非空，待删除班级id数组 [1460221775330717697]      response body:\n{ \"code\": 200, \"msg\": \"success\", \"data\": null }   教师管理模块 分页查询教师管理班级的信息   url:/teacher/classes\n  method: Get\n  request body:\n   参数 说明 示例     userId 非必填，用户id，查询指定用户的班级信息 0   className 非必填，系部名称，1-20位中文、英文、数字组成，用于模糊匹配 19   schoolName 非必填，学校名称，1-20位中文、英文、数字组成，用于模糊匹配 温州   deptName 非必填，班级名称，1-20位中文、英文、数字组成，用于模糊匹配 人工   page 非必填，不能小于1 1   size 非必填，必须在10~50之间 20   orderFiled 非必填，排序字段，默认id id   order 非必填，排序方式，可选值asc, desc，默认asc asc      response body\n{ \"code\": 200, \"msg\": \"success\", \"data\": { \"records\": [ { \"id\": \"1460808406588395522\", \"userId\": \"0\", \"schoolName\": \"温州职业技术学院\", \"deptName\": \"人工智能学院\", \"className\": \"软件1902\" }, { \"id\": \"0\", \"userId\": \"0\", \"schoolName\": \"温州职业技术学院\", \"deptName\": \"人工智能学院\", \"className\": \"软件1901\" } ], \"total\": \"2\", \"size\": \"10\", \"current\": \"1\", \"orders\": [ { \"column\": \"id\", \"asc\": true } ], \"optimizeCountSql\": true, \"hitCount\": false, \"countId\": null, \"maxLimit\": null, \"searchCount\": true, \"pages\": \"1\" } }   新增教师管理班级的信息   url: /teacher/class\n  method: Post\n  request body:\n   参数 说明 示例     userId 必填，用户id 0   classId 必填，班级id 1410910929379442690      response body\n{ \"code\": 200, \"msg\": \"success\", \"data\": null }   删除教师管理班级的信息   url: /teacher/classes\n  method: Delete\n  request body:\n   参数 说明 示例     ids 必填非空，待删除班级id数组 [1460221775330717697]      response body:\n{ \"code\": 200, \"msg\": \"success\", \"data\": null }   ",
+  "wordCount" : "1968",
   "inLanguage": "en",
   "datePublished": "2021-11-04T00:00:00Z",
   "dateModified": "2021-11-04T00:00:00Z",
@@ -207,7 +207,7 @@
     <div class="post-description">
       反诈项目文档
     </div>
-    <div class="post-meta">2021-11-04&nbsp;·&nbsp;9 min&nbsp;·&nbsp;Rex&nbsp;|&nbsp;<a href="https://github.com/Rex0520/Rex0520.github.io" rel="noopener noreferrer" target="_blank">来这修改</a>
+    <div class="post-meta">2021-11-04&nbsp;·&nbsp;10 min&nbsp;·&nbsp;Rex&nbsp;|&nbsp;<a href="https://github.com/Rex0520/Rex0520.github.io" rel="noopener noreferrer" target="_blank">来这修改</a>
 </div>
   </header> <div class="toc">
     <details  open>
@@ -327,7 +327,17 @@
                 <li>
                     <a href="#%e4%bf%ae%e6%94%b9%e7%8f%ad%e7%ba%a7%e4%bf%a1%e6%81%af" aria-label="修改班级信息">修改班级信息</a></li>
                 <li>
-                    <a href="#%e5%88%a0%e9%99%a4%e7%8f%ad%e7%ba%a7%e4%bf%a1%e6%81%af" aria-label="删除班级信息">删除班级信息</a>
+                    <a href="#%e5%88%a0%e9%99%a4%e7%8f%ad%e7%ba%a7%e4%bf%a1%e6%81%af" aria-label="删除班级信息">删除班级信息</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e6%95%99%e5%b8%88%e7%ae%a1%e7%90%86%e6%a8%a1%e5%9d%97" aria-label="教师管理模块">教师管理模块</a><ul>
+                        
+                <li>
+                    <a href="#%e5%88%86%e9%a1%b5%e6%9f%a5%e8%af%a2%e6%95%99%e5%b8%88%e7%ae%a1%e7%90%86%e7%8f%ad%e7%ba%a7%e7%9a%84%e4%bf%a1%e6%81%af" aria-label="分页查询教师管理班级的信息">分页查询教师管理班级的信息</a></li>
+                <li>
+                    <a href="#%e6%96%b0%e5%a2%9e%e6%95%99%e5%b8%88%e7%ae%a1%e7%90%86%e7%8f%ad%e7%ba%a7%e7%9a%84%e4%bf%a1%e6%81%af" aria-label="新增教师管理班级的信息">新增教师管理班级的信息</a></li>
+                <li>
+                    <a href="#%e5%88%a0%e9%99%a4%e6%95%99%e5%b8%88%e7%ae%a1%e7%90%86%e7%8f%ad%e7%ba%a7%e7%9a%84%e4%bf%a1%e6%81%af" aria-label="删除教师管理班级的信息">删除教师管理班级的信息</a>
                 </li>
             </ul>
             </li>
@@ -363,14 +373,13 @@
 </li>
 <li>
 <p>response body</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
-    <span class="nt">&#34;code&#34;</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span>
-    <span class="nt">&#34;msg&#34;</span><span class="p">:</span> <span class="s2">&#34;success&#34;</span><span class="p">,</span>
-    <span class="nt">&#34;data&#34;</span><span class="p">:</span> <span class="p">{</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json">    <span class="s2">&#34;code&#34;</span><span class="err">:</span> <span class="mi">200</span><span class="err">,</span>
+    <span class="s2">&#34;msg&#34;</span><span class="err">:</span> <span class="s2">&#34;success&#34;</span><span class="err">,</span>
+    <span class="s2">&#34;data&#34;</span><span class="err">:</span> <span class="p">{</span>
         <span class="err">token:</span> <span class="nt">&#34;xxxxxx&#34;</span><span class="p">,</span> <span class="err">//验证码token</span>
         <span class="err">captchaImg:</span> <span class="nt">&#34;data:image/jpeg;base64,xxxxxx&#34;</span><span class="p">,</span> <span class="err">//base64格式的验证码图片</span>
     <span class="p">}</span>
-<span class="p">}</span>
+<span class="err">}</span>
 </code></pre></div></li>
 </ul>
 <h3 id="获取所有模块信息">获取所有模块信息<a hidden class="anchor" aria-hidden="true" href="#获取所有模块信息">#</a></h3>
@@ -1237,7 +1246,7 @@
 <h3 id="删除角色">删除角色<a hidden class="anchor" aria-hidden="true" href="#删除角色">#</a></h3>
 <ul>
 <li>
-<p>url: /admin/role</p>
+<p>url: /admin/roles</p>
 </li>
 <li>
 <p>method: Delete</p>
@@ -1472,7 +1481,7 @@
 <h3 id="分页查询-1">分页查询<a hidden class="anchor" aria-hidden="true" href="#分页查询-1">#</a></h3>
 <ul>
 <li>
-<p>url:/admin/schools</p>
+<p>url:/admin/school</p>
 </li>
 <li>
 <p>method: Get</p>
@@ -1638,7 +1647,7 @@
 <h3 id="删除学校信息">删除学校信息<a hidden class="anchor" aria-hidden="true" href="#删除学校信息">#</a></h3>
 <ul>
 <li>
-<p>url: /admin/school</p>
+<p>url: /admin/schools</p>
 </li>
 <li>
 <p>method: Delete</p>
@@ -1881,7 +1890,7 @@
 <h3 id="修改系部信息">修改系部信息<a hidden class="anchor" aria-hidden="true" href="#修改系部信息">#</a></h3>
 <ul>
 <li>
-<p>url: /admin/dept</p>
+<p>url: /admin/depts</p>
 </li>
 <li>
 <p>method: Put</p>
@@ -2235,7 +2244,7 @@
 <h3 id="新增班级信息">新增班级信息<a hidden class="anchor" aria-hidden="true" href="#新增班级信息">#</a></h3>
 <ul>
 <li>
-<p>url: /admin/class</p>
+<p>url: /admin/classes</p>
 </li>
 <li>
 <p>method: Post</p>
@@ -2324,6 +2333,187 @@
 </li>
 <li>
 <p>request body</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ids</td>
+<td>必填非空，待删除班级id数组</td>
+<td>[1460221775330717697]</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>response body:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+    <span class="nt">&#34;code&#34;</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span>
+    <span class="nt">&#34;msg&#34;</span><span class="p">:</span> <span class="s2">&#34;success&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;data&#34;</span><span class="p">:</span> <span class="kc">null</span>
+<span class="p">}</span>
+</code></pre></div></li>
+</ul>
+<h2 id="教师管理模块">教师管理模块<a hidden class="anchor" aria-hidden="true" href="#教师管理模块">#</a></h2>
+<h3 id="分页查询教师管理班级的信息">分页查询教师管理班级的信息<a hidden class="anchor" aria-hidden="true" href="#分页查询教师管理班级的信息">#</a></h3>
+<ul>
+<li>
+<p>url:/teacher/classes</p>
+</li>
+<li>
+<p>method: Get</p>
+</li>
+<li>
+<p>request body:</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>userId</td>
+<td>非必填，用户id，查询指定用户的班级信息</td>
+<td>0</td>
+</tr>
+<tr>
+<td>className</td>
+<td>非必填，系部名称，1-20位中文、英文、数字组成，用于模糊匹配</td>
+<td>19</td>
+</tr>
+<tr>
+<td>schoolName</td>
+<td>非必填，学校名称，1-20位中文、英文、数字组成，用于模糊匹配</td>
+<td>温州</td>
+</tr>
+<tr>
+<td>deptName</td>
+<td>非必填，班级名称，1-20位中文、英文、数字组成，用于模糊匹配</td>
+<td>人工</td>
+</tr>
+<tr>
+<td>page</td>
+<td>非必填，不能小于1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>size</td>
+<td>非必填，必须在10~50之间</td>
+<td>20</td>
+</tr>
+<tr>
+<td>orderFiled</td>
+<td>非必填，排序字段，默认id</td>
+<td>id</td>
+</tr>
+<tr>
+<td>order</td>
+<td>非必填，排序方式，可选值asc, desc，默认asc</td>
+<td>asc</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>response body</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+    <span class="nt">&#34;code&#34;</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span>
+    <span class="nt">&#34;msg&#34;</span><span class="p">:</span> <span class="s2">&#34;success&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;data&#34;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&#34;records&#34;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+                <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;1460808406588395522&#34;</span><span class="p">,</span>
+                <span class="nt">&#34;userId&#34;</span><span class="p">:</span> <span class="s2">&#34;0&#34;</span><span class="p">,</span>
+                <span class="nt">&#34;schoolName&#34;</span><span class="p">:</span> <span class="s2">&#34;温州职业技术学院&#34;</span><span class="p">,</span>
+                <span class="nt">&#34;deptName&#34;</span><span class="p">:</span> <span class="s2">&#34;人工智能学院&#34;</span><span class="p">,</span>
+                <span class="nt">&#34;className&#34;</span><span class="p">:</span> <span class="s2">&#34;软件1902&#34;</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+                <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;0&#34;</span><span class="p">,</span>
+                <span class="nt">&#34;userId&#34;</span><span class="p">:</span> <span class="s2">&#34;0&#34;</span><span class="p">,</span>
+                <span class="nt">&#34;schoolName&#34;</span><span class="p">:</span> <span class="s2">&#34;温州职业技术学院&#34;</span><span class="p">,</span>
+                <span class="nt">&#34;deptName&#34;</span><span class="p">:</span> <span class="s2">&#34;人工智能学院&#34;</span><span class="p">,</span>
+                <span class="nt">&#34;className&#34;</span><span class="p">:</span> <span class="s2">&#34;软件1901&#34;</span>
+            <span class="p">}</span>
+        <span class="p">],</span>
+        <span class="nt">&#34;total&#34;</span><span class="p">:</span> <span class="s2">&#34;2&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;size&#34;</span><span class="p">:</span> <span class="s2">&#34;10&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;current&#34;</span><span class="p">:</span> <span class="s2">&#34;1&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;orders&#34;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+                <span class="nt">&#34;column&#34;</span><span class="p">:</span> <span class="s2">&#34;id&#34;</span><span class="p">,</span>
+                <span class="nt">&#34;asc&#34;</span><span class="p">:</span> <span class="kc">true</span>
+            <span class="p">}</span>
+        <span class="p">],</span>
+        <span class="nt">&#34;optimizeCountSql&#34;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+        <span class="nt">&#34;hitCount&#34;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+        <span class="nt">&#34;countId&#34;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+        <span class="nt">&#34;maxLimit&#34;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+        <span class="nt">&#34;searchCount&#34;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+        <span class="nt">&#34;pages&#34;</span><span class="p">:</span> <span class="s2">&#34;1&#34;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></li>
+</ul>
+<h3 id="新增教师管理班级的信息">新增教师管理班级的信息<a hidden class="anchor" aria-hidden="true" href="#新增教师管理班级的信息">#</a></h3>
+<ul>
+<li>
+<p>url: /teacher/class</p>
+</li>
+<li>
+<p>method: Post</p>
+</li>
+<li>
+<p>request body:</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>userId</td>
+<td>必填，用户id</td>
+<td>0</td>
+</tr>
+<tr>
+<td>classId</td>
+<td>必填，班级id</td>
+<td>1410910929379442690</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>response body</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+    <span class="nt">&#34;code&#34;</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span>
+    <span class="nt">&#34;msg&#34;</span><span class="p">:</span> <span class="s2">&#34;success&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;data&#34;</span><span class="p">:</span> <span class="kc">null</span>
+<span class="p">}</span>
+</code></pre></div></li>
+</ul>
+<h3 id="删除教师管理班级的信息">删除教师管理班级的信息<a hidden class="anchor" aria-hidden="true" href="#删除教师管理班级的信息">#</a></h3>
+<ul>
+<li>
+<p>url: /teacher/classes</p>
+</li>
+<li>
+<p>method: Delete</p>
+</li>
+<li>
+<p>request body:</p>
 <table>
 <thead>
 <tr>
