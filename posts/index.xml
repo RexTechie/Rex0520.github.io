@@ -415,5 +415,14 @@
       <description>Emos项目搭建</description>
     </item>
     
+    <item>
+      <title>微信小程序后端接口文档</title>
+      <link>https://rex0520.github.io/posts/proj/doc/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%90%8E%E7%AB%AF%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://rex0520.github.io/posts/proj/doc/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%90%8E%E7%AB%AF%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/</guid>
+      <description>反诈项目文档</description>
+    </item>
+    
   </channel>
 </rss>
