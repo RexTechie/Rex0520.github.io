@@ -162,26 +162,6 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2>Vue动画
-    </h2>
-  </header>
-  <section class="entry-content">
-    <p>Vue动画 Vue过渡和动画 1. 过渡和动画基础   什么是过渡和动画
-  过渡：从一个状态向另一个状态变化的过程
-  动画：与过渡非常类似，只不过动画控制的过程更加细腻，更加精准
-  过渡语法：
-&lt;transition name=&#34;fade&#34;&gt; &lt;!-- 需要添加过渡的div标签--&gt; &lt;div&gt;&lt;/div&gt; &lt;/transition&gt; name指定的是过渡所需要的样式名的前提
-    transition组件
-  Vue给transition标签，提供了六个过度类
-   过渡类型 说明     v-enter 进入过渡的开始状态，作用于开始的一帧   v-enter-active 进入过渡生效时的状态，作用于整个过程   v-enter-to 进入过渡的结束状态，作用于结束的一帧   v-leave 离开过渡的开始状态，作用于开始的一帧   v-leave-active 离开过渡生效时的状态，作用于整个过程   v-leave-to 离开过渡的结束状态，作用于结束的一帧      过渡类分析图
-  代码示例：...</p>
-  </section>
-  <footer class="entry-footer">2021-03-15&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Rex</footer>
-  <a class="entry-link" aria-label="post link to Vue动画" href="https://rex0520.github.io/posts/front/vue/vue%E5%8A%A8%E7%94%BB/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
     <h2>Vue基础
     </h2>
   </header>
@@ -241,6 +221,21 @@ package com.imooc.lambda; /** * @author CubeMonkey * @create 2020-10-23 17:42 */
   </section>
   <footer class="entry-footer">2021-03-09&nbsp;·&nbsp;8 min&nbsp;·&nbsp;Rex</footer>
   <a class="entry-link" aria-label="post link to Mybatis基础" href="https://rex0520.github.io/posts/back/jdbctool/mybatis%E5%9F%BA%E7%A1%80/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>Mybatis进阶
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>MyBatis进阶 什么是日志  日志文件是用于记录系统操作事件的记录文件或文件集合 日志保存历史数据，是诊断问题以及理解系统活动的重要依据  SLF4j与Logback 日志的使用:   引入logback依赖
+&lt;dependency&gt; &lt;groupId&gt;ch.qos.logback&lt;/groupId&gt; &lt;artifactId&gt;logback-classic&lt;/artifactId&gt; &lt;version&gt;1.2.3&lt;/version&gt; &lt;/dependency&gt;   创建logback.xml，并写入如下代码：
+&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34; ?&gt; &lt;configuration&gt; &lt;appender name=&#34;console&#34; class=&#34;ch.qos.logback.core.ConsoleAppender&#34;&gt; &lt;encoder&gt; &lt;pattern&gt;%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n&lt;/pattern&gt; &lt;/encoder&gt; &lt;/appender&gt; &lt;!-- 日志输出级别（优先级高到低） error: 错误 - 系统的故障日志 warn: 警告 - 存在风险或使用不当的日志 info: 一般性消息 debug: 程序内部用于调试信息 trace: 程序允许的跟踪信息 --&gt; &lt;root level=&#34;debug&#34;&gt; &lt;appender-ref ref=&#34;console&#34;&gt;&lt;/appender-ref&gt; &lt;/root&gt; &lt;/configuration&gt;   动态SQL  动态SQL是指根据参数数据动态组织SQL的技术  代码示例：  goods.xml中加入如下sql语句
+&lt;select id=&#34;dynamicSelect&#34; parameterType=&#34;java....</p>
+  </section>
+  <footer class="entry-footer">2021-03-09&nbsp;·&nbsp;7 min&nbsp;·&nbsp;Rex</footer>
+  <a class="entry-link" aria-label="post link to Mybatis进阶" href="https://rex0520.github.io/posts/back/jdbctool/mybatis%E8%BF%9B%E9%98%B6/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
