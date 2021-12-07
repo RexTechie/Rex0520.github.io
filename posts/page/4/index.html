@@ -162,6 +162,19 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>分布式
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>分布式 定义：  利用物理架构形成多个自治的处理元素，不共享主内存, 但是通过发送信息合作。— Leslie Lamport
+ 实际项目的演进过程  一个项目，大而全 多台机器，部署同样的应用 分布式：权限系统、员工系统、请假系统  分布式的作用 为什么需要分布式  解决单体应用的问题  应用代码耦合严重，功能扩展难 新需求开发交互周期长，测试工程量大 新加入的开发同事需要很长时间才能属性系统 升级维护困难（改动任何一点地方都要升级整个系统） 系统性能提升艰难，可用性低，不稳定    分布式的好处  增大系统容量 加强系统可用 因为模块化，所以系统模块重用度高 因为软件服务模块被拆分，开发和发布速度可以并行变得更块 系统拓展性更高 团队协作流程也会得到改善 技术升级  分布式和单体结构的对比     传统单体结构 分布式架构     新人的学习成本 业务逻辑成本高 架构逻辑成本高   部署、运维 容易 发布频繁，发布顺序复杂、运维难   隔离性 一损俱损，殃及鱼塘 故障影响范围小   架构设计 难度低 难度指数级上升   系统性能 响应快、吞吐量小 响应慢、吞吐量大   测试成本 低 很高   技术多样性 技术单一且封闭 技术多样且开放   系统扩展性 扩展性差 扩展性很好   系统管理成本 成本低 成本高    CAP定理   CAP理论：三者不可兼得...</p>
+  </section>
+  <footer class="entry-footer">2021-06-10&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Rex</footer>
+  <a class="entry-link" aria-label="post link to 分布式" href="https://rex0520.github.io/posts/back/microservices/%E5%88%86%E5%B8%83%E5%BC%8F/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>Threadlocal详解
     </h2>
   </header>
@@ -223,26 +236,6 @@ package treadlocal; import java.text.SimpleDateFormat; import java.util.Date; im
   </section>
   <footer class="entry-footer">2021-06-08&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Rex</footer>
   <a class="entry-link" aria-label="post link to 线程池" href="https://rex0520.github.io/posts/back/threadpool/%E7%BA%BF%E7%A8%8B%E6%B1%A0/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>CSS
-    </h2>
-  </header>
-  <section class="entry-content">
-    <p>CSS CSS简介  层叠样式表(Cascading Style Sheets)的简称 美化HTML、布局网页 结构（HTML）-样式（CSS）分离  语法规范： ​	选择器{属性:值}
-h1{color: red;} 语法风格   紧凑格式
-h3 {color:red}   展开格式(强推)
-h3 { color: pink; font-size:20px; }   选择器： CSS引入方式  内部样式表 行内样式表 外部样式表  CSS常用选择器 基础选择器  标签选择器 类选择器 id选择器 通配符选择器  复合选择器   后代选择器
-元素1 元素2 { 样式声明 }
-  子选择器：只能选择作为某元素的最近一级 元素，
-元素1&gt;元素2 { 样式声明 }
-  并集选择器
-元素1,元素2 { 样式声明 }...</p>
-  </section>
-  <footer class="entry-footer">2021-05-14&nbsp;·&nbsp;4 min&nbsp;·&nbsp;Rex</footer>
-  <a class="entry-link" aria-label="post link to CSS" href="https://rex0520.github.io/posts/front/css/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
