@@ -156,7 +156,7 @@ Zookeeper是开源的高性能的分布式应用协调系统，一个高性能�
  5大特点  顺序一致性：发出去的顺序==执行的顺序 原子性：请求同步到各个节点要么都成果要么都失败 单一视图：多个节点无论连哪个看的东西都是一致的 可靠性：给节点写了数据，这个数据会一直保留，直到有另外的操作把数据写掉，才会发生变化 及时性：在一定的时间段（可接受的时间段）内能从服务器上读到最新的数据状态  架构图、集群、工作过程 Zookeeper和CAP的关系  CP：一致性&#43;分区容错性 能得到一致的数据结果，同时系统对网络具备容错性 但是它不能保证每次服务请求的可用性  作用  分布式服务注册与订阅 统一配置文件 生成分布式唯一ID Master节点选举 分布式锁  节点znode 模型-树结构 节点性质  树形结构，也可以理解为linux的文件目录 每一个节点都是znode，里面可以包含数据，也可以有子节点 点分为永久节点和临时节点(session失效，也就是客户端段凯后，临时节点消失) 每个znode都有版本号，每当数据变化，版本号会累加（乐观锁） 删除或修改节点，版本号不匹配的话（版本号已过时），会报错 每个节点存储的数据不宜过大，几k即可 节点可以设置权限，来限制用户的访问 Zookeeper保证读和写都是原子操作，且每次读写操作都是对数据的完整读取或完整写入  节点类型  持久节点 临时节点 顺序节点  节点属性  dataVersion 数据版本号，每次对内容修改dataVersion&#43;1 cversion 子节点版本号，如果子节点内容发送变化cversion&#43;1 aclVersion acl-权限控制列表，权限发生变化的时候aclVersion&#43;1  常用命令  查看节点ls 查看节点的数据和状态get 创建(create [-s 顺序节点] [-e 临时节点])、修改(set)、删除(delete)节点  Watcher机制   触发器、监督者...</p>
   </section>
   <footer class="entry-footer">2021-08-21&nbsp;·&nbsp;4 min&nbsp;·&nbsp;Rex</footer>
-  <a class="entry-link" aria-label="post link to Zookeeper" href="https://rex0520.github.io/posts/back/microservices/zookeeper/"></a>
+  <a class="entry-link" aria-label="post link to Zookeeper" href="https://rex0520.github.io/posts/back/java/microservices/zookeeper/"></a>
 </article>
 
 <article class="post-entry tag-entry"> 
@@ -174,7 +174,7 @@ Zookeeper是开源的高性能的分布式应用协调系统，一个高性能�
   常见的RPC框架  阿里的Dubbo（性能好） 新浪的Montan（轻量级，项目架构复杂度低，适合RPC源码学习） Facebook的Thrift （可伸缩的跨语言框架，有很强的代码生成语言）  HTTP和RPC对比  普通话（HTTP，规范–效率低）和方言（RPC，传输效率和运行速度更高），普通话本质上也是一种方言，只不过它是官方的方言 传输效率：RPC可以自己定制，通过定制自己的请求，让整体传输的内容更少，这样的效率更高，而HTTP会传输一些无用的内容 性能消耗，主要在于序列化和反序列化的耗时：RPC可以实现高效的二进制传输，HTTP大部分要通过JSON格式来传输 负载均衡：RPC自带负载均衡策略，HTTP需要借助其他的组件，如Nginx  Dubbo工作原理    模块 说明     Provider 暴露服务的服务提供方   Consumer 调用远程服务的服务消费方   Registry 服务注册与发现的注册中心   Monitor 统计服务的调用次数和调用时间的监控中心   Container 服务运行容器     服务容器负责启动，加载，运行服务提供者 服务提供者在启动时，向注册中心注册自己提供的服务 服务消费者在启动时，向注册中心订阅自己所需的服务 注册中心返回服务提供者地址列表给消费者 从提供者地址列表中，选一台提供者进行调用 定期发送一次统计数据到监控中心  </p>
   </section>
   <footer class="entry-footer">2021-07-23&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Rex</footer>
-  <a class="entry-link" aria-label="post link to Dubbo基础" href="https://rex0520.github.io/posts/back/microservices/dubbo%E5%9F%BA%E7%A1%80/"></a>
+  <a class="entry-link" aria-label="post link to Dubbo基础" href="https://rex0520.github.io/posts/back/java/microservices/dubbo%E5%9F%BA%E7%A1%80/"></a>
 </article>
 
 <article class="post-entry tag-entry"> 
@@ -191,7 +191,7 @@ Zookeeper是开源的高性能的分布式应用协调系统，一个高性能�
   Docker的组成、架构、重要概念 images（镜像）:  存储：联合文件系统，UnionFS    Container（容器）：  镜像类似于Java中的类，而容器就是实例 容器的这一层是可以修改的，而镜像是不可以修改的 同一个镜像可以生成多个容器独立运行，而他们之间没有任何的干扰  Repository（仓库）：   官方仓库...</p>
   </section>
   <footer class="entry-footer">2021-06-25&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Rex</footer>
-  <a class="entry-link" aria-label="post link to Docker基础" href="https://rex0520.github.io/posts/back/microservices/docker%E5%9F%BA%E7%A1%80/"></a>
+  <a class="entry-link" aria-label="post link to Docker基础" href="https://rex0520.github.io/posts/back/java/microservices/docker%E5%9F%BA%E7%A1%80/"></a>
 </article>
 
 <article class="post-entry tag-entry"> 
@@ -204,7 +204,7 @@ Zookeeper是开源的高性能的分布式应用协调系统，一个高性能�
  ;结尾 {}组织多条指令 include 引入 #注释 $ 变量    默认配置文件分析...</p>
   </section>
   <footer class="entry-footer">2021-06-22&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Rex</footer>
-  <a class="entry-link" aria-label="post link to Nginx使用" href="https://rex0520.github.io/posts/back/microservices/nginx%E4%BD%BF%E7%94%A8/"></a>
+  <a class="entry-link" aria-label="post link to Nginx使用" href="https://rex0520.github.io/posts/back/java/microservices/nginx%E4%BD%BF%E7%94%A8/"></a>
 </article>
 
 <article class="post-entry tag-entry"> 
@@ -222,7 +222,7 @@ Zookeeper是开源的高性能的分布式应用协调系统，一个高性能�
   微服务优点  服务简单、便于学习和上手，先对易于维护 独立部署，灵活扩展 技术栈丰富  微服务缺点  运维成本过高 接口可能不匹配 代码可能重复 架构复杂度提高  微服务有两大门派  Spring Cloud：众多子项目 dubbo：高性能、轻量级的开源Java RPC框架，它提供了三大核心能力：面向接口的远程方法调用，智能容错和负载均衡以及服务自动注册和发现     核心组件 Dubbo Spring Cloud     服务注册中心 Zookeeper Spring Cloud Netflix Eureka   服务调用方式 RPC REST API   服务网关 无 Spring Cloud Netflix Zuul   断路器 不完善 Spring Cloud Netflix Hystrix   分布式配置 无/百度的disconf、百度的diamond Spring Cloud Config   服务跟踪 无/京东开源Hydra Spring Cloud Sleuth   消息总线 无 Spring Cloud Bus   数据流 无 Spring Cloud Stream   批量任务 无/当当开源Elastic-Job Spring Cloud Task    通信协议对比  RPC vs REST 服务提供方与调用方接口依赖方式太强 服务对平台敏感，难以简单服务  微服务拆分 服务化拆分  第一阶段的主要目标是快速开发和验证想法 进一步增加更多的新特性来吸引更多的目标用户 同时进行开发的人员超过10人，这个时候就该考虑服务化拆分了  不适合拆分的情况  小团队，技术基础较薄弱 流量不够，压力小，业务变化也不大 对延迟很敏感的低延迟高并发系统  拆分方式  纵向拆分，按照业务维度拆分 横向拆分，按照公共领域拆分 结合业务综合分析  服务扩展  x轴-水平复制，作为整体复制多个系统，重新部署几套，加一个负载均衡器 y轴-功能解耦，微服务拆解 z轴-数据分区，拆分数据库  自动按需扩展  根据CPU负载程度、特定时间（比如周末）、消息中间件的队列长度、业务具体规则、预测等来决定是否扩展 自动分配了一个新的服务实例，提高可用性 提高了可伸缩性（双11之后，自动减少了服务器） 具有最佳使用率，节约成本  微服务重要模块  服务描述 注册服务中心 服务框架 负载均衡 熔断和降级，兜底策略 网关：统一转换，校验，过滤器  </p>
   </section>
   <footer class="entry-footer">2021-06-22&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Rex</footer>
-  <a class="entry-link" aria-label="post link to 微服务" href="https://rex0520.github.io/posts/back/microservices/%E5%BE%AE%E6%9C%8D%E5%8A%A1/"></a>
+  <a class="entry-link" aria-label="post link to 微服务" href="https://rex0520.github.io/posts/back/java/microservices/%E5%BE%AE%E6%9C%8D%E5%8A%A1/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

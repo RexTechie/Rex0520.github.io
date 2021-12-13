@@ -1,0 +1,1252 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Springjdbc | Rex</title>
+<meta name="keywords" content="Spring" />
+<meta name="description" content="Springjdbc">
+<meta name="author" content="Rex">
+<link rel="canonical" href="https://rex0520.github.io/posts/back/java/framework/spring/springjdbc/" />
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.css" rel="preload stylesheet" as="style">
+<link rel="preload" href="http://cdn.rexweb.xyz/img/20210821105340.png" as="image">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.min.js" onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="https://rex0520.github.io/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://rex0520.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://rex0520.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://rex0520.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://rex0520.github.io/%3Clink%20/%20abs%20url%3E">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<meta name="generator" content="Hugo 0.87.0" />
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:title" content="Springjdbc" />
+<meta property="og:description" content="Springjdbc" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://rex0520.github.io/posts/back/java/framework/spring/springjdbc/" /><meta property="og:image" content="https://cdn.rexweb.xyz/img/20210820141535.jpg"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-01-06T00:00:00&#43;00:00" />
+<meta property="article:modified_time" content="2021-01-06T00:00:00&#43;00:00" /><meta property="og:site_name" content="RexHub" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://cdn.rexweb.xyz/img/20210820141535.jpg"/>
+
+<meta name="twitter:title" content="Springjdbc"/>
+<meta name="twitter:description" content="Springjdbc"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://rex0520.github.io/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Springjdbc",
+      "item": "https://rex0520.github.io/posts/back/java/framework/spring/springjdbc/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Springjdbc",
+  "name": "Springjdbc",
+  "description": "Springjdbc",
+  "keywords": [
+    "Spring"
+  ],
+  "articleBody": "Spring JDBC与事务管理 Spring JDBC  Spring JDBC是Spring框架用于处理关系型数据库的模块 Spring JDBC对JDBC API进行封装，极大简化开发工作量 JdbcTemplate是Spring JDBC核心类，提供数据CRUD方法  Spring JDBC的使用步骤  Maven工程引入依赖spring-jdbc applicationContext.xml配置DataSource数据源 在Dao注入JdbcTemplate对象，实现数据CRUD  JdbcTemplate实现增删改查 Spring JDBC配置过程代码示例：  applicationContext.xml\n  xmlns=\"http://www.springframework.org/schema/beans\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:context=\"http://www.springframework.org/schema/context\" xsi:schemaLocation=\" http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd\"   id=\"dataSource\" class=\"org.springframework.jdbc.datasource.DriverManagerDataSource\"  name=\"driverClassName\" value=\"com.mysql.cj.jdbc.Driver\"  name=\"url\" value=\"jdbc:mysql://localhost:3306/imooc?useSSL=false\u0026amp;useUnicode=true\u0026amp;characterEncoding=UTF-8\u0026amp;serverTimezone=Asia/Shanghai\u0026amp;allowPublicKeyRetrieval=true\"  name=\"username\" value=\"root\"  name=\"password\" value=\"root\"    id=\"jdbcTemplate\" class=\"org.springframework.jdbc.core.JdbcTemplate\"  name=\"dataSource\" ref=\"dataSource\"   id=\"employeeDao\" class=\"com.imooc.spring.jdbc.dao.EmployeeDao\"   name=\"jdbcTemplate\" ref=\"jdbcTemplate\"   Employee.java\npackage com.imooc.spring.jdbc.entity; import java.util.Date; /** * @author Rex * @create 2021-01-05 14:44 */ public class Employee { private Integer eno; private String ename; private Float salary; private String dname; private Date hiredate; public Integer getEno() { return eno; } public void setEno(Integer eno) { this.eno = eno; } public String getEname() { return ename; } public void setEname(String ename) { this.ename = ename; } public Float getSalary() { return salary; } public void setSalary(Float salary) { this.salary = salary; } public String getDname() { return dname; } public void setDname(String dname) { this.dname = dname; } public Date getHiredate() { return hiredate; } public void setHiredate(Date hiredate) { this.hiredate = hiredate; } @Override public String toString() { return \"Employee{\" + \"eno=\" + eno + \", ename='\" + ename + '\\'' + \", salary=\" + salary + \", dname='\" + dname + '\\'' + \", hiredate=\" + hiredate + '}'; } } EmployeeDao.java\npackage com.imooc.spring.jdbc.dao; import com.imooc.spring.jdbc.entity.Employee; import org.springframework.jdbc.core.BeanPropertyRowMapper; import org.springframework.jdbc.core.JdbcTemplate; import org.springframework.stereotype.Repository; /** * @author Rex * @create 2021-01-05 14:46 */ @Repository public class EmployeeDao { private JdbcTemplate jdbcTemplate; public Employee findById(Integer eno){ String sql = \"select * from employee where eno = ?\"; Employee employee = jdbcTemplate.queryForObject(sql, new Object[]{eno}, new BeanPropertyRowMapperEmployee(Employee.class)); return employee; } public JdbcTemplate getJdbcTemplate() { return jdbcTemplate; } public void setJdbcTemplate(JdbcTemplate jdbcTemplate) { this.jdbcTemplate = jdbcTemplate; } } SpringApplication.java\npackage com.imooc.spring.jdbc; import com.imooc.spring.jdbc.dao.EmployeeDao; import com.imooc.spring.jdbc.entity.Employee; import org.springframework.context.ApplicationContext; import org.springframework.context.support.ClassPathXmlApplicationContext; /** * @author Rex * @create 2021-01-05 14:52 */ public class SpringApplication { public static void main(String[] args) { ApplicationContext context = new ClassPathXmlApplicationContext(\"classpath:applicationContext.xml\"); EmployeeDao employeeDao = context.getBean(\"employeeDao\", EmployeeDao.class); Employee employee = employeeDao.findById(3308); System.out.println(employee); } }  JDBC Template的数据查询代码示例：  EmployeeDao.java\npublic Employee findById(Integer eno){ String sql = \"select * from employee where eno = ?\"; //查询单条数据  Employee employee = jdbcTemplate.queryForObject(sql, new Object[]{eno}, new BeanPropertyRowMapperEmployee(Employee.class)); return employee; } public ListEmployee findByDname(String dname){ String sql = \"select * from Employee where dname = ?\"; //查询复合数据  ListEmployee list = jdbcTemplate.query(sql, new Object[]{dname}, new BeanPropertyRowMapperEmployee(Employee.class)); return list; } public ListMapString, Object findMapByDname(String dname){ String sql = \"select eno as empno, salary as s from employee where dname=?\"; //将查询结果作为Map进行封装  ListMapString, Object maps = jdbcTemplate.queryForList(sql, new Object[]{dname}); return maps; } 单条查询测试\n@Test public void testFindById(){ Employee employee = employeeDao.findById(3308); System.out.println(employee); } 查询结果：\n[Employee{eno=3308, ename='张三', salary=6000.0, dname='研发部', hiredate=2011-05-08 00:00:00.0}, Employee{eno=3420, ename='李四', salary=8700.0, dname='研发部', hiredate=2006-11-11 00:00:00.0}] 多条记录查询测试\n@Test public void testFindByDname(){ ListEmployee list = employeeDao.findByDname(\"研发部\"); System.out.println(list); } 查询结果：\nEmployee{eno=3308, ename='张三', salary=6000.0, dname='研发部', hiredate=2011-05-08 00:00:00.0} 将查询结果以Map作为封装测试\n@Test public void testFindMapByDname(){ System.out.println(employeeDao.findMapByDname(\"研发部\")); } 查询结果：\n[{empno=3308, s=6000.0}, {empno=3420, s=8700.0}]  JdbcTemplate数据写入代码示例  数据新增：\npublic int insert(Employee employee){ String sql = \"insert into employee(eno, ename, salary, dname, hiredate) values(?, ?, ?, ?, ?)\"; //利用update方法实现数据写入操作  return jdbcTemplate.update(sql, new Object[]{employee.getEno(), employee.getEname(), employee.getSalary(), employee.getDname(), employee.getHiredate()}); } 测试代码：\n@Test public void testInsert(){ Employee employee = new Employee(); employee.setEno(8888); employee.setEname(\"赵六\"); employee.setSalary(6666f); employee.setDname(\"研发部\"); employee.setHiredate(new Date()); int count = employeeDao.insert(employee); System.out.println(\"本次新增\"+count+\"条数据\"); } 测试结果：\n本次插入1条数据 数据修改：\npublic int update(Employee employee){ String sql = \"update employee set ename = ?, salary = ?, dname = ?, hiredate = ? where eno = ?\"; int count = jdbcTemplate.update(sql, new Object[]{employee.getEname(), employee.getSalary(), employee.getDname(), employee.getHiredate(), employee.getEno()}); return count; } 测试代码：\n@Test public void testUpdate(){ Employee employee = employeeDao.findById(8888); employee.setSalary(employee.getSalary()+1000f); int count = employeeDao.update(employee); System.out.println(\"本次更新\"+count+\"条数据\"); } 测试结果：\n本次更新1条数据 数据删除：\npublic int delete(Integer eno){ String sql = \"delete from employee where eno = ?\"; return jdbcTemplate.update(sql, new Object[]{eno}); } 测试代码：\n@Test public void testDelete(){ int count = employeeDao.delete(8888); System.out.println(\"本次删除\"+count+\"条数据\"); } 测试结果：\n本次删除1条数据  Spring编程式事务 什么是事务  事务以一种可靠的、一致的方式，访问和造作数据库的程序单元 说人话：要么把事情做完，要么什么都不做，不要做一半 事务依赖于数据库实现，MySQL通过事务区作为数据缓冲地带  编程式事务  编程式事务是指通过代码手动提交回滚事务的事务控制方法 SpringJDBC通过TransactionManage事务管理器实现事务控制 事务管理器提供commit/rollback方法进行事务提交与回滚  代码示例：  ApplicationContext.xml\n id=\"employeeService\" class=\"com.imooc.spring.jdbc.service.EmployeeService\"  name=\"employeeDao\" ref=\"employeeDao\"  name=\"transactionManager\" ref=\"transactionManager\"    id=\"transactionManager\" class=\"org.springframework.jdbc.datasource.DataSourceTransactionManager\"  name=\"dataSource\" ref=\"dataSource\"  EmployeeService.java\npackage com.imooc.spring.jdbc.service; import com.imooc.spring.jdbc.dao.EmployeeDao; import com.imooc.spring.jdbc.entity.Employee; import org.springframework.jdbc.datasource.DataSourceTransactionManager; import org.springframework.transaction.TransactionDefinition; import org.springframework.transaction.TransactionStatus; import org.springframework.transaction.support.DefaultTransactionDefinition; import java.util.Date; /** * @author Rex * @create 2021-01-05 16:31 */ public class EmployeeService { private EmployeeDao employeeDao; private DataSourceTransactionManager transactionManager; public void batchImport(){ //定义了事务默认的标准配置  TransactionDefinition definition = new DefaultTransactionDefinition(); //开始一个事务  TransactionStatus status = transactionManager.getTransaction(definition); try { for (int i = 0; i  10; i++) { if ( i == 3) { throw new RuntimeException(\"意料之外的异常\"); } Employee employee = new Employee(); employee.setEno(8000 + i); employee.setEname(\"员工\" + i); employee.setSalary(4000f); employee.setDname(\"市场部\"); employee.setHiredate(new Date()); employeeDao.insert(employee); } // //提交事务  transactionManager.commit(status); }catch (RuntimeException e){ transactionManager.rollback(status); throw e; } } public EmployeeDao getEmployeeDao() { return employeeDao; } public void setEmployeeDao(EmployeeDao employeeDao) { this.employeeDao = employeeDao; } public DataSourceTransactionManager getTransactionManager() { return transactionManager; } public void setTransactionManager(DataSourceTransactionManager transactionManager) { this.transactionManager = transactionManager; } } JdbcTemplateTestor.java\n@Test public void testBatchImport(){ employeeService.batchImport(); System.out.println(\"批量导入成功\"); } 测试结果：\n... 16:55:40.411 [main] DEBUG org.springframework.jdbc.core.JdbcTemplate - Executing prepared SQL statement [insert into employee(eno, ename, salary, dname, hiredate) values(?, ?, ?, ?, ?)] 16:55:40.490 [main] DEBUG org.springframework.jdbc.core.JdbcTemplate - SQLWarning ignored: SQL state '22007', error code '1292', message [Incorrect date value: '2021-01-05 16:55:40.405' for column 'hiredate' at row 1] 16:55:40.498 [main] DEBUG org.springframework.jdbc.core.JdbcTemplate - Executing prepared SQL update 16:55:40.498 [main] DEBUG org.springframework.jdbc.core.JdbcTemplate - Executing prepared SQL statement [insert into employee(eno, ename, salary, dname, hiredate) values(?, ?, ?, ?, ?)] 16:55:40.502 [main] DEBUG org.springframework.jdbc.core.JdbcTemplate - SQLWarning ignored: SQL state '22007', error code '1292', message [Incorrect date value: '2021-01-05 16:55:40.498' for column 'hiredate' at row 1] 16:55:40.502 [main] DEBUG org.springframework.jdbc.core.JdbcTemplate - Executing prepared SQL update 16:55:40.503 [main] DEBUG org.springframework.jdbc.core.JdbcTemplate - Executing prepared SQL statement [insert into employee(eno, ename, salary, dname, hiredate) values(?, ?, ?, ?, ?)] 16:55:40.507 [main] DEBUG org.springframework.jdbc.core.JdbcTemplate - SQLWarning ignored: SQL state '22007', error code '1292', message [Incorrect date value: '2021-01-05 16:55:40.502' for column 'hiredate' at row 1] 16:55:40.507 [main] DEBUG org.springframework.jdbc.datasource.DataSourceTransactionManager - Initiating transaction rollback 16:55:40.507 [main] DEBUG org.springframework.jdbc.datasource.DataSourceTransactionManager - Rolling back JDBC transaction on Connection [com.mysql.cj.jdbc.ConnectionImpl@3646a422] 16:55:40.521 [main] DEBUG ... java.lang.RuntimeException: 意料之外的异常...  Spring声明式事务 声明式事务  声明式事务指在不修改源码情况下通过配置形式自动实现事务控制，声明式事务本质就是AOP环绕通知 当目标方法执行成功时，自动提交事务 当目标方法抛出运行时异常时，自动事务回滚  配置过程  配置TransactionManager事务管理器 配置事务通知与事务属性 为事务通知绑定PointCut切点  代码示例：  applicationContext.xml\n  id=\"transactionManager\" class=\"org.springframework.jdbc.datasource.DataSourceTransactionManager\"  name=\"dataSource\" ref=\"dataSource\"    id=\"txAdvice\" transaction-manager=\"transactionManager\"    name=\"batchImport\" propagation=\"REQUIRED\"/  name=\"batch*\" propagation=\"REQUIRED\"   name=\"find*\" propagation=\"NOT_SUPPORTED\" read-only=\"true\"/  name=\"get*\" propagation=\"NOT_SUPPORTED\" read-only=\"true\"/  name=\"*\" propagation=\"REQUIRED\"/      id=\"pointcut\" expression=\"execution(public * com.imooc..*Service.*(..))\"/  advice-ref=\"txAdvice\" pointcut-ref=\"pointcut\"  EmployeeService.java\npackage com.imooc.spring.jdbc.service; import com.imooc.spring.jdbc.dao.EmployeeDao; import com.imooc.spring.jdbc.entity.Employee; import java.util.Date; public class EmployeeService { private EmployeeDao employeeDao; public void batchImport() { for (int i = 1; i  10; i++) { if(i == 3){ throw new RuntimeException(\"意料之外的异常\"); } Employee employee = new Employee(); employee.setEno(8000 + i); employee.setEname(\"员工\" + i); employee.setSalary(4000f); employee.setDname(\"市场部\"); employee.setHiredate(new Date()); employeeDao.insert(employee); } } public EmployeeDao getEmployeeDao() { return employeeDao; } public void setEmployeeDao(EmployeeDao employeeDao) { this.employeeDao = employeeDao; } } 执行结果： 同上\n 事务传播行为  事务传播行为是指多个拥有事务的方法在嵌套调用时的事务控制方式 XML： 注解：@Transactional(propagation=Propagation.REQUIRED)  事务传播行为七种类型    事务传播类型 说明     PROPAGATION_REQUIRED 如果当前没有事务，就新建一个事务，如果已经存在一个事务，加入到这个事务中。这是最常见的选择   PROPAGATION_SUPPORTS 支持当前事务，如果当前没有事务，就以非事务方式执行   PROPAGATION_MANADATORY 使用当前的事务，如果当前没有事务，就抛出异常   PROPAGATION_REQUIRES_NEW 新建事务，如果当前存在事务，就把当前事务挂起   PROPAGATION_NOT_SUPPORT 以非事务方式执行操作，如果当前存在事务，就把当前事务挂起   PROPAGATION_NEVER 以非事务方式执行，如果当前存在事务，则抛出异常   PROPAGATION_NESTED 如果当前存在事务，则在嵌套事务内执行。如果当前没有事务，则执行与PROPAGATION_REQUIRED类似的操作    Spring注解配置声明式事务 代码示例  applicationContext.xml\n  xmlns=\"http://www.springframework.org/schema/beans\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:context=\"http://www.springframework.org/schema/context\" xmlns:tx=\"http://www.springframework.org/schema/tx\" xmlns:aop=\"http://www.springframework.org/schema/aop\" xsi:schemaLocation=\"http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/tx https://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd\"  base-package=\"com.imooc\"/   id=\"dataSource\" class=\"org.springframework.jdbc.datasource.DriverManagerDataSource\"  name=\"driverClassName\" value=\"com.mysql.cj.jdbc.Driver\"/  name=\"url\" value=\"jdbc:mysql://localhost:3306/imooc?useSSL=false\u0026amp;useUnicode=true\u0026amp;characterEncoding=utf-8\u0026amp;serverTimezone=Asia/Shanghai\u0026amp;usePublicKeyRetrieval=true\"/  name=\"username\" value=\"root\"/  name=\"password\" value=\"root\"/    id=\"jdbcTemplate\" class=\"org.springframework.jdbc.core.JdbcTemplate\"  name=\"dataSource\" ref=\"dataSource\"/    id=\"transactionManager\" class=\"org.springframework.jdbc.datasource.DataSourceTransactionManager\"  name=\"dataSource\" ref=\"dataSource\"/    transaction-manager=\"transactionManager\"/  Employee.java\npackage com.imooc.spring.jdbc.entity; import java.util.Date; public class Employee { private Integer eno; private String ename; private Float salary; private String dname; private Date hiredate; public Integer getEno() { return eno; } public void setEno(Integer eno) { this.eno = eno; } public String getEname() { return ename; } public void setEname(String ename) { this.ename = ename; } public Float getSalary() { return salary; } public void setSalary(Float salary) { this.salary = salary; } public String getDname() { return dname; } public void setDname(String dname) { this.dname = dname; } public Date getHiredate() { return hiredate; } public void setHiredate(Date hiredate) { this.hiredate = hiredate; } @Override public String toString() { return \"Employee{\" + \"eno=\" + eno + \", ename='\" + ename + '\\'' + \", salary=\" + salary + \", dname='\" + dname + '\\'' + \", hiredate=\" + hiredate + '}'; } } EmployeeDao.java\npackage com.imooc.spring.jdbc.dao; import com.imooc.spring.jdbc.entity.Employee; import org.springframework.jdbc.core.BeanPropertyRowMapper; import org.springframework.jdbc.core.JdbcTemplate; import org.springframework.stereotype.Repository; import javax.annotation.Resource; import java.util.List; import java.util.Map; @Repository public class EmployeeDao { @Resource private JdbcTemplate jdbcTemplate; public Employee findById(Integer eno){ String sql = \"select * from employee where eno = ?\"; //查询单条数据  Employee employee = jdbcTemplate.queryForObject(sql, new Object[]{eno}, new BeanPropertyRowMapperEmployee(Employee.class)); return employee; } public ListEmployee findByDname(String dname){ String sql = \"select * from employee where dname = ?\"; //查询复合数据  ListEmployee list = jdbcTemplate.query(sql, new Object[]{dname}, new BeanPropertyRowMapperEmployee(Employee.class)); return list; } public ListMapString, Object findMapByDname(String dname){ String sql = \"select eno as empno , salary as s from employee where dname = ?\"; //将查询结果作为Map进行封装  ListMapString, Object maps = jdbcTemplate.queryForList(sql, new Object[]{dname}); return maps; } public void insert(Employee employee){ String sql = \"insert into employee(eno,ename,salary,dname,hiredate) values(?,?,?,?,?)\"; //利用update方法实现数据写入操作  jdbcTemplate.update(sql,new Object[]{ employee.getEno() , employee.getEname(),employee.getSalary(),employee.getDname() , employee.getHiredate() }); } public int update(Employee employee){ String sql = \"UPDATE employee SET ename = ?, salary = ?, dname = ?, hiredate = ? WHERE eno = ?\"; int count = jdbcTemplate.update(sql, new Object[]{employee.getEname(), employee.getSalary(), employee.getDname(), employee.getHiredate(), employee.getEno()}); return count; } public int delete(Integer eno){ String sql = \"delete from employee where eno = ?\"; return jdbcTemplate.update(sql, new Object[]{eno}); } public JdbcTemplate getJdbcTemplate() { return jdbcTemplate; } public void setJdbcTemplate(JdbcTemplate jdbcTemplate) { this.jdbcTemplate = jdbcTemplate; } } BatchService.java\npackage com.imooc.spring.jdbc.service; import com.imooc.spring.jdbc.dao.EmployeeDao; import com.imooc.spring.jdbc.entity.Employee; import org.springframework.stereotype.Service; import org.springframework.transaction.annotation.Propagation; import org.springframework.transaction.annotation.Transactional; import javax.annotation.Resource; import java.util.Date; @Service @Transactional(propagation = Propagation.NOT_SUPPORTED, readOnly = true) public class BatchService { @Resource private EmployeeDao employeeDao; @Transactional(propagation = Propagation.REQUIRES_NEW) public void importJob1(){ for (int i = 1; i  10; i++) { Employee employee = new Employee(); employee.setEno(8000 + i); employee.setEname(\"研发部员工\" + i); employee.setSalary(4000f); employee.setDname(\"研发部\"); employee.setHiredate(new Date()); employeeDao.insert(employee); } } @Transactional(propagation = Propagation.REQUIRES_NEW) public void importJob2(){ for (int i = 1; i  10; i++) { Employee employee = new Employee(); employee.setEno(9000 + i); employee.setEname(\"市场部员工\" + i); employee.setSalary(4500f); employee.setDname(\"市场部\"); employee.setHiredate(new Date()); employeeDao.insert(employee); } } public EmployeeDao getEmployeeDao() { return employeeDao; } public void setEmployeeDao(EmployeeDao employeeDao) { this.employeeDao = employeeDao; } } EmployeeService.java\npackage com.imooc.spring.jdbc.service; import com.imooc.spring.jdbc.dao.EmployeeDao; import com.imooc.spring.jdbc.entity.Employee; import org.springframework.stereotype.Repository; import org.springframework.stereotype.Service; import org.springframework.transaction.annotation.Propagation; import org.springframework.transaction.annotation.Transactional; import javax.annotation.Resource; import java.util.Date; @Service //声明式事务核心注解 //放在类上，将声明式事务配置应用于当前类所有方法，默认事务传播为REQUIRED @Transactional public class EmployeeService { @Resource private EmployeeDao employeeDao; @Resource private BatchService batchService; @Transactional(propagation = Propagation.NOT_SUPPORTED, readOnly = true) public Employee findById(Integer eno){ return employeeDao.findById(eno); } public void batchImport() { for (int i = 1; i  10; i++) { /*if(i==3){ throw new RuntimeException(\"意料之外的异常\"); }*/ Employee employee = new Employee(); employee.setEno(8000 + i); employee.setEname(\"员工\" + i); employee.setSalary(4000f); employee.setDname(\"市场部\"); employee.setHiredate(new Date()); employeeDao.insert(employee); } } public void startImportJob(){ batchService.importJob1(); if(1==1){ throw new RuntimeException(\"意料之外的异常\"); } batchService.importJob2(); System.out.println(\"批量导入成功\"); } public EmployeeDao getEmployeeDao() { return employeeDao; } public void setEmployeeDao(EmployeeDao employeeDao) { this.employeeDao = employeeDao; } public BatchService getBatchService() { return batchService; } public void setBatchService(BatchService batchService) { this.batchService = batchService; } }  ",
+  "wordCount" : "1790",
+  "inLanguage": "en",
+  "datePublished": "2021-01-06T00:00:00Z",
+  "dateModified": "2021-01-06T00:00:00Z",
+  "author":{
+    "@type": "Person",
+    "name": "Rex"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://rex0520.github.io/posts/back/java/framework/spring/springjdbc/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rex",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://rex0520.github.io/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://rex0520.github.io/" accesskey="h" title="Home (Alt + H)">
+                <img src="http://cdn.rexweb.xyz/img/20210821105340.png" alt="logo" aria-label="logo"
+                    height="35">Home</a>
+            <span class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </span>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://rex0520.github.io/posts/" title="文章">
+                    <span>文章</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://rex0520.github.io/categories/" title="分类">
+                    <span>分类</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://rex0520.github.io/tags/" title="标签">
+                    <span>标签</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://rex0520.github.io/archives/" title="时间轴">
+                    <span>时间轴</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://rex0520.github.io/search/" title="搜索 (Alt &#43; /)" accesskey=/>
+                    <span>搜索</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://rex0520.github.io/">Home</a>&nbsp;»&nbsp;<a href="https://rex0520.github.io/posts/">Posts</a></div>
+    <h1 class="post-title">
+      Springjdbc
+    </h1>
+    <div class="post-description">
+      Springjdbc
+    </div>
+    <div class="post-meta">2021-01-06&nbsp;·&nbsp;9 min&nbsp;·&nbsp;Rex&nbsp;|&nbsp;<a href="https://github.com/Rex0520/Rex0520.github.io" rel="noopener noreferrer" target="_blank">来这修改</a>
+</div>
+  </header> <div class="toc">
+    <details  open>
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">Table of Contents</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#spring-jdbc%e4%b8%8e%e4%ba%8b%e5%8a%a1%e7%ae%a1%e7%90%86" aria-label="Spring JDBC与事务管理">Spring JDBC与事务管理</a><ul>
+                        
+                <li>
+                    <a href="#spring-jdbc" aria-label="Spring JDBC">Spring JDBC</a></li>
+                <li>
+                    <a href="#spring-jdbc%e7%9a%84%e4%bd%bf%e7%94%a8%e6%ad%a5%e9%aa%a4" aria-label="Spring JDBC的使用步骤">Spring JDBC的使用步骤</a></li>
+                <li>
+                    <a href="#jdbctemplate%e5%ae%9e%e7%8e%b0%e5%a2%9e%e5%88%a0%e6%94%b9%e6%9f%a5" aria-label="JdbcTemplate实现增删改查">JdbcTemplate实现增删改查</a><ul>
+                        
+                <li>
+                    <a href="#spring-jdbc%e9%85%8d%e7%bd%ae%e8%bf%87%e7%a8%8b%e4%bb%a3%e7%a0%81%e7%a4%ba%e4%be%8b" aria-label="Spring JDBC配置过程代码示例：">Spring JDBC配置过程代码示例：</a></li>
+                <li>
+                    <a href="#jdbc-template%e7%9a%84%e6%95%b0%e6%8d%ae%e6%9f%a5%e8%af%a2%e4%bb%a3%e7%a0%81%e7%a4%ba%e4%be%8b" aria-label="JDBC Template的数据查询代码示例：">JDBC Template的数据查询代码示例：</a></li>
+                <li>
+                    <a href="#jdbctemplate%e6%95%b0%e6%8d%ae%e5%86%99%e5%85%a5%e4%bb%a3%e7%a0%81%e7%a4%ba%e4%be%8b" aria-label="JdbcTemplate数据写入代码示例">JdbcTemplate数据写入代码示例</a></li></ul>
+                </li>
+                <li>
+                    <a href="#spring%e7%bc%96%e7%a8%8b%e5%bc%8f%e4%ba%8b%e5%8a%a1" aria-label="Spring编程式事务">Spring编程式事务</a><ul>
+                        
+                <li>
+                    <a href="#%e4%bb%80%e4%b9%88%e6%98%af%e4%ba%8b%e5%8a%a1" aria-label="什么是事务">什么是事务</a></li>
+                <li>
+                    <a href="#%e7%bc%96%e7%a8%8b%e5%bc%8f%e4%ba%8b%e5%8a%a1" aria-label="编程式事务">编程式事务</a></li>
+                <li>
+                    <a href="#%e4%bb%a3%e7%a0%81%e7%a4%ba%e4%be%8b" aria-label="代码示例：">代码示例：</a></li></ul>
+                </li>
+                <li>
+                    <a href="#spring%e5%a3%b0%e6%98%8e%e5%bc%8f%e4%ba%8b%e5%8a%a1" aria-label="Spring声明式事务">Spring声明式事务</a><ul>
+                        
+                <li>
+                    <a href="#%e5%a3%b0%e6%98%8e%e5%bc%8f%e4%ba%8b%e5%8a%a1" aria-label="声明式事务">声明式事务</a></li>
+                <li>
+                    <a href="#%e9%85%8d%e7%bd%ae%e8%bf%87%e7%a8%8b" aria-label="配置过程">配置过程</a></li>
+                <li>
+                    <a href="#%e4%bb%a3%e7%a0%81%e7%a4%ba%e4%be%8b-1" aria-label="代码示例：">代码示例：</a></li>
+                <li>
+                    <a href="#%e4%ba%8b%e5%8a%a1%e4%bc%a0%e6%92%ad%e8%a1%8c%e4%b8%ba" aria-label="事务传播行为">事务传播行为</a><ul>
+                        
+                <li>
+                    <a href="#%e4%ba%8b%e5%8a%a1%e4%bc%a0%e6%92%ad%e8%a1%8c%e4%b8%ba%e4%b8%83%e7%a7%8d%e7%b1%bb%e5%9e%8b" aria-label="事务传播行为七种类型">事务传播行为七种类型</a></li></ul>
+                </li></ul>
+                </li>
+                <li>
+                    <a href="#spring%e6%b3%a8%e8%a7%a3%e9%85%8d%e7%bd%ae%e5%a3%b0%e6%98%8e%e5%bc%8f%e4%ba%8b%e5%8a%a1" aria-label="Spring注解配置声明式事务">Spring注解配置声明式事务</a><ul>
+                        
+                <li>
+                    <a href="#%e4%bb%a3%e7%a0%81%e7%a4%ba%e4%be%8b-2" aria-label="代码示例">代码示例</a>
+                </li>
+            </ul>
+            </li>
+            </ul>
+            </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><h1 id="spring-jdbc与事务管理">Spring JDBC与事务管理<a hidden class="anchor" aria-hidden="true" href="#spring-jdbc与事务管理">#</a></h1>
+<h2 id="spring-jdbc">Spring JDBC<a hidden class="anchor" aria-hidden="true" href="#spring-jdbc">#</a></h2>
+<ul>
+<li>Spring JDBC是Spring框架用于处理关系型数据库的模块</li>
+<li>Spring JDBC对JDBC API进行封装，极大简化开发工作量</li>
+<li>JdbcTemplate是Spring JDBC核心类，提供数据CRUD方法</li>
+</ul>
+<h2 id="spring-jdbc的使用步骤">Spring JDBC的使用步骤<a hidden class="anchor" aria-hidden="true" href="#spring-jdbc的使用步骤">#</a></h2>
+<ul>
+<li>Maven工程引入依赖spring-jdbc</li>
+<li>applicationContext.xml配置DataSource数据源</li>
+<li>在Dao注入JdbcTemplate对象，实现数据CRUD</li>
+</ul>
+<h2 id="jdbctemplate实现增删改查">JdbcTemplate实现增删改查<a hidden class="anchor" aria-hidden="true" href="#jdbctemplate实现增删改查">#</a></h2>
+<h3 id="spring-jdbc配置过程代码示例">Spring JDBC配置过程代码示例：<a hidden class="anchor" aria-hidden="true" href="#spring-jdbc配置过程代码示例">#</a></h3>
+<blockquote>
+<p>applicationContext.xml</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="cp">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;</span>
+<span class="nt">&lt;beans</span> <span class="na">xmlns=</span><span class="s">&#34;http://www.springframework.org/schema/beans&#34;</span>
+       <span class="na">xmlns:xsi=</span><span class="s">&#34;http://www.w3.org/2001/XMLSchema-instance&#34;</span>
+       <span class="na">xmlns:context=</span><span class="s">&#34;http://www.springframework.org/schema/context&#34;</span>
+       <span class="na">xsi:schemaLocation=</span><span class="s">&#34;
+</span><span class="s">        http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+</span><span class="s">        http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd&#34;</span><span class="nt">&gt;</span>
+
+    <span class="c">&lt;!-- 数据源 --&gt;</span>
+    <span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">&#34;dataSource&#34;</span> <span class="na">class=</span><span class="s">&#34;org.springframework.jdbc.datasource.DriverManagerDataSource&#34;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;driverClassName&#34;</span> <span class="na">value=</span><span class="s">&#34;com.mysql.cj.jdbc.Driver&#34;</span><span class="nt">&gt;&lt;/property&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;url&#34;</span> <span class="na">value=</span><span class="s">&#34;jdbc:mysql://localhost:3306/imooc?useSSL=false&amp;amp;useUnicode=true&amp;amp;characterEncoding=UTF-8&amp;amp;serverTimezone=Asia/Shanghai&amp;amp;allowPublicKeyRetrieval=true&#34;</span><span class="nt">&gt;&lt;/property&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;username&#34;</span> <span class="na">value=</span><span class="s">&#34;root&#34;</span><span class="nt">&gt;&lt;/property&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;password&#34;</span> <span class="na">value=</span><span class="s">&#34;root&#34;</span><span class="nt">&gt;&lt;/property&gt;</span>
+    <span class="nt">&lt;/bean&gt;</span>
+    <span class="c">&lt;!--JdbcTemplate提供CRUD的API--&gt;</span>
+    <span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">&#34;jdbcTemplate&#34;</span> <span class="na">class=</span><span class="s">&#34;org.springframework.jdbc.core.JdbcTemplate&#34;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;dataSource&#34;</span> <span class="na">ref=</span><span class="s">&#34;dataSource&#34;</span><span class="nt">&gt;&lt;/property&gt;</span>
+    <span class="nt">&lt;/bean&gt;</span>
+    <span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">&#34;employeeDao&#34;</span> <span class="na">class=</span><span class="s">&#34;com.imooc.spring.jdbc.dao.EmployeeDao&#34;</span><span class="nt">&gt;</span>
+        <span class="c">&lt;!--为Dao注入JdbcTemplate对象--&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;jdbcTemplate&#34;</span> <span class="na">ref=</span><span class="s">&#34;jdbcTemplate&#34;</span><span class="nt">&gt;&lt;/property&gt;</span>
+    <span class="nt">&lt;/bean&gt;</span>
+<span class="nt">&lt;/beans&gt;</span>
+</code></pre></div><p>Employee.java</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="nn">com.imooc.spring.jdbc.entity</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.Date</span><span class="o">;</span>
+
+<span class="cm">/**
+</span><span class="cm"> * @author Rex
+</span><span class="cm"> * @create 2021-01-05 14:44
+</span><span class="cm"> */</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Employee</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="n">Integer</span> <span class="n">eno</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="n">String</span> <span class="n">ename</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="n">Float</span> <span class="n">salary</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="n">String</span> <span class="n">dname</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="n">Date</span> <span class="n">hiredate</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="n">Integer</span> <span class="nf">getEno</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">eno</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setEno</span><span class="o">(</span><span class="n">Integer</span> <span class="n">eno</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">eno</span> <span class="o">=</span> <span class="n">eno</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="n">String</span> <span class="nf">getEname</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">ename</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setEname</span><span class="o">(</span><span class="n">String</span> <span class="n">ename</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">ename</span> <span class="o">=</span> <span class="n">ename</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="n">Float</span> <span class="nf">getSalary</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">salary</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setSalary</span><span class="o">(</span><span class="n">Float</span> <span class="n">salary</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">salary</span> <span class="o">=</span> <span class="n">salary</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="n">String</span> <span class="nf">getDname</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">dname</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setDname</span><span class="o">(</span><span class="n">String</span> <span class="n">dname</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">dname</span> <span class="o">=</span> <span class="n">dname</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="n">Date</span> <span class="nf">getHiredate</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">hiredate</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setHiredate</span><span class="o">(</span><span class="n">Date</span> <span class="n">hiredate</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">hiredate</span> <span class="o">=</span> <span class="n">hiredate</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="n">String</span> <span class="nf">toString</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="s">&#34;Employee{&#34;</span> <span class="o">+</span>
+                <span class="s">&#34;eno=&#34;</span> <span class="o">+</span> <span class="n">eno</span> <span class="o">+</span>
+                <span class="s">&#34;, ename=&#39;&#34;</span> <span class="o">+</span> <span class="n">ename</span> <span class="o">+</span> <span class="sc">&#39;\&#39;&#39;</span> <span class="o">+</span>
+                <span class="s">&#34;, salary=&#34;</span> <span class="o">+</span> <span class="n">salary</span> <span class="o">+</span>
+                <span class="s">&#34;, dname=&#39;&#34;</span> <span class="o">+</span> <span class="n">dname</span> <span class="o">+</span> <span class="sc">&#39;\&#39;&#39;</span> <span class="o">+</span>
+                <span class="s">&#34;, hiredate=&#34;</span> <span class="o">+</span> <span class="n">hiredate</span> <span class="o">+</span>
+                <span class="sc">&#39;}&#39;</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+</code></pre></div><p>EmployeeDao.java</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="nn">com.imooc.spring.jdbc.dao</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">com.imooc.spring.jdbc.entity.Employee</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.jdbc.core.BeanPropertyRowMapper</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.jdbc.core.JdbcTemplate</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.stereotype.Repository</span><span class="o">;</span>
+
+<span class="cm">/**
+</span><span class="cm"> * @author Rex
+</span><span class="cm"> * @create 2021-01-05 14:46
+</span><span class="cm"> */</span>
+<span class="nd">@Repository</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">EmployeeDao</span> <span class="o">{</span>
+
+    <span class="kd">private</span> <span class="n">JdbcTemplate</span> <span class="n">jdbcTemplate</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="n">Employee</span> <span class="nf">findById</span><span class="o">(</span><span class="n">Integer</span> <span class="n">eno</span><span class="o">){</span>
+        <span class="n">String</span> <span class="n">sql</span> <span class="o">=</span> <span class="s">&#34;select * from employee where eno = ?&#34;</span><span class="o">;</span>
+        <span class="n">Employee</span> <span class="n">employee</span> <span class="o">=</span> <span class="n">jdbcTemplate</span><span class="o">.</span><span class="na">queryForObject</span><span class="o">(</span><span class="n">sql</span><span class="o">,</span> <span class="k">new</span> <span class="n">Object</span><span class="o">[]{</span><span class="n">eno</span><span class="o">},</span> <span class="k">new</span> <span class="n">BeanPropertyRowMapper</span><span class="o">&lt;</span><span class="n">Employee</span><span class="o">&gt;(</span><span class="n">Employee</span><span class="o">.</span><span class="na">class</span><span class="o">));</span>
+        <span class="k">return</span> <span class="n">employee</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="n">JdbcTemplate</span> <span class="nf">getJdbcTemplate</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">jdbcTemplate</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setJdbcTemplate</span><span class="o">(</span><span class="n">JdbcTemplate</span> <span class="n">jdbcTemplate</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">jdbcTemplate</span> <span class="o">=</span> <span class="n">jdbcTemplate</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+</code></pre></div><p>SpringApplication.java</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="nn">com.imooc.spring.jdbc</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">com.imooc.spring.jdbc.dao.EmployeeDao</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.imooc.spring.jdbc.entity.Employee</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.context.ApplicationContext</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.context.support.ClassPathXmlApplicationContext</span><span class="o">;</span>
+
+<span class="cm">/**
+</span><span class="cm"> * @author Rex
+</span><span class="cm"> * @create 2021-01-05 14:52
+</span><span class="cm"> */</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">SpringApplication</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">ApplicationContext</span> <span class="n">context</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ClassPathXmlApplicationContext</span><span class="o">(</span><span class="s">&#34;classpath:applicationContext.xml&#34;</span><span class="o">);</span>
+        <span class="n">EmployeeDao</span> <span class="n">employeeDao</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="na">getBean</span><span class="o">(</span><span class="s">&#34;employeeDao&#34;</span><span class="o">,</span> <span class="n">EmployeeDao</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+        <span class="n">Employee</span> <span class="n">employee</span> <span class="o">=</span> <span class="n">employeeDao</span><span class="o">.</span><span class="na">findById</span><span class="o">(</span><span class="n">3308</span><span class="o">);</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">employee</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+</code></pre></div></blockquote>
+<h3 id="jdbc-template的数据查询代码示例">JDBC Template的数据查询代码示例：<a hidden class="anchor" aria-hidden="true" href="#jdbc-template的数据查询代码示例">#</a></h3>
+<blockquote>
+<p>EmployeeDao.java</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="n">Employee</span> <span class="nf">findById</span><span class="o">(</span><span class="n">Integer</span> <span class="n">eno</span><span class="o">){</span>
+    <span class="n">String</span> <span class="n">sql</span> <span class="o">=</span> <span class="s">&#34;select * from employee where eno = ?&#34;</span><span class="o">;</span>
+    <span class="c1">//查询单条数据
+</span><span class="c1"></span>    <span class="n">Employee</span> <span class="n">employee</span> <span class="o">=</span> <span class="n">jdbcTemplate</span><span class="o">.</span><span class="na">queryForObject</span><span class="o">(</span><span class="n">sql</span><span class="o">,</span> <span class="k">new</span> <span class="n">Object</span><span class="o">[]{</span><span class="n">eno</span><span class="o">},</span> <span class="k">new</span> <span class="n">BeanPropertyRowMapper</span><span class="o">&lt;</span><span class="n">Employee</span><span class="o">&gt;(</span><span class="n">Employee</span><span class="o">.</span><span class="na">class</span><span class="o">));</span>
+    <span class="k">return</span> <span class="n">employee</span><span class="o">;</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Employee</span><span class="o">&gt;</span> <span class="nf">findByDname</span><span class="o">(</span><span class="n">String</span> <span class="n">dname</span><span class="o">){</span>
+    <span class="n">String</span> <span class="n">sql</span> <span class="o">=</span> <span class="s">&#34;select * from Employee where dname = ?&#34;</span><span class="o">;</span>
+    <span class="c1">//查询复合数据
+</span><span class="c1"></span>    <span class="n">List</span><span class="o">&lt;</span><span class="n">Employee</span><span class="o">&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="n">jdbcTemplate</span><span class="o">.</span><span class="na">query</span><span class="o">(</span><span class="n">sql</span><span class="o">,</span> <span class="k">new</span> <span class="n">Object</span><span class="o">[]{</span><span class="n">dname</span><span class="o">},</span> <span class="k">new</span> <span class="n">BeanPropertyRowMapper</span><span class="o">&lt;</span><span class="n">Employee</span><span class="o">&gt;(</span><span class="n">Employee</span><span class="o">.</span><span class="na">class</span><span class="o">));</span>
+    <span class="k">return</span> <span class="n">list</span><span class="o">;</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;&gt;</span> <span class="nf">findMapByDname</span><span class="o">(</span><span class="n">String</span> <span class="n">dname</span><span class="o">){</span>
+    <span class="n">String</span> <span class="n">sql</span> <span class="o">=</span> <span class="s">&#34;select eno as empno, salary as s from employee where dname=?&#34;</span><span class="o">;</span>
+    <span class="c1">//将查询结果作为Map进行封装
+</span><span class="c1"></span>    <span class="n">List</span><span class="o">&lt;</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;&gt;</span> <span class="n">maps</span> <span class="o">=</span> <span class="n">jdbcTemplate</span><span class="o">.</span><span class="na">queryForList</span><span class="o">(</span><span class="n">sql</span><span class="o">,</span> <span class="k">new</span> <span class="n">Object</span><span class="o">[]{</span><span class="n">dname</span><span class="o">});</span>
+    <span class="k">return</span> <span class="n">maps</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div><p>单条查询测试</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="nd">@Test</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">testFindById</span><span class="o">(){</span>
+    <span class="n">Employee</span> <span class="n">employee</span> <span class="o">=</span> <span class="n">employeeDao</span><span class="o">.</span><span class="na">findById</span><span class="o">(</span><span class="n">3308</span><span class="o">);</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">employee</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div><p>查询结果：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">[Employee{eno=3308, ename=&#39;张三&#39;, salary=6000.0, dname=&#39;研发部&#39;, hiredate=2011-05-08 00:00:00.0}, Employee{eno=3420, ename=&#39;李四&#39;, salary=8700.0, dname=&#39;研发部&#39;, hiredate=2006-11-11 00:00:00.0}]
+</code></pre></div><p>多条记录查询测试</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="nd">@Test</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">testFindByDname</span><span class="o">(){</span>
+    <span class="n">List</span><span class="o">&lt;</span><span class="n">Employee</span><span class="o">&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="n">employeeDao</span><span class="o">.</span><span class="na">findByDname</span><span class="o">(</span><span class="s">&#34;研发部&#34;</span><span class="o">);</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">list</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div><p>查询结果：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">Employee{eno=3308, ename=&#39;张三&#39;, salary=6000.0, dname=&#39;研发部&#39;, hiredate=2011-05-08 00:00:00.0}
+</code></pre></div><p>将查询结果以Map作为封装测试</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="nd">@Test</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">testFindMapByDname</span><span class="o">(){</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">employeeDao</span><span class="o">.</span><span class="na">findMapByDname</span><span class="o">(</span><span class="s">&#34;研发部&#34;</span><span class="o">));</span>
+<span class="o">}</span>
+</code></pre></div><p>查询结果：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">[{empno=3308, s=6000.0}, {empno=3420, s=8700.0}]
+</code></pre></div></blockquote>
+<h3 id="jdbctemplate数据写入代码示例">JdbcTemplate数据写入代码示例<a hidden class="anchor" aria-hidden="true" href="#jdbctemplate数据写入代码示例">#</a></h3>
+<blockquote>
+<p>数据新增：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kt">int</span> <span class="nf">insert</span><span class="o">(</span><span class="n">Employee</span> <span class="n">employee</span><span class="o">){</span>
+    <span class="n">String</span> <span class="n">sql</span> <span class="o">=</span> <span class="s">&#34;insert into employee(eno, ename, salary, dname, hiredate) values(?, ?, ?, ?, ?)&#34;</span><span class="o">;</span>
+    <span class="c1">//利用update方法实现数据写入操作
+</span><span class="c1"></span>    <span class="k">return</span> <span class="n">jdbcTemplate</span><span class="o">.</span><span class="na">update</span><span class="o">(</span><span class="n">sql</span><span class="o">,</span> <span class="k">new</span> <span class="n">Object</span><span class="o">[]{</span><span class="n">employee</span><span class="o">.</span><span class="na">getEno</span><span class="o">(),</span> <span class="n">employee</span><span class="o">.</span><span class="na">getEname</span><span class="o">(),</span> <span class="n">employee</span><span class="o">.</span><span class="na">getSalary</span><span class="o">(),</span> <span class="n">employee</span><span class="o">.</span><span class="na">getDname</span><span class="o">(),</span> <span class="n">employee</span><span class="o">.</span><span class="na">getHiredate</span><span class="o">()});</span>
+<span class="o">}</span>
+</code></pre></div><p>测试代码：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="nd">@Test</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">testInsert</span><span class="o">(){</span>
+    <span class="n">Employee</span> <span class="n">employee</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Employee</span><span class="o">();</span>
+    <span class="n">employee</span><span class="o">.</span><span class="na">setEno</span><span class="o">(</span><span class="n">8888</span><span class="o">);</span>
+    <span class="n">employee</span><span class="o">.</span><span class="na">setEname</span><span class="o">(</span><span class="s">&#34;赵六&#34;</span><span class="o">);</span>
+    <span class="n">employee</span><span class="o">.</span><span class="na">setSalary</span><span class="o">(</span><span class="n">6666f</span><span class="o">);</span>
+    <span class="n">employee</span><span class="o">.</span><span class="na">setDname</span><span class="o">(</span><span class="s">&#34;研发部&#34;</span><span class="o">);</span>
+    <span class="n">employee</span><span class="o">.</span><span class="na">setHiredate</span><span class="o">(</span><span class="k">new</span> <span class="n">Date</span><span class="o">());</span>
+    <span class="kt">int</span> <span class="n">count</span> <span class="o">=</span> <span class="n">employeeDao</span><span class="o">.</span><span class="na">insert</span><span class="o">(</span><span class="n">employee</span><span class="o">);</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;本次新增&#34;</span><span class="o">+</span><span class="n">count</span><span class="o">+</span><span class="s">&#34;条数据&#34;</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div><p>测试结果：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">本次插入1条数据
+</code></pre></div><p>数据修改：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kt">int</span> <span class="nf">update</span><span class="o">(</span><span class="n">Employee</span> <span class="n">employee</span><span class="o">){</span>
+    <span class="n">String</span> <span class="n">sql</span> <span class="o">=</span> <span class="s">&#34;update employee set ename = ?, salary = ?, dname = ?, hiredate = ? where eno = ?&#34;</span><span class="o">;</span>
+    <span class="kt">int</span> <span class="n">count</span> <span class="o">=</span> <span class="n">jdbcTemplate</span><span class="o">.</span><span class="na">update</span><span class="o">(</span><span class="n">sql</span><span class="o">,</span> <span class="k">new</span> <span class="n">Object</span><span class="o">[]{</span><span class="n">employee</span><span class="o">.</span><span class="na">getEname</span><span class="o">(),</span> <span class="n">employee</span><span class="o">.</span><span class="na">getSalary</span><span class="o">(),</span> <span class="n">employee</span><span class="o">.</span><span class="na">getDname</span><span class="o">(),</span> <span class="n">employee</span><span class="o">.</span><span class="na">getHiredate</span><span class="o">(),</span> <span class="n">employee</span><span class="o">.</span><span class="na">getEno</span><span class="o">()});</span>
+    <span class="k">return</span> <span class="n">count</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div><p>测试代码：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="nd">@Test</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">testUpdate</span><span class="o">(){</span>
+    <span class="n">Employee</span> <span class="n">employee</span> <span class="o">=</span> <span class="n">employeeDao</span><span class="o">.</span><span class="na">findById</span><span class="o">(</span><span class="n">8888</span><span class="o">);</span>
+    <span class="n">employee</span><span class="o">.</span><span class="na">setSalary</span><span class="o">(</span><span class="n">employee</span><span class="o">.</span><span class="na">getSalary</span><span class="o">()+</span><span class="n">1000f</span><span class="o">);</span>
+    <span class="kt">int</span> <span class="n">count</span> <span class="o">=</span> <span class="n">employeeDao</span><span class="o">.</span><span class="na">update</span><span class="o">(</span><span class="n">employee</span><span class="o">);</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;本次更新&#34;</span><span class="o">+</span><span class="n">count</span><span class="o">+</span><span class="s">&#34;条数据&#34;</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div><p>测试结果：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">本次更新1条数据
+</code></pre></div><p>数据删除：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kt">int</span> <span class="nf">delete</span><span class="o">(</span><span class="n">Integer</span> <span class="n">eno</span><span class="o">){</span>
+    <span class="n">String</span> <span class="n">sql</span> <span class="o">=</span> <span class="s">&#34;delete from employee where eno = ?&#34;</span><span class="o">;</span>
+    <span class="k">return</span> <span class="n">jdbcTemplate</span><span class="o">.</span><span class="na">update</span><span class="o">(</span><span class="n">sql</span><span class="o">,</span> <span class="k">new</span> <span class="n">Object</span><span class="o">[]{</span><span class="n">eno</span><span class="o">});</span>
+<span class="o">}</span>
+</code></pre></div><p>测试代码：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="nd">@Test</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">testDelete</span><span class="o">(){</span>
+    <span class="kt">int</span> <span class="n">count</span> <span class="o">=</span> <span class="n">employeeDao</span><span class="o">.</span><span class="na">delete</span><span class="o">(</span><span class="n">8888</span><span class="o">);</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;本次删除&#34;</span><span class="o">+</span><span class="n">count</span><span class="o">+</span><span class="s">&#34;条数据&#34;</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div><p>测试结果：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">本次删除1条数据
+</code></pre></div></blockquote>
+<h2 id="spring编程式事务">Spring编程式事务<a hidden class="anchor" aria-hidden="true" href="#spring编程式事务">#</a></h2>
+<h3 id="什么是事务">什么是事务<a hidden class="anchor" aria-hidden="true" href="#什么是事务">#</a></h3>
+<ul>
+<li>事务以一种可靠的、一致的方式，访问和造作数据库的程序单元</li>
+<li>说人话：要么把事情做完，要么什么都不做，不要做一半</li>
+<li>事务依赖于数据库实现，MySQL通过事务区作为数据缓冲地带</li>
+</ul>
+<h3 id="编程式事务">编程式事务<a hidden class="anchor" aria-hidden="true" href="#编程式事务">#</a></h3>
+<ul>
+<li>编程式事务是指通过代码手动提交回滚事务的事务控制方法</li>
+<li>SpringJDBC通过TransactionManage事务管理器实现事务控制</li>
+<li>事务管理器提供commit/rollback方法进行事务提交与回滚</li>
+</ul>
+<h3 id="代码示例">代码示例：<a hidden class="anchor" aria-hidden="true" href="#代码示例">#</a></h3>
+<blockquote>
+<p>ApplicationContext.xml</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">&#34;employeeService&#34;</span> <span class="na">class=</span><span class="s">&#34;com.imooc.spring.jdbc.service.EmployeeService&#34;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;employeeDao&#34;</span> <span class="na">ref=</span><span class="s">&#34;employeeDao&#34;</span><span class="nt">&gt;&lt;/property&gt;</span>
+    <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;transactionManager&#34;</span> <span class="na">ref=</span><span class="s">&#34;transactionManager&#34;</span><span class="nt">&gt;&lt;/property&gt;</span>
+<span class="nt">&lt;/bean&gt;</span>
+
+<span class="c">&lt;!--事务管理器--&gt;</span>
+<span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">&#34;transactionManager&#34;</span> <span class="na">class=</span><span class="s">&#34;org.springframework.jdbc.datasource.DataSourceTransactionManager&#34;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;dataSource&#34;</span> <span class="na">ref=</span><span class="s">&#34;dataSource&#34;</span><span class="nt">&gt;&lt;/property&gt;</span>
+<span class="nt">&lt;/bean&gt;</span>
+</code></pre></div><p>EmployeeService.java</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="nn">com.imooc.spring.jdbc.service</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">com.imooc.spring.jdbc.dao.EmployeeDao</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.imooc.spring.jdbc.entity.Employee</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.jdbc.datasource.DataSourceTransactionManager</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.transaction.TransactionDefinition</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.transaction.TransactionStatus</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.transaction.support.DefaultTransactionDefinition</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.Date</span><span class="o">;</span>
+
+<span class="cm">/**
+</span><span class="cm"> * @author Rex
+</span><span class="cm"> * @create 2021-01-05 16:31
+</span><span class="cm"> */</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">EmployeeService</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="n">EmployeeDao</span> <span class="n">employeeDao</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="n">DataSourceTransactionManager</span> <span class="n">transactionManager</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">batchImport</span><span class="o">(){</span>
+
+        <span class="c1">//定义了事务默认的标准配置
+</span><span class="c1"></span>        <span class="n">TransactionDefinition</span> <span class="n">definition</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DefaultTransactionDefinition</span><span class="o">();</span>
+        <span class="c1">//开始一个事务
+</span><span class="c1"></span>        <span class="n">TransactionStatus</span> <span class="n">status</span> <span class="o">=</span> <span class="n">transactionManager</span><span class="o">.</span><span class="na">getTransaction</span><span class="o">(</span><span class="n">definition</span><span class="o">);</span>
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">10</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+                <span class="k">if</span> <span class="o">(</span> <span class="n">i</span> <span class="o">==</span> <span class="n">3</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="k">throw</span> <span class="k">new</span> <span class="n">RuntimeException</span><span class="o">(</span><span class="s">&#34;意料之外的异常&#34;</span><span class="o">);</span>
+                <span class="o">}</span>
+                <span class="n">Employee</span> <span class="n">employee</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Employee</span><span class="o">();</span>
+                <span class="n">employee</span><span class="o">.</span><span class="na">setEno</span><span class="o">(</span><span class="n">8000</span> <span class="o">+</span> <span class="n">i</span><span class="o">);</span>
+                <span class="n">employee</span><span class="o">.</span><span class="na">setEname</span><span class="o">(</span><span class="s">&#34;员工&#34;</span> <span class="o">+</span> <span class="n">i</span><span class="o">);</span>
+                <span class="n">employee</span><span class="o">.</span><span class="na">setSalary</span><span class="o">(</span><span class="n">4000f</span><span class="o">);</span>
+                <span class="n">employee</span><span class="o">.</span><span class="na">setDname</span><span class="o">(</span><span class="s">&#34;市场部&#34;</span><span class="o">);</span>
+                <span class="n">employee</span><span class="o">.</span><span class="na">setHiredate</span><span class="o">(</span><span class="k">new</span> <span class="n">Date</span><span class="o">());</span>
+                <span class="n">employeeDao</span><span class="o">.</span><span class="na">insert</span><span class="o">(</span><span class="n">employee</span><span class="o">);</span>
+            <span class="o">}</span>
+<span class="c1">//          //提交事务
+</span><span class="c1"></span>            <span class="n">transactionManager</span><span class="o">.</span><span class="na">commit</span><span class="o">(</span><span class="n">status</span><span class="o">);</span>
+        <span class="o">}</span><span class="k">catch</span> <span class="o">(</span><span class="n">RuntimeException</span> <span class="n">e</span><span class="o">){</span>
+            <span class="n">transactionManager</span><span class="o">.</span><span class="na">rollback</span><span class="o">(</span><span class="n">status</span><span class="o">);</span>
+            <span class="k">throw</span> <span class="n">e</span><span class="o">;</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+    <span class="kd">public</span> <span class="n">EmployeeDao</span> <span class="nf">getEmployeeDao</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">employeeDao</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setEmployeeDao</span><span class="o">(</span><span class="n">EmployeeDao</span> <span class="n">employeeDao</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">employeeDao</span> <span class="o">=</span> <span class="n">employeeDao</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="n">DataSourceTransactionManager</span> <span class="nf">getTransactionManager</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">transactionManager</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setTransactionManager</span><span class="o">(</span><span class="n">DataSourceTransactionManager</span> <span class="n">transactionManager</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">transactionManager</span> <span class="o">=</span> <span class="n">transactionManager</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div><p>JdbcTemplateTestor.java</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="nd">@Test</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">testBatchImport</span><span class="o">(){</span>
+    <span class="n">employeeService</span><span class="o">.</span><span class="na">batchImport</span><span class="o">();</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;批量导入成功&#34;</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div><p>测试结果：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">...
+16:55:40.411 [main] DEBUG org.springframework.jdbc.core.JdbcTemplate - Executing prepared SQL statement [insert into employee(eno, ename, salary, dname, hiredate) values(?, ?, ?, ?, ?)]
+16:55:40.490 [main] DEBUG org.springframework.jdbc.core.JdbcTemplate - SQLWarning ignored: SQL state &#39;22007&#39;, error code &#39;1292&#39;, message [Incorrect date value: &#39;2021-01-05 16:55:40.405&#39; for column &#39;hiredate&#39; at row 1]
+16:55:40.498 [main] DEBUG org.springframework.jdbc.core.JdbcTemplate - Executing prepared SQL update
+16:55:40.498 [main] DEBUG org.springframework.jdbc.core.JdbcTemplate - Executing prepared SQL statement [insert into employee(eno, ename, salary, dname, hiredate) values(?, ?, ?, ?, ?)]
+16:55:40.502 [main] DEBUG org.springframework.jdbc.core.JdbcTemplate - SQLWarning ignored: SQL state &#39;22007&#39;, error code &#39;1292&#39;, message [Incorrect date value: &#39;2021-01-05 16:55:40.498&#39; for column &#39;hiredate&#39; at row 1]
+16:55:40.502 [main] DEBUG org.springframework.jdbc.core.JdbcTemplate - Executing prepared SQL update
+16:55:40.503 [main] DEBUG org.springframework.jdbc.core.JdbcTemplate - Executing prepared SQL statement [insert into employee(eno, ename, salary, dname, hiredate) values(?, ?, ?, ?, ?)]
+16:55:40.507 [main] DEBUG org.springframework.jdbc.core.JdbcTemplate - SQLWarning ignored: SQL state &#39;22007&#39;, error code &#39;1292&#39;, message [Incorrect date value: &#39;2021-01-05 16:55:40.502&#39; for column &#39;hiredate&#39; at row 1]
+16:55:40.507 [main] DEBUG org.springframework.jdbc.datasource.DataSourceTransactionManager - Initiating transaction rollback
+16:55:40.507 [main] DEBUG org.springframework.jdbc.datasource.DataSourceTransactionManager - Rolling back JDBC transaction on Connection [com.mysql.cj.jdbc.ConnectionImpl@3646a422]
+16:55:40.521 [main] DEBUG 
+...
+
+java.lang.RuntimeException: 意料之外的异常...
+</code></pre></div></blockquote>
+<h2 id="spring声明式事务">Spring声明式事务<a hidden class="anchor" aria-hidden="true" href="#spring声明式事务">#</a></h2>
+<h3 id="声明式事务">声明式事务<a hidden class="anchor" aria-hidden="true" href="#声明式事务">#</a></h3>
+<ul>
+<li>声明式事务指在不修改源码情况下通过配置形式自动实现事务控制，声明式事务本质就是AOP环绕通知</li>
+<li>当目标方法执行成功时，自动提交事务</li>
+<li>当目标方法抛出运行时异常时，自动事务回滚</li>
+</ul>
+<h3 id="配置过程">配置过程<a hidden class="anchor" aria-hidden="true" href="#配置过程">#</a></h3>
+<ul>
+<li>配置TransactionManager事务管理器</li>
+<li>配置事务通知与事务属性</li>
+<li>为事务通知绑定PointCut切点</li>
+</ul>
+<h3 id="代码示例-1">代码示例：<a hidden class="anchor" aria-hidden="true" href="#代码示例-1">#</a></h3>
+<blockquote>
+<p>applicationContext.xml</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="c">&lt;!--1.事务管理器，用于创建事务/提交/回滚--&gt;</span>
+<span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">&#34;transactionManager&#34;</span> <span class="na">class=</span><span class="s">&#34;org.springframework.jdbc.datasource.DataSourceTransactionManager&#34;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;dataSource&#34;</span> <span class="na">ref=</span><span class="s">&#34;dataSource&#34;</span><span class="nt">&gt;&lt;/property&gt;</span>
+<span class="nt">&lt;/bean&gt;</span>
+
+<span class="c">&lt;!--2.事务通知配置，决定哪些方法使用事务，哪些方法不使用事务--&gt;</span>
+<span class="nt">&lt;tx:advice</span> <span class="na">id=</span><span class="s">&#34;txAdvice&#34;</span> <span class="na">transaction-manager=</span><span class="s">&#34;transactionManager&#34;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;tx:attributes&gt;</span>
+        <span class="c">&lt;!--目标方法名为batchImport时，启用声明式事务，成功提交，运行时异常回滚--&gt;</span>
+        <span class="nt">&lt;tx:method</span> <span class="na">name=</span><span class="s">&#34;batchImport&#34;</span> <span class="na">propagation=</span><span class="s">&#34;REQUIRED&#34;</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;tx:method</span> <span class="na">name=</span><span class="s">&#34;batch*&#34;</span> <span class="na">propagation=</span><span class="s">&#34;REQUIRED&#34;</span><span class="nt">&gt;&lt;/tx:method&gt;</span>
+        <span class="c">&lt;!--设置所有findXXX方法不需要使用事务--&gt;</span>
+        <span class="nt">&lt;tx:method</span> <span class="na">name=</span><span class="s">&#34;find*&#34;</span> <span class="na">propagation=</span><span class="s">&#34;NOT_SUPPORTED&#34;</span> <span class="na">read-only=</span><span class="s">&#34;true&#34;</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;tx:method</span> <span class="na">name=</span><span class="s">&#34;get*&#34;</span> <span class="na">propagation=</span><span class="s">&#34;NOT_SUPPORTED&#34;</span> <span class="na">read-only=</span><span class="s">&#34;true&#34;</span><span class="nt">/&gt;</span>
+
+        <span class="nt">&lt;tx:method</span> <span class="na">name=</span><span class="s">&#34;*&#34;</span> <span class="na">propagation=</span><span class="s">&#34;REQUIRED&#34;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/tx:attributes&gt;</span>
+<span class="nt">&lt;/tx:advice&gt;</span>
+<span class="c">&lt;!--3.定义声明式事务的作用范围--&gt;</span>
+<span class="nt">&lt;aop:config&gt;</span>
+    <span class="nt">&lt;aop:pointcut</span> <span class="na">id=</span><span class="s">&#34;pointcut&#34;</span> <span class="na">expression=</span><span class="s">&#34;execution(public * com.imooc..*Service.*(..))&#34;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;aop:advisor</span> <span class="na">advice-ref=</span><span class="s">&#34;txAdvice&#34;</span> <span class="na">pointcut-ref=</span><span class="s">&#34;pointcut&#34;</span><span class="nt">&gt;&lt;/aop:advisor&gt;</span>
+<span class="nt">&lt;/aop:config&gt;</span>
+</code></pre></div><p>EmployeeService.java</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="nn">com.imooc.spring.jdbc.service</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">com.imooc.spring.jdbc.dao.EmployeeDao</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.imooc.spring.jdbc.entity.Employee</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Date</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">EmployeeService</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="n">EmployeeDao</span> <span class="n">employeeDao</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">batchImport</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">10</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="k">if</span><span class="o">(</span><span class="n">i</span> <span class="o">==</span> <span class="n">3</span><span class="o">){</span>
+                <span class="k">throw</span> <span class="k">new</span> <span class="n">RuntimeException</span><span class="o">(</span><span class="s">&#34;意料之外的异常&#34;</span><span class="o">);</span>
+            <span class="o">}</span>
+            <span class="n">Employee</span> <span class="n">employee</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Employee</span><span class="o">();</span>
+            <span class="n">employee</span><span class="o">.</span><span class="na">setEno</span><span class="o">(</span><span class="n">8000</span> <span class="o">+</span> <span class="n">i</span><span class="o">);</span>
+            <span class="n">employee</span><span class="o">.</span><span class="na">setEname</span><span class="o">(</span><span class="s">&#34;员工&#34;</span> <span class="o">+</span> <span class="n">i</span><span class="o">);</span>
+            <span class="n">employee</span><span class="o">.</span><span class="na">setSalary</span><span class="o">(</span><span class="n">4000f</span><span class="o">);</span>
+            <span class="n">employee</span><span class="o">.</span><span class="na">setDname</span><span class="o">(</span><span class="s">&#34;市场部&#34;</span><span class="o">);</span>
+            <span class="n">employee</span><span class="o">.</span><span class="na">setHiredate</span><span class="o">(</span><span class="k">new</span> <span class="n">Date</span><span class="o">());</span>
+            <span class="n">employeeDao</span><span class="o">.</span><span class="na">insert</span><span class="o">(</span><span class="n">employee</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="n">EmployeeDao</span> <span class="nf">getEmployeeDao</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">employeeDao</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setEmployeeDao</span><span class="o">(</span><span class="n">EmployeeDao</span> <span class="n">employeeDao</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">employeeDao</span> <span class="o">=</span> <span class="n">employeeDao</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div><p>执行结果：
+同上</p>
+</blockquote>
+<h3 id="事务传播行为">事务传播行为<a hidden class="anchor" aria-hidden="true" href="#事务传播行为">#</a></h3>
+<ul>
+<li>事务传播行为是指多个拥有事务的方法在嵌套调用时的事务控制方式</li>
+<li>XML：&lt;tx:method name=&quot;&hellip;&quot; propagation=&ldquo;REQUIRED&rdquo;&gt;</li>
+<li>注解：@Transactional(propagation=Propagation.REQUIRED)</li>
+</ul>
+<h4 id="事务传播行为七种类型">事务传播行为七种类型<a hidden class="anchor" aria-hidden="true" href="#事务传播行为七种类型">#</a></h4>
+<table>
+<thead>
+<tr>
+<th>事务传播类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PROPAGATION_REQUIRED</td>
+<td>如果当前没有事务，就新建一个事务，如果已经存在一个事务，加入到这个事务中。这是最常见的选择</td>
+</tr>
+<tr>
+<td>PROPAGATION_SUPPORTS</td>
+<td>支持当前事务，如果当前没有事务，就以非事务方式执行</td>
+</tr>
+<tr>
+<td>PROPAGATION_MANADATORY</td>
+<td>使用当前的事务，如果当前没有事务，就抛出异常</td>
+</tr>
+<tr>
+<td>PROPAGATION_REQUIRES_NEW</td>
+<td>新建事务，如果当前存在事务，就把当前事务挂起</td>
+</tr>
+<tr>
+<td>PROPAGATION_NOT_SUPPORT</td>
+<td>以非事务方式执行操作，如果当前存在事务，就把当前事务挂起</td>
+</tr>
+<tr>
+<td>PROPAGATION_NEVER</td>
+<td>以非事务方式执行，如果当前存在事务，则抛出异常</td>
+</tr>
+<tr>
+<td>PROPAGATION_NESTED</td>
+<td>如果当前存在事务，则在嵌套事务内执行。如果当前没有事务，则执行与PROPAGATION_REQUIRED类似的操作</td>
+</tr>
+</tbody>
+</table>
+<h2 id="spring注解配置声明式事务">Spring注解配置声明式事务<a hidden class="anchor" aria-hidden="true" href="#spring注解配置声明式事务">#</a></h2>
+<h3 id="代码示例-2">代码示例<a hidden class="anchor" aria-hidden="true" href="#代码示例-2">#</a></h3>
+<blockquote>
+<p>applicationContext.xml</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="cp">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;</span>
+<span class="nt">&lt;beans</span> <span class="na">xmlns=</span><span class="s">&#34;http://www.springframework.org/schema/beans&#34;</span>
+       <span class="na">xmlns:xsi=</span><span class="s">&#34;http://www.w3.org/2001/XMLSchema-instance&#34;</span>
+       <span class="na">xmlns:context=</span><span class="s">&#34;http://www.springframework.org/schema/context&#34;</span>
+       <span class="na">xmlns:tx=</span><span class="s">&#34;http://www.springframework.org/schema/tx&#34;</span>
+       <span class="na">xmlns:aop=</span><span class="s">&#34;http://www.springframework.org/schema/aop&#34;</span>
+       <span class="na">xsi:schemaLocation=</span><span class="s">&#34;http://www.springframework.org/schema/beans
+</span><span class="s">        https://www.springframework.org/schema/beans/spring-beans.xsd
+</span><span class="s">        http://www.springframework.org/schema/context
+</span><span class="s">        https://www.springframework.org/schema/context/spring-context.xsd
+</span><span class="s">        http://www.springframework.org/schema/tx
+</span><span class="s">        https://www.springframework.org/schema/tx/spring-tx.xsd
+</span><span class="s">        http://www.springframework.org/schema/aop
+</span><span class="s">        https://www.springframework.org/schema/aop/spring-aop.xsd&#34;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;context:component-scan</span> <span class="na">base-package=</span><span class="s">&#34;com.imooc&#34;</span><span class="nt">/&gt;</span>
+    <span class="c">&lt;!--数据源--&gt;</span>
+    <span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">&#34;dataSource&#34;</span> <span class="na">class=</span><span class="s">&#34;org.springframework.jdbc.datasource.DriverManagerDataSource&#34;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;driverClassName&#34;</span> <span class="na">value=</span><span class="s">&#34;com.mysql.cj.jdbc.Driver&#34;</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;url&#34;</span> <span class="na">value=</span><span class="s">&#34;jdbc:mysql://localhost:3306/imooc?useSSL=false&amp;amp;useUnicode=true&amp;amp;characterEncoding=utf-8&amp;amp;serverTimezone=Asia/Shanghai&amp;amp;usePublicKeyRetrieval=true&#34;</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;username&#34;</span> <span class="na">value=</span><span class="s">&#34;root&#34;</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;password&#34;</span> <span class="na">value=</span><span class="s">&#34;root&#34;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/bean&gt;</span>
+    <span class="c">&lt;!--JdbcTemplate--&gt;</span>
+    <span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">&#34;jdbcTemplate&#34;</span> <span class="na">class=</span><span class="s">&#34;org.springframework.jdbc.core.JdbcTemplate&#34;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;dataSource&#34;</span> <span class="na">ref=</span><span class="s">&#34;dataSource&#34;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/bean&gt;</span>
+
+    <span class="c">&lt;!--事务管理器--&gt;</span>
+    <span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">&#34;transactionManager&#34;</span> <span class="na">class=</span><span class="s">&#34;org.springframework.jdbc.datasource.DataSourceTransactionManager&#34;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;dataSource&#34;</span> <span class="na">ref=</span><span class="s">&#34;dataSource&#34;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/bean&gt;</span>
+
+    <span class="c">&lt;!--启用注解形式声明式事务--&gt;</span>
+    <span class="nt">&lt;tx:annotation-driven</span> <span class="na">transaction-manager=</span><span class="s">&#34;transactionManager&#34;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/beans&gt;</span>
+</code></pre></div><p>Employee.java</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="nn">com.imooc.spring.jdbc.entity</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.Date</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Employee</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="n">Integer</span> <span class="n">eno</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="n">String</span> <span class="n">ename</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="n">Float</span> <span class="n">salary</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="n">String</span> <span class="n">dname</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="n">Date</span> <span class="n">hiredate</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="n">Integer</span> <span class="nf">getEno</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">eno</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setEno</span><span class="o">(</span><span class="n">Integer</span> <span class="n">eno</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">eno</span> <span class="o">=</span> <span class="n">eno</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="n">String</span> <span class="nf">getEname</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">ename</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setEname</span><span class="o">(</span><span class="n">String</span> <span class="n">ename</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">ename</span> <span class="o">=</span> <span class="n">ename</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="n">Float</span> <span class="nf">getSalary</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">salary</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setSalary</span><span class="o">(</span><span class="n">Float</span> <span class="n">salary</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">salary</span> <span class="o">=</span> <span class="n">salary</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="n">String</span> <span class="nf">getDname</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">dname</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setDname</span><span class="o">(</span><span class="n">String</span> <span class="n">dname</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">dname</span> <span class="o">=</span> <span class="n">dname</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="n">Date</span> <span class="nf">getHiredate</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">hiredate</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setHiredate</span><span class="o">(</span><span class="n">Date</span> <span class="n">hiredate</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">hiredate</span> <span class="o">=</span> <span class="n">hiredate</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="n">String</span> <span class="nf">toString</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="s">&#34;Employee{&#34;</span> <span class="o">+</span>
+                <span class="s">&#34;eno=&#34;</span> <span class="o">+</span> <span class="n">eno</span> <span class="o">+</span>
+                <span class="s">&#34;, ename=&#39;&#34;</span> <span class="o">+</span> <span class="n">ename</span> <span class="o">+</span> <span class="sc">&#39;\&#39;&#39;</span> <span class="o">+</span>
+                <span class="s">&#34;, salary=&#34;</span> <span class="o">+</span> <span class="n">salary</span> <span class="o">+</span>
+                <span class="s">&#34;, dname=&#39;&#34;</span> <span class="o">+</span> <span class="n">dname</span> <span class="o">+</span> <span class="sc">&#39;\&#39;&#39;</span> <span class="o">+</span>
+                <span class="s">&#34;, hiredate=&#34;</span> <span class="o">+</span> <span class="n">hiredate</span> <span class="o">+</span>
+                <span class="sc">&#39;}&#39;</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+</code></pre></div><p>EmployeeDao.java</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="nn">com.imooc.spring.jdbc.dao</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">com.imooc.spring.jdbc.entity.Employee</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.jdbc.core.BeanPropertyRowMapper</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.jdbc.core.JdbcTemplate</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.stereotype.Repository</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">javax.annotation.Resource</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Map</span><span class="o">;</span>
+
+<span class="nd">@Repository</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">EmployeeDao</span> <span class="o">{</span>
+    <span class="nd">@Resource</span>
+    <span class="kd">private</span> <span class="n">JdbcTemplate</span> <span class="n">jdbcTemplate</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="n">Employee</span> <span class="nf">findById</span><span class="o">(</span><span class="n">Integer</span> <span class="n">eno</span><span class="o">){</span>
+        <span class="n">String</span> <span class="n">sql</span> <span class="o">=</span> <span class="s">&#34;select * from employee where eno = ?&#34;</span><span class="o">;</span>
+        <span class="c1">//查询单条数据
+</span><span class="c1"></span>        <span class="n">Employee</span> <span class="n">employee</span> <span class="o">=</span> <span class="n">jdbcTemplate</span><span class="o">.</span><span class="na">queryForObject</span><span class="o">(</span><span class="n">sql</span><span class="o">,</span> <span class="k">new</span> <span class="n">Object</span><span class="o">[]{</span><span class="n">eno</span><span class="o">},</span> <span class="k">new</span> <span class="n">BeanPropertyRowMapper</span><span class="o">&lt;</span><span class="n">Employee</span><span class="o">&gt;(</span><span class="n">Employee</span><span class="o">.</span><span class="na">class</span><span class="o">));</span>
+        <span class="k">return</span> <span class="n">employee</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Employee</span><span class="o">&gt;</span> <span class="nf">findByDname</span><span class="o">(</span><span class="n">String</span> <span class="n">dname</span><span class="o">){</span>
+        <span class="n">String</span> <span class="n">sql</span> <span class="o">=</span> <span class="s">&#34;select * from employee where dname = ?&#34;</span><span class="o">;</span>
+        <span class="c1">//查询复合数据
+</span><span class="c1"></span>        <span class="n">List</span><span class="o">&lt;</span><span class="n">Employee</span><span class="o">&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="n">jdbcTemplate</span><span class="o">.</span><span class="na">query</span><span class="o">(</span><span class="n">sql</span><span class="o">,</span> <span class="k">new</span> <span class="n">Object</span><span class="o">[]{</span><span class="n">dname</span><span class="o">},</span> <span class="k">new</span> <span class="n">BeanPropertyRowMapper</span><span class="o">&lt;</span><span class="n">Employee</span><span class="o">&gt;(</span><span class="n">Employee</span><span class="o">.</span><span class="na">class</span><span class="o">));</span>
+        <span class="k">return</span> <span class="n">list</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;&gt;</span> <span class="nf">findMapByDname</span><span class="o">(</span><span class="n">String</span> <span class="n">dname</span><span class="o">){</span>
+        <span class="n">String</span> <span class="n">sql</span> <span class="o">=</span> <span class="s">&#34;select eno as empno , salary as s from employee where dname = ?&#34;</span><span class="o">;</span>
+        <span class="c1">//将查询结果作为Map进行封装
+</span><span class="c1"></span>        <span class="n">List</span><span class="o">&lt;</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;&gt;</span> <span class="n">maps</span> <span class="o">=</span> <span class="n">jdbcTemplate</span><span class="o">.</span><span class="na">queryForList</span><span class="o">(</span><span class="n">sql</span><span class="o">,</span> <span class="k">new</span> <span class="n">Object</span><span class="o">[]{</span><span class="n">dname</span><span class="o">});</span>
+        <span class="k">return</span> <span class="n">maps</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">insert</span><span class="o">(</span><span class="n">Employee</span> <span class="n">employee</span><span class="o">){</span>
+        <span class="n">String</span> <span class="n">sql</span> <span class="o">=</span> <span class="s">&#34;insert into employee(eno,ename,salary,dname,hiredate) values(?,?,?,?,?)&#34;</span><span class="o">;</span>
+        <span class="c1">//利用update方法实现数据写入操作
+</span><span class="c1"></span>        <span class="n">jdbcTemplate</span><span class="o">.</span><span class="na">update</span><span class="o">(</span><span class="n">sql</span><span class="o">,</span><span class="k">new</span> <span class="n">Object</span><span class="o">[]{</span>
+           <span class="n">employee</span><span class="o">.</span><span class="na">getEno</span><span class="o">()</span> <span class="o">,</span> <span class="n">employee</span><span class="o">.</span><span class="na">getEname</span><span class="o">(),</span><span class="n">employee</span><span class="o">.</span><span class="na">getSalary</span><span class="o">(),</span><span class="n">employee</span><span class="o">.</span><span class="na">getDname</span><span class="o">()</span> <span class="o">,</span> <span class="n">employee</span><span class="o">.</span><span class="na">getHiredate</span><span class="o">()</span>
+        <span class="o">});</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">update</span><span class="o">(</span><span class="n">Employee</span> <span class="n">employee</span><span class="o">){</span>
+        <span class="n">String</span> <span class="n">sql</span> <span class="o">=</span> <span class="s">&#34;UPDATE employee SET ename = ?, salary = ?, dname = ?, hiredate = ? WHERE eno = ?&#34;</span><span class="o">;</span>
+        <span class="kt">int</span> <span class="n">count</span> <span class="o">=</span> <span class="n">jdbcTemplate</span><span class="o">.</span><span class="na">update</span><span class="o">(</span><span class="n">sql</span><span class="o">,</span> <span class="k">new</span> <span class="n">Object</span><span class="o">[]{</span><span class="n">employee</span><span class="o">.</span><span class="na">getEname</span><span class="o">(),</span> <span class="n">employee</span><span class="o">.</span><span class="na">getSalary</span><span class="o">(),</span> <span class="n">employee</span><span class="o">.</span><span class="na">getDname</span><span class="o">(),</span> <span class="n">employee</span><span class="o">.</span><span class="na">getHiredate</span><span class="o">(),</span> <span class="n">employee</span><span class="o">.</span><span class="na">getEno</span><span class="o">()});</span>
+        <span class="k">return</span> <span class="n">count</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">delete</span><span class="o">(</span><span class="n">Integer</span> <span class="n">eno</span><span class="o">){</span>
+        <span class="n">String</span> <span class="n">sql</span> <span class="o">=</span> <span class="s">&#34;delete from employee where eno = ?&#34;</span><span class="o">;</span>
+        <span class="k">return</span> <span class="n">jdbcTemplate</span><span class="o">.</span><span class="na">update</span><span class="o">(</span><span class="n">sql</span><span class="o">,</span> <span class="k">new</span> <span class="n">Object</span><span class="o">[]{</span><span class="n">eno</span><span class="o">});</span>
+    <span class="o">}</span>
+
+
+    <span class="kd">public</span> <span class="n">JdbcTemplate</span> <span class="nf">getJdbcTemplate</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">jdbcTemplate</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setJdbcTemplate</span><span class="o">(</span><span class="n">JdbcTemplate</span> <span class="n">jdbcTemplate</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">jdbcTemplate</span> <span class="o">=</span> <span class="n">jdbcTemplate</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+</code></pre></div><p>BatchService.java</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="nn">com.imooc.spring.jdbc.service</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">com.imooc.spring.jdbc.dao.EmployeeDao</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.imooc.spring.jdbc.entity.Employee</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.stereotype.Service</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.transaction.annotation.Propagation</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.transaction.annotation.Transactional</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">javax.annotation.Resource</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Date</span><span class="o">;</span>
+
+<span class="nd">@Service</span>
+<span class="nd">@Transactional</span><span class="o">(</span><span class="n">propagation</span> <span class="o">=</span> <span class="n">Propagation</span><span class="o">.</span><span class="na">NOT_SUPPORTED</span><span class="o">,</span> <span class="n">readOnly</span> <span class="o">=</span> <span class="kc">true</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">BatchService</span> <span class="o">{</span>
+    <span class="nd">@Resource</span>
+    <span class="kd">private</span> <span class="n">EmployeeDao</span> <span class="n">employeeDao</span><span class="o">;</span>
+
+    <span class="nd">@Transactional</span><span class="o">(</span><span class="n">propagation</span> <span class="o">=</span> <span class="n">Propagation</span><span class="o">.</span><span class="na">REQUIRES_NEW</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">importJob1</span><span class="o">(){</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">10</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="n">Employee</span> <span class="n">employee</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Employee</span><span class="o">();</span>
+            <span class="n">employee</span><span class="o">.</span><span class="na">setEno</span><span class="o">(</span><span class="n">8000</span> <span class="o">+</span> <span class="n">i</span><span class="o">);</span>
+            <span class="n">employee</span><span class="o">.</span><span class="na">setEname</span><span class="o">(</span><span class="s">&#34;研发部员工&#34;</span> <span class="o">+</span> <span class="n">i</span><span class="o">);</span>
+            <span class="n">employee</span><span class="o">.</span><span class="na">setSalary</span><span class="o">(</span><span class="n">4000f</span><span class="o">);</span>
+            <span class="n">employee</span><span class="o">.</span><span class="na">setDname</span><span class="o">(</span><span class="s">&#34;研发部&#34;</span><span class="o">);</span>
+            <span class="n">employee</span><span class="o">.</span><span class="na">setHiredate</span><span class="o">(</span><span class="k">new</span> <span class="n">Date</span><span class="o">());</span>
+            <span class="n">employeeDao</span><span class="o">.</span><span class="na">insert</span><span class="o">(</span><span class="n">employee</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Transactional</span><span class="o">(</span><span class="n">propagation</span> <span class="o">=</span> <span class="n">Propagation</span><span class="o">.</span><span class="na">REQUIRES_NEW</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">importJob2</span><span class="o">(){</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">10</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="n">Employee</span> <span class="n">employee</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Employee</span><span class="o">();</span>
+            <span class="n">employee</span><span class="o">.</span><span class="na">setEno</span><span class="o">(</span><span class="n">9000</span> <span class="o">+</span> <span class="n">i</span><span class="o">);</span>
+            <span class="n">employee</span><span class="o">.</span><span class="na">setEname</span><span class="o">(</span><span class="s">&#34;市场部员工&#34;</span> <span class="o">+</span> <span class="n">i</span><span class="o">);</span>
+            <span class="n">employee</span><span class="o">.</span><span class="na">setSalary</span><span class="o">(</span><span class="n">4500f</span><span class="o">);</span>
+            <span class="n">employee</span><span class="o">.</span><span class="na">setDname</span><span class="o">(</span><span class="s">&#34;市场部&#34;</span><span class="o">);</span>
+            <span class="n">employee</span><span class="o">.</span><span class="na">setHiredate</span><span class="o">(</span><span class="k">new</span> <span class="n">Date</span><span class="o">());</span>
+            <span class="n">employeeDao</span><span class="o">.</span><span class="na">insert</span><span class="o">(</span><span class="n">employee</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="n">EmployeeDao</span> <span class="nf">getEmployeeDao</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">employeeDao</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setEmployeeDao</span><span class="o">(</span><span class="n">EmployeeDao</span> <span class="n">employeeDao</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">employeeDao</span> <span class="o">=</span> <span class="n">employeeDao</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+</code></pre></div><p>EmployeeService.java</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="nn">com.imooc.spring.jdbc.service</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">com.imooc.spring.jdbc.dao.EmployeeDao</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.imooc.spring.jdbc.entity.Employee</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.stereotype.Repository</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.stereotype.Service</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.transaction.annotation.Propagation</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.transaction.annotation.Transactional</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">javax.annotation.Resource</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Date</span><span class="o">;</span>
+
+<span class="nd">@Service</span>
+<span class="c1">//声明式事务核心注解
+</span><span class="c1">//放在类上，将声明式事务配置应用于当前类所有方法，默认事务传播为REQUIRED
+</span><span class="c1"></span><span class="nd">@Transactional</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">EmployeeService</span> <span class="o">{</span>
+    <span class="nd">@Resource</span>
+    <span class="kd">private</span> <span class="n">EmployeeDao</span> <span class="n">employeeDao</span><span class="o">;</span>
+    <span class="nd">@Resource</span>
+    <span class="kd">private</span> <span class="n">BatchService</span> <span class="n">batchService</span><span class="o">;</span>
+
+    <span class="nd">@Transactional</span><span class="o">(</span><span class="n">propagation</span> <span class="o">=</span> <span class="n">Propagation</span><span class="o">.</span><span class="na">NOT_SUPPORTED</span><span class="o">,</span> <span class="n">readOnly</span> <span class="o">=</span> <span class="kc">true</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="n">Employee</span> <span class="nf">findById</span><span class="o">(</span><span class="n">Integer</span> <span class="n">eno</span><span class="o">){</span>
+        <span class="k">return</span> <span class="n">employeeDao</span><span class="o">.</span><span class="na">findById</span><span class="o">(</span><span class="n">eno</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">batchImport</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">10</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="cm">/*if(i==3){
+</span><span class="cm">                throw new RuntimeException(&#34;意料之外的异常&#34;);
+</span><span class="cm">            }*/</span>
+            <span class="n">Employee</span> <span class="n">employee</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Employee</span><span class="o">();</span>
+            <span class="n">employee</span><span class="o">.</span><span class="na">setEno</span><span class="o">(</span><span class="n">8000</span> <span class="o">+</span> <span class="n">i</span><span class="o">);</span>
+            <span class="n">employee</span><span class="o">.</span><span class="na">setEname</span><span class="o">(</span><span class="s">&#34;员工&#34;</span> <span class="o">+</span> <span class="n">i</span><span class="o">);</span>
+            <span class="n">employee</span><span class="o">.</span><span class="na">setSalary</span><span class="o">(</span><span class="n">4000f</span><span class="o">);</span>
+            <span class="n">employee</span><span class="o">.</span><span class="na">setDname</span><span class="o">(</span><span class="s">&#34;市场部&#34;</span><span class="o">);</span>
+            <span class="n">employee</span><span class="o">.</span><span class="na">setHiredate</span><span class="o">(</span><span class="k">new</span> <span class="n">Date</span><span class="o">());</span>
+            <span class="n">employeeDao</span><span class="o">.</span><span class="na">insert</span><span class="o">(</span><span class="n">employee</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">startImportJob</span><span class="o">(){</span>
+        <span class="n">batchService</span><span class="o">.</span><span class="na">importJob1</span><span class="o">();</span>
+        <span class="k">if</span><span class="o">(</span><span class="n">1</span><span class="o">==</span><span class="n">1</span><span class="o">){</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="n">RuntimeException</span><span class="o">(</span><span class="s">&#34;意料之外的异常&#34;</span><span class="o">);</span>
+        <span class="o">}</span>
+        <span class="n">batchService</span><span class="o">.</span><span class="na">importJob2</span><span class="o">();</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;批量导入成功&#34;</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="n">EmployeeDao</span> <span class="nf">getEmployeeDao</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">employeeDao</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setEmployeeDao</span><span class="o">(</span><span class="n">EmployeeDao</span> <span class="n">employeeDao</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">employeeDao</span> <span class="o">=</span> <span class="n">employeeDao</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="n">BatchService</span> <span class="nf">getBatchService</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">batchService</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setBatchService</span><span class="o">(</span><span class="n">BatchService</span> <span class="n">batchService</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">batchService</span> <span class="o">=</span> <span class="n">batchService</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></blockquote>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://rex0520.github.io/tags/spring/">Spring</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://rex0520.github.io/posts/back/java/framework/springboot/springboot%E8%AE%B0%E5%BD%95/">
+    <span class="title">« Prev Page</span>
+    <br>
+    <span>SpringBoot记录</span>
+  </a>
+  <a class="next" href="https://rex0520.github.io/posts/back/java/framework/spring/spring%E6%A1%86%E6%9E%B6%E6%A6%82%E8%BF%B0/">
+    <span class="title">Next Page »</span>
+    <br>
+    <span>Spring框架概述</span>
+  </a>
+</nav>
+
+
+<div class="share-buttons">
+    <a target="_blank" rel="noopener noreferrer" aria-label="share Springjdbc on twitter"
+        href="https://twitter.com/intent/tweet/?text=Springjdbc&amp;url=https%3a%2f%2frex0520.github.io%2fposts%2fback%2fjava%2fframework%2fspring%2fspringjdbc%2f&amp;hashtags=Spring">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-253.927,424.544c135.939,0 210.268,-112.643 210.268,-210.268c0,-3.218 0,-6.437 -0.153,-9.502c14.406,-10.421 26.973,-23.448 36.935,-38.314c-13.18,5.824 -27.433,9.809 -42.452,11.648c15.326,-9.196 26.973,-23.602 32.49,-40.92c-14.252,8.429 -30.038,14.56 -46.896,17.931c-13.487,-14.406 -32.644,-23.295 -53.946,-23.295c-40.767,0 -73.87,33.104 -73.87,73.87c0,5.824 0.613,11.494 1.992,16.858c-61.456,-3.065 -115.862,-32.49 -152.337,-77.241c-6.284,10.881 -9.962,23.601 -9.962,37.088c0,25.594 13.027,48.276 32.95,61.456c-12.107,-0.307 -23.448,-3.678 -33.41,-9.196l0,0.92c0,35.862 25.441,65.594 59.311,72.49c-6.13,1.686 -12.72,2.606 -19.464,2.606c-4.751,0 -9.348,-0.46 -13.946,-1.38c9.349,29.426 36.628,50.728 68.965,51.341c-25.287,19.771 -57.164,31.571 -91.8,31.571c-5.977,0 -11.801,-0.306 -17.625,-1.073c32.337,21.15 71.264,33.41 112.95,33.41Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share Springjdbc on linkedin"
+        href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2frex0520.github.io%2fposts%2fback%2fjava%2fframework%2fspring%2fspringjdbc%2f&amp;title=Springjdbc&amp;summary=Springjdbc&amp;source=https%3a%2f%2frex0520.github.io%2fposts%2fback%2fjava%2fframework%2fspring%2fspringjdbc%2f">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-288.985,423.278l0,-225.717l-75.04,0l0,225.717l75.04,0Zm270.539,0l0,-129.439c0,-69.333 -37.018,-101.586 -86.381,-101.586c-39.804,0 -57.634,21.891 -67.617,37.266l0,-31.958l-75.021,0c0.995,21.181 0,225.717 0,225.717l75.02,0l0,-126.056c0,-6.748 0.486,-13.492 2.474,-18.315c5.414,-13.475 17.767,-27.434 38.494,-27.434c27.135,0 38.007,20.707 38.007,51.037l0,120.768l75.024,0Zm-307.552,-334.556c-25.674,0 -42.448,16.879 -42.448,39.002c0,21.658 16.264,39.002 41.455,39.002l0.484,0c26.165,0 42.452,-17.344 42.452,-39.002c-0.485,-22.092 -16.241,-38.954 -41.943,-39.002Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share Springjdbc on reddit"
+        href="https://reddit.com/submit?url=https%3a%2f%2frex0520.github.io%2fposts%2fback%2fjava%2fframework%2fspring%2fspringjdbc%2f&title=Springjdbc">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-3.446,265.638c0,-22.964 -18.616,-41.58 -41.58,-41.58c-11.211,0 -21.361,4.457 -28.841,11.666c-28.424,-20.508 -67.586,-33.757 -111.204,-35.278l18.941,-89.121l61.884,13.157c0.756,15.734 13.642,28.29 29.56,28.29c16.407,0 29.706,-13.299 29.706,-29.701c0,-16.403 -13.299,-29.702 -29.706,-29.702c-11.666,0 -21.657,6.792 -26.515,16.578l-69.105,-14.69c-1.922,-0.418 -3.939,-0.042 -5.585,1.036c-1.658,1.073 -2.811,2.761 -3.224,4.686l-21.152,99.438c-44.258,1.228 -84.046,14.494 -112.837,35.232c-7.468,-7.164 -17.589,-11.591 -28.757,-11.591c-22.965,0 -41.585,18.616 -41.585,41.58c0,16.896 10.095,31.41 24.568,37.918c-0.639,4.135 -0.99,8.328 -0.99,12.576c0,63.977 74.469,115.836 166.33,115.836c91.861,0 166.334,-51.859 166.334,-115.836c0,-4.218 -0.347,-8.387 -0.977,-12.493c14.564,-6.47 24.735,-21.034 24.735,-38.001Zm-119.474,108.193c-20.27,20.241 -59.115,21.816 -70.534,21.816c-11.428,0 -50.277,-1.575 -70.522,-21.82c-3.007,-3.008 -3.007,-7.882 0,-10.889c3.003,-2.999 7.882,-3.003 10.885,0c12.777,12.781 40.11,17.317 59.637,17.317c19.522,0 46.86,-4.536 59.657,-17.321c3.016,-2.999 7.886,-2.995 10.885,0.008c3.008,3.011 3.003,7.882 -0.008,10.889Zm-5.23,-48.781c-16.373,0 -29.701,-13.324 -29.701,-29.698c0,-16.381 13.328,-29.714 29.701,-29.714c16.378,0 29.706,13.333 29.706,29.714c0,16.374 -13.328,29.698 -29.706,29.698Zm-160.386,-29.702c0,-16.381 13.328,-29.71 29.714,-29.71c16.369,0 29.689,13.329 29.689,29.71c0,16.373 -13.32,29.693 -29.689,29.693c-16.386,0 -29.714,-13.32 -29.714,-29.693Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share Springjdbc on facebook"
+        href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2frex0520.github.io%2fposts%2fback%2fjava%2fframework%2fspring%2fspringjdbc%2f">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-106.468,0l0,-192.915l66.6,0l12.672,-82.621l-79.272,0l0,-53.617c0,-22.603 11.073,-44.636 46.58,-44.636l36.042,0l0,-70.34c0,0 -32.71,-5.582 -63.982,-5.582c-65.288,0 -107.96,39.569 -107.96,111.204l0,62.971l-72.573,0l0,82.621l72.573,0l0,192.915l-191.104,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share Springjdbc on whatsapp"
+        href="https://api.whatsapp.com/send?text=Springjdbc%20-%20https%3a%2f%2frex0520.github.io%2fposts%2fback%2fjava%2fframework%2fspring%2fspringjdbc%2f">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-58.673,127.703c-33.842,-33.881 -78.847,-52.548 -126.798,-52.568c-98.799,0 -179.21,80.405 -179.249,179.234c-0.013,31.593 8.241,62.428 23.927,89.612l-25.429,92.884l95.021,-24.925c26.181,14.28 55.659,21.807 85.658,21.816l0.074,0c98.789,0 179.206,-80.413 179.247,-179.243c0.018,-47.895 -18.61,-92.93 -52.451,-126.81Zm-126.797,275.782l-0.06,0c-26.734,-0.01 -52.954,-7.193 -75.828,-20.767l-5.441,-3.229l-56.386,14.792l15.05,-54.977l-3.542,-5.637c-14.913,-23.72 -22.791,-51.136 -22.779,-79.287c0.033,-82.142 66.867,-148.971 149.046,-148.971c39.793,0.014 77.199,15.531 105.329,43.692c28.128,28.16 43.609,65.592 43.594,105.4c-0.034,82.149 -66.866,148.983 -148.983,148.984Zm81.721,-111.581c-4.479,-2.242 -26.499,-13.075 -30.604,-14.571c-4.105,-1.495 -7.091,-2.241 -10.077,2.241c-2.986,4.483 -11.569,14.572 -14.182,17.562c-2.612,2.988 -5.225,3.364 -9.703,1.12c-4.479,-2.241 -18.91,-6.97 -36.017,-22.23c-13.314,-11.876 -22.304,-26.542 -24.916,-31.026c-2.612,-4.484 -0.279,-6.908 1.963,-9.14c2.016,-2.007 4.48,-5.232 6.719,-7.847c2.24,-2.615 2.986,-4.484 4.479,-7.472c1.493,-2.99 0.747,-5.604 -0.374,-7.846c-1.119,-2.241 -10.077,-24.288 -13.809,-33.256c-3.635,-8.733 -7.327,-7.55 -10.077,-7.688c-2.609,-0.13 -5.598,-0.158 -8.583,-0.158c-2.986,0 -7.839,1.121 -11.944,5.604c-4.105,4.484 -15.675,15.32 -15.675,37.364c0,22.046 16.048,43.342 18.287,46.332c2.24,2.99 31.582,48.227 76.511,67.627c10.685,4.615 19.028,7.371 25.533,9.434c10.728,3.41 20.492,2.929 28.209,1.775c8.605,-1.285 26.499,-10.833 30.231,-21.295c3.732,-10.464 3.732,-19.431 2.612,-21.298c-1.119,-1.869 -4.105,-2.99 -8.583,-5.232Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share Springjdbc on telegram"
+        href="https://telegram.me/share/url?text=Springjdbc&amp;url=https%3a%2f%2frex0520.github.io%2fposts%2fback%2fjava%2fframework%2fspring%2fspringjdbc%2f">
+        <svg version="1.1" xml:space="preserve" viewBox="2 2 28 28">
+            <path
+                d="M26.49,29.86H5.5a3.37,3.37,0,0,1-2.47-1,3.35,3.35,0,0,1-1-2.47V5.48A3.36,3.36,0,0,1,3,3,3.37,3.37,0,0,1,5.5,2h21A3.38,3.38,0,0,1,29,3a3.36,3.36,0,0,1,1,2.46V26.37a3.35,3.35,0,0,1-1,2.47A3.38,3.38,0,0,1,26.49,29.86Zm-5.38-6.71a.79.79,0,0,0,.85-.66L24.73,9.24a.55.55,0,0,0-.18-.46.62.62,0,0,0-.41-.17q-.08,0-16.53,6.11a.59.59,0,0,0-.41.59.57.57,0,0,0,.43.52l4,1.24,1.61,4.83a.62.62,0,0,0,.63.43.56.56,0,0,0,.4-.17L16.54,20l4.09,3A.9.9,0,0,0,21.11,23.15ZM13.8,20.71l-1.21-4q8.72-5.55,8.78-5.55c.15,0,.23,0,.23.16a.18.18,0,0,1,0,.06s-2.51,2.3-7.52,6.8Z" />
+        </svg>
+    </a>
+</div>
+
+  </footer>
+<script src="https://utteranc.es/client.js" repo="Rex0520/blogcomment"
+  issue-term="title" theme="github-light" crossorigin="anonymous"
+  async>
+  </script>
+
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2021 <a href="https://rex0520.github.io/">Rex</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://git.io/hugopapermod" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+    menu.onscroll = function () {
+        localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerText = 'copy';
+
+        function copyingDone() {
+            copybutton.innerText = 'copied!';
+            setTimeout(() => {
+                copybutton.innerText = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

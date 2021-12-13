@@ -156,7 +156,7 @@
 package treadlocal; import java.text.SimpleDateFormat; import java.util.Date; import java.util.concurrent.ExecutorService; import java.util.concurrent.Executors; /** * @Description: 利用ThreadLocal，给每个线程分配自己的dateFormat对象，保证了线程安全，高效利用内存 * @Author: Rex * @Create: 2021-06-09 14:43 */ public class ThreadLocalNormalUsage05 { public static ExecutorService executor = Executors.newFixedThreadPool(10); public static void main(String[] args) throws InterruptedException { for (int i = 0; i &lt; 1000; i&#43;&#43;) { int finalI = i; executor.submit(new Thread(new Runnable() { @Override public void run() { String date = new ThreadLocalNormalUsage05()....</p>
   </section>
   <footer class="entry-footer">2021-06-08&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Rex</footer>
-  <a class="entry-link" aria-label="post link to Threadlocal详解" href="https://rex0520.github.io/posts/back/threadpool/threadlocal%E8%AF%A6%E8%A7%A3/"></a>
+  <a class="entry-link" aria-label="post link to Threadlocal详解" href="https://rex0520.github.io/posts/back/java/threadpool/threadlocal%E8%AF%A6%E8%A7%A3/"></a>
 </article>
 
 <article class="post-entry tag-entry"> 
@@ -172,7 +172,7 @@ package treadlocal; import java.text.SimpleDateFormat; import java.util.Date; im
  </p>
   </section>
   <footer class="entry-footer">2021-06-08&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Rex</footer>
-  <a class="entry-link" aria-label="post link to 关于reentrantlock和condition" href="https://rex0520.github.io/posts/back/threadpool/%E5%85%B3%E4%BA%8Ereentrantlock%E5%92%8Ccondition/"></a>
+  <a class="entry-link" aria-label="post link to 关于reentrantlock和condition" href="https://rex0520.github.io/posts/back/java/threadpool/%E5%85%B3%E4%BA%8Ereentrantlock%E5%92%8Ccondition/"></a>
 </article>
 
 <article class="post-entry tag-entry"> 
@@ -191,7 +191,7 @@ package treadlocal; import java.text.SimpleDateFormat; import java.util.Date; im
  </p>
   </section>
   <footer class="entry-footer">2021-06-08&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Rex</footer>
-  <a class="entry-link" aria-label="post link to 守护线程" href="https://rex0520.github.io/posts/back/threadpool/%E5%AE%88%E6%8A%A4%E7%BA%BF%E7%A8%8B/"></a>
+  <a class="entry-link" aria-label="post link to 守护线程" href="https://rex0520.github.io/posts/back/java/threadpool/%E5%AE%88%E6%8A%A4%E7%BA%BF%E7%A8%8B/"></a>
 </article>
 
 <article class="post-entry tag-entry"> 
@@ -207,7 +207,7 @@ package treadlocal; import java.text.SimpleDateFormat; import java.util.Date; im
  服务器接收到大量请求时，使用线程池技术是非常合适的，它可以大大减少线程的创建和销毁次数，提高服务器的工作效率 实际上，在开发中，如果需要创建5个以上的线程，那么就可以使用线程池来管理  创建和停止线程池 线程池构造方法的参数    参数名 类型 含义     corePoolSize int 核心线程数   maxPoolSize int 最大线程数   keepAliveTime long 保持存活时间   workQueue BlockingQueue 任务存储队列   threadFactory ThreadFactory 当线程池需要新的线程的时候，会使用threadFactory来生成新的线程   Handler RejectedExecutionHandler 由于线程池无法接受你所提交的任务的拒绝策略    添加线程规则  如果线程数小于corePoolSize，创建一个新线程来运行新任务。 如果线程数等于（或大于）corePoolSize但少于maxmumPoolSize，则将任务放入队列。 如果队列已满，并且线程数小于maxPoolSize，则创建一个新线程。 如果队列已满，并且线程数大于或等于maxPoolSize，则拒绝。  是否需要增加线程的判断顺序是：...</p>
   </section>
   <footer class="entry-footer">2021-06-08&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Rex</footer>
-  <a class="entry-link" aria-label="post link to 线程池" href="https://rex0520.github.io/posts/back/threadpool/%E7%BA%BF%E7%A8%8B%E6%B1%A0/"></a>
+  <a class="entry-link" aria-label="post link to 线程池" href="https://rex0520.github.io/posts/back/java/threadpool/%E7%BA%BF%E7%A8%8B%E6%B1%A0/"></a>
 </article>
     </main>
     

@@ -1,0 +1,1079 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Springioc与bean管理 | Rex</title>
+<meta name="keywords" content="Spring" />
+<meta name="description" content="Springioc与bean管理">
+<meta name="author" content="Rex">
+<link rel="canonical" href="https://rex0520.github.io/posts/back/java/framework/spring/springioc%E4%B8%8Ebean%E7%AE%A1%E7%90%86/" />
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.css" rel="preload stylesheet" as="style">
+<link rel="preload" href="http://cdn.rexweb.xyz/img/20210821105340.png" as="image">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.min.js" onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="https://rex0520.github.io/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://rex0520.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://rex0520.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://rex0520.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://rex0520.github.io/%3Clink%20/%20abs%20url%3E">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<meta name="generator" content="Hugo 0.87.0" />
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:title" content="Springioc与bean管理" />
+<meta property="og:description" content="Springioc与bean管理" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://rex0520.github.io/posts/back/java/framework/spring/springioc%E4%B8%8Ebean%E7%AE%A1%E7%90%86/" /><meta property="og:image" content="https://cdn.rexweb.xyz/img/20210820141535.jpg"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-01-04T00:00:00&#43;00:00" />
+<meta property="article:modified_time" content="2021-01-04T00:00:00&#43;00:00" /><meta property="og:site_name" content="RexHub" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://cdn.rexweb.xyz/img/20210820141535.jpg"/>
+
+<meta name="twitter:title" content="Springioc与bean管理"/>
+<meta name="twitter:description" content="Springioc与bean管理"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://rex0520.github.io/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Springioc与bean管理",
+      "item": "https://rex0520.github.io/posts/back/java/framework/spring/springioc%E4%B8%8Ebean%E7%AE%A1%E7%90%86/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Springioc与bean管理",
+  "name": "Springioc与bean管理",
+  "description": "Springioc与bean管理",
+  "keywords": [
+    "Spring"
+  ],
+  "articleBody": "Spring IoC与Bean管理 Spring快速入门 IoC控制反转  IoC控制反转，全称Inverse of Control，是一种设计理念，把对象创建和对象之间的调用过程，交给spring进行管理 由代理人来创建与管理对象，消费者通过代理人来获取对象 IoC的目的是降低对象之间直接耦合 加入IoC容器将对象统一管理，让对象关联变为弱耦合  DI依赖注入  IoC是设计理念，是现代程序设计遵循的标准，是宏观目标 DI(Dependency Injection)是具体技术实现，是微观实现 DI在Java中利用反射技术实现对象注入（Injection）  Spring Spring的含义  Spring可从狭义与广义俩个角度看待 狭义的Spring是指Spring框架（Spring Framework） 广义的Spring是指Spring生态体系  狭义的Spring  Spring框架是企业开发复杂性的一站式解决方案 Spring框架的核心是IoC容器与AOP面向切面变成 Spring IoC负责创建与管理系统对象，并在此基础上扩展功能  传统开发方式  对象直接引用导致对象硬性关联，程序难以扩展维护  Spring IoC  IoC容器是Spring生态的地基用于统一创建与管理对象依赖  Spring IoC容器职责  对象的控制器交由第三方统一管理（IoC控制反转） 利用Java反射技术实现运行时对象创建与关联（DI依赖注入） 基于配置提高应用程序的可维护性与扩展性  IOC底层原理：  xml解析、工厂模式、反射  IOC(接口)   IOC思想基于IOC容器完成，IOC容器底层就是对象工厂\n  Spring提供IOC容器实现两种方式：（两个接口）\n  BeanFactory：IOC容器基本实现方式，是Spring内部的使用的接口，不提供给开发人员使用\n特点：\n​\t加载配置文件时候不会创建对象，在获取对象（使用）才去创建对象\n  ApplicationContext：BeanFactory接口的子接口，提供更多更强大的功能， 一般由开发人员进行使用\n特点：加载配置文件时候就会把配置文件对象进行创建\n    ApplicationContext接口\n  代码示例：  需要引入的依赖\n org.springframework spring-context 5.3.1  Apple.java\npackage com.imooc.spring.ioc.entity; /** * @author CubeMonkey * @create 2020-11-27 23:57 */ public class Apple { private String title; private String color; private String origin; public Apple() { } public Apple(String title, String color, String origin) { this.title = title; this.color = color; this.origin = origin; } public String getTitle() { return title; } public void setTitle(String title) { this.title = title; } public String getColor() { return color; } public void setColor(String color) { this.color = color; } public String getOrigin() { return origin; } public void setOrigin(String origin) { this.origin = origin; } } applicationContext.xml\n  xmlns=\"http://www.springframework.org/schema/beans\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd\"   id=\"sweetApple\" class=\"com.imooc.spring.ioc.entity.Apple\"  name=\"title\" value=\"红富士\"  name=\"origin\" value=\"欧洲\"  name=\"color\" value=\"红色\"   id=\"sourApple\" class=\"com.imooc.spring.ioc.entity.Apple\"  name=\"title\" value=\"青苹果\"  name=\"origin\" value=\"中亚\"  name=\"color\" value=\"绿色\"   id=\"softApple\" class=\"com.imooc.spring.ioc.entity.Apple\"  name=\"title\" value=\"金帅\"  name=\"origin\" value=\"中国\"  name=\"color\" value=\"金色\"   id=\"rdApple\" class=\"com.imooc.spring.ioc.entity.Apple\"  name=\"title\" value=\"蛇果\"  name=\"origin\" value=\"美国\"  name=\"color\" value=\"红色\"   id=\"lily\" class=\"com.imooc.spring.ioc.entity.Child\"  name=\"name\" value=\"莉莉\"  name=\"apple\" ref=\"softApple\"   id=\"andy\" class=\"com.imooc.spring.ioc.entity.Child\"  name=\"name\" value=\"安迪\"  name=\"apple\" ref=\"rdApple\"   id=\"luna\" class=\"com.imooc.spring.ioc.entity.Child\"  name=\"name\" value=\"露娜\"  name=\"apple\" ref=\"sweetApple\"   SpringApplication.java\npackage com.imooc.spring.ioc; import com.imooc.spring.ioc.entity.Apple; import com.imooc.spring.ioc.entity.Child; import org.springframework.context.ApplicationContext; import org.springframework.context.support.ClassPathXmlApplicationContext; /** * @author CubeMonkey * @create 2020-11-30 16:14 */ public class SpringApplication { public static void main(String[] args) { ApplicationContext context = new ClassPathXmlApplicationContext(\"classpath:applicationContext.xml\"); Apple sweetApple = context.getBean(\"sweetApple\", Apple.class); System.out.println(sweetApple.getTitle()); //从Ioc容器中提取beanId = lily的对象  Child lily = context.getBean(\"lily\", Child.class); lily.eat(); Child andy = context.getBean(\"andy\", Child.class); andy.eat(); Child luna = context.getBean(\"luna\", Child.class); luna.eat(); } }  XML管理对象(Bean) 三种配置方式 1. 基于XML配置Bean 实例化Bean的三种方式   基于构造方法对象实例化\n核心代码：\n applicationContext.xml\n id=\"apple2\" class=\"com.imooc.spring.ioc.entity.Apple\"  name=\"title\" value=\"红富士\"  name=\"color\" value=\"红色\"  name=\"origin\" value=\"欧洲\"     基于静态工厂实例化\n核心代码：\n applicationContext.xml\n  id=\"apple4\" class=\"com.imooc.spring.ioc.factory.AppleStaticFactory\" factory-method=\"createSweetApple\" ​\tAppleStaticFactory.java\npackage com.imooc.spring.ioc.factory; import com.imooc.spring.ioc.entity.Apple; /** * 静态工厂通过静态方法创建对象，隐藏创建对象的细节 * @author CubeMonkey * @create 2020-12-01 18:50 */ public class AppleStaticFactory { public static Apple createSweetApple(){ //logger.info(\"\")  Apple apple = new Apple(); apple.setTitle(\"红富士\"); apple.setOrigin(\"欧洲\"); apple.setColor(\"红色\"); return apple; } }    基于工厂实例方法实例化\n核心代码：\n applicationContext.xml\n利用工厂实例方法获取对象-- bean id=\"factoryInstance\" class=\"com.imooc.spring.ioc.factory.AppleFactoryInstance\"bean bean id=\"apple5\" factory-bean=\"factoryInstance\" factory-method=\"createSweetApple\"bean AppleFactoryInstance.java\npackage com.imooc.spring.ioc.factory; import com.imooc.spring.ioc.entity.Apple; /** * 工厂实例方法创建对象是指IoC容器对工厂类进行实例化并调用对应的实例方法创建对象的过程 * @author CubeMonkey * @create 2020-12-01 18:56 */ public class AppleFactoryInstance { public Apple createSweetApple(){ Apple apple = new Apple(); apple.setTitle(\"红富士\"); apple.setOrigin(\"欧洲\"); apple.setColor(\"红色\"); return apple; } }    2. 基于注解配置Bean 3. 基于Java代码配置Bean 从IoC容器获取bean 方法：  Apple apple4 = context.getBean(\"apple4\", Apple.class);//推荐 System.out.println(apple4.getTitle()); Apple apple3 = (Apple)context.getBean(\"apple3\"); System.out.println(apple3.getTitle());  id与name属性相同点  bean id 与name都是设置对象在IoC容器中唯一标识 两者在同一配置文件中都不允许出现重复 两者允许在多个配置文件中出现重复，新对象覆盖旧对象  id与name属性区别  id要求更为严格，一次只能定义一个对象标识（推荐） name更为宽松，一次允许定义多个对象标识 tips:id与name的命名有意义，按驼峰命名书写  路径表达式 加载单个配置文件 ApplicationContext context = new ClassPathXmlApplicationContext(\"classpath:applicationContext.xml\"); 加载多配置文件 String[] configLocations = new String[]{\"classpath:applicationContext.xml\", {\"classpath:applicationContext-1.xml\"}}; ApplicationContext context = new ClassPathXmlApplicationContext(configLocations) 路径表达式说明    表达式实例 说明     classpath:config.xml 扫描classpath根路径(不包含jar)的config.xml   classpath:com/imooc/config.xml 扫描classpath下(不包含jar)com.imooc包中的config.xml   classpath*:com/imooc/config.xml 扫描classpath下(包含jar)com.imooc包中的config.xml   classpath:config-*.xml 扫描classpath根路径下所有以config-开头的XML文件   classpath:com/**/config.xml 扫描com包下(包含任何子包)的config.xml   file:c/config.xml 扫描c盘根路径config.xml    依赖注入 对象依赖注入   依赖注入是指运行时将容器内对象利用反射赋给其他对象的操作\n  基于setter方法注入对象\n name=\"sweetApple\" class=\"com.imooc.spring.ioc.entity.Apple\"   name=\"title\" value=\"红富士\"  name=\"color\" value=\"红色\"  name=\"origin\" value=\"欧洲\"  name=\"price\" value=\"123\"   name=\"lily\" class=\"com.imooc.spring.ioc.entity.Child\"  name=\"name\" value=\"莉莉\"   name=\"apple\" ref=\"sweetApple\"    基于构造方法注入对象\n id=\"sourApple\" class=\"com.imooc.spring.ioc.entity.Apple\"  name=\"title\" value=\"青苹果\"  name=\"color\" value=\"绿色\"  name=\"origin\" value=\"中亚\"  name=\"price\" value=\"9.8\"   id=\"andy\" class=\"com.imooc.spring.ioc.entity.Child\"  name=\"name\" value=\"安迪\"  name=\"apple\" ref=\"sourApple\"    集合依赖注入 注入List  id = \"...\" class = \"...\"  name=\"someList\"  具体值  bean=\"beanId\"    注入Set  id = \"...\" class=\"...\"  name=\"someSet\"  具体值  bean=\"beanId\"    注入Map  id=\"...\" class=\"...\"  name=\"someMap\"   key=\"k1\" value=\"v1\"  key=\"k2\" value-ref=\"beanId\"    注入Properties  id=\"...\" class=\"...\"  name=\"someProperties\"   key=\"k1\"v1  key=\"k2\"v2    查看容器内对象 String[] beanNames = context.getBeanDefinitionNames(); bean scope属性  bean scope属性用于决定对象何时被创建与作用范围 bean scope配置将影响容器内对象的数量 bean scope默认值singleton(单例)，指全局共享同一个对象实例  bean scope属性清单    scope属性 说明     singleton 单例(默认值)，每一个容器有且只有唯一的实例，实例被全局共享   prototype 多例，每次使用时都是创建一个实例   request web环境下，每一次独立请求存在唯一实例   session web环境下，每一个session存在有唯一实例   applicaiton web环境下，每一个ServletContext存在唯一实例   websocket 每一次WebSocket连接中存在唯一实例    singleton与prototype对比     singleton prototype     对象数量 全局唯一 存在多个   实例化时机 IoC容器启动时 getBean()或对象注入时   线程安全问题 存在 不存在   执行效率 高 低    bean生命周期 Ioc容器极简实现 示例代码： package com.imooc.spring.ioc.context; import org.dom4j.Document; import org.dom4j.Element; import org.dom4j.Node; import org.dom4j.io.SAXReader; import java.io.File; import java.lang.reflect.Method; import java.net.URLDecoder; import java.util.HashMap; import java.util.List; import java.util.Locale; import java.util.Map; /** * @author Rex * @create 2020-12-31 16:08 */ public class ClassPathXmlApplicationContext implements ApplicationContext{ private Map iocContainer = new HashMap(); public ClassPathXmlApplicationContext(){ try { String filePath = this.getClass().getResource(\"/applicationContext.xml\").getPath(); filePath = new URLDecoder().decode(filePath, \"utf-8\"); SAXReader reader = new SAXReader(); Document document = reader.read(new File(filePath)); ListNode nodes = document.getRootElement().selectNodes(\"bean\"); for (Node node : nodes) { Element ele = (Element) node; String id = ele.attributeValue(\"id\"); String className = ele.attributeValue(\"class\"); Class c = Class.forName(className); Object obj = c.newInstance(); ListNode properties = ele.selectNodes(\"property\"); for (Node p : properties) { Element property = (Element) p; String propName = property.attributeValue(\"name\"); String propValue = property.attributeValue(\"value\"); String setMethodName = \"set\"+propName.substring(0, 1).toUpperCase() + propName.substring(1); System.out.println(\"准备执行\"+setMethodName+\"方法注入数据\"); Method setMethod = c.getMethod(setMethodName, String.class); setMethod.invoke(obj, propValue); } iocContainer.put(id, obj); } System.out.println(iocContainer); System.out.println(\"IOC容器初始化完毕\"); }catch (Exception e){ e.printStackTrace(); } } @Override public Object getBean(String beanId) { return iocContainer.get(beanId); } } ",
+  "wordCount" : "812",
+  "inLanguage": "en",
+  "datePublished": "2021-01-04T00:00:00Z",
+  "dateModified": "2021-01-04T00:00:00Z",
+  "author":{
+    "@type": "Person",
+    "name": "Rex"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://rex0520.github.io/posts/back/java/framework/spring/springioc%E4%B8%8Ebean%E7%AE%A1%E7%90%86/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rex",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://rex0520.github.io/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://rex0520.github.io/" accesskey="h" title="Home (Alt + H)">
+                <img src="http://cdn.rexweb.xyz/img/20210821105340.png" alt="logo" aria-label="logo"
+                    height="35">Home</a>
+            <span class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </span>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://rex0520.github.io/posts/" title="文章">
+                    <span>文章</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://rex0520.github.io/categories/" title="分类">
+                    <span>分类</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://rex0520.github.io/tags/" title="标签">
+                    <span>标签</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://rex0520.github.io/archives/" title="时间轴">
+                    <span>时间轴</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://rex0520.github.io/search/" title="搜索 (Alt &#43; /)" accesskey=/>
+                    <span>搜索</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://rex0520.github.io/">Home</a>&nbsp;»&nbsp;<a href="https://rex0520.github.io/posts/">Posts</a></div>
+    <h1 class="post-title">
+      Springioc与bean管理
+    </h1>
+    <div class="post-description">
+      Springioc与bean管理
+    </div>
+    <div class="post-meta">2021-01-04&nbsp;·&nbsp;4 min&nbsp;·&nbsp;Rex&nbsp;|&nbsp;<a href="https://github.com/Rex0520/Rex0520.github.io" rel="noopener noreferrer" target="_blank">来这修改</a>
+</div>
+  </header> <div class="toc">
+    <details  open>
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">Table of Contents</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#spring-ioc%e4%b8%8ebean%e7%ae%a1%e7%90%86" aria-label="Spring IoC与Bean管理">Spring IoC与Bean管理</a><ul>
+                        
+                <li>
+                    <a href="#spring%e5%bf%ab%e9%80%9f%e5%85%a5%e9%97%a8" aria-label="Spring快速入门">Spring快速入门</a><ul>
+                        
+                <li>
+                    <a href="#ioc%e6%8e%a7%e5%88%b6%e5%8f%8d%e8%bd%ac" aria-label="IoC控制反转">IoC控制反转</a></li>
+                <li>
+                    <a href="#di%e4%be%9d%e8%b5%96%e6%b3%a8%e5%85%a5" aria-label="DI依赖注入">DI依赖注入</a></li></ul>
+                </li>
+                <li>
+                    <a href="#spring" aria-label="Spring">Spring</a><ul>
+                        
+                <li>
+                    <a href="#spring%e7%9a%84%e5%90%ab%e4%b9%89" aria-label="Spring的含义">Spring的含义</a></li>
+                <li>
+                    <a href="#%e7%8b%ad%e4%b9%89%e7%9a%84spring" aria-label="狭义的Spring">狭义的Spring</a></li>
+                <li>
+                    <a href="#%e4%bc%a0%e7%bb%9f%e5%bc%80%e5%8f%91%e6%96%b9%e5%bc%8f" aria-label="传统开发方式">传统开发方式</a></li>
+                <li>
+                    <a href="#spring-ioc" aria-label="Spring IoC">Spring IoC</a></li>
+                <li>
+                    <a href="#spring-ioc%e5%ae%b9%e5%99%a8%e8%81%8c%e8%b4%a3" aria-label="Spring IoC容器职责">Spring IoC容器职责</a></li>
+                <li>
+                    <a href="#ioc%e5%ba%95%e5%b1%82%e5%8e%9f%e7%90%86" aria-label="IOC底层原理：">IOC底层原理：</a></li>
+                <li>
+                    <a href="#ioc%e6%8e%a5%e5%8f%a3" aria-label="IOC(接口)">IOC(接口)</a></li>
+                <li>
+                    <a href="#%e4%bb%a3%e7%a0%81%e7%a4%ba%e4%be%8b" aria-label="代码示例：">代码示例：</a></li></ul>
+                </li>
+                <li>
+                    <a href="#xml%e7%ae%a1%e7%90%86%e5%af%b9%e8%b1%a1bean" aria-label="XML管理对象(Bean)">XML管理对象(Bean)</a><ul>
+                        
+                <li>
+                    <a href="#%e4%b8%89%e7%a7%8d%e9%85%8d%e7%bd%ae%e6%96%b9%e5%bc%8f" aria-label="三种配置方式">三种配置方式</a><ul>
+                        
+                <li>
+                    <a href="#1-%e5%9f%ba%e4%ba%8exml%e9%85%8d%e7%bd%aebean" aria-label="1. 基于XML配置Bean">1. 基于XML配置Bean</a><ul>
+                        
+                <li>
+                    <a href="#%e5%ae%9e%e4%be%8b%e5%8c%96bean%e7%9a%84%e4%b8%89%e7%a7%8d%e6%96%b9%e5%bc%8f" aria-label="实例化Bean的三种方式">实例化Bean的三种方式</a></li></ul>
+                </li>
+                <li>
+                    <a href="#2-%e5%9f%ba%e4%ba%8e%e6%b3%a8%e8%a7%a3%e9%85%8d%e7%bd%aebean" aria-label="2. 基于注解配置Bean">2. 基于注解配置Bean</a></li>
+                <li>
+                    <a href="#3-%e5%9f%ba%e4%ba%8ejava%e4%bb%a3%e7%a0%81%e9%85%8d%e7%bd%aebean" aria-label="3. 基于Java代码配置Bean">3. 基于Java代码配置Bean</a></li></ul>
+                </li></ul>
+                </li>
+                <li>
+                    <a href="#%e4%bb%8eioc%e5%ae%b9%e5%99%a8%e8%8e%b7%e5%8f%96bean" aria-label="从IoC容器获取bean">从IoC容器获取bean</a><ul>
+                        
+                <li>
+                    <a href="#%e6%96%b9%e6%b3%95" aria-label="方法：">方法：</a></li>
+                <li>
+                    <a href="#id%e4%b8%8ename%e5%b1%9e%e6%80%a7%e7%9b%b8%e5%90%8c%e7%82%b9" aria-label="id与name属性相同点">id与name属性相同点</a></li>
+                <li>
+                    <a href="#id%e4%b8%8ename%e5%b1%9e%e6%80%a7%e5%8c%ba%e5%88%ab" aria-label="id与name属性区别">id与name属性区别</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e8%b7%af%e5%be%84%e8%a1%a8%e8%be%be%e5%bc%8f" aria-label="路径表达式">路径表达式</a><ul>
+                        
+                <li>
+                    <a href="#%e5%8a%a0%e8%bd%bd%e5%8d%95%e4%b8%aa%e9%85%8d%e7%bd%ae%e6%96%87%e4%bb%b6" aria-label="加载单个配置文件">加载单个配置文件</a></li>
+                <li>
+                    <a href="#%e5%8a%a0%e8%bd%bd%e5%a4%9a%e9%85%8d%e7%bd%ae%e6%96%87%e4%bb%b6" aria-label="加载多配置文件">加载多配置文件</a></li>
+                <li>
+                    <a href="#%e8%b7%af%e5%be%84%e8%a1%a8%e8%be%be%e5%bc%8f%e8%af%b4%e6%98%8e" aria-label="路径表达式说明">路径表达式说明</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e4%be%9d%e8%b5%96%e6%b3%a8%e5%85%a5" aria-label="依赖注入">依赖注入</a><ul>
+                        
+                <li>
+                    <a href="#%e5%af%b9%e8%b1%a1%e4%be%9d%e8%b5%96%e6%b3%a8%e5%85%a5" aria-label="对象依赖注入">对象依赖注入</a></li>
+                <li>
+                    <a href="#%e9%9b%86%e5%90%88%e4%be%9d%e8%b5%96%e6%b3%a8%e5%85%a5" aria-label="集合依赖注入">集合依赖注入</a><ul>
+                        
+                <li>
+                    <a href="#%e6%b3%a8%e5%85%a5list" aria-label="注入List">注入List</a></li>
+                <li>
+                    <a href="#%e6%b3%a8%e5%85%a5set" aria-label="注入Set">注入Set</a></li>
+                <li>
+                    <a href="#%e6%b3%a8%e5%85%a5map" aria-label="注入Map">注入Map</a></li>
+                <li>
+                    <a href="#%e6%b3%a8%e5%85%a5properties" aria-label="注入Properties">注入Properties</a></li></ul>
+                </li></ul>
+                </li>
+                <li>
+                    <a href="#%e6%9f%a5%e7%9c%8b%e5%ae%b9%e5%99%a8%e5%86%85%e5%af%b9%e8%b1%a1" aria-label="查看容器内对象">查看容器内对象</a></li>
+                <li>
+                    <a href="#bean-scope%e5%b1%9e%e6%80%a7" aria-label="bean scope属性">bean scope属性</a><ul>
+                        
+                <li>
+                    <a href="#bean-scope%e5%b1%9e%e6%80%a7%e6%b8%85%e5%8d%95" aria-label="bean scope属性清单">bean scope属性清单</a></li>
+                <li>
+                    <a href="#singleton%e4%b8%8eprototype%e5%af%b9%e6%af%94" aria-label="singleton与prototype对比">singleton与prototype对比</a></li></ul>
+                </li>
+                <li>
+                    <a href="#bean%e7%94%9f%e5%91%bd%e5%91%a8%e6%9c%9f" aria-label="bean生命周期">bean生命周期</a></li>
+                <li>
+                    <a href="#ioc%e5%ae%b9%e5%99%a8%e6%9e%81%e7%ae%80%e5%ae%9e%e7%8e%b0" aria-label="Ioc容器极简实现">Ioc容器极简实现</a><ul>
+                        
+                <li>
+                    <a href="#%e7%a4%ba%e4%be%8b%e4%bb%a3%e7%a0%81" aria-label="示例代码：">示例代码：</a>
+                </li>
+            </ul>
+            </li>
+            </ul>
+            </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><h1 id="spring-ioc与bean管理">Spring IoC与Bean管理<a hidden class="anchor" aria-hidden="true" href="#spring-ioc与bean管理">#</a></h1>
+<h2 id="spring快速入门">Spring快速入门<a hidden class="anchor" aria-hidden="true" href="#spring快速入门">#</a></h2>
+<h3 id="ioc控制反转">IoC控制反转<a hidden class="anchor" aria-hidden="true" href="#ioc控制反转">#</a></h3>
+<ul>
+<li>IoC控制反转，全称Inverse of Control，是一种设计理念，把对象创建和对象之间的调用过程，交给spring进行管理</li>
+<li>由代理人来创建与管理对象，消费者通过代理人来获取对象</li>
+<li>IoC的目的是降低对象之间直接耦合</li>
+<li>加入IoC容器将对象统一管理，让对象关联变为弱耦合</li>
+</ul>
+<h3 id="di依赖注入">DI依赖注入<a hidden class="anchor" aria-hidden="true" href="#di依赖注入">#</a></h3>
+<ul>
+<li>IoC是设计理念，是现代程序设计遵循的标准，是宏观目标</li>
+<li>DI(Dependency Injection)是具体技术实现，是微观实现</li>
+<li>DI在Java中利用反射技术实现对象注入（Injection）</li>
+</ul>
+<h2 id="spring">Spring<a hidden class="anchor" aria-hidden="true" href="#spring">#</a></h2>
+<h3 id="spring的含义">Spring的含义<a hidden class="anchor" aria-hidden="true" href="#spring的含义">#</a></h3>
+<ul>
+<li>Spring可从狭义与广义俩个角度看待</li>
+<li>狭义的Spring是指Spring框架（Spring Framework）</li>
+<li>广义的Spring是指Spring生态体系</li>
+</ul>
+<h3 id="狭义的spring">狭义的Spring<a hidden class="anchor" aria-hidden="true" href="#狭义的spring">#</a></h3>
+<ul>
+<li>Spring框架是企业开发复杂性的一站式解决方案</li>
+<li>Spring框架的核心是IoC容器与AOP面向切面变成</li>
+<li>Spring IoC负责创建与管理系统对象，并在此基础上扩展功能</li>
+</ul>
+<h3 id="传统开发方式">传统开发方式<a hidden class="anchor" aria-hidden="true" href="#传统开发方式">#</a></h3>
+<ul>
+<li>对象直接引用导致对象硬性关联，程序难以扩展维护</li>
+</ul>
+<h3 id="spring-ioc">Spring IoC<a hidden class="anchor" aria-hidden="true" href="#spring-ioc">#</a></h3>
+<ul>
+<li>IoC容器是Spring生态的地基用于统一创建与管理对象依赖</li>
+</ul>
+<p><img loading="lazy" src="https://cdn.jsdelivr.net/gh/rex0520/resources_repository/images/20210309101606.png" alt="image-20201127231302031"  />
+</p>
+<h3 id="spring-ioc容器职责">Spring IoC容器职责<a hidden class="anchor" aria-hidden="true" href="#spring-ioc容器职责">#</a></h3>
+<ul>
+<li>对象的控制器交由第三方统一管理（IoC控制反转）</li>
+<li>利用Java反射技术实现运行时对象创建与关联（DI依赖注入）</li>
+<li>基于配置提高应用程序的可维护性与扩展性</li>
+</ul>
+<h3 id="ioc底层原理">IOC底层原理：<a hidden class="anchor" aria-hidden="true" href="#ioc底层原理">#</a></h3>
+<ol>
+<li>xml解析、工厂模式、反射</li>
+</ol>
+<h3 id="ioc接口">IOC(接口)<a hidden class="anchor" aria-hidden="true" href="#ioc接口">#</a></h3>
+<ol>
+<li>
+<p>IOC思想基于IOC容器完成，IOC容器底层就是对象工厂</p>
+</li>
+<li>
+<p>Spring提供IOC容器实现两种方式：（两个接口）</p>
+<ol>
+<li>
+<p>BeanFactory：IOC容器基本实现方式，是Spring内部的使用的接口，不提供给开发人员使用</p>
+<p><strong>特点</strong>：</p>
+<p>​	加载配置文件时候不会创建对象，在获取对象（使用）才去创建对象</p>
+</li>
+<li>
+<p>ApplicationContext：BeanFactory接口的子接口，提供更多更强大的功能， 一般由开发人员进行使用</p>
+<p><strong>特点</strong>：加载配置文件时候就会把配置文件对象进行创建</p>
+</li>
+</ol>
+</li>
+<li>
+<p>ApplicationContext接口</p>
+<p><img loading="lazy" src="https://cdn.jsdelivr.net/gh/rex0520/resources_repository/images/20210409150542.png" alt="image-20210409150533761"  />
+</p>
+</li>
+</ol>
+<h3 id="代码示例">代码示例：<a hidden class="anchor" aria-hidden="true" href="#代码示例">#</a></h3>
+<blockquote>
+<p>需要引入的依赖</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>org.springframework<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>spring-context<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>5.3.1<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</code></pre></div><p>Apple.java</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="nn">com.imooc.spring.ioc.entity</span><span class="o">;</span>
+
+<span class="cm">/**
+</span><span class="cm"> * @author CubeMonkey
+</span><span class="cm"> * @create 2020-11-27 23:57
+</span><span class="cm"> */</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Apple</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="n">String</span> <span class="n">title</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="n">String</span> <span class="n">color</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="n">String</span> <span class="n">origin</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">Apple</span><span class="o">()</span> <span class="o">{</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="nf">Apple</span><span class="o">(</span><span class="n">String</span> <span class="n">title</span><span class="o">,</span> <span class="n">String</span> <span class="n">color</span><span class="o">,</span> <span class="n">String</span> <span class="n">origin</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">title</span> <span class="o">=</span> <span class="n">title</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">color</span> <span class="o">=</span> <span class="n">color</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">origin</span> <span class="o">=</span> <span class="n">origin</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="n">String</span> <span class="nf">getTitle</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">title</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setTitle</span><span class="o">(</span><span class="n">String</span> <span class="n">title</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">title</span> <span class="o">=</span> <span class="n">title</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="n">String</span> <span class="nf">getColor</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">color</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setColor</span><span class="o">(</span><span class="n">String</span> <span class="n">color</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">color</span> <span class="o">=</span> <span class="n">color</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="n">String</span> <span class="nf">getOrigin</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">origin</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setOrigin</span><span class="o">(</span><span class="n">String</span> <span class="n">origin</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">origin</span> <span class="o">=</span> <span class="n">origin</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+</code></pre></div><p>applicationContext.xml</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="cp">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;</span>
+<span class="nt">&lt;beans</span> <span class="na">xmlns=</span><span class="s">&#34;http://www.springframework.org/schema/beans&#34;</span>
+       <span class="na">xmlns:xsi=</span><span class="s">&#34;http://www.w3.org/2001/XMLSchema-instance&#34;</span>
+       <span class="na">xsi:schemaLocation=</span><span class="s">&#34;http://www.springframework.org/schema/beans
+</span><span class="s">        https://www.springframework.org/schema/beans/spring-beans.xsd&#34;</span><span class="nt">&gt;</span>
+    <span class="c">&lt;!-- 在IoC容器启动时，自动由Spring实例化Apple对象，取名sweetApple放入到容器中--&gt;</span>
+    <span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">&#34;sweetApple&#34;</span> <span class="na">class=</span><span class="s">&#34;com.imooc.spring.ioc.entity.Apple&#34;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;title&#34;</span> <span class="na">value=</span><span class="s">&#34;红富士&#34;</span><span class="nt">&gt;&lt;/property&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;origin&#34;</span> <span class="na">value=</span><span class="s">&#34;欧洲&#34;</span><span class="nt">&gt;&lt;/property&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;color&#34;</span> <span class="na">value=</span><span class="s">&#34;红色&#34;</span><span class="nt">&gt;&lt;/property&gt;</span>
+    <span class="nt">&lt;/bean&gt;</span>
+    <span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">&#34;sourApple&#34;</span> <span class="na">class=</span><span class="s">&#34;com.imooc.spring.ioc.entity.Apple&#34;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;title&#34;</span> <span class="na">value=</span><span class="s">&#34;青苹果&#34;</span><span class="nt">&gt;&lt;/property&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;origin&#34;</span> <span class="na">value=</span><span class="s">&#34;中亚&#34;</span><span class="nt">&gt;&lt;/property&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;color&#34;</span> <span class="na">value=</span><span class="s">&#34;绿色&#34;</span><span class="nt">&gt;&lt;/property&gt;</span>
+    <span class="nt">&lt;/bean&gt;</span>
+    <span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">&#34;softApple&#34;</span> <span class="na">class=</span><span class="s">&#34;com.imooc.spring.ioc.entity.Apple&#34;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;title&#34;</span> <span class="na">value=</span><span class="s">&#34;金帅&#34;</span><span class="nt">&gt;&lt;/property&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;origin&#34;</span> <span class="na">value=</span><span class="s">&#34;中国&#34;</span><span class="nt">&gt;&lt;/property&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;color&#34;</span> <span class="na">value=</span><span class="s">&#34;金色&#34;</span><span class="nt">&gt;&lt;/property&gt;</span>
+    <span class="nt">&lt;/bean&gt;</span>
+    <span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">&#34;rdApple&#34;</span> <span class="na">class=</span><span class="s">&#34;com.imooc.spring.ioc.entity.Apple&#34;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;title&#34;</span> <span class="na">value=</span><span class="s">&#34;蛇果&#34;</span><span class="nt">&gt;&lt;/property&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;origin&#34;</span> <span class="na">value=</span><span class="s">&#34;美国&#34;</span><span class="nt">&gt;&lt;/property&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;color&#34;</span> <span class="na">value=</span><span class="s">&#34;红色&#34;</span><span class="nt">&gt;&lt;/property&gt;</span>
+    <span class="nt">&lt;/bean&gt;</span>
+
+
+    <span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">&#34;lily&#34;</span> <span class="na">class=</span><span class="s">&#34;com.imooc.spring.ioc.entity.Child&#34;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;name&#34;</span> <span class="na">value=</span><span class="s">&#34;莉莉&#34;</span><span class="nt">&gt;&lt;/property&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;apple&#34;</span> <span class="na">ref=</span><span class="s">&#34;softApple&#34;</span><span class="nt">&gt;&lt;/property&gt;</span>
+    <span class="nt">&lt;/bean&gt;</span>
+    <span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">&#34;andy&#34;</span> <span class="na">class=</span><span class="s">&#34;com.imooc.spring.ioc.entity.Child&#34;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;name&#34;</span> <span class="na">value=</span><span class="s">&#34;安迪&#34;</span><span class="nt">&gt;&lt;/property&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;apple&#34;</span> <span class="na">ref=</span><span class="s">&#34;rdApple&#34;</span><span class="nt">&gt;&lt;/property&gt;</span>
+    <span class="nt">&lt;/bean&gt;</span>
+    <span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">&#34;luna&#34;</span> <span class="na">class=</span><span class="s">&#34;com.imooc.spring.ioc.entity.Child&#34;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;name&#34;</span> <span class="na">value=</span><span class="s">&#34;露娜&#34;</span><span class="nt">&gt;&lt;/property&gt;</span>
+        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;apple&#34;</span> <span class="na">ref=</span><span class="s">&#34;sweetApple&#34;</span><span class="nt">&gt;&lt;/property&gt;</span>
+    <span class="nt">&lt;/bean&gt;</span>
+<span class="nt">&lt;/beans&gt;</span>
+</code></pre></div><p>SpringApplication.java</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="nn">com.imooc.spring.ioc</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">com.imooc.spring.ioc.entity.Apple</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.imooc.spring.ioc.entity.Child</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.context.ApplicationContext</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.context.support.ClassPathXmlApplicationContext</span><span class="o">;</span>
+
+<span class="cm">/**
+</span><span class="cm"> * @author CubeMonkey
+</span><span class="cm"> * @create 2020-11-30 16:14
+</span><span class="cm"> */</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">SpringApplication</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">ApplicationContext</span> <span class="n">context</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ClassPathXmlApplicationContext</span><span class="o">(</span><span class="s">&#34;classpath:applicationContext.xml&#34;</span><span class="o">);</span>
+        <span class="n">Apple</span> <span class="n">sweetApple</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="na">getBean</span><span class="o">(</span><span class="s">&#34;sweetApple&#34;</span><span class="o">,</span> <span class="n">Apple</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">sweetApple</span><span class="o">.</span><span class="na">getTitle</span><span class="o">());</span>
+        <span class="c1">//从Ioc容器中提取beanId = lily的对象
+</span><span class="c1"></span>        <span class="n">Child</span> <span class="n">lily</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="na">getBean</span><span class="o">(</span><span class="s">&#34;lily&#34;</span><span class="o">,</span> <span class="n">Child</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+        <span class="n">lily</span><span class="o">.</span><span class="na">eat</span><span class="o">();</span>
+        <span class="n">Child</span> <span class="n">andy</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="na">getBean</span><span class="o">(</span><span class="s">&#34;andy&#34;</span><span class="o">,</span> <span class="n">Child</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+        <span class="n">andy</span><span class="o">.</span><span class="na">eat</span><span class="o">();</span>
+        <span class="n">Child</span> <span class="n">luna</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="na">getBean</span><span class="o">(</span><span class="s">&#34;luna&#34;</span><span class="o">,</span> <span class="n">Child</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+        <span class="n">luna</span><span class="o">.</span><span class="na">eat</span><span class="o">();</span>
+    <span class="o">}</span>
+
+<span class="o">}</span>
+
+</code></pre></div></blockquote>
+<h2 id="xml管理对象bean">XML管理对象(Bean)<a hidden class="anchor" aria-hidden="true" href="#xml管理对象bean">#</a></h2>
+<h3 id="三种配置方式">三种配置方式<a hidden class="anchor" aria-hidden="true" href="#三种配置方式">#</a></h3>
+<h4 id="1-基于xml配置bean">1. 基于XML配置Bean<a hidden class="anchor" aria-hidden="true" href="#1-基于xml配置bean">#</a></h4>
+<h5 id="实例化bean的三种方式">实例化Bean的三种方式<a hidden class="anchor" aria-hidden="true" href="#实例化bean的三种方式">#</a></h5>
+<ul>
+<li>
+<p>基于构造方法对象实例化</p>
+<p>核心代码：</p>
+<blockquote>
+<p>applicationContext.xml</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">&#34;apple2&#34;</span> <span class="na">class=</span><span class="s">&#34;com.imooc.spring.ioc.entity.Apple&#34;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;constructor-arg</span> <span class="na">name=</span><span class="s">&#34;title&#34;</span> <span class="na">value=</span><span class="s">&#34;红富士&#34;</span><span class="nt">&gt;&lt;/constructor-arg&gt;</span>
+    <span class="nt">&lt;constructor-arg</span> <span class="na">name=</span><span class="s">&#34;color&#34;</span> <span class="na">value=</span><span class="s">&#34;红色&#34;</span><span class="nt">&gt;&lt;/constructor-arg&gt;</span>
+    <span class="nt">&lt;constructor-arg</span> <span class="na">name=</span><span class="s">&#34;origin&#34;</span> <span class="na">value=</span><span class="s">&#34;欧洲&#34;</span><span class="nt">&gt;&lt;/constructor-arg&gt;</span>
+<span class="nt">&lt;/bean&gt;</span>
+</code></pre></div></blockquote>
+</li>
+<li>
+<p>基于静态工厂实例化</p>
+<p>核心代码：</p>
+<blockquote>
+<p>applicationContext.xml</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="c">&lt;!--利用静态工厂获取对象--&gt;</span>
+<span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">&#34;apple4&#34;</span> <span class="na">class=</span><span class="s">&#34;com.imooc.spring.ioc.factory.AppleStaticFactory&#34;</span> <span class="na">factory-method=</span><span class="s">&#34;createSweetApple&#34;</span><span class="nt">&gt;&lt;/bean&gt;</span>
+
+</code></pre></div><p>​	AppleStaticFactory.java</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="nn">com.imooc.spring.ioc.factory</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">com.imooc.spring.ioc.entity.Apple</span><span class="o">;</span>
+
+<span class="cm">/**
+</span><span class="cm"> * 静态工厂通过静态方法创建对象，隐藏创建对象的细节
+</span><span class="cm"> * @author CubeMonkey
+</span><span class="cm"> * @create 2020-12-01 18:50
+</span><span class="cm"> */</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">AppleStaticFactory</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="n">Apple</span> <span class="nf">createSweetApple</span><span class="o">(){</span>
+        <span class="c1">//logger.info(&#34;&#34;)
+</span><span class="c1"></span>        <span class="n">Apple</span> <span class="n">apple</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Apple</span><span class="o">();</span>
+        <span class="n">apple</span><span class="o">.</span><span class="na">setTitle</span><span class="o">(</span><span class="s">&#34;红富士&#34;</span><span class="o">);</span>
+        <span class="n">apple</span><span class="o">.</span><span class="na">setOrigin</span><span class="o">(</span><span class="s">&#34;欧洲&#34;</span><span class="o">);</span>
+        <span class="n">apple</span><span class="o">.</span><span class="na">setColor</span><span class="o">(</span><span class="s">&#34;红色&#34;</span><span class="o">);</span>
+        <span class="k">return</span> <span class="n">apple</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+</code></pre></div></blockquote>
+</li>
+<li>
+<p>基于工厂实例方法实例化</p>
+<p>核心代码：</p>
+<blockquote>
+<p>applicationContext.xml</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="o">&lt;!--</span><span class="n">利用工厂实例方法获取对象</span><span class="o">--&gt;</span>
+    <span class="o">&lt;</span><span class="n">bean</span> <span class="n">id</span><span class="o">=</span><span class="s">&#34;factoryInstance&#34;</span> <span class="n">class</span><span class="o">=</span><span class="s">&#34;com.imooc.spring.ioc.factory.AppleFactoryInstance&#34;</span><span class="o">&gt;&lt;/</span><span class="n">bean</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">bean</span> <span class="n">id</span><span class="o">=</span><span class="s">&#34;apple5&#34;</span> <span class="n">factory</span><span class="o">-</span><span class="n">bean</span><span class="o">=</span><span class="s">&#34;factoryInstance&#34;</span> <span class="n">factory</span><span class="o">-</span><span class="n">method</span><span class="o">=</span><span class="s">&#34;createSweetApple&#34;</span><span class="o">&gt;&lt;/</span><span class="n">bean</span><span class="o">&gt;</span>
+</code></pre></div><p>AppleFactoryInstance.java</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="nn">com.imooc.spring.ioc.factory</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">com.imooc.spring.ioc.entity.Apple</span><span class="o">;</span>
+
+<span class="cm">/**
+</span><span class="cm"> * 工厂实例方法创建对象是指IoC容器对工厂类进行实例化并调用对应的实例方法创建对象的过程
+</span><span class="cm"> * @author CubeMonkey
+</span><span class="cm"> * @create 2020-12-01 18:56
+</span><span class="cm"> */</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">AppleFactoryInstance</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="n">Apple</span> <span class="nf">createSweetApple</span><span class="o">(){</span>
+        <span class="n">Apple</span> <span class="n">apple</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Apple</span><span class="o">();</span>
+        <span class="n">apple</span><span class="o">.</span><span class="na">setTitle</span><span class="o">(</span><span class="s">&#34;红富士&#34;</span><span class="o">);</span>
+        <span class="n">apple</span><span class="o">.</span><span class="na">setOrigin</span><span class="o">(</span><span class="s">&#34;欧洲&#34;</span><span class="o">);</span>
+        <span class="n">apple</span><span class="o">.</span><span class="na">setColor</span><span class="o">(</span><span class="s">&#34;红色&#34;</span><span class="o">);</span>
+        <span class="k">return</span> <span class="n">apple</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+</code></pre></div></blockquote>
+</li>
+</ul>
+<h4 id="2-基于注解配置bean">2. 基于注解配置Bean<a hidden class="anchor" aria-hidden="true" href="#2-基于注解配置bean">#</a></h4>
+<h4 id="3-基于java代码配置bean">3. 基于Java代码配置Bean<a hidden class="anchor" aria-hidden="true" href="#3-基于java代码配置bean">#</a></h4>
+<h2 id="从ioc容器获取bean">从IoC容器获取bean<a hidden class="anchor" aria-hidden="true" href="#从ioc容器获取bean">#</a></h2>
+<h3 id="方法">方法：<a hidden class="anchor" aria-hidden="true" href="#方法">#</a></h3>
+<blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="n">Apple</span> <span class="n">apple4</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="na">getBean</span><span class="o">(</span><span class="s">&#34;apple4&#34;</span><span class="o">,</span> <span class="n">Apple</span><span class="o">.</span><span class="na">class</span><span class="o">);</span><span class="c1">//推荐
+</span><span class="c1"></span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">apple4</span><span class="o">.</span><span class="na">getTitle</span><span class="o">());</span>
+<span class="n">Apple</span> <span class="n">apple3</span> <span class="o">=</span> <span class="o">(</span><span class="n">Apple</span><span class="o">)</span><span class="n">context</span><span class="o">.</span><span class="na">getBean</span><span class="o">(</span><span class="s">&#34;apple3&#34;</span><span class="o">);</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">apple3</span><span class="o">.</span><span class="na">getTitle</span><span class="o">());</span>
+</code></pre></div></blockquote>
+<h3 id="id与name属性相同点">id与name属性相同点<a hidden class="anchor" aria-hidden="true" href="#id与name属性相同点">#</a></h3>
+<ul>
+<li>bean id 与name都是设置对象在IoC容器中唯一标识</li>
+<li>两者在同一配置文件中都不允许出现重复</li>
+<li>两者允许在多个配置文件中出现重复，新对象覆盖旧对象</li>
+</ul>
+<h3 id="id与name属性区别">id与name属性区别<a hidden class="anchor" aria-hidden="true" href="#id与name属性区别">#</a></h3>
+<ul>
+<li>id要求更为严格，一次只能定义一个对象标识（推荐）</li>
+<li>name更为宽松，一次允许定义多个对象标识</li>
+<li>tips:id与name的命名有意义，按驼峰命名书写</li>
+</ul>
+<h2 id="路径表达式">路径表达式<a hidden class="anchor" aria-hidden="true" href="#路径表达式">#</a></h2>
+<h3 id="加载单个配置文件">加载单个配置文件<a hidden class="anchor" aria-hidden="true" href="#加载单个配置文件">#</a></h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="n">ApplicationContext</span> <span class="n">context</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ClassPathXmlApplicationContext</span><span class="o">(</span><span class="s">&#34;classpath:applicationContext.xml&#34;</span><span class="o">);</span>
+</code></pre></div><h3 id="加载多配置文件">加载多配置文件<a hidden class="anchor" aria-hidden="true" href="#加载多配置文件">#</a></h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="n">String</span><span class="o">[]</span> <span class="n">configLocations</span> <span class="o">=</span> <span class="k">new</span> <span class="n">String</span><span class="o">[]{</span><span class="s">&#34;classpath:applicationContext.xml&#34;</span><span class="o">,</span> <span class="o">{</span><span class="s">&#34;classpath:applicationContext-1.xml&#34;</span><span class="o">}};</span>
+<span class="n">ApplicationContext</span> <span class="n">context</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ClassPathXmlApplicationContext</span><span class="o">(</span><span class="n">configLocations</span><span class="o">)</span>
+</code></pre></div><h3 id="路径表达式说明">路径表达式说明<a hidden class="anchor" aria-hidden="true" href="#路径表达式说明">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>表达式实例</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>classpath:config.xml</td>
+<td>扫描classpath根路径(不包含jar)的config.xml</td>
+</tr>
+<tr>
+<td>classpath:com/imooc/config.xml</td>
+<td>扫描classpath下(不包含jar)com.imooc包中的config.xml</td>
+</tr>
+<tr>
+<td>classpath*:com/imooc/config.xml</td>
+<td>扫描classpath下(包含jar)com.imooc包中的config.xml</td>
+</tr>
+<tr>
+<td>classpath:config-*.xml</td>
+<td>扫描classpath根路径下所有以config-开头的XML文件</td>
+</tr>
+<tr>
+<td>classpath:com/**/config.xml</td>
+<td>扫描com包下(包含任何子包)的config.xml</td>
+</tr>
+<tr>
+<td>file:c/config.xml</td>
+<td>扫描c盘根路径config.xml</td>
+</tr>
+</tbody>
+</table>
+<h2 id="依赖注入">依赖注入<a hidden class="anchor" aria-hidden="true" href="#依赖注入">#</a></h2>
+<h3 id="对象依赖注入">对象依赖注入<a hidden class="anchor" aria-hidden="true" href="#对象依赖注入">#</a></h3>
+<ul>
+<li>
+<p>依赖注入是指运行时将容器内对象利用反射赋给其他对象的操作</p>
+</li>
+<li>
+<p>基于setter方法注入对象</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;bean</span> <span class="na">name=</span><span class="s">&#34;sweetApple&#34;</span> <span class="na">class=</span><span class="s">&#34;com.imooc.spring.ioc.entity.Apple&#34;</span><span class="nt">&gt;</span>
+    <span class="c">&lt;!-- IoC容器自动利用反射机制运行时调用setXxx方法为属性赋值--&gt;</span>
+    <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;title&#34;</span> <span class="na">value=</span><span class="s">&#34;红富士&#34;</span><span class="nt">&gt;&lt;/property&gt;</span>
+    <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;color&#34;</span> <span class="na">value=</span><span class="s">&#34;红色&#34;</span><span class="nt">&gt;&lt;/property&gt;</span>
+    <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;origin&#34;</span> <span class="na">value=</span><span class="s">&#34;欧洲&#34;</span><span class="nt">&gt;&lt;/property&gt;</span>
+    <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;price&#34;</span> <span class="na">value=</span><span class="s">&#34;123&#34;</span><span class="nt">&gt;&lt;/property&gt;</span>
+<span class="nt">&lt;/bean&gt;</span>
+<span class="nt">&lt;bean</span> <span class="na">name=</span><span class="s">&#34;lily&#34;</span> <span class="na">class=</span><span class="s">&#34;com.imooc.spring.ioc.entity.Child&#34;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;name&#34;</span> <span class="na">value=</span><span class="s">&#34;莉莉&#34;</span><span class="nt">&gt;&lt;/property&gt;</span>
+    <span class="c">&lt;!--利用ref注入依赖对象--&gt;</span>
+    <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;apple&#34;</span> <span class="na">ref=</span><span class="s">&#34;sweetApple&#34;</span><span class="nt">&gt;&lt;/property&gt;</span>
+<span class="nt">&lt;/bean&gt;</span>
+</code></pre></div></li>
+<li>
+<p>基于构造方法注入对象</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">&#34;sourApple&#34;</span> <span class="na">class=</span><span class="s">&#34;com.imooc.spring.ioc.entity.Apple&#34;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;title&#34;</span> <span class="na">value=</span><span class="s">&#34;青苹果&#34;</span><span class="nt">&gt;&lt;/property&gt;</span>
+    <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;color&#34;</span> <span class="na">value=</span><span class="s">&#34;绿色&#34;</span><span class="nt">&gt;&lt;/property&gt;</span>
+    <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;origin&#34;</span> <span class="na">value=</span><span class="s">&#34;中亚&#34;</span><span class="nt">&gt;&lt;/property&gt;</span>
+    <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;price&#34;</span> <span class="na">value=</span><span class="s">&#34;9.8&#34;</span><span class="nt">&gt;&lt;/property&gt;</span>
+    <span class="nt">&lt;/bean&gt;</span>
+    <span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">&#34;andy&#34;</span> <span class="na">class=</span><span class="s">&#34;com.imooc.spring.ioc.entity.Child&#34;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;constructor-arg</span> <span class="na">name=</span><span class="s">&#34;name&#34;</span> <span class="na">value=</span><span class="s">&#34;安迪&#34;</span><span class="nt">&gt;&lt;/constructor-arg&gt;</span>
+        <span class="nt">&lt;constructor-arg</span> <span class="na">name=</span><span class="s">&#34;apple&#34;</span> <span class="na">ref=</span><span class="s">&#34;sourApple&#34;</span><span class="nt">&gt;&lt;/constructor-arg&gt;</span>
+        <span class="nt">&lt;/bean&gt;</span>
+</code></pre></div></li>
+</ul>
+<h3 id="集合依赖注入">集合依赖注入<a hidden class="anchor" aria-hidden="true" href="#集合依赖注入">#</a></h3>
+<h4 id="注入list">注入List<a hidden class="anchor" aria-hidden="true" href="#注入list">#</a></h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;bean</span> <span class="na">id =</span> <span class="s">&#34;...&#34;</span> <span class="na">class =</span> <span class="s">&#34;...&#34;</span><span class="nt">&gt;</span>
+	<span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;someList&#34;</span><span class="nt">&gt;</span>
+    	<span class="nt">&lt;list&gt;</span>
+        	<span class="nt">&lt;value&gt;</span>具体值<span class="nt">&lt;/value&gt;</span>
+            <span class="nt">&lt;ref</span> <span class="na">bean=</span><span class="s">&#34;beanId&#34;</span><span class="nt">&gt;&lt;/ref&gt;</span> 
+        <span class="nt">&lt;/list&gt;</span>
+    <span class="nt">&lt;/property&gt;</span>
+<span class="nt">&lt;/bean&gt;</span>
+</code></pre></div><h4 id="注入set">注入Set<a hidden class="anchor" aria-hidden="true" href="#注入set">#</a></h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;bean</span> <span class="na">id =</span> <span class="s">&#34;...&#34;</span> <span class="na">class=</span><span class="s">&#34;...&#34;</span><span class="nt">&gt;</span>
+	<span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;someSet&#34;</span><span class="nt">&gt;</span>
+    	<span class="nt">&lt;set&gt;</span>
+        	<span class="nt">&lt;value&gt;</span>具体值<span class="nt">&lt;/value&gt;</span>
+            <span class="nt">&lt;ref</span> <span class="na">bean=</span><span class="s">&#34;beanId&#34;</span><span class="nt">&gt;&lt;/ref&gt;</span>
+        <span class="nt">&lt;/set&gt;</span>
+    <span class="nt">&lt;/property&gt;</span>
+<span class="nt">&lt;/bean&gt;</span>
+</code></pre></div><h4 id="注入map">注入Map<a hidden class="anchor" aria-hidden="true" href="#注入map">#</a></h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">&#34;...&#34;</span> <span class="na">class=</span><span class="s">&#34;...&#34;</span><span class="nt">&gt;</span>
+	<span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;someMap&#34;</span><span class="nt">&gt;</span>
+    	<span class="nt">&lt;map&gt;</span>
+        	<span class="nt">&lt;entry</span> <span class="na">key=</span><span class="s">&#34;k1&#34;</span> <span class="na">value=</span><span class="s">&#34;v1&#34;</span><span class="nt">&gt;&lt;/entry&gt;</span>
+            <span class="nt">&lt;entry</span> <span class="na">key=</span><span class="s">&#34;k2&#34;</span> <span class="na">value-ref=</span><span class="s">&#34;beanId&#34;</span><span class="nt">&gt;&lt;/entry&gt;</span>
+        <span class="nt">&lt;/map&gt;</span>
+    <span class="nt">&lt;/property&gt;</span>
+<span class="nt">&lt;/bean&gt;</span>
+</code></pre></div><h4 id="注入properties">注入Properties<a hidden class="anchor" aria-hidden="true" href="#注入properties">#</a></h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">&#34;...&#34;</span> <span class="na">class=</span><span class="s">&#34;...&#34;</span><span class="nt">&gt;</span>
+	<span class="nt">&lt;properties</span> <span class="na">name=</span><span class="s">&#34;someProperties&#34;</span><span class="nt">&gt;</span>
+    	<span class="nt">&lt;props&gt;</span>
+        	<span class="nt">&lt;prop</span> <span class="na">key=</span><span class="s">&#34;k1&#34;</span><span class="nt">&gt;</span>v1<span class="nt">&lt;/prop&gt;</span>
+            <span class="nt">&lt;prop</span> <span class="na">key=</span><span class="s">&#34;k2&#34;</span><span class="nt">&gt;</span>v2<span class="nt">&lt;/prop&gt;</span>
+        <span class="nt">&lt;/props&gt;</span>
+   	<span class="nt">&lt;/properties&gt;</span>
+<span class="nt">&lt;/bean&gt;</span>
+</code></pre></div><h2 id="查看容器内对象">查看容器内对象<a hidden class="anchor" aria-hidden="true" href="#查看容器内对象">#</a></h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="n">String</span><span class="o">[]</span> <span class="n">beanNames</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="na">getBeanDefinitionNames</span><span class="o">();</span>
+</code></pre></div><h2 id="bean-scope属性">bean scope属性<a hidden class="anchor" aria-hidden="true" href="#bean-scope属性">#</a></h2>
+<ul>
+<li>bean scope属性用于决定对象何时被创建与作用范围</li>
+<li>bean scope配置将影响容器内对象的数量</li>
+<li>bean scope默认值singleton(单例)，指全局共享同一个对象实例</li>
+</ul>
+<h3 id="bean-scope属性清单">bean scope属性清单<a hidden class="anchor" aria-hidden="true" href="#bean-scope属性清单">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>scope属性</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>singleton</td>
+<td>单例(默认值)，每一个容器有且只有唯一的实例，实例被全局共享</td>
+</tr>
+<tr>
+<td>prototype</td>
+<td>多例，每次使用时都是创建一个实例</td>
+</tr>
+<tr>
+<td>request</td>
+<td>web环境下，每一次独立请求存在唯一实例</td>
+</tr>
+<tr>
+<td>session</td>
+<td>web环境下，每一个session存在有唯一实例</td>
+</tr>
+<tr>
+<td>applicaiton</td>
+<td>web环境下，每一个ServletContext存在唯一实例</td>
+</tr>
+<tr>
+<td>websocket</td>
+<td>每一次WebSocket连接中存在唯一实例</td>
+</tr>
+</tbody>
+</table>
+<h3 id="singleton与prototype对比">singleton与prototype对比<a hidden class="anchor" aria-hidden="true" href="#singleton与prototype对比">#</a></h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>singleton</th>
+<th>prototype</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>对象数量</td>
+<td>全局唯一</td>
+<td>存在多个</td>
+</tr>
+<tr>
+<td>实例化时机</td>
+<td>IoC容器启动时</td>
+<td>getBean()或对象注入时</td>
+</tr>
+<tr>
+<td>线程安全问题</td>
+<td>存在</td>
+<td>不存在</td>
+</tr>
+<tr>
+<td>执行效率</td>
+<td>高</td>
+<td>低</td>
+</tr>
+</tbody>
+</table>
+<h2 id="bean生命周期">bean生命周期<a hidden class="anchor" aria-hidden="true" href="#bean生命周期">#</a></h2>
+<p><img loading="lazy" src="https://cdn.jsdelivr.net/gh/rex0520/resources_repository/images/20210309101625.png" alt="image-20201231152253188"  />
+</p>
+<h2 id="ioc容器极简实现">Ioc容器极简实现<a hidden class="anchor" aria-hidden="true" href="#ioc容器极简实现">#</a></h2>
+<h3 id="示例代码">示例代码：<a hidden class="anchor" aria-hidden="true" href="#示例代码">#</a></h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="nn">com.imooc.spring.ioc.context</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">org.dom4j.Document</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.dom4j.Element</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.dom4j.Node</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.dom4j.io.SAXReader</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.io.File</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.lang.reflect.Method</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.net.URLDecoder</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.HashMap</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Locale</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Map</span><span class="o">;</span>
+
+<span class="cm">/**
+</span><span class="cm"> * @author Rex
+</span><span class="cm"> * @create 2020-12-31 16:08
+</span><span class="cm"> */</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ClassPathXmlApplicationContext</span> <span class="kd">implements</span>  <span class="n">ApplicationContext</span><span class="o">{</span>
+
+    <span class="kd">private</span> <span class="n">Map</span> <span class="n">iocContainer</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">();</span>
+
+    <span class="kd">public</span> <span class="nf">ClassPathXmlApplicationContext</span><span class="o">(){</span>
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="n">String</span> <span class="n">filePath</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="na">getClass</span><span class="o">().</span><span class="na">getResource</span><span class="o">(</span><span class="s">&#34;/applicationContext.xml&#34;</span><span class="o">).</span><span class="na">getPath</span><span class="o">();</span>
+            <span class="n">filePath</span> <span class="o">=</span> <span class="k">new</span> <span class="n">URLDecoder</span><span class="o">().</span><span class="na">decode</span><span class="o">(</span><span class="n">filePath</span><span class="o">,</span> <span class="s">&#34;utf-8&#34;</span><span class="o">);</span>
+            <span class="n">SAXReader</span> <span class="n">reader</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SAXReader</span><span class="o">();</span>
+            <span class="n">Document</span> <span class="n">document</span> <span class="o">=</span> <span class="n">reader</span><span class="o">.</span><span class="na">read</span><span class="o">(</span><span class="k">new</span> <span class="n">File</span><span class="o">(</span><span class="n">filePath</span><span class="o">));</span>
+            <span class="n">List</span><span class="o">&lt;</span><span class="n">Node</span><span class="o">&gt;</span> <span class="n">nodes</span> <span class="o">=</span> <span class="n">document</span><span class="o">.</span><span class="na">getRootElement</span><span class="o">().</span><span class="na">selectNodes</span><span class="o">(</span><span class="s">&#34;bean&#34;</span><span class="o">);</span>
+            <span class="k">for</span> <span class="o">(</span><span class="n">Node</span> <span class="n">node</span> <span class="o">:</span> <span class="n">nodes</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">Element</span> <span class="n">ele</span> <span class="o">=</span> <span class="o">(</span><span class="n">Element</span><span class="o">)</span> <span class="n">node</span><span class="o">;</span>
+                <span class="n">String</span> <span class="n">id</span> <span class="o">=</span> <span class="n">ele</span><span class="o">.</span><span class="na">attributeValue</span><span class="o">(</span><span class="s">&#34;id&#34;</span><span class="o">);</span>
+                <span class="n">String</span> <span class="n">className</span> <span class="o">=</span> <span class="n">ele</span><span class="o">.</span><span class="na">attributeValue</span><span class="o">(</span><span class="s">&#34;class&#34;</span><span class="o">);</span>
+                <span class="n">Class</span><span class="o">&lt;?&gt;</span> <span class="n">c</span> <span class="o">=</span> <span class="n">Class</span><span class="o">.</span><span class="na">forName</span><span class="o">(</span><span class="n">className</span><span class="o">);</span>
+                <span class="n">Object</span> <span class="n">obj</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="na">newInstance</span><span class="o">();</span>
+                <span class="n">List</span><span class="o">&lt;</span><span class="n">Node</span><span class="o">&gt;</span> <span class="n">properties</span> <span class="o">=</span> <span class="n">ele</span><span class="o">.</span><span class="na">selectNodes</span><span class="o">(</span><span class="s">&#34;property&#34;</span><span class="o">);</span>
+                <span class="k">for</span> <span class="o">(</span><span class="n">Node</span> <span class="n">p</span> <span class="o">:</span> <span class="n">properties</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="n">Element</span> <span class="n">property</span> <span class="o">=</span> <span class="o">(</span><span class="n">Element</span><span class="o">)</span> <span class="n">p</span><span class="o">;</span>
+                    <span class="n">String</span> <span class="n">propName</span> <span class="o">=</span> <span class="n">property</span><span class="o">.</span><span class="na">attributeValue</span><span class="o">(</span><span class="s">&#34;name&#34;</span><span class="o">);</span>
+                    <span class="n">String</span> <span class="n">propValue</span> <span class="o">=</span> <span class="n">property</span><span class="o">.</span><span class="na">attributeValue</span><span class="o">(</span><span class="s">&#34;value&#34;</span><span class="o">);</span>
+
+                    <span class="n">String</span> <span class="n">setMethodName</span> <span class="o">=</span> <span class="s">&#34;set&#34;</span><span class="o">+</span><span class="n">propName</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="n">0</span><span class="o">,</span> <span class="n">1</span><span class="o">).</span><span class="na">toUpperCase</span><span class="o">()</span> <span class="o">+</span> <span class="n">propName</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="n">1</span><span class="o">);</span>
+                    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;准备执行&#34;</span><span class="o">+</span><span class="n">setMethodName</span><span class="o">+</span><span class="s">&#34;方法注入数据&#34;</span><span class="o">);</span>
+                    <span class="n">Method</span> <span class="n">setMethod</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="na">getMethod</span><span class="o">(</span><span class="n">setMethodName</span><span class="o">,</span> <span class="n">String</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+                    <span class="n">setMethod</span><span class="o">.</span><span class="na">invoke</span><span class="o">(</span><span class="n">obj</span><span class="o">,</span> <span class="n">propValue</span><span class="o">);</span>
+                <span class="o">}</span>
+                <span class="n">iocContainer</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">id</span><span class="o">,</span> <span class="n">obj</span><span class="o">);</span>
+            <span class="o">}</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">iocContainer</span><span class="o">);</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;IOC容器初始化完毕&#34;</span><span class="o">);</span>
+
+        <span class="o">}</span><span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">){</span>
+            <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="n">Object</span> <span class="nf">getBean</span><span class="o">(</span><span class="n">String</span> <span class="n">beanId</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">iocContainer</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">beanId</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+</code></pre></div>
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://rex0520.github.io/tags/spring/">Spring</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://rex0520.github.io/posts/back/java/framework/spring/springaop%E9%9D%A2%E5%90%91%E5%88%87%E9%9D%A2%E7%BC%96%E7%A8%8B/">
+    <span class="title">« Prev Page</span>
+    <br>
+    <span>Springaop面向切面编程</span>
+  </a>
+  <a class="next" href="https://rex0520.github.io/posts/back/java/framework/spring/springtest%E4%B8%8Ejunit4%E6%95%B4%E5%90%88/">
+    <span class="title">Next Page »</span>
+    <br>
+    <span>Springtest与junit4整合</span>
+  </a>
+</nav>
+
+
+<div class="share-buttons">
+    <a target="_blank" rel="noopener noreferrer" aria-label="share Springioc与bean管理 on twitter"
+        href="https://twitter.com/intent/tweet/?text=Springioc%e4%b8%8ebean%e7%ae%a1%e7%90%86&amp;url=https%3a%2f%2frex0520.github.io%2fposts%2fback%2fjava%2fframework%2fspring%2fspringioc%25E4%25B8%258Ebean%25E7%25AE%25A1%25E7%2590%2586%2f&amp;hashtags=Spring">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-253.927,424.544c135.939,0 210.268,-112.643 210.268,-210.268c0,-3.218 0,-6.437 -0.153,-9.502c14.406,-10.421 26.973,-23.448 36.935,-38.314c-13.18,5.824 -27.433,9.809 -42.452,11.648c15.326,-9.196 26.973,-23.602 32.49,-40.92c-14.252,8.429 -30.038,14.56 -46.896,17.931c-13.487,-14.406 -32.644,-23.295 -53.946,-23.295c-40.767,0 -73.87,33.104 -73.87,73.87c0,5.824 0.613,11.494 1.992,16.858c-61.456,-3.065 -115.862,-32.49 -152.337,-77.241c-6.284,10.881 -9.962,23.601 -9.962,37.088c0,25.594 13.027,48.276 32.95,61.456c-12.107,-0.307 -23.448,-3.678 -33.41,-9.196l0,0.92c0,35.862 25.441,65.594 59.311,72.49c-6.13,1.686 -12.72,2.606 -19.464,2.606c-4.751,0 -9.348,-0.46 -13.946,-1.38c9.349,29.426 36.628,50.728 68.965,51.341c-25.287,19.771 -57.164,31.571 -91.8,31.571c-5.977,0 -11.801,-0.306 -17.625,-1.073c32.337,21.15 71.264,33.41 112.95,33.41Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share Springioc与bean管理 on linkedin"
+        href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2frex0520.github.io%2fposts%2fback%2fjava%2fframework%2fspring%2fspringioc%25E4%25B8%258Ebean%25E7%25AE%25A1%25E7%2590%2586%2f&amp;title=Springioc%e4%b8%8ebean%e7%ae%a1%e7%90%86&amp;summary=Springioc%e4%b8%8ebean%e7%ae%a1%e7%90%86&amp;source=https%3a%2f%2frex0520.github.io%2fposts%2fback%2fjava%2fframework%2fspring%2fspringioc%25E4%25B8%258Ebean%25E7%25AE%25A1%25E7%2590%2586%2f">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-288.985,423.278l0,-225.717l-75.04,0l0,225.717l75.04,0Zm270.539,0l0,-129.439c0,-69.333 -37.018,-101.586 -86.381,-101.586c-39.804,0 -57.634,21.891 -67.617,37.266l0,-31.958l-75.021,0c0.995,21.181 0,225.717 0,225.717l75.02,0l0,-126.056c0,-6.748 0.486,-13.492 2.474,-18.315c5.414,-13.475 17.767,-27.434 38.494,-27.434c27.135,0 38.007,20.707 38.007,51.037l0,120.768l75.024,0Zm-307.552,-334.556c-25.674,0 -42.448,16.879 -42.448,39.002c0,21.658 16.264,39.002 41.455,39.002l0.484,0c26.165,0 42.452,-17.344 42.452,-39.002c-0.485,-22.092 -16.241,-38.954 -41.943,-39.002Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share Springioc与bean管理 on reddit"
+        href="https://reddit.com/submit?url=https%3a%2f%2frex0520.github.io%2fposts%2fback%2fjava%2fframework%2fspring%2fspringioc%25E4%25B8%258Ebean%25E7%25AE%25A1%25E7%2590%2586%2f&title=Springioc%e4%b8%8ebean%e7%ae%a1%e7%90%86">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-3.446,265.638c0,-22.964 -18.616,-41.58 -41.58,-41.58c-11.211,0 -21.361,4.457 -28.841,11.666c-28.424,-20.508 -67.586,-33.757 -111.204,-35.278l18.941,-89.121l61.884,13.157c0.756,15.734 13.642,28.29 29.56,28.29c16.407,0 29.706,-13.299 29.706,-29.701c0,-16.403 -13.299,-29.702 -29.706,-29.702c-11.666,0 -21.657,6.792 -26.515,16.578l-69.105,-14.69c-1.922,-0.418 -3.939,-0.042 -5.585,1.036c-1.658,1.073 -2.811,2.761 -3.224,4.686l-21.152,99.438c-44.258,1.228 -84.046,14.494 -112.837,35.232c-7.468,-7.164 -17.589,-11.591 -28.757,-11.591c-22.965,0 -41.585,18.616 -41.585,41.58c0,16.896 10.095,31.41 24.568,37.918c-0.639,4.135 -0.99,8.328 -0.99,12.576c0,63.977 74.469,115.836 166.33,115.836c91.861,0 166.334,-51.859 166.334,-115.836c0,-4.218 -0.347,-8.387 -0.977,-12.493c14.564,-6.47 24.735,-21.034 24.735,-38.001Zm-119.474,108.193c-20.27,20.241 -59.115,21.816 -70.534,21.816c-11.428,0 -50.277,-1.575 -70.522,-21.82c-3.007,-3.008 -3.007,-7.882 0,-10.889c3.003,-2.999 7.882,-3.003 10.885,0c12.777,12.781 40.11,17.317 59.637,17.317c19.522,0 46.86,-4.536 59.657,-17.321c3.016,-2.999 7.886,-2.995 10.885,0.008c3.008,3.011 3.003,7.882 -0.008,10.889Zm-5.23,-48.781c-16.373,0 -29.701,-13.324 -29.701,-29.698c0,-16.381 13.328,-29.714 29.701,-29.714c16.378,0 29.706,13.333 29.706,29.714c0,16.374 -13.328,29.698 -29.706,29.698Zm-160.386,-29.702c0,-16.381 13.328,-29.71 29.714,-29.71c16.369,0 29.689,13.329 29.689,29.71c0,16.373 -13.32,29.693 -29.689,29.693c-16.386,0 -29.714,-13.32 -29.714,-29.693Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share Springioc与bean管理 on facebook"
+        href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2frex0520.github.io%2fposts%2fback%2fjava%2fframework%2fspring%2fspringioc%25E4%25B8%258Ebean%25E7%25AE%25A1%25E7%2590%2586%2f">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-106.468,0l0,-192.915l66.6,0l12.672,-82.621l-79.272,0l0,-53.617c0,-22.603 11.073,-44.636 46.58,-44.636l36.042,0l0,-70.34c0,0 -32.71,-5.582 -63.982,-5.582c-65.288,0 -107.96,39.569 -107.96,111.204l0,62.971l-72.573,0l0,82.621l72.573,0l0,192.915l-191.104,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share Springioc与bean管理 on whatsapp"
+        href="https://api.whatsapp.com/send?text=Springioc%e4%b8%8ebean%e7%ae%a1%e7%90%86%20-%20https%3a%2f%2frex0520.github.io%2fposts%2fback%2fjava%2fframework%2fspring%2fspringioc%25E4%25B8%258Ebean%25E7%25AE%25A1%25E7%2590%2586%2f">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-58.673,127.703c-33.842,-33.881 -78.847,-52.548 -126.798,-52.568c-98.799,0 -179.21,80.405 -179.249,179.234c-0.013,31.593 8.241,62.428 23.927,89.612l-25.429,92.884l95.021,-24.925c26.181,14.28 55.659,21.807 85.658,21.816l0.074,0c98.789,0 179.206,-80.413 179.247,-179.243c0.018,-47.895 -18.61,-92.93 -52.451,-126.81Zm-126.797,275.782l-0.06,0c-26.734,-0.01 -52.954,-7.193 -75.828,-20.767l-5.441,-3.229l-56.386,14.792l15.05,-54.977l-3.542,-5.637c-14.913,-23.72 -22.791,-51.136 -22.779,-79.287c0.033,-82.142 66.867,-148.971 149.046,-148.971c39.793,0.014 77.199,15.531 105.329,43.692c28.128,28.16 43.609,65.592 43.594,105.4c-0.034,82.149 -66.866,148.983 -148.983,148.984Zm81.721,-111.581c-4.479,-2.242 -26.499,-13.075 -30.604,-14.571c-4.105,-1.495 -7.091,-2.241 -10.077,2.241c-2.986,4.483 -11.569,14.572 -14.182,17.562c-2.612,2.988 -5.225,3.364 -9.703,1.12c-4.479,-2.241 -18.91,-6.97 -36.017,-22.23c-13.314,-11.876 -22.304,-26.542 -24.916,-31.026c-2.612,-4.484 -0.279,-6.908 1.963,-9.14c2.016,-2.007 4.48,-5.232 6.719,-7.847c2.24,-2.615 2.986,-4.484 4.479,-7.472c1.493,-2.99 0.747,-5.604 -0.374,-7.846c-1.119,-2.241 -10.077,-24.288 -13.809,-33.256c-3.635,-8.733 -7.327,-7.55 -10.077,-7.688c-2.609,-0.13 -5.598,-0.158 -8.583,-0.158c-2.986,0 -7.839,1.121 -11.944,5.604c-4.105,4.484 -15.675,15.32 -15.675,37.364c0,22.046 16.048,43.342 18.287,46.332c2.24,2.99 31.582,48.227 76.511,67.627c10.685,4.615 19.028,7.371 25.533,9.434c10.728,3.41 20.492,2.929 28.209,1.775c8.605,-1.285 26.499,-10.833 30.231,-21.295c3.732,-10.464 3.732,-19.431 2.612,-21.298c-1.119,-1.869 -4.105,-2.99 -8.583,-5.232Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share Springioc与bean管理 on telegram"
+        href="https://telegram.me/share/url?text=Springioc%e4%b8%8ebean%e7%ae%a1%e7%90%86&amp;url=https%3a%2f%2frex0520.github.io%2fposts%2fback%2fjava%2fframework%2fspring%2fspringioc%25E4%25B8%258Ebean%25E7%25AE%25A1%25E7%2590%2586%2f">
+        <svg version="1.1" xml:space="preserve" viewBox="2 2 28 28">
+            <path
+                d="M26.49,29.86H5.5a3.37,3.37,0,0,1-2.47-1,3.35,3.35,0,0,1-1-2.47V5.48A3.36,3.36,0,0,1,3,3,3.37,3.37,0,0,1,5.5,2h21A3.38,3.38,0,0,1,29,3a3.36,3.36,0,0,1,1,2.46V26.37a3.35,3.35,0,0,1-1,2.47A3.38,3.38,0,0,1,26.49,29.86Zm-5.38-6.71a.79.79,0,0,0,.85-.66L24.73,9.24a.55.55,0,0,0-.18-.46.62.62,0,0,0-.41-.17q-.08,0-16.53,6.11a.59.59,0,0,0-.41.59.57.57,0,0,0,.43.52l4,1.24,1.61,4.83a.62.62,0,0,0,.63.43.56.56,0,0,0,.4-.17L16.54,20l4.09,3A.9.9,0,0,0,21.11,23.15ZM13.8,20.71l-1.21-4q8.72-5.55,8.78-5.55c.15,0,.23,0,.23.16a.18.18,0,0,1,0,.06s-2.51,2.3-7.52,6.8Z" />
+        </svg>
+    </a>
+</div>
+
+  </footer>
+<script src="https://utteranc.es/client.js" repo="Rex0520/blogcomment"
+  issue-term="title" theme="github-light" crossorigin="anonymous"
+  async>
+  </script>
+
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2021 <a href="https://rex0520.github.io/">Rex</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://git.io/hugopapermod" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+    menu.onscroll = function () {
+        localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerText = 'copy';
+
+        function copyingDone() {
+            copybutton.innerText = 'copied!';
+            setTimeout(() => {
+                copybutton.innerText = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

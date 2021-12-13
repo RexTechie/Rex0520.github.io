@@ -162,6 +162,18 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>Mybatis基础
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>MyBatis基础入门 软件开发中的框架  框架是可被应用开发者定制的应用骨架 框架是一种规则，保证开发者遵循相同的方式开发程序 框架提倡“不要重复造轮子”，对基础功能进行封装  框架的优点  极大提高了开发效率 统一的编码规则，有利于团队管理 灵活配置的应用，拥有更好的维护性  SSM开发框架  S -&gt; Spring S -&gt; Spring MVC M -&gt; MyBatis  什么是MyBatis  MyBatis是优秀的持久层框架 MyBatis使用XML将SQL与程序解耦，便于维护 MyBatis学习简单，执行高效，是JDBC的延展  MyBatis开发流程  引入MyBatis依赖 创建核心配置文件 创建实体(Entity)类 创建Mapper映射文件 初始化SessionFactory 利用SqlSession对象操作数据  MyBatis环境配置 mybatis-config.xml说明  MyBatis采用XML格式配置数据库环境信息 MyBatis环境配置标签 environment包含数据库驱动、URL、用户名于密码  mybatis-config.xml示例： &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34; ?&gt; &lt;!DOCTYPE configuration PUBLIC &#34;-//mybatis.org//DTD Config 3.0//EN&#34; &#34;http://mybatis.org/dtd/mybatis-3-config.dtd&#34;&gt; &lt;configuration&gt; &lt;environments default=&#34;dev&#34;&gt; &lt;!--根据环境，不同的环境不同的id，dev-&gt;开发环境 prd-&gt;生产环境 --&gt; &lt;environment id=&#34;dev&#34;&gt; &lt;!--采用JDBC方式对数据库事务进行commit/rollback--&gt; &lt;transactionManager type=&#34;JDBC&#34;&gt;&lt;/transactionManager&gt; &lt;!...</p>
+  </section>
+  <footer class="entry-footer">2021-03-09&nbsp;·&nbsp;8 min&nbsp;·&nbsp;Rex</footer>
+  <a class="entry-link" aria-label="post link to Mybatis基础" href="https://rex0520.github.io/posts/back/java/jdbctool/mybatis%E5%9F%BA%E7%A1%80/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>Mybatis进阶
     </h2>
   </header>
@@ -172,7 +184,7 @@
 &lt;select id=&#34;dynamicSelect&#34; parameterType=&#34;java....</p>
   </section>
   <footer class="entry-footer">2021-03-09&nbsp;·&nbsp;7 min&nbsp;·&nbsp;Rex</footer>
-  <a class="entry-link" aria-label="post link to Mybatis进阶" href="https://rex0520.github.io/posts/back/jdbctool/mybatis%E8%BF%9B%E9%98%B6/"></a>
+  <a class="entry-link" aria-label="post link to Mybatis进阶" href="https://rex0520.github.io/posts/back/java/jdbctool/mybatis%E8%BF%9B%E9%98%B6/"></a>
 </article>
 
 <article class="post-entry"> 
@@ -185,7 +197,7 @@
 package com.imooc.restful.controller; import org.springframework.stereotype.Controller; import org....</p>
   </section>
   <footer class="entry-footer">2021-03-09&nbsp;·&nbsp;3 min&nbsp;·&nbsp;Rex</footer>
-  <a class="entry-link" aria-label="post link to Restful开发风格" href="https://rex0520.github.io/posts/back/framework/springmvc/restful/"></a>
+  <a class="entry-link" aria-label="post link to Restful开发风格" href="https://rex0520.github.io/posts/back/java/framework/springmvc/restful/"></a>
 </article>
 
 <article class="post-entry"> 
@@ -198,7 +210,7 @@ package com.imooc.restful.controller; import org.springframework.stereotype.Cont
 &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt; &lt;beans xmlns=&#34;http://www.springframework.org/schema/beans&#34; xmlns:mvc=&#34;http://www.springframework.org/schema/mvc&#34; xmlns:context=&#34;http://www.springframework.org/schema/context&#34; xmlns:xsi=&#34;http://www.w3.org/2001/XMLSchema-instance&#34; xmlns:mv=&#34;http://www.springframework.org/schema/mvc&#34; xsi:schemaLocation=&#34;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd&#34;&gt; &lt;!-- context:component-scan 标签作用 在Spring IOC初始化过程中，自动创建并管理com.imooc.springmvc及子包 拥有以下注解的对象 @Repository @Service @Controller @Component --&gt; &lt;context:component-scan base-package=&#34;com.imooc.springmvc&#34;/&gt; &lt;!--启用Spring MVC的注解开发模式--&gt; &lt;mvc:annotation-driven/&gt; &lt;!...</p>
   </section>
   <footer class="entry-footer">2021-03-09&nbsp;·&nbsp;3 min&nbsp;·&nbsp;Rex</footer>
-  <a class="entry-link" aria-label="post link to SpringMVC基础" href="https://rex0520.github.io/posts/back/framework/springmvc/springmvc%E5%9F%BA%E7%A1%80/"></a>
+  <a class="entry-link" aria-label="post link to SpringMVC基础" href="https://rex0520.github.io/posts/back/java/framework/springmvc/springmvc%E5%9F%BA%E7%A1%80/"></a>
 </article>
 
 <article class="post-entry"> 
@@ -212,21 +224,7 @@ package com.imooc.restful.controller; import org.springframework.stereotype.Cont
 package com.imooc.restful.interceptor; import org.springframework.web.servlet.HandlerInterceptor; import org.springframework.web.servlet.ModelAndView; import javax.servlet.http.HttpServletRequest; import javax.servlet.http.HttpServletResponse; /** * @author Rex * @create 2021-01-12 17:55 */ public class MyInterceptor implements HandlerInterceptor { @Override public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception { System.out.println(request.getRequestURL()&#43;&#34;-准备执行&#34;); return true; } @Override public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception { System....</p>
   </section>
   <footer class="entry-footer">2021-03-09&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Rex</footer>
-  <a class="entry-link" aria-label="post link to SpringMVC拦截器" href="https://rex0520.github.io/posts/back/framework/springmvc/springmvc%E6%8B%A6%E6%88%AA%E5%99%A8/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>Redis基础
-    </h2>
-  </header>
-  <section class="entry-content">
-    <p>Redis入门 Redis介绍  Redis是Key-Value型NoSQL数据库 Redis将数据存储在内存中，同时也能持久化到磁盘 Redis常用于缓存，利用内存的高效提高程序的处理速度  Redis特点  速度快 持久化 主从复制 广泛的语言支持 多种数据结构 分布式与高可用  Redis的安装与使用 在Linux系统中安装Redis  https://redis.io/download
- 在windows系统中安装Redis  https://github.com/microsoftarchive/redis/releases
- Redis的常用基本配置    配置项 示例 说明     daemonize daemonize yes 是否启用后台允许，默认no   port port 6379 设置端口号，默认6379   logfile logfile 日志文件 设置日志文件   databases databases 255 设置redis数据库总量   dir dir数据文件目录 设置数据文件存储目录   requirepass requirepass 12345 设置使用密码    Redis通用命令    命令 示例 说明     select select 0 选择0号数据库   set set name lily 设置key=name,value=lily   get get hello 获得key=hello结果   keys keys he* 根据Pattern表达式查询符合条件的Key   dbsize dbsize 返回key的总数   exists exists a 检查key=a是否存在   del del a 删除key=a的数据   expire expire hello 20 设置key=hello 20秒后过期   ttl ttl 查看key=a的过期剩余时间    Redis数据类型  String - 字符串类型 Hash - Hash类型 List - 列表类型 Set - 集合类型 Zset - 有序集合类型  String字符串类型   String最大512mb 建议单个kv不超过100kb...</p>
-  </section>
-  <footer class="entry-footer">2021-02-09&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Rex</footer>
-  <a class="entry-link" aria-label="post link to Redis基础" href="https://rex0520.github.io/posts/nosql/redis%E5%9F%BA%E7%A1%80/"></a>
+  <a class="entry-link" aria-label="post link to SpringMVC拦截器" href="https://rex0520.github.io/posts/back/java/framework/springmvc/springmvc%E6%8B%A6%E6%88%AA%E5%99%A8/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

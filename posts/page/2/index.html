@@ -162,6 +162,24 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>前端常用轮子
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>前端常用轮子 简介  这篇文章主要是记录下一些常见的组件库，以后开发的时候方便点。（持续更新中……）
+ React UI组件库  Ant Design  文档齐全、社区生态好 支持PC端和手机端   详情见官网
+  React Bootstrap  可用于快速搭建个人项目   详情见官网
+  MATERIAL-UI(Mui)  实现了谷歌的Material Design github有超过50k的关注量，是目前最受欢迎的React组件库之一   详情见官网
+   Vue UI组件库  Element  饿了么旗下的组件库，国内最流行的Vue组件库 文档齐全 支持Vue3 同时有React版本和Angular版本   详情见官网
+  Vant  有赞公司旗下的开源组件库 适用于移动端开发 组件齐全，使用简单，UI美观   详情见官网
+  View UI  UI精美 含免费版和收费版   详情见官网...</p>
+  </section>
+  <footer class="entry-footer">2021-10-11&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Rex</footer>
+  <a class="entry-link" aria-label="post link to 前端常用轮子" href="https://rex0520.github.io/posts/front/tools/%E5%89%8D%E7%AB%AF%E5%B8%B8%E7%94%A8%E8%BD%AE%E5%AD%90/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>Zookeeper
     </h2>
   </header>
@@ -171,7 +189,7 @@ Zookeeper是开源的高性能的分布式应用协调系统，一个高性能�
  5大特点  顺序一致性：发出去的顺序==执行的顺序 原子性：请求同步到各个节点要么都成果要么都失败 单一视图：多个节点无论连哪个看的东西都是一致的 可靠性：给节点写了数据，这个数据会一直保留，直到有另外的操作把数据写掉，才会发生变化 及时性：在一定的时间段（可接受的时间段）内能从服务器上读到最新的数据状态  架构图、集群、工作过程 Zookeeper和CAP的关系  CP：一致性&#43;分区容错性 能得到一致的数据结果，同时系统对网络具备容错性 但是它不能保证每次服务请求的可用性  作用  分布式服务注册与订阅 统一配置文件 生成分布式唯一ID Master节点选举 分布式锁  节点znode 模型-树结构 节点性质  树形结构，也可以理解为linux的文件目录 每一个节点都是znode，里面可以包含数据，也可以有子节点 点分为永久节点和临时节点(session失效，也就是客户端段凯后，临时节点消失) 每个znode都有版本号，每当数据变化，版本号会累加（乐观锁） 删除或修改节点，版本号不匹配的话（版本号已过时），会报错 每个节点存储的数据不宜过大，几k即可 节点可以设置权限，来限制用户的访问 Zookeeper保证读和写都是原子操作，且每次读写操作都是对数据的完整读取或完整写入  节点类型  持久节点 临时节点 顺序节点  节点属性  dataVersion 数据版本号，每次对内容修改dataVersion&#43;1 cversion 子节点版本号，如果子节点内容发送变化cversion&#43;1 aclVersion acl-权限控制列表，权限发生变化的时候aclVersion&#43;1  常用命令  查看节点ls 查看节点的数据和状态get 创建(create [-s 顺序节点] [-e 临时节点])、修改(set)、删除(delete)节点  Watcher机制   触发器、监督者...</p>
   </section>
   <footer class="entry-footer">2021-08-21&nbsp;·&nbsp;4 min&nbsp;·&nbsp;Rex</footer>
-  <a class="entry-link" aria-label="post link to Zookeeper" href="https://rex0520.github.io/posts/back/microservices/zookeeper/"></a>
+  <a class="entry-link" aria-label="post link to Zookeeper" href="https://rex0520.github.io/posts/back/java/microservices/zookeeper/"></a>
 </article>
 
 <article class="post-entry"> 
@@ -189,7 +207,7 @@ Zookeeper是开源的高性能的分布式应用协调系统，一个高性能�
   常见的RPC框架  阿里的Dubbo（性能好） 新浪的Montan（轻量级，项目架构复杂度低，适合RPC源码学习） Facebook的Thrift （可伸缩的跨语言框架，有很强的代码生成语言）  HTTP和RPC对比  普通话（HTTP，规范–效率低）和方言（RPC，传输效率和运行速度更高），普通话本质上也是一种方言，只不过它是官方的方言 传输效率：RPC可以自己定制，通过定制自己的请求，让整体传输的内容更少，这样的效率更高，而HTTP会传输一些无用的内容 性能消耗，主要在于序列化和反序列化的耗时：RPC可以实现高效的二进制传输，HTTP大部分要通过JSON格式来传输 负载均衡：RPC自带负载均衡策略，HTTP需要借助其他的组件，如Nginx  Dubbo工作原理    模块 说明     Provider 暴露服务的服务提供方   Consumer 调用远程服务的服务消费方   Registry 服务注册与发现的注册中心   Monitor 统计服务的调用次数和调用时间的监控中心   Container 服务运行容器     服务容器负责启动，加载，运行服务提供者 服务提供者在启动时，向注册中心注册自己提供的服务 服务消费者在启动时，向注册中心订阅自己所需的服务 注册中心返回服务提供者地址列表给消费者 从提供者地址列表中，选一台提供者进行调用 定期发送一次统计数据到监控中心  </p>
   </section>
   <footer class="entry-footer">2021-07-23&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Rex</footer>
-  <a class="entry-link" aria-label="post link to Dubbo基础" href="https://rex0520.github.io/posts/back/microservices/dubbo%E5%9F%BA%E7%A1%80/"></a>
+  <a class="entry-link" aria-label="post link to Dubbo基础" href="https://rex0520.github.io/posts/back/java/microservices/dubbo%E5%9F%BA%E7%A1%80/"></a>
 </article>
 
 <article class="post-entry"> 
@@ -232,20 +250,7 @@ Zookeeper是开源的高性能的分布式应用协调系统，一个高性能�
   Docker的组成、架构、重要概念 images（镜像）:  存储：联合文件系统，UnionFS    Container（容器）：  镜像类似于Java中的类，而容器就是实例 容器的这一层是可以修改的，而镜像是不可以修改的 同一个镜像可以生成多个容器独立运行，而他们之间没有任何的干扰  Repository（仓库）：   官方仓库...</p>
   </section>
   <footer class="entry-footer">2021-06-25&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Rex</footer>
-  <a class="entry-link" aria-label="post link to Docker基础" href="https://rex0520.github.io/posts/back/microservices/docker%E5%9F%BA%E7%A1%80/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>Nginx使用
-    </h2>
-  </header>
-  <section class="entry-content">
-    <p>Nginx Nginx介绍 使用场景  HTTP的反向代理服务器  负载均衡 缓存   动态静态资源分离  优点  高并发、高性能 可扩展性好，体现在模块化设计 高可靠性，可以持续不断数十年运行 热部署，不停止服务来升级nginx 开源、可商用  Nginx常用命令 ./nginx # 启动nginx ps -aux|grep nginx # 查看nginx相关进程，也可以查到nginx运行的路径 nginx -h # 帮助 nginx -c # 读取指定配置文件 nginx -s stop # 关闭nginx nginx -t # 检查当前配置文件是否有问题，查看当前配置文件路径 nginx -v # 简要版本信息 -V详细信息 nginx -s stop|quit| # -s信号 stop立即停止，quit优雅停止，reload重启，reopen更换日志文件 Nginx配置文件   语法
- ;结尾 {}组织多条指令 include 引入 #注释 $ 变量    默认配置文件分析...</p>
-  </section>
-  <footer class="entry-footer">2021-06-22&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Rex</footer>
-  <a class="entry-link" aria-label="post link to Nginx使用" href="https://rex0520.github.io/posts/back/microservices/nginx%E4%BD%BF%E7%94%A8/"></a>
+  <a class="entry-link" aria-label="post link to Docker基础" href="https://rex0520.github.io/posts/back/java/microservices/docker%E5%9F%BA%E7%A1%80/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

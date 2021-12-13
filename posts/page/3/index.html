@@ -162,6 +162,19 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>Nginx使用
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>Nginx Nginx介绍 使用场景  HTTP的反向代理服务器  负载均衡 缓存   动态静态资源分离  优点  高并发、高性能 可扩展性好，体现在模块化设计 高可靠性，可以持续不断数十年运行 热部署，不停止服务来升级nginx 开源、可商用  Nginx常用命令 ./nginx # 启动nginx ps -aux|grep nginx # 查看nginx相关进程，也可以查到nginx运行的路径 nginx -h # 帮助 nginx -c # 读取指定配置文件 nginx -s stop # 关闭nginx nginx -t # 检查当前配置文件是否有问题，查看当前配置文件路径 nginx -v # 简要版本信息 -V详细信息 nginx -s stop|quit| # -s信号 stop立即停止，quit优雅停止，reload重启，reopen更换日志文件 Nginx配置文件   语法
+ ;结尾 {}组织多条指令 include 引入 #注释 $ 变量    默认配置文件分析...</p>
+  </section>
+  <footer class="entry-footer">2021-06-22&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Rex</footer>
+  <a class="entry-link" aria-label="post link to Nginx使用" href="https://rex0520.github.io/posts/back/java/microservices/nginx%E4%BD%BF%E7%94%A8/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>微服务
     </h2>
   </header>
@@ -175,7 +188,7 @@
   微服务优点  服务简单、便于学习和上手，先对易于维护 独立部署，灵活扩展 技术栈丰富  微服务缺点  运维成本过高 接口可能不匹配 代码可能重复 架构复杂度提高  微服务有两大门派  Spring Cloud：众多子项目 dubbo：高性能、轻量级的开源Java RPC框架，它提供了三大核心能力：面向接口的远程方法调用，智能容错和负载均衡以及服务自动注册和发现     核心组件 Dubbo Spring Cloud     服务注册中心 Zookeeper Spring Cloud Netflix Eureka   服务调用方式 RPC REST API   服务网关 无 Spring Cloud Netflix Zuul   断路器 不完善 Spring Cloud Netflix Hystrix   分布式配置 无/百度的disconf、百度的diamond Spring Cloud Config   服务跟踪 无/京东开源Hydra Spring Cloud Sleuth   消息总线 无 Spring Cloud Bus   数据流 无 Spring Cloud Stream   批量任务 无/当当开源Elastic-Job Spring Cloud Task    通信协议对比  RPC vs REST 服务提供方与调用方接口依赖方式太强 服务对平台敏感，难以简单服务  微服务拆分 服务化拆分  第一阶段的主要目标是快速开发和验证想法 进一步增加更多的新特性来吸引更多的目标用户 同时进行开发的人员超过10人，这个时候就该考虑服务化拆分了  不适合拆分的情况  小团队，技术基础较薄弱 流量不够，压力小，业务变化也不大 对延迟很敏感的低延迟高并发系统  拆分方式  纵向拆分，按照业务维度拆分 横向拆分，按照公共领域拆分 结合业务综合分析  服务扩展  x轴-水平复制，作为整体复制多个系统，重新部署几套，加一个负载均衡器 y轴-功能解耦，微服务拆解 z轴-数据分区，拆分数据库  自动按需扩展  根据CPU负载程度、特定时间（比如周末）、消息中间件的队列长度、业务具体规则、预测等来决定是否扩展 自动分配了一个新的服务实例，提高可用性 提高了可伸缩性（双11之后，自动减少了服务器） 具有最佳使用率，节约成本  微服务重要模块  服务描述 注册服务中心 服务框架 负载均衡 熔断和降级，兜底策略 网关：统一转换，校验，过滤器  </p>
   </section>
   <footer class="entry-footer">2021-06-22&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Rex</footer>
-  <a class="entry-link" aria-label="post link to 微服务" href="https://rex0520.github.io/posts/back/microservices/%E5%BE%AE%E6%9C%8D%E5%8A%A1/"></a>
+  <a class="entry-link" aria-label="post link to 微服务" href="https://rex0520.github.io/posts/back/java/microservices/%E5%BE%AE%E6%9C%8D%E5%8A%A1/"></a>
 </article>
 
 <article class="post-entry"> 
@@ -188,7 +201,7 @@
  producer: P queue: queue_name Consumer: C 消息队列：  业务无关 FIFO 容灾 性能  特点：  开源、跨语言 Erlang语言编写 应用广泛 社区活跃、API丰富  AMBQ协议  Advanced Message Queue Protocol   RabbitMQ核心概念  Server：服务 connection：与Server建立连接 channel：信道，几乎所有的操作都在信道上进行，客户端可以建立多个信道 message：消息，有properties和body组成 virtual host：虚拟主机，顶层隔离。同一个虚拟主机下，不能有重复的交换机和queue Exchange：交换机，接收生产者的消息的，然后根据指定的路由器去把消息转发到锁绑定的队列上 binding：绑定交换机和队列 routing key：路由键，路由规则，虚拟机可以用它来确定这个消息如何进行一个路由 queue：队列，消费者只需要监听队列来消费信息，不需要关注消息来自于哪个Exchange Exchange和Message Queue存在着绑定的关系，一个Exchange可以绑定多个消息队列 消息流转过程      RabbitMQ常用命令 systemctl start rabbitmq-server # 启动rabbitmq rabbitmqctl status # 查看状态 RabbitMQ后台管理  http://1.117.91.88:15672/#/connections rabbitmq management...</p>
   </section>
   <footer class="entry-footer">2021-06-21&nbsp;·&nbsp;11 min&nbsp;·&nbsp;Rex</footer>
-  <a class="entry-link" aria-label="post link to Rabbitmq使用" href="https://rex0520.github.io/posts/back/microservices/rabbitmq/"></a>
+  <a class="entry-link" aria-label="post link to Rabbitmq使用" href="https://rex0520.github.io/posts/back/java/microservices/rabbitmq/"></a>
 </article>
 
 <article class="post-entry"> 
@@ -215,23 +228,7 @@
  Windows下的安装 不推荐，nginx不适合运行在Windows上，功能不完整，我们尽量运行在linux上。</p>
   </section>
   <footer class="entry-footer">2021-06-12&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Rex</footer>
-  <a class="entry-link" aria-label="post link to Nginx的入门" href="https://rex0520.github.io/posts/back/microservices/nginx%E7%9A%84%E5%AE%89%E8%A3%85/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>Docker的安装
-    </h2>
-  </header>
-  <section class="entry-content">
-    <p>Docker的安装 在Cent OS安装docker  先有一个Cent OS 7.6系统   这个很重要，不同版本按照的时候是不一样的。查看CentOS版本 cat /etc/redhat-release
- 用root账户登录进去 配置国内yum源   wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo yum clean all yum makecache
- 卸载旧版本   较旧的Docker版本称为docker或docker-engine。如果已安装这些程序，请卸载它们以及相关的依赖项。 如果yum报告未安装这些软件包，也没问题。
- docker-client \ docker-client-latest \ docker-common \ docker-latest \ docker-latest-logrotate \ docker-logrotate \ docker-engine 更新yum   yum check-update yum update
- 安装所需的软件包  yum install -y yum-utils \ device-mapper-persistent-data \ lvm2 使用以下命令来设置稳定的存储库。   sudo yum-config-manager –add-repo http://mirrors....</p>
-  </section>
-  <footer class="entry-footer">2021-06-11&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Rex</footer>
-  <a class="entry-link" aria-label="post link to Docker的安装" href="https://rex0520.github.io/posts/back/microservices/docker%E7%9A%84%E5%AE%89%E8%A3%85/"></a>
+  <a class="entry-link" aria-label="post link to Nginx的入门" href="https://rex0520.github.io/posts/back/java/microservices/nginx%E7%9A%84%E5%AE%89%E8%A3%85/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Zookeeper | Rex</title>
+<meta name="keywords" content="微服务" />
+<meta name="description" content="Zookeeper">
+<meta name="author" content="Rex">
+<link rel="canonical" href="https://rex0520.github.io/posts/back/java/microservices/zookeeper/" />
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.css" rel="preload stylesheet" as="style">
+<link rel="preload" href="http://cdn.rexweb.xyz/img/20210821105340.png" as="image">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.min.js" onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="https://rex0520.github.io/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://rex0520.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://rex0520.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://rex0520.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://rex0520.github.io/%3Clink%20/%20abs%20url%3E">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<meta name="generator" content="Hugo 0.87.0" />
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:title" content="Zookeeper" />
+<meta property="og:description" content="Zookeeper" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://rex0520.github.io/posts/back/java/microservices/zookeeper/" /><meta property="og:image" content="https://cdn.rexweb.xyz/img/20210820141535.jpg"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-08-21T00:00:00&#43;00:00" />
+<meta property="article:modified_time" content="2021-08-21T00:00:00&#43;00:00" /><meta property="og:site_name" content="RexHub" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://cdn.rexweb.xyz/img/20210820141535.jpg"/>
+
+<meta name="twitter:title" content="Zookeeper"/>
+<meta name="twitter:description" content="Zookeeper"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://rex0520.github.io/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Zookeeper",
+      "item": "https://rex0520.github.io/posts/back/java/microservices/zookeeper/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Zookeeper",
+  "name": "Zookeeper",
+  "description": "Zookeeper",
+  "keywords": [
+    "微服务"
+  ],
+  "articleBody": "Zookeeper 定义：  Zookeeper：A Distributed Coordination Service for Distributed Applications(\nZookeeper是开源的高性能的分布式应用协调系统，一个高性能的分布式数据一致性解决方案\n 5大特点  顺序一致性：发出去的顺序==执行的顺序 原子性：请求同步到各个节点要么都成果要么都失败 单一视图：多个节点无论连哪个看的东西都是一致的 可靠性：给节点写了数据，这个数据会一直保留，直到有另外的操作把数据写掉，才会发生变化 及时性：在一定的时间段（可接受的时间段）内能从服务器上读到最新的数据状态  架构图、集群、工作过程 Zookeeper和CAP的关系  CP：一致性+分区容错性 能得到一致的数据结果，同时系统对网络具备容错性 但是它不能保证每次服务请求的可用性  作用  分布式服务注册与订阅 统一配置文件 生成分布式唯一ID Master节点选举 分布式锁  节点znode 模型-树结构 节点性质  树形结构，也可以理解为linux的文件目录 每一个节点都是znode，里面可以包含数据，也可以有子节点 点分为永久节点和临时节点(session失效，也就是客户端段凯后，临时节点消失) 每个znode都有版本号，每当数据变化，版本号会累加（乐观锁） 删除或修改节点，版本号不匹配的话（版本号已过时），会报错 每个节点存储的数据不宜过大，几k即可 节点可以设置权限，来限制用户的访问 Zookeeper保证读和写都是原子操作，且每次读写操作都是对数据的完整读取或完整写入  节点类型  持久节点 临时节点 顺序节点  节点属性  dataVersion 数据版本号，每次对内容修改dataVersion+1 cversion 子节点版本号，如果子节点内容发送变化cversion+1 aclVersion acl-权限控制列表，权限发生变化的时候aclVersion+1  常用命令  查看节点ls 查看节点的数据和状态get 创建(create [-s 顺序节点] [-e 临时节点])、修改(set)、删除(delete)节点  Watcher机制   触发器、监督者\n  事件类型\n   EventType 触发条件     NodeCreated（节点创建） Watcher监听的对应数据节点被创建   NodeDeleted（节点删除） Watcher监听的对应数据节点被删除   NodeDataChanged（节点数据修改） Watcher监听的对应数据节点的数据内容发送变更   NodeChildrenChanged（子节点变更） Watcher监听的对应数据节点的子节点列表发送变更      ACL  access control list 权限控制 它使用权限位来允许/禁止对节点极其所用域的各种操作 ACL仅与特点的znode有关，与子节点无关  Schema  ACL:[schema采用的权限机制: id用户:permissions权限组合字符串] world  id: anyone   auth 需要设定对应的用户和密码（明文） digest 同auth，不同的是加密使用密文 ip 指定ip super 超级权限  权限字符串crdwa  Created 创建子节点的权限 Read 读 Delete 删除子节点的权限 Write 写 Admin 最高权限  使用权限  区分开发/测试/运维环境，防止误操作 可以针对不同IP而产生具体的配置，更安全  代码 java原生   导入依赖\n org.apache.zookeeper zookeeper 3.6.3    编写log4j.properties\nlog4j.rootLogger=INFO, stdout log4j.appender.stdout=org.apache.log4j.ConsoleAppender log4j.appender.stdout.Target=System.out log4j.appender.stdout.layout=org.apache.log4j.PatternLayout log4j.appender.stdout.layout.ConversionPattern=%d{HH:mm:ss} %p %c{2}: %m%n   ZKConnect.java\npackage com.imooc.zkjavaapi; import org.apache.zookeeper.WatchedEvent; import org.apache.zookeeper.Watcher; import org.apache.zookeeper.ZooKeeper; import java.io.IOException; /** * Description: 连接到ZK服务端，打印连接状态 * Date 2021-07-22 16:00 * * @author Rex */ public class ZKConnect implements Watcher { /** * Zookeeper服务端地址 */ private static final String SERVER_PATH = \"127.0.0.1:2181\"; /** * 超时时间 */ private static final Integer TIME_OUT = 5000; public static void main(String[] args) throws IOException, InterruptedException { /* * 客户端和服务端他们是异步连接，连接成功后，客户端会收到watcher通知 * connectString：服务器的IP+端口号，比如：127.0.0.1:2181 * sessionTimeout：超时时间 * watcher：通知事件 */ ZooKeeper zk = new ZooKeeper(SERVER_PATH, TIME_OUT, new ZKConnect()); System.out.println(\"客户端开始连接zk服务器了\"); System.out.println(zk.getState()); Thread.sleep(2000); System.out.println(zk.getState()); } @Override public void process(WatchedEvent event) { System.out.println(\"收到了通知：\" + event); } }   演示对节点的操作\nZKOperator.java\npackage com.imooc.zkjavaapi; import com.imooc.zkjavaapi.callback.DeleteCallBack; import org.apache.zookeeper.*; import java.io.IOException; import java.nio.charset.StandardCharsets; /** * Description: 演示对节点的操作 * Date 2021-07-22 16:24 * * @author Rex */ public class ZKOperator implements Watcher { /** * Zookeeper服务端地址 */ private static final String SERVER_PATH = \"127.0.0.1:2181\"; /** * 超时时间 */ private static final Integer TIME_OUT = 5000; public static void main(String[] args) throws IOException, InterruptedException, KeeperException { /* * 客户端和服务端他们是异步连接，连接成功后，客户端会收到watcher通知 * connectString：服务器的IP+端口号，比如：127.0.0.1:2181 * sessionTimeout：超时时间 * watcher：通知事件 */ ZooKeeper zk = new ZooKeeper(SERVER_PATH, TIME_OUT, new ZKConnect()); System.out.println(\"客户端开始连接zk服务器了\"); System.out.println(zk.getState()); Thread.sleep(2000); /* * path: 创建的路径 * data: 存储的数据 * acl: 权限控制，开放 * createMode: 永久、临时、顺序 */ zk.create(\"/imago-create-node\", \"imooc\".getBytes(StandardCharsets.UTF_8), ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT); // zk.setData(\"/imooc-create-node\", \"imooc3\".getBytes(StandardCharsets.UTF_8), 1);  String ctx = \"删除成功\"; zk.delete(\"/imooc-create-node\", 0, new DeleteCallBack(), ctx); Thread.sleep(2000); // System.out.println(new String(zk.getData(\"/imooc-create-node\", null, null)));  } @Override public void process(WatchedEvent event) { } } DeleteCallBack.java\npackage com.imooc.zkjavaapi.callback; import org.apache.zookeeper.AsyncCallback; /** * Description: 删除后会运行的内容 * Date 2021-07-22 16:42 * * @author Rex */ public class DeleteCallBack implements AsyncCallback.VoidCallback { @Override public void processResult(int rc, String path, Object ctx) { System.out.println(\"删除节点\" + rc); System.out.println((String) ctx); } }   Watcher\npackage com.imooc.zkjavaapi; import org.apache.zookeeper.KeeperException; import org.apache.zookeeper.WatchedEvent; import org.apache.zookeeper.Watcher; import org.apache.zookeeper.ZooKeeper; import java.io.IOException; import java.util.concurrent.CountDownLatch; /** * Description: 和节点相关：是否存在，获取数据，加上watche * Date 2021-07-22 16:53 * * @author Rex */ public class ZKGetNode implements Watcher { /** * Zookeeper服务端地址 */ private static final String SERVER_PATH = \"127.0.0.1:2181\"; /** * 超时时间 */ private static final Integer TIME_OUT = 5000; private static CountDownLatch countDownLatch = new CountDownLatch(1); public static void main(String[] args) throws IOException, InterruptedException, KeeperException { /* * 客户端和服务端他们是异步连接，连接成功后，客户端会收到watcher通知 * connectString：服务器的IP+端口号，比如：127.0.0.1:2181 * sessionTimeout：超时时间 * watcher：通知事件 */ ZooKeeper zk = new ZooKeeper(SERVER_PATH, TIME_OUT, new ZKGetNode()); System.out.println(\"客户端开始连接zk服务器了\"); System.out.println(zk.getState()); Thread.sleep(2000); System.out.println(zk.getState()); // Stat exists = zk.exists(\"/imooc\", false); // if (exists != null) { // System.out.println(\"节点的版本为：\" + exists.getVersion()); // }else{ // System.out.println(\"该节点不存在\"); // }  zk.getData(\"/imooc\", true, null); countDownLatch.await(); } @Override public void process(WatchedEvent event) { if (event.getType() == Event.EventType.NodeDataChanged){ System.out.println(\"数据被改变\"); countDownLatch.countDown(); } System.out.println(\"收到了通知：\"+event); } }   缺点  不支持连接超时后的自动重连 Watcher注册一次后会失效 不支持递归创建节点  Apache Curator   解决了Watcher注册一次后会失效的问题\n  API更加简单易用，提供了工具类\n  使用\n  引入依赖\n org.apache.zookeeper zookeeper 3.6.3   org.apache.curator curator-framework 2.12.0   org.apache.curator curator-recipes 2.12.0    package com.imooc.curator; import org.apache.curator.RetryPolicy; import org.apache.curator.framework.CuratorFramework; import org.apache.curator.framework.CuratorFrameworkFactory; import org.apache.curator.framework.api.CuratorEvent; import org.apache.curator.retry.ExponentialBackoffRetry; import org.apache.zookeeper.CreateMode; import org.apache.zookeeper.WatchedEvent; import org.apache.zookeeper.Watcher; import java.nio.charset.StandardCharsets; /** * Description: 用Curator来操作ZK * Date 2021-07-22 17:13 * * @author Rex */ public class CuratorTests { public static void main(String[] args) throws Exception { String connectString = \"127.0.0.1:2181\"; String path = \"/curator2\"; String data = \"test\"; RetryPolicy retry = new ExponentialBackoffRetry(1000, 3); CuratorFramework client = CuratorFrameworkFactory.newClient(connectString, retry); client.start(); client.getCuratorListenable().addListener((CuratorFramework c , CuratorEvent event) - { switch (event.getType()){ case WATCHED: WatchedEvent watchedEvent = event.getWatchedEvent(); if (watchedEvent.getType() == Watcher.Event.EventType.NodeDataChanged) { System.out.println(new String(c.getData().forPath(path))); break; } default: break; } }); client.create().withMode(CreateMode.PERSISTENT).forPath(path, data.getBytes(StandardCharsets.UTF_8)); byte[] bytes = client.getData().watched().forPath(path); System.out.println(new String(bytes)); client.setData().forPath(path, \"test2\".getBytes(StandardCharsets.UTF_8)); client.delete().forPath(path); } }     ",
+  "wordCount" : "662",
+  "inLanguage": "en",
+  "datePublished": "2021-08-21T00:00:00Z",
+  "dateModified": "2021-08-21T00:00:00Z",
+  "author":{
+    "@type": "Person",
+    "name": "Rex"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://rex0520.github.io/posts/back/java/microservices/zookeeper/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rex",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://rex0520.github.io/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://rex0520.github.io/" accesskey="h" title="Home (Alt + H)">
+                <img src="http://cdn.rexweb.xyz/img/20210821105340.png" alt="logo" aria-label="logo"
+                    height="35">Home</a>
+            <span class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </span>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://rex0520.github.io/posts/" title="文章">
+                    <span>文章</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://rex0520.github.io/categories/" title="分类">
+                    <span>分类</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://rex0520.github.io/tags/" title="标签">
+                    <span>标签</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://rex0520.github.io/archives/" title="时间轴">
+                    <span>时间轴</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://rex0520.github.io/search/" title="搜索 (Alt &#43; /)" accesskey=/>
+                    <span>搜索</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://rex0520.github.io/">Home</a>&nbsp;»&nbsp;<a href="https://rex0520.github.io/posts/">Posts</a></div>
+    <h1 class="post-title">
+      Zookeeper
+    </h1>
+    <div class="post-description">
+      Zookeeper
+    </div>
+    <div class="post-meta">2021-08-21&nbsp;·&nbsp;4 min&nbsp;·&nbsp;Rex&nbsp;|&nbsp;<a href="https://github.com/Rex0520/Rex0520.github.io" rel="noopener noreferrer" target="_blank">来这修改</a>
+</div>
+  </header> <div class="toc">
+    <details  open>
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">Table of Contents</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#zookeeper" aria-label="Zookeeper">Zookeeper</a><ul>
+                        
+                <li>
+                    <a href="#%e5%ae%9a%e4%b9%89" aria-label="定义：">定义：</a></li>
+                <li>
+                    <a href="#5%e5%a4%a7%e7%89%b9%e7%82%b9" aria-label="5大特点">5大特点</a></li>
+                <li>
+                    <a href="#%e6%9e%b6%e6%9e%84%e5%9b%be%e9%9b%86%e7%be%a4%e5%b7%a5%e4%bd%9c%e8%bf%87%e7%a8%8b" aria-label="架构图、集群、工作过程">架构图、集群、工作过程</a></li>
+                <li>
+                    <a href="#zookeeper%e5%92%8ccap%e7%9a%84%e5%85%b3%e7%b3%bb" aria-label="Zookeeper和CAP的关系">Zookeeper和CAP的关系</a></li>
+                <li>
+                    <a href="#%e4%bd%9c%e7%94%a8" aria-label="作用">作用</a></li>
+                <li>
+                    <a href="#%e8%8a%82%e7%82%b9znode" aria-label="节点znode">节点znode</a><ul>
+                        
+                <li>
+                    <a href="#%e6%a8%a1%e5%9e%8b-%e6%a0%91%e7%bb%93%e6%9e%84" aria-label="模型-树结构">模型-树结构</a></li>
+                <li>
+                    <a href="#%e8%8a%82%e7%82%b9%e6%80%a7%e8%b4%a8" aria-label="节点性质">节点性质</a></li>
+                <li>
+                    <a href="#%e8%8a%82%e7%82%b9%e7%b1%bb%e5%9e%8b" aria-label="节点类型">节点类型</a></li>
+                <li>
+                    <a href="#%e8%8a%82%e7%82%b9%e5%b1%9e%e6%80%a7" aria-label="节点属性">节点属性</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e5%b8%b8%e7%94%a8%e5%91%bd%e4%bb%a4" aria-label="常用命令">常用命令</a></li>
+                <li>
+                    <a href="#watcher%e6%9c%ba%e5%88%b6" aria-label="Watcher机制">Watcher机制</a></li>
+                <li>
+                    <a href="#acl" aria-label="ACL">ACL</a><ul>
+                        
+                <li>
+                    <a href="#schema" aria-label="Schema">Schema</a></li>
+                <li>
+                    <a href="#%e6%9d%83%e9%99%90%e5%ad%97%e7%ac%a6%e4%b8%b2crdwa" aria-label="权限字符串crdwa">权限字符串crdwa</a></li>
+                <li>
+                    <a href="#%e4%bd%bf%e7%94%a8%e6%9d%83%e9%99%90" aria-label="使用权限">使用权限</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e4%bb%a3%e7%a0%81" aria-label="代码">代码</a><ul>
+                        
+                <li>
+                    <a href="#java%e5%8e%9f%e7%94%9f" aria-label="java原生">java原生</a><ul>
+                        
+                <li>
+                    <a href="#%e7%bc%ba%e7%82%b9" aria-label="缺点">缺点</a></li></ul>
+                </li>
+                <li>
+                    <a href="#apache-curator" aria-label="Apache Curator">Apache Curator</a>
+                </li>
+            </ul>
+            </li>
+            </ul>
+            </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><h1 id="zookeeper">Zookeeper<a hidden class="anchor" aria-hidden="true" href="#zookeeper">#</a></h1>
+<h2 id="定义">定义：<a hidden class="anchor" aria-hidden="true" href="#定义">#</a></h2>
+<blockquote>
+<p>Zookeeper：A Distributed Coordination Service for Distributed Applications(</p>
+<p>Zookeeper是<strong>开源的高性能的分布式应用协调系统</strong>，一个高性能的分布式数据一致性解决方案</p>
+</blockquote>
+<h2 id="5大特点">5大特点<a hidden class="anchor" aria-hidden="true" href="#5大特点">#</a></h2>
+<ul>
+<li>顺序一致性：发出去的顺序==执行的顺序</li>
+<li>原子性：请求同步到各个节点要么都成果要么都失败</li>
+<li>单一视图：多个节点无论连哪个看的东西都是一致的</li>
+<li>可靠性：给节点写了数据，这个数据会一直保留，直到有另外的操作把数据写掉，才会发生变化</li>
+<li>及时性：在一定的时间段（可接受的时间段）内能从服务器上读到最新的数据状态</li>
+</ul>
+<h2 id="架构图集群工作过程">架构图、集群、工作过程<a hidden class="anchor" aria-hidden="true" href="#架构图集群工作过程">#</a></h2>
+<p><img loading="lazy" src="http://cdn.rexweb.xyz/img/20210821223348.png" alt="image-20210721215941595"  />
+</p>
+<h2 id="zookeeper和cap的关系">Zookeeper和CAP的关系<a hidden class="anchor" aria-hidden="true" href="#zookeeper和cap的关系">#</a></h2>
+<ul>
+<li>CP：一致性+分区容错性</li>
+<li>能得到一致的数据结果，同时系统对网络具备容错性</li>
+<li>但是它不能保证每次服务请求的可用性</li>
+</ul>
+<h2 id="作用">作用<a hidden class="anchor" aria-hidden="true" href="#作用">#</a></h2>
+<ul>
+<li>分布式服务注册与订阅</li>
+<li>统一配置文件</li>
+<li>生成分布式唯一ID</li>
+<li>Master节点选举</li>
+<li>分布式锁</li>
+</ul>
+<h2 id="节点znode">节点znode<a hidden class="anchor" aria-hidden="true" href="#节点znode">#</a></h2>
+<h3 id="模型-树结构">模型-树结构<a hidden class="anchor" aria-hidden="true" href="#模型-树结构">#</a></h3>
+<p><img loading="lazy" src="https://cdn.jsdelivr.net/gh/rex0520/resources_repository/images/20210722115320.png" alt="image-20210722115320576"  />
+</p>
+<h3 id="节点性质">节点性质<a hidden class="anchor" aria-hidden="true" href="#节点性质">#</a></h3>
+<ul>
+<li><strong>树</strong>形结构，也可以理解为linux的文件目录</li>
+<li>每一个节点都是znode，里面可以包含<strong>数据</strong>，也可以有子<strong>节点</strong></li>
+<li>点分为<strong>永久节点</strong>和<strong>临时节点</strong>(session失效，也就是客户端段凯后，临时节点消失)</li>
+<li>每个znode都有<strong>版本号</strong>，每当数据变化，版本号会累加（乐观锁）</li>
+<li>删除或修改节点，版本号不匹配的话（版本号已过时），会报错</li>
+<li>每个节点存储的数据不宜过大，几k即可</li>
+<li>节点可以设置<strong>权限</strong>，来限制用户的访问</li>
+<li>Zookeeper保证读和写都是<strong>原子操作</strong>，且每次读写操作都是对数据的完整读取或完整写入</li>
+</ul>
+<h3 id="节点类型">节点类型<a hidden class="anchor" aria-hidden="true" href="#节点类型">#</a></h3>
+<ul>
+<li>持久节点</li>
+<li>临时节点</li>
+<li>顺序节点</li>
+</ul>
+<h3 id="节点属性">节点属性<a hidden class="anchor" aria-hidden="true" href="#节点属性">#</a></h3>
+<ul>
+<li>dataVersion 数据版本号，每次对内容修改dataVersion+1</li>
+<li>cversion 子节点版本号，如果子节点内容发送变化cversion+1</li>
+<li>aclVersion acl-权限控制列表，权限发生变化的时候aclVersion+1</li>
+</ul>
+<h2 id="常用命令">常用命令<a hidden class="anchor" aria-hidden="true" href="#常用命令">#</a></h2>
+<ul>
+<li>查看节点ls</li>
+<li>查看节点的数据和状态get</li>
+<li>创建(create [-s 顺序节点] [-e 临时节点])、修改(set)、删除(delete)节点</li>
+</ul>
+<h2 id="watcher机制">Watcher机制<a hidden class="anchor" aria-hidden="true" href="#watcher机制">#</a></h2>
+<ul>
+<li>
+<p>触发器、监督者</p>
+</li>
+<li>
+<p>事件类型</p>
+<table>
+<thead>
+<tr>
+<th>EventType</th>
+<th>触发条件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>NodeCreated（节点创建）</td>
+<td>Watcher监听的对应数据节点被创建</td>
+</tr>
+<tr>
+<td>NodeDeleted（节点删除）</td>
+<td>Watcher监听的对应数据节点被删除</td>
+</tr>
+<tr>
+<td>NodeDataChanged（节点数据修改）</td>
+<td>Watcher监听的对应数据节点的数据内容发送变更</td>
+</tr>
+<tr>
+<td>NodeChildrenChanged（子节点变更）</td>
+<td>Watcher监听的对应数据节点的子节点列表发送变更</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+<h2 id="acl">ACL<a hidden class="anchor" aria-hidden="true" href="#acl">#</a></h2>
+<ul>
+<li>access control list 权限控制</li>
+<li>它使用<strong>权限位</strong>来允许/禁止对节点极其所用域的各种操作</li>
+<li>ACL仅与特点的znode有关，与<strong>子节点无关</strong></li>
+</ul>
+<h3 id="schema">Schema<a hidden class="anchor" aria-hidden="true" href="#schema">#</a></h3>
+<ul>
+<li>ACL:[schema采用的权限机制: id用户:permissions权限组合字符串]</li>
+<li>world
+<ul>
+<li>id: anyone</li>
+</ul>
+</li>
+<li>auth 需要设定对应的用户和密码（明文）</li>
+<li>digest 同auth，不同的是加密使用密文</li>
+<li>ip 指定ip</li>
+<li>super 超级权限</li>
+</ul>
+<h3 id="权限字符串crdwa">权限字符串crdwa<a hidden class="anchor" aria-hidden="true" href="#权限字符串crdwa">#</a></h3>
+<ul>
+<li>Created 创建<strong>子节点</strong>的权限</li>
+<li>Read 读</li>
+<li>Delete 删除<strong>子节点</strong>的权限</li>
+<li>Write 写</li>
+<li>Admin 最高权限</li>
+</ul>
+<h3 id="使用权限">使用权限<a hidden class="anchor" aria-hidden="true" href="#使用权限">#</a></h3>
+<ul>
+<li>区分开发/测试/运维环境，防止误操作</li>
+<li>可以针对不同IP而产生具体的配置，更安全</li>
+</ul>
+<h2 id="代码">代码<a hidden class="anchor" aria-hidden="true" href="#代码">#</a></h2>
+<h3 id="java原生">java原生<a hidden class="anchor" aria-hidden="true" href="#java原生">#</a></h3>
+<ul>
+<li>
+<p>导入依赖</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>org.apache.zookeeper<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>zookeeper<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>3.6.3<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</code></pre></div></li>
+<li>
+<p>编写log4j.properties</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">log4j.rootLogger=INFO, stdout
+log4j.appender.stdout=org.apache.log4j.ConsoleAppender
+log4j.appender.stdout.Target=System.out
+log4j.appender.stdout.layout=org.apache.log4j.PatternLayout
+log4j.appender.stdout.layout.ConversionPattern=%d{HH:mm:ss} %p %c{2}: %m%n
+</code></pre></div></li>
+<li>
+<p>ZKConnect.java</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="nn">com.imooc.zkjavaapi</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">org.apache.zookeeper.WatchedEvent</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.apache.zookeeper.Watcher</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.apache.zookeeper.ZooKeeper</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.io.IOException</span><span class="o">;</span>
+
+<span class="cm">/**
+</span><span class="cm"> * Description: 连接到ZK服务端，打印连接状态
+</span><span class="cm"> * Date 2021-07-22 16:00
+</span><span class="cm"> *
+</span><span class="cm"> * @author Rex
+</span><span class="cm"> */</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ZKConnect</span> <span class="kd">implements</span> <span class="n">Watcher</span> <span class="o">{</span>
+
+  <span class="cm">/**
+</span><span class="cm">   * Zookeeper服务端地址
+</span><span class="cm">   */</span>
+  <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">SERVER_PATH</span> <span class="o">=</span> <span class="s">&#34;127.0.0.1:2181&#34;</span><span class="o">;</span>
+
+  <span class="cm">/**
+</span><span class="cm">   * 超时时间
+</span><span class="cm">   */</span>
+  <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">Integer</span> <span class="n">TIME_OUT</span> <span class="o">=</span> <span class="n">5000</span><span class="o">;</span>
+
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">IOException</span><span class="o">,</span> <span class="n">InterruptedException</span> <span class="o">{</span>
+    <span class="cm">/*
+</span><span class="cm">     * 客户端和服务端他们是异步连接，连接成功后，客户端会收到watcher通知
+</span><span class="cm">     * connectString：服务器的IP+端口号，比如：127.0.0.1:2181
+</span><span class="cm">     * sessionTimeout：超时时间
+</span><span class="cm">     * watcher：通知事件
+</span><span class="cm">     */</span>
+    <span class="n">ZooKeeper</span> <span class="n">zk</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ZooKeeper</span><span class="o">(</span><span class="n">SERVER_PATH</span><span class="o">,</span> <span class="n">TIME_OUT</span><span class="o">,</span> <span class="k">new</span> <span class="n">ZKConnect</span><span class="o">());</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;客户端开始连接zk服务器了&#34;</span><span class="o">);</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">zk</span><span class="o">.</span><span class="na">getState</span><span class="o">());</span>
+    <span class="n">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="n">2000</span><span class="o">);</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">zk</span><span class="o">.</span><span class="na">getState</span><span class="o">());</span>
+  <span class="o">}</span>
+
+  <span class="nd">@Override</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">process</span><span class="o">(</span><span class="n">WatchedEvent</span> <span class="n">event</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;收到了通知：&#34;</span> <span class="o">+</span> <span class="n">event</span><span class="o">);</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+
+</code></pre></div></li>
+<li>
+<p>演示对节点的操作</p>
+<p>ZKOperator.java</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="nn">com.imooc.zkjavaapi</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">com.imooc.zkjavaapi.callback.DeleteCallBack</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.apache.zookeeper.*</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.io.IOException</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.nio.charset.StandardCharsets</span><span class="o">;</span>
+
+<span class="cm">/**
+</span><span class="cm"> * Description: 演示对节点的操作
+</span><span class="cm"> * Date 2021-07-22 16:24
+</span><span class="cm"> *
+</span><span class="cm"> * @author Rex
+</span><span class="cm"> */</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ZKOperator</span> <span class="kd">implements</span> <span class="n">Watcher</span> <span class="o">{</span>
+
+  <span class="cm">/**
+</span><span class="cm">   * Zookeeper服务端地址
+</span><span class="cm">   */</span>
+  <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">SERVER_PATH</span> <span class="o">=</span> <span class="s">&#34;127.0.0.1:2181&#34;</span><span class="o">;</span>
+
+  <span class="cm">/**
+</span><span class="cm">   * 超时时间
+</span><span class="cm">   */</span>
+  <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">Integer</span> <span class="n">TIME_OUT</span> <span class="o">=</span> <span class="n">5000</span><span class="o">;</span>
+
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">IOException</span><span class="o">,</span> <span class="n">InterruptedException</span><span class="o">,</span> <span class="n">KeeperException</span> <span class="o">{</span>
+    <span class="cm">/*
+</span><span class="cm">     * 客户端和服务端他们是异步连接，连接成功后，客户端会收到watcher通知
+</span><span class="cm">     * connectString：服务器的IP+端口号，比如：127.0.0.1:2181
+</span><span class="cm">     * sessionTimeout：超时时间
+</span><span class="cm">     * watcher：通知事件
+</span><span class="cm">     */</span>
+    <span class="n">ZooKeeper</span> <span class="n">zk</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ZooKeeper</span><span class="o">(</span><span class="n">SERVER_PATH</span><span class="o">,</span> <span class="n">TIME_OUT</span><span class="o">,</span> <span class="k">new</span> <span class="n">ZKConnect</span><span class="o">());</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;客户端开始连接zk服务器了&#34;</span><span class="o">);</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">zk</span><span class="o">.</span><span class="na">getState</span><span class="o">());</span>
+    <span class="n">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="n">2000</span><span class="o">);</span>
+
+    <span class="cm">/*
+</span><span class="cm">     * path: 创建的路径
+</span><span class="cm">     * data: 存储的数据
+</span><span class="cm">     * acl: 权限控制，开放
+</span><span class="cm">     * createMode: 永久、临时、顺序
+</span><span class="cm">     */</span>
+    <span class="n">zk</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="s">&#34;/imago-create-node&#34;</span><span class="o">,</span> <span class="s">&#34;imooc&#34;</span><span class="o">.</span><span class="na">getBytes</span><span class="o">(</span><span class="n">StandardCharsets</span><span class="o">.</span><span class="na">UTF_8</span><span class="o">),</span> <span class="n">ZooDefs</span><span class="o">.</span><span class="na">Ids</span><span class="o">.</span><span class="na">OPEN_ACL_UNSAFE</span><span class="o">,</span> <span class="n">CreateMode</span><span class="o">.</span><span class="na">PERSISTENT</span><span class="o">);</span>
+<span class="c1">//    zk.setData(&#34;/imooc-create-node&#34;, &#34;imooc3&#34;.getBytes(StandardCharsets.UTF_8), 1);
+</span><span class="c1"></span>    <span class="n">String</span> <span class="n">ctx</span> <span class="o">=</span> <span class="s">&#34;删除成功&#34;</span><span class="o">;</span>
+    <span class="n">zk</span><span class="o">.</span><span class="na">delete</span><span class="o">(</span><span class="s">&#34;/imooc-create-node&#34;</span><span class="o">,</span> <span class="n">0</span><span class="o">,</span> <span class="k">new</span> <span class="n">DeleteCallBack</span><span class="o">(),</span> <span class="n">ctx</span><span class="o">);</span>
+    <span class="n">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="n">2000</span><span class="o">);</span>
+<span class="c1">//    System.out.println(new String(zk.getData(&#34;/imooc-create-node&#34;, null, null)));
+</span><span class="c1"></span>  <span class="o">}</span>
+
+  <span class="nd">@Override</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">process</span><span class="o">(</span><span class="n">WatchedEvent</span> <span class="n">event</span><span class="o">)</span> <span class="o">{</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+
+</code></pre></div><p>DeleteCallBack.java</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="nn">com.imooc.zkjavaapi.callback</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">org.apache.zookeeper.AsyncCallback</span><span class="o">;</span>
+
+<span class="cm">/**
+</span><span class="cm"> * Description: 删除后会运行的内容
+</span><span class="cm"> * Date 2021-07-22 16:42
+</span><span class="cm"> *
+</span><span class="cm"> * @author Rex
+</span><span class="cm"> */</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">DeleteCallBack</span> <span class="kd">implements</span> <span class="n">AsyncCallback</span><span class="o">.</span><span class="na">VoidCallback</span> <span class="o">{</span>
+  <span class="nd">@Override</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">processResult</span><span class="o">(</span><span class="kt">int</span> <span class="n">rc</span><span class="o">,</span> <span class="n">String</span> <span class="n">path</span><span class="o">,</span> <span class="n">Object</span> <span class="n">ctx</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;删除节点&#34;</span> <span class="o">+</span> <span class="n">rc</span><span class="o">);</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">((</span><span class="n">String</span><span class="o">)</span> <span class="n">ctx</span><span class="o">);</span>
+
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></li>
+<li>
+<p>Watcher</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="nn">com.imooc.zkjavaapi</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">org.apache.zookeeper.KeeperException</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.apache.zookeeper.WatchedEvent</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.apache.zookeeper.Watcher</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.apache.zookeeper.ZooKeeper</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.io.IOException</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.concurrent.CountDownLatch</span><span class="o">;</span>
+
+<span class="cm">/**
+</span><span class="cm"> * Description: 和节点相关：是否存在，获取数据，加上watche
+</span><span class="cm"> * Date 2021-07-22 16:53
+</span><span class="cm"> *
+</span><span class="cm"> * @author Rex
+</span><span class="cm"> */</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ZKGetNode</span> <span class="kd">implements</span> <span class="n">Watcher</span> <span class="o">{</span>
+
+  <span class="cm">/**
+</span><span class="cm">   * Zookeeper服务端地址
+</span><span class="cm">   */</span>
+  <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">SERVER_PATH</span> <span class="o">=</span> <span class="s">&#34;127.0.0.1:2181&#34;</span><span class="o">;</span>
+
+  <span class="cm">/**
+</span><span class="cm">   * 超时时间
+</span><span class="cm">   */</span>
+  <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">Integer</span> <span class="n">TIME_OUT</span> <span class="o">=</span> <span class="n">5000</span><span class="o">;</span>
+
+  <span class="kd">private</span> <span class="kd">static</span> <span class="n">CountDownLatch</span>  <span class="n">countDownLatch</span> <span class="o">=</span> <span class="k">new</span> <span class="n">CountDownLatch</span><span class="o">(</span><span class="n">1</span><span class="o">);</span>
+
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">IOException</span><span class="o">,</span> <span class="n">InterruptedException</span><span class="o">,</span> <span class="n">KeeperException</span> <span class="o">{</span>
+    <span class="cm">/*
+</span><span class="cm">     * 客户端和服务端他们是异步连接，连接成功后，客户端会收到watcher通知
+</span><span class="cm">     * connectString：服务器的IP+端口号，比如：127.0.0.1:2181
+</span><span class="cm">     * sessionTimeout：超时时间
+</span><span class="cm">     * watcher：通知事件
+</span><span class="cm">     */</span>
+    <span class="n">ZooKeeper</span> <span class="n">zk</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ZooKeeper</span><span class="o">(</span><span class="n">SERVER_PATH</span><span class="o">,</span> <span class="n">TIME_OUT</span><span class="o">,</span> <span class="k">new</span> <span class="n">ZKGetNode</span><span class="o">());</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;客户端开始连接zk服务器了&#34;</span><span class="o">);</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">zk</span><span class="o">.</span><span class="na">getState</span><span class="o">());</span>
+    <span class="n">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="n">2000</span><span class="o">);</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">zk</span><span class="o">.</span><span class="na">getState</span><span class="o">());</span>
+
+<span class="c1">//    Stat exists = zk.exists(&#34;/imooc&#34;, false);
+</span><span class="c1">//    if (exists != null) {
+</span><span class="c1">//      System.out.println(&#34;节点的版本为：&#34; + exists.getVersion());
+</span><span class="c1">//    }else{
+</span><span class="c1">//      System.out.println(&#34;该节点不存在&#34;);
+</span><span class="c1">//    }
+</span><span class="c1"></span>    <span class="n">zk</span><span class="o">.</span><span class="na">getData</span><span class="o">(</span><span class="s">&#34;/imooc&#34;</span><span class="o">,</span> <span class="kc">true</span><span class="o">,</span> <span class="kc">null</span><span class="o">);</span>
+    <span class="n">countDownLatch</span><span class="o">.</span><span class="na">await</span><span class="o">();</span>
+  <span class="o">}</span>
+
+  <span class="nd">@Override</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">process</span><span class="o">(</span><span class="n">WatchedEvent</span> <span class="n">event</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">event</span><span class="o">.</span><span class="na">getType</span><span class="o">()</span> <span class="o">==</span> <span class="n">Event</span><span class="o">.</span><span class="na">EventType</span><span class="o">.</span><span class="na">NodeDataChanged</span><span class="o">){</span>
+      <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;数据被改变&#34;</span><span class="o">);</span>
+      <span class="n">countDownLatch</span><span class="o">.</span><span class="na">countDown</span><span class="o">();</span>
+    <span class="o">}</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;收到了通知：&#34;</span><span class="o">+</span><span class="n">event</span><span class="o">);</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></li>
+</ul>
+<h4 id="缺点">缺点<a hidden class="anchor" aria-hidden="true" href="#缺点">#</a></h4>
+<ul>
+<li>不支持连接超时后的自动重连</li>
+<li>Watcher<strong>注册一次</strong>后会失效</li>
+<li>不支持<strong>递归</strong>创建节点</li>
+</ul>
+<h3 id="apache-curator">Apache Curator<a hidden class="anchor" aria-hidden="true" href="#apache-curator">#</a></h3>
+<ul>
+<li>
+<p>解决了Watcher注册一次后会失效的问题</p>
+</li>
+<li>
+<p>API更加<strong>简单易用</strong>，提供了工具类</p>
+</li>
+<li>
+<p>使用</p>
+<ul>
+<li>
+<p>引入依赖</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>org.apache.zookeeper<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>zookeeper<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>3.6.3<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>org.apache.curator<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>curator-framework<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>2.12.0<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>org.apache.curator<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>curator-recipes<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>2.12.0<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</code></pre></div></li>
+<li>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="nn">com.imooc.curator</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">org.apache.curator.RetryPolicy</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.apache.curator.framework.CuratorFramework</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.apache.curator.framework.CuratorFrameworkFactory</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.apache.curator.framework.api.CuratorEvent</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.apache.curator.retry.ExponentialBackoffRetry</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.apache.zookeeper.CreateMode</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.apache.zookeeper.WatchedEvent</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.apache.zookeeper.Watcher</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.nio.charset.StandardCharsets</span><span class="o">;</span>
+
+<span class="cm">/**
+</span><span class="cm"> * Description: 用Curator来操作ZK
+</span><span class="cm"> * Date 2021-07-22 17:13
+</span><span class="cm"> *
+</span><span class="cm"> * @author Rex
+</span><span class="cm"> */</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">CuratorTests</span> <span class="o">{</span>
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+    <span class="n">String</span> <span class="n">connectString</span> <span class="o">=</span> <span class="s">&#34;127.0.0.1:2181&#34;</span><span class="o">;</span>
+    <span class="n">String</span> <span class="n">path</span> <span class="o">=</span> <span class="s">&#34;/curator2&#34;</span><span class="o">;</span>
+    <span class="n">String</span> <span class="n">data</span> <span class="o">=</span> <span class="s">&#34;test&#34;</span><span class="o">;</span>
+    <span class="n">RetryPolicy</span> <span class="n">retry</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ExponentialBackoffRetry</span><span class="o">(</span><span class="n">1000</span><span class="o">,</span> <span class="n">3</span><span class="o">);</span>
+    <span class="n">CuratorFramework</span> <span class="n">client</span> <span class="o">=</span> <span class="n">CuratorFrameworkFactory</span><span class="o">.</span><span class="na">newClient</span><span class="o">(</span><span class="n">connectString</span><span class="o">,</span> <span class="n">retry</span><span class="o">);</span>
+    <span class="n">client</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
+    <span class="n">client</span><span class="o">.</span><span class="na">getCuratorListenable</span><span class="o">().</span><span class="na">addListener</span><span class="o">((</span><span class="n">CuratorFramework</span> <span class="n">c</span> <span class="o">,</span> <span class="n">CuratorEvent</span> <span class="n">event</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="o">{</span>
+      <span class="k">switch</span> <span class="o">(</span><span class="n">event</span><span class="o">.</span><span class="na">getType</span><span class="o">()){</span>
+        <span class="k">case</span> <span class="n">WATCHED</span><span class="o">:</span>
+          <span class="n">WatchedEvent</span> <span class="n">watchedEvent</span> <span class="o">=</span> <span class="n">event</span><span class="o">.</span><span class="na">getWatchedEvent</span><span class="o">();</span>
+          <span class="k">if</span> <span class="o">(</span><span class="n">watchedEvent</span><span class="o">.</span><span class="na">getType</span><span class="o">()</span>  <span class="o">==</span> <span class="n">Watcher</span><span class="o">.</span><span class="na">Event</span><span class="o">.</span><span class="na">EventType</span><span class="o">.</span><span class="na">NodeDataChanged</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="k">new</span> <span class="n">String</span><span class="o">(</span><span class="n">c</span><span class="o">.</span><span class="na">getData</span><span class="o">().</span><span class="na">forPath</span><span class="o">(</span><span class="n">path</span><span class="o">)));</span>
+            <span class="k">break</span><span class="o">;</span>
+          <span class="o">}</span>
+        <span class="k">default</span><span class="o">:</span>
+          <span class="k">break</span><span class="o">;</span>
+      <span class="o">}</span>
+    <span class="o">});</span>
+
+    <span class="n">client</span><span class="o">.</span><span class="na">create</span><span class="o">().</span><span class="na">withMode</span><span class="o">(</span><span class="n">CreateMode</span><span class="o">.</span><span class="na">PERSISTENT</span><span class="o">).</span><span class="na">forPath</span><span class="o">(</span><span class="n">path</span><span class="o">,</span> <span class="n">data</span><span class="o">.</span><span class="na">getBytes</span><span class="o">(</span><span class="n">StandardCharsets</span><span class="o">.</span><span class="na">UTF_8</span><span class="o">));</span>
+    <span class="kt">byte</span><span class="o">[]</span> <span class="n">bytes</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="na">getData</span><span class="o">().</span><span class="na">watched</span><span class="o">().</span><span class="na">forPath</span><span class="o">(</span><span class="n">path</span><span class="o">);</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="k">new</span> <span class="n">String</span><span class="o">(</span><span class="n">bytes</span><span class="o">));</span>
+    <span class="n">client</span><span class="o">.</span><span class="na">setData</span><span class="o">().</span><span class="na">forPath</span><span class="o">(</span><span class="n">path</span><span class="o">,</span> <span class="s">&#34;test2&#34;</span><span class="o">.</span><span class="na">getBytes</span><span class="o">(</span><span class="n">StandardCharsets</span><span class="o">.</span><span class="na">UTF_8</span><span class="o">));</span>
+    <span class="n">client</span><span class="o">.</span><span class="na">delete</span><span class="o">().</span><span class="na">forPath</span><span class="o">(</span><span class="n">path</span><span class="o">);</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+
+</code></pre></div></li>
+</ul>
+</li>
+</ul>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://rex0520.github.io/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/">微服务</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://rex0520.github.io/posts/front/tools/%E5%89%8D%E7%AB%AF%E5%B8%B8%E7%94%A8%E8%BD%AE%E5%AD%90/">
+    <span class="title">« Prev Page</span>
+    <br>
+    <span>前端常用轮子</span>
+  </a>
+  <a class="next" href="https://rex0520.github.io/posts/back/java/microservices/dubbo%E5%9F%BA%E7%A1%80/">
+    <span class="title">Next Page »</span>
+    <br>
+    <span>Dubbo基础</span>
+  </a>
+</nav>
+
+
+<div class="share-buttons">
+    <a target="_blank" rel="noopener noreferrer" aria-label="share Zookeeper on twitter"
+        href="https://twitter.com/intent/tweet/?text=Zookeeper&amp;url=https%3a%2f%2frex0520.github.io%2fposts%2fback%2fjava%2fmicroservices%2fzookeeper%2f&amp;hashtags=%e5%be%ae%e6%9c%8d%e5%8a%a1">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-253.927,424.544c135.939,0 210.268,-112.643 210.268,-210.268c0,-3.218 0,-6.437 -0.153,-9.502c14.406,-10.421 26.973,-23.448 36.935,-38.314c-13.18,5.824 -27.433,9.809 -42.452,11.648c15.326,-9.196 26.973,-23.602 32.49,-40.92c-14.252,8.429 -30.038,14.56 -46.896,17.931c-13.487,-14.406 -32.644,-23.295 -53.946,-23.295c-40.767,0 -73.87,33.104 -73.87,73.87c0,5.824 0.613,11.494 1.992,16.858c-61.456,-3.065 -115.862,-32.49 -152.337,-77.241c-6.284,10.881 -9.962,23.601 -9.962,37.088c0,25.594 13.027,48.276 32.95,61.456c-12.107,-0.307 -23.448,-3.678 -33.41,-9.196l0,0.92c0,35.862 25.441,65.594 59.311,72.49c-6.13,1.686 -12.72,2.606 -19.464,2.606c-4.751,0 -9.348,-0.46 -13.946,-1.38c9.349,29.426 36.628,50.728 68.965,51.341c-25.287,19.771 -57.164,31.571 -91.8,31.571c-5.977,0 -11.801,-0.306 -17.625,-1.073c32.337,21.15 71.264,33.41 112.95,33.41Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share Zookeeper on linkedin"
+        href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2frex0520.github.io%2fposts%2fback%2fjava%2fmicroservices%2fzookeeper%2f&amp;title=Zookeeper&amp;summary=Zookeeper&amp;source=https%3a%2f%2frex0520.github.io%2fposts%2fback%2fjava%2fmicroservices%2fzookeeper%2f">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-288.985,423.278l0,-225.717l-75.04,0l0,225.717l75.04,0Zm270.539,0l0,-129.439c0,-69.333 -37.018,-101.586 -86.381,-101.586c-39.804,0 -57.634,21.891 -67.617,37.266l0,-31.958l-75.021,0c0.995,21.181 0,225.717 0,225.717l75.02,0l0,-126.056c0,-6.748 0.486,-13.492 2.474,-18.315c5.414,-13.475 17.767,-27.434 38.494,-27.434c27.135,0 38.007,20.707 38.007,51.037l0,120.768l75.024,0Zm-307.552,-334.556c-25.674,0 -42.448,16.879 -42.448,39.002c0,21.658 16.264,39.002 41.455,39.002l0.484,0c26.165,0 42.452,-17.344 42.452,-39.002c-0.485,-22.092 -16.241,-38.954 -41.943,-39.002Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share Zookeeper on reddit"
+        href="https://reddit.com/submit?url=https%3a%2f%2frex0520.github.io%2fposts%2fback%2fjava%2fmicroservices%2fzookeeper%2f&title=Zookeeper">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-3.446,265.638c0,-22.964 -18.616,-41.58 -41.58,-41.58c-11.211,0 -21.361,4.457 -28.841,11.666c-28.424,-20.508 -67.586,-33.757 -111.204,-35.278l18.941,-89.121l61.884,13.157c0.756,15.734 13.642,28.29 29.56,28.29c16.407,0 29.706,-13.299 29.706,-29.701c0,-16.403 -13.299,-29.702 -29.706,-29.702c-11.666,0 -21.657,6.792 -26.515,16.578l-69.105,-14.69c-1.922,-0.418 -3.939,-0.042 -5.585,1.036c-1.658,1.073 -2.811,2.761 -3.224,4.686l-21.152,99.438c-44.258,1.228 -84.046,14.494 -112.837,35.232c-7.468,-7.164 -17.589,-11.591 -28.757,-11.591c-22.965,0 -41.585,18.616 -41.585,41.58c0,16.896 10.095,31.41 24.568,37.918c-0.639,4.135 -0.99,8.328 -0.99,12.576c0,63.977 74.469,115.836 166.33,115.836c91.861,0 166.334,-51.859 166.334,-115.836c0,-4.218 -0.347,-8.387 -0.977,-12.493c14.564,-6.47 24.735,-21.034 24.735,-38.001Zm-119.474,108.193c-20.27,20.241 -59.115,21.816 -70.534,21.816c-11.428,0 -50.277,-1.575 -70.522,-21.82c-3.007,-3.008 -3.007,-7.882 0,-10.889c3.003,-2.999 7.882,-3.003 10.885,0c12.777,12.781 40.11,17.317 59.637,17.317c19.522,0 46.86,-4.536 59.657,-17.321c3.016,-2.999 7.886,-2.995 10.885,0.008c3.008,3.011 3.003,7.882 -0.008,10.889Zm-5.23,-48.781c-16.373,0 -29.701,-13.324 -29.701,-29.698c0,-16.381 13.328,-29.714 29.701,-29.714c16.378,0 29.706,13.333 29.706,29.714c0,16.374 -13.328,29.698 -29.706,29.698Zm-160.386,-29.702c0,-16.381 13.328,-29.71 29.714,-29.71c16.369,0 29.689,13.329 29.689,29.71c0,16.373 -13.32,29.693 -29.689,29.693c-16.386,0 -29.714,-13.32 -29.714,-29.693Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share Zookeeper on facebook"
+        href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2frex0520.github.io%2fposts%2fback%2fjava%2fmicroservices%2fzookeeper%2f">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-106.468,0l0,-192.915l66.6,0l12.672,-82.621l-79.272,0l0,-53.617c0,-22.603 11.073,-44.636 46.58,-44.636l36.042,0l0,-70.34c0,0 -32.71,-5.582 -63.982,-5.582c-65.288,0 -107.96,39.569 -107.96,111.204l0,62.971l-72.573,0l0,82.621l72.573,0l0,192.915l-191.104,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share Zookeeper on whatsapp"
+        href="https://api.whatsapp.com/send?text=Zookeeper%20-%20https%3a%2f%2frex0520.github.io%2fposts%2fback%2fjava%2fmicroservices%2fzookeeper%2f">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-58.673,127.703c-33.842,-33.881 -78.847,-52.548 -126.798,-52.568c-98.799,0 -179.21,80.405 -179.249,179.234c-0.013,31.593 8.241,62.428 23.927,89.612l-25.429,92.884l95.021,-24.925c26.181,14.28 55.659,21.807 85.658,21.816l0.074,0c98.789,0 179.206,-80.413 179.247,-179.243c0.018,-47.895 -18.61,-92.93 -52.451,-126.81Zm-126.797,275.782l-0.06,0c-26.734,-0.01 -52.954,-7.193 -75.828,-20.767l-5.441,-3.229l-56.386,14.792l15.05,-54.977l-3.542,-5.637c-14.913,-23.72 -22.791,-51.136 -22.779,-79.287c0.033,-82.142 66.867,-148.971 149.046,-148.971c39.793,0.014 77.199,15.531 105.329,43.692c28.128,28.16 43.609,65.592 43.594,105.4c-0.034,82.149 -66.866,148.983 -148.983,148.984Zm81.721,-111.581c-4.479,-2.242 -26.499,-13.075 -30.604,-14.571c-4.105,-1.495 -7.091,-2.241 -10.077,2.241c-2.986,4.483 -11.569,14.572 -14.182,17.562c-2.612,2.988 -5.225,3.364 -9.703,1.12c-4.479,-2.241 -18.91,-6.97 -36.017,-22.23c-13.314,-11.876 -22.304,-26.542 -24.916,-31.026c-2.612,-4.484 -0.279,-6.908 1.963,-9.14c2.016,-2.007 4.48,-5.232 6.719,-7.847c2.24,-2.615 2.986,-4.484 4.479,-7.472c1.493,-2.99 0.747,-5.604 -0.374,-7.846c-1.119,-2.241 -10.077,-24.288 -13.809,-33.256c-3.635,-8.733 -7.327,-7.55 -10.077,-7.688c-2.609,-0.13 -5.598,-0.158 -8.583,-0.158c-2.986,0 -7.839,1.121 -11.944,5.604c-4.105,4.484 -15.675,15.32 -15.675,37.364c0,22.046 16.048,43.342 18.287,46.332c2.24,2.99 31.582,48.227 76.511,67.627c10.685,4.615 19.028,7.371 25.533,9.434c10.728,3.41 20.492,2.929 28.209,1.775c8.605,-1.285 26.499,-10.833 30.231,-21.295c3.732,-10.464 3.732,-19.431 2.612,-21.298c-1.119,-1.869 -4.105,-2.99 -8.583,-5.232Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share Zookeeper on telegram"
+        href="https://telegram.me/share/url?text=Zookeeper&amp;url=https%3a%2f%2frex0520.github.io%2fposts%2fback%2fjava%2fmicroservices%2fzookeeper%2f">
+        <svg version="1.1" xml:space="preserve" viewBox="2 2 28 28">
+            <path
+                d="M26.49,29.86H5.5a3.37,3.37,0,0,1-2.47-1,3.35,3.35,0,0,1-1-2.47V5.48A3.36,3.36,0,0,1,3,3,3.37,3.37,0,0,1,5.5,2h21A3.38,3.38,0,0,1,29,3a3.36,3.36,0,0,1,1,2.46V26.37a3.35,3.35,0,0,1-1,2.47A3.38,3.38,0,0,1,26.49,29.86Zm-5.38-6.71a.79.79,0,0,0,.85-.66L24.73,9.24a.55.55,0,0,0-.18-.46.62.62,0,0,0-.41-.17q-.08,0-16.53,6.11a.59.59,0,0,0-.41.59.57.57,0,0,0,.43.52l4,1.24,1.61,4.83a.62.62,0,0,0,.63.43.56.56,0,0,0,.4-.17L16.54,20l4.09,3A.9.9,0,0,0,21.11,23.15ZM13.8,20.71l-1.21-4q8.72-5.55,8.78-5.55c.15,0,.23,0,.23.16a.18.18,0,0,1,0,.06s-2.51,2.3-7.52,6.8Z" />
+        </svg>
+    </a>
+</div>
+
+  </footer>
+<script src="https://utteranc.es/client.js" repo="Rex0520/blogcomment"
+  issue-term="title" theme="github-light" crossorigin="anonymous"
+  async>
+  </script>
+
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2021 <a href="https://rex0520.github.io/">Rex</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://git.io/hugopapermod" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+    menu.onscroll = function () {
+        localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerText = 'copy';
+
+        function copyingDone() {
+            copybutton.innerText = 'copied!';
+            setTimeout(() => {
+                copybutton.innerText = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>
