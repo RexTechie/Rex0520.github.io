@@ -101,8 +101,8 @@
   "keywords": [
     "NoSQL"
   ],
-  "articleBody": "Redis入门 Redis介绍  Redis是Key-Value型NoSQL数据库 Redis将数据存储在内存中，同时也能持久化到磁盘 Redis常用于缓存，利用内存的高效提高程序的处理速度  Redis特点  速度快 持久化 主从复制 广泛的语言支持 多种数据结构 分布式与高可用  Redis的安装与使用 在Linux系统中安装Redis  https://redis.io/download\n 在windows系统中安装Redis  https://github.com/microsoftarchive/redis/releases\n Redis的常用基本配置    配置项 示例 说明     daemonize daemonize yes 是否启用后台允许，默认no   port port 6379 设置端口号，默认6379   logfile logfile 日志文件 设置日志文件   databases databases 255 设置redis数据库总量   dir dir数据文件目录 设置数据文件存储目录   requirepass requirepass 12345 设置使用密码    Redis通用命令    命令 示例 说明     select select 0 选择0号数据库   set set name lily 设置key=name,value=lily   get get hello 获得key=hello结果   keys keys he* 根据Pattern表达式查询符合条件的Key   dbsize dbsize 返回key的总数   exists exists a 检查key=a是否存在   del del a 删除key=a的数据   expire expire hello 20 设置key=hello 20秒后过期   ttl ttl 查看key=a的过期剩余时间    Redis数据类型  String - 字符串类型 Hash - Hash类型 List - 列表类型 Set - 集合类型 Zset - 有序集合类型  String字符串类型   String最大512mb 建议单个kv不超过100kb\n  字符串命令\n   命令 示例 说明     get get hello 获得key=hello结果   set set hello world 设置key=hello，value=hello   msetmget mset hello world java bestmget hello java 一次性设置或者获取多个值   del del hello 删除key=hello   incr/decr incr countdecr count key值自增/自减1   incrby/decrby incrby count 99decrby count 99 自增自减指定步长      Hash键值类型  Hash类型用于存储结构化数据 Hash命令     命令 示例 说明     hget hget emp:1 age 获取hash中key=age的值   hset hset emp:1 age 23 设置hash中age=23   hmsethmgethgetall hmset emp:1 age 30 name kakahmget emp:1 age namehgetall emp:1 name 设置hash多个值获取hash多个值获取hash所有值   hdel hdel emp:1 age 删除emp:1的age   hexists hexists emp:1 name 检查是否存在   hlen hlen emp:1 获取指定长度    List列表类型   List列表就是一系列字符串的“数组”，按插入顺序排序\n  List列表最大长度为2的32次方-1，可以包含40亿个元素\n  List命令\n​\n   命令 示例 说明     rpush rpush listkey c b a 右侧插入   lpush lpush listkey f e d 左侧插入   rpop rpop listkey 右侧插入   lpop lpop listkey 左侧插入      Set与Zset集合类型  Set集合是字符串的无序集合，集合成员是唯一的 Zset集合是字符串的有序集合，集合成员是唯一的  Java客户端-Jedis  Jedis是Java语言开发的Redis客户端工具包 Jedis只是对Redis命令的封装，掌握Redis命令便可轻易上手  ",
-  "wordCount" : "222",
+  "articleBody": "Redis入门 Redis介绍  Redis是Key-Value型NoSQL数据库 Redis将数据存储在内存中，同时也能持久化到磁盘 Redis常用于缓存，利用内存的高效提高程序的处理速度  Redis特点  速度快 持久化 主从复制 广泛的语言支持 多种数据结构 分布式与高可用  Redis的安装与使用 在Linux系统中安装Redis  https://redis.io/download\n 在windows系统中安装Redis  https://github.com/microsoftarchive/redis/releases\n Redis的常用基本配置    配置项 示例 说明     daemonize daemonize yes 是否启用后台允许，默认no   port port 6379 设置端口号，默认6379   logfile logfile 日志文件 设置日志文件   databases databases 255 设置redis数据库总量   dir dir数据文件目录 设置数据文件存储目录   requirepass requirepass 12345 设置使用密码    Redis通用命令    命令 示例 说明     select select 0 选择0号数据库   set set name lily 设置key=name,value=lily   get get hello 获得key=hello结果   keys keys he* 根据Pattern表达式查询符合条件的Key   dbsize dbsize 返回key的总数   exists exists a 检查key=a是否存在   del del a 删除key=a的数据   expire expire hello 20 设置key=hello 20秒后过期   ttl ttl 查看key=a的过期剩余时间    Redis数据类型  String - 字符串类型 Hash - Hash类型 List - 列表类型 Set - 集合类型 Zset - 有序集合类型  String字符串类型   String最大512mb 建议单个kv不超过100kb\n  字符串命令\n   命令 示例 说明     get get hello 获得key=hello结果   set set hello world 设置key=hello，value=hello   mset\nmget mset hello world java best\nmget hello java 一次性设置或者获取多个值   del del hello 删除key=hello   incr/decr incr count\ndecr count key值自增/自减1   incrby/decrby incrby count 99\ndecrby count 99 自增自减指定步长      Hash键值类型  Hash类型用于存储结构化数据 Hash命令     命令 示例 说明     hget hget emp:1 age 获取hash中key=age的值   hset hset emp:1 age 23 设置hash中age=23   hmset\nhmget\nhgetall hmset emp:1 age 30 name kaka\nhmget emp:1 age name\nhgetall emp:1 name 设置hash多个值\n获取hash多个值\n获取hash所有值   hdel hdel emp:1 age 删除emp:1的age   hexists hexists emp:1 name 检查是否存在   hlen hlen emp:1 获取指定长度    List列表类型   List列表就是一系列字符串的“数组”，按插入顺序排序\n  List列表最大长度为2的32次方-1，可以包含40亿个元素\n  List命令\n​\n   命令 示例 说明     rpush rpush listkey c b a 右侧插入   lpush lpush listkey f e d 左侧插入   rpop rpop listkey 右侧插入   lpop lpop listkey 左侧插入      Set与Zset集合类型  Set集合是字符串的无序集合，集合成员是唯一的 Zset集合是字符串的有序集合，集合成员是唯一的  Java客户端-Jedis  Jedis是Java语言开发的Redis客户端工具包 Jedis只是对Redis命令的封装，掌握Redis命令便可轻易上手  ",
+  "wordCount" : "232",
   "inLanguage": "en",
   "datePublished": "2021-02-09T00:00:00Z",
   "dateModified": "2021-02-09T00:00:00Z",
@@ -195,8 +195,7 @@
             </li>
         </ul>
     </nav>
-</header>
-<main class="main">
+</header><main class="main">
 
 <article class="post-single">
   <header class="post-header">
@@ -416,8 +415,8 @@
 <td>设置key=hello，value=hello</td>
 </tr>
 <tr>
-<td>mset<!-- raw HTML omitted -->mget</td>
-<td>mset hello world java best<!-- raw HTML omitted -->mget hello java</td>
+<td>mset<br />mget</td>
+<td>mset hello world java best<br />mget hello java</td>
 <td>一次性设置或者获取多个值</td>
 </tr>
 <tr>
@@ -427,12 +426,12 @@
 </tr>
 <tr>
 <td>incr/decr</td>
-<td>incr count<!-- raw HTML omitted -->decr count</td>
+<td>incr count<br />decr count</td>
 <td>key值自增/自减1</td>
 </tr>
 <tr>
 <td>incrby/decrby</td>
-<td>incrby count 99<!-- raw HTML omitted -->decrby count 99</td>
+<td>incrby count 99<br />decrby count 99</td>
 <td>自增自减指定步长</td>
 </tr>
 </tbody>
@@ -464,9 +463,9 @@
 <td>设置hash中age=23</td>
 </tr>
 <tr>
-<td>hmset<!-- raw HTML omitted -->hmget<!-- raw HTML omitted -->hgetall</td>
-<td>hmset emp:1 age 30 name kaka<!-- raw HTML omitted -->hmget emp:1 age name<!-- raw HTML omitted -->hgetall emp:1 name</td>
-<td>设置hash多个值<!-- raw HTML omitted -->获取hash多个值<!-- raw HTML omitted -->获取hash所有值</td>
+<td>hmset<br />hmget<br />hgetall</td>
+<td>hmset emp:1 age 30 name kaka<br />hmget emp:1 age name<br />hgetall emp:1 name</td>
+<td>设置hash多个值<br />获取hash多个值<br />获取hash所有值</td>
 </tr>
 <tr>
 <td>hdel</td>
