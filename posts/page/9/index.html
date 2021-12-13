@@ -299,6 +299,46 @@ package com.imooc.reflect.entity; /** * 员工实体类 * @author CubeMonkey * @
     })
 
 </script>
-</body>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@8.10.1/dist/mermaid.min.js"></script>
+
+<script>
+    
+    
+    const mermaidKeywords = [
+        "graph TD",
+        "graph TB",
+        "graph BT",
+        "graph RL",
+        "graph LR",
+        "sequenceDiagram",
+        "gantt",
+        "classDiagram",
+        "gitGraph",
+        "erDiagram",
+        "journey"
+    ];
+    var col = document.querySelector('.language-fallback');
+    var htmlCollection = document.getElementsByClassName('language-fallback')
+    console.log(col)
+    console.log(htmlCollection)
+    Array.prototype.slice.call(htmlCollection)
+    console.log(Array.prototype.slice.call(htmlCollection))
+    Array.from(htmlCollection).forEach(ele => {
+        var graphDefinition = ele.innerText;
+        if (mermaidKeywords.some((keyword) => graphDefinition.startsWith(keyword))) {
+            ele.parentElement.parentElement.outerHTML = `<div class="mermaid">${ele.innerText}</div>`
+        }
+    })
+    Array.from(document.getElementsByClassName('language-mermaid')).forEach(ele => {
+        ele.parentElement.outerHTML = `<div class="mermaid">${ele.innerText}</div>`
+    })
+</script>
+<style>
+     
+    .mermaid svg {
+        display: block;
+        margin: auto;
+    }
+</style></body>
 
 </html>
