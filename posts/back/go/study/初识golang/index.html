@@ -101,8 +101,8 @@
   "keywords": [
     "Go"
   ],
-  "articleBody": "初识Golang【Go学习之旅】  👨‍💻一时兴起打算简略的学习一下golang，目前非常热门，有着高效率、高性能、高并发的特性，引起了朕极大的兴趣。简略的记录下学习记录✍，以便今后查阅与回顾。学习资源来自b站尚硅谷韩老师的课程\n Go语言诞生小故事 核心开发团队  Ken Thompson(肯·汤普森)： 图灵奖和美国国家技术奖获得者。他与Dennis Ritchie是Unix的原创者。Thomspson也发明了后来衍生出C语言和B语言程序语言，同时也是C语言的主要发明人 Rob Pike(罗布·派克)：曾是贝尔实验室(Bell Labs)的Unix团队，和Plan 9操作系统计划的成员。他与Thompson，并共创出广泛使用的UTF-8字元编码。奥运会射箭银奖、天文学家。。。。太强了 Robert Griesemer：曾协助制造Java的HotSpot编译器，和Chrome浏览器的Javascript引擎V8  Google为什么创造Go语言  计算机硬件技术更新频繁，性能提示很快。目前主流的编程语言明显落后于硬件，不能合理利用多核多CPU的优势提升软件系统性能 软件系统复杂度越来越高，维护成本越来越高。目前缺乏一个足够简洁高效的编程语言【现有的编程语言：1.风格不统一 2.计算能力弱 3.处理大并发弱】 速度快的语言编译慢(C/C++)，开发效率高的语言运行慢(Python)，同时还存在内存泄漏的一系列的困扰。  Go语言发展历史  2007年，谷歌工程师Rob Pike，Ken Thompson和Robert Griesemer开始设计一门全新的语言，这是Go语言的最初原型 2009年11月10日，Google将Go语言以开放源代码的方式向全球发布。 2015年8月19日，Go1.5版发布，本次更新中移除了“最后参与的C代码” 2017年2月17日，Go1.8发布 2017年8月24日，Go1.9发布 2018年2月16日 ，Go1.10发布 ….. 至今2021.12.11 Go最新1.17  Go语言特点   从C语言中继承了很多理念，包括表达式语法，控制结构，基础数据类型，调用参数传值，指针等等，也保留了和C语言一样的编译执行方式及弱化的指针\n  引入包的概念，用于组织程序结构，Go语言的一个文件都要归属于一个包，而不能单独存在\n  垃圾回收机制，内存自动回收，不需要开发人员管理\n  天然并发\n 从语言层面支持并发，实现简单 goroutine，轻量级线程，可实现大并发处理，高效利用多核。 基于CPS并发模型(Communicating Sequential Processes)实现    吸收了管道通信机制，形成Go语言特有的管道channel\n通过管道channel，可以实现不同的goroute之间的相互通信\n  函数返回多个值\nfunc getSumAndSub(n1 int, n2 int)(int, int){ sum := n1+n2 sub := n1 -n2 return sum, sub }   新的创意：切片(slice)、延时执行defer等\n  GoLang执行流程分析   先编译在执行\ngraph LR A[.go] --|go build| B[可执行文件] --|运行| C[结果]   直接执行\ngraph LR A[.go] --|go run| B[结果]   ",
-  "wordCount" : "82",
+  "articleBody": "初识Golang【Go学习之旅】  👨‍💻一时兴起打算简略的学习一下golang，目前非常热门，有着高效率、高性能、高并发的特性，引起了朕极大的兴趣。简略的记录下学习记录✍，以便今后查阅与回顾。学习资源来自b站尚硅谷韩老师的课程\n Go语言诞生小故事 核心开发团队  Ken Thompson(肯·汤普森)： 图灵奖和美国国家技术奖获得者。他与Dennis Ritchie是Unix的原创者。Thomspson也发明了后来衍生出C语言和B语言程序语言，同时也是C语言的主要发明人 Rob Pike(罗布·派克)：曾是贝尔实验室(Bell Labs)的Unix团队，和Plan 9操作系统计划的成员。他与Thompson，并共创出广泛使用的UTF-8字元编码。奥运会射箭银奖、天文学家。。。。太强了 Robert Griesemer：曾协助制造Java的HotSpot编译器，和Chrome浏览器的Javascript引擎V8  Google为什么创造Go语言  计算机硬件技术更新频繁，性能提示很快。目前主流的编程语言明显落后于硬件，不能合理利用多核多CPU的优势提升软件系统性能 软件系统复杂度越来越高，维护成本越来越高。目前缺乏一个足够简洁高效的编程语言【现有的编程语言：1.风格不统一 2.计算能力弱 3.处理大并发弱】 速度快的语言编译慢(C/C++)，开发效率高的语言运行慢(Python)，同时还存在内存泄漏的一系列的困扰。  Go语言发展历史  2007年，谷歌工程师Rob Pike，Ken Thompson和Robert Griesemer开始设计一门全新的语言，这是Go语言的最初原型 2009年11月10日，Google将Go语言以开放源代码的方式向全球发布。 2015年8月19日，Go1.5版发布，本次更新中移除了“最后参与的C代码” 2017年2月17日，Go1.8发布 2017年8月24日，Go1.9发布 2018年2月16日 ，Go1.10发布 ….. 至今2021.12.11 Go最新1.17  Go语言特点   从C语言中继承了很多理念，包括表达式语法，控制结构，基础数据类型，调用参数传值，指针等等，也保留了和C语言一样的编译执行方式及弱化的指针\n  引入包的概念，用于组织程序结构，Go语言的一个文件都要归属于一个包，而不能单独存在\n  垃圾回收机制，内存自动回收，不需要开发人员管理\n  天然并发\n 从语言层面支持并发，实现简单 goroutine，轻量级线程，可实现大并发处理，高效利用多核。 基于CPS并发模型(Communicating Sequential Processes)实现    吸收了管道通信机制，形成Go语言特有的管道channel\n通过管道channel，可以实现不同的goroute之间的相互通信\n  函数返回多个值\nfunc getSumAndSub(n1 int, n2 int)(int, int){ sum := n1+n2 sub := n1 -n2 return sum, sub }   新的创意：切片(slice)、延时执行defer等\n  GoLang执行流程分析   先编译在执行\ngraph LR A[.go] --|go build| B[可执行文件] --|运行| C[结果]   直接执行\ngraph LR; A[.go] --|go run| B[结果];   编译与运行说明   有了go源文件，编译器可将其编译成机器可以识别的二进制码文件\n  在该源文件目录下，通过go build对hello.go文件进行编译。可以指定生成的可执行文件名，在windows下必须是.exe后缀。若程序有错误，编译时，会在错误的那行报错。\ntip: go build -o可以生成指定文件名的可执行文件\ngo build -o test.exe .\\hello.go   可直接运行生成可执行Go程序或用go run编译并运行源程序\n  ",
+  "wordCount" : "97",
   "inLanguage": "en",
   "image":"https://cdn.rexweb.xyz/img/20211213103407.jpg","datePublished": "2021-12-13T00:00:00Z",
   "dateModified": "2021-12-13T00:00:00Z",
@@ -234,7 +234,9 @@
                 <li>
                     <a href="#go%e8%af%ad%e8%a8%80%e7%89%b9%e7%82%b9" aria-label="Go语言特点">Go语言特点</a></li>
                 <li>
-                    <a href="#golang%e6%89%a7%e8%a1%8c%e6%b5%81%e7%a8%8b%e5%88%86%e6%9e%90" aria-label="GoLang执行流程分析">GoLang执行流程分析</a>
+                    <a href="#golang%e6%89%a7%e8%a1%8c%e6%b5%81%e7%a8%8b%e5%88%86%e6%9e%90" aria-label="GoLang执行流程分析">GoLang执行流程分析</a></li>
+                <li>
+                    <a href="#%e7%bc%96%e8%af%91%e4%b8%8e%e8%bf%90%e8%a1%8c%e8%af%b4%e6%98%8e" aria-label="编译与运行说明">编译与运行说明</a>
                 </li>
             </ul>
             </li>
@@ -315,10 +317,24 @@ A[.go] --&gt;|go build| B[可执行文件] --&gt;|运行| C[结果]
 </code></pre></div></li>
 <li>
 <p>直接执行</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">graph LR
-A[.go] --&gt;|go run| B[结果]
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">graph LR;
+A[.go] --&gt;|go run| B[结果];
 </code></pre></div></li>
 </ol>
+<h2 id="编译与运行说明">编译与运行说明<a hidden class="anchor" aria-hidden="true" href="#编译与运行说明">#</a></h2>
+<ul>
+<li>
+<p>有了go源文件，编译器可将其编译成机器可以识别的二进制码文件</p>
+</li>
+<li>
+<p>在该源文件目录下，通过go build对hello.go文件进行编译。可以<strong>指定生成的可执行文件名</strong>，在windows下必须是.exe后缀。若程序有错误，编译时，会在错误的那行报错。</p>
+<p>tip: go build -o可以生成指定文件名的可执行文件</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">go build -o test.exe .<span class="se">\h</span>ello.go
+</code></pre></div></li>
+<li>
+<p>可直接运行生成可执行Go程序或用go run编译并运行源程序</p>
+</li>
+</ul>
 
 
   </div>
@@ -521,9 +537,7 @@ A[.go] --&gt;|go run| B[结果]
     "erDiagram",
     "journey"
   ];
-  var col = document.querySelector('.language-fallback');
   var htmlCollection = document.getElementsByClassName('language-fallback')
-  console.log(col)
   console.log(htmlCollection)
   Array.prototype.slice.call(htmlCollection)
   console.log(Array.prototype.slice.call(htmlCollection))
