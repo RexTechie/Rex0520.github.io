@@ -101,8 +101,8 @@
   "keywords": [
     "Go"
   ],
-  "articleBody": "Go变量【Go学习之路】 概念  变量是程序的基本组成单位，变量相当于内存中一个数据存储空间的表示，可以将变量看作是一个房间的门牌号，通过门牌号可以找到房间并取出房间里的东西，同样的道理，通过变量名可以访问到变量的值\n 变量使用的基本步骤   声明变量（定义变量）\n基本语法：var 变量名 数据类型\nvar a int 这就是声明了一个变量，变量名是a\nvar num1 float32 这也声明了一个变量，表示一个单精度类型的小数，变量名是num1\n  赋值\n  使用\n  变量使用案例 代码：\npackage main import \"fmt\" func main() { // 定义变量/声明变量 \tvar i int // 给i赋值 \ti = 10 // 使用变量 \tfmt.Println(\"i =\", i) } 输出：\nPS G:\\goproject\\src\\go_code\\chapter03\\demo01 go run .\\main.go i = 10 变量使用的注意事项   变量表示内存中的一个存储空间\n  该区域有自己的名称（变量名）和类型（数据类型）\n  Golang变量使用的三种方式\n  第一种：指定变量类型，声明后若不赋值，使用默认值\n// golang的变量使用方式1 // 第一种：指定变量类型，声明后若不赋值，使用默认值 // int默认值为0 var i int fmt.Println(\"i =\", i)   第二种：根据值自行判定变量类型(类型推导)\n// 第二种：根据值自行判定变量类型(类型推导) var num = 10.11 fmt.Println(\"num =\", num)   第三种：省略var，注意:=左侧的变量不应该是已经声明过的，否则会导致编译错误\n// 第三种：省略var，注意:=左侧的变量不应该是已经声明过的，否则会导致编译错误 // 下面的方式等价var name string; name = \"tom\" // \":=\"的\":\"不能省略，否则报错 name := \"tom\" fmt.Println(\"name =\", name)     多变量声明\n在编程中，有时我们需要一次性声明多个变量，Golang也提供这样的语法\npackage main import \"fmt\" func main() { // 该案例演示golang如何一次性声明多个变量 \t// var n1, n2, n3 int \t// fmt.Println(\"n1 =\", n1, \"n2 =\", n2, \"n3 =\", n3)  // 一次性声明多个变量的方式2 \t// var n1, name, n3 = 100, \"tom\", 888 \t// fmt.Println(\"n1 =\", n1, \"name =\", name, \"n3 =\", n3)  // 一次性声明多个变量的方式3 \tn1, name, n3 := 100, \"tom\", 888 fmt.Println(\"n1 =\", n1, \"name =\", name, \"n3 =\", n3) } 如何一次性声明多个全局变量\n// 定义全局变量 var n1 = 100 var n2 = 200 var name = \"jack\" // 上面的声明方式，也可以改成一次性声明 var ( n3 = 300 n4 = 900 name2 = \"mary\" )   该区域的数据值可以在同一类型范围内不断变化\npackage main import \"fmt\" // 变量使用的注意事项 func main() { // 该区域的数据值可以在同一类型范围内不断变化 \tvar i int = 10 i = 30 fmt.Println(\"i =\", i) i = 1.2 //int, 原因是不能改变数据类型 }   变量在同一个作用域(函数或代码块)不能重名\n// 变量在同一个作用域(函数或代码块)不能重名 // var i int = 50 i := 99   变量 = 变量名 + 值 + 数据类型\n  Golang的变量如果没有赋初值，编译器会使用默认值，比如int默认值0，string默认值为空，小数默认值为0\n  变量的数据类型 graph LR; A[\"数据类型\"]--B[\"基本数据类型\"]; A--C[\"派生/复杂数据类型\"]; B--D[\"数值型\"]; D--P[\"整数类型(int, int8, int32, int64，uint, uint8, uint16, uint64, byte), rune(int32的别名,用unicode码值存放)\"]; D--Q[\"*浮点类型(float32, float64)\"]; D--R[\"复数类型(complex)\"] B--E[\"字符型(没有专门的字符型，使用byte来保存\n单个字母字符，无法存储汉字，使用的是utf-8编码)\"]; B--F[\"布尔型(bool)\"]; B--G[\"字符串(string)[官方将string归属到基本数据类型]\"]; C--H[\"指针(Pointer)\"]; C--I[\"数组\"]; C--J[\"结构体(struct)\"]; C--K[\"管道(Channel)\"]; C--L[\"函数(也是一种类型)\"]; C--M[\"切片(slice)\"]; C--N[\"接口(interface)\"]; C--O[\"map\"]; 整数型   类型：\n   类型 有无符号 占用存储空间 表数范围 备注     int8 有 1字节 -128~127 类似于java中的byte   int16 有 2字节 -2^15~2^15-1 类似于java中的short   int32 有 4字节 -2^31~2^31-1 类似于java中的int   int64 有 8字节 -2^63~2^63-1 类似于java中的long   uint8 无 1字节 0~255    uint16 无 2字节 0~2^16-1    uint32 无 4字节 0~2^32-1    uint64 无 8字节 0~2^64-1    int 有 32位系统4个字节，64位系统8个字节 -2^31~2^31-1\n-2^63~2^63-1    uint 有 32位系统4个字节，64位系统8个字节 0~2^32-10~2^64-1    rune 有 与int8等价 -2^31~2^31-1 等价int32，表示一个unicode码   byte 无 与uint8等价 0~255 当要存储字符时选用byte      使用\npackage main import \"fmt\" // 演示golang中整数类型的使用 func main() { var i int = 1 fmt.Println(\"i =\", i) //测试一下int8的范围 -128~127 \t//其他的 int16. int32, int64以此类推 \tvar j int8 = 127 fmt.Println(\"j =\", j) //测试一下uint8的范围(0~255)，其他uint16，uint32，uint64以此类推 \tvar k uint8 = 255 fmt.Println(\"k =\", k) }   注意：Golang程序中整型变量在使用时，遵守保小不保大的原则，即：在保证程序正确运行下，尽量使用占用空间小的数据类型。【如：年龄】\n  浮点型   类型\n   类型 占用存储空间 表数范围     单精度 4字节 -3.403E38~3.403E38   双精度 8字节 -1.798E308~1.798308      使用\n代码：\npackage main import ( \"fmt\" ) // 演示golang中小数类型的使用 func main() { var price float32 = 89.123 fmt.Println(\"price =\", price) var num1 float32 = -0.00089 var num2 float64 = -7809656.09 fmt.Println(\"num1 =\", num1, \"num2 =\", num2) } 输出\nprice = 89.123 num1 = -0.00089 num2 = -7.80965609e+06   注意：\n  Golang的浮点类型在存储的时候与其他语言类似，采用的是IEEE754浮点数表示的方式，符号位 + 指数位 + 尾数位 = 浮点数，所以在使用的时候容易出现精度丢失的问题\n代码：\n// 精度丢失 f1 := 1129.6 fmt.Println(f1 * 100) 输出：\n112959.99999999999   Golang的浮点型默认声明为float64类型\n代码：\nvar num5 = 0.1 fmt.Printf(\"num5 的数据类型为%T\\n\", num5) 输出：\nnum5 的数据类型为float64   浮点型常量有两种表示形式\n  十进制数形式：如：5.12 .512，必须有小数点\\\n代码：\n// 十进制数形式：如：5.12\t.512(必须有小数点) num6 := 5.12 num7 := .512 fmt.Println(\"num6 =\", num6, \"num7 =\", num7) 输出：\nnum6 = 5.12 num7 = 0.512   科学计数法：如5.1234e2 = 5.12 * 10 的2次方 5.12E-2=5.12/10的2次方\n代码：\n//科学计数法形式 num8 := 5.1234e2 //5.1234*10^2 num9 := 5.1234e2 //5.1234*10^2 num10 := 5.1234e-2 //5.1234*10^-2 fmt.Println(\"num8 =\", num8, \"num9 =\", num9, \"num10 =\", num10) 输出：\nnum8 = 512.34 num9 = 512.34 num10 = 0.051234     通常情况，使用float64，因为精确度更高\n    字符型  Golang没有专门的字符类型，如果要存储单个字符，一般使用byte来保存\n   类型\n   类型 占用存储空间 编码方式     byte 英文字母占用1个字节，汉字占用3个字节 UTF-8      使用\n代码：\npackage main import ( \"fmt\" ) // 演示golang中字符类型的使用 func main() { var c1 byte = 'a' var c2 byte = '0' //字符的0  // 当我们直接输出byte，就是输出对应的ascii码值 \tfmt.Println(\"c1 =\", c1) fmt.Println(\"c2 =\", c2) // 如果我们希望输出对应的字符，需要使用格式化输出 \tfmt.Printf(\"c1=%c c2=%c\\n\", c1, c2) // var c3 byte = '北' //overflow溢出 \tvar c3 int = '北' //overflow溢出 \tfmt.Printf(\"c3 = %c\\n\", c3) // 可以直接给某个变量赋一个数字，然后格式化输出。输出对应的unicode字符 \tvar c4 int = 22269 fmt.Printf(\"c4 = %c\\n\", c4) // 字符类型是可以进行运算的，相当于一个整数，运算时是按照码值运行 \tvar n1 = 10 + 'a' fmt.Println(\"n1 =\", n1) } 输出：\nc1 = 97 c2 = 48 c1=a c2=0 c3 = 北 c4 = 国 n1 = 107   布尔型   类型\n   类型 占用存储空间 取值     bool 1个字节 true|false      使用\n代码：\npackage main import ( \"fmt\" \"unsafe\" ) // 演示golang中布尔型的使用 func main() { var b = false fmt.Println(\"b =\", b) // 注意事项 \t// 1.bool类型占用存储空间是一个字节 \tfmt.Println(\"bool 占用的空间为\", unsafe.Sizeof(b)) } 输出：\nb = false bool 占用的空间为 1   说明：特别注意，bool类型和c++不一样，bool只能取true和false，不能取0或1\n  字符串  字符串是由固定长度的字符连接起来的字符序列\n   使用\n代码：\npackage main import ( \"fmt\" ) // 演示golang中string的使用 func main() { //string的基本舒勇 \tvar address string = \"北京长城 110 hello world!\" fmt.Println(\"address =\", address) } 输出\naddress = 北京长城   说明\n  Go的字符串是由单个字节连接起来的。使用UTF-8编码标识Unicode文本（Golang统一使用UTF-8编码，不容易出现中文乱码问题）\n  字符串一旦赋值了，字符串就不能修改了，在Go中字符串是不可变的\n代码：\nvar str = \"hello\" str[0] = 'a' //这里就不能去修改str的内容，cannot assign to str[0] 输出:\ncannot assign to str[0]   字符串的两种表示形式\n 双引号(\"\"): 会识别转义字符 反引号(``)：以字符串的原生形式输出  代码：\nstr1 := \"\\n\\n123\\n\" str2 := `\\n\\n123\\n` str3 := `   HTML  ` fmt.Println(\"str1 =\", str1) fmt.Println(\"str2 =\", str2) fmt.Println(\"str3 =\", str3) 输出\nstr1 = 123 str2 = \\n\\n123\\n str3 =   HTML     当拼接长度过长时，可换行，但是加号要留在上一行末尾\n代码：\nstr5 := \"hello \" + \"world \" + \"haha!\" fmt.Println(\"str5 =\", str5) 示例：\nstr5 = hello world haha!     基本数据类型的默认值  在Go中，数据类型都有一个默认值，当程序员没有赋值时，会保留默认值，在Go中，默认值又叫零值\n    数据类型 默认值     整型 0   浮点型 0   字符串 \"\"   布尔类型 false    基本数据类型的转换  Golang和Java/C不同，在不同类型转换时需显式转换。也就是说不能进行自动转换\n   基本语法\n 表达式T(v)将值v转换为类型T  T: 数据类型, 比如int32,int64,float32等等 v:就是需要转换的变量      基本使用\n代码:\npackage main import \"fmt\" // 演示golang中基本类型的转换 func main() { var i int = 1000 // 希望将i = float \tvar n1 float32 = float32(i) var n2 int8 = int8(i) var n3 int64 = int64(i) //低精度 - 高精度 \tfmt.Printf(\"i的类型为%T，值为 %v, n1的类型为%T，值为 %v\\n\", i, i, n1, n1) fmt.Printf(\"i的类型为%T，值为 %v, n2的类型为%T，值为 %v\\n\", i, i, n2, n2) fmt.Printf(\"i的类型为%T，值为 %v, n3的类型为%T，值为 %v\\n\", i, i, n3, n3) } 输出:\ni的类型为int，值为 1000, n1的类型为float32，值为 1000 i的类型为int，值为 1000, n2的类型为int8，值为 -24 i的类型为int，值为 1000, n3的类型为int64，值为 1000   细节说明\n Go中, 数据类型转换既可以从低精度到高精度,也可以从高精度到低精度(通常不会闲着没事这么干,容易出现溢出问题)    基本数据类型和string类型转换 基本数据类型转string类型   fmt.Sprintf(\"%参数\", 表达式)(强推)\n  声明:\nfunc Sprintf(format string, a ...interface{}) string   说明:Sprintf根据format参数生成格式化的字符串并返回该字符串。\n  使用: 代码:\nvar num1 int = 99 var num2 float64 = 23.456 var b bool = true var myChar byte = 'h' var str string = \"\" // 使用第一种方式来转换，fmt.Sprintf方法 str = fmt.Sprintf(\"%d\", num1) fmt.Printf(\"str type %T str = %q\\n\", str, str) str = fmt.Sprintf(\"%f\", num2) fmt.Printf(\"str type %T str = %q\\n\", str, str) str = fmt.Sprintf(\"%t\", b) fmt.Printf(\"str type %T str = %q\\n\", str, str) str = fmt.Sprintf(\"%c\", myChar) fmt.Printf(\"str type %T str = %q\\n\", str, str) 输出:\nstr type string str = \"99\" str type string str = \"23.456000\" str type string str = \"true\" str type string str = \"h\"     strconv包下的函数\n  声明:\n  func FormatBool(b bool) string\n根据b的值返回\"true\"或\"false\"。\n  func FormatInt(i int64, base int) string\n返回i的base进制的字符串表示。base 必须在2到36之间，结果中会使用小写字母’a’到’z’表示大于10的数字。\n  func FormatUint(i uint64, base int) string\n是FormatInt的无符号整数版本。\n  func FormatFloat(f float64, fmt byte, prec, bitSize int) string\n函数将浮点数表示为字符串并返回。\nbitSize表示f的来源类型（32：float32、64：float64），会据此进行舍入。\nfmt表示格式：‘f’（-ddd.dddd）、‘b’（-ddddp±ddd，指数为二进制）、‘e’（-d.dddde±dd，十进制指数）、‘E’（-d.ddddE±dd，十进制指数）、‘g’（指数很大时用’e’格式，否则’f’格式）、‘G’（指数很大时用’E’格式，否则’f’格式）。\nprec控制精度（排除指数部分）：对’f'、‘e’、‘E’，它表示小数点后的数字个数；对’g'、‘G’，它控制总的数字个数。如果prec 为-1，则代表使用最少数量的、但又必需的数字来表示f。\n  func Itoa(i int) string\nItoa是FormatInt(i, 10) 的简写。\n    说明:strconv包实现了基本数据类型和其字符串表示的相互转换。\n  使用:\n  代码:\n// 使用第二种方式来转换，strconv下的包 var num3 int = 99 var num4 float64 = 23.456 var b2 bool = true str = strconv.FormatInt(int64(num3), 10) fmt.Printf(\"str type %T str = %q\\n\", str, str) // strconv.FormatFloat(num4, 'f', 10, 64) // 说明: 'f'格式 10: 表示小数位保留10位 64：表示这个小数是float64 str = strconv.FormatFloat(num4, 'f', 10, 64) fmt.Printf(\"str type %T str = %q\\n\", str, str) str = strconv.FormatBool(b2) fmt.Printf(\"str type %T str = %q\\n\", str, str) num5 := 4567 str = strconv.Itoa(num5) fmt.Printf(\"str type %T str = %q\\n\", str, str) 输出:\nstr type string str = \"99\" str type string str = \"23.4560000000\" str type string str = \"true\" str type string str = \"4567\"     string类型转基本数据类型   使用strconv包的函数\n  声明:\n  func ParseBool(str string) (value bool, err error)\n返回字符串表示的bool值。它接受1、0、t、f、T、F、true、false、True、False、TRUE、FALSE；否则返回错误。\n  func ParseInt(s string, base int, bitSize int) (i int64, err error)\n返回字符串表示的整数值，接受正负号。\nbase指定进制（2到36），如果base为0，则会从字符串前置判断，“0x\"是16进制，“0\"是8进制，否则是10进制；\nbitSize指定结果必须能无溢出赋值的整数类型，0、8、16、32、64 分别代表 int、int8、int16、int32、int64；返回的err是*NumErr类型的，如果语法有误，err.Error = ErrSyntax；如果结果超出类型范围err.Error = ErrRange。\n  func ParseUint(s string, base int, bitSize int) (n uint64, err error)\nParseUint类似ParseInt但不接受正负号，用于无符号整型。\n  func ParseFloat(s string, bitSize int) (f float64, err error)\n解析一个表示浮点数的字符串并返回其值。\n如果s合乎语法规则，函数会返回最为接近s表示值的一个浮点数（使用IEEE754规范舍入）。bitSize指定了期望的接收类型，32是float32（返回值可以不改变精确值的赋值给float32），64是float64；返回值err是*NumErr类型的，语法有误的，err.Error=ErrSyntax；结果超出表示范围的，返回值f为±Inf，err.Error= ErrRange。\n  func Atoi(s string) (i int, err error)\nAtoi是ParseInt(s, 10, 0)的简写。\n    说明:strconv包实现了基本数据类型和其字符串表示的相互转换。\n  使用\n代码:\npackage main import ( \"fmt\" \"strconv\" ) // 演示golang中string转基本数据类型 func main() { var str string = \"true\" var b bool //b, _ = strconv.ParseBool(str) \t//说明 \t//1.strconv.ParseBool(str)函数会返回两个值(value bool, err error) \t//2.若只需要value bool，可使用'_'忽略err \tb, _ = strconv.ParseBool(str) fmt.Printf(\"b type %T b = %v\\n\", b, b) str = \"123\" var n1 int n1, _ = strconv.Atoi(str) fmt.Printf(\"n1 type %T n1 = %v\\n\", n1, n1) str = \"123.456\" var f1 float64 f1, _ = strconv.ParseFloat(str, 64) fmt.Printf(\"f1 type %T f1 = %v\\n\", f1, f1) } 输出\nb type bool b = true n1 type int n1 = 123 f1 type float64 f1 = 123.456   注意:\n  转换时需要注意字符串的有效性,若强转会转成对应类型的默认值\n代码\n//转换时需要注意字符串的有效性 str = \"hello\" n1, _ = strconv.ParseInt(str, 10, 0) fmt.Printf(\"n1 type %T n1 = %v\\n\", n1, n1) 输出\nn1 type int64 n1 = 0         ",
-  "wordCount" : "1356",
+  "articleBody": "Go变量【Go学习之路】 概念  变量是程序的基本组成单位，变量相当于内存中一个数据存储空间的表示，可以将变量看作是一个房间的门牌号，通过门牌号可以找到房间并取出房间里的东西，同样的道理，通过变量名可以访问到变量的值\n 变量使用的基本步骤   声明变量（定义变量）\n基本语法：var 变量名 数据类型\nvar a int 这就是声明了一个变量，变量名是a\nvar num1 float32 这也声明了一个变量，表示一个单精度类型的小数，变量名是num1\n  赋值\n  使用\n  变量使用案例 代码：\npackage main import \"fmt\" func main() { // 定义变量/声明变量 \tvar i int // 给i赋值 \ti = 10 // 使用变量 \tfmt.Println(\"i =\", i) } 输出：\nPS G:\\goproject\\src\\go_code\\chapter03\\demo01 go run .\\main.go i = 10 变量使用的注意事项   变量表示内存中的一个存储空间\n  该区域有自己的名称（变量名）和类型（数据类型）\n  Golang变量使用的三种方式\n  第一种：指定变量类型，声明后若不赋值，使用默认值\n// golang的变量使用方式1 // 第一种：指定变量类型，声明后若不赋值，使用默认值 // int默认值为0 var i int fmt.Println(\"i =\", i)   第二种：根据值自行判定变量类型(类型推导)\n// 第二种：根据值自行判定变量类型(类型推导) var num = 10.11 fmt.Println(\"num =\", num)   第三种：省略var，注意:=左侧的变量不应该是已经声明过的，否则会导致编译错误\n// 第三种：省略var，注意:=左侧的变量不应该是已经声明过的，否则会导致编译错误 // 下面的方式等价var name string; name = \"tom\" // \":=\"的\":\"不能省略，否则报错 name := \"tom\" fmt.Println(\"name =\", name)     多变量声明\n在编程中，有时我们需要一次性声明多个变量，Golang也提供这样的语法\npackage main import \"fmt\" func main() { // 该案例演示golang如何一次性声明多个变量 \t// var n1, n2, n3 int \t// fmt.Println(\"n1 =\", n1, \"n2 =\", n2, \"n3 =\", n3)  // 一次性声明多个变量的方式2 \t// var n1, name, n3 = 100, \"tom\", 888 \t// fmt.Println(\"n1 =\", n1, \"name =\", name, \"n3 =\", n3)  // 一次性声明多个变量的方式3 \tn1, name, n3 := 100, \"tom\", 888 fmt.Println(\"n1 =\", n1, \"name =\", name, \"n3 =\", n3) } 如何一次性声明多个全局变量\n// 定义全局变量 var n1 = 100 var n2 = 200 var name = \"jack\" // 上面的声明方式，也可以改成一次性声明 var ( n3 = 300 n4 = 900 name2 = \"mary\" )   该区域的数据值可以在同一类型范围内不断变化\npackage main import \"fmt\" // 变量使用的注意事项 func main() { // 该区域的数据值可以在同一类型范围内不断变化 \tvar i int = 10 i = 30 fmt.Println(\"i =\", i) i = 1.2 //int, 原因是不能改变数据类型 }   变量在同一个作用域(函数或代码块)不能重名\n// 变量在同一个作用域(函数或代码块)不能重名 // var i int = 50 i := 99   变量 = 变量名 + 值 + 数据类型\n  Golang的变量如果没有赋初值，编译器会使用默认值，比如int默认值0，string默认值为空，小数默认值为0\n  变量的数据类型 graph LR; A[\"数据类型\"]--B[\"基本数据类型\"]; A--C[\"派生/复杂数据类型\"]; B--D[\"数值型\"]; D--P[\"整数类型(int, int8, int32, int64，uint, uint8, uint16, uint64, byte), rune(int32的别名,用unicode码值存放)\"]; D--Q[\"*浮点类型(float32, float64)\"]; D--R[\"复数类型(complex)\"] B--E[\"字符型(没有专门的字符型，使用byte来保存\n单个字母字符，无法存储汉字，使用的是utf-8编码)\"]; B--F[\"布尔型(bool)\"]; B--G[\"字符串(string)[官方将string归属到基本数据类型]\"]; C--H[\"指针(Pointer)\"]; C--I[\"数组\"]; C--J[\"结构体(struct)\"]; C--K[\"管道(Channel)\"]; C--L[\"函数(也是一种类型)\"]; C--M[\"切片(slice)\"]; C--N[\"接口(interface)\"]; C--O[\"map\"]; 整数型   类型：\n   类型 有无符号 占用存储空间 表数范围 备注     int8 有 1字节 -128~127 类似于java中的byte   int16 有 2字节 -2^15~2^15-1 类似于java中的short   int32 有 4字节 -2^31~2^31-1 类似于java中的int   int64 有 8字节 -2^63~2^63-1 类似于java中的long   uint8 无 1字节 0~255    uint16 无 2字节 0~2^16-1    uint32 无 4字节 0~2^32-1    uint64 无 8字节 0~2^64-1    int 有 32位系统4个字节，64位系统8个字节 -2^31~2^31-1\n-2^63~2^63-1    uint 有 32位系统4个字节，64位系统8个字节 0~2^32-10~2^64-1    rune 有 与int8等价 -2^31~2^31-1 等价int32，表示一个unicode码   byte 无 与uint8等价 0~255 当要存储字符时选用byte      使用\npackage main import \"fmt\" // 演示golang中整数类型的使用 func main() { var i int = 1 fmt.Println(\"i =\", i) //测试一下int8的范围 -128~127 \t//其他的 int16. int32, int64以此类推 \tvar j int8 = 127 fmt.Println(\"j =\", j) //测试一下uint8的范围(0~255)，其他uint16，uint32，uint64以此类推 \tvar k uint8 = 255 fmt.Println(\"k =\", k) }   注意：Golang程序中整型变量在使用时，遵守保小不保大的原则，即：在保证程序正确运行下，尽量使用占用空间小的数据类型。【如：年龄】\n  浮点型   类型\n   类型 占用存储空间 表数范围     单精度 4字节 -3.403E38~3.403E38   双精度 8字节 -1.798E308~1.798308      使用\n代码：\npackage main import ( \"fmt\" ) // 演示golang中小数类型的使用 func main() { var price float32 = 89.123 fmt.Println(\"price =\", price) var num1 float32 = -0.00089 var num2 float64 = -7809656.09 fmt.Println(\"num1 =\", num1, \"num2 =\", num2) } 输出\nprice = 89.123 num1 = -0.00089 num2 = -7.80965609e+06   注意：\n  Golang的浮点类型在存储的时候与其他语言类似，采用的是IEEE754浮点数表示的方式，符号位 + 指数位 + 尾数位 = 浮点数，所以在使用的时候容易出现精度丢失的问题\n代码：\n// 精度丢失 f1 := 1129.6 fmt.Println(f1 * 100) 输出：\n112959.99999999999   Golang的浮点型默认声明为float64类型\n代码：\nvar num5 = 0.1 fmt.Printf(\"num5 的数据类型为%T\\n\", num5) 输出：\nnum5 的数据类型为float64   浮点型常量有两种表示形式\n  十进制数形式：如：5.12 .512，必须有小数点\\\n代码：\n// 十进制数形式：如：5.12\t.512(必须有小数点) num6 := 5.12 num7 := .512 fmt.Println(\"num6 =\", num6, \"num7 =\", num7) 输出：\nnum6 = 5.12 num7 = 0.512   科学计数法：如5.1234e2 = 5.12 * 10 的2次方 5.12E-2=5.12/10的2次方\n代码：\n//科学计数法形式 num8 := 5.1234e2 //5.1234*10^2 num9 := 5.1234e2 //5.1234*10^2 num10 := 5.1234e-2 //5.1234*10^-2 fmt.Println(\"num8 =\", num8, \"num9 =\", num9, \"num10 =\", num10) 输出：\nnum8 = 512.34 num9 = 512.34 num10 = 0.051234     通常情况，使用float64，因为精确度更高\n    字符型  Golang没有专门的字符类型，如果要存储单个字符，一般使用byte来保存\n   类型\n   类型 占用存储空间 编码方式     byte 英文字母占用1个字节，汉字占用3个字节 UTF-8      使用\n代码：\npackage main import ( \"fmt\" ) // 演示golang中字符类型的使用 func main() { var c1 byte = 'a' var c2 byte = '0' //字符的0  // 当我们直接输出byte，就是输出对应的ascii码值 \tfmt.Println(\"c1 =\", c1) fmt.Println(\"c2 =\", c2) // 如果我们希望输出对应的字符，需要使用格式化输出 \tfmt.Printf(\"c1=%c c2=%c\\n\", c1, c2) // var c3 byte = '北' //overflow溢出 \tvar c3 int = '北' //overflow溢出 \tfmt.Printf(\"c3 = %c\\n\", c3) // 可以直接给某个变量赋一个数字，然后格式化输出。输出对应的unicode字符 \tvar c4 int = 22269 fmt.Printf(\"c4 = %c\\n\", c4) // 字符类型是可以进行运算的，相当于一个整数，运算时是按照码值运行 \tvar n1 = 10 + 'a' fmt.Println(\"n1 =\", n1) } 输出：\nc1 = 97 c2 = 48 c1=a c2=0 c3 = 北 c4 = 国 n1 = 107   布尔型   类型\n   类型 占用存储空间 取值     bool 1个字节 true|false      使用\n代码：\npackage main import ( \"fmt\" \"unsafe\" ) // 演示golang中布尔型的使用 func main() { var b = false fmt.Println(\"b =\", b) // 注意事项 \t// 1.bool类型占用存储空间是一个字节 \tfmt.Println(\"bool 占用的空间为\", unsafe.Sizeof(b)) } 输出：\nb = false bool 占用的空间为 1   说明：特别注意，bool类型和c++不一样，bool只能取true和false，不能取0或1\n  字符串  字符串是由固定长度的字符连接起来的字符序列\n   使用\n代码：\npackage main import ( \"fmt\" ) // 演示golang中string的使用 func main() { //string的基本舒勇 \tvar address string = \"北京长城 110 hello world!\" fmt.Println(\"address =\", address) } 输出\naddress = 北京长城   说明\n  Go的字符串是由单个字节连接起来的。使用UTF-8编码标识Unicode文本（Golang统一使用UTF-8编码，不容易出现中文乱码问题）\n  字符串一旦赋值了，字符串就不能修改了，在Go中字符串是不可变的\n代码：\nvar str = \"hello\" str[0] = 'a' //这里就不能去修改str的内容，cannot assign to str[0] 输出:\ncannot assign to str[0]   字符串的两种表示形式\n 双引号(\"\"): 会识别转义字符 反引号(``)：以字符串的原生形式输出  代码：\nstr1 := \"\\n\\n123\\n\" str2 := `\\n\\n123\\n` str3 := `   HTML  ` fmt.Println(\"str1 =\", str1) fmt.Println(\"str2 =\", str2) fmt.Println(\"str3 =\", str3) 输出\nstr1 = 123 str2 = \\n\\n123\\n str3 =   HTML     当拼接长度过长时，可换行，但是加号要留在上一行末尾\n代码：\nstr5 := \"hello \" + \"world \" + \"haha!\" fmt.Println(\"str5 =\", str5) 示例：\nstr5 = hello world haha!     基本数据类型的默认值  在Go中，数据类型都有一个默认值，当程序员没有赋值时，会保留默认值，在Go中，默认值又叫零值\n    数据类型 默认值     整型 0   浮点型 0   字符串 \"\"   布尔类型 false    基本数据类型的转换  Golang和Java/C不同，在不同类型转换时需显式转换。也就是说不能进行自动转换\n   基本语法\n 表达式T(v)将值v转换为类型T  T: 数据类型, 比如int32,int64,float32等等 v:就是需要转换的变量      基本使用\n代码:\npackage main import \"fmt\" // 演示golang中基本类型的转换 func main() { var i int = 1000 // 希望将i = float \tvar n1 float32 = float32(i) var n2 int8 = int8(i) var n3 int64 = int64(i) //低精度 - 高精度 \tfmt.Printf(\"i的类型为%T，值为 %v, n1的类型为%T，值为 %v\\n\", i, i, n1, n1) fmt.Printf(\"i的类型为%T，值为 %v, n2的类型为%T，值为 %v\\n\", i, i, n2, n2) fmt.Printf(\"i的类型为%T，值为 %v, n3的类型为%T，值为 %v\\n\", i, i, n3, n3) } 输出:\ni的类型为int，值为 1000, n1的类型为float32，值为 1000 i的类型为int，值为 1000, n2的类型为int8，值为 -24 i的类型为int，值为 1000, n3的类型为int64，值为 1000   细节说明\n Go中, 数据类型转换既可以从低精度到高精度,也可以从高精度到低精度(通常不会闲着没事这么干,容易出现溢出问题)    基本数据类型和string类型转换 基本数据类型转string类型   fmt.Sprintf(\"%参数\", 表达式)(强推)\n  声明:\nfunc Sprintf(format string, a ...interface{}) string   说明:Sprintf根据format参数生成格式化的字符串并返回该字符串。\n  使用: 代码:\nvar num1 int = 99 var num2 float64 = 23.456 var b bool = true var myChar byte = 'h' var str string = \"\" // 使用第一种方式来转换，fmt.Sprintf方法 str = fmt.Sprintf(\"%d\", num1) fmt.Printf(\"str type %T str = %q\\n\", str, str) str = fmt.Sprintf(\"%f\", num2) fmt.Printf(\"str type %T str = %q\\n\", str, str) str = fmt.Sprintf(\"%t\", b) fmt.Printf(\"str type %T str = %q\\n\", str, str) str = fmt.Sprintf(\"%c\", myChar) fmt.Printf(\"str type %T str = %q\\n\", str, str) 输出:\nstr type string str = \"99\" str type string str = \"23.456000\" str type string str = \"true\" str type string str = \"h\"     strconv包下的函数\n  声明:\n  func FormatBool(b bool) string\n根据b的值返回\"true\"或\"false\"。\n  func FormatInt(i int64, base int) string\n返回i的base进制的字符串表示。base 必须在2到36之间，结果中会使用小写字母’a’到’z’表示大于10的数字。\n  func FormatUint(i uint64, base int) string\n是FormatInt的无符号整数版本。\n  func FormatFloat(f float64, fmt byte, prec, bitSize int) string\n函数将浮点数表示为字符串并返回。\nbitSize表示f的来源类型（32：float32、64：float64），会据此进行舍入。\nfmt表示格式：‘f’（-ddd.dddd）、‘b’（-ddddp±ddd，指数为二进制）、‘e’（-d.dddde±dd，十进制指数）、‘E’（-d.ddddE±dd，十进制指数）、‘g’（指数很大时用’e’格式，否则’f’格式）、‘G’（指数很大时用’E’格式，否则’f’格式）。\nprec控制精度（排除指数部分）：对’f'、‘e’、‘E’，它表示小数点后的数字个数；对’g'、‘G’，它控制总的数字个数。如果prec 为-1，则代表使用最少数量的、但又必需的数字来表示f。\n  func Itoa(i int) string\nItoa是FormatInt(i, 10) 的简写。\n    说明:strconv包实现了基本数据类型和其字符串表示的相互转换。\n  使用:\n  代码:\n// 使用第二种方式来转换，strconv下的包 var num3 int = 99 var num4 float64 = 23.456 var b2 bool = true str = strconv.FormatInt(int64(num3), 10) fmt.Printf(\"str type %T str = %q\\n\", str, str) // strconv.FormatFloat(num4, 'f', 10, 64) // 说明: 'f'格式 10: 表示小数位保留10位 64：表示这个小数是float64 str = strconv.FormatFloat(num4, 'f', 10, 64) fmt.Printf(\"str type %T str = %q\\n\", str, str) str = strconv.FormatBool(b2) fmt.Printf(\"str type %T str = %q\\n\", str, str) num5 := 4567 str = strconv.Itoa(num5) fmt.Printf(\"str type %T str = %q\\n\", str, str) 输出:\nstr type string str = \"99\" str type string str = \"23.4560000000\" str type string str = \"true\" str type string str = \"4567\"     string类型转基本数据类型   使用strconv包的函数\n  声明:\n  func ParseBool(str string) (value bool, err error)\n返回字符串表示的bool值。它接受1、0、t、f、T、F、true、false、True、False、TRUE、FALSE；否则返回错误。\n  func ParseInt(s string, base int, bitSize int) (i int64, err error)\n返回字符串表示的整数值，接受正负号。\nbase指定进制（2到36），如果base为0，则会从字符串前置判断，“0x\"是16进制，“0\"是8进制，否则是10进制；\nbitSize指定结果必须能无溢出赋值的整数类型，0、8、16、32、64 分别代表 int、int8、int16、int32、int64；返回的err是*NumErr类型的，如果语法有误，err.Error = ErrSyntax；如果结果超出类型范围err.Error = ErrRange。\n  func ParseUint(s string, base int, bitSize int) (n uint64, err error)\nParseUint类似ParseInt但不接受正负号，用于无符号整型。\n  func ParseFloat(s string, bitSize int) (f float64, err error)\n解析一个表示浮点数的字符串并返回其值。\n如果s合乎语法规则，函数会返回最为接近s表示值的一个浮点数（使用IEEE754规范舍入）。bitSize指定了期望的接收类型，32是float32（返回值可以不改变精确值的赋值给float32），64是float64；返回值err是*NumErr类型的，语法有误的，err.Error=ErrSyntax；结果超出表示范围的，返回值f为±Inf，err.Error= ErrRange。\n  func Atoi(s string) (i int, err error)\nAtoi是ParseInt(s, 10, 0)的简写。\n    说明:strconv包实现了基本数据类型和其字符串表示的相互转换。\n  使用\n代码:\npackage main import ( \"fmt\" \"strconv\" ) // 演示golang中string转基本数据类型 func main() { var str string = \"true\" var b bool //b, _ = strconv.ParseBool(str) \t//说明 \t//1.strconv.ParseBool(str)函数会返回两个值(value bool, err error) \t//2.若只需要value bool，可使用'_'忽略err \tb, _ = strconv.ParseBool(str) fmt.Printf(\"b type %T b = %v\\n\", b, b) str = \"123\" var n1 int n1, _ = strconv.Atoi(str) fmt.Printf(\"n1 type %T n1 = %v\\n\", n1, n1) str = \"123.456\" var f1 float64 f1, _ = strconv.ParseFloat(str, 64) fmt.Printf(\"f1 type %T f1 = %v\\n\", f1, f1) } 输出\nb type bool b = true n1 type int n1 = 123 f1 type float64 f1 = 123.456   注意:\n  转换时需要注意字符串的有效性,若强转会转成对应类型的默认值\n代码\n//转换时需要注意字符串的有效性 str = \"hello\" n1, _ = strconv.ParseInt(str, 10, 0) fmt.Printf(\"n1 type %T n1 = %v\\n\", n1, n1) 输出\nn1 type int64 n1 = 0         引用数据类型  基本数据类型存储的数据是值类型的\n 指针(简要概述)  指针即指向基本数据类型变量的地址\n   获取变量的地址，用”\u0026“符号\n  指针类型，指针变量存的是一个地址，这个地址指向的空间才是值\n比如：var ptr *int = \u0026num\n  获取指针类型所指向的值，使用：*，比如var ptr *int, 使用*ptr获取指向的值\n  使用示例：\n代码：\npackage main import \"fmt\" // 演示golang中指针类型 func main() { // 基本数据类的内存布局 \tvar i int = 10 // i 的地址是什么 \tfmt.Println(\"i的地址=\", \u0026i) // 下面var ptr*int = \u0026i \t// 1. ptr 是一个指针变量 \t// 2. ptr 的类型 *int \t// 3. ptr 本身的值\u0026i \tvar ptr *int = \u0026i fmt.Printf(\"ptr=%v\\n\", ptr) fmt.Printf(\"ptr的地址=%v\\n\", \u0026ptr) fmt.Printf(\"ptr指向的值=%v\\n\", *ptr) } 输出：\ni的地址= 0xc0000160c0 ptr=0xc0000160c0 ptr的地址=0xc000006030 ptr指向的值=10   值类型和引用数据类型的特点 值类型  变量直接存储值，内存通常在栈中分配（特殊情况：逃逸分析）\n   值类型都有对应的指针类型，形式为*数据类型，比如int的对应的指针就是*int, float32对应的指针类型就是 *float，以此类推。\n  值类型包括：基本数据类型int系列，float系列，bool，string，数组和结构体struct\n  引用数据类型  变量存储的是一个地址，这个地址对应的空间才是真正存储数据(值)，内存通常在堆上分配（特殊情况：逃逸分析），当没有任何变量引用这个地址时，该地址对应的数据空间就成为一个垃圾，由GC来回收。\n Go标识符  对各种变量、方法、函数等命名时使用的字符序列成为标识符，也就是说凡是可以起名字的地方都叫标识符\n 命名规则   由26个英文字母大小写，0-9，\"_“组成\n  数字不可以开头\n  Golang中严格区分大小写\nvar num int = 10 var Num int = 20 fmt.Printf(\"num=%v, Num=%v\", num, Num)//num=10, Num=20   标识符不能包含空格\n//标识符不能包含空格 var ab c int = 30//expected ';', found intsyntax   下划线”_“本身在Go中是一个特殊的标识符，称为空标识符。可以代表任何其他的标识符，但是它对应的值会被忽略（比如，返回某个返回值）、所以仅能被作为占位符使用，不能作为标识符使用\n// _ 是空标识符，用于占用 var _ int = 40 // fmt.Println(_)// cannot use _ as value or typecompiler   不能以系统保留关键字作为标识符(25个)，比如break，if等等…\n  注意事项  包名：保持package的名字和目录保持一致，尽量采取由意义的包名，简短，有意义，不要和标准库冲突 变量名、函数名、常量名：采用驼峰法 如果变量名、函数名、常量名首字母大写，则可以被其他的包访问：如果首字母小写，则只在本包中使用（注：可以简单理解为首字母大写是公有的，首字母小写是私有的）  系统保留关键字  在Go中，为了简化代码编译过程对代码的解析，其定义的保留关键字只有25个\n    break default func interface select     case defer go map struct   chan else goto package switch   const fallthrough if range type   continue for import return var    预定义标识符  除了保留关键字外，Go还提供了36个预定的标识符，其包括基础数据类型和系统内嵌函数\n    append bool byte cap close complex     complex64 complex128 uint16 copy false float32   float64 imag int int8 int16 uint32   int32 int64 iota len make new   nil panic uint64 print println real   recover string true uint uint8 uintprt    ",
+  "wordCount" : "1559",
   "inLanguage": "en",
   "image":"https://cdn.rexweb.xyz/img/20211213103407.jpg","datePublished": "2021-12-14T00:00:00Z",
   "dateModified": "2021-12-14T00:00:00Z",
@@ -206,7 +206,7 @@
     <div class="post-description">
       Go学习之路
     </div>
-    <div class="post-meta">2021-12-14&nbsp;·&nbsp;7 min&nbsp;·&nbsp;Rex&nbsp;|&nbsp;<a href="https://github.com/Rex0520/Rex0520.github.io" rel="noopener noreferrer" target="_blank">来这修改</a>
+    <div class="post-meta">2021-12-14&nbsp;·&nbsp;8 min&nbsp;·&nbsp;Rex&nbsp;|&nbsp;<a href="https://github.com/Rex0520/Rex0520.github.io" rel="noopener noreferrer" target="_blank">来这修改</a>
 </div>
   </header> 
 <figure class="entry-cover"><img loading="lazy" src="https://cdn.rexweb.xyz/img/20211213103407.jpg" alt="">
@@ -254,7 +254,33 @@
                     <a href="#%e5%9f%ba%e6%9c%ac%e6%95%b0%e6%8d%ae%e7%b1%bb%e5%9e%8b%e8%bd%acstring%e7%b1%bb%e5%9e%8b" aria-label="基本数据类型转string类型">基本数据类型转string类型</a></li></ul>
                 </li>
                 <li>
-                    <a href="#string%e7%b1%bb%e5%9e%8b%e8%bd%ac%e5%9f%ba%e6%9c%ac%e6%95%b0%e6%8d%ae%e7%b1%bb%e5%9e%8b" aria-label="string类型转基本数据类型">string类型转基本数据类型</a>
+                    <a href="#string%e7%b1%bb%e5%9e%8b%e8%bd%ac%e5%9f%ba%e6%9c%ac%e6%95%b0%e6%8d%ae%e7%b1%bb%e5%9e%8b" aria-label="string类型转基本数据类型">string类型转基本数据类型</a></li>
+                <li>
+                    <a href="#%e5%bc%95%e7%94%a8%e6%95%b0%e6%8d%ae%e7%b1%bb%e5%9e%8b" aria-label="引用数据类型">引用数据类型</a><ul>
+                        
+                <li>
+                    <a href="#%e6%8c%87%e9%92%88%e7%ae%80%e8%a6%81%e6%a6%82%e8%bf%b0" aria-label="指针(简要概述)">指针(简要概述)</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e5%80%bc%e7%b1%bb%e5%9e%8b%e5%92%8c%e5%bc%95%e7%94%a8%e6%95%b0%e6%8d%ae%e7%b1%bb%e5%9e%8b%e7%9a%84%e7%89%b9%e7%82%b9" aria-label="值类型和引用数据类型的特点">值类型和引用数据类型的特点</a><ul>
+                        
+                <li>
+                    <a href="#%e5%80%bc%e7%b1%bb%e5%9e%8b" aria-label="值类型">值类型</a></li>
+                <li>
+                    <a href="#%e5%bc%95%e7%94%a8%e6%95%b0%e6%8d%ae%e7%b1%bb%e5%9e%8b-1" aria-label="引用数据类型">引用数据类型</a></li></ul>
+                </li>
+                <li>
+                    <a href="#go%e6%a0%87%e8%af%86%e7%ac%a6" aria-label="Go标识符">Go标识符</a><ul>
+                        
+                <li>
+                    <a href="#%e5%91%bd%e5%90%8d%e8%a7%84%e5%88%99" aria-label="命名规则">命名规则</a></li>
+                <li>
+                    <a href="#%e6%b3%a8%e6%84%8f%e4%ba%8b%e9%a1%b9" aria-label="注意事项">注意事项</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e7%b3%bb%e7%bb%9f%e4%bf%9d%e7%95%99%e5%85%b3%e9%94%ae%e5%ad%97" aria-label="系统保留关键字">系统保留关键字</a></li>
+                <li>
+                    <a href="#%e9%a2%84%e5%ae%9a%e4%b9%89%e6%a0%87%e8%af%86%e7%ac%a6" aria-label="预定义标识符">预定义标识符</a>
                 </li>
             </ul>
             </li>
@@ -1117,6 +1143,214 @@ f1 type float64 f1 = 123.456
 </ol>
 </li>
 </ol>
+<h2 id="引用数据类型">引用数据类型<a hidden class="anchor" aria-hidden="true" href="#引用数据类型">#</a></h2>
+<blockquote>
+<p>基本数据类型存储的数据是值类型的</p>
+</blockquote>
+<h3 id="指针简要概述">指针(简要概述)<a hidden class="anchor" aria-hidden="true" href="#指针简要概述">#</a></h3>
+<blockquote>
+<p>指针即指向基本数据类型变量的地址</p>
+</blockquote>
+<ul>
+<li>
+<p>获取变量的地址，用&rdquo;&amp;&ldquo;符号</p>
+</li>
+<li>
+<p>指针类型，指针变量存的是一个地址，这个地址指向的空间才是值</p>
+<p>比如：var ptr *int = &amp;num</p>
+</li>
+<li>
+<p>获取指针类型所指向的值，使用：<code>*</code>，比如var ptr <code>*</code>int, 使用<code>*</code>ptr获取指向的值</p>
+</li>
+<li>
+<p>使用示例：</p>
+<p>代码：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="s">&#34;fmt&#34;</span>
+
+<span class="c1">// 演示golang中指针类型
+</span><span class="c1"></span><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+	<span class="c1">// 基本数据类的内存布局
+</span><span class="c1"></span>	<span class="kd">var</span> <span class="nx">i</span> <span class="kt">int</span> <span class="p">=</span> <span class="mi">10</span>
+	<span class="c1">// i 的地址是什么
+</span><span class="c1"></span>	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;i的地址=&#34;</span><span class="p">,</span> <span class="o">&amp;</span><span class="nx">i</span><span class="p">)</span>
+
+	<span class="c1">// 下面var ptr*int = &amp;i
+</span><span class="c1"></span>	<span class="c1">// 1. ptr 是一个指针变量
+</span><span class="c1"></span>	<span class="c1">// 2. ptr 的类型 *int
+</span><span class="c1"></span>	<span class="c1">// 3. ptr 本身的值&amp;i
+</span><span class="c1"></span>	<span class="kd">var</span> <span class="nx">ptr</span> <span class="o">*</span><span class="kt">int</span> <span class="p">=</span> <span class="o">&amp;</span><span class="nx">i</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;ptr=%v\n&#34;</span><span class="p">,</span> <span class="nx">ptr</span><span class="p">)</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;ptr的地址=%v\n&#34;</span><span class="p">,</span> <span class="o">&amp;</span><span class="nx">ptr</span><span class="p">)</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;ptr指向的值=%v\n&#34;</span><span class="p">,</span> <span class="o">*</span><span class="nx">ptr</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div><p>输出：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">i的地址= 0xc0000160c0
+ptr=0xc0000160c0
+ptr的地址=0xc000006030
+ptr指向的值=10
+</code></pre></div></li>
+</ul>
+<h2 id="值类型和引用数据类型的特点">值类型和引用数据类型的特点<a hidden class="anchor" aria-hidden="true" href="#值类型和引用数据类型的特点">#</a></h2>
+<h3 id="值类型">值类型<a hidden class="anchor" aria-hidden="true" href="#值类型">#</a></h3>
+<blockquote>
+<p>变量直接存储值，内存通常在栈中分配（特殊情况：逃逸分析）</p>
+</blockquote>
+<ul>
+<li>
+<p>值类型都有对应的指针类型，形式为<code>*</code>数据类型，比如int的对应的指针就是*int, float32对应的指针类型就是 *float，以此类推。</p>
+</li>
+<li>
+<p>值类型包括：基本数据类型int系列，float系列，bool，string，数组和结构体struct</p>
+</li>
+</ul>
+<h3 id="引用数据类型-1">引用数据类型<a hidden class="anchor" aria-hidden="true" href="#引用数据类型-1">#</a></h3>
+<blockquote>
+<p>变量存储的是一个地址，这个地址对应的空间才是真正存储数据(值)，内存通常在堆上分配（特殊情况：逃逸分析），当没有任何变量引用这个地址时，该地址对应的数据空间就成为一个垃圾，由GC来回收。</p>
+</blockquote>
+<h2 id="go标识符">Go标识符<a hidden class="anchor" aria-hidden="true" href="#go标识符">#</a></h2>
+<blockquote>
+<p>对各种变量、方法、函数等命名时使用的字符序列成为标识符，也就是说凡是可以起名字的地方都叫标识符</p>
+</blockquote>
+<h3 id="命名规则">命名规则<a hidden class="anchor" aria-hidden="true" href="#命名规则">#</a></h3>
+<ol>
+<li>
+<p>由26个英文字母大小写，0-9，&quot;_&ldquo;组成</p>
+</li>
+<li>
+<p>数字不可以开头</p>
+</li>
+<li>
+<p>Golang中严格区分大小写</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">var</span> <span class="nx">num</span> <span class="kt">int</span> <span class="p">=</span> <span class="mi">10</span>
+<span class="kd">var</span> <span class="nx">Num</span> <span class="kt">int</span> <span class="p">=</span> <span class="mi">20</span>
+<span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;num=%v, Num=%v&#34;</span><span class="p">,</span> <span class="nx">num</span><span class="p">,</span> <span class="nx">Num</span><span class="p">)</span><span class="c1">//num=10, Num=20
+</span></code></pre></div></li>
+<li>
+<p>标识符不能包含空格</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="c1">//标识符不能包含空格
+</span><span class="c1"></span><span class="kd">var</span> <span class="nx">ab</span> <span class="nx">c</span> <span class="kt">int</span> <span class="p">=</span> <span class="mi">30</span><span class="c1">//expected &#39;;&#39;, found intsyntax
+</span></code></pre></div></li>
+<li>
+<p>下划线&rdquo;_&ldquo;本身在Go中是一个特殊的标识符，称为空标识符。可以代表任何其他的标识符，但是它对应的值会被忽略（比如，返回某个返回值）、所以仅能被作为占位符使用，不能作为标识符使用</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="c1">// _ 是空标识符，用于占用
+</span><span class="c1"></span><span class="kd">var</span> <span class="nx">_</span> <span class="kt">int</span> <span class="p">=</span> <span class="mi">40</span>
+<span class="c1">// fmt.Println(_)// cannot use _ as value or typecompiler
+</span></code></pre></div></li>
+<li>
+<p>不能以系统保留关键字作为标识符(25个)，比如break，if等等&hellip;</p>
+</li>
+</ol>
+<h3 id="注意事项">注意事项<a hidden class="anchor" aria-hidden="true" href="#注意事项">#</a></h3>
+<ul>
+<li>包名：保持package的名字和目录保持一致，尽量采取由意义的包名，简短，有意义，不要和标准库冲突</li>
+<li>变量名、函数名、常量名：采用驼峰法</li>
+<li>如果变量名、函数名、常量名首字母大写，则可以被其他的包访问：如果首字母小写，则只在本包中使用（注：可以简单理解为首字母大写是公有的，首字母小写是私有的）</li>
+</ul>
+<h2 id="系统保留关键字">系统保留关键字<a hidden class="anchor" aria-hidden="true" href="#系统保留关键字">#</a></h2>
+<blockquote>
+<p>在Go中，为了简化代码编译过程对代码的解析，其定义的保留关键字只有25个</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>break</th>
+<th>default</th>
+<th>func</th>
+<th>interface</th>
+<th>select</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>case</td>
+<td>defer</td>
+<td>go</td>
+<td>map</td>
+<td>struct</td>
+</tr>
+<tr>
+<td>chan</td>
+<td>else</td>
+<td>goto</td>
+<td>package</td>
+<td>switch</td>
+</tr>
+<tr>
+<td>const</td>
+<td>fallthrough</td>
+<td>if</td>
+<td>range</td>
+<td>type</td>
+</tr>
+<tr>
+<td>continue</td>
+<td>for</td>
+<td>import</td>
+<td>return</td>
+<td>var</td>
+</tr>
+</tbody>
+</table>
+<h2 id="预定义标识符">预定义标识符<a hidden class="anchor" aria-hidden="true" href="#预定义标识符">#</a></h2>
+<blockquote>
+<p>除了保留关键字外，Go还提供了36个预定的标识符，其包括基础数据类型和系统内嵌函数</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>append</th>
+<th>bool</th>
+<th>byte</th>
+<th>cap</th>
+<th>close</th>
+<th>complex</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>complex64</td>
+<td>complex128</td>
+<td>uint16</td>
+<td>copy</td>
+<td>false</td>
+<td>float32</td>
+</tr>
+<tr>
+<td>float64</td>
+<td>imag</td>
+<td>int</td>
+<td>int8</td>
+<td>int16</td>
+<td>uint32</td>
+</tr>
+<tr>
+<td>int32</td>
+<td>int64</td>
+<td>iota</td>
+<td>len</td>
+<td>make</td>
+<td>new</td>
+</tr>
+<tr>
+<td>nil</td>
+<td>panic</td>
+<td>uint64</td>
+<td>print</td>
+<td>println</td>
+<td>real</td>
+</tr>
+<tr>
+<td>recover</td>
+<td>string</td>
+<td>true</td>
+<td>uint</td>
+<td>uint8</td>
+<td>uintprt</td>
+</tr>
+</tbody>
+</table>
 
 
   </div>
