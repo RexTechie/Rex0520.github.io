@@ -161,6 +161,19 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>基于注解配置ioc容器
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>基于注解配置IoC容器 基于注解的优势  摆脱繁琐的XML形式的bean与依赖注入配置 基于“声明式”的原则，更适合轻量级的现代企业应用 让代码可读性变得更好，让研发人员拥有更好的开发体验  三类注解  组件类型注解-声明当前类的功能与职责 自动装配注解-根据属性特征自动注入对象 元数据注解-更细化的辅助IoC容器管理对象的 注解  组件类型注解： 四种组件类型注解    注解 说明     @Component 组件注解，通用注解，被该注解描述的类将被IoC容器管理并实例化   @Controller xA语义注解，说明当前类是MVC应用中的控制器类   @Service 语义注解，说明当前类是Service业务服务类   @Repository 语义注解，说明当前类用于业务持久层，通常描述对应Dao类    开启组件扫描： &lt;!--XML配置开启组件扫描，才能使用注解--&gt; &lt;context:component-scan base-package=&#34;com.imooc&#34;&gt; &lt;context:exclude-filter type=&#34;regex&#34; expression=&#34;com.imooc.exl.*&#34;&gt; &lt;/context:exclude-filter&gt; &lt;/context:component-scan&gt; 基于注解初始化IoC容器 ​	applicationContext.xml
+&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt; &lt;beans xmlns=&#34;http://www.springframework.org/schema/beans&#34; xmlns:xsi=&#34;http://www.w3.org/2001/XMLSchema-instance&#34; xmlns:context=&#34;http://www.springframework.org/schema/context&#34; xsi:schemaLocation=&#34;http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd&#34;&gt; &lt;!--在IoC容器初始化时自动扫描四种组件类型注解并完成实例化 @Repository @Service @Controller @Component --&gt; &lt;context:component-scan base-package=&#34;com....</p>
+  </section>
+  <footer class="entry-footer">2021-01-03&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Rex</footer>
+  <a class="entry-link" aria-label="post link to 基于注解配置ioc容器" href="https://rex0520.github.io/posts/back/java/framework/spring/%E5%9F%BA%E4%BA%8E%E6%B3%A8%E8%A7%A3%E9%85%8D%E7%BD%AEioc%E5%AE%B9%E5%99%A8/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>Reflect
     </h2>
   </header>

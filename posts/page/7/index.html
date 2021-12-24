@@ -161,6 +161,20 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>Lambda(java)
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>Lambda表达式 什么是Lambda表达式  JDK8开始支持Lambda表达式，用来让程序编写更优雅 利用Lambda可以更简洁的实现匿名内部类与函数声明与调用 基于Lambda提供stream流式处理极大简化对集合的操作  Lambda表达式语法格式： 说明： 代码示例：  MathOperation.java
+package com.imooc.lambda; /** * 四则运算接口 * @author CubeMonkey * @create 2020-10-23 17:39 */ @FunctionalInterface //通知编译器这是函数式接口，进行抽象方法检查 public interface MathOperation { public Float operate(Integer a, Integer b); } LambdaSample.java
+package com.imooc.lambda; /** * @author CubeMonkey * @create 2020-10-23 17:42 */ public class LambdaSample { public static void main(String[] args) { //1.标准的使用方式  //约束条件：Lambda表达式只能实现有且只有一个抽象方法的接口，Java称为&#34;函数式接口&#34;  MathOperation addition = (Integer a, Integer b)-&gt;{ System....</p>
+  </section>
+  <footer class="entry-footer">2021-03-09&nbsp;·&nbsp;4 min&nbsp;·&nbsp;Rex</footer>
+  <a class="entry-link" aria-label="post link to Lambda(java)" href="https://rex0520.github.io/posts/back/java/lambda/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>Maven基础
     </h2>
   </header>
@@ -210,19 +224,6 @@ package com.imooc.restful.controller; import org.springframework.stereotype.Cont
   </section>
   <footer class="entry-footer">2021-03-09&nbsp;·&nbsp;3 min&nbsp;·&nbsp;Rex</footer>
   <a class="entry-link" aria-label="post link to Restful开发风格" href="https://rex0520.github.io/posts/back/java/framework/springmvc/restful/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>SpringMVC基础
-    </h2>
-  </header>
-  <section class="entry-content">
-    <p>Spring MVC Spring MVC介绍 MVC是什么 Spring MVC  Spring MVC是Spring体系的轻量级WEB MVC框架 Spring MVC的核心Controller控制器，用于处理请求，产生响应 Spring MVC基于Spring IoC容器运行，所有对象被IoC管理  Spring 5.X版本变化  Spring 5.x最低要求JDK8与J2EE 7(Servlet 3.1/Tomcat 8.5&#43;) Spring 5.x支持JDK8/9,可以使用新特性 Spring 5.x最重要的新特性支持响应式编程  Spring MVC环境配置  Maven依赖spring-webmvc web.xml配置DispatcherServlet 配置applicationContext的mvc标记 开发Controller控制器  简单示例：  applicationContext.xml:
-&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt; &lt;beans xmlns=&#34;http://www.springframework.org/schema/beans&#34; xmlns:mvc=&#34;http://www.springframework.org/schema/mvc&#34; xmlns:context=&#34;http://www.springframework.org/schema/context&#34; xmlns:xsi=&#34;http://www.w3.org/2001/XMLSchema-instance&#34; xmlns:mv=&#34;http://www.springframework.org/schema/mvc&#34; xsi:schemaLocation=&#34;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd&#34;&gt; &lt;!-- context:component-scan 标签作用 在Spring IOC初始化过程中，自动创建并管理com.imooc.springmvc及子包 拥有以下注解的对象 @Repository @Service @Controller @Component --&gt; &lt;context:component-scan base-package=&#34;com.imooc.springmvc&#34;/&gt; &lt;!--启用Spring MVC的注解开发模式--&gt; &lt;mvc:annotation-driven/&gt; &lt;!...</p>
-  </section>
-  <footer class="entry-footer">2021-03-09&nbsp;·&nbsp;3 min&nbsp;·&nbsp;Rex</footer>
-  <a class="entry-link" aria-label="post link to SpringMVC基础" href="https://rex0520.github.io/posts/back/java/framework/springmvc/springmvc%E5%9F%BA%E7%A1%80/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

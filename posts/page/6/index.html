@@ -161,6 +161,23 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>HTML5
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>HTML5 TIP: 存在兼容性问题，基本上IE&#43;9以上版本的浏览器才支持
+语义化标签  &lt;head&gt;: 头部标签 &lt;nav&gt;: 导航标签 &lt;artivle&gt;: 内容标签 &lt;section&gt;: 定义文档某个区域 &lt;aside&gt;: 侧边栏标签 &lt;footer&gt;: 尾部标签  注意：
+ 这种语义化标准主要是针对搜索引擎的 这些新标签页面可以使用多次 在IE9中，需要把这些元素转换为块级元素 移动端更喜欢使用这些标签  多媒体标签   &lt;vedio&gt;
+   浏览器 MP4 Webm ogg     Internet Explore Yes No No   Chrome Yes Yes Yes   Firefox Yes
+从Firefox21版本开始
+Linux系统从Firefox30开始 Yes Yes   Safari Yes No No   Opera Yes Yes Yes    语法：...</p>
+  </section>
+  <footer class="entry-footer">2021-05-12&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Rex</footer>
+  <a class="entry-link" aria-label="post link to HTML5" href="https://rex0520.github.io/posts/front/html5/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>Vue进阶
     </h2>
   </header>
@@ -240,20 +257,6 @@ MVVM：Model，View，ViewModel
   </section>
   <footer class="entry-footer">2021-03-10&nbsp;·&nbsp;4 min&nbsp;·&nbsp;Rex</footer>
   <a class="entry-link" aria-label="post link to Vue基础" href="https://rex0520.github.io/posts/front/vue/vue%E5%9F%BA%E7%A1%80/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>Lambda(java)
-    </h2>
-  </header>
-  <section class="entry-content">
-    <p>Lambda表达式 什么是Lambda表达式  JDK8开始支持Lambda表达式，用来让程序编写更优雅 利用Lambda可以更简洁的实现匿名内部类与函数声明与调用 基于Lambda提供stream流式处理极大简化对集合的操作  Lambda表达式语法格式： 说明： 代码示例：  MathOperation.java
-package com.imooc.lambda; /** * 四则运算接口 * @author CubeMonkey * @create 2020-10-23 17:39 */ @FunctionalInterface //通知编译器这是函数式接口，进行抽象方法检查 public interface MathOperation { public Float operate(Integer a, Integer b); } LambdaSample.java
-package com.imooc.lambda; /** * @author CubeMonkey * @create 2020-10-23 17:42 */ public class LambdaSample { public static void main(String[] args) { //1.标准的使用方式  //约束条件：Lambda表达式只能实现有且只有一个抽象方法的接口，Java称为&#34;函数式接口&#34;  MathOperation addition = (Integer a, Integer b)-&gt;{ System....</p>
-  </section>
-  <footer class="entry-footer">2021-03-09&nbsp;·&nbsp;4 min&nbsp;·&nbsp;Rex</footer>
-  <a class="entry-link" aria-label="post link to Lambda(java)" href="https://rex0520.github.io/posts/back/java/lambda/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
