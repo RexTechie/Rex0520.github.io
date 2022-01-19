@@ -161,6 +161,19 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>Springjdbc
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>Spring JDBC与事务管理 Spring JDBC  Spring JDBC是Spring框架用于处理关系型数据库的模块 Spring JDBC对JDBC API进行封装，极大简化开发工作量 JdbcTemplate是Spring JDBC核心类，提供数据CRUD方法  Spring JDBC的使用步骤  Maven工程引入依赖spring-jdbc applicationContext.xml配置DataSource数据源 在Dao注入JdbcTemplate对象，实现数据CRUD  JdbcTemplate实现增删改查 Spring JDBC配置过程代码示例：  applicationContext.xml
+&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt; &lt;beans xmlns=&#34;http://www.springframework.org/schema/beans&#34; xmlns:xsi=&#34;http://www.w3.org/2001/XMLSchema-instance&#34; xmlns:context=&#34;http://www.springframework.org/schema/context&#34; xsi:schemaLocation=&#34; http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd&#34;&gt; &lt;!-- 数据源 --&gt; &lt;bean id=&#34;dataSource&#34; class=&#34;org.springframework.jdbc.datasource.DriverManagerDataSource&#34;&gt; &lt;property name=&#34;driverClassName&#34; value=&#34;com.mysql.cj.jdbc.Driver&#34;&gt;&lt;/property&gt; &lt;property name=&#34;url&#34; value=&#34;jdbc:mysql://localhost:3306/imooc?useSSL=false&amp;amp;useUnicode=true&amp;amp;characterEncoding=UTF-8&amp;amp;serverTimezone=Asia/Shanghai&amp;amp;allowPublicKeyRetrieval=true&#34;&gt;&lt;/property&gt; &lt;property name=&#34;username&#34; value=&#34;root&#34;&gt;&lt;/property&gt; &lt;property name=&#34;password&#34; value=&#34;root&#34;&gt;&lt;/property&gt; &lt;/bean&gt; &lt;!--JdbcTemplate提供CRUD的API--&gt; &lt;bean id=&#34;jdbcTemplate&#34; class=&#34;org.springframework.jdbc.core.JdbcTemplate&#34;&gt; &lt;property name=&#34;dataSource&#34; ref=&#34;dataSource&#34;&gt;&lt;/property&gt; &lt;/bean&gt; &lt;bean id=&#34;employeeDao&#34; class=&#34;com.imooc.spring.jdbc.dao.EmployeeDao&#34;&gt; &lt;!--为Dao注入JdbcTemplate对象--&gt; &lt;property name=&#34;jdbcTemplate&#34; ref=&#34;jdbcTemplate&#34;&gt;&lt;/property&gt; &lt;/bean&gt; &lt;/beans&gt; Employee....</p>
+  </section>
+  <footer class="entry-footer">2021-01-06&nbsp;·&nbsp;9 min&nbsp;·&nbsp;Rex</footer>
+  <a class="entry-link" aria-label="post link to Springjdbc" href="https://rex0520.github.io/posts/back/java/framework/spring/springjdbc/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>Spring框架概述
     </h2>
   </header>
@@ -213,18 +226,6 @@
   <footer class="entry-footer">2021-01-03&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Rex</footer>
   <a class="entry-link" aria-label="post link to Springtest与junit4整合" href="https://rex0520.github.io/posts/back/java/framework/spring/springtest%E4%B8%8Ejunit4%E6%95%B4%E5%90%88/"></a>
 </article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>基于javaconfig配置的ioc容器
-    </h2>
-  </header>
-  <section class="entry-content">
-    <p>基于Java Config配置的IoC容器 基于Java Config的优势  完全摆脱XML的束缚，使用独立Java类管理对象与依赖 注解配置相对分散，利用Java Config可对配置集中管理 可以在编译时进行依赖检查，不容易出错  Java Config核心注解    注解 说明     @Configuration 描述类，说明当前类是Java Config配置类，完全替代XML文件   @Bean 描述方法，方法返回对象将被IoC容器管理，beanId默认为方法名   @ImportResource 描述类，加载静态文件，可使用@Value注解获取   @CompoenentScan 描述类，同XML的context:component-scan标签    </p>
-  </section>
-  <footer class="entry-footer">2021-01-03&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Rex</footer>
-  <a class="entry-link" aria-label="post link to 基于javaconfig配置的ioc容器" href="https://rex0520.github.io/posts/back/java/framework/spring/%E5%9F%BA%E4%BA%8Ejavaconfig%E9%85%8D%E7%BD%AE%E7%9A%84ioc%E5%AE%B9%E5%99%A8/"></a>
-</article>
 <footer class="page-footer">
   <nav class="pagination">
     <a class="prev" href="https://rex0520.github.io/posts/page/8/">« Prev Page</a>
@@ -234,7 +235,7 @@
     </main>
     
 <footer class="footer">
-  <span>&copy; 2021 <a href="https://rex0520.github.io/">Rex</a></span>
+  <span>&copy; 2022 <a href="https://rex0520.github.io/">Rex</a></span>
   <span>
     Powered by
     <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &

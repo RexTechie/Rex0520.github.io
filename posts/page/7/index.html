@@ -161,6 +161,31 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>Vue基础
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>Vue基础 初始Vue 前端技术的发展   HTML：用于编写网页的结构
+  CSS：用于美化网页
+  JS：用于处理页面的交互效果
+  JQuery：JS的升级版，代码简洁，更高效的开发项目
+  Vue：采用虚拟DOM技术，代码更加简洁
+虚拟DOM技术
+ 和真实DOM结构类似的JS对象 可以提高浏览器的渲染速度    什么是Vue   一条基于构建用户界面的渐进式框架
+ 渐进式理解：Vue提供的一系列技术，可以渐渐的，一步一步的使用这个框架 框架理解：解决一类问题的解决方案，理解为工具    Vue的数据绑定基于MVVM设计思想
+MVVM：Model，View，ViewModel
+可以将模型数据与视图连接起来
+ 模型数据变化会影响视图 视图数据变化会影响模型    Vue的优势  轻量级：Vue简单、直接，所以Vue使用起来更加友好 数据绑定：数据驱动视图，视图也可以驱动数据 指令：指令绑定在元素上时，指令会给绑定的元素添加一些特殊的行为 插件：插件用于对Vue框架功能进行扩展  Vue、Angular和React的区别：  Angular相对Vue学习成本高，更复杂，性能稍差 React采用了特殊的JSX语法，Vue中推崇编写以*.vue后缀命名的文件格式  Vue开发基础上 1.Vue实例   说明
+  Vue实例：通过new关键字实例化Vue({})构造函数
+  实例化Vue时的参数内的属性，我们称之为选项：
+       选项 说明     data Vue实例数据对象   methods 定义Vue实例中的方法   component 定义子组件   computed 计算属性   filters 过滤器   el 唯一根元素   watch 监听数据变化    el唯一根标签：在创建Vue实例时，el表示唯一根标签，通过指定class或id选择器可用来将页面结构与Vue实例对象vm进行绑定。  el：element，元素 el选项表示：当前Vue实例绑定的页面怨怒是 绑定的这个元素，作为Vue实例在界面上的元素 el选项的值：“id或类选择器” 注意：Vue的数据只能在el绑定的元素内部使用   data初始数据：Vue实例的数据对象为data，Vue会将data的属性转换为getter、setter，从而让data的属性能够响应数据变化。  data：数据 data选项表示：当前Vue实例可以使用的数据 data选项的值：对象，对象中可以定义多个数据 js中获取data数据：vm....</p>
+  </section>
+  <footer class="entry-footer">2021-03-10&nbsp;·&nbsp;4 min&nbsp;·&nbsp;Rex</footer>
+  <a class="entry-link" aria-label="post link to Vue基础" href="https://rex0520.github.io/posts/front/vue/vue%E5%9F%BA%E7%A1%80/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>Lambda(java)
     </h2>
   </header>
@@ -211,20 +236,6 @@ package com.imooc.lambda; /** * @author CubeMonkey * @create 2020-10-23 17:42 */
   <footer class="entry-footer">2021-03-09&nbsp;·&nbsp;7 min&nbsp;·&nbsp;Rex</footer>
   <a class="entry-link" aria-label="post link to Mybatis进阶" href="https://rex0520.github.io/posts/back/java/jdbctool/mybatis%E8%BF%9B%E9%98%B6/"></a>
 </article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>Restful开发风格
-    </h2>
-  </header>
-  <section class="entry-content">
-    <p>RESTful开发风格 REST与RESTful  REST(Representational State Transfer)-表现层状态转换，资源在网络中以某种表现形式进行状态转移 RESTful是基于REST理念的一套开发风格，是具体的开发规则  RESTful传输数据 RESTful开发规范  使用URL作为用户交互入口 明确的语义规范(GET|POST|PUT|DELETE-&gt;查|增|改|删) 只返回数据(JSON|XML)，不包含任何展现  RESTful命名要求    URI 说明 修改建议     GET /articles?au=lily 正确用法    GET /a/1 URI必须具有语义 GET /student/1   POST /createArticle/1 URI必须使用名词 POST /article/1   GET /articles/author/1 URI扁平化，不超两级 GET /articles/author?id=1   DELETE /articles/1 URI名词区分单复数 GET /articles?au=lily
-DELETE /article/1    开发第一个RESTful应用  RestfulController.java
-package com.imooc.restful.controller; import org.springframework.stereotype.Controller; import org....</p>
-  </section>
-  <footer class="entry-footer">2021-03-09&nbsp;·&nbsp;3 min&nbsp;·&nbsp;Rex</footer>
-  <a class="entry-link" aria-label="post link to Restful开发风格" href="https://rex0520.github.io/posts/back/java/framework/springmvc/restful/"></a>
-</article>
 <footer class="page-footer">
   <nav class="pagination">
     <a class="prev" href="https://rex0520.github.io/posts/page/6/">« Prev Page</a>
@@ -234,7 +245,7 @@ package com.imooc.restful.controller; import org.springframework.stereotype.Cont
     </main>
     
 <footer class="footer">
-  <span>&copy; 2021 <a href="https://rex0520.github.io/">Rex</a></span>
+  <span>&copy; 2022 <a href="https://rex0520.github.io/">Rex</a></span>
   <span>
     Powered by
     <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &

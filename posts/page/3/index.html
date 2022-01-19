@@ -161,6 +161,24 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>Dubbo基础
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>Dubbo 关于Dubbo  轻量级，高性能的RPC框架 并不是要成为一个微服务的全面解决发难 以Java语言而出名  Dubbo现状  全称是Apache Dubbo 微店，网易云音乐，考拉，滴滴，中国电信，人寿 star有30k&#43;个，fork有20k&#43;个  RPC   RPC—–远程过程调用
+  早期单机时代：IPC（Inter-Process Communication）
+单个电脑运行的各个进程之间相互通信
+  网络时代：把IPC扩展到网络上，这就是RPC
+    实现RPC很头疼，于是就有了RPC框架
+  调用其他机器上的程序和调用本地的程序一样方便
+  常见的RPC框架  阿里的Dubbo（性能好） 新浪的Montan（轻量级，项目架构复杂度低，适合RPC源码学习） Facebook的Thrift （可伸缩的跨语言框架，有很强的代码生成语言）  HTTP和RPC对比  普通话（HTTP，规范–效率低）和方言（RPC，传输效率和运行速度更高），普通话本质上也是一种方言，只不过它是官方的方言 传输效率：RPC可以自己定制，通过定制自己的请求，让整体传输的内容更少，这样的效率更高，而HTTP会传输一些无用的内容 性能消耗，主要在于序列化和反序列化的耗时：RPC可以实现高效的二进制传输，HTTP大部分要通过JSON格式来传输 负载均衡：RPC自带负载均衡策略，HTTP需要借助其他的组件，如Nginx  Dubbo工作原理    模块 说明     Provider 暴露服务的服务提供方   Consumer 调用远程服务的服务消费方   Registry 服务注册与发现的注册中心   Monitor 统计服务的调用次数和调用时间的监控中心   Container 服务运行容器     服务容器负责启动，加载，运行服务提供者 服务提供者在启动时，向注册中心注册自己提供的服务 服务消费者在启动时，向注册中心订阅自己所需的服务 注册中心返回服务提供者地址列表给消费者 从提供者地址列表中，选一台提供者进行调用 定期发送一次统计数据到监控中心  </p>
+  </section>
+  <footer class="entry-footer">2021-07-23&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Rex</footer>
+  <a class="entry-link" aria-label="post link to Dubbo基础" href="https://rex0520.github.io/posts/back/java/microservices/dubbo%E5%9F%BA%E7%A1%80/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>Mongodb基础
     </h2>
   </header>
@@ -232,19 +250,6 @@
   <footer class="entry-footer">2021-06-22&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Rex</footer>
   <a class="entry-link" aria-label="post link to 微服务" href="https://rex0520.github.io/posts/back/java/microservices/%E5%BE%AE%E6%9C%8D%E5%8A%A1/"></a>
 </article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>Rabbitmq使用
-    </h2>
-  </header>
-  <section class="entry-content">
-    <p>RabbitMQ RabbitMQ简介 核心思想  接受并转发消息。
- producer: P queue: queue_name Consumer: C 消息队列：  业务无关 FIFO 容灾 性能  特点：  开源、跨语言 Erlang语言编写 应用广泛 社区活跃、API丰富  AMBQ协议  Advanced Message Queue Protocol   RabbitMQ核心概念  Server：服务 connection：与Server建立连接 channel：信道，几乎所有的操作都在信道上进行，客户端可以建立多个信道 message：消息，有properties和body组成 virtual host：虚拟主机，顶层隔离。同一个虚拟主机下，不能有重复的交换机和queue Exchange：交换机，接收生产者的消息的，然后根据指定的路由器去把消息转发到锁绑定的队列上 binding：绑定交换机和队列 routing key：路由键，路由规则，虚拟机可以用它来确定这个消息如何进行一个路由 queue：队列，消费者只需要监听队列来消费信息，不需要关注消息来自于哪个Exchange Exchange和Message Queue存在着绑定的关系，一个Exchange可以绑定多个消息队列 消息流转过程      RabbitMQ常用命令 systemctl start rabbitmq-server # 启动rabbitmq rabbitmqctl status # 查看状态 RabbitMQ后台管理  http://1.117.91.88:15672/#/connections rabbitmq management...</p>
-  </section>
-  <footer class="entry-footer">2021-06-21&nbsp;·&nbsp;11 min&nbsp;·&nbsp;Rex</footer>
-  <a class="entry-link" aria-label="post link to Rabbitmq使用" href="https://rex0520.github.io/posts/back/java/microservices/rabbitmq/"></a>
-</article>
 <footer class="page-footer">
   <nav class="pagination">
     <a class="prev" href="https://rex0520.github.io/posts/page/2/">« Prev Page</a>
@@ -254,7 +259,7 @@
     </main>
     
 <footer class="footer">
-  <span>&copy; 2021 <a href="https://rex0520.github.io/">Rex</a></span>
+  <span>&copy; 2022 <a href="https://rex0520.github.io/">Rex</a></span>
   <span>
     Powered by
     <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
