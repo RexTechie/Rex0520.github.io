@@ -160,6 +160,28 @@
 </header>
 
 <article class="post-entry"> 
+<figure class="entry-cover"><img loading="lazy" src="https://cdn.rexweb.xyz/img/20211203144729.jpeg" alt="">
+</figure>
+  <header class="entry-header">
+    <h2>无诈校园微信小程序后端接口文档
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>无诈校园微信小程序后端接口文档   baseUrl = “http://localhost:8090/fraud-prevention/api” 服务器Url=“http://1.117.91.88:52016/fraud-prevention/api”   用户模块 登录   url: /front/user/login
+  method: Get
+  request param: code
+  response body:
+{ &#34;code&#34;: 200, &#34;msg&#34;: &#34;success&#34;, &#34;data&#34;:&#34;98cb5a80-4199-44ce-a5f0-9f09c4bc438f&#34; }   获取当前登录用户数据   url: /front/user/current
+  method: Get
+  request param: 空
+  response body
+{ &#34;code&#34;: 200, &#34;msg&#34;: &#34;success&#34;, &#34;data&#34;: { &#34;id&#34;: &#34;1412572056239054850&#34;, &#34;schoolName&#34;: &#34;温州职业技术学院&#34;, &#34;deptName&#34;: &#34;人工智能学院&#34;, &#34;className&#34;: &#34;软件1901&#34;, &#34;avatarUrl&#34;: &#34;https://thirdwx....</p>
+  </section>
+  <footer class="entry-footer">2021-12-03&nbsp;·&nbsp;6 min&nbsp;·&nbsp;Rex</footer>
+  <a class="entry-link" aria-label="post link to 无诈校园微信小程序后端接口文档" href="https://rex0520.github.io/posts/proj/doc/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%90%8E%E7%AB%AF%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/"></a>
+</article>
+
+<article class="post-entry"> 
 <figure class="entry-cover"><img loading="lazy" src="https://cdn.rexweb.xyz/img/20211223001812.jpeg" alt="">
 </figure>
   <header class="entry-header">
@@ -237,20 +259,6 @@ package com.example.emos.api.config.tencet; import cn.hutool.core.util.StrUtil; 
   </section>
   <footer class="entry-footer">2021-10-11&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Rex</footer>
   <a class="entry-link" aria-label="post link to 前端常用轮子" href="https://rex0520.github.io/posts/front/tools/%E5%89%8D%E7%AB%AF%E5%B8%B8%E7%94%A8%E8%BD%AE%E5%AD%90/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>Zookeeper
-    </h2>
-  </header>
-  <section class="entry-content">
-    <p>Zookeeper 定义：  Zookeeper：A Distributed Coordination Service for Distributed Applications(
-Zookeeper是开源的高性能的分布式应用协调系统，一个高性能的分布式数据一致性解决方案
- 5大特点  顺序一致性：发出去的顺序==执行的顺序 原子性：请求同步到各个节点要么都成果要么都失败 单一视图：多个节点无论连哪个看的东西都是一致的 可靠性：给节点写了数据，这个数据会一直保留，直到有另外的操作把数据写掉，才会发生变化 及时性：在一定的时间段（可接受的时间段）内能从服务器上读到最新的数据状态  架构图、集群、工作过程 Zookeeper和CAP的关系  CP：一致性&#43;分区容错性 能得到一致的数据结果，同时系统对网络具备容错性 但是它不能保证每次服务请求的可用性  作用  分布式服务注册与订阅 统一配置文件 生成分布式唯一ID Master节点选举 分布式锁  节点znode 模型-树结构 节点性质  树形结构，也可以理解为linux的文件目录 每一个节点都是znode，里面可以包含数据，也可以有子节点 点分为永久节点和临时节点(session失效，也就是客户端段凯后，临时节点消失) 每个znode都有版本号，每当数据变化，版本号会累加（乐观锁） 删除或修改节点，版本号不匹配的话（版本号已过时），会报错 每个节点存储的数据不宜过大，几k即可 节点可以设置权限，来限制用户的访问 Zookeeper保证读和写都是原子操作，且每次读写操作都是对数据的完整读取或完整写入  节点类型  持久节点 临时节点 顺序节点  节点属性  dataVersion 数据版本号，每次对内容修改dataVersion&#43;1 cversion 子节点版本号，如果子节点内容发送变化cversion&#43;1 aclVersion acl-权限控制列表，权限发生变化的时候aclVersion&#43;1  常用命令  查看节点ls 查看节点的数据和状态get 创建(create [-s 顺序节点] [-e 临时节点])、修改(set)、删除(delete)节点  Watcher机制   触发器、监督者...</p>
-  </section>
-  <footer class="entry-footer">2021-08-21&nbsp;·&nbsp;4 min&nbsp;·&nbsp;Rex</footer>
-  <a class="entry-link" aria-label="post link to Zookeeper" href="https://rex0520.github.io/posts/back/java/microservices/zookeeper/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
