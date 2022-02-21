@@ -161,6 +161,22 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>Docker的安装
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>Docker的安装 在Cent OS安装docker  先有一个Cent OS 7.6系统   这个很重要，不同版本按照的时候是不一样的。查看CentOS版本 cat /etc/redhat-release
+ 用root账户登录进去 配置国内yum源   wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo yum clean all yum makecache
+ 卸载旧版本   较旧的Docker版本称为docker或docker-engine。如果已安装这些程序，请卸载它们以及相关的依赖项。 如果yum报告未安装这些软件包，也没问题。
+ docker-client \ docker-client-latest \ docker-common \ docker-latest \ docker-latest-logrotate \ docker-logrotate \ docker-engine 更新yum   yum check-update yum update
+ 安装所需的软件包  yum install -y yum-utils \ device-mapper-persistent-data \ lvm2 使用以下命令来设置稳定的存储库。   sudo yum-config-manager –add-repo http://mirrors....</p>
+  </section>
+  <footer class="entry-footer">2021-06-11&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Rex</footer>
+  <a class="entry-link" aria-label="post link to Docker的安装" href="https://rex0520.github.io/posts/back/java/microservices/docker%E7%9A%84%E5%AE%89%E8%A3%85/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>分布式
     </h2>
   </header>
@@ -219,22 +235,6 @@ package treadlocal; import java.text.SimpleDateFormat; import java.util.Date; im
   </section>
   <footer class="entry-footer">2021-06-08&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Rex</footer>
   <a class="entry-link" aria-label="post link to 守护线程" href="https://rex0520.github.io/posts/back/java/threadpool/%E5%AE%88%E6%8A%A4%E7%BA%BF%E7%A8%8B/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>线程池
-    </h2>
-  </header>
-  <section class="entry-content">
-    <p>线程池 线程池介绍 软件中的池可以理解为计划经济
-优点：
- 复用线程 控制资源总量  好处：
- 加快响应速度 合理利用CPU和内存 统一管理  适用场合
- 服务器接收到大量请求时，使用线程池技术是非常合适的，它可以大大减少线程的创建和销毁次数，提高服务器的工作效率 实际上，在开发中，如果需要创建5个以上的线程，那么就可以使用线程池来管理  创建和停止线程池 线程池构造方法的参数    参数名 类型 含义     corePoolSize int 核心线程数   maxPoolSize int 最大线程数   keepAliveTime long 保持存活时间   workQueue BlockingQueue 任务存储队列   threadFactory ThreadFactory 当线程池需要新的线程的时候，会使用threadFactory来生成新的线程   Handler RejectedExecutionHandler 由于线程池无法接受你所提交的任务的拒绝策略    添加线程规则  如果线程数小于corePoolSize，创建一个新线程来运行新任务。 如果线程数等于（或大于）corePoolSize但少于maxmumPoolSize，则将任务放入队列。 如果队列已满，并且线程数小于maxPoolSize，则创建一个新线程。 如果队列已满，并且线程数大于或等于maxPoolSize，则拒绝。  是否需要增加线程的判断顺序是：...</p>
-  </section>
-  <footer class="entry-footer">2021-06-08&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Rex</footer>
-  <a class="entry-link" aria-label="post link to 线程池" href="https://rex0520.github.io/posts/back/java/threadpool/%E7%BA%BF%E7%A8%8B%E6%B1%A0/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
