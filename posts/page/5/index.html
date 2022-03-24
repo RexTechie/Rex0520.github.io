@@ -161,36 +161,6 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2>Nginx的入门
-    </h2>
-  </header>
-  <section class="entry-content">
-    <p>Nginx的安装 Linux安装  登录root账号 执行yum install yum-utils 运行vim /etc/yum.repos.d/nginx.repo [nginx-stable] name=nginx stable repo baseurl=http://nginx.org/packages/centos/7/$basearch/ gpgcheck=1 enabled=1 gpgkey=https://nginx.org/keys/nginx_signing.key module_hotfixes=true [nginx-mainline] name=nginx mainline repo baseurl=http://nginx.org/packages/mainline/centos/7/$basearch/ gpgcheck=1 enabled=0 gpgkey=https://nginx.org/keys/nginx_signing.key module_hotfixes=true  然后查看源 yum list | grep nginx 看到存在稳定版的源，确认无误。 运行安装命令 yum install nginx 1:1.16.1-1.el7.ngx 过程中输入y，确认 查看版本，若出现版本号，则安装成功 用whereis nginx可以查看到目录： nginx: /usr/sbin/nginx /usr/lib64/nginx /etc/nginx /usr/share/nginx /usr/share/man/man8/nginx.8.gz  MacOS的安装  安装homebrew，然后nginx使用安装brew： $ brew install nginx  笔记：
- nginx的配置文件位于中/usr/local/etc/nginx/nginx.conf。 要编辑配置文件或运行nginx，您需要使用sudo： sudo nano /usr/local/etc/nginx/nginx.conf和 sudo nginx …
- Windows下的安装 不推荐，nginx不适合运行在Windows上，功能不完整，我们尽量运行在linux上。</p>
-  </section>
-  <footer class="entry-footer">2021-06-12&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Rex</footer>
-  <a class="entry-link" aria-label="post link to Nginx的入门" href="https://rex0520.github.io/posts/back/java/microservices/nginx%E7%9A%84%E5%AE%89%E8%A3%85/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>Docker的安装
-    </h2>
-  </header>
-  <section class="entry-content">
-    <p>Docker的安装 在Cent OS安装docker  先有一个Cent OS 7.6系统   这个很重要，不同版本按照的时候是不一样的。查看CentOS版本 cat /etc/redhat-release
- 用root账户登录进去 配置国内yum源   wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo yum clean all yum makecache
- 卸载旧版本   较旧的Docker版本称为docker或docker-engine。如果已安装这些程序，请卸载它们以及相关的依赖项。 如果yum报告未安装这些软件包，也没问题。
- docker-client \ docker-client-latest \ docker-common \ docker-latest \ docker-latest-logrotate \ docker-logrotate \ docker-engine 更新yum   yum check-update yum update
- 安装所需的软件包  yum install -y yum-utils \ device-mapper-persistent-data \ lvm2 使用以下命令来设置稳定的存储库。   sudo yum-config-manager –add-repo http://mirrors....</p>
-  </section>
-  <footer class="entry-footer">2021-06-11&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Rex</footer>
-  <a class="entry-link" aria-label="post link to Docker的安装" href="https://rex0520.github.io/posts/back/java/microservices/docker%E7%9A%84%E5%AE%89%E8%A3%85/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
     <h2>分布式
     </h2>
   </header>
@@ -230,6 +200,41 @@ package treadlocal; import java.text.SimpleDateFormat; import java.util.Date; im
   </section>
   <footer class="entry-footer">2021-06-08&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Rex</footer>
   <a class="entry-link" aria-label="post link to 关于reentrantlock和condition" href="https://rex0520.github.io/posts/back/java/threadpool/%E5%85%B3%E4%BA%8Ereentrantlock%E5%92%8Ccondition/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>守护线程
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>守护线程 两类线程：  User Thread 用户线程 Daemon Thread 守护线程   分类标准是线程是否会阻止JVM的停止，只要当前JVM实例中尚存在任何一个非守护线程没有结束，守护线程就全部继续工作；只有当最后一个非守护线程结束时，所有守护线程才会随着JVM一同结束工作。（非守护线程等同于用户线程）
+ JVM停止的情况  已调用System.exit()方法 所有非守护程序线程都已结束   而一般情况下我们不会调用System.exit()方法，所以大部分的Java程序的结束都是由于所有用户线程都结束而导致的。
+所以可以认为，任何一个守护线程都是整个JVM中所有用户线程（非守护线程）的管家。Daemon的作用是为其他线程的运行提供便利服务，守护线程最典型的应用就是 GC (垃圾回收器)，它是一个很称职的守护者。
+ 守护线程的特性  线程类型默认继承自父线程 守护线程创建的线程为默认是守护线程，同样，用户线程创建的线程默认为用户线程。非守护线程如果想创建一个守护线程，需要调用Thread.setDaemon来设置它（Thread类用布尔值daemon属性来表示线程是否是守护线程），并且，该方法必须在start之前调用，否则会抛出 IllegalThreadStateException 异常。  被谁启动  通常由JVM启动，而不是由用户去启动。当JVM启动时，通常会有一个非守护线程（通常为执行main函数的线程）。
+ 不影响JVM退出  当只剩下守护线程时，JVM就会退出，因为如果只剩下守护线程，就没必要继续运行程序了。
+守护线程没结束并不会影响JVM的正常停止:假设所有用户线程都结束了，那么就算有5个守护线程正在运行，JVM也会正常停止：
+ 守护线程和普通线程的区别  虚拟机的离开：如果 User Thread已经全部退出运行了，只剩下Daemon Thread存在了，虚拟机也就退出了，这是因为没有了“被守护者”，Daemon也就没有工作可做了，也就没有继续运行程序的必要了。 这就是守护线程的作用：告诉JVM不需要等待它退出,当JVM中所有的线程都是守护线程的时候，JVM就可以正常的退出了。  我们是否需要给线程设置为守护线程？  我们通常不应把自己的线程设置为守护线程，因为设置为守护线程是很危险的。比如线程正在访问如文件、数据库的时候，所有用户线程都结束了，那么守护线程会在任何时候甚至在一个操作的中间发生中断，所以守护线程永远不应该去访问固有资源。
+ </p>
+  </section>
+  <footer class="entry-footer">2021-06-08&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Rex</footer>
+  <a class="entry-link" aria-label="post link to 守护线程" href="https://rex0520.github.io/posts/back/java/threadpool/%E5%AE%88%E6%8A%A4%E7%BA%BF%E7%A8%8B/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>线程池
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>线程池 线程池介绍 软件中的池可以理解为计划经济
+优点：
+ 复用线程 控制资源总量  好处：
+ 加快响应速度 合理利用CPU和内存 统一管理  适用场合
+ 服务器接收到大量请求时，使用线程池技术是非常合适的，它可以大大减少线程的创建和销毁次数，提高服务器的工作效率 实际上，在开发中，如果需要创建5个以上的线程，那么就可以使用线程池来管理  创建和停止线程池 线程池构造方法的参数    参数名 类型 含义     corePoolSize int 核心线程数   maxPoolSize int 最大线程数   keepAliveTime long 保持存活时间   workQueue BlockingQueue 任务存储队列   threadFactory ThreadFactory 当线程池需要新的线程的时候，会使用threadFactory来生成新的线程   Handler RejectedExecutionHandler 由于线程池无法接受你所提交的任务的拒绝策略    添加线程规则  如果线程数小于corePoolSize，创建一个新线程来运行新任务。 如果线程数等于（或大于）corePoolSize但少于maxmumPoolSize，则将任务放入队列。 如果队列已满，并且线程数小于maxPoolSize，则创建一个新线程。 如果队列已满，并且线程数大于或等于maxPoolSize，则拒绝。  是否需要增加线程的判断顺序是：...</p>
+  </section>
+  <footer class="entry-footer">2021-06-08&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Rex</footer>
+  <a class="entry-link" aria-label="post link to 线程池" href="https://rex0520.github.io/posts/back/java/threadpool/%E7%BA%BF%E7%A8%8B%E6%B1%A0/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

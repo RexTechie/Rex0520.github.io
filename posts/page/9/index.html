@@ -161,34 +161,6 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2>SpringMVC拦截器
-    </h2>
-  </header>
-  <section class="entry-content">
-    <p>SpringMVC拦截器 拦截器-Interceptor  拦截器(Interveptor)用于对URL请求进行前置/后置过滤 Interceptor与Filter用途相似，但实现方式不同 Interceptor底层就是基于Spring AOP面向切面编程实现  拦截器开发流程   Maven依赖servlet-api
-&lt;dependency&gt; &lt;groupId&gt;javax.servlet&lt;/groupId&gt; &lt;artifactId&gt;javax.servlet-api&lt;/artifactId&gt; &lt;version&gt;4.0.1&lt;/version&gt; &lt;scope&gt;provided&lt;/scope&gt; &lt;/dependency&gt;   实现HandlerInterceptor
-package com.imooc.restful.interceptor; import org.springframework.web.servlet.HandlerInterceptor; import org.springframework.web.servlet.ModelAndView; import javax.servlet.http.HttpServletRequest; import javax.servlet.http.HttpServletResponse; /** * @author Rex * @create 2021-01-12 17:55 */ public class MyInterceptor implements HandlerInterceptor { @Override public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception { System.out.println(request.getRequestURL()&#43;&#34;-准备执行&#34;); return true; } @Override public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception { System....</p>
-  </section>
-  <footer class="entry-footer">2021-03-09&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Rex</footer>
-  <a class="entry-link" aria-label="post link to SpringMVC拦截器" href="https://rex0520.github.io/posts/back/java/framework/springmvc/springmvc%E6%8B%A6%E6%88%AA%E5%99%A8/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>Redis基础
-    </h2>
-  </header>
-  <section class="entry-content">
-    <p>Redis入门 Redis介绍  Redis是Key-Value型NoSQL数据库 Redis将数据存储在内存中，同时也能持久化到磁盘 Redis常用于缓存，利用内存的高效提高程序的处理速度  Redis特点  速度快 持久化 主从复制 广泛的语言支持 多种数据结构 分布式与高可用  Redis的安装与使用 在Linux系统中安装Redis  https://redis.io/download
- 在windows系统中安装Redis  https://github.com/microsoftarchive/redis/releases
- Redis的常用基本配置    配置项 示例 说明     daemonize daemonize yes 是否启用后台允许，默认no   port port 6379 设置端口号，默认6379   logfile logfile 日志文件 设置日志文件   databases databases 255 设置redis数据库总量   dir dir数据文件目录 设置数据文件存储目录   requirepass requirepass 12345 设置使用密码    Redis通用命令    命令 示例 说明     select select 0 选择0号数据库   set set name lily 设置key=name,value=lily   get get hello 获得key=hello结果   keys keys he* 根据Pattern表达式查询符合条件的Key   dbsize dbsize 返回key的总数   exists exists a 检查key=a是否存在   del del a 删除key=a的数据   expire expire hello 20 设置key=hello 20秒后过期   ttl ttl 查看key=a的过期剩余时间    Redis数据类型  String - 字符串类型 Hash - Hash类型 List - 列表类型 Set - 集合类型 Zset - 有序集合类型  String字符串类型   String最大512mb 建议单个kv不超过100kb...</p>
-  </section>
-  <footer class="entry-footer">2021-02-09&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Rex</footer>
-  <a class="entry-link" aria-label="post link to Redis基础" href="https://rex0520.github.io/posts/nosql/redis%E5%9F%BA%E7%A1%80/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
     <h2>SpringBoot记录
     </h2>
   </header>
@@ -222,6 +194,37 @@ package com.imooc.restful.interceptor; import org.springframework.web.servlet.Ha
   </section>
   <footer class="entry-footer">2021-01-05&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Rex</footer>
   <a class="entry-link" aria-label="post link to Spring框架概述" href="https://rex0520.github.io/posts/back/java/framework/spring/spring%E6%A1%86%E6%9E%B6%E6%A6%82%E8%BF%B0/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>Springaop面向切面编程
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>Spring AOP面向切面编程 Spring AOP  Spring AOP - Aspect Oriented Programming 面向切面编程 AOP的做法是将通用、于业务无关的功能抽象封装为切面类 切面可配置在目标方法的执行前、后运行，真正做到即插即用  Spring AOP  用到的依赖dependency：
+&lt;dependencies&gt; &lt;dependency&gt; &lt;groupId&gt;org.springframework&lt;/groupId&gt; &lt;artifactId&gt;spring-context&lt;/artifactId&gt; &lt;version&gt;5.3.2&lt;/version&gt; &lt;/dependency&gt; &lt;dependency&gt; &lt;groupId&gt;org.aspectj&lt;/groupId&gt; &lt;artifactId&gt;aspectjweaver&lt;/artifactId&gt; &lt;version&gt;1.9.6&lt;/version&gt; &lt;/dependency&gt; &lt;/dependencies&gt; applicationContext.xml中schema依赖
+&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt; &lt;beans xmlns=&#34;http://www.springframework.org/schema/beans&#34; xmlns:xsi=&#34;http://www.w3.org/2001/XMLSchema-instance&#34; xmlns:aop=&#34;http://www.springframework.org/schema/aop&#34; xsi:schemaLocation=&#34; http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd&#34;&gt; &lt;!-- bean definitions here --&gt; &lt;/beans&gt;  Spring AOP概念 Spring AOP与AspectJ的关系  Eclipse AspectJ，一种基于Java平台的面向切面编程的语言 Spring AOP使用AspectJWeaver实现类与方法的匹配 Spring AOP利用代理模式实现对象运行时功能扩展  几个关键概念    注解 说明     Aspect 切面，具体的可插拔组件功能类，通常一个切面只实现一个通用功能   Target Class/Method 目标类、目标方法，指真正要执行与业务相关的方法   PointCut 切入点，使用execution表达式说明切面要作用在系统的哪些类上   JoinPoint 连接点，切面运行过程中时包括了目标类/方法元数据的对象   Advice 通知，说明具体的切面的执行时机，Spring包含了五种不同类型通知    AOP配置过程  依赖AspectJ 实现切面类/方法 配置Aspect Bean 定义PointCut 配置Advice  JoinPoint核心方法    注解 说明     Object getTarget() 获取IoC容器内目标对象   Signature getSignature() 获取目标方法   Object[] getArgs() 获取目标方法参数    PointCut切点表达式 通知 五种通知类型    注解 说明     Before Advice 前置通知，目标方法运行前执行   After Returning Advice 返回后通知，目标方法返回数据后执行   After Throwing Advice 异常通知，目标方法抛出异常后执行   After Advice 后置通知，目标方法运行   Around Advice 最强大通知，自定义通知执行时机，可决定目标方法是否运行    特殊的“通知”-引介增强  引介增强(Introduction Interceptor)是对类的增强，而非方法 引介增强允许在运行时为目标类增加新属性或方法 引介增强允许在运行时改变类的行为，让类随运行环境动态变更  Spring AOP实现原理  Spring基于代理模式实现功能动态扩展，包含俩种形式 目标类拥有接口，通过JDK动态代理实现功能扩展 目标类没有接口，通过CGLib组件实现功能扩展  代理模式：  代理模式通过代理对象对原对象的实现功能扩展  静态代理示例：  UserService....</p>
+  </section>
+  <footer class="entry-footer">2021-01-04&nbsp;·&nbsp;5 min&nbsp;·&nbsp;Rex</footer>
+  <a class="entry-link" aria-label="post link to Springaop面向切面编程" href="https://rex0520.github.io/posts/back/java/framework/spring/springaop%E9%9D%A2%E5%90%91%E5%88%87%E9%9D%A2%E7%BC%96%E7%A8%8B/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>Springioc与bean管理
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>Spring IoC与Bean管理 Spring快速入门 IoC控制反转  IoC控制反转，全称Inverse of Control，是一种设计理念，把对象创建和对象之间的调用过程，交给spring进行管理 由代理人来创建与管理对象，消费者通过代理人来获取对象 IoC的目的是降低对象之间直接耦合 加入IoC容器将对象统一管理，让对象关联变为弱耦合  DI依赖注入  IoC是设计理念，是现代程序设计遵循的标准，是宏观目标 DI(Dependency Injection)是具体技术实现，是微观实现 DI在Java中利用反射技术实现对象注入（Injection）  Spring Spring的含义  Spring可从狭义与广义俩个角度看待 狭义的Spring是指Spring框架（Spring Framework） 广义的Spring是指Spring生态体系  狭义的Spring  Spring框架是企业开发复杂性的一站式解决方案 Spring框架的核心是IoC容器与AOP面向切面变成 Spring IoC负责创建与管理系统对象，并在此基础上扩展功能  传统开发方式  对象直接引用导致对象硬性关联，程序难以扩展维护  Spring IoC  IoC容器是Spring生态的地基用于统一创建与管理对象依赖  Spring IoC容器职责  对象的控制器交由第三方统一管理（IoC控制反转） 利用Java反射技术实现运行时对象创建与关联（DI依赖注入） 基于配置提高应用程序的可维护性与扩展性  IOC底层原理：  xml解析、工厂模式、反射  IOC(接口)   IOC思想基于IOC容器完成，IOC容器底层就是对象工厂
+  Spring提供IOC容器实现两种方式：（两个接口）
+  BeanFactory：IOC容器基本实现方式，是Spring内部的使用的接口，不提供给开发人员使用
+特点：
+​	加载配置文件时候不会创建对象，在获取对象（使用）才去创建对象
+  ApplicationContext：BeanFactory接口的子接口，提供更多更强大的功能， 一般由开发人员进行使用...</p>
+  </section>
+  <footer class="entry-footer">2021-01-04&nbsp;·&nbsp;4 min&nbsp;·&nbsp;Rex</footer>
+  <a class="entry-link" aria-label="post link to Springioc与bean管理" href="https://rex0520.github.io/posts/back/java/framework/spring/springioc%E4%B8%8Ebean%E7%AE%A1%E7%90%86/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

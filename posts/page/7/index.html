@@ -161,44 +161,6 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2>Vue进阶
-    </h2>
-  </header>
-  <section class="entry-content">
-    <p>Vue进阶 Vue路由 1.初始路由 **路由**：表示一种对应关系，某些事物的一一对应的关系 **后端路由**：后端路由是由服务器端进行实现，并完成资源的分发（url与资源/数据的对应关系） **前端路由**：前端路由是依靠hash值（锚点链接）的变化进行实现页面内容的切换（锚点与组件之间的关系）  2.vue-router   vue-router工作原理
-  它是一个Vue.js官方提供的路由管理器，是一个功能更加强大的前端路由器，可以实现前端界面内容切换
-  SPA：Single Page Application，单页面应用，整个网站只有一个页面
-  SPA推荐使用vue-router，实现界面内容的切换
-  vue-router提供两种模式
-  hash模式：hash又叫锚点：比如#/login，根据hash改变，来实现界面切换
-  history模式：history模式不会出现#号比较美观，利用history.pushState()来完成URL的跳转而且无须重写加载页面
-  示例代码
-const router = new VueRouter({ mode: &#39;history&#39;, router: [...] })   vue-router默认为hash模式，需要通过mode来改变模式
-        vue-router基本使用
-  引入vue-router.js
-  定义路由链接和路由视图
-代码示例：
-&lt;div id=&#34;app&#34;&gt; &lt;router-link to=&#34;/login&#34; tag=&#34;span&#34;&gt;前往登录&lt;/router-link&gt; &lt;router-view&gt;&lt;/router-view&gt; &lt;/div&gt; router-link是路由链接，to代表链接地址，tag代表渲染的标签...</p>
-  </section>
-  <footer class="entry-footer">2021-03-25&nbsp;·&nbsp;5 min&nbsp;·&nbsp;Rex</footer>
-  <a class="entry-link" aria-label="post link to Vue进阶" href="https://rex0520.github.io/posts/front/vue/vue%E8%BF%9B%E9%98%B6/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>JPA学习
-    </h2>
-  </header>
-  <section class="entry-content">
-    <p>JPA 一、什么是jpa ​	JPA是Java Persistence API的意思，是一种ORM框架。是使用JDK 5.0注解或XML描述对象－关系表的映射关系的元数据，并将运行期的面向对象语言程序中的实体对象持久化到数据库中。
-二、基于注解的使用  JPA常用注解    注解 解释     @Entity 声明类为实体或表。   @Table 声明表名。   @Basic 指明非约束明确的各个字段。   @Embedded 指定类或它的值是一个可嵌入的类的实体的属性。   @Id 指定的类的属性，用于识别（一个表中的主键）。   @GeneratedValue 指定如何标识属性可以被初始化，例如自动、手动、或从序列表中获得的值。   @Transient 指定的属性，它是不持久的，即：该值永远不会存储再数据库中。   @Column 指定持久属性栏属性。   @SequenceGenerator 指定在@GeneratedValue注解中指定的属性的值。它创建了一个序列。   @TableGenerator 指定在@GeneratedValue批注指定属性的值发生器。它创造了的值生成的表。   @AccessType 这种类型的注释用于设置访问类型。如果设置@AccessType(FIELD)，则可以直接访问变量并且不需要getter和setter，但必须为public。如果设置@AccessType(PROPERTY)，通过getter和setter方法访问Entity的变量。   @JoinColumn 指定一个实体组织或实体的集合。这是用在多对一和一对多关联。   @UniqueConstraint 指定的字段和用于主要或辅助表的唯一约束。   @ColumnResult 参考使用select字句的SQL查询中的列明。   @ManyToMany 定义了连接表之间的多对多的的关系   @ManyToOne 定义了连接表之间的多对一的关系   @OneToMany 定义了连接表之间存在一个一对多的关系。   @OneToOne 定义了连接表之间有一个一对一的关系   @NamedQueries 指定命名查询的列表   @NamedQuery 指定使用静态名称的查询。      三、使用   在application....</p>
-  </section>
-  <footer class="entry-footer">2021-03-22&nbsp;·&nbsp;4 min&nbsp;·&nbsp;Rex</footer>
-  <a class="entry-link" aria-label="post link to JPA学习" href="https://rex0520.github.io/posts/back/java/jdbctool/jpa%E5%AD%A6%E4%B9%A0/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
     <h2>Vue动画
     </h2>
   </header>
@@ -254,6 +216,30 @@ package com.imooc.lambda; /** * @author CubeMonkey * @create 2020-10-23 17:42 */
   </section>
   <footer class="entry-footer">2021-03-09&nbsp;·&nbsp;4 min&nbsp;·&nbsp;Rex</footer>
   <a class="entry-link" aria-label="post link to Lambda(java)" href="https://rex0520.github.io/posts/back/java/lambda/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>Maven基础
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>Maven入门 Maven介绍  Maven是项目管理工具，对软件项目提供构建与依赖管理 Maven是Apache下的Java开源项目 Maven为Java项目提供了统一的管理方式，已成为业界标准  解决了的问题  工程的结构不统一 第三方jar包多的时候，不便于管理 工程打包的困难  Maven核心特性  项目设置遵循统一的规则，保证不同开发环境的兼容性 强大的依赖管理，项目依赖组件自动下载、自动更新 可扩展的插件机制，使用简单，功能丰富  Maven的坐标： GroupId：机构或者团队的英文，采用&#34;逆向域名&#34;形式书写 ArtifactId：项目名称，说明其用途，例如：cms(内容管理系统)，oa(办公自动化系统) Version：版本号，一般采用“版本&#43;单词”形式，例如：1.0.0.RELEASE Maven项目标准结构    目录 用途     ${basedir} 根目录，用于保存pom.xml   ${basedir}/src/main/java Java源代码目录   ${basedir}/src/main/resources 资源目录，保存配置文件、静态图片等   ${basedir}/src/test/java 测试类的源代码   ${basedir}/src/test/resources 测试时需要使用的资源文件   ${basedir}/target 项目输出的目录，用于存储jar、war文件   ${basedir}/target/classes 字节码(.class)的编译输出目录   ${basedir}/pom.xml 项目(Project)对象(Object)模型(Model)文件    Maven的依赖管理 说明  Maven利用dependency(依赖)自动下载、管理第三方Jar 在pom....</p>
+  </section>
+  <footer class="entry-footer">2021-03-09&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Rex</footer>
+  <a class="entry-link" aria-label="post link to Maven基础" href="https://rex0520.github.io/posts/back/java/maven/maven%E5%9F%BA%E7%A1%80/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>Mybatis基础
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>MyBatis基础入门 软件开发中的框架  框架是可被应用开发者定制的应用骨架 框架是一种规则，保证开发者遵循相同的方式开发程序 框架提倡“不要重复造轮子”，对基础功能进行封装  框架的优点  极大提高了开发效率 统一的编码规则，有利于团队管理 灵活配置的应用，拥有更好的维护性  SSM开发框架  S -&gt; Spring S -&gt; Spring MVC M -&gt; MyBatis  什么是MyBatis  MyBatis是优秀的持久层框架 MyBatis使用XML将SQL与程序解耦，便于维护 MyBatis学习简单，执行高效，是JDBC的延展  MyBatis开发流程  引入MyBatis依赖 创建核心配置文件 创建实体(Entity)类 创建Mapper映射文件 初始化SessionFactory 利用SqlSession对象操作数据  MyBatis环境配置 mybatis-config.xml说明  MyBatis采用XML格式配置数据库环境信息 MyBatis环境配置标签 environment包含数据库驱动、URL、用户名于密码  mybatis-config.xml示例： &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34; ?&gt; &lt;!DOCTYPE configuration PUBLIC &#34;-//mybatis.org//DTD Config 3.0//EN&#34; &#34;http://mybatis.org/dtd/mybatis-3-config.dtd&#34;&gt; &lt;configuration&gt; &lt;environments default=&#34;dev&#34;&gt; &lt;!--根据环境，不同的环境不同的id，dev-&gt;开发环境 prd-&gt;生产环境 --&gt; &lt;environment id=&#34;dev&#34;&gt; &lt;!--采用JDBC方式对数据库事务进行commit/rollback--&gt; &lt;transactionManager type=&#34;JDBC&#34;&gt;&lt;/transactionManager&gt; &lt;!...</p>
+  </section>
+  <footer class="entry-footer">2021-03-09&nbsp;·&nbsp;8 min&nbsp;·&nbsp;Rex</footer>
+  <a class="entry-link" aria-label="post link to Mybatis基础" href="https://rex0520.github.io/posts/back/java/jdbctool/mybatis%E5%9F%BA%E7%A1%80/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

@@ -161,45 +161,6 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2>Reflect
-    </h2>
-  </header>
-  <section class="entry-content">
-    <p>反射Reflect 什么是反射  反射(Reflect)是在运行时动态访问类与对象的技术 反射是JDK1.2版本后的高级特性，隶属于java.lang.reflect 大多是Java框架都基于反射实现参数、动态注入等特性  反射的核心类  Class类 Constructor构造方法类 Method方法类 Field成员变量类  Class类  Class是JVM中代表&#34;类和接口&#34;类 Class对象具体包含了某个特定类的结构信息 通过Class对象可获取对应类的构造方法/方法/成员变量  Class核心方法    方法 用途     Class.forName() 静态方法，用于获取指定Class对象   classObj.newInstance() 通过默认构造方法创建新的对象   classObj.getConstructor() 获得指定的public修饰构造方法Construct对象   classObj.getMethod() 获取指定的public修饰方法Method对象   classObj.getField() 获取指定的public修饰成员变量的Field对象    使用案例：  Employee.java
-package com.imooc.reflect.entity; /** * 员工实体类 * @author CubeMonkey * @create 2020-10-21 16:01 */ public class Employee { static{ System....</p>
-  </section>
-  <footer class="entry-footer">2020-10-23&nbsp;·&nbsp;5 min&nbsp;·&nbsp;Rex</footer>
-  <a class="entry-link" aria-label="post link to Reflect" href="https://rex0520.github.io/posts/back/java/reflect/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>Emos项目学习记录
-    </h2>
-  </header>
-  <section class="entry-content">
-    <p>Emos项目学习记录 学习点：   加密算法
- 这里采用的是IBM开发的AES算法。这种对称加密算法在加密和解密数据的时候，使用相同的密钥。也就是说密钥既可以用来加密数据，也可以解密数据。关于AES算法的优点我这里不展开说明了，大家可以自己百度查阅资料。MySQL数据库提供了内置的DES加密和解密的函数，我们只需要调用即可。加密的函数叫做AES_ENCRPT()，解密的函数叫做AES_DECRPT()
-   ​	数据库：登录sql，若查询记录结果只有一条，可以加limit 1加快查询个数
-&lt;select id=&#34;login&#34; parameterType=&#34;com.example.emos.api.emos.model.form.LoginForm&#34; resultType=&#34;Integer&#34;&gt; SELECT id FROM tb_user WHERE username = #{username} AND password = HEX(AES_ENCRYPT(#{password}, #{username})) LIMIT 1; &lt;/select&gt;   数据库：数据库查询操作的返回值用封装类，防止结果为null值不能赋给一般数据类型；若是增删改返回结果肯定为数字且不为null，表示影响的记录个数，可以用一般数据类型
-  数据库：要不要用MySQL方言？，可能会存在可移植性差
-  后端：不能随意删除记录，需要查询有没有相关的引用
-  数据库：写sql的时候需要注意状态字段(status)
-  后端：分页查询的时候限制分页的start(1, &#43;∞)，size(10, 50)
-  数据库：灵活使用数据库中的json字段
-  后端工作流中采用了QuartZ定时器引起、Activeti引擎
-  业务：审批会议前需注意：1.结束时间必须大于开始时间 2.会议开始时间不能早于当前时间
-  前端：可用day.js转换日期格式
-  数据库：数据类型的数据范围、
-日期格式： datetime: 8字节
-timestamp：4字节 表示范围有限：~2038年就满了...</p>
-  </section>
-  <footer class="entry-footer">1 min&nbsp;·&nbsp;Rex</footer>
-  <a class="entry-link" aria-label="post link to Emos项目学习记录" href="https://rex0520.github.io/posts/proj/emos/emos%E9%A1%B9%E7%9B%AE%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
     <h2>Emos项目搭建
     </h2>
   </header>
