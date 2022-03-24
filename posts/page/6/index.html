@@ -161,6 +161,25 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>守护线程
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>守护线程 两类线程：  User Thread 用户线程 Daemon Thread 守护线程   分类标准是线程是否会阻止JVM的停止，只要当前JVM实例中尚存在任何一个非守护线程没有结束，守护线程就全部继续工作；只有当最后一个非守护线程结束时，所有守护线程才会随着JVM一同结束工作。（非守护线程等同于用户线程）
+ JVM停止的情况  已调用System.exit()方法 所有非守护程序线程都已结束   而一般情况下我们不会调用System.exit()方法，所以大部分的Java程序的结束都是由于所有用户线程都结束而导致的。
+所以可以认为，任何一个守护线程都是整个JVM中所有用户线程（非守护线程）的管家。Daemon的作用是为其他线程的运行提供便利服务，守护线程最典型的应用就是 GC (垃圾回收器)，它是一个很称职的守护者。
+ 守护线程的特性  线程类型默认继承自父线程 守护线程创建的线程为默认是守护线程，同样，用户线程创建的线程默认为用户线程。非守护线程如果想创建一个守护线程，需要调用Thread.setDaemon来设置它（Thread类用布尔值daemon属性来表示线程是否是守护线程），并且，该方法必须在start之前调用，否则会抛出 IllegalThreadStateException 异常。  被谁启动  通常由JVM启动，而不是由用户去启动。当JVM启动时，通常会有一个非守护线程（通常为执行main函数的线程）。
+ 不影响JVM退出  当只剩下守护线程时，JVM就会退出，因为如果只剩下守护线程，就没必要继续运行程序了。
+守护线程没结束并不会影响JVM的正常停止:假设所有用户线程都结束了，那么就算有5个守护线程正在运行，JVM也会正常停止：
+ 守护线程和普通线程的区别  虚拟机的离开：如果 User Thread已经全部退出运行了，只剩下Daemon Thread存在了，虚拟机也就退出了，这是因为没有了“被守护者”，Daemon也就没有工作可做了，也就没有继续运行程序的必要了。 这就是守护线程的作用：告诉JVM不需要等待它退出,当JVM中所有的线程都是守护线程的时候，JVM就可以正常的退出了。  我们是否需要给线程设置为守护线程？  我们通常不应把自己的线程设置为守护线程，因为设置为守护线程是很危险的。比如线程正在访问如文件、数据库的时候，所有用户线程都结束了，那么守护线程会在任何时候甚至在一个操作的中间发生中断，所以守护线程永远不应该去访问固有资源。
+ </p>
+  </section>
+  <footer class="entry-footer">2021-06-08&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Rex</footer>
+  <a class="entry-link" aria-label="post link to 守护线程" href="https://rex0520.github.io/posts/back/java/threadpool/%E5%AE%88%E6%8A%A4%E7%BA%BF%E7%A8%8B/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>线程池
     </h2>
   </header>
@@ -232,31 +251,6 @@ Linux系统从Firefox30开始 Yes Yes   Safari Yes No No   Opera Yes Yes Yes    
   </section>
   <footer class="entry-footer">2021-05-12&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Rex</footer>
   <a class="entry-link" aria-label="post link to HTML5" href="https://rex0520.github.io/posts/front/html5/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>Vue进阶
-    </h2>
-  </header>
-  <section class="entry-content">
-    <p>Vue进阶 Vue路由 1.初始路由 **路由**：表示一种对应关系，某些事物的一一对应的关系 **后端路由**：后端路由是由服务器端进行实现，并完成资源的分发（url与资源/数据的对应关系） **前端路由**：前端路由是依靠hash值（锚点链接）的变化进行实现页面内容的切换（锚点与组件之间的关系）  2.vue-router   vue-router工作原理
-  它是一个Vue.js官方提供的路由管理器，是一个功能更加强大的前端路由器，可以实现前端界面内容切换
-  SPA：Single Page Application，单页面应用，整个网站只有一个页面
-  SPA推荐使用vue-router，实现界面内容的切换
-  vue-router提供两种模式
-  hash模式：hash又叫锚点：比如#/login，根据hash改变，来实现界面切换
-  history模式：history模式不会出现#号比较美观，利用history.pushState()来完成URL的跳转而且无须重写加载页面
-  示例代码
-const router = new VueRouter({ mode: &#39;history&#39;, router: [...] })   vue-router默认为hash模式，需要通过mode来改变模式
-        vue-router基本使用
-  引入vue-router.js
-  定义路由链接和路由视图
-代码示例：
-&lt;div id=&#34;app&#34;&gt; &lt;router-link to=&#34;/login&#34; tag=&#34;span&#34;&gt;前往登录&lt;/router-link&gt; &lt;router-view&gt;&lt;/router-view&gt; &lt;/div&gt; router-link是路由链接，to代表链接地址，tag代表渲染的标签...</p>
-  </section>
-  <footer class="entry-footer">2021-03-25&nbsp;·&nbsp;5 min&nbsp;·&nbsp;Rex</footer>
-  <a class="entry-link" aria-label="post link to Vue进阶" href="https://rex0520.github.io/posts/front/vue/vue%E8%BF%9B%E9%98%B6/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
