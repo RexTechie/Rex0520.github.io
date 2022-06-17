@@ -11,7 +11,7 @@
 <meta name="author" content="Rex">
 <link rel="canonical" href="https://rex0520.github.io/tags/restful/" />
 <link crossorigin="anonymous" href="/assets/css/stylesheet.min.css" rel="preload stylesheet" as="style">
-<link rel="preload" href="http://cdn.rexweb.xyz/img/20210821105340.png" as="image">
+<link rel="preload" href="http://cdn.rexhub.xyz/img/20210821105340.png" as="image">
 <link rel="icon" href="https://rex0520.github.io/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="https://rex0520.github.io/favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="https://rex0520.github.io/favicon-32x32.png">
@@ -19,7 +19,7 @@
 <link rel="mask-icon" href="https://rex0520.github.io/%3Clink%20/%20abs%20url%3E">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<meta name="generator" content="Hugo 0.87.0" />
+<meta name="generator" content="Hugo 0.100.2" />
 <link rel="alternate" type="application/rss+xml" href="https://rex0520.github.io/tags/restful/index.xml">
 <noscript>
     <style>
@@ -60,10 +60,10 @@
 </noscript><meta property="og:title" content="Restful" />
 <meta property="og:description" content="Rex的个人博客" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://rex0520.github.io/tags/restful/" /><meta property="og:image" content="https://cdn.rexweb.xyz/img/20210820141535.jpg"/><meta property="og:site_name" content="RexHub" />
+<meta property="og:url" content="https://rex0520.github.io/tags/restful/" /><meta property="og:image" content="https://cdn.rexhub.xyz/img/20210820141535.jpg"/><meta property="og:site_name" content="RexHub" />
 
 <meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="https://cdn.rexweb.xyz/img/20210820141535.jpg"/>
+<meta name="twitter:image" content="https://cdn.rexhub.xyz/img/20210820141535.jpg"/>
 
 <meta name="twitter:title" content="Restful"/>
 <meta name="twitter:description" content="Rex的个人博客"/>
@@ -86,7 +86,7 @@
     <nav class="nav">
         <div class="logo">
             <a href="https://rex0520.github.io/" accesskey="h" title="Home (Alt + H)">
-                <img src="http://cdn.rexweb.xyz/img/20210821105340.png" alt="logo" aria-label="logo"
+                <img src="http://cdn.rexhub.xyz/img/20210821105340.png" alt="logo" aria-label="logo"
                     height="35">Home</a>
             <span class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)">
@@ -150,9 +150,9 @@
     </h2>
   </header>
   <section class="entry-content">
-    <p>RESTful开发风格 REST与RESTful  REST(Representational State Transfer)-表现层状态转换，资源在网络中以某种表现形式进行状态转移 RESTful是基于REST理念的一套开发风格，是具体的开发规则  RESTful传输数据 RESTful开发规范  使用URL作为用户交互入口 明确的语义规范(GET|POST|PUT|DELETE-&gt;查|增|改|删) 只返回数据(JSON|XML)，不包含任何展现  RESTful命名要求    URI 说明 修改建议     GET /articles?au=lily 正确用法    GET /a/1 URI必须具有语义 GET /student/1   POST /createArticle/1 URI必须使用名词 POST /article/1   GET /articles/author/1 URI扁平化，不超两级 GET /articles/author?id=1   DELETE /articles/1 URI名词区分单复数 GET /articles?au=lily
-DELETE /article/1    开发第一个RESTful应用  RestfulController.java
-package com.imooc.restful.controller; import org.springframework.stereotype.Controller; import org....</p>
+    <p>RESTful开发风格 REST与RESTful REST(Representational State Transfer)-表现层状态转换，资源在网络中以某种表现形式进行状态转移 RESTful是基于REST理念的一套开发风格，是具体的开发规则 RESTful传输数据 RESTful开发规范 使用URL作为用户交互入口 明确的语义规范(GET|POST|PUT|DELETE-&gt;查|增|改|删) 只返回数据(JSON|XML)，不包含任何展现 RESTful命名要求 URI 说明 修改建议 GET /articles?au=lily 正确用法 GET /a/1 URI必须具有语义 GET /student/1 POST /createArticle/1 URI必须使用名词 POST /article/1 GET /articles/author/1 URI扁平化，不超两级 GET /articles/author?id=1 DELETE /articles/1 URI名词区分单复数 GET /articles?au=lily
+DELETE /article/1 开发第一个RESTful应用 RestfulController.java
+package com.imooc.restful.controller; import org.springframework.stereotype.Controller; import org.springframework.web.bind.annotation.*; /** * @author Rex * @create 2021-01-12 12:00 */ @Controller @RequestMapping(&#34;/restful&#34;) public class RestfulController { @GetMapping(&#34;/request&#34;) @ResponseBody public String doGetRequest(){ return &#34;{\&#34;message\&#34;:\&#34;返回查询结果\&#34;}&#34;; } @PostMapping(&#34;/request&#34;) @ResponseBody public String doPostRequest(){ return &#34;{\&#34;message\&#34;:\&#34;数据新建成功\&#34;}&#34;; } @PutMapping(&#34;/request&#34;) @ResponseBody public String doPutRequest(){ return &#34;{\&#34;message\&#34;:\&#34;数据更新成功\&#34;}&#34;; } @DeleteMapping(&#34;/request&#34;) @ResponseBody public String doDeleteRequest(){ return &#34;{\&#34;message\&#34;:\&#34;数据删除成功\&#34;}&#34;; } } client....</p>
   </section>
   <footer class="entry-footer">2021-03-09&nbsp;·&nbsp;3 min&nbsp;·&nbsp;Rex</footer>
   <a class="entry-link" aria-label="post link to Restful开发风格" href="https://rex0520.github.io/posts/back/java/framework/springmvc/restful/"></a>

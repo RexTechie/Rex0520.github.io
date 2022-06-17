@@ -5,8 +5,8 @@
     <link>https://rex0520.github.io/categories/%E9%9F%B3%E8%A7%86%E9%A2%91/</link>
     <description>Recent content in 音视频 on Rex</description>
     <image>
-      <url>https://cdn.rexweb.xyz/img/20210820141535.jpg</url>
-      <link>https://cdn.rexweb.xyz/img/20210820141535.jpg</link>
+      <url>https://cdn.rexhub.xyz/img/20210820141535.jpg</url>
+      <link>https://cdn.rexhub.xyz/img/20210820141535.jpg</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <lastBuildDate>Tue, 12 Oct 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://rex0520.github.io/categories/%E9%9F%B3%E8%A7%86%E9%A2%91/index.xml" rel="self" type="application/rss+xml" />
@@ -14,10 +14,10 @@
       <title>腾讯TRTC</title>
       <link>https://rex0520.github.io/posts/api/%E8%85%BE%E8%AE%AFtrtc/</link>
       <pubDate>Tue, 12 Oct 2021 00:00:00 +0000</pubDate>
-      
+
       <guid>https://rex0520.github.io/posts/api/%E8%85%BE%E8%AE%AFtrtc/</guid>
       <description>腾讯音视频trtc的使用</description>
     </item>
-    
+
   </channel>
 </rss>

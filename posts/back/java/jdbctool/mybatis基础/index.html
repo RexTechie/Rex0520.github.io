@@ -11,7 +11,7 @@
 <meta name="author" content="Rex">
 <link rel="canonical" href="https://rex0520.github.io/posts/back/java/jdbctool/mybatis%E5%9F%BA%E7%A1%80/" />
 <link crossorigin="anonymous" href="/assets/css/stylesheet.min.css" rel="preload stylesheet" as="style">
-<link rel="preload" href="http://cdn.rexweb.xyz/img/20210821105340.png" as="image">
+<link rel="preload" href="http://cdn.rexhub.xyz/img/20210821105340.png" as="image">
 <script defer crossorigin="anonymous" src="/assets/js/highlight.min.js" onload="hljs.initHighlightingOnLoad();"></script>
 <link rel="icon" href="https://rex0520.github.io/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="https://rex0520.github.io/favicon-16x16.png">
@@ -20,7 +20,7 @@
 <link rel="mask-icon" href="https://rex0520.github.io/%3Clink%20/%20abs%20url%3E">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<meta name="generator" content="Hugo 0.87.0" />
+<meta name="generator" content="Hugo 0.100.2" />
 <noscript>
     <style>
         #theme-toggle,
@@ -60,12 +60,12 @@
 </noscript><meta property="og:title" content="Mybatis基础" />
 <meta property="og:description" content="Mybatis基础" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://rex0520.github.io/posts/back/java/jdbctool/mybatis%E5%9F%BA%E7%A1%80/" /><meta property="og:image" content="https://cdn.rexweb.xyz/img/20210820141535.jpg"/><meta property="article:section" content="posts" />
+<meta property="og:url" content="https://rex0520.github.io/posts/back/java/jdbctool/mybatis%E5%9F%BA%E7%A1%80/" /><meta property="og:image" content="https://cdn.rexhub.xyz/img/20210820141535.jpg"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2021-03-09T00:00:00&#43;00:00" />
 <meta property="article:modified_time" content="2021-03-09T00:00:00&#43;00:00" /><meta property="og:site_name" content="RexHub" />
 
 <meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="https://cdn.rexweb.xyz/img/20210820141535.jpg"/>
+<meta name="twitter:image" content="https://cdn.rexhub.xyz/img/20210820141535.jpg"/>
 
 <meta name="twitter:title" content="Mybatis基础"/>
 <meta name="twitter:description" content="Mybatis基础"/>
@@ -101,7 +101,7 @@
   "keywords": [
     "Mybatis"
   ],
-  "articleBody": "MyBatis基础入门 软件开发中的框架  框架是可被应用开发者定制的应用骨架 框架是一种规则，保证开发者遵循相同的方式开发程序 框架提倡“不要重复造轮子”，对基础功能进行封装  框架的优点  极大提高了开发效率 统一的编码规则，有利于团队管理 灵活配置的应用，拥有更好的维护性  SSM开发框架  S - Spring S - Spring MVC M - MyBatis  什么是MyBatis  MyBatis是优秀的持久层框架 MyBatis使用XML将SQL与程序解耦，便于维护 MyBatis学习简单，执行高效，是JDBC的延展  MyBatis开发流程  引入MyBatis依赖 创建核心配置文件 创建实体(Entity)类 创建Mapper映射文件 初始化SessionFactory 利用SqlSession对象操作数据  MyBatis环境配置 mybatis-config.xml说明  MyBatis采用XML格式配置数据库环境信息 MyBatis环境配置标签 environment包含数据库驱动、URL、用户名于密码  mybatis-config.xml示例：  PUBLIC \"-//mybatis.org//DTD Config 3.0//EN\" \"http://mybatis.org/dtd/mybatis-3-config.dtd\"   default=\"dev\" 开发环境 prd-生产环境 --  id=\"dev\"   type=\"JDBC\"   type=\"POOLED\"  name=\"driver\" value=\"com.mysql.cj.jdbc.Driver\"/  name=\"url\" value=\"jdbc:mysql://localhost:3306/babytun?useUnicode=true\u0026amp;characterEncoding=UTF-8\"/  name=\"username\" value=\"root\"/  name=\"password\" value=\"root\"/    id=\"prd\"   type=\"JDBC\"   type=\"POOLED\"  name=\"driver\" value=\"com.mysql.cj.jdbc.Driver\"/  name=\"url\" value=\"jdbc:mysql://192.168.1.1:3306/babytun?useUnicode=true\u0026amp;characterEncoding=UTF-8\"/  name=\"username\" value=\"root\"/  name=\"password\" value=\"root\"/     创建SqlSession SqlSessionFactory  SqlSessionFactory是MyBatis的核心对象 用于初始化MyBatis，创建SqlSession对象 保证SqlSessionFactory在应用中全局唯一  SqlSession  SqlSession是MyBatis操作数据库的核心对象 SqlSession使用JDBC方式与数据库交互 SqlSession对象提供了数据表CRUD对应方法  示例代码 package com.imooc.mybatis; import org.apache.ibatis.io.Resources; import org.apache.ibatis.session.SqlSession; import org.apache.ibatis.session.SqlSessionFactory; import org.apache.ibatis.session.SqlSessionFactoryBuilder; import org.junit.Test; import java.io.IOException; import java.io.Reader; import java.sql.Connection; /** * JUNIT单元测试类 * @author CubeMonkey * @create 2020-10-27 10:21 */ public class MyBatisTestor { @Test public void testSqlSessionFactory() throws IOException { //利用Reader加载classpath下的mybatis-config.xml核心配置文件  Reader reader = Resources.getResourceAsReader(\"mybatis-config.xml\"); //初始化SqlSessionFactory对象，同时解析mybatis-config.xml文件  SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader); SqlSession sqlSession = null; try { //创建SqlSession对象，SqlSession是JDBC的扩展类，用于与数据库交互  sqlSession = sqlSessionFactory.openSession(); //创建数据库连接（测试用）  Connection conn = sqlSession.getConnection(); System.out.println(conn); }catch (Exception e){ e.printStackTrace(); } finally { if (sqlSession != null) { //如果type=\"POOLED\", 代表使用连接池，close则是将连接回收到连接池中  //如果type=\"UNPOOLED\",代表直连，close则会调用Connection.close()方法关闭连接  sqlSession.close(); } } } } 初始化工具类MyBatisUtils MyBatisUtils代码示例： package com.imooc.mybatis.utils; import org.apache.ibatis.io.Resources; import org.apache.ibatis.session.SqlSession; import org.apache.ibatis.session.SqlSessionFactory; import org.apache.ibatis.session.SqlSessionFactoryBuilder; import java.io.IOException; import java.io.Reader; /** * MyBatisUtils工具类，创建全局唯一的SqlSessionFactory对象 * @author CubeMonkey * @create 2020-10-27 10:51 */ public class MyBatisUtils { //利用static(静态)属于类不属于对象，且全局唯一  private static SqlSessionFactory sqlSessionFactory = null; //利用静态代码块在初始化类时实例化sqlSessionFactory  static{ Reader reader = null; try { reader = Resources.getResourceAsReader(\"mybatis-config.xml\"); sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader); } catch (IOException e) { e.printStackTrace(); //初始化错误时，通过抛出异常ExceptionInitializerError通知调用者  throw new ExceptionInInitializerError(e); } } /** * openSession 创建一个新的SqlSession对象 * @return SqlSession对象 */ public static SqlSession openSession(){ return sqlSessionFactory.openSession(); } /** * 释放一个有效的SqlSession对象 * @param sqlSession 准备释放sqlSession对象 */ public static void closeSession(SqlSession sqlSession){ if (sqlSession != null){ sqlSession.close(); } } } MyBatisUtils工具类使用实例：\n@Test public void testMyBatisUtils(){ SqlSession sqlSession = null; try { sqlSession = MyBatisUtils.openSession(); Connection conn = sqlSession.getConnection(); System.out.println(conn); }catch (Exception e){ e.printStackTrace(); }finally { MyBatisUtils.closeSession(sqlSession); } } MyBatis数据查询 简单查询 MyBatis数据查询步骤  创建实体类(Entity) 创建Mapper Xml 编写SQL标签 开启驼峰命名映射 新增 SqlSession执行select语句  示例：   创建实体类\n Goods.java\npackage com.imooc.mybatis.entity; /** * @author CubeMonkey * @create 2020-10-27 11:28 */ public class Goods { private Integer goodsId;//商品编号  private String title;//标题  private String subTitle;//子标题  private Float originalCost;//原始价格  private Float currentPrice;//当前价格  private Float discount;//折扣率  private Integer isFreeDelivery;//是否包邮，1-包邮 0-不包邮  private Integer categoryId;//分类编号  public Integer getGoodsId() { return goodsId; } public void setGoodsId(Integer goodsId) { this.goodsId = goodsId; } public String getTitle() { return title; } public void setTitle(String title) { this.title = title; } public String getSubTitle() { return subTitle; } public void setSubTitle(String subTitle) { this.subTitle = subTitle; } public Float getOriginalCost() { return originalCost; } public void setOriginalCost(Float originalCost) { this.originalCost = originalCost; } public Float getCurrentPrice() { return currentPrice; } public void setCurrentPrice(Float currentPrice) { this.currentPrice = currentPrice; } public Float getDiscount() { return discount; } public void setDiscount(Float discount) { this.discount = discount; } public Integer getIsFreeDelivery() { return isFreeDelivery; } public void setIsFreeDelivery(Integer isFreeDelivery) { this.isFreeDelivery = isFreeDelivery; } public Integer getCategoryId() { return categoryId; } public void setCategoryId(Integer categoryId) { this.categoryId = categoryId; } }    创建Mapper Xml\n  编写SQL标签\n resources/mappers/goods.xml\n PUBLIC \"-//mybatis.org//DTD Mapper 3.0//EN\" \"http://mybatis.org/dtd/mybatis-3-mapper.dtd\"  namespace=\"goods\" 返回的数据类型 --  id=\"selectAll\" resultType=\"com.imooc.mybatis.entity.Goods\" select * from t_goods order by goods_id desc limit 10      开启驼峰命名映射\n 在mybatis-config.xml中的configuration下添加settings配置\n goodsId 驼峰命名转化--  name=\"mapUnderscoreToCamelCase\" value=\"true\"/     新增\n 在mybatis-config.xml中的configuration下添加mapper配置\n   resource=\"mappers/goods.xml\"     SqlSession执行select语句\n MyBatisTestor部分测试代码：\n@Test public void testSelectAll(){ SqlSession session = null; try { session = MyBatisUtils.openSession(); ListGoods list = session.selectList(\"goods.selectAll\"); for (Goods goods : list) { System.out.println(goods.getTitle()); } }catch (Exception e){ throw e; }finally { MyBatisUtils.closeSession(session); } }    SQL传参   单参数传参\n goods.xml\n  id=\"selectById\" parameterType=\"Integer\" resultType=\"com.imooc.mybatis.entity.Goods\" select * from t_goods where goods_id = #{value}  MyBatisTestor.java部分代码\n@Test public void testSelectById(){ SqlSession session = null; try { session = MyBatisUtils.openSession(); Goods goods = session.selectOne(\"goods.selectById\", 1603); System.out.println(goods.getTitle()); }catch (Exception e){ throw e; }finally { MyBatisUtils.closeSession(session); } }    多参数传参\n goods.xml\n id=\"selectByPriceRange\" parameterType=\"java.util.Map\" resultType=\"com.imooc.mybatis.entity.Goods\" select * from t_goods where current_price between #{min} and #{max} order by current_price limit 0, #{limit}  MyBatisTestor.java部分代码\n@Test public void testSelectByPriceRange(){ SqlSession session = null; try { session = MyBatisUtils.openSession(); Map param = new HashMapString, Integer(); param.put(\"min\", 100); param.put(\"max\", 500); param.put(\"limit\", 10); ListGoods list = session.selectList(\"goods.selectByPriceRange\", param); for (Goods goods : list) { System.out.println(goods.getTitle()); } }catch (Exception e){ throw e; }finally { MyBatisUtils.closeSession(session); } }    多表查询 示例（不用ResultMap结果映射）：  goods.xml中添加以下代码\nMyBatis会将每一条记录包装为LinkedHashMap对象 key是字段名 value是字段对应的值，字段类型根据表结构进行自动判断 优点：易于扩展，易于使用 缺点：太过灵活，无法进行编译时检查 --  id=\"selectGoodsMap\" resultType=\"java.util.LinkedHashMap\" select g.*, c.category_name from t_goods g, t_category c where g.category_id = c.category_id  MyBatisTestor.java部分代码\n@Test public void testSelectGoodsMap(){ SqlSession sqlSession = null; sqlSession = MyBatisUtils.openSession(); ListMaplist = sqlSession.selectList(\"goods.selectGoodsMap\"); for (Map map : list) { System.out.println(map); } }  ResultMap结果映射  ResultMap可以将查询结果映射为复杂类型的Java对象 ResultMap使用于Java对象保存多表关联结果 ResultMap支持对象关联查询等高级特性  tip:DTO-Data Transfer Object – 数据传输对象 使用ResultMap结果映射  编写GoodsDTO -\npackage com.imooc.mybatis.dto; import com.imooc.mybatis.entity.Category; import com.imooc.mybatis.entity.Goods; /** * @author CubeMonkey * @create 2020-10-27 18:50 */ //Data Transfer Object --数据传输对象 public class GoodsDTO { private Goods goods = new Goods(); private Category category = new Category(); private String test; public Goods getGoods() { return goods; } public void setGoods(Goods goods) { this.goods = goods; } public Category getCategory() { return category; } public void setCategory(Category category) { this.category = category; } public String getTest() { return test; } public void setTest(String test) { this.test = test; } } Goods.java\npackage com.imooc.mybatis.entity; /** * @author CubeMonkey * @create 2020-10-27 11:28 */ public class Goods { private Integer goodsId;//商品编号  private String title;//标题  private String subTitle;//子标题  private Float originalCost;//原始价格  private Float currentPrice;//当前价格  private Float discount;//折扣率  private Integer isFreeDelivery;//是否包邮，1-包邮 0-不包邮  private Integer categoryId;//分类编号  public Integer getGoodsId() { return goodsId; } public void setGoodsId(Integer goodsId) { this.goodsId = goodsId; } public String getTitle() { return title; } public void setTitle(String title) { this.title = title; } public String getSubTitle() { return subTitle; } public void setSubTitle(String subTitle) { this.subTitle = subTitle; } public Float getOriginalCost() { return originalCost; } public void setOriginalCost(Float originalCost) { this.originalCost = originalCost; } public Float getCurrentPrice() { return currentPrice; } public void setCurrentPrice(Float currentPrice) { this.currentPrice = currentPrice; } public Float getDiscount() { return discount; } public void setDiscount(Float discount) { this.discount = discount; } public Integer getIsFreeDelivery() { return isFreeDelivery; } public void setIsFreeDelivery(Integer isFreeDelivery) { this.isFreeDelivery = isFreeDelivery; } public Integer getCategoryId() { return categoryId; } public void setCategoryId(Integer categoryId) { this.categoryId = categoryId; } } Category.java\npackage com.imooc.mybatis.entity; /** * @author CubeMonkey * @create 2020-10-27 19:12 */ public class Category { private Integer categoryId; private String categoryName; private Integer parentId; private Integer categoryLevel; private Integer categoryOrder; public Integer getCategoryId() { return categoryId; } public void setCategoryId(Integer categoryId) { this.categoryId = categoryId; } public String getCategoryName() { return categoryName; } public void setCategoryName(String categoryName) { this.categoryName = categoryName; } public Integer getParentId() { return parentId; } public void setParentId(Integer parentId) { this.parentId = parentId; } public Integer getCategoryLevel() { return categoryLevel; } public void setCategoryLevel(Integer categoryLevel) { this.categoryLevel = categoryLevel; } public Integer getCategoryOrder() { return categoryOrder; } public void setCategoryOrder(Integer categoryOrder) { this.categoryOrder = categoryOrder; } } 在goods.xml中添加如下信息\n  id=\"rmGoods\" type=\"com.imooc.mybatis.dto.GoodsDTO\"   property=\"goods.goodsId\" column=\"goods_id\"   property=\"goods.title\" column=\"title\"  property=\"goods.originalCost\" column=\"original_cost\"  property=\"goods.currentPrice\" column=\"current_price\"  property=\"goods.discount\" column=\"discount\"  property=\"goods.isFreeDelivery\" column=\"is_free_delivery\"  property=\"goods.categoryId\" column=\"category_id\"  property=\"category.categoryId\" column=\"category_id\"  property=\"category.categoryName\" column=\"category_name\"  property=\"category.categoryId\" column=\"category_id\"  property=\"category.parentId\" column=\"parent_id\"  property=\"category.categoryLevel\" column=\"category_level\"  property=\"category.categoryOrder\" column=\"category_order\"  property=\"test\" column=\"test\"   id=\"selectGoodsDTO\" resultMap=\"rmGoods\" select g.*, c.*, \"1\" as test from t_goods g, t_category c where g.category_id = c.category_id   MyBatis的写操作 Insert操作  在goods.xml中配置如下信息\n id=\"insert\" parameterType=\"com.imooc.mybatis.entity.Goods\" insert into t_goods(title, sub_title, original_cost, current_price, discount, is_free_delivery, category_id) values(#{title}, #{subTitle}, #{originalCost}, #{currentPrice}, #{discount}, #{isFreeDelivery}, #{categoryId})   resultType=\"Integer\" keyProperty=\"goodsId\" order=\"AFTER\" select last_insert_id();   MyBatisTestor.java 测试代码\n@Test public void testInsert() { SqlSession session = null; try { session = MyBatisUtils.openSession(); Goods goods = new Goods(); goods.setTitle(\"测试用例标题\"); goods.setSubTitle(\"测试用例子标题\"); goods.setOriginalCost(1f); goods.setCurrentPrice(100f); goods.setDiscount(0.5f); goods.setIsFreeDelivery(1); goods.setCategoryId(12); int num = session.insert(\"goods.insert\", goods); session.commit();//这个很重要，不能忘记  if (num == 1) System.out.println(\"插入成功\"); else System.out.println(\"插入失败\"); System.out.println(goods.getGoodsId()); } catch (Exception e){ session.rollback(); throw e; } finally { MyBatisUtils.closeSession(session); } }  selectKey与useGeneratedKey区别 selectKey:  id=\"insert\" parameterType=\"com.imooc.mybatis.entity.Goods\" INSERT INTO 语句   resultType=\"Integer\" keyProperty=\"goodsId\" order=\"AFTER\" select last_insert_id();   useGeneratedKey:  id=\"insert\" parameterType=\"com.imooc.mybatis.entity.Goods\" useGeneratedKeys=\"true\" keyProperty=\"goodsId\" keyColumn=\"goods_id\" INSERT INTO 语句  二者区别 - 显示与隐式  selectKey标签需要明确编写获取最新主键的SQL语句(不同的数据库驱动获取最新主键的SQL语句不同) useGeneratedKeys属性会自动根据驱动生成对应SQL语句  二者区别-应用场景不同  selectKey适用于所有的关系型数据库 useGeneratedKeys只支持“自增主键”类型的数据库  tip: ​\t不支持自增主键的数据库有：DB2， Oracle\n在oracle中selectKey的用法：  id=\"insert\" parameterType=\"com.imooc.mybatis.entity.Goods\" INSERT INTO 语句   resultType=\"Integer\" keyProperty=\"goodsId\" order=\"BEFORE\" select seq_goods.nextval as id from dual   总结：  selectKey标签是通用方案，使用于所有数据库，但编写麻烦 useGeneratedKeys属性只支持“自增主键”数据库，使用简单  update操作  goods.xml:\n id=\"update\" parameterType=\"com.imooc.mybatis.entity.Goods\" update t_goods set title = #{title}, sub_title = #{subTitle}, original_cost = #{originalCost}, current_price = #{currentPrice}, discount = #{discount}, is_free_delivery = #{isFreeDelivery}, category_id = #{categoryId} where goods_id = #{goodsId}  MyBatisTestor.java\n@Test public void testUpdate(){ SqlSession session = null; try { session = MyBatisUtils.openSession(); Goods goods = session.selectOne(\"selectById\", 739); goods.setTitle(\"更新测试商品\"); int num = session.update(\"goods.update\", goods); if (num == 1) System.out.println(\"更新成功\"); else System.out.println(\"更新失败\"); System.out.println(goods.getTitle()); session.commit(); } catch (Exception e) { session.rollback(); throw e; } finally { MyBatisUtils.closeSession(session); } }  ​\ndelete操作  goods.xml\n id=\"delete\" parameterType=\"Integer\" delete from t_goods where goods_id = #{value}  MyBatisTestor.java\n@Test public void testDelete(){ SqlSession session = null; try { session = MyBatisUtils.openSession(); int num = session.delete(\"goods.delete\", 739); if (num == 1) System.out.println(\"删除成功\"); else System.out.println(\"删除失败\"); session.commit(); } catch (Exception e) { e.printStackTrace(); } finally { MyBatisUtils.closeSession(session); } }  MyBatis预防SQL注入攻击 SQL注入攻击  SQL注入是指攻击者利用SQL漏洞，绕过系统约束，越权获取数据的攻击方式  MyBatis俩种传值方式  ${}文本替换，未经任何处理对SQL文本替换（可以用于动态使用SQL语句，使用时绝对不能从外界输入） #{}预编译传值，使用预编译传值可以预防SQL注入  MyBatis工作流程 ",
+  "articleBody": "MyBatis基础入门 软件开发中的框架 框架是可被应用开发者定制的应用骨架 框架是一种规则，保证开发者遵循相同的方式开发程序 框架提倡“不要重复造轮子”，对基础功能进行封装 框架的优点 极大提高了开发效率 统一的编码规则，有利于团队管理 灵活配置的应用，拥有更好的维护性 SSM开发框架 S -\u003e Spring S -\u003e Spring MVC M -\u003e MyBatis 什么是MyBatis MyBatis是优秀的持久层框架 MyBatis使用XML将SQL与程序解耦，便于维护 MyBatis学习简单，执行高效，是JDBC的延展 MyBatis开发流程 引入MyBatis依赖 创建核心配置文件 创建实体(Entity)类 创建Mapper映射文件 初始化SessionFactory 利用SqlSession对象操作数据 MyBatis环境配置 mybatis-config.xml说明 MyBatis采用XML格式配置数据库环境信息 MyBatis环境配置标签 environment包含数据库驱动、URL、用户名于密码 mybatis-config.xml示例： \u003c?xml version=\"1.0\" encoding=\"UTF-8\" ?\u003e \u003c!DOCTYPE configuration PUBLIC \"-//mybatis.org//DTD Config 3.0//EN\" \"http://mybatis.org/dtd/mybatis-3-config.dtd\"\u003e ",
   "wordCount" : "1507",
   "inLanguage": "en",
   "datePublished": "2021-03-09T00:00:00Z",
@@ -142,7 +142,7 @@
     <nav class="nav">
         <div class="logo">
             <a href="https://rex0520.github.io/" accesskey="h" title="Home (Alt + H)">
-                <img src="http://cdn.rexweb.xyz/img/20210821105340.png" alt="logo" aria-label="logo"
+                <img src="http://cdn.rexhub.xyz/img/20210821105340.png" alt="logo" aria-label="logo"
                     height="35">Home</a>
             <span class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)">
@@ -372,38 +372,38 @@
 <li>environment包含数据库驱动、URL、用户名于密码</li>
 </ul>
 <h3 id="mybatis-configxml示例">mybatis-config.xml示例：<a hidden class="anchor" aria-hidden="true" href="#mybatis-configxml示例">#</a></h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="cp">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34; ?&gt;</span>
-<span class="cp">&lt;!DOCTYPE configuration
-</span><span class="cp">        PUBLIC &#34;-//mybatis.org//DTD Config 3.0//EN&#34;
-</span><span class="cp">        &#34;http://mybatis.org/dtd/mybatis-3-config.dtd&#34;&gt;</span>
-<span class="nt">&lt;configuration&gt;</span>
-    <span class="nt">&lt;environments</span> <span class="na">default=</span><span class="s">&#34;dev&#34;</span><span class="nt">&gt;</span>
-        <span class="c">&lt;!--根据环境，不同的环境不同的id，dev-&gt;开发环境 prd-&gt;生产环境 --&gt;</span>
-        <span class="nt">&lt;environment</span> <span class="na">id=</span><span class="s">&#34;dev&#34;</span><span class="nt">&gt;</span>
-            <span class="c">&lt;!--采用JDBC方式对数据库事务进行commit/rollback--&gt;</span>
-            <span class="nt">&lt;transactionManager</span> <span class="na">type=</span><span class="s">&#34;JDBC&#34;</span><span class="nt">&gt;&lt;/transactionManager&gt;</span>
-            <span class="c">&lt;!--数据连接方式管理数据库连接--&gt;</span>
-            <span class="nt">&lt;dataSource</span> <span class="na">type=</span><span class="s">&#34;POOLED&#34;</span><span class="nt">&gt;</span>
-                <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;driver&#34;</span> <span class="na">value=</span><span class="s">&#34;com.mysql.cj.jdbc.Driver&#34;</span><span class="nt">/&gt;</span>
-                <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;url&#34;</span> <span class="na">value=</span><span class="s">&#34;jdbc:mysql://localhost:3306/babytun?useUnicode=true&amp;amp;characterEncoding=UTF-8&#34;</span><span class="nt">/&gt;</span>
-                <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;username&#34;</span> <span class="na">value=</span><span class="s">&#34;root&#34;</span><span class="nt">/&gt;</span>
-                <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;password&#34;</span> <span class="na">value=</span><span class="s">&#34;root&#34;</span><span class="nt">/&gt;</span>
-            <span class="nt">&lt;/dataSource&gt;</span>
-        <span class="nt">&lt;/environment&gt;</span>
-        <span class="nt">&lt;environment</span> <span class="na">id=</span><span class="s">&#34;prd&#34;</span><span class="nt">&gt;</span>
-            <span class="c">&lt;!--采用JDBC方式对数据库事务进行commit/rollback--&gt;</span>
-            <span class="nt">&lt;transactionManager</span> <span class="na">type=</span><span class="s">&#34;JDBC&#34;</span><span class="nt">&gt;&lt;/transactionManager&gt;</span>
-            <span class="c">&lt;!--数据连接方式管理数据库连接--&gt;</span>
-            <span class="nt">&lt;dataSource</span> <span class="na">type=</span><span class="s">&#34;POOLED&#34;</span><span class="nt">&gt;</span>
-                <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;driver&#34;</span> <span class="na">value=</span><span class="s">&#34;com.mysql.cj.jdbc.Driver&#34;</span><span class="nt">/&gt;</span>
-                <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;url&#34;</span> <span class="na">value=</span><span class="s">&#34;jdbc:mysql://192.168.1.1:3306/babytun?useUnicode=true&amp;amp;characterEncoding=UTF-8&#34;</span><span class="nt">/&gt;</span>
-                <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;username&#34;</span> <span class="na">value=</span><span class="s">&#34;root&#34;</span><span class="nt">/&gt;</span>
-                <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;password&#34;</span> <span class="na">value=</span><span class="s">&#34;root&#34;</span><span class="nt">/&gt;</span>
-            <span class="nt">&lt;/dataSource&gt;</span>
-        <span class="nt">&lt;/environment&gt;</span>
-    <span class="nt">&lt;/environments&gt;</span>
-<span class="nt">&lt;/configuration&gt;</span>
-</code></pre></div><h2 id="创建sqlsession">创建SqlSession<a hidden class="anchor" aria-hidden="true" href="#创建sqlsession">#</a></h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="cp">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34; ?&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="cp">&lt;!DOCTYPE configuration
+</span></span></span><span class="line"><span class="cl"><span class="cp">        PUBLIC &#34;-//mybatis.org//DTD Config 3.0//EN&#34;
+</span></span></span><span class="line"><span class="cl"><span class="cp">        &#34;http://mybatis.org/dtd/mybatis-3-config.dtd&#34;&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;configuration&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;environments</span> <span class="na">default=</span><span class="s">&#34;dev&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="c">&lt;!--根据环境，不同的环境不同的id，dev-&gt;开发环境 prd-&gt;生产环境 --&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;environment</span> <span class="na">id=</span><span class="s">&#34;dev&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="c">&lt;!--采用JDBC方式对数据库事务进行commit/rollback--&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;transactionManager</span> <span class="na">type=</span><span class="s">&#34;JDBC&#34;</span><span class="nt">&gt;&lt;/transactionManager&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="c">&lt;!--数据连接方式管理数据库连接--&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;dataSource</span> <span class="na">type=</span><span class="s">&#34;POOLED&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;driver&#34;</span> <span class="na">value=</span><span class="s">&#34;com.mysql.cj.jdbc.Driver&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;url&#34;</span> <span class="na">value=</span><span class="s">&#34;jdbc:mysql://localhost:3306/babytun?useUnicode=true&amp;amp;characterEncoding=UTF-8&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;username&#34;</span> <span class="na">value=</span><span class="s">&#34;root&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;password&#34;</span> <span class="na">value=</span><span class="s">&#34;root&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;/dataSource&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;/environment&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;environment</span> <span class="na">id=</span><span class="s">&#34;prd&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="c">&lt;!--采用JDBC方式对数据库事务进行commit/rollback--&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;transactionManager</span> <span class="na">type=</span><span class="s">&#34;JDBC&#34;</span><span class="nt">&gt;&lt;/transactionManager&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="c">&lt;!--数据连接方式管理数据库连接--&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;dataSource</span> <span class="na">type=</span><span class="s">&#34;POOLED&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;driver&#34;</span> <span class="na">value=</span><span class="s">&#34;com.mysql.cj.jdbc.Driver&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;url&#34;</span> <span class="na">value=</span><span class="s">&#34;jdbc:mysql://192.168.1.1:3306/babytun?useUnicode=true&amp;amp;characterEncoding=UTF-8&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;username&#34;</span> <span class="na">value=</span><span class="s">&#34;root&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;password&#34;</span> <span class="na">value=</span><span class="s">&#34;root&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;/dataSource&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;/environment&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/environments&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/configuration&gt;</span>
+</span></span></code></pre></div><h2 id="创建sqlsession">创建SqlSession<a hidden class="anchor" aria-hidden="true" href="#创建sqlsession">#</a></h2>
 <h3 id="sqlsessionfactory">SqlSessionFactory<a hidden class="anchor" aria-hidden="true" href="#sqlsessionfactory">#</a></h3>
 <ul>
 <li>SqlSessionFactory是MyBatis的核心对象</li>
@@ -417,117 +417,115 @@
 <li>SqlSession对象提供了数据表CRUD对应方法</li>
 </ul>
 <h3 id="示例代码">示例代码<a hidden class="anchor" aria-hidden="true" href="#示例代码">#</a></h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="nn">com.imooc.mybatis</span><span class="o">;</span>
-
-<span class="kn">import</span> <span class="nn">org.apache.ibatis.io.Resources</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">org.apache.ibatis.session.SqlSession</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">org.apache.ibatis.session.SqlSessionFactory</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">org.apache.ibatis.session.SqlSessionFactoryBuilder</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">org.junit.Test</span><span class="o">;</span>
-
-<span class="kn">import</span> <span class="nn">java.io.IOException</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">java.io.Reader</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">java.sql.Connection</span><span class="o">;</span>
-
-<span class="cm">/**
-</span><span class="cm"> * JUNIT单元测试类
-</span><span class="cm"> * @author CubeMonkey
-</span><span class="cm"> * @create 2020-10-27 10:21
-</span><span class="cm"> */</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyBatisTestor</span> <span class="o">{</span>
-    <span class="nd">@Test</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testSqlSessionFactory</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">IOException</span> <span class="o">{</span>
-        <span class="c1">//利用Reader加载classpath下的mybatis-config.xml核心配置文件
-</span><span class="c1"></span>        <span class="n">Reader</span> <span class="n">reader</span> <span class="o">=</span> <span class="n">Resources</span><span class="o">.</span><span class="na">getResourceAsReader</span><span class="o">(</span><span class="s">&#34;mybatis-config.xml&#34;</span><span class="o">);</span>
-        <span class="c1">//初始化SqlSessionFactory对象，同时解析mybatis-config.xml文件
-</span><span class="c1"></span>        <span class="n">SqlSessionFactory</span> <span class="n">sqlSessionFactory</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SqlSessionFactoryBuilder</span><span class="o">().</span><span class="na">build</span><span class="o">(</span><span class="n">reader</span><span class="o">);</span>
-        <span class="n">SqlSession</span> <span class="n">sqlSession</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
-        <span class="k">try</span> <span class="o">{</span>
-            <span class="c1">//创建SqlSession对象，SqlSession是JDBC的扩展类，用于与数据库交互
-</span><span class="c1"></span>            <span class="n">sqlSession</span> <span class="o">=</span> <span class="n">sqlSessionFactory</span><span class="o">.</span><span class="na">openSession</span><span class="o">();</span>
-            <span class="c1">//创建数据库连接（测试用）
-</span><span class="c1"></span>            <span class="n">Connection</span> <span class="n">conn</span> <span class="o">=</span> <span class="n">sqlSession</span><span class="o">.</span><span class="na">getConnection</span><span class="o">();</span>
-            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">conn</span><span class="o">);</span>
-        <span class="o">}</span><span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">){</span>
-            <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
-        <span class="o">}</span> <span class="k">finally</span> <span class="o">{</span>
-            <span class="k">if</span> <span class="o">(</span><span class="n">sqlSession</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-                <span class="c1">//如果type=&#34;POOLED&#34;, 代表使用连接池，close则是将连接回收到连接池中
-</span><span class="c1"></span>                <span class="c1">//如果type=&#34;UNPOOLED&#34;,代表直连，close则会调用Connection.close()方法关闭连接
-</span><span class="c1"></span>                <span class="n">sqlSession</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
-            <span class="o">}</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-
-</code></pre></div><h2 id="初始化工具类mybatisutils">初始化工具类MyBatisUtils<a hidden class="anchor" aria-hidden="true" href="#初始化工具类mybatisutils">#</a></h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nn">com.imooc.mybatis</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">org.apache.ibatis.io.Resources</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">org.apache.ibatis.session.SqlSession</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">org.apache.ibatis.session.SqlSessionFactory</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">org.apache.ibatis.session.SqlSessionFactoryBuilder</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">org.junit.Test</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">java.io.IOException</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">java.io.Reader</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">java.sql.Connection</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * JUNIT单元测试类
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * @author CubeMonkey
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * @create 2020-10-27 10:21
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyBatisTestor</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@Test</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testSqlSessionFactory</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">IOException</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//利用Reader加载classpath下的mybatis-config.xml核心配置文件
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">Reader</span> <span class="n">reader</span> <span class="o">=</span> <span class="n">Resources</span><span class="o">.</span><span class="na">getResourceAsReader</span><span class="o">(</span><span class="s">&#34;mybatis-config.xml&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//初始化SqlSessionFactory对象，同时解析mybatis-config.xml文件
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">SqlSessionFactory</span> <span class="n">sqlSessionFactory</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SqlSessionFactoryBuilder</span><span class="o">().</span><span class="na">build</span><span class="o">(</span><span class="n">reader</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">SqlSession</span> <span class="n">sqlSession</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">try</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">//创建SqlSession对象，SqlSession是JDBC的扩展类，用于与数据库交互
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">sqlSession</span> <span class="o">=</span> <span class="n">sqlSessionFactory</span><span class="o">.</span><span class="na">openSession</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">//创建数据库连接（测试用）
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">Connection</span> <span class="n">conn</span> <span class="o">=</span> <span class="n">sqlSession</span><span class="o">.</span><span class="na">getConnection</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">conn</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span><span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">){</span>
+</span></span><span class="line"><span class="cl">            <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span> <span class="k">finally</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="o">(</span><span class="n">sqlSession</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="c1">//如果type=&#34;POOLED&#34;, 代表使用连接池，close则是将连接回收到连接池中
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="c1">//如果type=&#34;UNPOOLED&#34;,代表直连，close则会调用Connection.close()方法关闭连接
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="n">sqlSession</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><h2 id="初始化工具类mybatisutils">初始化工具类MyBatisUtils<a hidden class="anchor" aria-hidden="true" href="#初始化工具类mybatisutils">#</a></h2>
 <h3 id="mybatisutils代码示例">MyBatisUtils代码示例：<a hidden class="anchor" aria-hidden="true" href="#mybatisutils代码示例">#</a></h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="nn">com.imooc.mybatis.utils</span><span class="o">;</span>
-
-<span class="kn">import</span> <span class="nn">org.apache.ibatis.io.Resources</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">org.apache.ibatis.session.SqlSession</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">org.apache.ibatis.session.SqlSessionFactory</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">org.apache.ibatis.session.SqlSessionFactoryBuilder</span><span class="o">;</span>
-
-<span class="kn">import</span> <span class="nn">java.io.IOException</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">java.io.Reader</span><span class="o">;</span>
-
-<span class="cm">/**
-</span><span class="cm"> * MyBatisUtils工具类，创建全局唯一的SqlSessionFactory对象
-</span><span class="cm"> * @author CubeMonkey
-</span><span class="cm"> * @create 2020-10-27 10:51
-</span><span class="cm"> */</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyBatisUtils</span> <span class="o">{</span>
-    <span class="c1">//利用static(静态)属于类不属于对象，且全局唯一
-</span><span class="c1"></span>    <span class="kd">private</span> <span class="kd">static</span> <span class="n">SqlSessionFactory</span> <span class="n">sqlSessionFactory</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
-    <span class="c1">//利用静态代码块在初始化类时实例化sqlSessionFactory
-</span><span class="c1"></span>    <span class="kd">static</span><span class="o">{</span>
-        <span class="n">Reader</span> <span class="n">reader</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
-        <span class="k">try</span> <span class="o">{</span>
-            <span class="n">reader</span> <span class="o">=</span> <span class="n">Resources</span><span class="o">.</span><span class="na">getResourceAsReader</span><span class="o">(</span><span class="s">&#34;mybatis-config.xml&#34;</span><span class="o">);</span>
-            <span class="n">sqlSessionFactory</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SqlSessionFactoryBuilder</span><span class="o">().</span><span class="na">build</span><span class="o">(</span><span class="n">reader</span><span class="o">);</span>
-        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
-            <span class="c1">//初始化错误时，通过抛出异常ExceptionInitializerError通知调用者
-</span><span class="c1"></span>            <span class="k">throw</span> <span class="k">new</span> <span class="n">ExceptionInInitializerError</span><span class="o">(</span><span class="n">e</span><span class="o">);</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-
-    <span class="cm">/**
-</span><span class="cm">     * openSession 创建一个新的SqlSession对象
-</span><span class="cm">     * @return SqlSession对象
-</span><span class="cm">     */</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="n">SqlSession</span> <span class="nf">openSession</span><span class="o">(){</span>
-        <span class="k">return</span> <span class="n">sqlSessionFactory</span><span class="o">.</span><span class="na">openSession</span><span class="o">();</span>
-    <span class="o">}</span>
-
-    <span class="cm">/**
-</span><span class="cm">     * 释放一个有效的SqlSession对象
-</span><span class="cm">     * @param sqlSession 准备释放sqlSession对象
-</span><span class="cm">     */</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">closeSession</span><span class="o">(</span><span class="n">SqlSession</span> <span class="n">sqlSession</span><span class="o">){</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">sqlSession</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">){</span>
-            <span class="n">sqlSession</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-
-<span class="o">}</span>
-
-</code></pre></div><p>MyBatisUtils工具类使用实例：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="nd">@Test</span>
-<span class="kd">public</span> <span class="kt">void</span> <span class="nf">testMyBatisUtils</span><span class="o">(){</span>
-    <span class="n">SqlSession</span> <span class="n">sqlSession</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
-    <span class="k">try</span> <span class="o">{</span>
-        <span class="n">sqlSession</span> <span class="o">=</span> <span class="n">MyBatisUtils</span><span class="o">.</span><span class="na">openSession</span><span class="o">();</span>
-        <span class="n">Connection</span> <span class="n">conn</span> <span class="o">=</span> <span class="n">sqlSession</span><span class="o">.</span><span class="na">getConnection</span><span class="o">();</span>
-        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">conn</span><span class="o">);</span>
-    <span class="o">}</span><span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">){</span>
-        <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
-    <span class="o">}</span><span class="k">finally</span> <span class="o">{</span>
-        <span class="n">MyBatisUtils</span><span class="o">.</span><span class="na">closeSession</span><span class="o">(</span><span class="n">sqlSession</span><span class="o">);</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div><h2 id="mybatis数据查询">MyBatis数据查询<a hidden class="anchor" aria-hidden="true" href="#mybatis数据查询">#</a></h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nn">com.imooc.mybatis.utils</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">org.apache.ibatis.io.Resources</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">org.apache.ibatis.session.SqlSession</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">org.apache.ibatis.session.SqlSessionFactory</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">org.apache.ibatis.session.SqlSessionFactoryBuilder</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">java.io.IOException</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">java.io.Reader</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * MyBatisUtils工具类，创建全局唯一的SqlSessionFactory对象
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * @author CubeMonkey
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * @create 2020-10-27 10:51
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyBatisUtils</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//利用static(静态)属于类不属于对象，且全局唯一
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">private</span> <span class="kd">static</span> <span class="n">SqlSessionFactory</span> <span class="n">sqlSessionFactory</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//利用静态代码块在初始化类时实例化sqlSessionFactory
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">static</span><span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Reader</span> <span class="n">reader</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">try</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">reader</span> <span class="o">=</span> <span class="n">Resources</span><span class="o">.</span><span class="na">getResourceAsReader</span><span class="o">(</span><span class="s">&#34;mybatis-config.xml&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">sqlSessionFactory</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SqlSessionFactoryBuilder</span><span class="o">().</span><span class="na">build</span><span class="o">(</span><span class="n">reader</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">//初始化错误时，通过抛出异常ExceptionInitializerError通知调用者
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="k">throw</span> <span class="k">new</span> <span class="n">ExceptionInInitializerError</span><span class="o">(</span><span class="n">e</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * openSession 创建一个新的SqlSession对象
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * @return SqlSession对象
+</span></span></span><span class="line"><span class="cl"><span class="cm">     */</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">static</span> <span class="n">SqlSession</span> <span class="nf">openSession</span><span class="o">(){</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">sqlSessionFactory</span><span class="o">.</span><span class="na">openSession</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * 释放一个有效的SqlSession对象
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * @param sqlSession 准备释放sqlSession对象
+</span></span></span><span class="line"><span class="cl"><span class="cm">     */</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">closeSession</span><span class="o">(</span><span class="n">SqlSession</span> <span class="n">sqlSession</span><span class="o">){</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(</span><span class="n">sqlSession</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">){</span>
+</span></span><span class="line"><span class="cl">            <span class="n">sqlSession</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>MyBatisUtils工具类使用实例：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Test</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">testMyBatisUtils</span><span class="o">(){</span>
+</span></span><span class="line"><span class="cl">    <span class="n">SqlSession</span> <span class="n">sqlSession</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">try</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">sqlSession</span> <span class="o">=</span> <span class="n">MyBatisUtils</span><span class="o">.</span><span class="na">openSession</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Connection</span> <span class="n">conn</span> <span class="o">=</span> <span class="n">sqlSession</span><span class="o">.</span><span class="na">getConnection</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">conn</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span><span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">){</span>
+</span></span><span class="line"><span class="cl">        <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span><span class="k">finally</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">MyBatisUtils</span><span class="o">.</span><span class="na">closeSession</span><span class="o">(</span><span class="n">sqlSession</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><h2 id="mybatis数据查询">MyBatis数据查询<a hidden class="anchor" aria-hidden="true" href="#mybatis数据查询">#</a></h2>
 <h3 id="简单查询">简单查询<a hidden class="anchor" aria-hidden="true" href="#简单查询">#</a></h3>
 <h4 id="mybatis数据查询步骤">MyBatis数据查询步骤<a hidden class="anchor" aria-hidden="true" href="#mybatis数据查询步骤">#</a></h4>
 <ul>
@@ -544,88 +542,87 @@
 <p>创建实体类</p>
 <blockquote>
 <p>Goods.java</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="nn">com.imooc.mybatis.entity</span><span class="o">;</span>
-
-<span class="cm">/**
-</span><span class="cm"> * @author CubeMonkey
-</span><span class="cm"> * @create 2020-10-27 11:28
-</span><span class="cm"> */</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Goods</span> <span class="o">{</span>
-    <span class="kd">private</span> <span class="n">Integer</span> <span class="n">goodsId</span><span class="o">;</span><span class="c1">//商品编号
-</span><span class="c1"></span>    <span class="kd">private</span> <span class="n">String</span> <span class="n">title</span><span class="o">;</span><span class="c1">//标题
-</span><span class="c1"></span>    <span class="kd">private</span> <span class="n">String</span> <span class="n">subTitle</span><span class="o">;</span><span class="c1">//子标题
-</span><span class="c1"></span>    <span class="kd">private</span> <span class="n">Float</span> <span class="n">originalCost</span><span class="o">;</span><span class="c1">//原始价格
-</span><span class="c1"></span>    <span class="kd">private</span> <span class="n">Float</span> <span class="n">currentPrice</span><span class="o">;</span><span class="c1">//当前价格
-</span><span class="c1"></span>    <span class="kd">private</span> <span class="n">Float</span> <span class="n">discount</span><span class="o">;</span><span class="c1">//折扣率
-</span><span class="c1"></span>    <span class="kd">private</span> <span class="n">Integer</span> <span class="n">isFreeDelivery</span><span class="o">;</span><span class="c1">//是否包邮，1-包邮 0-不包邮
-</span><span class="c1"></span>    <span class="kd">private</span> <span class="n">Integer</span> <span class="n">categoryId</span><span class="o">;</span><span class="c1">//分类编号
-</span><span class="c1"></span>
-    <span class="kd">public</span> <span class="n">Integer</span> <span class="nf">getGoodsId</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="n">goodsId</span><span class="o">;</span>
-    <span class="o">}</span>
-
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setGoodsId</span><span class="o">(</span><span class="n">Integer</span> <span class="n">goodsId</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">goodsId</span> <span class="o">=</span> <span class="n">goodsId</span><span class="o">;</span>
-    <span class="o">}</span>
-
-    <span class="kd">public</span> <span class="n">String</span> <span class="nf">getTitle</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="n">title</span><span class="o">;</span>
-    <span class="o">}</span>
-
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setTitle</span><span class="o">(</span><span class="n">String</span> <span class="n">title</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">title</span> <span class="o">=</span> <span class="n">title</span><span class="o">;</span>
-    <span class="o">}</span>
-
-    <span class="kd">public</span> <span class="n">String</span> <span class="nf">getSubTitle</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="n">subTitle</span><span class="o">;</span>
-    <span class="o">}</span>
-
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setSubTitle</span><span class="o">(</span><span class="n">String</span> <span class="n">subTitle</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">subTitle</span> <span class="o">=</span> <span class="n">subTitle</span><span class="o">;</span>
-    <span class="o">}</span>
-
-    <span class="kd">public</span> <span class="n">Float</span> <span class="nf">getOriginalCost</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="n">originalCost</span><span class="o">;</span>
-    <span class="o">}</span>
-
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setOriginalCost</span><span class="o">(</span><span class="n">Float</span> <span class="n">originalCost</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">originalCost</span> <span class="o">=</span> <span class="n">originalCost</span><span class="o">;</span>
-    <span class="o">}</span>
-
-    <span class="kd">public</span> <span class="n">Float</span> <span class="nf">getCurrentPrice</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="n">currentPrice</span><span class="o">;</span>
-    <span class="o">}</span>
-
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setCurrentPrice</span><span class="o">(</span><span class="n">Float</span> <span class="n">currentPrice</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">currentPrice</span> <span class="o">=</span> <span class="n">currentPrice</span><span class="o">;</span>
-    <span class="o">}</span>
-
-    <span class="kd">public</span> <span class="n">Float</span> <span class="nf">getDiscount</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="n">discount</span><span class="o">;</span>
-    <span class="o">}</span>
-
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setDiscount</span><span class="o">(</span><span class="n">Float</span> <span class="n">discount</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">discount</span> <span class="o">=</span> <span class="n">discount</span><span class="o">;</span>
-    <span class="o">}</span>
-
-    <span class="kd">public</span> <span class="n">Integer</span> <span class="nf">getIsFreeDelivery</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="n">isFreeDelivery</span><span class="o">;</span>
-    <span class="o">}</span>
-
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setIsFreeDelivery</span><span class="o">(</span><span class="n">Integer</span> <span class="n">isFreeDelivery</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">isFreeDelivery</span> <span class="o">=</span> <span class="n">isFreeDelivery</span><span class="o">;</span>
-    <span class="o">}</span>
-
-    <span class="kd">public</span> <span class="n">Integer</span> <span class="nf">getCategoryId</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="n">categoryId</span><span class="o">;</span>
-    <span class="o">}</span>
-
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setCategoryId</span><span class="o">(</span><span class="n">Integer</span> <span class="n">categoryId</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">categoryId</span> <span class="o">=</span> <span class="n">categoryId</span><span class="o">;</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-
-</code></pre></div></blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nn">com.imooc.mybatis.entity</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * @author CubeMonkey
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * @create 2020-10-27 11:28
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Goods</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">Integer</span> <span class="n">goodsId</span><span class="o">;</span><span class="c1">//商品编号
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">private</span> <span class="n">String</span> <span class="n">title</span><span class="o">;</span><span class="c1">//标题
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">private</span> <span class="n">String</span> <span class="n">subTitle</span><span class="o">;</span><span class="c1">//子标题
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">private</span> <span class="n">Float</span> <span class="n">originalCost</span><span class="o">;</span><span class="c1">//原始价格
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">private</span> <span class="n">Float</span> <span class="n">currentPrice</span><span class="o">;</span><span class="c1">//当前价格
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">private</span> <span class="n">Float</span> <span class="n">discount</span><span class="o">;</span><span class="c1">//折扣率
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">private</span> <span class="n">Integer</span> <span class="n">isFreeDelivery</span><span class="o">;</span><span class="c1">//是否包邮，1-包邮 0-不包邮
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">private</span> <span class="n">Integer</span> <span class="n">categoryId</span><span class="o">;</span><span class="c1">//分类编号
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">Integer</span> <span class="nf">getGoodsId</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">goodsId</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setGoodsId</span><span class="o">(</span><span class="n">Integer</span> <span class="n">goodsId</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">goodsId</span> <span class="o">=</span> <span class="n">goodsId</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">String</span> <span class="nf">getTitle</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">title</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setTitle</span><span class="o">(</span><span class="n">String</span> <span class="n">title</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">title</span> <span class="o">=</span> <span class="n">title</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">String</span> <span class="nf">getSubTitle</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">subTitle</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setSubTitle</span><span class="o">(</span><span class="n">String</span> <span class="n">subTitle</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">subTitle</span> <span class="o">=</span> <span class="n">subTitle</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">Float</span> <span class="nf">getOriginalCost</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">originalCost</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setOriginalCost</span><span class="o">(</span><span class="n">Float</span> <span class="n">originalCost</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">originalCost</span> <span class="o">=</span> <span class="n">originalCost</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">Float</span> <span class="nf">getCurrentPrice</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">currentPrice</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setCurrentPrice</span><span class="o">(</span><span class="n">Float</span> <span class="n">currentPrice</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">currentPrice</span> <span class="o">=</span> <span class="n">currentPrice</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">Float</span> <span class="nf">getDiscount</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">discount</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setDiscount</span><span class="o">(</span><span class="n">Float</span> <span class="n">discount</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">discount</span> <span class="o">=</span> <span class="n">discount</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">Integer</span> <span class="nf">getIsFreeDelivery</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">isFreeDelivery</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setIsFreeDelivery</span><span class="o">(</span><span class="n">Integer</span> <span class="n">isFreeDelivery</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">isFreeDelivery</span> <span class="o">=</span> <span class="n">isFreeDelivery</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">Integer</span> <span class="nf">getCategoryId</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">categoryId</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setCategoryId</span><span class="o">(</span><span class="n">Integer</span> <span class="n">categoryId</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">categoryId</span> <span class="o">=</span> <span class="n">categoryId</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div></blockquote>
 </li>
 <li>
 <p>创建Mapper Xml</p>
@@ -634,59 +631,59 @@
 <p>编写<select>SQL标签</p>
 <blockquote>
 <p>resources/mappers/goods.xml</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="cp">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34; ?&gt;</span>
-<span class="cp">&lt;!DOCTYPE mapper
-</span><span class="cp">        PUBLIC &#34;-//mybatis.org//DTD Mapper 3.0//EN&#34;
-</span><span class="cp">        &#34;http://mybatis.org/dtd/mybatis-3-mapper.dtd&#34;&gt;</span>
-
-<span class="nt">&lt;mapper</span> <span class="na">namespace=</span><span class="s">&#34;goods&#34;</span><span class="nt">&gt;</span>
-    <span class="c">&lt;!--resultType-&gt;返回的数据类型 --&gt;</span>
-    <span class="nt">&lt;select</span> <span class="na">id=</span><span class="s">&#34;selectAll&#34;</span> <span class="na">resultType=</span><span class="s">&#34;com.imooc.mybatis.entity.Goods&#34;</span><span class="nt">&gt;</span>
-        select * from t_goods order by goods_id desc limit 10
-    <span class="nt">&lt;/select&gt;</span>
-<span class="nt">&lt;/mapper&gt;</span>
-</code></pre></div></blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="cp">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34; ?&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="cp">&lt;!DOCTYPE mapper
+</span></span></span><span class="line"><span class="cl"><span class="cp">        PUBLIC &#34;-//mybatis.org//DTD Mapper 3.0//EN&#34;
+</span></span></span><span class="line"><span class="cl"><span class="cp">        &#34;http://mybatis.org/dtd/mybatis-3-mapper.dtd&#34;&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;mapper</span> <span class="na">namespace=</span><span class="s">&#34;goods&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="c">&lt;!--resultType-&gt;返回的数据类型 --&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;select</span> <span class="na">id=</span><span class="s">&#34;selectAll&#34;</span> <span class="na">resultType=</span><span class="s">&#34;com.imooc.mybatis.entity.Goods&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">        select * from t_goods order by goods_id desc limit 10
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/select&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/mapper&gt;</span>
+</span></span></code></pre></div></blockquote>
 </li>
 <li>
 <p>开启驼峰命名映射</p>
 <blockquote>
 <p>在mybatis-config.xml中的configuration下添加settings配置</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;settings&gt;</span>
-        <span class="c">&lt;!--goods_id ==&gt; goodsId 驼峰命名转化--&gt;</span>
-        <span class="nt">&lt;setting</span> <span class="na">name=</span><span class="s">&#34;mapUnderscoreToCamelCase&#34;</span> <span class="na">value=</span><span class="s">&#34;true&#34;</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;/settings&gt;</span>
-</code></pre></div></blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;settings&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="c">&lt;!--goods_id ==&gt; goodsId 驼峰命名转化--&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;setting</span> <span class="na">name=</span><span class="s">&#34;mapUnderscoreToCamelCase&#34;</span> <span class="na">value=</span><span class="s">&#34;true&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/settings&gt;</span>
+</span></span></code></pre></div></blockquote>
 </li>
 <li>
 <p>新增<mapper></p>
 <blockquote>
 <p>在mybatis-config.xml中的configuration下添加mapper配置</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;mappers&gt;</span>
-        <span class="c">&lt;!--resource指的是映射文件的目录--&gt;</span>
-        <span class="nt">&lt;mapper</span> <span class="na">resource=</span><span class="s">&#34;mappers/goods.xml&#34;</span><span class="nt">&gt;&lt;/mapper&gt;</span>
-    <span class="nt">&lt;/mappers&gt;</span>
-</code></pre></div></blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;mappers&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="c">&lt;!--resource指的是映射文件的目录--&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;mapper</span> <span class="na">resource=</span><span class="s">&#34;mappers/goods.xml&#34;</span><span class="nt">&gt;&lt;/mapper&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/mappers&gt;</span>
+</span></span></code></pre></div></blockquote>
 </li>
 <li>
 <p>SqlSession执行select语句</p>
 <blockquote>
 <p>MyBatisTestor部分测试代码：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="nd">@Test</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testSelectAll</span><span class="o">(){</span>
-        <span class="n">SqlSession</span> <span class="n">session</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
-        <span class="k">try</span> <span class="o">{</span>
-            <span class="n">session</span> <span class="o">=</span> <span class="n">MyBatisUtils</span><span class="o">.</span><span class="na">openSession</span><span class="o">();</span>
-            <span class="n">List</span><span class="o">&lt;</span><span class="n">Goods</span><span class="o">&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="na">selectList</span><span class="o">(</span><span class="s">&#34;goods.selectAll&#34;</span><span class="o">);</span>
-            <span class="k">for</span> <span class="o">(</span><span class="n">Goods</span> <span class="n">goods</span> <span class="o">:</span> <span class="n">list</span><span class="o">)</span> <span class="o">{</span>
-                <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">goods</span><span class="o">.</span><span class="na">getTitle</span><span class="o">());</span>
-            <span class="o">}</span>
-        <span class="o">}</span><span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">){</span>
-            <span class="k">throw</span> <span class="n">e</span><span class="o">;</span>
-        <span class="o">}</span><span class="k">finally</span> <span class="o">{</span>
-            <span class="n">MyBatisUtils</span><span class="o">.</span><span class="na">closeSession</span><span class="o">(</span><span class="n">session</span><span class="o">);</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-</code></pre></div></blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Test</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testSelectAll</span><span class="o">(){</span>
+</span></span><span class="line"><span class="cl">        <span class="n">SqlSession</span> <span class="n">session</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">try</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">session</span> <span class="o">=</span> <span class="n">MyBatisUtils</span><span class="o">.</span><span class="na">openSession</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">            <span class="n">List</span><span class="o">&lt;</span><span class="n">Goods</span><span class="o">&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="na">selectList</span><span class="o">(</span><span class="s">&#34;goods.selectAll&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="k">for</span> <span class="o">(</span><span class="n">Goods</span> <span class="n">goods</span> <span class="o">:</span> <span class="n">list</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">goods</span><span class="o">.</span><span class="na">getTitle</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span><span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">){</span>
+</span></span><span class="line"><span class="cl">            <span class="k">throw</span> <span class="n">e</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span><span class="k">finally</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">MyBatisUtils</span><span class="o">.</span><span class="na">closeSession</span><span class="o">(</span><span class="n">session</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span></code></pre></div></blockquote>
 </li>
 </ol>
 <h3 id="sql传参">SQL传参<a hidden class="anchor" aria-hidden="true" href="#sql传参">#</a></h3>
@@ -695,85 +692,85 @@
 <p>单参数传参</p>
 <blockquote>
 <p>goods.xml</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="c">&lt;!--单参数传递，使用parameterType指定参数的数据类型即可，SQL#{value}提取参数--&gt;</span>
-<span class="nt">&lt;select</span> <span class="na">id=</span><span class="s">&#34;selectById&#34;</span> <span class="na">parameterType=</span><span class="s">&#34;Integer&#34;</span> <span class="na">resultType=</span><span class="s">&#34;com.imooc.mybatis.entity.Goods&#34;</span><span class="nt">&gt;</span>
-    select * from t_goods where goods_id = #{value}
-<span class="nt">&lt;/select&gt;</span>
-</code></pre></div><p>MyBatisTestor.java部分代码</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="nd">@Test</span>
-<span class="kd">public</span> <span class="kt">void</span> <span class="nf">testSelectById</span><span class="o">(){</span>
-    <span class="n">SqlSession</span> <span class="n">session</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
-    <span class="k">try</span> <span class="o">{</span>
-        <span class="n">session</span> <span class="o">=</span> <span class="n">MyBatisUtils</span><span class="o">.</span><span class="na">openSession</span><span class="o">();</span>
-        <span class="n">Goods</span> <span class="n">goods</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="na">selectOne</span><span class="o">(</span><span class="s">&#34;goods.selectById&#34;</span><span class="o">,</span> <span class="n">1603</span><span class="o">);</span>
-        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">goods</span><span class="o">.</span><span class="na">getTitle</span><span class="o">());</span>
-    <span class="o">}</span><span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">){</span>
-        <span class="k">throw</span> <span class="n">e</span><span class="o">;</span>
-    <span class="o">}</span><span class="k">finally</span> <span class="o">{</span>
-        <span class="n">MyBatisUtils</span><span class="o">.</span><span class="na">closeSession</span><span class="o">(</span><span class="n">session</span><span class="o">);</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="c">&lt;!--单参数传递，使用parameterType指定参数的数据类型即可，SQL#{value}提取参数--&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;select</span> <span class="na">id=</span><span class="s">&#34;selectById&#34;</span> <span class="na">parameterType=</span><span class="s">&#34;Integer&#34;</span> <span class="na">resultType=</span><span class="s">&#34;com.imooc.mybatis.entity.Goods&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">    select * from t_goods where goods_id = #{value}
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/select&gt;</span>
+</span></span></code></pre></div><p>MyBatisTestor.java部分代码</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Test</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">testSelectById</span><span class="o">(){</span>
+</span></span><span class="line"><span class="cl">    <span class="n">SqlSession</span> <span class="n">session</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">try</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">session</span> <span class="o">=</span> <span class="n">MyBatisUtils</span><span class="o">.</span><span class="na">openSession</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Goods</span> <span class="n">goods</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="na">selectOne</span><span class="o">(</span><span class="s">&#34;goods.selectById&#34;</span><span class="o">,</span> <span class="n">1603</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">goods</span><span class="o">.</span><span class="na">getTitle</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span><span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">){</span>
+</span></span><span class="line"><span class="cl">        <span class="k">throw</span> <span class="n">e</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span><span class="k">finally</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">MyBatisUtils</span><span class="o">.</span><span class="na">closeSession</span><span class="o">(</span><span class="n">session</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div></blockquote>
 </li>
 <li>
 <p>多参数传参</p>
 <blockquote>
 <p>goods.xml</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;select</span> <span class="na">id=</span><span class="s">&#34;selectByPriceRange&#34;</span> <span class="na">parameterType=</span><span class="s">&#34;java.util.Map&#34;</span> <span class="na">resultType=</span><span class="s">&#34;com.imooc.mybatis.entity.Goods&#34;</span><span class="nt">&gt;</span>
-    select * from t_goods
-    where
-    current_price between #{min} and #{max}
-    order by current_price
-    limit 0, #{limit}
-<span class="nt">&lt;/select&gt;</span>
-</code></pre></div><p>MyBatisTestor.java部分代码</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="nd">@Test</span>
-<span class="kd">public</span> <span class="kt">void</span> <span class="nf">testSelectByPriceRange</span><span class="o">(){</span>
-    <span class="n">SqlSession</span> <span class="n">session</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
-    <span class="k">try</span> <span class="o">{</span>
-        <span class="n">session</span> <span class="o">=</span> <span class="n">MyBatisUtils</span><span class="o">.</span><span class="na">openSession</span><span class="o">();</span>
-        <span class="n">Map</span> <span class="n">param</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Integer</span><span class="o">&gt;();</span>
-        <span class="n">param</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&#34;min&#34;</span><span class="o">,</span> <span class="n">100</span><span class="o">);</span>
-        <span class="n">param</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&#34;max&#34;</span><span class="o">,</span> <span class="n">500</span><span class="o">);</span>
-        <span class="n">param</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&#34;limit&#34;</span><span class="o">,</span> <span class="n">10</span><span class="o">);</span>
-        <span class="n">List</span><span class="o">&lt;</span><span class="n">Goods</span><span class="o">&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="na">selectList</span><span class="o">(</span><span class="s">&#34;goods.selectByPriceRange&#34;</span><span class="o">,</span> <span class="n">param</span><span class="o">);</span>
-        <span class="k">for</span> <span class="o">(</span><span class="n">Goods</span> <span class="n">goods</span> <span class="o">:</span> <span class="n">list</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">goods</span><span class="o">.</span><span class="na">getTitle</span><span class="o">());</span>
-        <span class="o">}</span>
-    <span class="o">}</span><span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">){</span>
-        <span class="k">throw</span> <span class="n">e</span><span class="o">;</span>
-    <span class="o">}</span><span class="k">finally</span> <span class="o">{</span>
-        <span class="n">MyBatisUtils</span><span class="o">.</span><span class="na">closeSession</span><span class="o">(</span><span class="n">session</span><span class="o">);</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;select</span> <span class="na">id=</span><span class="s">&#34;selectByPriceRange&#34;</span> <span class="na">parameterType=</span><span class="s">&#34;java.util.Map&#34;</span> <span class="na">resultType=</span><span class="s">&#34;com.imooc.mybatis.entity.Goods&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">    select * from t_goods
+</span></span><span class="line"><span class="cl">    where
+</span></span><span class="line"><span class="cl">    current_price between #{min} and #{max}
+</span></span><span class="line"><span class="cl">    order by current_price
+</span></span><span class="line"><span class="cl">    limit 0, #{limit}
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/select&gt;</span>
+</span></span></code></pre></div><p>MyBatisTestor.java部分代码</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Test</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">testSelectByPriceRange</span><span class="o">(){</span>
+</span></span><span class="line"><span class="cl">    <span class="n">SqlSession</span> <span class="n">session</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">try</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">session</span> <span class="o">=</span> <span class="n">MyBatisUtils</span><span class="o">.</span><span class="na">openSession</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Map</span> <span class="n">param</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Integer</span><span class="o">&gt;();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">param</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&#34;min&#34;</span><span class="o">,</span> <span class="n">100</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">param</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&#34;max&#34;</span><span class="o">,</span> <span class="n">500</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">param</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&#34;limit&#34;</span><span class="o">,</span> <span class="n">10</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">List</span><span class="o">&lt;</span><span class="n">Goods</span><span class="o">&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="na">selectList</span><span class="o">(</span><span class="s">&#34;goods.selectByPriceRange&#34;</span><span class="o">,</span> <span class="n">param</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="o">(</span><span class="n">Goods</span> <span class="n">goods</span> <span class="o">:</span> <span class="n">list</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">goods</span><span class="o">.</span><span class="na">getTitle</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span><span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">){</span>
+</span></span><span class="line"><span class="cl">        <span class="k">throw</span> <span class="n">e</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span><span class="k">finally</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">MyBatisUtils</span><span class="o">.</span><span class="na">closeSession</span><span class="o">(</span><span class="n">session</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div></blockquote>
 </li>
 </ul>
 <h3 id="多表查询">多表查询<a hidden class="anchor" aria-hidden="true" href="#多表查询">#</a></h3>
 <h4 id="示例不用resultmap结果映射">示例（不用ResultMap结果映射）：<a hidden class="anchor" aria-hidden="true" href="#示例不用resultmap结果映射">#</a></h4>
 <blockquote>
 <p>goods.xml中添加以下代码</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml">	<span class="c">&lt;!--利用LinkedHashMap保存多表关联结果
-</span><span class="c">        MyBatis会将每一条记录包装为LinkedHashMap对象
-</span><span class="c">        key是字段名 value是字段对应的值，字段类型根据表结构进行自动判断
-</span><span class="c">        优点：易于扩展，易于使用
-</span><span class="c">        缺点：太过灵活，无法进行编译时检查
-</span><span class="c">    --&gt;</span>
-    <span class="nt">&lt;select</span> <span class="na">id=</span><span class="s">&#34;selectGoodsMap&#34;</span> <span class="na">resultType=</span><span class="s">&#34;java.util.LinkedHashMap&#34;</span><span class="nt">&gt;</span>
-        select g.*, c.category_name from t_goods g, t_category c
-        where g.category_id = c.category_id
-    <span class="nt">&lt;/select&gt;</span>
-</code></pre></div><p>MyBatisTestor.java部分代码</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="nd">@Test</span>
-<span class="kd">public</span> <span class="kt">void</span> <span class="nf">testSelectGoodsMap</span><span class="o">(){</span>
-    <span class="n">SqlSession</span> <span class="n">sqlSession</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
-    <span class="n">sqlSession</span> <span class="o">=</span> <span class="n">MyBatisUtils</span><span class="o">.</span><span class="na">openSession</span><span class="o">();</span>
-    <span class="n">List</span><span class="o">&lt;</span><span class="n">Map</span><span class="o">&gt;</span><span class="n">list</span> <span class="o">=</span> <span class="n">sqlSession</span><span class="o">.</span><span class="na">selectList</span><span class="o">(</span><span class="s">&#34;goods.selectGoodsMap&#34;</span><span class="o">);</span>
-    <span class="k">for</span> <span class="o">(</span><span class="n">Map</span> <span class="n">map</span> <span class="o">:</span> <span class="n">list</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">map</span><span class="o">);</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl">	<span class="c">&lt;!--利用LinkedHashMap保存多表关联结果
+</span></span></span><span class="line"><span class="cl"><span class="c">        MyBatis会将每一条记录包装为LinkedHashMap对象
+</span></span></span><span class="line"><span class="cl"><span class="c">        key是字段名 value是字段对应的值，字段类型根据表结构进行自动判断
+</span></span></span><span class="line"><span class="cl"><span class="c">        优点：易于扩展，易于使用
+</span></span></span><span class="line"><span class="cl"><span class="c">        缺点：太过灵活，无法进行编译时检查
+</span></span></span><span class="line"><span class="cl"><span class="c">    --&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;select</span> <span class="na">id=</span><span class="s">&#34;selectGoodsMap&#34;</span> <span class="na">resultType=</span><span class="s">&#34;java.util.LinkedHashMap&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">        select g.*, c.category_name from t_goods g, t_category c
+</span></span><span class="line"><span class="cl">        where g.category_id = c.category_id
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/select&gt;</span>
+</span></span></code></pre></div><p>MyBatisTestor.java部分代码</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Test</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">testSelectGoodsMap</span><span class="o">(){</span>
+</span></span><span class="line"><span class="cl">    <span class="n">SqlSession</span> <span class="n">sqlSession</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">sqlSession</span> <span class="o">=</span> <span class="n">MyBatisUtils</span><span class="o">.</span><span class="na">openSession</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">List</span><span class="o">&lt;</span><span class="n">Map</span><span class="o">&gt;</span><span class="n">list</span> <span class="o">=</span> <span class="n">sqlSession</span><span class="o">.</span><span class="na">selectList</span><span class="o">(</span><span class="s">&#34;goods.selectGoodsMap&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="o">(</span><span class="n">Map</span> <span class="n">map</span> <span class="o">:</span> <span class="n">list</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">map</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div></blockquote>
 <h4 id="resultmap结果映射">ResultMap结果映射<a hidden class="anchor" aria-hidden="true" href="#resultmap结果映射">#</a></h4>
 <ul>
 <li>ResultMap可以将查询结果映射为复杂类型的Java对象</li>
@@ -784,262 +781,260 @@
 <h4 id="使用resultmap结果映射">使用ResultMap结果映射<a hidden class="anchor" aria-hidden="true" href="#使用resultmap结果映射">#</a></h4>
 <blockquote>
 <p>编写GoodsDTO -&gt;</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="nn">com.imooc.mybatis.dto</span><span class="o">;</span>
-
-<span class="kn">import</span> <span class="nn">com.imooc.mybatis.entity.Category</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">com.imooc.mybatis.entity.Goods</span><span class="o">;</span>
-
-<span class="cm">/**
-</span><span class="cm"> * @author CubeMonkey
-</span><span class="cm"> * @create 2020-10-27 18:50
-</span><span class="cm"> */</span>
-<span class="c1">//Data Transfer Object --数据传输对象
-</span><span class="c1"></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">GoodsDTO</span> <span class="o">{</span>
-    <span class="kd">private</span> <span class="n">Goods</span> <span class="n">goods</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Goods</span><span class="o">();</span>
-    <span class="kd">private</span> <span class="n">Category</span> <span class="n">category</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Category</span><span class="o">();</span>
-    <span class="kd">private</span> <span class="n">String</span> <span class="n">test</span><span class="o">;</span>
-
-    <span class="kd">public</span> <span class="n">Goods</span> <span class="nf">getGoods</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="n">goods</span><span class="o">;</span>
-    <span class="o">}</span>
-
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setGoods</span><span class="o">(</span><span class="n">Goods</span> <span class="n">goods</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">goods</span> <span class="o">=</span> <span class="n">goods</span><span class="o">;</span>
-    <span class="o">}</span>
-
-    <span class="kd">public</span> <span class="n">Category</span> <span class="nf">getCategory</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="n">category</span><span class="o">;</span>
-    <span class="o">}</span>
-
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setCategory</span><span class="o">(</span><span class="n">Category</span> <span class="n">category</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">category</span> <span class="o">=</span> <span class="n">category</span><span class="o">;</span>
-    <span class="o">}</span>
-
-    <span class="kd">public</span> <span class="n">String</span> <span class="nf">getTest</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="n">test</span><span class="o">;</span>
-    <span class="o">}</span>
-
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setTest</span><span class="o">(</span><span class="n">String</span> <span class="n">test</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">test</span> <span class="o">=</span> <span class="n">test</span><span class="o">;</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div><p>Goods.java</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="nn">com.imooc.mybatis.entity</span><span class="o">;</span>
-
-<span class="cm">/**
-</span><span class="cm"> * @author CubeMonkey
-</span><span class="cm"> * @create 2020-10-27 11:28
-</span><span class="cm"> */</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Goods</span> <span class="o">{</span>
-    <span class="kd">private</span> <span class="n">Integer</span> <span class="n">goodsId</span><span class="o">;</span><span class="c1">//商品编号
-</span><span class="c1"></span>    <span class="kd">private</span> <span class="n">String</span> <span class="n">title</span><span class="o">;</span><span class="c1">//标题
-</span><span class="c1"></span>    <span class="kd">private</span> <span class="n">String</span> <span class="n">subTitle</span><span class="o">;</span><span class="c1">//子标题
-</span><span class="c1"></span>    <span class="kd">private</span> <span class="n">Float</span> <span class="n">originalCost</span><span class="o">;</span><span class="c1">//原始价格
-</span><span class="c1"></span>    <span class="kd">private</span> <span class="n">Float</span> <span class="n">currentPrice</span><span class="o">;</span><span class="c1">//当前价格
-</span><span class="c1"></span>    <span class="kd">private</span> <span class="n">Float</span> <span class="n">discount</span><span class="o">;</span><span class="c1">//折扣率
-</span><span class="c1"></span>    <span class="kd">private</span> <span class="n">Integer</span> <span class="n">isFreeDelivery</span><span class="o">;</span><span class="c1">//是否包邮，1-包邮 0-不包邮
-</span><span class="c1"></span>    <span class="kd">private</span> <span class="n">Integer</span> <span class="n">categoryId</span><span class="o">;</span><span class="c1">//分类编号
-</span><span class="c1"></span>
-    <span class="kd">public</span> <span class="n">Integer</span> <span class="nf">getGoodsId</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="n">goodsId</span><span class="o">;</span>
-    <span class="o">}</span>
-
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setGoodsId</span><span class="o">(</span><span class="n">Integer</span> <span class="n">goodsId</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">goodsId</span> <span class="o">=</span> <span class="n">goodsId</span><span class="o">;</span>
-    <span class="o">}</span>
-
-    <span class="kd">public</span> <span class="n">String</span> <span class="nf">getTitle</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="n">title</span><span class="o">;</span>
-    <span class="o">}</span>
-
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setTitle</span><span class="o">(</span><span class="n">String</span> <span class="n">title</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">title</span> <span class="o">=</span> <span class="n">title</span><span class="o">;</span>
-    <span class="o">}</span>
-
-    <span class="kd">public</span> <span class="n">String</span> <span class="nf">getSubTitle</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="n">subTitle</span><span class="o">;</span>
-    <span class="o">}</span>
-
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setSubTitle</span><span class="o">(</span><span class="n">String</span> <span class="n">subTitle</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">subTitle</span> <span class="o">=</span> <span class="n">subTitle</span><span class="o">;</span>
-    <span class="o">}</span>
-
-    <span class="kd">public</span> <span class="n">Float</span> <span class="nf">getOriginalCost</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="n">originalCost</span><span class="o">;</span>
-    <span class="o">}</span>
-
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setOriginalCost</span><span class="o">(</span><span class="n">Float</span> <span class="n">originalCost</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">originalCost</span> <span class="o">=</span> <span class="n">originalCost</span><span class="o">;</span>
-    <span class="o">}</span>
-
-    <span class="kd">public</span> <span class="n">Float</span> <span class="nf">getCurrentPrice</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="n">currentPrice</span><span class="o">;</span>
-    <span class="o">}</span>
-
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setCurrentPrice</span><span class="o">(</span><span class="n">Float</span> <span class="n">currentPrice</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">currentPrice</span> <span class="o">=</span> <span class="n">currentPrice</span><span class="o">;</span>
-    <span class="o">}</span>
-
-    <span class="kd">public</span> <span class="n">Float</span> <span class="nf">getDiscount</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="n">discount</span><span class="o">;</span>
-    <span class="o">}</span>
-
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setDiscount</span><span class="o">(</span><span class="n">Float</span> <span class="n">discount</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">discount</span> <span class="o">=</span> <span class="n">discount</span><span class="o">;</span>
-    <span class="o">}</span>
-
-    <span class="kd">public</span> <span class="n">Integer</span> <span class="nf">getIsFreeDelivery</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="n">isFreeDelivery</span><span class="o">;</span>
-    <span class="o">}</span>
-
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setIsFreeDelivery</span><span class="o">(</span><span class="n">Integer</span> <span class="n">isFreeDelivery</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">isFreeDelivery</span> <span class="o">=</span> <span class="n">isFreeDelivery</span><span class="o">;</span>
-    <span class="o">}</span>
-
-    <span class="kd">public</span> <span class="n">Integer</span> <span class="nf">getCategoryId</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="n">categoryId</span><span class="o">;</span>
-    <span class="o">}</span>
-
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setCategoryId</span><span class="o">(</span><span class="n">Integer</span> <span class="n">categoryId</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">categoryId</span> <span class="o">=</span> <span class="n">categoryId</span><span class="o">;</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-
-</code></pre></div><p>Category.java</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="nn">com.imooc.mybatis.entity</span><span class="o">;</span>
-
-<span class="cm">/**
-</span><span class="cm"> * @author CubeMonkey
-</span><span class="cm"> * @create 2020-10-27 19:12
-</span><span class="cm"> */</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Category</span> <span class="o">{</span>
-    <span class="kd">private</span> <span class="n">Integer</span> <span class="n">categoryId</span><span class="o">;</span>
-    <span class="kd">private</span> <span class="n">String</span> <span class="n">categoryName</span><span class="o">;</span>
-    <span class="kd">private</span> <span class="n">Integer</span> <span class="n">parentId</span><span class="o">;</span>
-    <span class="kd">private</span> <span class="n">Integer</span> <span class="n">categoryLevel</span><span class="o">;</span>
-    <span class="kd">private</span> <span class="n">Integer</span> <span class="n">categoryOrder</span><span class="o">;</span>
-
-    <span class="kd">public</span> <span class="n">Integer</span> <span class="nf">getCategoryId</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="n">categoryId</span><span class="o">;</span>
-    <span class="o">}</span>
-
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setCategoryId</span><span class="o">(</span><span class="n">Integer</span> <span class="n">categoryId</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">categoryId</span> <span class="o">=</span> <span class="n">categoryId</span><span class="o">;</span>
-    <span class="o">}</span>
-
-    <span class="kd">public</span> <span class="n">String</span> <span class="nf">getCategoryName</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="n">categoryName</span><span class="o">;</span>
-    <span class="o">}</span>
-
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setCategoryName</span><span class="o">(</span><span class="n">String</span> <span class="n">categoryName</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">categoryName</span> <span class="o">=</span> <span class="n">categoryName</span><span class="o">;</span>
-    <span class="o">}</span>
-
-    <span class="kd">public</span> <span class="n">Integer</span> <span class="nf">getParentId</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="n">parentId</span><span class="o">;</span>
-    <span class="o">}</span>
-
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setParentId</span><span class="o">(</span><span class="n">Integer</span> <span class="n">parentId</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">parentId</span> <span class="o">=</span> <span class="n">parentId</span><span class="o">;</span>
-    <span class="o">}</span>
-
-    <span class="kd">public</span> <span class="n">Integer</span> <span class="nf">getCategoryLevel</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="n">categoryLevel</span><span class="o">;</span>
-    <span class="o">}</span>
-
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setCategoryLevel</span><span class="o">(</span><span class="n">Integer</span> <span class="n">categoryLevel</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">categoryLevel</span> <span class="o">=</span> <span class="n">categoryLevel</span><span class="o">;</span>
-    <span class="o">}</span>
-
-    <span class="kd">public</span> <span class="n">Integer</span> <span class="nf">getCategoryOrder</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="n">categoryOrder</span><span class="o">;</span>
-    <span class="o">}</span>
-
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setCategoryOrder</span><span class="o">(</span><span class="n">Integer</span> <span class="n">categoryOrder</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">categoryOrder</span> <span class="o">=</span> <span class="n">categoryOrder</span><span class="o">;</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-
-</code></pre></div><p>在goods.xml中添加如下信息</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="c">&lt;!--结果映射--&gt;</span>
-    <span class="nt">&lt;resultMap</span> <span class="na">id=</span><span class="s">&#34;rmGoods&#34;</span> <span class="na">type=</span><span class="s">&#34;com.imooc.mybatis.dto.GoodsDTO&#34;</span><span class="nt">&gt;</span>
-        <span class="c">&lt;!--设置主键字段与属性映射--&gt;</span>
-        <span class="nt">&lt;id</span> <span class="na">property=</span><span class="s">&#34;goods.goodsId&#34;</span> <span class="na">column=</span><span class="s">&#34;goods_id&#34;</span><span class="nt">&gt;&lt;/id&gt;</span>
-        <span class="c">&lt;!--设置非主键字段与属性映射--&gt;</span>
-        <span class="nt">&lt;result</span> <span class="na">property=</span><span class="s">&#34;goods.title&#34;</span> <span class="na">column=</span><span class="s">&#34;title&#34;</span><span class="nt">&gt;&lt;/result&gt;</span>
-        <span class="nt">&lt;result</span> <span class="na">property=</span><span class="s">&#34;goods.originalCost&#34;</span> <span class="na">column=</span><span class="s">&#34;original_cost&#34;</span><span class="nt">&gt;&lt;/result&gt;</span>
-        <span class="nt">&lt;result</span> <span class="na">property=</span><span class="s">&#34;goods.currentPrice&#34;</span> <span class="na">column=</span><span class="s">&#34;current_price&#34;</span><span class="nt">&gt;&lt;/result&gt;</span>
-        <span class="nt">&lt;result</span> <span class="na">property=</span><span class="s">&#34;goods.discount&#34;</span> <span class="na">column=</span><span class="s">&#34;discount&#34;</span><span class="nt">&gt;&lt;/result&gt;</span>
-        <span class="nt">&lt;result</span> <span class="na">property=</span><span class="s">&#34;goods.isFreeDelivery&#34;</span> <span class="na">column=</span><span class="s">&#34;is_free_delivery&#34;</span><span class="nt">&gt;&lt;/result&gt;</span>
-        <span class="nt">&lt;result</span> <span class="na">property=</span><span class="s">&#34;goods.categoryId&#34;</span> <span class="na">column=</span><span class="s">&#34;category_id&#34;</span><span class="nt">&gt;&lt;/result&gt;</span>
-        <span class="nt">&lt;result</span> <span class="na">property=</span><span class="s">&#34;category.categoryId&#34;</span> <span class="na">column=</span><span class="s">&#34;category_id&#34;</span><span class="nt">&gt;&lt;/result&gt;</span>
-        <span class="nt">&lt;result</span> <span class="na">property=</span><span class="s">&#34;category.categoryName&#34;</span> <span class="na">column=</span><span class="s">&#34;category_name&#34;</span><span class="nt">&gt;&lt;/result&gt;</span>
-        <span class="nt">&lt;result</span> <span class="na">property=</span><span class="s">&#34;category.categoryId&#34;</span> <span class="na">column=</span><span class="s">&#34;category_id&#34;</span><span class="nt">&gt;&lt;/result&gt;</span>
-        <span class="nt">&lt;result</span> <span class="na">property=</span><span class="s">&#34;category.parentId&#34;</span> <span class="na">column=</span><span class="s">&#34;parent_id&#34;</span><span class="nt">&gt;&lt;/result&gt;</span>
-        <span class="nt">&lt;result</span> <span class="na">property=</span><span class="s">&#34;category.categoryLevel&#34;</span> <span class="na">column=</span><span class="s">&#34;category_level&#34;</span><span class="nt">&gt;&lt;/result&gt;</span>
-        <span class="nt">&lt;result</span> <span class="na">property=</span><span class="s">&#34;category.categoryOrder&#34;</span> <span class="na">column=</span><span class="s">&#34;category_order&#34;</span><span class="nt">&gt;&lt;/result&gt;</span>
-
-        <span class="nt">&lt;result</span> <span class="na">property=</span><span class="s">&#34;test&#34;</span> <span class="na">column=</span><span class="s">&#34;test&#34;</span><span class="nt">&gt;&lt;/result&gt;</span>
-    <span class="nt">&lt;/resultMap&gt;</span>
-    <span class="nt">&lt;select</span> <span class="na">id=</span><span class="s">&#34;selectGoodsDTO&#34;</span> <span class="na">resultMap=</span><span class="s">&#34;rmGoods&#34;</span><span class="nt">&gt;</span>
-        select g.*,  c.*, &#34;1&#34; as test from t_goods g, t_category c
-        where g.category_id = c.category_id
-    <span class="nt">&lt;/select&gt;</span>
-</code></pre></div></blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nn">com.imooc.mybatis.dto</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">com.imooc.mybatis.entity.Category</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">com.imooc.mybatis.entity.Goods</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * @author CubeMonkey
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * @create 2020-10-27 18:50
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//Data Transfer Object --数据传输对象
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">GoodsDTO</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">Goods</span> <span class="n">goods</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Goods</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">Category</span> <span class="n">category</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Category</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">String</span> <span class="n">test</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">Goods</span> <span class="nf">getGoods</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">goods</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setGoods</span><span class="o">(</span><span class="n">Goods</span> <span class="n">goods</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">goods</span> <span class="o">=</span> <span class="n">goods</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">Category</span> <span class="nf">getCategory</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">category</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setCategory</span><span class="o">(</span><span class="n">Category</span> <span class="n">category</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">category</span> <span class="o">=</span> <span class="n">category</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">String</span> <span class="nf">getTest</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">test</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setTest</span><span class="o">(</span><span class="n">String</span> <span class="n">test</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">test</span> <span class="o">=</span> <span class="n">test</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>Goods.java</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nn">com.imooc.mybatis.entity</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * @author CubeMonkey
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * @create 2020-10-27 11:28
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Goods</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">Integer</span> <span class="n">goodsId</span><span class="o">;</span><span class="c1">//商品编号
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">private</span> <span class="n">String</span> <span class="n">title</span><span class="o">;</span><span class="c1">//标题
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">private</span> <span class="n">String</span> <span class="n">subTitle</span><span class="o">;</span><span class="c1">//子标题
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">private</span> <span class="n">Float</span> <span class="n">originalCost</span><span class="o">;</span><span class="c1">//原始价格
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">private</span> <span class="n">Float</span> <span class="n">currentPrice</span><span class="o">;</span><span class="c1">//当前价格
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">private</span> <span class="n">Float</span> <span class="n">discount</span><span class="o">;</span><span class="c1">//折扣率
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">private</span> <span class="n">Integer</span> <span class="n">isFreeDelivery</span><span class="o">;</span><span class="c1">//是否包邮，1-包邮 0-不包邮
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">private</span> <span class="n">Integer</span> <span class="n">categoryId</span><span class="o">;</span><span class="c1">//分类编号
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">Integer</span> <span class="nf">getGoodsId</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">goodsId</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setGoodsId</span><span class="o">(</span><span class="n">Integer</span> <span class="n">goodsId</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">goodsId</span> <span class="o">=</span> <span class="n">goodsId</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">String</span> <span class="nf">getTitle</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">title</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setTitle</span><span class="o">(</span><span class="n">String</span> <span class="n">title</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">title</span> <span class="o">=</span> <span class="n">title</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">String</span> <span class="nf">getSubTitle</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">subTitle</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setSubTitle</span><span class="o">(</span><span class="n">String</span> <span class="n">subTitle</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">subTitle</span> <span class="o">=</span> <span class="n">subTitle</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">Float</span> <span class="nf">getOriginalCost</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">originalCost</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setOriginalCost</span><span class="o">(</span><span class="n">Float</span> <span class="n">originalCost</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">originalCost</span> <span class="o">=</span> <span class="n">originalCost</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">Float</span> <span class="nf">getCurrentPrice</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">currentPrice</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setCurrentPrice</span><span class="o">(</span><span class="n">Float</span> <span class="n">currentPrice</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">currentPrice</span> <span class="o">=</span> <span class="n">currentPrice</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">Float</span> <span class="nf">getDiscount</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">discount</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setDiscount</span><span class="o">(</span><span class="n">Float</span> <span class="n">discount</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">discount</span> <span class="o">=</span> <span class="n">discount</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">Integer</span> <span class="nf">getIsFreeDelivery</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">isFreeDelivery</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setIsFreeDelivery</span><span class="o">(</span><span class="n">Integer</span> <span class="n">isFreeDelivery</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">isFreeDelivery</span> <span class="o">=</span> <span class="n">isFreeDelivery</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">Integer</span> <span class="nf">getCategoryId</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">categoryId</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setCategoryId</span><span class="o">(</span><span class="n">Integer</span> <span class="n">categoryId</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">categoryId</span> <span class="o">=</span> <span class="n">categoryId</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>Category.java</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nn">com.imooc.mybatis.entity</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * @author CubeMonkey
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * @create 2020-10-27 19:12
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Category</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">Integer</span> <span class="n">categoryId</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">String</span> <span class="n">categoryName</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">Integer</span> <span class="n">parentId</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">Integer</span> <span class="n">categoryLevel</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">Integer</span> <span class="n">categoryOrder</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">Integer</span> <span class="nf">getCategoryId</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">categoryId</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setCategoryId</span><span class="o">(</span><span class="n">Integer</span> <span class="n">categoryId</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">categoryId</span> <span class="o">=</span> <span class="n">categoryId</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">String</span> <span class="nf">getCategoryName</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">categoryName</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setCategoryName</span><span class="o">(</span><span class="n">String</span> <span class="n">categoryName</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">categoryName</span> <span class="o">=</span> <span class="n">categoryName</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">Integer</span> <span class="nf">getParentId</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">parentId</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setParentId</span><span class="o">(</span><span class="n">Integer</span> <span class="n">parentId</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">parentId</span> <span class="o">=</span> <span class="n">parentId</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">Integer</span> <span class="nf">getCategoryLevel</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">categoryLevel</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setCategoryLevel</span><span class="o">(</span><span class="n">Integer</span> <span class="n">categoryLevel</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">categoryLevel</span> <span class="o">=</span> <span class="n">categoryLevel</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">Integer</span> <span class="nf">getCategoryOrder</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">categoryOrder</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setCategoryOrder</span><span class="o">(</span><span class="n">Integer</span> <span class="n">categoryOrder</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">categoryOrder</span> <span class="o">=</span> <span class="n">categoryOrder</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>在goods.xml中添加如下信息</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="c">&lt;!--结果映射--&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;resultMap</span> <span class="na">id=</span><span class="s">&#34;rmGoods&#34;</span> <span class="na">type=</span><span class="s">&#34;com.imooc.mybatis.dto.GoodsDTO&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="c">&lt;!--设置主键字段与属性映射--&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;id</span> <span class="na">property=</span><span class="s">&#34;goods.goodsId&#34;</span> <span class="na">column=</span><span class="s">&#34;goods_id&#34;</span><span class="nt">&gt;&lt;/id&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="c">&lt;!--设置非主键字段与属性映射--&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;result</span> <span class="na">property=</span><span class="s">&#34;goods.title&#34;</span> <span class="na">column=</span><span class="s">&#34;title&#34;</span><span class="nt">&gt;&lt;/result&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;result</span> <span class="na">property=</span><span class="s">&#34;goods.originalCost&#34;</span> <span class="na">column=</span><span class="s">&#34;original_cost&#34;</span><span class="nt">&gt;&lt;/result&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;result</span> <span class="na">property=</span><span class="s">&#34;goods.currentPrice&#34;</span> <span class="na">column=</span><span class="s">&#34;current_price&#34;</span><span class="nt">&gt;&lt;/result&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;result</span> <span class="na">property=</span><span class="s">&#34;goods.discount&#34;</span> <span class="na">column=</span><span class="s">&#34;discount&#34;</span><span class="nt">&gt;&lt;/result&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;result</span> <span class="na">property=</span><span class="s">&#34;goods.isFreeDelivery&#34;</span> <span class="na">column=</span><span class="s">&#34;is_free_delivery&#34;</span><span class="nt">&gt;&lt;/result&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;result</span> <span class="na">property=</span><span class="s">&#34;goods.categoryId&#34;</span> <span class="na">column=</span><span class="s">&#34;category_id&#34;</span><span class="nt">&gt;&lt;/result&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;result</span> <span class="na">property=</span><span class="s">&#34;category.categoryId&#34;</span> <span class="na">column=</span><span class="s">&#34;category_id&#34;</span><span class="nt">&gt;&lt;/result&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;result</span> <span class="na">property=</span><span class="s">&#34;category.categoryName&#34;</span> <span class="na">column=</span><span class="s">&#34;category_name&#34;</span><span class="nt">&gt;&lt;/result&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;result</span> <span class="na">property=</span><span class="s">&#34;category.categoryId&#34;</span> <span class="na">column=</span><span class="s">&#34;category_id&#34;</span><span class="nt">&gt;&lt;/result&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;result</span> <span class="na">property=</span><span class="s">&#34;category.parentId&#34;</span> <span class="na">column=</span><span class="s">&#34;parent_id&#34;</span><span class="nt">&gt;&lt;/result&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;result</span> <span class="na">property=</span><span class="s">&#34;category.categoryLevel&#34;</span> <span class="na">column=</span><span class="s">&#34;category_level&#34;</span><span class="nt">&gt;&lt;/result&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;result</span> <span class="na">property=</span><span class="s">&#34;category.categoryOrder&#34;</span> <span class="na">column=</span><span class="s">&#34;category_order&#34;</span><span class="nt">&gt;&lt;/result&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;result</span> <span class="na">property=</span><span class="s">&#34;test&#34;</span> <span class="na">column=</span><span class="s">&#34;test&#34;</span><span class="nt">&gt;&lt;/result&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/resultMap&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;select</span> <span class="na">id=</span><span class="s">&#34;selectGoodsDTO&#34;</span> <span class="na">resultMap=</span><span class="s">&#34;rmGoods&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">        select g.*,  c.*, &#34;1&#34; as test from t_goods g, t_category c
+</span></span><span class="line"><span class="cl">        where g.category_id = c.category_id
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/select&gt;</span>
+</span></span></code></pre></div></blockquote>
 <h2 id="mybatis的写操作">MyBatis的写操作<a hidden class="anchor" aria-hidden="true" href="#mybatis的写操作">#</a></h2>
 <h3 id="insert操作">Insert操作<a hidden class="anchor" aria-hidden="true" href="#insert操作">#</a></h3>
 <blockquote>
 <p>在goods.xml中配置如下信息</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;insert</span> <span class="na">id=</span><span class="s">&#34;insert&#34;</span> <span class="na">parameterType=</span><span class="s">&#34;com.imooc.mybatis.entity.Goods&#34;</span><span class="nt">&gt;</span>
-    insert into t_goods(title, sub_title, original_cost, current_price, discount, is_free_delivery, category_id)
-    values(#{title}, #{subTitle}, #{originalCost}, #{currentPrice}, #{discount}, #{isFreeDelivery}, #{categoryId})
-    <span class="c">&lt;!--更新goods中的id--&gt;</span>
-    <span class="nt">&lt;selectKey</span> <span class="na">resultType=</span><span class="s">&#34;Integer&#34;</span> <span class="na">keyProperty=</span><span class="s">&#34;goodsId&#34;</span> <span class="na">order=</span><span class="s">&#34;AFTER&#34;</span><span class="nt">&gt;</span>
-        select last_insert_id();
-    <span class="nt">&lt;/selectKey&gt;</span>
-<span class="nt">&lt;/insert&gt;</span>
-</code></pre></div><p>MyBatisTestor.java 测试代码</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="nd">@Test</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testInsert</span><span class="o">()</span> <span class="o">{</span>
-        <span class="n">SqlSession</span> <span class="n">session</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
-        <span class="k">try</span> <span class="o">{</span>
-            <span class="n">session</span> <span class="o">=</span> <span class="n">MyBatisUtils</span><span class="o">.</span><span class="na">openSession</span><span class="o">();</span>
-            <span class="n">Goods</span> <span class="n">goods</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Goods</span><span class="o">();</span>
-            <span class="n">goods</span><span class="o">.</span><span class="na">setTitle</span><span class="o">(</span><span class="s">&#34;测试用例标题&#34;</span><span class="o">);</span>
-            <span class="n">goods</span><span class="o">.</span><span class="na">setSubTitle</span><span class="o">(</span><span class="s">&#34;测试用例子标题&#34;</span><span class="o">);</span>
-            <span class="n">goods</span><span class="o">.</span><span class="na">setOriginalCost</span><span class="o">(</span><span class="n">1f</span><span class="o">);</span>
-            <span class="n">goods</span><span class="o">.</span><span class="na">setCurrentPrice</span><span class="o">(</span><span class="n">100f</span><span class="o">);</span>
-            <span class="n">goods</span><span class="o">.</span><span class="na">setDiscount</span><span class="o">(</span><span class="n">0</span><span class="o">.</span><span class="na">5f</span><span class="o">);</span>
-            <span class="n">goods</span><span class="o">.</span><span class="na">setIsFreeDelivery</span><span class="o">(</span><span class="n">1</span><span class="o">);</span>
-            <span class="n">goods</span><span class="o">.</span><span class="na">setCategoryId</span><span class="o">(</span><span class="n">12</span><span class="o">);</span>
-            <span class="kt">int</span> <span class="n">num</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="na">insert</span><span class="o">(</span><span class="s">&#34;goods.insert&#34;</span><span class="o">,</span> <span class="n">goods</span><span class="o">);</span>
-            <span class="n">session</span><span class="o">.</span><span class="na">commit</span><span class="o">();</span><span class="c1">//这个很重要，不能忘记
-</span><span class="c1"></span>            <span class="k">if</span> <span class="o">(</span><span class="n">num</span> <span class="o">==</span> <span class="n">1</span><span class="o">)</span> <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;插入成功&#34;</span><span class="o">);</span>
-            <span class="k">else</span> <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;插入失败&#34;</span><span class="o">);</span>
-            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">goods</span><span class="o">.</span><span class="na">getGoodsId</span><span class="o">());</span>
-        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">){</span>
-            <span class="n">session</span><span class="o">.</span><span class="na">rollback</span><span class="o">();</span>
-            <span class="k">throw</span> <span class="n">e</span><span class="o">;</span>
-        <span class="o">}</span> <span class="k">finally</span> <span class="o">{</span>
-            <span class="n">MyBatisUtils</span><span class="o">.</span><span class="na">closeSession</span><span class="o">(</span><span class="n">session</span><span class="o">);</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-</code></pre></div></blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;insert</span> <span class="na">id=</span><span class="s">&#34;insert&#34;</span> <span class="na">parameterType=</span><span class="s">&#34;com.imooc.mybatis.entity.Goods&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">    insert into t_goods(title, sub_title, original_cost, current_price, discount, is_free_delivery, category_id)
+</span></span><span class="line"><span class="cl">    values(#{title}, #{subTitle}, #{originalCost}, #{currentPrice}, #{discount}, #{isFreeDelivery}, #{categoryId})
+</span></span><span class="line"><span class="cl">    <span class="c">&lt;!--更新goods中的id--&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;selectKey</span> <span class="na">resultType=</span><span class="s">&#34;Integer&#34;</span> <span class="na">keyProperty=</span><span class="s">&#34;goodsId&#34;</span> <span class="na">order=</span><span class="s">&#34;AFTER&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">        select last_insert_id();
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/selectKey&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/insert&gt;</span>
+</span></span></code></pre></div><p>MyBatisTestor.java 测试代码</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Test</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testInsert</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">SqlSession</span> <span class="n">session</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">try</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">session</span> <span class="o">=</span> <span class="n">MyBatisUtils</span><span class="o">.</span><span class="na">openSession</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">            <span class="n">Goods</span> <span class="n">goods</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Goods</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">            <span class="n">goods</span><span class="o">.</span><span class="na">setTitle</span><span class="o">(</span><span class="s">&#34;测试用例标题&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">goods</span><span class="o">.</span><span class="na">setSubTitle</span><span class="o">(</span><span class="s">&#34;测试用例子标题&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">goods</span><span class="o">.</span><span class="na">setOriginalCost</span><span class="o">(</span><span class="n">1f</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">goods</span><span class="o">.</span><span class="na">setCurrentPrice</span><span class="o">(</span><span class="n">100f</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">goods</span><span class="o">.</span><span class="na">setDiscount</span><span class="o">(</span><span class="n">0</span><span class="o">.</span><span class="na">5f</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">goods</span><span class="o">.</span><span class="na">setIsFreeDelivery</span><span class="o">(</span><span class="n">1</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">goods</span><span class="o">.</span><span class="na">setCategoryId</span><span class="o">(</span><span class="n">12</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="kt">int</span> <span class="n">num</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="na">insert</span><span class="o">(</span><span class="s">&#34;goods.insert&#34;</span><span class="o">,</span> <span class="n">goods</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">session</span><span class="o">.</span><span class="na">commit</span><span class="o">();</span><span class="c1">//这个很重要，不能忘记
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="k">if</span> <span class="o">(</span><span class="n">num</span> <span class="o">==</span> <span class="n">1</span><span class="o">)</span> <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;插入成功&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="k">else</span> <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;插入失败&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">goods</span><span class="o">.</span><span class="na">getGoodsId</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">){</span>
+</span></span><span class="line"><span class="cl">            <span class="n">session</span><span class="o">.</span><span class="na">rollback</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">            <span class="k">throw</span> <span class="n">e</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span> <span class="k">finally</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">MyBatisUtils</span><span class="o">.</span><span class="na">closeSession</span><span class="o">(</span><span class="n">session</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span></code></pre></div></blockquote>
 <h4 id="selectkey与usegeneratedkey区别">selectKey与useGeneratedKey区别<a hidden class="anchor" aria-hidden="true" href="#selectkey与usegeneratedkey区别">#</a></h4>
 <h5 id="selectkey">selectKey:<a hidden class="anchor" aria-hidden="true" href="#selectkey">#</a></h5>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;insert</span> <span class="na">id=</span><span class="s">&#34;insert&#34;</span> <span class="na">parameterType=</span><span class="s">&#34;com.imooc.mybatis.entity.Goods&#34;</span><span class="nt">&gt;</span>
-   	INSERT INTO 语句
-    <span class="c">&lt;!--更新goods中的id--&gt;</span>
-    <span class="nt">&lt;selectKey</span> <span class="na">resultType=</span><span class="s">&#34;Integer&#34;</span> <span class="na">keyProperty=</span><span class="s">&#34;goodsId&#34;</span> <span class="na">order=</span><span class="s">&#34;AFTER&#34;</span><span class="nt">&gt;</span>
-        select last_insert_id();
-    <span class="nt">&lt;/selectKey&gt;</span>
-<span class="nt">&lt;/insert&gt;</span>
-</code></pre></div><h5 id="usegeneratedkey">useGeneratedKey:<a hidden class="anchor" aria-hidden="true" href="#usegeneratedkey">#</a></h5>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;insert</span> <span class="na">id=</span><span class="s">&#34;insert&#34;</span> <span class="na">parameterType=</span><span class="s">&#34;com.imooc.mybatis.entity.Goods&#34;</span>
-        <span class="na">useGeneratedKeys=</span><span class="s">&#34;true&#34;</span> <span class="na">keyProperty=</span><span class="s">&#34;goodsId&#34;</span> 	<span class="na">keyColumn=</span><span class="s">&#34;goods_id&#34;</span><span class="nt">&gt;</span>
-    INSERT INTO 语句
-<span class="nt">&lt;/insert&gt;</span>
-</code></pre></div><h5 id="二者区别---显示与隐式">二者区别 - 显示与隐式<a hidden class="anchor" aria-hidden="true" href="#二者区别---显示与隐式">#</a></h5>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;insert</span> <span class="na">id=</span><span class="s">&#34;insert&#34;</span> <span class="na">parameterType=</span><span class="s">&#34;com.imooc.mybatis.entity.Goods&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">   	INSERT INTO 语句
+</span></span><span class="line"><span class="cl">    <span class="c">&lt;!--更新goods中的id--&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;selectKey</span> <span class="na">resultType=</span><span class="s">&#34;Integer&#34;</span> <span class="na">keyProperty=</span><span class="s">&#34;goodsId&#34;</span> <span class="na">order=</span><span class="s">&#34;AFTER&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">        select last_insert_id();
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/selectKey&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/insert&gt;</span>
+</span></span></code></pre></div><h5 id="usegeneratedkey">useGeneratedKey:<a hidden class="anchor" aria-hidden="true" href="#usegeneratedkey">#</a></h5>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;insert</span> <span class="na">id=</span><span class="s">&#34;insert&#34;</span> <span class="na">parameterType=</span><span class="s">&#34;com.imooc.mybatis.entity.Goods&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="na">useGeneratedKeys=</span><span class="s">&#34;true&#34;</span> <span class="na">keyProperty=</span><span class="s">&#34;goodsId&#34;</span> 	<span class="na">keyColumn=</span><span class="s">&#34;goods_id&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">    INSERT INTO 语句
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/insert&gt;</span>
+</span></span></code></pre></div><h5 id="二者区别---显示与隐式">二者区别 - 显示与隐式<a hidden class="anchor" aria-hidden="true" href="#二者区别---显示与隐式">#</a></h5>
 <ul>
 <li>selectKey标签需要明确编写获取最新主键的SQL语句(不同的数据库驱动获取最新主键的SQL语句不同)</li>
 <li>useGeneratedKeys属性会自动根据驱动生成对应SQL语句</li>
@@ -1052,14 +1047,14 @@
 <h6 id="tip">tip:<a hidden class="anchor" aria-hidden="true" href="#tip">#</a></h6>
 <p>​	不支持自增主键的数据库有：DB2， Oracle</p>
 <h6 id="在oracle中selectkey的用法">在oracle中selectKey的用法：<a hidden class="anchor" aria-hidden="true" href="#在oracle中selectkey的用法">#</a></h6>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;insert</span> <span class="na">id=</span><span class="s">&#34;insert&#34;</span> <span class="na">parameterType=</span><span class="s">&#34;com.imooc.mybatis.entity.Goods&#34;</span><span class="nt">&gt;</span>
-   	INSERT INTO 语句
-    <span class="c">&lt;!--更新goods中的id--&gt;</span>
-    <span class="nt">&lt;selectKey</span> <span class="na">resultType=</span><span class="s">&#34;Integer&#34;</span> <span class="na">keyProperty=</span><span class="s">&#34;goodsId&#34;</span> <span class="na">order=</span><span class="s">&#34;BEFORE&#34;</span><span class="nt">&gt;</span>
-       select seq_goods.nextval as id from dual
-    <span class="nt">&lt;/selectKey&gt;</span>
-<span class="nt">&lt;/insert&gt;</span>
-</code></pre></div><h5 id="总结">总结：<a hidden class="anchor" aria-hidden="true" href="#总结">#</a></h5>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;insert</span> <span class="na">id=</span><span class="s">&#34;insert&#34;</span> <span class="na">parameterType=</span><span class="s">&#34;com.imooc.mybatis.entity.Goods&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">   	INSERT INTO 语句
+</span></span><span class="line"><span class="cl">    <span class="c">&lt;!--更新goods中的id--&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;selectKey</span> <span class="na">resultType=</span><span class="s">&#34;Integer&#34;</span> <span class="na">keyProperty=</span><span class="s">&#34;goodsId&#34;</span> <span class="na">order=</span><span class="s">&#34;BEFORE&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">       select seq_goods.nextval as id from dual
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/selectKey&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/insert&gt;</span>
+</span></span></code></pre></div><h5 id="总结">总结：<a hidden class="anchor" aria-hidden="true" href="#总结">#</a></h5>
 <ul>
 <li>selectKey标签是通用方案，使用于所有数据库，但编写麻烦</li>
 <li>useGeneratedKeys属性只支持“自增主键”数据库，使用简单</li>
@@ -1067,63 +1062,63 @@
 <h3 id="update操作">update操作<a hidden class="anchor" aria-hidden="true" href="#update操作">#</a></h3>
 <blockquote>
 <p>goods.xml:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;update</span> <span class="na">id=</span><span class="s">&#34;update&#34;</span> <span class="na">parameterType=</span><span class="s">&#34;com.imooc.mybatis.entity.Goods&#34;</span><span class="nt">&gt;</span>
-    update t_goods
-    set
-    title = #{title},
-    sub_title = #{subTitle},
-    original_cost = #{originalCost},
-    current_price = #{currentPrice},
-    discount = #{discount},
-    is_free_delivery = #{isFreeDelivery},
-    category_id = #{categoryId}
-    where goods_id = #{goodsId}
-<span class="nt">&lt;/update&gt;</span>
-</code></pre></div><p>MyBatisTestor.java</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="nd">@Test</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testUpdate</span><span class="o">(){</span>
-        <span class="n">SqlSession</span> <span class="n">session</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
-        <span class="k">try</span> <span class="o">{</span>
-            <span class="n">session</span> <span class="o">=</span> <span class="n">MyBatisUtils</span><span class="o">.</span><span class="na">openSession</span><span class="o">();</span>
-            <span class="n">Goods</span> <span class="n">goods</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="na">selectOne</span><span class="o">(</span><span class="s">&#34;selectById&#34;</span><span class="o">,</span> <span class="n">739</span><span class="o">);</span>
-            <span class="n">goods</span><span class="o">.</span><span class="na">setTitle</span><span class="o">(</span><span class="s">&#34;更新测试商品&#34;</span><span class="o">);</span>
-            <span class="kt">int</span> <span class="n">num</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="na">update</span><span class="o">(</span><span class="s">&#34;goods.update&#34;</span><span class="o">,</span> <span class="n">goods</span><span class="o">);</span>
-            <span class="k">if</span> <span class="o">(</span><span class="n">num</span> <span class="o">==</span> <span class="n">1</span><span class="o">)</span> <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;更新成功&#34;</span><span class="o">);</span>
-            <span class="k">else</span> <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;更新失败&#34;</span><span class="o">);</span>
-            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">goods</span><span class="o">.</span><span class="na">getTitle</span><span class="o">());</span>
-            <span class="n">session</span><span class="o">.</span><span class="na">commit</span><span class="o">();</span>
-        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">session</span><span class="o">.</span><span class="na">rollback</span><span class="o">();</span>
-            <span class="k">throw</span> <span class="n">e</span><span class="o">;</span>
-        <span class="o">}</span> <span class="k">finally</span> <span class="o">{</span>
-            <span class="n">MyBatisUtils</span><span class="o">.</span><span class="na">closeSession</span><span class="o">(</span><span class="n">session</span><span class="o">);</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-</code></pre></div></blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;update</span> <span class="na">id=</span><span class="s">&#34;update&#34;</span> <span class="na">parameterType=</span><span class="s">&#34;com.imooc.mybatis.entity.Goods&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">    update t_goods
+</span></span><span class="line"><span class="cl">    set
+</span></span><span class="line"><span class="cl">    title = #{title},
+</span></span><span class="line"><span class="cl">    sub_title = #{subTitle},
+</span></span><span class="line"><span class="cl">    original_cost = #{originalCost},
+</span></span><span class="line"><span class="cl">    current_price = #{currentPrice},
+</span></span><span class="line"><span class="cl">    discount = #{discount},
+</span></span><span class="line"><span class="cl">    is_free_delivery = #{isFreeDelivery},
+</span></span><span class="line"><span class="cl">    category_id = #{categoryId}
+</span></span><span class="line"><span class="cl">    where goods_id = #{goodsId}
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/update&gt;</span>
+</span></span></code></pre></div><p>MyBatisTestor.java</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Test</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testUpdate</span><span class="o">(){</span>
+</span></span><span class="line"><span class="cl">        <span class="n">SqlSession</span> <span class="n">session</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">try</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">session</span> <span class="o">=</span> <span class="n">MyBatisUtils</span><span class="o">.</span><span class="na">openSession</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">            <span class="n">Goods</span> <span class="n">goods</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="na">selectOne</span><span class="o">(</span><span class="s">&#34;selectById&#34;</span><span class="o">,</span> <span class="n">739</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">goods</span><span class="o">.</span><span class="na">setTitle</span><span class="o">(</span><span class="s">&#34;更新测试商品&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="kt">int</span> <span class="n">num</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="na">update</span><span class="o">(</span><span class="s">&#34;goods.update&#34;</span><span class="o">,</span> <span class="n">goods</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="o">(</span><span class="n">num</span> <span class="o">==</span> <span class="n">1</span><span class="o">)</span> <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;更新成功&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="k">else</span> <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;更新失败&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">goods</span><span class="o">.</span><span class="na">getTitle</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">            <span class="n">session</span><span class="o">.</span><span class="na">commit</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">session</span><span class="o">.</span><span class="na">rollback</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">            <span class="k">throw</span> <span class="n">e</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span> <span class="k">finally</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">MyBatisUtils</span><span class="o">.</span><span class="na">closeSession</span><span class="o">(</span><span class="n">session</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span></code></pre></div></blockquote>
 <p>​</p>
 <h3 id="delete操作">delete操作<a hidden class="anchor" aria-hidden="true" href="#delete操作">#</a></h3>
 <blockquote>
 <p>goods.xml</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;delete</span> <span class="na">id=</span><span class="s">&#34;delete&#34;</span> <span class="na">parameterType=</span><span class="s">&#34;Integer&#34;</span><span class="nt">&gt;</span>
-	delete from t_goods where goods_id = #{value}
-<span class="nt">&lt;/delete&gt;</span>
-</code></pre></div><p>MyBatisTestor.java</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="nd">@Test</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testDelete</span><span class="o">(){</span>
-        <span class="n">SqlSession</span> <span class="n">session</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
-        <span class="k">try</span> <span class="o">{</span>
-            <span class="n">session</span> <span class="o">=</span> <span class="n">MyBatisUtils</span><span class="o">.</span><span class="na">openSession</span><span class="o">();</span>
-            <span class="kt">int</span> <span class="n">num</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="na">delete</span><span class="o">(</span><span class="s">&#34;goods.delete&#34;</span><span class="o">,</span> <span class="n">739</span><span class="o">);</span>
-            <span class="k">if</span> <span class="o">(</span><span class="n">num</span> <span class="o">==</span> <span class="n">1</span><span class="o">)</span> <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;删除成功&#34;</span><span class="o">);</span>
-            <span class="k">else</span> <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;删除失败&#34;</span><span class="o">);</span>
-            <span class="n">session</span><span class="o">.</span><span class="na">commit</span><span class="o">();</span>
-        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
-        <span class="o">}</span> <span class="k">finally</span> <span class="o">{</span>
-            <span class="n">MyBatisUtils</span><span class="o">.</span><span class="na">closeSession</span><span class="o">(</span><span class="n">session</span><span class="o">);</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-</code></pre></div></blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;delete</span> <span class="na">id=</span><span class="s">&#34;delete&#34;</span> <span class="na">parameterType=</span><span class="s">&#34;Integer&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">	delete from t_goods where goods_id = #{value}
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/delete&gt;</span>
+</span></span></code></pre></div><p>MyBatisTestor.java</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Test</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testDelete</span><span class="o">(){</span>
+</span></span><span class="line"><span class="cl">        <span class="n">SqlSession</span> <span class="n">session</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">try</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">session</span> <span class="o">=</span> <span class="n">MyBatisUtils</span><span class="o">.</span><span class="na">openSession</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">            <span class="kt">int</span> <span class="n">num</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="na">delete</span><span class="o">(</span><span class="s">&#34;goods.delete&#34;</span><span class="o">,</span> <span class="n">739</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="o">(</span><span class="n">num</span> <span class="o">==</span> <span class="n">1</span><span class="o">)</span> <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;删除成功&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="k">else</span> <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;删除失败&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">session</span><span class="o">.</span><span class="na">commit</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span> <span class="k">finally</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">MyBatisUtils</span><span class="o">.</span><span class="na">closeSession</span><span class="o">(</span><span class="n">session</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span></code></pre></div></blockquote>
 <h2 id="mybatis预防sql注入攻击">MyBatis预防SQL注入攻击<a hidden class="anchor" aria-hidden="true" href="#mybatis预防sql注入攻击">#</a></h2>
 <h3 id="sql注入攻击">SQL注入攻击<a hidden class="anchor" aria-hidden="true" href="#sql注入攻击">#</a></h3>
 <ul>

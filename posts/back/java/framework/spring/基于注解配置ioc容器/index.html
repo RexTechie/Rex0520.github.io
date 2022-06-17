@@ -11,7 +11,7 @@
 <meta name="author" content="Rex">
 <link rel="canonical" href="https://rex0520.github.io/posts/back/java/framework/spring/%E5%9F%BA%E4%BA%8E%E6%B3%A8%E8%A7%A3%E9%85%8D%E7%BD%AEioc%E5%AE%B9%E5%99%A8/" />
 <link crossorigin="anonymous" href="/assets/css/stylesheet.min.css" rel="preload stylesheet" as="style">
-<link rel="preload" href="http://cdn.rexweb.xyz/img/20210821105340.png" as="image">
+<link rel="preload" href="http://cdn.rexhub.xyz/img/20210821105340.png" as="image">
 <script defer crossorigin="anonymous" src="/assets/js/highlight.min.js" onload="hljs.initHighlightingOnLoad();"></script>
 <link rel="icon" href="https://rex0520.github.io/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="https://rex0520.github.io/favicon-16x16.png">
@@ -20,7 +20,7 @@
 <link rel="mask-icon" href="https://rex0520.github.io/%3Clink%20/%20abs%20url%3E">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<meta name="generator" content="Hugo 0.87.0" />
+<meta name="generator" content="Hugo 0.100.2" />
 <noscript>
     <style>
         #theme-toggle,
@@ -60,12 +60,12 @@
 </noscript><meta property="og:title" content="基于注解配置ioc容器" />
 <meta property="og:description" content="基于注解配置ioc容器" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://rex0520.github.io/posts/back/java/framework/spring/%E5%9F%BA%E4%BA%8E%E6%B3%A8%E8%A7%A3%E9%85%8D%E7%BD%AEioc%E5%AE%B9%E5%99%A8/" /><meta property="og:image" content="https://cdn.rexweb.xyz/img/20210820141535.jpg"/><meta property="article:section" content="posts" />
+<meta property="og:url" content="https://rex0520.github.io/posts/back/java/framework/spring/%E5%9F%BA%E4%BA%8E%E6%B3%A8%E8%A7%A3%E9%85%8D%E7%BD%AEioc%E5%AE%B9%E5%99%A8/" /><meta property="og:image" content="https://cdn.rexhub.xyz/img/20210820141535.jpg"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2021-01-03T00:00:00&#43;00:00" />
 <meta property="article:modified_time" content="2021-01-03T00:00:00&#43;00:00" /><meta property="og:site_name" content="RexHub" />
 
 <meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="https://cdn.rexweb.xyz/img/20210820141535.jpg"/>
+<meta name="twitter:image" content="https://cdn.rexhub.xyz/img/20210820141535.jpg"/>
 
 <meta name="twitter:title" content="基于注解配置ioc容器"/>
 <meta name="twitter:description" content="基于注解配置ioc容器"/>
@@ -101,7 +101,7 @@
   "keywords": [
     "Spring"
   ],
-  "articleBody": "基于注解配置IoC容器 基于注解的优势  摆脱繁琐的XML形式的bean与依赖注入配置 基于“声明式”的原则，更适合轻量级的现代企业应用 让代码可读性变得更好，让研发人员拥有更好的开发体验  三类注解  组件类型注解-声明当前类的功能与职责 自动装配注解-根据属性特征自动注入对象 元数据注解-更细化的辅助IoC容器管理对象的 注解  组件类型注解： 四种组件类型注解    注解 说明     @Component 组件注解，通用注解，被该注解描述的类将被IoC容器管理并实例化   @Controller xA语义注解，说明当前类是MVC应用中的控制器类   @Service 语义注解，说明当前类是Service业务服务类   @Repository 语义注解，说明当前类用于业务持久层，通常描述对应Dao类    开启组件扫描：   base-package=\"com.imooc\"  type=\"regex\" expression=\"com.imooc.exl.*\"   基于注解初始化IoC容器 ​\tapplicationContext.xml\n  xmlns=\"http://www.springframework.org/schema/beans\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:context=\"http://www.springframework.org/schema/context\" xsi:schemaLocation=\"http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd\" @Repository @Service @Controller @Component --  base-package=\"com.imooc\"/  自动装配注解： 两类自动装配注解：    分类 注解 说明     按类型装配 @Autowired 按容器内对象类型动态注入属性，由Spring机构提供    @Inject 基于JSR-330(Dependency Injection for Java)标准，其他同@Autowired,但不支持request属性   按名称装配 @Named 与@Inject配合使用，JSR-330规范，按属性名自动装配属性    @Resource 基于JSR-250规范，优先按名称，再按类型智能匹配    Autowired: pring IoC容器会自动通过反射技术将属性private修饰符自动改为public，直接进行赋值, 不再执行set方法。如果装配注解放在set方法上，则自动按类型/名称对set方法参数进行注入\nResource:  @Resource设置name属性，则按照name在IoC容器中将bean注入 @Resource未设置name属性  2.1 以属性名作为bean name在IoC容器中匹配bean，如有匹配注入 2.2 按属性名未匹配，则按类型进行匹配，同autowired，需加入@Primary解决冲突 使用建议：在使用@Resource对象时，推荐设置name或保证属性名与bean名称一致  元数据注解    注解 说明     @Primary 按类型装配时出现多个相同类型对象，拥有此注解对象优先被注入   @PostConstruct 描述方法，相当于XML中init-method配置的注解版本   @PreDestory 描述方法，相当于XML中destroy-method配置的注解版本   @Scope 设置对象的scope属性   @Value 为属性注入静态数据    ",
+  "articleBody": "基于注解配置IoC容器 基于注解的优势 摆脱繁琐的XML形式的bean与依赖注入配置 基于“声明式”的原则，更适合轻量级的现代企业应用 让代码可读性变得更好，让研发人员拥有更好的开发体验 三类注解 组件类型注解-声明当前类的功能与职责 自动装配注解-根据属性特征自动注入对象 元数据注解-更细化的辅助IoC容器管理对象的 注解 组件类型注解： 四种组件类型注解 注解 说明 @Component 组件注解，通用注解，被该注解描述的类将被IoC容器管理并实例化 @Controller xA语义注解，说明当前类是MVC应用中的控制器类 @Service 语义注解，说明当前类是Service业务服务类 @Repository 语义注解，说明当前类用于业务持久层，通常描述对应Dao类 开启组件扫描： ",
   "wordCount" : "98",
   "inLanguage": "en",
   "datePublished": "2021-01-03T00:00:00Z",
@@ -142,7 +142,7 @@
     <nav class="nav">
         <div class="logo">
             <a href="https://rex0520.github.io/" accesskey="h" title="Home (Alt + H)">
-                <img src="http://cdn.rexweb.xyz/img/20210821105340.png" alt="logo" aria-label="logo"
+                <img src="http://cdn.rexhub.xyz/img/20210821105340.png" alt="logo" aria-label="logo"
                     height="35">Home</a>
             <span class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)">
@@ -299,30 +299,30 @@
 </tbody>
 </table>
 <h4 id="开启组件扫描">开启组件扫描：<a hidden class="anchor" aria-hidden="true" href="#开启组件扫描">#</a></h4>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="c">&lt;!--XML配置开启组件扫描，才能使用注解--&gt;</span>
-<span class="nt">&lt;context:component-scan</span> <span class="na">base-package=</span><span class="s">&#34;com.imooc&#34;</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;context:exclude-filter</span> <span class="na">type=</span><span class="s">&#34;regex&#34;</span> <span class="na">expression=</span><span class="s">&#34;com.imooc.exl.*&#34;</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;/context:exclude-filter&gt;</span>
-<span class="nt">&lt;/context:component-scan&gt;</span>
-</code></pre></div><h4 id="基于注解初始化ioc容器">基于注解初始化IoC容器<a hidden class="anchor" aria-hidden="true" href="#基于注解初始化ioc容器">#</a></h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="c">&lt;!--XML配置开启组件扫描，才能使用注解--&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;context:component-scan</span> <span class="na">base-package=</span><span class="s">&#34;com.imooc&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;context:exclude-filter</span> <span class="na">type=</span><span class="s">&#34;regex&#34;</span> <span class="na">expression=</span><span class="s">&#34;com.imooc.exl.*&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/context:exclude-filter&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/context:component-scan&gt;</span>
+</span></span></code></pre></div><h4 id="基于注解初始化ioc容器">基于注解初始化IoC容器<a hidden class="anchor" aria-hidden="true" href="#基于注解初始化ioc容器">#</a></h4>
 <p>​	applicationContext.xml</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="cp">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;</span>
-<span class="nt">&lt;beans</span> <span class="na">xmlns=</span><span class="s">&#34;http://www.springframework.org/schema/beans&#34;</span>
-       <span class="na">xmlns:xsi=</span><span class="s">&#34;http://www.w3.org/2001/XMLSchema-instance&#34;</span>
-       <span class="na">xmlns:context=</span><span class="s">&#34;http://www.springframework.org/schema/context&#34;</span>
-       <span class="na">xsi:schemaLocation=</span><span class="s">&#34;http://www.springframework.org/schema/beans
-</span><span class="s">        https://www.springframework.org/schema/beans/spring-beans.xsd
-</span><span class="s">        http://www.springframework.org/schema/context
-</span><span class="s">        https://www.springframework.org/schema/context/spring-context.xsd&#34;</span><span class="nt">&gt;</span>
-     <span class="c">&lt;!--在IoC容器初始化时自动扫描四种组件类型注解并完成实例化
-</span><span class="c">          @Repository
-</span><span class="c">          @Service
-</span><span class="c">          @Controller
-</span><span class="c">          @Component
-</span><span class="c">     --&gt;</span>
-     <span class="nt">&lt;context:component-scan</span> <span class="na">base-package=</span><span class="s">&#34;com.imooc&#34;</span><span class="nt">/&gt;</span>
-<span class="nt">&lt;/beans&gt;</span>
-</code></pre></div><h3 id="自动装配注解">自动装配注解：<a hidden class="anchor" aria-hidden="true" href="#自动装配注解">#</a></h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="cp">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;beans</span> <span class="na">xmlns=</span><span class="s">&#34;http://www.springframework.org/schema/beans&#34;</span>
+</span></span><span class="line"><span class="cl">       <span class="na">xmlns:xsi=</span><span class="s">&#34;http://www.w3.org/2001/XMLSchema-instance&#34;</span>
+</span></span><span class="line"><span class="cl">       <span class="na">xmlns:context=</span><span class="s">&#34;http://www.springframework.org/schema/context&#34;</span>
+</span></span><span class="line"><span class="cl">       <span class="na">xsi:schemaLocation=</span><span class="s">&#34;http://www.springframework.org/schema/beans
+</span></span></span><span class="line"><span class="cl"><span class="s">        https://www.springframework.org/schema/beans/spring-beans.xsd
+</span></span></span><span class="line"><span class="cl"><span class="s">        http://www.springframework.org/schema/context
+</span></span></span><span class="line"><span class="cl"><span class="s">        https://www.springframework.org/schema/context/spring-context.xsd&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">     <span class="c">&lt;!--在IoC容器初始化时自动扫描四种组件类型注解并完成实例化
+</span></span></span><span class="line"><span class="cl"><span class="c">          @Repository
+</span></span></span><span class="line"><span class="cl"><span class="c">          @Service
+</span></span></span><span class="line"><span class="cl"><span class="c">          @Controller
+</span></span></span><span class="line"><span class="cl"><span class="c">          @Component
+</span></span></span><span class="line"><span class="cl"><span class="c">     --&gt;</span>
+</span></span><span class="line"><span class="cl">     <span class="nt">&lt;context:component-scan</span> <span class="na">base-package=</span><span class="s">&#34;com.imooc&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/beans&gt;</span>
+</span></span></code></pre></div><h3 id="自动装配注解">自动装配注解：<a hidden class="anchor" aria-hidden="true" href="#自动装配注解">#</a></h3>
 <h4 id="两类自动装配注解">两类自动装配注解：<a hidden class="anchor" aria-hidden="true" href="#两类自动装配注解">#</a></h4>
 <table>
 <thead>

@@ -11,7 +11,7 @@
 <meta name="author" content="Rex">
 <link rel="canonical" href="https://rex0520.github.io/posts/back/nosql/mongodb/" />
 <link crossorigin="anonymous" href="/assets/css/stylesheet.min.css" rel="preload stylesheet" as="style">
-<link rel="preload" href="http://cdn.rexweb.xyz/img/20210821105340.png" as="image">
+<link rel="preload" href="http://cdn.rexhub.xyz/img/20210821105340.png" as="image">
 <link rel="icon" href="https://rex0520.github.io/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="https://rex0520.github.io/favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="https://rex0520.github.io/favicon-32x32.png">
@@ -23,12 +23,12 @@
 <meta property="og:title" content="Mongodb学习" />
 <meta property="og:description" content="数据库学习记录" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://rex0520.github.io/posts/back/nosql/mongodb/" /><meta property="og:image" content="https://cdn.rexweb.xyz/img/20210820141535.jpg"/><meta property="article:section" content="posts" />
+<meta property="og:url" content="https://rex0520.github.io/posts/back/nosql/mongodb/" /><meta property="og:image" content="https://cdn.rexhub.xyz/img/20210820141535.jpg"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2021-07-09T00:00:00&#43;00:00" />
 <meta property="article:modified_time" content="2021-07-09T00:00:00&#43;00:00" /><meta property="og:site_name" content="RexHub" />
 
 <meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="https://cdn.rexweb.xyz/img/20210820141535.jpg"/>
+<meta name="twitter:image" content="https://cdn.rexhub.xyz/img/20210820141535.jpg"/>
 
 <meta name="twitter:title" content="Mongodb学习"/>
 <meta name="twitter:description" content="数据库学习记录"/>
@@ -44,7 +44,7 @@
       "position":  1 ,
       "name": "Posts",
       "item": "https://rex0520.github.io/posts/"
-    }, 
+    },
     {
       "@type": "ListItem",
       "position":  2 ,
@@ -142,7 +142,7 @@
     <nav class="nav">
         <div class="logo">
             <a href="https://rex0520.github.io/" accesskey="h" title="Home (Alt + H)">
-                <img src="http://cdn.rexweb.xyz/img/20210821105340.png" alt="logo" aria-label="logo"
+                <img src="http://cdn.rexhub.xyz/img/20210821105340.png" alt="logo" aria-label="logo"
                     height="35">Home</a>
             <span class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)">
@@ -217,7 +217,7 @@
         <div class="inner"><ul>
                 <li>
                     <a href="#mongodb" aria-label="MongoDB">MongoDB</a><ul>
-                        
+
                 <li>
                     <a href="#%e7%ae%80%e4%bb%8b" aria-label="简介：">简介：</a></li>
                 <li>
@@ -228,14 +228,14 @@
                     <a href="#%e6%8f%92%e5%85%a5%e6%96%87%e6%a1%a3" aria-label="插入文档">插入文档</a></li>
                 <li>
                     <a href="#%e6%9f%a5%e8%af%a2%e6%96%87%e6%a1%a3" aria-label="查询文档">查询文档</a><ul>
-                        
+
                 <li>
                     <a href="#%e6%9f%a5%e8%af%a2%e9%80%89%e6%8b%a9%e5%99%a8" aria-label="查询选择器">查询选择器</a></li>
                 <li>
                     <a href="#%e4%b8%80%e8%88%ac%e6%9f%a5%e8%af%a2" aria-label="一般查询">一般查询</a></li>
                 <li>
                     <a href="#%e6%9f%a5%e8%af%a2%e5%85%b6%e4%bb%96%e6%9d%a1%e4%bb%b6" aria-label="查询其他条件">查询其他条件</a><ul>
-                        
+
                 <li>
                     <a href="#%e6%98%a0%e5%b0%84" aria-label="映射">映射</a></li>
                 <li>
@@ -249,7 +249,7 @@
                 </li>
                 <li>
                     <a href="#%e8%81%9a%e5%90%88%e6%9f%a5%e8%af%a2" aria-label="聚合查询">聚合查询</a><ul>
-                        
+
                 <li>
                     <a href="#aggregate%e8%af%ad%e6%b3%95" aria-label="Aggregate语法">Aggregate语法</a></li>
                 <li>
@@ -274,7 +274,7 @@
                     <a href="#%e6%8e%92%e5%ba%8f%e5%92%8c%e6%8a%95%e5%bd%b1" aria-label="排序和投影">排序和投影</a></li>
                 <li>
                     <a href="#node%e6%95%b4%e5%90%88mongodb--mongoose" aria-label="node整合mongodb- Mongoose">node整合mongodb- Mongoose</a><ul>
-                        
+
                 <li>
                     <a href="#%e8%bf%9e%e6%8e%a5%e6%95%b0%e6%8d%ae%e5%ba%93" aria-label="连接数据库">连接数据库</a></li>
                 <li>
@@ -399,7 +399,7 @@
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="cm">/*
-</span><span class="cm">	向数据库插入文档		
+</span><span class="cm">	向数据库插入文档
 </span><span class="cm">	  db.&lt;collection&gt;.insert(
 </span><span class="cm">	  	&lt;document or array of documents&gt;，
 </span><span class="cm">	  	{
@@ -414,7 +414,7 @@
 </span><span class="cm">			-- 当我们向集合中插入文档时，如果没有给文档指定_id属性，则数据库会自动为文档添加_id，
 </span><span class="cm">					该属性用来作为文档的唯一标识
 </span><span class="cm">			-- _id可以自己指定，如果指定了数据库就不会再添加了，如果自己指定_id，也必须确保他的唯一性
-</span><span class="cm">			
+</span><span class="cm">
 </span><span class="cm">		db.collection.insertOne()
 </span><span class="cm">			-- 插入一个文档对象
 </span><span class="cm">		db.collection.insertMany()
@@ -932,8 +932,8 @@
 </span><span class="w">
 </span><span class="w"></span><span class="n">db</span><span class="p">.</span><span class="n">stus</span><span class="p">.</span><span class="n">find</span><span class="p">()</span><span class="w">
 </span><span class="w"></span><span class="o">//</span><span class="w"> </span><span class="err">替换</span><span class="w">
-</span><span class="w"></span><span class="n">db</span><span class="p">.</span><span class="n">stus</span><span class="p">.</span><span class="k">update</span><span class="p">(</span><span class="err">{</span><span class="n">name</span><span class="p">:</span><span class="s2">&#34;shasen&#34;</span><span class="err">}</span><span class="p">,</span><span class="w"> </span><span class="err">{</span><span class="n">age</span><span class="p">:</span><span class="w"> </span><span class="mi">28</span><span class="err">}</span><span class="p">)</span><span class="w"> 
-</span><span class="w"></span><span class="n">db</span><span class="p">.</span><span class="n">stus</span><span class="p">.</span><span class="k">update</span><span class="p">(</span><span class="err">{</span><span class="n">name</span><span class="p">:</span><span class="s2">&#34;shasen&#34;</span><span class="err">}</span><span class="p">,</span><span class="w"> </span><span class="err">{$</span><span class="k">set</span><span class="p">:</span><span class="w"> </span><span class="err">{</span><span class="n">age</span><span class="p">:</span><span class="w"> </span><span class="mi">28</span><span class="err">}}</span><span class="p">)</span><span class="w"> 
+</span><span class="w"></span><span class="n">db</span><span class="p">.</span><span class="n">stus</span><span class="p">.</span><span class="k">update</span><span class="p">(</span><span class="err">{</span><span class="n">name</span><span class="p">:</span><span class="s2">&#34;shasen&#34;</span><span class="err">}</span><span class="p">,</span><span class="w"> </span><span class="err">{</span><span class="n">age</span><span class="p">:</span><span class="w"> </span><span class="mi">28</span><span class="err">}</span><span class="p">)</span><span class="w">
+</span><span class="w"></span><span class="n">db</span><span class="p">.</span><span class="n">stus</span><span class="p">.</span><span class="k">update</span><span class="p">(</span><span class="err">{</span><span class="n">name</span><span class="p">:</span><span class="s2">&#34;shasen&#34;</span><span class="err">}</span><span class="p">,</span><span class="w"> </span><span class="err">{$</span><span class="k">set</span><span class="p">:</span><span class="w"> </span><span class="err">{</span><span class="n">age</span><span class="p">:</span><span class="w"> </span><span class="mi">28</span><span class="err">}}</span><span class="p">)</span><span class="w">
 </span><span class="w">
 </span><span class="w"></span><span class="n">db</span><span class="p">.</span><span class="n">stus</span><span class="p">.</span><span class="k">update</span><span class="p">(</span><span class="err">{</span><span class="n">_id</span><span class="p">:</span><span class="w"> </span><span class="n">ObjectId</span><span class="p">(</span><span class="s2">&#34;60da92e09e15000095005504&#34;</span><span class="p">)</span><span class="err">}</span><span class="p">,</span><span class="err">{$</span><span class="k">set</span><span class="p">:</span><span class="w"> </span><span class="err">{</span><span class="n">name</span><span class="p">:</span><span class="s2">&#34;shaheshang&#34;</span><span class="err">}}</span><span class="p">)</span><span class="w">
 </span><span class="w"></span><span class="n">db</span><span class="p">.</span><span class="n">stus</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="err">{</span><span class="n">_id</span><span class="p">:</span><span class="w"> </span><span class="n">ObjectId</span><span class="p">(</span><span class="s2">&#34;60da92e09e15000095005504&#34;</span><span class="p">)</span><span class="err">}</span><span class="p">)</span><span class="w">
@@ -1023,7 +1023,7 @@
 </span><span class="cm">	db.collection.remove()
 </span><span class="cm">		-- 删除符合条件的所有文档(默认情况下会删除多个)
 </span><span class="cm">				如果remove()第二个参数传递一个true，则只会删除一个
-</span><span class="cm">		-- 如果值传递一个空对象作为参数，则会删除结合中的所有文档		
+</span><span class="cm">		-- 如果值传递一个空对象作为参数，则会删除结合中的所有文档
 </span><span class="cm">	db.collection.deleteOne()
 </span><span class="cm">	db.collection.deleteMany()
 </span><span class="cm">		-- remove()可以根据条件来删除文档，传递的条件方式和find()一样
@@ -1315,7 +1315,7 @@
 </span><span class="c1"></span><span class="nx">db</span><span class="p">.</span><span class="nx">emp</span><span class="p">.</span><span class="nx">updateMany</span><span class="p">({</span><span class="nx">sal</span><span class="o">:</span> <span class="p">{</span><span class="nx">$lte</span><span class="o">:</span> <span class="mi">1000</span><span class="p">}},</span> <span class="p">{</span>
 			<span class="nx">$inc</span><span class="o">:</span> <span class="p">{</span>
 				<span class="nx">sal</span><span class="o">:</span> <span class="mi">400</span>
-			<span class="p">}</span> 
+			<span class="p">}</span>
 	<span class="p">}</span>
 <span class="p">)</span>
 <span class="nx">db</span><span class="p">.</span><span class="nx">emp</span><span class="p">.</span><span class="nx">find</span><span class="p">()</span>
@@ -1860,7 +1860,7 @@
 </span><span class="c1"></span><span class="kd">var</span> <span class="nx">StuModel</span> <span class="o">=</span> <span class="nx">mongoose</span><span class="p">.</span><span class="nx">model</span><span class="p">(</span><span class="s2">&#34;student&#34;</span><span class="p">,</span> <span class="nx">stuSchema</span><span class="p">)</span>
 
 <span class="c1">// 向数据库中插入一个文档
-</span><span class="c1">// StuModel.create(doc, function)); 
+</span><span class="c1">// StuModel.create(doc, function));
 </span><span class="c1"></span><span class="nx">StuModel</span><span class="p">.</span><span class="nx">create</span><span class="p">({</span>
   <span class="nx">name</span><span class="o">:</span> <span class="s2">&#34;白骨精&#34;</span><span class="p">,</span>
   <span class="nx">age</span><span class="o">:</span> <span class="mi">18</span><span class="p">,</span>
@@ -2102,7 +2102,7 @@
 </span><span class="cm">  Model.updateOne(conditions, doc, [options], [callback])
 </span><span class="cm">  Model.replaceOne(conditions, doc, [options], [callback])
 </span><span class="cm">    - 用来修改一个或多个文档
-</span><span class="cm">    - 参数： 
+</span><span class="cm">    - 参数：
 </span><span class="cm">      conditions 查询条件
 </span><span class="cm">      doc 修改后的对象
 </span><span class="cm">      options 配置参数
@@ -2323,7 +2323,7 @@
 </span><span class="cm">        - 转换为一个JSON字符串
 </span><span class="cm">      toObject()
 </span><span class="cm">        - 将Document转换成普通的JSON对象
-</span><span class="cm">      
+</span><span class="cm">
 </span><span class="cm">    */</span>
     <span class="c1">// console.log(doc.get(&#34;age&#34;));
 </span><span class="c1"></span>    <span class="c1">// console.log(doc.age);
@@ -2518,12 +2518,12 @@
         if (container.classList.contains("highlight")) {
             container.appendChild(copybutton);
         } else if (container.parentNode.firstChild == container) {
-            
+
         } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
-            
+
             codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
         } else {
-            
+
             codeblock.parentNode.appendChild(copybutton);
         }
     });

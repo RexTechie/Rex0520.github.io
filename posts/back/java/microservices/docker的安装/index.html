@@ -11,7 +11,7 @@
 <meta name="author" content="Rex">
 <link rel="canonical" href="https://rex0520.github.io/posts/back/java/microservices/docker%E7%9A%84%E5%AE%89%E8%A3%85/" />
 <link crossorigin="anonymous" href="/assets/css/stylesheet.min.css" rel="preload stylesheet" as="style">
-<link rel="preload" href="http://cdn.rexweb.xyz/img/20210821105340.png" as="image">
+<link rel="preload" href="http://cdn.rexhub.xyz/img/20210821105340.png" as="image">
 <script defer crossorigin="anonymous" src="/assets/js/highlight.min.js" onload="hljs.initHighlightingOnLoad();"></script>
 <link rel="icon" href="https://rex0520.github.io/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="https://rex0520.github.io/favicon-16x16.png">
@@ -20,7 +20,7 @@
 <link rel="mask-icon" href="https://rex0520.github.io/%3Clink%20/%20abs%20url%3E">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<meta name="generator" content="Hugo 0.87.0" />
+<meta name="generator" content="Hugo 0.100.2" />
 <noscript>
     <style>
         #theme-toggle,
@@ -60,12 +60,12 @@
 </noscript><meta property="og:title" content="Docker的安装" />
 <meta property="og:description" content="Docker的安装" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://rex0520.github.io/posts/back/java/microservices/docker%E7%9A%84%E5%AE%89%E8%A3%85/" /><meta property="og:image" content="https://cdn.rexweb.xyz/img/20210820141535.jpg"/><meta property="article:section" content="posts" />
+<meta property="og:url" content="https://rex0520.github.io/posts/back/java/microservices/docker%E7%9A%84%E5%AE%89%E8%A3%85/" /><meta property="og:image" content="https://cdn.rexhub.xyz/img/20210820141535.jpg"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2021-06-11T00:00:00&#43;00:00" />
 <meta property="article:modified_time" content="2021-06-11T00:00:00&#43;00:00" /><meta property="og:site_name" content="RexHub" />
 
 <meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="https://cdn.rexweb.xyz/img/20210820141535.jpg"/>
+<meta name="twitter:image" content="https://cdn.rexhub.xyz/img/20210820141535.jpg"/>
 
 <meta name="twitter:title" content="Docker的安装"/>
 <meta name="twitter:description" content="Docker的安装"/>
@@ -101,7 +101,7 @@
   "keywords": [
     "微服务"
   ],
-  "articleBody": "Docker的安装 在Cent OS安装docker  先有一个Cent OS 7.6系统   这个很重要，不同版本按照的时候是不一样的。查看CentOS版本 cat /etc/redhat-release\n 用root账户登录进去 配置国内yum源   wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo yum clean all yum makecache\n 卸载旧版本   较旧的Docker版本称为docker或docker-engine。如果已安装这些程序，请卸载它们以及相关的依赖项。 如果yum报告未安装这些软件包，也没问题。\n docker-client \\ docker-client-latest \\ docker-common \\ docker-latest \\ docker-latest-logrotate \\ docker-logrotate \\ docker-engine 更新yum   yum check-update yum update\n 安装所需的软件包  yum install -y yum-utils \\ device-mapper-persistent-data \\ lvm2 使用以下命令来设置稳定的存储库。   sudo yum-config-manager –add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo\n 查看docker版本   yum list docker-ce –showduplicates | sort -r\n 安装指定的版本   yum install docker-ce-18.09.0 docker-ce-cli-18.09.0 containerd.io\n Docker 是服务器—-客户端架构。命令行运行docker命令的时候，需要本机有 Docker 服务。用下面的命令启动   systemctl start docker\n 安装完成后，运行下面的命令，验证是否安装成功。   docker version 或者 docker info\n ",
+  "articleBody": "Docker的安装 在Cent OS安装docker 先有一个Cent OS 7.6系统 这个很重要，不同版本按照的时候是不一样的。查看CentOS版本 cat /etc/redhat-release\n用root账户登录进去 配置国内yum源 wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo yum clean all yum makecache\n卸载旧版本 较旧的Docker版本称为docker或docker-engine。如果已安装这些程序，请卸载它们以及相关的依赖项。 如果yum报告未安装这些软件包，也没问题。\ndocker-client \\ docker-client-latest \\ docker-common \\ docker-latest \\ docker-latest-logrotate \\ docker-logrotate \\ docker-engine 更新yum yum check-update yum update\n安装所需的软件包 yum install -y yum-utils \\ device-mapper-persistent-data \\ lvm2 使用以下命令来设置稳定的存储库。 sudo yum-config-manager –add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo\n查看docker版本 yum list docker-ce –showduplicates | sort -r\n安装指定的版本 yum install docker-ce-18.09.0 docker-ce-cli-18.09.0 containerd.io\nDocker 是服务器—-客户端架构。命令行运行docker命令的时候，需要本机有 Docker 服务。用下面的命令启动 systemctl start docker\n安装完成后，运行下面的命令，验证是否安装成功。 docker version 或者 docker info\n",
   "wordCount" : "82",
   "inLanguage": "en",
   "datePublished": "2021-06-11T00:00:00Z",
@@ -142,7 +142,7 @@
     <nav class="nav">
         <div class="logo">
             <a href="https://rex0520.github.io/" accesskey="h" title="Home (Alt + H)">
-                <img src="http://cdn.rexweb.xyz/img/20210821105340.png" alt="logo" aria-label="logo"
+                <img src="http://cdn.rexhub.xyz/img/20210821105340.png" alt="logo" aria-label="logo"
                     height="35">Home</a>
             <span class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)">
@@ -253,14 +253,14 @@ yum makecache</p>
 <p>较旧的Docker版本称为docker或docker-engine。如果已安装这些程序，请卸载它们以及相关的依赖项。
 如果yum报告未安装这些软件包，也没问题。</p>
 </blockquote>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">                docker-client \
-                docker-client-latest \
-                docker-common \
-                docker-latest \
-                docker-latest-logrotate \
-                docker-logrotate \
-                docker-engine
-</code></pre></div><ol start="5">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">                docker-client \
+</span></span><span class="line"><span class="cl">                docker-client-latest \
+</span></span><span class="line"><span class="cl">                docker-common \
+</span></span><span class="line"><span class="cl">                docker-latest \
+</span></span><span class="line"><span class="cl">                docker-latest-logrotate \
+</span></span><span class="line"><span class="cl">                docker-logrotate \
+</span></span><span class="line"><span class="cl">                docker-engine
+</span></span></code></pre></div><ol start="5">
 <li>更新yum</li>
 </ol>
 <blockquote>
@@ -270,10 +270,10 @@ yum update</p>
 <ol start="6">
 <li>安装所需的软件包</li>
 </ol>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">yum install -y yum-utils \
-device-mapper-persistent-data \
-lvm2
-</code></pre></div><ol start="7">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">yum install -y yum-utils \
+</span></span><span class="line"><span class="cl">device-mapper-persistent-data \
+</span></span><span class="line"><span class="cl">lvm2
+</span></span></code></pre></div><ol start="7">
 <li>使用以下命令来设置稳定的存储库。</li>
 </ol>
 <blockquote>

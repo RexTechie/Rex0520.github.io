@@ -11,7 +11,7 @@
 <meta name="author" content="Rex">
 <link rel="canonical" href="https://rex0520.github.io/categories/%E5%89%8D%E7%AB%AF/" />
 <link crossorigin="anonymous" href="/assets/css/stylesheet.min.css" rel="preload stylesheet" as="style">
-<link rel="preload" href="http://cdn.rexweb.xyz/img/20210821105340.png" as="image">
+<link rel="preload" href="http://cdn.rexhub.xyz/img/20210821105340.png" as="image">
 <link rel="icon" href="https://rex0520.github.io/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="https://rex0520.github.io/favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="https://rex0520.github.io/favicon-32x32.png">
@@ -19,7 +19,7 @@
 <link rel="mask-icon" href="https://rex0520.github.io/%3Clink%20/%20abs%20url%3E">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<meta name="generator" content="Hugo 0.87.0" />
+<meta name="generator" content="Hugo 0.100.2" />
 <link rel="alternate" type="application/rss+xml" href="https://rex0520.github.io/categories/%E5%89%8D%E7%AB%AF/index.xml">
 <noscript>
     <style>
@@ -60,10 +60,10 @@
 </noscript><meta property="og:title" content="前端" />
 <meta property="og:description" content="Rex的个人博客" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://rex0520.github.io/categories/%E5%89%8D%E7%AB%AF/" /><meta property="og:image" content="https://cdn.rexweb.xyz/img/20210820141535.jpg"/><meta property="og:site_name" content="RexHub" />
+<meta property="og:url" content="https://rex0520.github.io/categories/%E5%89%8D%E7%AB%AF/" /><meta property="og:image" content="https://cdn.rexhub.xyz/img/20210820141535.jpg"/><meta property="og:site_name" content="RexHub" />
 
 <meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="https://cdn.rexweb.xyz/img/20210820141535.jpg"/>
+<meta name="twitter:image" content="https://cdn.rexhub.xyz/img/20210820141535.jpg"/>
 
 <meta name="twitter:title" content="前端"/>
 <meta name="twitter:description" content="Rex的个人博客"/>
@@ -86,7 +86,7 @@
     <nav class="nav">
         <div class="logo">
             <a href="https://rex0520.github.io/" accesskey="h" title="Home (Alt + H)">
-                <img src="http://cdn.rexweb.xyz/img/20210821105340.png" alt="logo" aria-label="logo"
+                <img src="http://cdn.rexhub.xyz/img/20210821105340.png" alt="logo" aria-label="logo"
                     height="35">Home</a>
             <span class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)">
@@ -150,20 +150,28 @@
     </h2>
   </header>
   <section class="entry-content">
-    <p>Vue进阶 Vue路由 1.初始路由 **路由**：表示一种对应关系，某些事物的一一对应的关系 **后端路由**：后端路由是由服务器端进行实现，并完成资源的分发（url与资源/数据的对应关系） **前端路由**：前端路由是依靠hash值（锚点链接）的变化进行实现页面内容的切换（锚点与组件之间的关系）  2.vue-router   vue-router工作原理
-  它是一个Vue.js官方提供的路由管理器，是一个功能更加强大的前端路由器，可以实现前端界面内容切换
-  SPA：Single Page Application，单页面应用，整个网站只有一个页面
-  SPA推荐使用vue-router，实现界面内容的切换
-  vue-router提供两种模式
-  hash模式：hash又叫锚点：比如#/login，根据hash改变，来实现界面切换
-  history模式：history模式不会出现#号比较美观，利用history.pushState()来完成URL的跳转而且无须重写加载页面
-  示例代码
-const router = new VueRouter({ mode: &#39;history&#39;, router: [...] })   vue-router默认为hash模式，需要通过mode来改变模式
-        vue-router基本使用
-  引入vue-router.js
-  定义路由链接和路由视图
+    <p>Vue进阶 Vue路由 1.初始路由 **路由**：表示一种对应关系，某些事物的一一对应的关系 **后端路由**：后端路由是由服务器端进行实现，并完成资源的分发（url与资源/数据的对应关系） **前端路由**：前端路由是依靠hash值（锚点链接）的变化进行实现页面内容的切换（锚点与组件之间的关系） 2.vue-router vue-router工作原理
+它是一个Vue.js官方提供的路由管理器，是一个功能更加强大的前端路由器，可以实现前端界面内容切换
+SPA：Single Page Application，单页面应用，整个网站只有一个页面
+SPA推荐使用vue-router，实现界面内容的切换
+vue-router提供两种模式
+hash模式：hash又叫锚点：比如#/login，根据hash改变，来实现界面切换
+history模式：history模式不会出现#号比较美观，利用history.pushState()来完成URL的跳转而且无须重写加载页面
+示例代码
+const router = new VueRouter({ mode: &#39;history&#39;, router: [...] }) vue-router默认为hash模式，需要通过mode来改变模式
+vue-router基本使用
+引入vue-router.js
+定义路由链接和路由视图
 代码示例：
-&lt;div id=&#34;app&#34;&gt; &lt;router-link to=&#34;/login&#34; tag=&#34;span&#34;&gt;前往登录&lt;/router-link&gt; &lt;router-view&gt;&lt;/router-view&gt; &lt;/div&gt; router-link是路由链接，to代表链接地址，tag代表渲染的标签...</p>
+&lt;div id=&#34;app&#34;&gt; &lt;router-link to=&#34;/login&#34; tag=&#34;span&#34;&gt;前往登录&lt;/router-link&gt; &lt;router-view&gt;&lt;/router-view&gt; &lt;/div&gt; router-link是路由链接，to代表链接地址，tag代表渲染的标签
+router-view是路由视图，用于显示路由链接对应的组件
+定义路由匹配规则
+代码示例
+var login = { template: &#34;&lt;h1&gt;登录组件&lt;/h1&gt;&#34; } const router = new VueRouter({ routes: [ { path: &#39;/login&#39;, component: login } ] }); 在实例化VueRouter的时候传入routes
+通过routes定义路由匹配规则，可以定义多个
+匹配规则是一个对象，key是路由链接path，value是组件component
+注册路由
+代码示例...</p>
   </section>
   <footer class="entry-footer">2021-03-25&nbsp;·&nbsp;5 min&nbsp;·&nbsp;Rex</footer>
   <a class="entry-link" aria-label="post link to Vue进阶" href="https://rex0520.github.io/posts/front/vue/vue%E8%BF%9B%E9%98%B6/"></a>
@@ -175,15 +183,18 @@ const router = new VueRouter({ mode: &#39;history&#39;, router: [...] })   vue-r
     </h2>
   </header>
   <section class="entry-content">
-    <p>Vue动画 Vue过渡和动画 1. 过渡和动画基础   什么是过渡和动画
-  过渡：从一个状态向另一个状态变化的过程
-  动画：与过渡非常类似，只不过动画控制的过程更加细腻，更加精准
-  过渡语法：
+    <p>Vue动画 Vue过渡和动画 1. 过渡和动画基础 什么是过渡和动画
+过渡：从一个状态向另一个状态变化的过程
+动画：与过渡非常类似，只不过动画控制的过程更加细腻，更加精准
+过渡语法：
 &lt;transition name=&#34;fade&#34;&gt; &lt;!-- 需要添加过渡的div标签--&gt; &lt;div&gt;&lt;/div&gt; &lt;/transition&gt; name指定的是过渡所需要的样式名的前提
-    transition组件
-  Vue给transition标签，提供了六个过度类
-   过渡类型 说明     v-enter 进入过渡的开始状态，作用于开始的一帧   v-enter-active 进入过渡生效时的状态，作用于整个过程   v-enter-to 进入过渡的结束状态，作用于结束的一帧   v-leave 离开过渡的开始状态，作用于开始的一帧   v-leave-active 离开过渡生效时的状态，作用于整个过程   v-leave-to 离开过渡的结束状态，作用于结束的一帧      过渡类分析图
-  代码示例：...</p>
+transition组件
+Vue给transition标签，提供了六个过度类
+过渡类型 说明 v-enter 进入过渡的开始状态，作用于开始的一帧 v-enter-active 进入过渡生效时的状态，作用于整个过程 v-enter-to 进入过渡的结束状态，作用于结束的一帧 v-leave 离开过渡的开始状态，作用于开始的一帧 v-leave-active 离开过渡生效时的状态，作用于整个过程 v-leave-to 离开过渡的结束状态，作用于结束的一帧 过渡类分析图
+代码示例：
+html：
+&lt;div id=&#34;app&#34;&gt; &lt;button @click=&#34;toggle&#34;&gt;调整box的宽度&lt;/button&gt; &lt;transition name=&#34;box&#34;&gt; &lt;div v-if=&#34;show&#34; class=&#34;chart&#34;&gt;&lt;/div&gt; &lt;/transition&gt; &lt;/div&gt; css：
+/* 图形的初始状态 */ .chart { width: 200px; height: 50px; background-color: orange; } .box-enter-active, .box-leave-active { transition: width 3s; } .box-enter, .box-leave-to { width: 0px; } ....</p>
   </section>
   <footer class="entry-footer">2021-03-15&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Rex</footer>
   <a class="entry-link" aria-label="post link to Vue动画" href="https://rex0520.github.io/posts/front/vue/vue%E5%8A%A8%E7%94%BB/"></a>
@@ -195,20 +206,20 @@ const router = new VueRouter({ mode: &#39;history&#39;, router: [...] })   vue-r
     </h2>
   </header>
   <section class="entry-content">
-    <p>Vue基础 初始Vue 前端技术的发展   HTML：用于编写网页的结构
-  CSS：用于美化网页
-  JS：用于处理页面的交互效果
-  JQuery：JS的升级版，代码简洁，更高效的开发项目
-  Vue：采用虚拟DOM技术，代码更加简洁
+    <p>Vue基础 初始Vue 前端技术的发展 HTML：用于编写网页的结构
+CSS：用于美化网页
+JS：用于处理页面的交互效果
+JQuery：JS的升级版，代码简洁，更高效的开发项目
+Vue：采用虚拟DOM技术，代码更加简洁
 虚拟DOM技术
- 和真实DOM结构类似的JS对象 可以提高浏览器的渲染速度    什么是Vue   一条基于构建用户界面的渐进式框架
- 渐进式理解：Vue提供的一系列技术，可以渐渐的，一步一步的使用这个框架 框架理解：解决一类问题的解决方案，理解为工具    Vue的数据绑定基于MVVM设计思想
+和真实DOM结构类似的JS对象 可以提高浏览器的渲染速度 什么是Vue 一条基于构建用户界面的渐进式框架
+渐进式理解：Vue提供的一系列技术，可以渐渐的，一步一步的使用这个框架 框架理解：解决一类问题的解决方案，理解为工具 Vue的数据绑定基于MVVM设计思想
 MVVM：Model，View，ViewModel
 可以将模型数据与视图连接起来
- 模型数据变化会影响视图 视图数据变化会影响模型    Vue的优势  轻量级：Vue简单、直接，所以Vue使用起来更加友好 数据绑定：数据驱动视图，视图也可以驱动数据 指令：指令绑定在元素上时，指令会给绑定的元素添加一些特殊的行为 插件：插件用于对Vue框架功能进行扩展  Vue、Angular和React的区别：  Angular相对Vue学习成本高，更复杂，性能稍差 React采用了特殊的JSX语法，Vue中推崇编写以*.vue后缀命名的文件格式  Vue开发基础上 1.Vue实例   说明
-  Vue实例：通过new关键字实例化Vue({})构造函数
-  实例化Vue时的参数内的属性，我们称之为选项：
-       选项 说明     data Vue实例数据对象   methods 定义Vue实例中的方法   component 定义子组件   computed 计算属性   filters 过滤器   el 唯一根元素   watch 监听数据变化    el唯一根标签：在创建Vue实例时，el表示唯一根标签，通过指定class或id选择器可用来将页面结构与Vue实例对象vm进行绑定。  el：element，元素 el选项表示：当前Vue实例绑定的页面怨怒是 绑定的这个元素，作为Vue实例在界面上的元素 el选项的值：“id或类选择器” 注意：Vue的数据只能在el绑定的元素内部使用   data初始数据：Vue实例的数据对象为data，Vue会将data的属性转换为getter、setter，从而让data的属性能够响应数据变化。  data：数据 data选项表示：当前Vue实例可以使用的数据 data选项的值：对象，对象中可以定义多个数据 js中获取data数据：vm....</p>
+模型数据变化会影响视图 视图数据变化会影响模型 Vue的优势 轻量级：Vue简单、直接，所以Vue使用起来更加友好 数据绑定：数据驱动视图，视图也可以驱动数据 指令：指令绑定在元素上时，指令会给绑定的元素添加一些特殊的行为 插件：插件用于对Vue框架功能进行扩展 Vue、Angular和React的区别： Angular相对Vue学习成本高，更复杂，性能稍差 React采用了特殊的JSX语法，Vue中推崇编写以*.vue后缀命名的文件格式 Vue开发基础上 1.Vue实例 说明
+Vue实例：通过new关键字实例化Vue({})构造函数
+实例化Vue时的参数内的属性，我们称之为选项：
+选项 说明 data Vue实例数据对象 methods 定义Vue实例中的方法 component 定义子组件 computed 计算属性 filters 过滤器 el 唯一根元素 watch 监听数据变化 el唯一根标签：在创建Vue实例时，el表示唯一根标签，通过指定class或id选择器可用来将页面结构与Vue实例对象vm进行绑定。 el：element，元素 el选项表示：当前Vue实例绑定的页面怨怒是 绑定的这个元素，作为Vue实例在界面上的元素 el选项的值：“id或类选择器” 注意：Vue的数据只能在el绑定的元素内部使用 data初始数据：Vue实例的数据对象为data，Vue会将data的属性转换为getter、setter，从而让data的属性能够响应数据变化。 data：数据 data选项表示：当前Vue实例可以使用的数据 data选项的值：对象，对象中可以定义多个数据 js中获取data数据：vm.$data.name、vm.name methods定义方法： method：方法，为啥加s，因为可以有多个方法 methods选项表示：当前Vue实例可以用到的方法 methods选项的值：对象，对象中定义方法 computed计算属性：计算属性结果会被缓存起来，当依赖的响应式属性发生变化时，才会重新计算，返回最终结果。 computed：计算 computed选项表示：当前Vue实例可以用到的计算属性 computed选项的值：对象，对象中定义方法 应用场景：当有些数据需要随着其他数据变动而变动时，就需要使用computed计算数学；一般处理计算逻辑 注意：计算属性，定义时是一个方法，但是当属性使用（所以才叫计算属性）；计算属性需要将结果放回；计算属性具有缓存，这就意味着只要计算属性的依赖没有进行相应的数据更新，那么computed会直接从缓存中获取值，多次访问都会返回之前的计算结果 watch状态监听：用来检测Vue实例中的数据变动 watch：观察、检测 watch选项表示：检测data选项中的数据变化 watch选项的值：对象，对象中定义方法 应用场景：要在数据变化同时进行异步操作或者是比较大的开销时使用 注意：watch是检测data的数据变化，watch的方法必须与data的属性名一致 filter过滤器：对数据进行格式化，比如字符串字母变大写，日期格式化等。 filter：过滤器 filters选项表示：对data选项中的数据进行格式化 filters选项的值：对象，对象中定义方法 应用场景：对数据格式化（字符串中首字母大写，字符串大小写转换、日期格式化） 注意：过滤器函数，必须定义一个参数，此参数就是使用过滤器的数据，将格式化的结果返回 使用过滤器：插值表达式使用：{{data属性名 | 过滤器名称}}或属性绑定使用 v-bind=&#34;{{data属性名 | 过滤器名称}}&#34; 2....</p>
   </section>
   <footer class="entry-footer">2021-03-10&nbsp;·&nbsp;4 min&nbsp;·&nbsp;Rex</footer>
   <a class="entry-link" aria-label="post link to Vue基础" href="https://rex0520.github.io/posts/front/vue/vue%E5%9F%BA%E7%A1%80/"></a>

@@ -11,7 +11,7 @@
 <meta name="author" content="Rex">
 <link rel="canonical" href="https://rex0520.github.io/posts/back/java/lambda/" />
 <link crossorigin="anonymous" href="/assets/css/stylesheet.min.css" rel="preload stylesheet" as="style">
-<link rel="preload" href="http://cdn.rexweb.xyz/img/20210821105340.png" as="image">
+<link rel="preload" href="http://cdn.rexhub.xyz/img/20210821105340.png" as="image">
 <script defer crossorigin="anonymous" src="/assets/js/highlight.min.js" onload="hljs.initHighlightingOnLoad();"></script>
 <link rel="icon" href="https://rex0520.github.io/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="https://rex0520.github.io/favicon-16x16.png">
@@ -20,7 +20,7 @@
 <link rel="mask-icon" href="https://rex0520.github.io/%3Clink%20/%20abs%20url%3E">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<meta name="generator" content="Hugo 0.87.0" />
+<meta name="generator" content="Hugo 0.100.2" />
 <noscript>
     <style>
         #theme-toggle,
@@ -60,12 +60,12 @@
 </noscript><meta property="og:title" content="Lambda(java)" />
 <meta property="og:description" content="Lambda(java)" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://rex0520.github.io/posts/back/java/lambda/" /><meta property="og:image" content="https://cdn.rexweb.xyz/img/20210820141535.jpg"/><meta property="article:section" content="posts" />
+<meta property="og:url" content="https://rex0520.github.io/posts/back/java/lambda/" /><meta property="og:image" content="https://cdn.rexhub.xyz/img/20210820141535.jpg"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2021-03-09T00:00:00&#43;00:00" />
 <meta property="article:modified_time" content="2021-03-09T00:00:00&#43;00:00" /><meta property="og:site_name" content="RexHub" />
 
 <meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="https://cdn.rexweb.xyz/img/20210820141535.jpg"/>
+<meta name="twitter:image" content="https://cdn.rexhub.xyz/img/20210820141535.jpg"/>
 
 <meta name="twitter:title" content="Lambda(java)"/>
 <meta name="twitter:description" content="Lambda(java)"/>
@@ -101,7 +101,7 @@
   "keywords": [
     "Lambda"
   ],
-  "articleBody": "Lambda表达式 什么是Lambda表达式  JDK8开始支持Lambda表达式，用来让程序编写更优雅 利用Lambda可以更简洁的实现匿名内部类与函数声明与调用 基于Lambda提供stream流式处理极大简化对集合的操作  Lambda表达式语法格式： 说明： 代码示例：  MathOperation.java\npackage com.imooc.lambda; /** * 四则运算接口 * @author CubeMonkey * @create 2020-10-23 17:39 */ @FunctionalInterface //通知编译器这是函数式接口，进行抽象方法检查 public interface MathOperation { public Float operate(Integer a, Integer b); } LambdaSample.java\npackage com.imooc.lambda; /** * @author CubeMonkey * @create 2020-10-23 17:42 */ public class LambdaSample { public static void main(String[] args) { //1.标准的使用方式  //约束条件：Lambda表达式只能实现有且只有一个抽象方法的接口，Java称为\"函数式接口\"  MathOperation addition = (Integer a, Integer b)-{ System.out.println(\"加法运算\"); return a+b+0f; }; System.out.println(addition.operate(5, 3)); //2.Lambda允许忽略参数类型  MathOperation substraction = (a, b)-{ return a - b + 0f; }; System.out.println(substraction.operate(5, 3)); //3.单行实现代码可以省略大括号和return  MathOperation multiplication = (a, b) - a*b+0f; System.out.println(multiplication.operate(5, 3)); //test  MathOperation division = (a, b) -{ System.out.println(\"除法运算\"); return a * 1.0f / b; }; System.out.println(division.operate(5, 3)); } }  函数式编程 什么是函数式编程  函数式编程是基于函数式接口并使用lambda表达的编程方式 函数式编程理念是将代码作为可重用数据带入到程序中 函数式编程强调“你想做什么”，而不是“你想怎么做”  什么是函数式接口  函数式接口是有且只有一个抽象方法的接口 Java中拥有大量函数式接口，如java.lang.Runnable JDK8后提供了一系列新的函数式接口，位于java.util.function  JDK8常用函数式接口    接口 用途     Consumer 对应一个输入参数无输出的功能代码   Function 对应一个输入参数且需要返回数据的功能代码   Predicate 用于条件判断，固定返回布尔值    一、函数式接口Predicate 说明：  Predicate是新增的函数式接口，位于java.util.function Predicate用于测试传入的数据是否满足判断要求 Predicate接口需要实现test()方法进行逻辑判断  代码示例： package com.imooc.lambda; import java.util.Arrays; import java.util.List; import java.util.function.Predicate; /** * 理解函数式编程 * Predicate函数式接口的使用方法 * @author CubeMonkey * @create 2020-10-23 18:20 */ public class PredicateSample { public static void main(String[] args) { PredicateInteger predicate = n-n4; boolean result = predicate.test(10); System.out.println(result); ListInteger list = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10); /*for (Integer num:list){ if (num % 2 == 1){ System.out.println(num); } }*/ filter(list, n - n % 2 == 1);//取所有奇数  filter(list, n - n % 2 == 0);//取所有偶数  filter(list, n - n  5 \u0026\u0026 n % 2 == 0);//取所有大于5的偶数  } public static void filter(ListInteger list, PredicateInteger predicate){ for (Integer num:list){ if (predicate.test(num)){ System.out.print(num+\" \"); } } System.out.println(); } } 二、函数式接口Consumer 代码示例： package com.imooc.lambda; import java.util.function.Consumer; /** * Consumer接口的使用 * @author CubeMonkey * @create 2020-10-23 18:57 */ public class ConsumerSample { public static void main(String[] args) { output(s-System.out.println(\"向控制台打印：\" + s)); output(s-{ System.out.println(\"向xxx网站发送数据包：\"+s); }); } public static void output(ConsumerString consumer){ String text = \"天将降大任于斯人也，必先苦其心志，劳其筋骨，饿其体肤，空乏其身，行拂乱其所为。\"; consumer.accept(text); } } 三、函数式接口Function 代码示例： package com.imooc.lambda; import java.util.Random; import java.util.function.Function; /** * 利用Function函数式接口生成定长随机字符串 * @author CubeMonkey * @create 2020-10-23 19:07 */ public class FunctionSample { public static void main(String[] args) { FunctionInteger, String randomStringFunction = l - { String chars = \"abcdefhigklmnopqrstuvwxyz0123456789\"; StringBuffer stringBuffer = new StringBuffer(); Random random = new Random(); for (int i = 0; i  l; i++) { int position = random.nextInt(chars.length()); stringBuffer.append(chars.charAt(position)); } return stringBuffer.toString(); }; System.out.println(randomStringFunction.apply(32)); } } 面向函数式编程与面向对象编程比较     面向对象编程 函数式编程     设计思路 面向对象 面向过程   开发侧重 侧重过程，重分析，重设计 侧重结果，快速实现   可读性 结构复杂，相对较差 更适合人眼阅读，可读性更好   代码量 多 少   并发问题 设计不当，会出现线程安全问题 不会出现线程安全问题   健壮性 好 差   使用场景 中大型项目，多人协作工程 小型应用，要求快速实现    Stream流式处理 什么是Stream流式处理  Stream流式处理是建立在Lambda基础上的多数据处理技术 Stream对集合数据处理进行高度抽象，极大简化代码量 Stream可对集合进行迭代，去重，筛选，排序，聚合等一系列处理  Stream常用方法    接口 用途     forEach 循环遍历   map map方法用于映射每个元素对应的结果   filter filter方法用于通过设置的条件过滤出元素   limit limit方法用于获取指定数量的流   sorted sorted方法用于对流进行排序   Collectors Collectors类实现将流转换成集合和聚合元素    Stream流的五种创建方式 package com.imooc.stream; import org.junit.Test; import java.util.ArrayList; import java.util.List; import java.util.Random; import java.util.stream.IntStream; import java.util.stream.Stream; /** * Stream流对象的五种创建方式 * @author CubeMonkey * @create 2020-10-23 19:50 */ public class StreamGenerator { //基于数组进行创建  @Test public void generator1(){ String[] arr = {\"Lily\", \"Andy\", \"Jackson\", \"Smith\"}; StreamString stream = Stream.of(arr); stream.forEach(s- System.out.println(s)); } //2.基于集合进行创建  @Test public void generator2(){ ListString list = new ArrayList(); list.add(\"Lily\"); list.add(\"Andy\"); list.add(\"Jackson\"); list.add(\"Smith\"); StreamString stream = list.stream(); stream.forEach(s- System.out.println(s)); } //3.利用generate方法创建无限长度流  @Test public void generator3(){ StreamInteger stream = Stream.generate(() - new Random().nextInt(100000)); stream.limit(10).forEach(i- System.out.println(i)); } //4.基于迭代器创建流  @Test public void generator4(){ StreamInteger stream = Stream.iterate(1, n - n + 1); stream.limit(100).forEach(i- System.out.println(i)); } //5.基于字符序列创建流  @Test public void generator5(){ String str = \"abcdefg我的\"; IntStream stream = str.chars(); stream.forEach(c- System.out.println(c)); } } Stream常用方法代码示例 package com.imooc.stream; import org.junit.Test; import java.util.Arrays; import java.util.List; import java.util.Set; import java.util.stream.Collectors; import java.util.stream.Stream; /** * @author CubeMonkey * @create 2020-10-23 20:29 */ public class StreamMethod { //提取集合中所有偶数并求和  @Test public void case1(){ ListString list = Arrays.asList(\"1\", \"2\", \"3\", \"4\", \"5\", \"6\"); int sum = list.stream()//获取stream对象  .mapToInt(s - Integer.parseInt(s)) //mapToInt将流中每一个数据转为整数  .filter(num - num % 2 == 0)//filter对流数据进行过滤  .sum();//求和  System.out.println(sum); } //所有名字首字母大写  @Test public void case2(){ ListString list = Arrays.asList(\"lily\", \"smith\", \"jackson\"); StreamString stream = list.stream(); //按规则对每一个流进行转化  ListString collect = stream.map(s - s.substring(0, 1).toUpperCase() + s.substring(1)) //collect对流数据进行收集，生成新的List/Set  .collect(Collectors.toList()); for (String s : collect) { System.out.println(s); } } //将所有奇数从大到小进行排序，且不许出现重复  @Test public void case3(){ ListInteger list = Arrays.asList(1, 60, 38, 21, 51, 60, 51, 73); ListInteger newList = list.stream().filter(num - num % 2 == 1) .distinct() .sorted((a, b) - b - a) .collect(Collectors.toList()); System.out.println(newList); } } ",
+  "articleBody": "Lambda表达式 什么是Lambda表达式 JDK8开始支持Lambda表达式，用来让程序编写更优雅 利用Lambda可以更简洁的实现匿名内部类与函数声明与调用 基于Lambda提供stream流式处理极大简化对集合的操作 Lambda表达式语法格式： 说明： 代码示例： MathOperation.java\npackage com.imooc.lambda; /** * 四则运算接口 * @author CubeMonkey * @create 2020-10-23 17:39 */ @FunctionalInterface //通知编译器这是函数式接口，进行抽象方法检查 public interface MathOperation { public Float operate(Integer a, Integer b); } LambdaSample.java\npackage com.imooc.lambda; /** * @author CubeMonkey * @create 2020-10-23 17:42 */ public class LambdaSample { public static void main(String[] args) { //1.标准的使用方式 //约束条件：Lambda表达式只能实现有且只有一个抽象方法的接口，Java称为\"函数式接口\" MathOperation addition = (Integer a, Integer b)-\u003e{ System.out.println(\"加法运算\"); return a+b+0f; }; System.out.println(addition.operate(5, 3)); //2.Lambda允许忽略参数类型 MathOperation substraction = (a, b)-\u003e{ return a - b + 0f; }; System.out.println(substraction.operate(5, 3)); //3.单行实现代码可以省略大括号和return MathOperation multiplication = (a, b) -\u003e a*b+0f; System.out.println(multiplication.operate(5, 3)); //test MathOperation division = (a, b) -\u003e{ System.out.println(\"除法运算\"); return a * 1.0f / b; }; System.out.println(division.operate(5, 3)); } } 函数式编程 什么是函数式编程 函数式编程是基于函数式接口并使用lambda表达的编程方式 函数式编程理念是将代码作为可重用数据带入到程序中 函数式编程强调“你想做什么”，而不是“你想怎么做” 什么是函数式接口 函数式接口是有且只有一个抽象方法的接口 Java中拥有大量函数式接口，如java.lang.Runnable JDK8后提供了一系列新的函数式接口，位于java.util.function JDK8常用函数式接口 接口 用途 Consumer 对应一个输入参数无输出的功能代码 Function 对应一个输入参数且需要返回数据的功能代码 Predicate 用于条件判断，固定返回布尔值 一、函数式接口Predicate 说明： Predicate是新增的函数式接口，位于java.util.function Predicate用于测试传入的数据是否满足判断要求 Predicate接口需要实现test()方法进行逻辑判断 代码示例： package com.imooc.lambda; import java.util.Arrays; import java.util.List; import java.util.function.Predicate; /** * 理解函数式编程 * Predicate函数式接口的使用方法 * @author CubeMonkey * @create 2020-10-23 18:20 */ public class PredicateSample { public static void main(String[] args) { Predicate\u003cInteger\u003e predicate = n-\u003en\u003c4; boolean result = predicate.test(10); System.out.println(result); List\u003cInteger\u003e list = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10); /*for (Integer num:list){ if (num % 2 == 1){ System.out.println(num); } }*/ filter(list, n -\u003e n % 2 == 1);//取所有奇数 filter(list, n -\u003e n % 2 == 0);//取所有偶数 filter(list, n -\u003e n \u003e 5 \u0026\u0026 n % 2 == 0);//取所有大于5的偶数 } public static void filter(List\u003cInteger\u003e list, Predicate\u003cInteger\u003e predicate){ for (Integer num:list){ if (predicate.test(num)){ System.out.print(num+\" \"); } } System.out.println(); } } 二、函数式接口Consumer 代码示例： package com.imooc.lambda; import java.util.function.Consumer; /** * Consumer接口的使用 * @author CubeMonkey * @create 2020-10-23 18:57 */ public class ConsumerSample { public static void main(String[] args) { output(s-\u003eSystem.out.println(\"向控制台打印：\" + s)); output(s-\u003e{ System.out.println(\"向xxx网站发送数据包：\"+s); }); } public static void output(Consumer\u003cString\u003e consumer){ String text = \"天将降大任于斯人也，必先苦其心志，劳其筋骨，饿其体肤，空乏其身，行拂乱其所为。\"; consumer.accept(text); } } 三、函数式接口Function 代码示例： package com.imooc.lambda; import java.util.Random; import java.util.function.Function; /** * 利用Function函数式接口生成定长随机字符串 * @author CubeMonkey * @create 2020-10-23 19:07 */ public class FunctionSample { public static void main(String[] args) { Function\u003cInteger, String\u003e randomStringFunction = l -\u003e { String chars = \"abcdefhigklmnopqrstuvwxyz0123456789\"; StringBuffer stringBuffer = new StringBuffer(); Random random = new Random(); for (int i = 0; i \u003c l; i++) { int position = random.nextInt(chars.length()); stringBuffer.append(chars.charAt(position)); } return stringBuffer.toString(); }; System.out.println(randomStringFunction.apply(32)); } } 面向函数式编程与面向对象编程比较 面向对象编程 函数式编程 设计思路 面向对象 面向过程 开发侧重 侧重过程，重分析，重设计 侧重结果，快速实现 可读性 结构复杂，相对较差 更适合人眼阅读，可读性更好 代码量 多 少 并发问题 设计不当，会出现线程安全问题 不会出现线程安全问题 健壮性 好 差 使用场景 中大型项目，多人协作工程 小型应用，要求快速实现 Stream流式处理 什么是Stream流式处理 Stream流式处理是建立在Lambda基础上的多数据处理技术 Stream对集合数据处理进行高度抽象，极大简化代码量 Stream可对集合进行迭代，去重，筛选，排序，聚合等一系列处理 Stream常用方法 接口 用途 forEach 循环遍历 map map方法用于映射每个元素对应的结果 filter filter方法用于通过设置的条件过滤出元素 limit limit方法用于获取指定数量的流 sorted sorted方法用于对流进行排序 Collectors Collectors类实现将流转换成集合和聚合元素 Stream流的五种创建方式 package com.imooc.stream; import org.junit.Test; import java.util.ArrayList; import java.util.List; import java.util.Random; import java.util.stream.IntStream; import java.util.stream.Stream; /** * Stream流对象的五种创建方式 * @author CubeMonkey * @create 2020-10-23 19:50 */ public class StreamGenerator { //基于数组进行创建 @Test public void generator1(){ String[] arr = {\"Lily\", \"Andy\", \"Jackson\", \"Smith\"}; Stream\u003cString\u003e stream = Stream.of(arr); stream.forEach(s-\u003e System.out.println(s)); } //2.基于集合进行创建 @Test public void generator2(){ List\u003cString\u003e list = new ArrayList\u003c\u003e(); list.add(\"Lily\"); list.add(\"Andy\"); list.add(\"Jackson\"); list.add(\"Smith\"); Stream\u003cString\u003e stream = list.stream(); stream.forEach(s-\u003e System.out.println(s)); } //3.利用generate方法创建无限长度流 @Test public void generator3(){ Stream\u003cInteger\u003e stream = Stream.generate(() -\u003e new Random().nextInt(100000)); stream.limit(10).forEach(i-\u003e System.out.println(i)); } //4.基于迭代器创建流 @Test public void generator4(){ Stream\u003cInteger\u003e stream = Stream.iterate(1, n -\u003e n + 1); stream.limit(100).forEach(i-\u003e System.out.println(i)); } //5.基于字符序列创建流 @Test public void generator5(){ String str = \"abcdefg我的\"; IntStream stream = str.chars(); stream.forEach(c-\u003e System.out.println(c)); } } Stream常用方法代码示例 package com.imooc.stream; import org.junit.Test; import java.util.Arrays; import java.util.List; import java.util.Set; import java.util.stream.Collectors; import java.util.stream.Stream; /** * @author CubeMonkey * @create 2020-10-23 20:29 */ public class StreamMethod { //提取集合中所有偶数并求和 @Test public void case1(){ List\u003cString\u003e list = Arrays.asList(\"1\", \"2\", \"3\", \"4\", \"5\", \"6\"); int sum = list.stream()//获取stream对象 .mapToInt(s -\u003e Integer.parseInt(s)) //mapToInt将流中每一个数据转为整数 .filter(num -\u003e num % 2 == 0)//filter对流数据进行过滤 .sum();//求和 System.out.println(sum); } //所有名字首字母大写 @Test public void case2(){ List\u003cString\u003e list = Arrays.asList(\"lily\", \"smith\", \"jackson\"); Stream\u003cString\u003e stream = list.stream(); //按规则对每一个流进行转化 List\u003cString\u003e collect = stream.map(s -\u003e s.substring(0, 1).toUpperCase() + s.substring(1)) //collect对流数据进行收集，生成新的List/Set .collect(Collectors.toList()); for (String s : collect) { System.out.println(s); } } //将所有奇数从大到小进行排序，且不许出现重复 @Test public void case3(){ List\u003cInteger\u003e list = Arrays.asList(1, 60, 38, 21, 51, 60, 51, 73); List\u003cInteger\u003e newList = list.stream().filter(num -\u003e num % 2 == 1) .distinct() .sorted((a, b) -\u003e b - a) .collect(Collectors.toList()); System.out.println(newList); } } ",
   "wordCount" : "668",
   "inLanguage": "en",
   "datePublished": "2021-03-09T00:00:00Z",
@@ -142,7 +142,7 @@
     <nav class="nav">
         <div class="logo">
             <a href="https://rex0520.github.io/" accesskey="h" title="Home (Alt + H)">
-                <img src="http://cdn.rexweb.xyz/img/20210821105340.png" alt="logo" aria-label="logo"
+                <img src="http://cdn.rexhub.xyz/img/20210821105340.png" alt="logo" aria-label="logo"
                     height="35">Home</a>
             <span class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)">
@@ -294,56 +294,54 @@
 <h3 id="代码示例">代码示例：<a hidden class="anchor" aria-hidden="true" href="#代码示例">#</a></h3>
 <blockquote>
 <p>MathOperation.java</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="nn">com.imooc.lambda</span><span class="o">;</span>
-
-<span class="cm">/**
-</span><span class="cm"> * 四则运算接口
-</span><span class="cm"> * @author CubeMonkey
-</span><span class="cm"> * @create 2020-10-23 17:39
-</span><span class="cm"> */</span>
-<span class="nd">@FunctionalInterface</span> <span class="c1">//通知编译器这是函数式接口，进行抽象方法检查
-</span><span class="c1"></span><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">MathOperation</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="n">Float</span> <span class="nf">operate</span><span class="o">(</span><span class="n">Integer</span> <span class="n">a</span><span class="o">,</span> <span class="n">Integer</span> <span class="n">b</span><span class="o">);</span>
-<span class="o">}</span>
-
-</code></pre></div><p>LambdaSample.java</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="nn">com.imooc.lambda</span><span class="o">;</span>
-
-<span class="cm">/**
-</span><span class="cm"> * @author CubeMonkey
-</span><span class="cm"> * @create 2020-10-23 17:42
-</span><span class="cm"> */</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">LambdaSample</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
-        <span class="c1">//1.标准的使用方式
-</span><span class="c1"></span>        <span class="c1">//约束条件：Lambda表达式只能实现有且只有一个抽象方法的接口，Java称为&#34;函数式接口&#34;
-</span><span class="c1"></span>        <span class="n">MathOperation</span> <span class="n">addition</span> <span class="o">=</span> <span class="o">(</span><span class="n">Integer</span> <span class="n">a</span><span class="o">,</span> <span class="n">Integer</span> <span class="n">b</span><span class="o">)-&gt;{</span>
-            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;加法运算&#34;</span><span class="o">);</span>
-            <span class="k">return</span> <span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="o">+</span><span class="n">0f</span><span class="o">;</span>
-        <span class="o">};</span>
-
-        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">addition</span><span class="o">.</span><span class="na">operate</span><span class="o">(</span><span class="n">5</span><span class="o">,</span> <span class="n">3</span><span class="o">));</span>
-
-        <span class="c1">//2.Lambda允许忽略参数类型
-</span><span class="c1"></span>        <span class="n">MathOperation</span> <span class="n">substraction</span> <span class="o">=</span> <span class="o">(</span><span class="n">a</span><span class="o">,</span> <span class="n">b</span><span class="o">)-&gt;{</span>
-            <span class="k">return</span> <span class="n">a</span> <span class="o">-</span> <span class="n">b</span> <span class="o">+</span> <span class="n">0f</span><span class="o">;</span>
-        <span class="o">};</span>
-        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">substraction</span><span class="o">.</span><span class="na">operate</span><span class="o">(</span><span class="n">5</span><span class="o">,</span> <span class="n">3</span><span class="o">));</span>
-
-        <span class="c1">//3.单行实现代码可以省略大括号和return
-</span><span class="c1"></span>        <span class="n">MathOperation</span> <span class="n">multiplication</span> <span class="o">=</span> <span class="o">(</span><span class="n">a</span><span class="o">,</span> <span class="n">b</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">a</span><span class="o">*</span><span class="n">b</span><span class="o">+</span><span class="n">0f</span><span class="o">;</span>
-        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">multiplication</span><span class="o">.</span><span class="na">operate</span><span class="o">(</span><span class="n">5</span><span class="o">,</span> <span class="n">3</span><span class="o">));</span>
-
-        <span class="c1">//test
-</span><span class="c1"></span>        <span class="n">MathOperation</span> <span class="n">division</span> <span class="o">=</span> <span class="o">(</span><span class="n">a</span><span class="o">,</span> <span class="n">b</span><span class="o">)</span> <span class="o">-&gt;{</span>
-            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;除法运算&#34;</span><span class="o">);</span>
-            <span class="k">return</span> <span class="n">a</span> <span class="o">*</span> <span class="n">1</span><span class="o">.</span><span class="na">0f</span> <span class="o">/</span> <span class="n">b</span><span class="o">;</span>
-        <span class="o">};</span>
-        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">division</span><span class="o">.</span><span class="na">operate</span><span class="o">(</span><span class="n">5</span><span class="o">,</span> <span class="n">3</span><span class="o">));</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-
-</code></pre></div></blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nn">com.imooc.lambda</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * 四则运算接口
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * @author CubeMonkey
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * @create 2020-10-23 17:39
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@FunctionalInterface</span> <span class="c1">//通知编译器这是函数式接口，进行抽象方法检查
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">MathOperation</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">Float</span> <span class="nf">operate</span><span class="o">(</span><span class="n">Integer</span> <span class="n">a</span><span class="o">,</span> <span class="n">Integer</span> <span class="n">b</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>LambdaSample.java</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nn">com.imooc.lambda</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * @author CubeMonkey
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * @create 2020-10-23 17:42
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">LambdaSample</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//1.标准的使用方式
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="c1">//约束条件：Lambda表达式只能实现有且只有一个抽象方法的接口，Java称为&#34;函数式接口&#34;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">MathOperation</span> <span class="n">addition</span> <span class="o">=</span> <span class="o">(</span><span class="n">Integer</span> <span class="n">a</span><span class="o">,</span> <span class="n">Integer</span> <span class="n">b</span><span class="o">)-&gt;{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;加法运算&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="o">+</span><span class="n">0f</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">addition</span><span class="o">.</span><span class="na">operate</span><span class="o">(</span><span class="n">5</span><span class="o">,</span> <span class="n">3</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1">//2.Lambda允许忽略参数类型
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">MathOperation</span> <span class="n">substraction</span> <span class="o">=</span> <span class="o">(</span><span class="n">a</span><span class="o">,</span> <span class="n">b</span><span class="o">)-&gt;{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">a</span> <span class="o">-</span> <span class="n">b</span> <span class="o">+</span> <span class="n">0f</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">};</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">substraction</span><span class="o">.</span><span class="na">operate</span><span class="o">(</span><span class="n">5</span><span class="o">,</span> <span class="n">3</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1">//3.单行实现代码可以省略大括号和return
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">MathOperation</span> <span class="n">multiplication</span> <span class="o">=</span> <span class="o">(</span><span class="n">a</span><span class="o">,</span> <span class="n">b</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">a</span><span class="o">*</span><span class="n">b</span><span class="o">+</span><span class="n">0f</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">multiplication</span><span class="o">.</span><span class="na">operate</span><span class="o">(</span><span class="n">5</span><span class="o">,</span> <span class="n">3</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1">//test
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">MathOperation</span> <span class="n">division</span> <span class="o">=</span> <span class="o">(</span><span class="n">a</span><span class="o">,</span> <span class="n">b</span><span class="o">)</span> <span class="o">-&gt;{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;除法运算&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">a</span> <span class="o">*</span> <span class="n">1</span><span class="o">.</span><span class="na">0f</span> <span class="o">/</span> <span class="n">b</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">};</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">division</span><span class="o">.</span><span class="na">operate</span><span class="o">(</span><span class="n">5</span><span class="o">,</span> <span class="n">3</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div></blockquote>
 <h1 id="函数式编程">函数式编程<a hidden class="anchor" aria-hidden="true" href="#函数式编程">#</a></h1>
 <h2 id="什么是函数式编程">什么是函数式编程<a hidden class="anchor" aria-hidden="true" href="#什么是函数式编程">#</a></h2>
 <ul>
@@ -388,96 +386,94 @@
 <li>Predicate接口需要实现test()方法进行逻辑判断</li>
 </ul>
 <h3 id="代码示例-1">代码示例：<a hidden class="anchor" aria-hidden="true" href="#代码示例-1">#</a></h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="nn">com.imooc.lambda</span><span class="o">;</span>
-
-<span class="kn">import</span> <span class="nn">java.util.Arrays</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">java.util.function.Predicate</span><span class="o">;</span>
-
-<span class="cm">/**
-</span><span class="cm"> * 理解函数式编程
-</span><span class="cm"> * Predicate函数式接口的使用方法
-</span><span class="cm"> * @author CubeMonkey
-</span><span class="cm"> * @create 2020-10-23 18:20
-</span><span class="cm"> */</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">PredicateSample</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">Predicate</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">predicate</span> <span class="o">=</span> <span class="n">n</span><span class="o">-&gt;</span><span class="n">n</span><span class="o">&lt;</span><span class="n">4</span><span class="o">;</span>
-        <span class="kt">boolean</span> <span class="n">result</span> <span class="o">=</span> <span class="n">predicate</span><span class="o">.</span><span class="na">test</span><span class="o">(</span><span class="n">10</span><span class="o">);</span>
-        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">result</span><span class="o">);</span>
-        <span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="n">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="n">1</span><span class="o">,</span> <span class="n">2</span><span class="o">,</span> <span class="n">3</span><span class="o">,</span> <span class="n">4</span><span class="o">,</span> <span class="n">5</span><span class="o">,</span> <span class="n">6</span><span class="o">,</span> <span class="n">7</span><span class="o">,</span> <span class="n">8</span><span class="o">,</span> <span class="n">9</span><span class="o">,</span> <span class="n">10</span><span class="o">);</span>
-        <span class="cm">/*for (Integer num:list){
-</span><span class="cm">            if (num % 2 == 1){
-</span><span class="cm">                System.out.println(num);
-</span><span class="cm">            }
-</span><span class="cm">        }*/</span>
-        <span class="n">filter</span><span class="o">(</span><span class="n">list</span><span class="o">,</span> <span class="n">n</span> <span class="o">-&gt;</span> <span class="n">n</span> <span class="o">%</span> <span class="n">2</span> <span class="o">==</span> <span class="n">1</span><span class="o">);</span><span class="c1">//取所有奇数
-</span><span class="c1"></span>        <span class="n">filter</span><span class="o">(</span><span class="n">list</span><span class="o">,</span> <span class="n">n</span> <span class="o">-&gt;</span> <span class="n">n</span> <span class="o">%</span> <span class="n">2</span> <span class="o">==</span> <span class="n">0</span><span class="o">);</span><span class="c1">//取所有偶数
-</span><span class="c1"></span>        <span class="n">filter</span><span class="o">(</span><span class="n">list</span><span class="o">,</span> <span class="n">n</span> <span class="o">-&gt;</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="n">5</span> <span class="o">&amp;&amp;</span> <span class="n">n</span> <span class="o">%</span> <span class="n">2</span> <span class="o">==</span> <span class="n">0</span><span class="o">);</span><span class="c1">//取所有大于5的偶数
-</span><span class="c1"></span>    <span class="o">}</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">filter</span><span class="o">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">list</span><span class="o">,</span> <span class="n">Predicate</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">predicate</span><span class="o">){</span>
-        <span class="k">for</span> <span class="o">(</span><span class="n">Integer</span> <span class="n">num</span><span class="o">:</span><span class="n">list</span><span class="o">){</span>
-            <span class="k">if</span> <span class="o">(</span><span class="n">predicate</span><span class="o">.</span><span class="na">test</span><span class="o">(</span><span class="n">num</span><span class="o">)){</span>
-                <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="n">num</span><span class="o">+</span><span class="s">&#34; &#34;</span><span class="o">);</span>
-            <span class="o">}</span>
-        <span class="o">}</span>
-        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">();</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div><h2 id="二函数式接口consumer">二、函数式接口Consumer<a hidden class="anchor" aria-hidden="true" href="#二函数式接口consumer">#</a></h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nn">com.imooc.lambda</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">java.util.Arrays</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">java.util.function.Predicate</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * 理解函数式编程
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * Predicate函数式接口的使用方法
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * @author CubeMonkey
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * @create 2020-10-23 18:20
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">PredicateSample</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Predicate</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">predicate</span> <span class="o">=</span> <span class="n">n</span><span class="o">-&gt;</span><span class="n">n</span><span class="o">&lt;</span><span class="n">4</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">boolean</span> <span class="n">result</span> <span class="o">=</span> <span class="n">predicate</span><span class="o">.</span><span class="na">test</span><span class="o">(</span><span class="n">10</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">result</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="n">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="n">1</span><span class="o">,</span> <span class="n">2</span><span class="o">,</span> <span class="n">3</span><span class="o">,</span> <span class="n">4</span><span class="o">,</span> <span class="n">5</span><span class="o">,</span> <span class="n">6</span><span class="o">,</span> <span class="n">7</span><span class="o">,</span> <span class="n">8</span><span class="o">,</span> <span class="n">9</span><span class="o">,</span> <span class="n">10</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="cm">/*for (Integer num:list){
+</span></span></span><span class="line"><span class="cl"><span class="cm">            if (num % 2 == 1){
+</span></span></span><span class="line"><span class="cl"><span class="cm">                System.out.println(num);
+</span></span></span><span class="line"><span class="cl"><span class="cm">            }
+</span></span></span><span class="line"><span class="cl"><span class="cm">        }*/</span>
+</span></span><span class="line"><span class="cl">        <span class="n">filter</span><span class="o">(</span><span class="n">list</span><span class="o">,</span> <span class="n">n</span> <span class="o">-&gt;</span> <span class="n">n</span> <span class="o">%</span> <span class="n">2</span> <span class="o">==</span> <span class="n">1</span><span class="o">);</span><span class="c1">//取所有奇数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">filter</span><span class="o">(</span><span class="n">list</span><span class="o">,</span> <span class="n">n</span> <span class="o">-&gt;</span> <span class="n">n</span> <span class="o">%</span> <span class="n">2</span> <span class="o">==</span> <span class="n">0</span><span class="o">);</span><span class="c1">//取所有偶数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">filter</span><span class="o">(</span><span class="n">list</span><span class="o">,</span> <span class="n">n</span> <span class="o">-&gt;</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="n">5</span> <span class="o">&amp;&amp;</span> <span class="n">n</span> <span class="o">%</span> <span class="n">2</span> <span class="o">==</span> <span class="n">0</span><span class="o">);</span><span class="c1">//取所有大于5的偶数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">filter</span><span class="o">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">list</span><span class="o">,</span> <span class="n">Predicate</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">predicate</span><span class="o">){</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="o">(</span><span class="n">Integer</span> <span class="n">num</span><span class="o">:</span><span class="n">list</span><span class="o">){</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="o">(</span><span class="n">predicate</span><span class="o">.</span><span class="na">test</span><span class="o">(</span><span class="n">num</span><span class="o">)){</span>
+</span></span><span class="line"><span class="cl">                <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="n">num</span><span class="o">+</span><span class="s">&#34; &#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><h2 id="二函数式接口consumer">二、函数式接口Consumer<a hidden class="anchor" aria-hidden="true" href="#二函数式接口consumer">#</a></h2>
 <h3 id="代码示例-2">代码示例：<a hidden class="anchor" aria-hidden="true" href="#代码示例-2">#</a></h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="nn">com.imooc.lambda</span><span class="o">;</span>
-
-<span class="kn">import</span> <span class="nn">java.util.function.Consumer</span><span class="o">;</span>
-
-<span class="cm">/**
-</span><span class="cm"> * Consumer接口的使用
-</span><span class="cm"> * @author CubeMonkey
-</span><span class="cm"> * @create 2020-10-23 18:57
-</span><span class="cm"> */</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ConsumerSample</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">output</span><span class="o">(</span><span class="n">s</span><span class="o">-&gt;</span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;向控制台打印：&#34;</span> <span class="o">+</span> <span class="n">s</span><span class="o">));</span>
-        <span class="n">output</span><span class="o">(</span><span class="n">s</span><span class="o">-&gt;{</span>
-            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;向xxx网站发送数据包：&#34;</span><span class="o">+</span><span class="n">s</span><span class="o">);</span>
-        <span class="o">});</span>
-    <span class="o">}</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">output</span><span class="o">(</span><span class="n">Consumer</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">consumer</span><span class="o">){</span>
-        <span class="n">String</span> <span class="n">text</span> <span class="o">=</span> <span class="s">&#34;天将降大任于斯人也，必先苦其心志，劳其筋骨，饿其体肤，空乏其身，行拂乱其所为。&#34;</span><span class="o">;</span>
-        <span class="n">consumer</span><span class="o">.</span><span class="na">accept</span><span class="o">(</span><span class="n">text</span><span class="o">);</span>
-
-    <span class="o">}</span>
-<span class="o">}</span>
-
-</code></pre></div><h2 id="三函数式接口function">三、函数式接口Function<a hidden class="anchor" aria-hidden="true" href="#三函数式接口function">#</a></h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nn">com.imooc.lambda</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">java.util.function.Consumer</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * Consumer接口的使用
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * @author CubeMonkey
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * @create 2020-10-23 18:57
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ConsumerSample</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">output</span><span class="o">(</span><span class="n">s</span><span class="o">-&gt;</span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;向控制台打印：&#34;</span> <span class="o">+</span> <span class="n">s</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">        <span class="n">output</span><span class="o">(</span><span class="n">s</span><span class="o">-&gt;{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;向xxx网站发送数据包：&#34;</span><span class="o">+</span><span class="n">s</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">});</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">output</span><span class="o">(</span><span class="n">Consumer</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">consumer</span><span class="o">){</span>
+</span></span><span class="line"><span class="cl">        <span class="n">String</span> <span class="n">text</span> <span class="o">=</span> <span class="s">&#34;天将降大任于斯人也，必先苦其心志，劳其筋骨，饿其体肤，空乏其身，行拂乱其所为。&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">consumer</span><span class="o">.</span><span class="na">accept</span><span class="o">(</span><span class="n">text</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><h2 id="三函数式接口function">三、函数式接口Function<a hidden class="anchor" aria-hidden="true" href="#三函数式接口function">#</a></h2>
 <h3 id="代码示例-3">代码示例：<a hidden class="anchor" aria-hidden="true" href="#代码示例-3">#</a></h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="nn">com.imooc.lambda</span><span class="o">;</span>
-
-<span class="kn">import</span> <span class="nn">java.util.Random</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">java.util.function.Function</span><span class="o">;</span>
-
-<span class="cm">/**
-</span><span class="cm"> * 利用Function函数式接口生成定长随机字符串
-</span><span class="cm"> * @author CubeMonkey
-</span><span class="cm"> * @create 2020-10-23 19:07
-</span><span class="cm"> */</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">FunctionSample</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">Function</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">randomStringFunction</span> <span class="o">=</span> <span class="n">l</span> <span class="o">-&gt;</span> <span class="o">{</span>
-            <span class="n">String</span> <span class="n">chars</span> <span class="o">=</span> <span class="s">&#34;abcdefhigklmnopqrstuvwxyz0123456789&#34;</span><span class="o">;</span>
-            <span class="n">StringBuffer</span> <span class="n">stringBuffer</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StringBuffer</span><span class="o">();</span>
-            <span class="n">Random</span> <span class="n">random</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Random</span><span class="o">();</span>
-            <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">l</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
-                <span class="kt">int</span> <span class="n">position</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="na">nextInt</span><span class="o">(</span><span class="n">chars</span><span class="o">.</span><span class="na">length</span><span class="o">());</span>
-                <span class="n">stringBuffer</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="n">chars</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">position</span><span class="o">));</span>
-            <span class="o">}</span>
-            <span class="k">return</span> <span class="n">stringBuffer</span><span class="o">.</span><span class="na">toString</span><span class="o">();</span>
-        <span class="o">};</span>
-        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">randomStringFunction</span><span class="o">.</span><span class="na">apply</span><span class="o">(</span><span class="n">32</span><span class="o">));</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-
-</code></pre></div><h2 id="面向函数式编程与面向对象编程比较">面向函数式编程与面向对象编程比较<a hidden class="anchor" aria-hidden="true" href="#面向函数式编程与面向对象编程比较">#</a></h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nn">com.imooc.lambda</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">java.util.Random</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">java.util.function.Function</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * 利用Function函数式接口生成定长随机字符串
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * @author CubeMonkey
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * @create 2020-10-23 19:07
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">FunctionSample</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Function</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">randomStringFunction</span> <span class="o">=</span> <span class="n">l</span> <span class="o">-&gt;</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">String</span> <span class="n">chars</span> <span class="o">=</span> <span class="s">&#34;abcdefhigklmnopqrstuvwxyz0123456789&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">StringBuffer</span> <span class="n">stringBuffer</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StringBuffer</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">            <span class="n">Random</span> <span class="n">random</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Random</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">            <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">l</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="kt">int</span> <span class="n">position</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="na">nextInt</span><span class="o">(</span><span class="n">chars</span><span class="o">.</span><span class="na">length</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">                <span class="n">stringBuffer</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="n">chars</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">position</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">stringBuffer</span><span class="o">.</span><span class="na">toString</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="o">};</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">randomStringFunction</span><span class="o">.</span><span class="na">apply</span><span class="o">(</span><span class="n">32</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><h2 id="面向函数式编程与面向对象编程比较">面向函数式编程与面向对象编程比较<a hidden class="anchor" aria-hidden="true" href="#面向函数式编程与面向对象编程比较">#</a></h2>
 <table>
 <thead>
 <tr>
@@ -567,120 +563,118 @@
 </tbody>
 </table>
 <h2 id="stream流的五种创建方式">Stream流的五种创建方式<a hidden class="anchor" aria-hidden="true" href="#stream流的五种创建方式">#</a></h2>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="nn">com.imooc.stream</span><span class="o">;</span>
-
-<span class="kn">import</span> <span class="nn">org.junit.Test</span><span class="o">;</span>
-
-<span class="kn">import</span> <span class="nn">java.util.ArrayList</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">java.util.Random</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">java.util.stream.IntStream</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">java.util.stream.Stream</span><span class="o">;</span>
-
-<span class="cm">/**
-</span><span class="cm"> * Stream流对象的五种创建方式
-</span><span class="cm"> * @author CubeMonkey
-</span><span class="cm"> * @create 2020-10-23 19:50
-</span><span class="cm"> */</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">StreamGenerator</span> <span class="o">{</span>
-
-    <span class="c1">//基于数组进行创建
-</span><span class="c1"></span>    <span class="nd">@Test</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">generator1</span><span class="o">(){</span>
-        <span class="n">String</span><span class="o">[]</span> <span class="n">arr</span> <span class="o">=</span> <span class="o">{</span><span class="s">&#34;Lily&#34;</span><span class="o">,</span> <span class="s">&#34;Andy&#34;</span><span class="o">,</span> <span class="s">&#34;Jackson&#34;</span><span class="o">,</span> <span class="s">&#34;Smith&#34;</span><span class="o">};</span>
-        <span class="n">Stream</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">stream</span> <span class="o">=</span> <span class="n">Stream</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">arr</span><span class="o">);</span>
-        <span class="n">stream</span><span class="o">.</span><span class="na">forEach</span><span class="o">(</span><span class="n">s</span><span class="o">-&gt;</span> <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">s</span><span class="o">));</span>
-    <span class="o">}</span>
-
-    <span class="c1">//2.基于集合进行创建
-</span><span class="c1"></span>    <span class="nd">@Test</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">generator2</span><span class="o">(){</span>
-        <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;();</span>
-        <span class="n">list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">&#34;Lily&#34;</span><span class="o">);</span>
-        <span class="n">list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">&#34;Andy&#34;</span><span class="o">);</span>
-        <span class="n">list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">&#34;Jackson&#34;</span><span class="o">);</span>
-        <span class="n">list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">&#34;Smith&#34;</span><span class="o">);</span>
-        <span class="n">Stream</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">stream</span> <span class="o">=</span> <span class="n">list</span><span class="o">.</span><span class="na">stream</span><span class="o">();</span>
-        <span class="n">stream</span><span class="o">.</span><span class="na">forEach</span><span class="o">(</span><span class="n">s</span><span class="o">-&gt;</span> <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">s</span><span class="o">));</span>
-    <span class="o">}</span>
-
-    <span class="c1">//3.利用generate方法创建无限长度流
-</span><span class="c1"></span>    <span class="nd">@Test</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">generator3</span><span class="o">(){</span>
-        <span class="n">Stream</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">stream</span> <span class="o">=</span> <span class="n">Stream</span><span class="o">.</span><span class="na">generate</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="k">new</span> <span class="n">Random</span><span class="o">().</span><span class="na">nextInt</span><span class="o">(</span><span class="n">100000</span><span class="o">));</span>
-        <span class="n">stream</span><span class="o">.</span><span class="na">limit</span><span class="o">(</span><span class="n">10</span><span class="o">).</span><span class="na">forEach</span><span class="o">(</span><span class="n">i</span><span class="o">-&gt;</span> <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">i</span><span class="o">));</span>
-    <span class="o">}</span>
-    <span class="c1">//4.基于迭代器创建流
-</span><span class="c1"></span>    <span class="nd">@Test</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">generator4</span><span class="o">(){</span>
-        <span class="n">Stream</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">stream</span> <span class="o">=</span> <span class="n">Stream</span><span class="o">.</span><span class="na">iterate</span><span class="o">(</span><span class="n">1</span><span class="o">,</span> <span class="n">n</span> <span class="o">-&gt;</span> <span class="n">n</span> <span class="o">+</span> <span class="n">1</span><span class="o">);</span>
-        <span class="n">stream</span><span class="o">.</span><span class="na">limit</span><span class="o">(</span><span class="n">100</span><span class="o">).</span><span class="na">forEach</span><span class="o">(</span><span class="n">i</span><span class="o">-&gt;</span> <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">i</span><span class="o">));</span>
-    <span class="o">}</span>
-    <span class="c1">//5.基于字符序列创建流
-</span><span class="c1"></span>    <span class="nd">@Test</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">generator5</span><span class="o">(){</span>
-        <span class="n">String</span> <span class="n">str</span> <span class="o">=</span> <span class="s">&#34;abcdefg我的&#34;</span><span class="o">;</span>
-        <span class="n">IntStream</span> <span class="n">stream</span> <span class="o">=</span> <span class="n">str</span><span class="o">.</span><span class="na">chars</span><span class="o">();</span>
-        <span class="n">stream</span><span class="o">.</span><span class="na">forEach</span><span class="o">(</span><span class="n">c</span><span class="o">-&gt;</span> <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">c</span><span class="o">));</span>
-    <span class="o">}</span>
-
-<span class="o">}</span>
-
-</code></pre></div><h2 id="stream常用方法代码示例">Stream常用方法代码示例<a hidden class="anchor" aria-hidden="true" href="#stream常用方法代码示例">#</a></h2>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="nn">com.imooc.stream</span><span class="o">;</span>
-
-<span class="kn">import</span> <span class="nn">org.junit.Test</span><span class="o">;</span>
-
-<span class="kn">import</span> <span class="nn">java.util.Arrays</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">java.util.Set</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">java.util.stream.Collectors</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">java.util.stream.Stream</span><span class="o">;</span>
-
-<span class="cm">/**
-</span><span class="cm"> * @author CubeMonkey
-</span><span class="cm"> * @create 2020-10-23 20:29
-</span><span class="cm"> */</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">StreamMethod</span> <span class="o">{</span>
-    <span class="c1">//提取集合中所有偶数并求和
-</span><span class="c1"></span>    <span class="nd">@Test</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">case1</span><span class="o">(){</span>
-        <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="n">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="s">&#34;1&#34;</span><span class="o">,</span> <span class="s">&#34;2&#34;</span><span class="o">,</span> <span class="s">&#34;3&#34;</span><span class="o">,</span> <span class="s">&#34;4&#34;</span><span class="o">,</span> <span class="s">&#34;5&#34;</span><span class="o">,</span> <span class="s">&#34;6&#34;</span><span class="o">);</span>
-        <span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="n">list</span><span class="o">.</span><span class="na">stream</span><span class="o">()</span><span class="c1">//获取stream对象
-</span><span class="c1"></span>                <span class="o">.</span><span class="na">mapToInt</span><span class="o">(</span><span class="n">s</span> <span class="o">-&gt;</span> <span class="n">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="n">s</span><span class="o">))</span> <span class="c1">//mapToInt将流中每一个数据转为整数
-</span><span class="c1"></span>                <span class="o">.</span><span class="na">filter</span><span class="o">(</span><span class="n">num</span> <span class="o">-&gt;</span> <span class="n">num</span> <span class="o">%</span> <span class="n">2</span> <span class="o">==</span> <span class="n">0</span><span class="o">)</span><span class="c1">//filter对流数据进行过滤
-</span><span class="c1"></span>                <span class="o">.</span><span class="na">sum</span><span class="o">();</span><span class="c1">//求和
-</span><span class="c1"></span>        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">sum</span><span class="o">);</span>
-    <span class="o">}</span>
-    <span class="c1">//所有名字首字母大写
-</span><span class="c1"></span>    <span class="nd">@Test</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">case2</span><span class="o">(){</span>
-        <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="n">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="s">&#34;lily&#34;</span><span class="o">,</span> <span class="s">&#34;smith&#34;</span><span class="o">,</span> <span class="s">&#34;jackson&#34;</span><span class="o">);</span>
-        <span class="n">Stream</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">stream</span> <span class="o">=</span> <span class="n">list</span><span class="o">.</span><span class="na">stream</span><span class="o">();</span>
-        <span class="c1">//按规则对每一个流进行转化
-</span><span class="c1"></span>        <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">collect</span> <span class="o">=</span> <span class="n">stream</span><span class="o">.</span><span class="na">map</span><span class="o">(</span><span class="n">s</span> <span class="o">-&gt;</span> <span class="n">s</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="n">0</span><span class="o">,</span> <span class="n">1</span><span class="o">).</span><span class="na">toUpperCase</span><span class="o">()</span> <span class="o">+</span> <span class="n">s</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="n">1</span><span class="o">))</span>
-                <span class="c1">//collect对流数据进行收集，生成新的List/Set
-</span><span class="c1"></span>                <span class="o">.</span><span class="na">collect</span><span class="o">(</span><span class="n">Collectors</span><span class="o">.</span><span class="na">toList</span><span class="o">());</span>
-        <span class="k">for</span> <span class="o">(</span><span class="n">String</span> <span class="n">s</span> <span class="o">:</span> <span class="n">collect</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">s</span><span class="o">);</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-
-    <span class="c1">//将所有奇数从大到小进行排序，且不许出现重复
-</span><span class="c1"></span>    <span class="nd">@Test</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">case3</span><span class="o">(){</span>
-        <span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="n">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="n">1</span><span class="o">,</span> <span class="n">60</span><span class="o">,</span> <span class="n">38</span><span class="o">,</span> <span class="n">21</span><span class="o">,</span> <span class="n">51</span><span class="o">,</span> <span class="n">60</span><span class="o">,</span> <span class="n">51</span><span class="o">,</span> <span class="n">73</span><span class="o">);</span>
-
-        <span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">newList</span> <span class="o">=</span> <span class="n">list</span><span class="o">.</span><span class="na">stream</span><span class="o">().</span><span class="na">filter</span><span class="o">(</span><span class="n">num</span> <span class="o">-&gt;</span> <span class="n">num</span> <span class="o">%</span> <span class="n">2</span> <span class="o">==</span> <span class="n">1</span><span class="o">)</span>
-                <span class="o">.</span><span class="na">distinct</span><span class="o">()</span>
-                <span class="o">.</span><span class="na">sorted</span><span class="o">((</span><span class="n">a</span><span class="o">,</span> <span class="n">b</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">b</span> <span class="o">-</span> <span class="n">a</span><span class="o">)</span>
-                <span class="o">.</span><span class="na">collect</span><span class="o">(</span><span class="n">Collectors</span><span class="o">.</span><span class="na">toList</span><span class="o">());</span>
-        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">newList</span><span class="o">);</span>
-
-    <span class="o">}</span>
-<span class="o">}</span>
-
-</code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nn">com.imooc.stream</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">org.junit.Test</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">java.util.ArrayList</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">java.util.Random</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">java.util.stream.IntStream</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">java.util.stream.Stream</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * Stream流对象的五种创建方式
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * @author CubeMonkey
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * @create 2020-10-23 19:50
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">StreamGenerator</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">//基于数组进行创建
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nd">@Test</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">generator1</span><span class="o">(){</span>
+</span></span><span class="line"><span class="cl">        <span class="n">String</span><span class="o">[]</span> <span class="n">arr</span> <span class="o">=</span> <span class="o">{</span><span class="s">&#34;Lily&#34;</span><span class="o">,</span> <span class="s">&#34;Andy&#34;</span><span class="o">,</span> <span class="s">&#34;Jackson&#34;</span><span class="o">,</span> <span class="s">&#34;Smith&#34;</span><span class="o">};</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Stream</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">stream</span> <span class="o">=</span> <span class="n">Stream</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">arr</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">stream</span><span class="o">.</span><span class="na">forEach</span><span class="o">(</span><span class="n">s</span><span class="o">-&gt;</span> <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">s</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">//2.基于集合进行创建
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nd">@Test</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">generator2</span><span class="o">(){</span>
+</span></span><span class="line"><span class="cl">        <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">&#34;Lily&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">&#34;Andy&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">&#34;Jackson&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">&#34;Smith&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Stream</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">stream</span> <span class="o">=</span> <span class="n">list</span><span class="o">.</span><span class="na">stream</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">stream</span><span class="o">.</span><span class="na">forEach</span><span class="o">(</span><span class="n">s</span><span class="o">-&gt;</span> <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">s</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">//3.利用generate方法创建无限长度流
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nd">@Test</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">generator3</span><span class="o">(){</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Stream</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">stream</span> <span class="o">=</span> <span class="n">Stream</span><span class="o">.</span><span class="na">generate</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="k">new</span> <span class="n">Random</span><span class="o">().</span><span class="na">nextInt</span><span class="o">(</span><span class="n">100000</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">        <span class="n">stream</span><span class="o">.</span><span class="na">limit</span><span class="o">(</span><span class="n">10</span><span class="o">).</span><span class="na">forEach</span><span class="o">(</span><span class="n">i</span><span class="o">-&gt;</span> <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">i</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//4.基于迭代器创建流
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nd">@Test</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">generator4</span><span class="o">(){</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Stream</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">stream</span> <span class="o">=</span> <span class="n">Stream</span><span class="o">.</span><span class="na">iterate</span><span class="o">(</span><span class="n">1</span><span class="o">,</span> <span class="n">n</span> <span class="o">-&gt;</span> <span class="n">n</span> <span class="o">+</span> <span class="n">1</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">stream</span><span class="o">.</span><span class="na">limit</span><span class="o">(</span><span class="n">100</span><span class="o">).</span><span class="na">forEach</span><span class="o">(</span><span class="n">i</span><span class="o">-&gt;</span> <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">i</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//5.基于字符序列创建流
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nd">@Test</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">generator5</span><span class="o">(){</span>
+</span></span><span class="line"><span class="cl">        <span class="n">String</span> <span class="n">str</span> <span class="o">=</span> <span class="s">&#34;abcdefg我的&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">IntStream</span> <span class="n">stream</span> <span class="o">=</span> <span class="n">str</span><span class="o">.</span><span class="na">chars</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">stream</span><span class="o">.</span><span class="na">forEach</span><span class="o">(</span><span class="n">c</span><span class="o">-&gt;</span> <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">c</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><h2 id="stream常用方法代码示例">Stream常用方法代码示例<a hidden class="anchor" aria-hidden="true" href="#stream常用方法代码示例">#</a></h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nn">com.imooc.stream</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">org.junit.Test</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">java.util.Arrays</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">java.util.Set</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">java.util.stream.Collectors</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">java.util.stream.Stream</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * @author CubeMonkey
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * @create 2020-10-23 20:29
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">StreamMethod</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//提取集合中所有偶数并求和
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nd">@Test</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">case1</span><span class="o">(){</span>
+</span></span><span class="line"><span class="cl">        <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="n">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="s">&#34;1&#34;</span><span class="o">,</span> <span class="s">&#34;2&#34;</span><span class="o">,</span> <span class="s">&#34;3&#34;</span><span class="o">,</span> <span class="s">&#34;4&#34;</span><span class="o">,</span> <span class="s">&#34;5&#34;</span><span class="o">,</span> <span class="s">&#34;6&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="n">list</span><span class="o">.</span><span class="na">stream</span><span class="o">()</span><span class="c1">//获取stream对象
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="o">.</span><span class="na">mapToInt</span><span class="o">(</span><span class="n">s</span> <span class="o">-&gt;</span> <span class="n">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="n">s</span><span class="o">))</span> <span class="c1">//mapToInt将流中每一个数据转为整数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="o">.</span><span class="na">filter</span><span class="o">(</span><span class="n">num</span> <span class="o">-&gt;</span> <span class="n">num</span> <span class="o">%</span> <span class="n">2</span> <span class="o">==</span> <span class="n">0</span><span class="o">)</span><span class="c1">//filter对流数据进行过滤
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="o">.</span><span class="na">sum</span><span class="o">();</span><span class="c1">//求和
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">sum</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//所有名字首字母大写
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nd">@Test</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">case2</span><span class="o">(){</span>
+</span></span><span class="line"><span class="cl">        <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="n">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="s">&#34;lily&#34;</span><span class="o">,</span> <span class="s">&#34;smith&#34;</span><span class="o">,</span> <span class="s">&#34;jackson&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Stream</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">stream</span> <span class="o">=</span> <span class="n">list</span><span class="o">.</span><span class="na">stream</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//按规则对每一个流进行转化
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">collect</span> <span class="o">=</span> <span class="n">stream</span><span class="o">.</span><span class="na">map</span><span class="o">(</span><span class="n">s</span> <span class="o">-&gt;</span> <span class="n">s</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="n">0</span><span class="o">,</span> <span class="n">1</span><span class="o">).</span><span class="na">toUpperCase</span><span class="o">()</span> <span class="o">+</span> <span class="n">s</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="n">1</span><span class="o">))</span>
+</span></span><span class="line"><span class="cl">                <span class="c1">//collect对流数据进行收集，生成新的List/Set
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="o">.</span><span class="na">collect</span><span class="o">(</span><span class="n">Collectors</span><span class="o">.</span><span class="na">toList</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="o">(</span><span class="n">String</span> <span class="n">s</span> <span class="o">:</span> <span class="n">collect</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">s</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">//将所有奇数从大到小进行排序，且不许出现重复
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nd">@Test</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">case3</span><span class="o">(){</span>
+</span></span><span class="line"><span class="cl">        <span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="n">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="n">1</span><span class="o">,</span> <span class="n">60</span><span class="o">,</span> <span class="n">38</span><span class="o">,</span> <span class="n">21</span><span class="o">,</span> <span class="n">51</span><span class="o">,</span> <span class="n">60</span><span class="o">,</span> <span class="n">51</span><span class="o">,</span> <span class="n">73</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">newList</span> <span class="o">=</span> <span class="n">list</span><span class="o">.</span><span class="na">stream</span><span class="o">().</span><span class="na">filter</span><span class="o">(</span><span class="n">num</span> <span class="o">-&gt;</span> <span class="n">num</span> <span class="o">%</span> <span class="n">2</span> <span class="o">==</span> <span class="n">1</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">                <span class="o">.</span><span class="na">distinct</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">                <span class="o">.</span><span class="na">sorted</span><span class="o">((</span><span class="n">a</span><span class="o">,</span> <span class="n">b</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">b</span> <span class="o">-</span> <span class="n">a</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">                <span class="o">.</span><span class="na">collect</span><span class="o">(</span><span class="n">Collectors</span><span class="o">.</span><span class="na">toList</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">newList</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div>
 
   </div>
 

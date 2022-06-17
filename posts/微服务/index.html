@@ -17,10 +17,10 @@
 <meta name="author" content="Rex">
 <link rel="canonical" href="https://rexhub.gitee.io/posts/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" />
 <link crossorigin="anonymous" href="/assets/css/stylesheet.min.6cba0d81b5f3f42bb578d49f402ba4175aa72b43def148780b8ad714c957c6f5.css" integrity="sha256-bLoNgbXz9Cu1eNSfQCukF1qnK0Pe8Uh4C4rXFMlXxvU=" rel="preload stylesheet" as="style">
-<link rel="preload" href="http://cdn.rexweb.xyz/img/20210821105340.png" as="image">
+<link rel="preload" href="http://cdn.rexhub.xyz/img/20210821105340.png" as="image">
 <script defer crossorigin="anonymous" src="/assets/js/highlight.min.7680afc38aa6b15ddf158a4f3780b7b1f7dde7e91d26f073e6229bb7a0793c92.js" integrity="sha256-doCvw4qmsV3fFYpPN4C3sffd5&#43;kdJvBz5iKbt6B5PJI="
     onload="hljs.initHighlightingOnLoad();"></script>
-<link rel="icon" href="http://cdn.rexweb.xyz/img/20210821105340.png">
+<link rel="icon" href="http://cdn.rexhub.xyz/img/20210821105340.png">
 <link rel="icon" type="image/png" sizes="16x16" href="https://rexhub.gitee.io/%3Clink%20/%20abs%20url%3E">
 <link rel="icon" type="image/png" sizes="32x32" href="https://rexhub.gitee.io/%3Clink%20/%20abs%20url%3E">
 <link rel="apple-touch-icon" href="https://rexhub.gitee.io/%3Clink%20/%20abs%20url%3E">
@@ -37,13 +37,13 @@
   会带来团队组织架构的调整
   微服务优点  服务简单、便于学习和上手，先对易于维护 独立部署，灵活扩展 技术栈丰富  微服务缺点  运维成本过高 接口可能不匹配 代码可能重复 架构复杂度提高  微服务有两大门派  Spring Cloud：众多子项目 dubbo：高性能、轻量级的开源Java RPC框架，它提供了三大核心能力：面向接口的远程方法调用，智能容错和负载均衡以及服务自动注册和发现     核心组件 Dubbo Spring Cloud     服务注册中心 Zookeeper Spring Cloud Netflix Eureka   服务调用方式 RPC REST API   服务网关 无 Spring Cloud Netflix Zuul   断路器 不完善 Spring Cloud Netflix Hystrix   分布式配置 无/百度的disconf、百度的diamond Spring Cloud Config   服务跟踪 无/京东开源Hydra Spring Cloud Sleuth   消息总线 无 Spring Cloud Bus   数据流 无 Spring Cloud Stream   批量任务 无/当当开源Elastic-Job Spring Cloud Task    通信协议对比  RPC vs REST 服务提供方与调用方接口依赖方式太强 服务对平台敏感，难以简单服务  微服务拆分 服务化拆分  第一阶段的主要目标是快速开发和验证想法 进一步增加更多的新特性来吸引更多的目标用户 同时进行开发的人员超过10人，这个时候就该考虑服务化拆分了  不适合拆分的情况  小团队，技术基础较薄弱 流量不够，压力小，业务变化也不大 对延迟很敏感的低延迟高并发系统  拆分方式  纵向拆分，按照业务维度拆分 横向拆分，按照公共领域拆分 结合业务综合分析  服务扩展  x轴-水平复制，作为整体复制多个系统，重新部署几套，加一个负载均衡器 y轴-功能解耦，微服务拆解 z轴-数据分区，拆分数据库  自动按需扩展  根据CPU负载程度、特定时间（比如周末）、消息中间件的队列长度、业务具体规则、预测等来决定是否扩展 自动分配了一个新的服务实例，提高可用性 提高了可伸缩性（双11之后，自动减少了服务器） 具有最佳使用率，节约成本  微服务重要模块  服务描述 注册服务中心 服务框架 负载均衡 熔断和降级，兜底策略 网关：统一转换，校验，过滤器  " />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://rexhub.gitee.io/posts/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" /><meta property="og:image" content="https://cdn.rexweb.xyz/img/20210820141535.jpg"/><meta property="article:section" content="posts" />
+<meta property="og:url" content="https://rexhub.gitee.io/posts/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" /><meta property="og:image" content="https://cdn.rexhub.xyz/img/20210820141535.jpg"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2021-08-20T13:54:35&#43;08:00" />
 <meta property="article:modified_time" content="2021-08-20T13:54:35&#43;08:00" /><meta property="og:site_name" content="RexHub" />
 <meta property="og:see_also" content="https://rexhub.gitee.io/posts/%E5%88%86%E5%B8%83%E5%BC%8F/" />
 
 <meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="https://cdn.rexweb.xyz/img/20210820141535.jpg"/>
+<meta name="twitter:image" content="https://cdn.rexhub.xyz/img/20210820141535.jpg"/>
 
 <meta name="twitter:title" content="微服务"/>
 <meta name="twitter:description" content="微服务 微服务概述 单体应用的痛点  部署效率低下 团队写作开发成本高 系统高可用性差  服务化  把传统的单机应用中的本地方法调用，改造成通过RPC、HTTP产生的远程方法调用 把模块从单体应用中拆分出来，独立成一个服务部署 用户模块就可以独立开发、测试、上线和运维，可以交由专门的团队来做，与主模块不耦合  从单体到微服务架构 微服务   一种架构风格 开发单个应用作为一系列小型服务的套件，其中每个服务都运行在自己的进程中，并且通过轻量级的机制实现彼此间的通信，这通常是HTTP资源API 这些服务是围绕着业务功能构建的，并且可以通过完全自动化的部署机制进行独立部署 这些服务的集中式管理做到了最小化（例如docker相关技术），每一种服务都可以通过不同的变成语言进行编写，并且可以使用不同的数据存储技术   微服务的特点   组件以服务形式来提供
@@ -65,7 +65,7 @@
       "position":  1 ,
       "name": "Posts",
       "item": "https://rexhub.gitee.io/posts/"
-    }, 
+    },
     {
       "@type": "ListItem",
       "position":  2 ,
@@ -103,7 +103,7 @@
     "name": "RexHub",
     "logo": {
       "@type": "ImageObject",
-      "url": "http://cdn.rexweb.xyz/img/20210821105340.png"
+      "url": "http://cdn.rexhub.xyz/img/20210821105340.png"
     }
   }
 }
@@ -163,7 +163,7 @@
     <nav class="nav">
         <div class="logo">
             <a href="https://rexhub.gitee.io/" accesskey="h" title="Home (Alt + H)">
-                <img src="http://cdn.rexweb.xyz/img/20210821105340.png" alt="logo" aria-label="logo"
+                <img src="http://cdn.rexhub.xyz/img/20210821105340.png" alt="logo" aria-label="logo"
                     height="35">Home</a>
             <span class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)">
@@ -230,10 +230,10 @@
         <div class="inner"><ul>
                 <li>
                     <a href="#%e5%be%ae%e6%9c%8d%e5%8a%a1" aria-label="微服务">微服务</a><ul>
-                        
+
                 <li>
                     <a href="#%e5%be%ae%e6%9c%8d%e5%8a%a1%e6%a6%82%e8%bf%b0" aria-label="微服务概述">微服务概述</a><ul>
-                        
+
                 <li>
                     <a href="#%e5%8d%95%e4%bd%93%e5%ba%94%e7%94%a8%e7%9a%84%e7%97%9b%e7%82%b9" aria-label="单体应用的痛点">单体应用的痛点</a></li>
                 <li>
@@ -245,7 +245,7 @@
                 </li>
                 <li>
                     <a href="#%e5%be%ae%e6%9c%8d%e5%8a%a1%e7%9a%84%e7%89%b9%e7%82%b9" aria-label="微服务的特点">微服务的特点</a><ul>
-                        
+
                 <li>
                     <a href="#%e5%be%ae%e6%9c%8d%e5%8a%a1%e4%bc%98%e7%82%b9" aria-label="微服务优点">微服务优点</a></li>
                 <li>
@@ -253,13 +253,13 @@
                 </li>
                 <li>
                     <a href="#%e5%be%ae%e6%9c%8d%e5%8a%a1%e6%9c%89%e4%b8%a4%e5%a4%a7%e9%97%a8%e6%b4%be" aria-label="微服务有两大门派">微服务有两大门派</a><ul>
-                        
+
                 <li>
                     <a href="#%e9%80%9a%e4%bf%a1%e5%8d%8f%e8%ae%ae%e5%af%b9%e6%af%94" aria-label="通信协议对比">通信协议对比</a></li></ul>
                 </li>
                 <li>
                     <a href="#%e5%be%ae%e6%9c%8d%e5%8a%a1%e6%8b%86%e5%88%86" aria-label="微服务拆分">微服务拆分</a><ul>
-                        
+
                 <li>
                     <a href="#%e6%9c%8d%e5%8a%a1%e5%8c%96%e6%8b%86%e5%88%86" aria-label="服务化拆分">服务化拆分</a></li>
                 <li>
@@ -269,7 +269,7 @@
                 </li>
                 <li>
                     <a href="#%e6%9c%8d%e5%8a%a1%e6%89%a9%e5%b1%95" aria-label="服务扩展">服务扩展</a><ul>
-                        
+
                 <li>
                     <a href="#%e8%87%aa%e5%8a%a8%e6%8c%89%e9%9c%80%e6%89%a9%e5%b1%95" aria-label="自动按需扩展">自动按需扩展</a></li>
                 <li>
@@ -627,12 +627,12 @@
         if (container.classList.contains("highlight")) {
             container.appendChild(copybutton);
         } else if (container.parentNode.firstChild == container) {
-            
+
         } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
-            
+
             codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
         } else {
-            
+
             codeblock.parentNode.appendChild(copybutton);
         }
     });

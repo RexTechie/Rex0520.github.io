@@ -11,7 +11,7 @@
 <meta name="author" content="Rex">
 <link rel="canonical" href="https://rex0520.github.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/" />
 <link crossorigin="anonymous" href="/assets/css/stylesheet.min.css" rel="preload stylesheet" as="style">
-<link rel="preload" href="http://cdn.rexweb.xyz/img/20210821105340.png" as="image">
+<link rel="preload" href="http://cdn.rexhub.xyz/img/20210821105340.png" as="image">
 <link rel="icon" href="https://rex0520.github.io/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="https://rex0520.github.io/favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="https://rex0520.github.io/favicon-32x32.png">
@@ -19,7 +19,7 @@
 <link rel="mask-icon" href="https://rex0520.github.io/%3Clink%20/%20abs%20url%3E">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<meta name="generator" content="Hugo 0.87.0" />
+<meta name="generator" content="Hugo 0.100.2" />
 <link rel="alternate" type="application/rss+xml" href="https://rex0520.github.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/index.xml">
 <noscript>
     <style>
@@ -60,10 +60,10 @@
 </noscript><meta property="og:title" content="音视频" />
 <meta property="og:description" content="Rex的个人博客" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://rex0520.github.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/" /><meta property="og:image" content="https://cdn.rexweb.xyz/img/20210820141535.jpg"/><meta property="og:site_name" content="RexHub" />
+<meta property="og:url" content="https://rex0520.github.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/" /><meta property="og:image" content="https://cdn.rexhub.xyz/img/20210820141535.jpg"/><meta property="og:site_name" content="RexHub" />
 
 <meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="https://cdn.rexweb.xyz/img/20210820141535.jpg"/>
+<meta name="twitter:image" content="https://cdn.rexhub.xyz/img/20210820141535.jpg"/>
 
 <meta name="twitter:title" content="音视频"/>
 <meta name="twitter:description" content="Rex的个人博客"/>
@@ -86,7 +86,7 @@
     <nav class="nav">
         <div class="logo">
             <a href="https://rex0520.github.io/" accesskey="h" title="Home (Alt + H)">
-                <img src="http://cdn.rexweb.xyz/img/20210821105340.png" alt="logo" aria-label="logo"
+                <img src="http://cdn.rexhub.xyz/img/20210821105340.png" alt="logo" aria-label="logo"
                     height="35">Home</a>
             <span class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)">
@@ -150,10 +150,10 @@
     </h2>
   </header>
   <section class="entry-content">
-    <p>腾讯视频会议的使用-TRTC技术 概述：  TRTC全称(Tencent Real-Time Communication) 即腾讯实时音视频服务，定位是解决实时通信的云服务，主要功能就是通过互联网，接受、处理、转发和保存大流量的音视频流数据，主要用于直播、视频会议场景。本文简略说明TRTC技术的使用，案例基于前端-vue，后端-java的springboot框架，具体的内容参考一下文档
- 后端的准备  首先前端调用TRTC服务需要创建TrtcClient对象来管理，创建TrtcClient需要用到三个参数，分别是AppID，用户UserId，还有用户签名(UserSig)。而这里的用户签名是用Trtc的AppID和密钥，任意开发者查看HTML都能看到这些信息，所以生成用户签名的工作不能在前端完成，正确的做法应该是在后端项目生成用户签名
- 用户签名(UserSig) （UserSig）是腾讯云设计的一种安全保护签名，使用HMAC SHA256加密算法计算得出。
-//UserSig 计算公式，其中 secretkey 为计算 usersig 用的加密密钥  usersig = hmacsha256(secretkey, (userid &#43; sdkappid &#43; currtime &#43; expire &#43; base64(userid &#43; sdkappid &#43; currtime &#43; expire))) 关于userSig的各种语言生成方法在腾讯云的官方文档都有介绍
+    <p>腾讯视频会议的使用-TRTC技术 概述： TRTC全称(Tencent Real-Time Communication) 即腾讯实时音视频服务，定位是解决实时通信的云服务，主要功能就是通过互联网，接受、处理、转发和保存大流量的音视频流数据，主要用于直播、视频会议场景。本文简略说明TRTC技术的使用，案例基于前端-vue，后端-java的springboot框架，具体的内容参考一下文档
+后端的准备 首先前端调用TRTC服务需要创建TrtcClient对象来管理，创建TrtcClient需要用到三个参数，分别是AppID，用户UserId，还有用户签名(UserSig)。而这里的用户签名是用Trtc的AppID和密钥，任意开发者查看HTML都能看到这些信息，所以生成用户签名的工作不能在前端完成，正确的做法应该是在后端项目生成用户签名
+用户签名(UserSig) （UserSig）是腾讯云设计的一种安全保护签名，使用HMAC SHA256加密算法计算得出。
+//UserSig 计算公式，其中 secretkey 为计算 usersig 用的加密密钥 usersig = hmacsha256(secretkey, (userid &#43; sdkappid &#43; currtime &#43; expire &#43; base64(userid &#43; sdkappid &#43; currtime &#43; expire))) 关于userSig的各种语言生成方法在腾讯云的官方文档都有介绍
 这边我使用的springboot框架，所以用是java生成userSig的方式，需要在项目中创建一个TrtcUtil.java
 package com.example.emos.api.config.tencet; import cn.hutool.core.util.StrUtil; import cn.hutool.json.JSONObject; import org.bson.internal.Base64; import org.springframework.beans.factory.annotation.Value; import org.springframework.stereotype.Component; import javax.crypto.Mac; import javax.crypto.spec.SecretKeySpec; import java.nio.charset.StandardCharsets; import java.security.InvalidKeyException; import java.security.NoSuchAlgorithmException; import java.util.Arrays; import java.util.zip.Deflater; /** * Description: 腾讯TRTC工具类 * * @author Rex * @date 2021-09-29 10:48 */ import java....</p>
   </section>

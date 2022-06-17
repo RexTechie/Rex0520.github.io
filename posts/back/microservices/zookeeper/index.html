@@ -11,7 +11,7 @@
 <meta name="author" content="Rex">
 <link rel="canonical" href="https://rex0520.github.io/posts/back/microservices/zookeeper/" />
 <link crossorigin="anonymous" href="/assets/css/stylesheet.min.css" rel="preload stylesheet" as="style">
-<link rel="preload" href="http://cdn.rexweb.xyz/img/20210821105340.png" as="image">
+<link rel="preload" href="http://cdn.rexhub.xyz/img/20210821105340.png" as="image">
 <script defer crossorigin="anonymous" src="/assets/js/highlight.min.js" onload="hljs.initHighlightingOnLoad();"></script>
 <link rel="icon" href="https://rex0520.github.io/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="https://rex0520.github.io/favicon-16x16.png">
@@ -60,12 +60,12 @@
 </noscript><meta property="og:title" content="Zookeeper" />
 <meta property="og:description" content="Zookeeper" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://rex0520.github.io/posts/back/microservices/zookeeper/" /><meta property="og:image" content="https://cdn.rexweb.xyz/img/20210820141535.jpg"/><meta property="article:section" content="posts" />
+<meta property="og:url" content="https://rex0520.github.io/posts/back/microservices/zookeeper/" /><meta property="og:image" content="https://cdn.rexhub.xyz/img/20210820141535.jpg"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2021-08-21T00:00:00&#43;00:00" />
 <meta property="article:modified_time" content="2021-08-21T00:00:00&#43;00:00" /><meta property="og:site_name" content="RexHub" />
 
 <meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="https://cdn.rexweb.xyz/img/20210820141535.jpg"/>
+<meta name="twitter:image" content="https://cdn.rexhub.xyz/img/20210820141535.jpg"/>
 
 <meta name="twitter:title" content="Zookeeper"/>
 <meta name="twitter:description" content="Zookeeper"/>
@@ -81,7 +81,7 @@
       "position":  1 ,
       "name": "Posts",
       "item": "https://rex0520.github.io/posts/"
-    }, 
+    },
     {
       "@type": "ListItem",
       "position":  2 ,
@@ -142,7 +142,7 @@
     <nav class="nav">
         <div class="logo">
             <a href="https://rex0520.github.io/" accesskey="h" title="Home (Alt + H)">
-                <img src="http://cdn.rexweb.xyz/img/20210821105340.png" alt="logo" aria-label="logo"
+                <img src="http://cdn.rexhub.xyz/img/20210821105340.png" alt="logo" aria-label="logo"
                     height="35">Home</a>
             <span class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)">
@@ -218,7 +218,7 @@
         <div class="inner"><ul>
                 <li>
                     <a href="#zookeeper" aria-label="Zookeeper">Zookeeper</a><ul>
-                        
+
                 <li>
                     <a href="#%e5%ae%9a%e4%b9%89" aria-label="定义：">定义：</a></li>
                 <li>
@@ -231,7 +231,7 @@
                     <a href="#%e4%bd%9c%e7%94%a8" aria-label="作用">作用</a></li>
                 <li>
                     <a href="#%e8%8a%82%e7%82%b9znode" aria-label="节点znode">节点znode</a><ul>
-                        
+
                 <li>
                     <a href="#%e6%a8%a1%e5%9e%8b-%e6%a0%91%e7%bb%93%e6%9e%84" aria-label="模型-树结构">模型-树结构</a></li>
                 <li>
@@ -247,7 +247,7 @@
                     <a href="#watcher%e6%9c%ba%e5%88%b6" aria-label="Watcher机制">Watcher机制</a></li>
                 <li>
                     <a href="#acl" aria-label="ACL">ACL</a><ul>
-                        
+
                 <li>
                     <a href="#schema" aria-label="Schema">Schema</a></li>
                 <li>
@@ -257,10 +257,10 @@
                 </li>
                 <li>
                     <a href="#%e4%bb%a3%e7%a0%81" aria-label="代码">代码</a><ul>
-                        
+
                 <li>
                     <a href="#java%e5%8e%9f%e7%94%9f" aria-label="java原生">java原生</a><ul>
-                        
+
                 <li>
                     <a href="#%e7%bc%ba%e7%82%b9" aria-label="缺点">缺点</a></li></ul>
                 </li>
@@ -291,7 +291,7 @@
 <li>及时性：在一定的时间段（可接受的时间段）内能从服务器上读到最新的数据状态</li>
 </ul>
 <h2 id="架构图集群工作过程">架构图、集群、工作过程<a hidden class="anchor" aria-hidden="true" href="#架构图集群工作过程">#</a></h2>
-<p><img loading="lazy" src="http://cdn.rexweb.xyz/img/20210821223348.png" alt="image-20210721215941595"  />
+<p><img loading="lazy" src="http://cdn.rexhub.xyz/img/20210821223348.png" alt="image-20210721215941595"  />
 </p>
 <h2 id="zookeeper和cap的关系">Zookeeper和CAP的关系<a hidden class="anchor" aria-hidden="true" href="#zookeeper和cap的关系">#</a></h2>
 <ul>
@@ -784,7 +784,7 @@ log4j.appender.stdout.layout.ConversionPattern=%d{HH:mm:ss} %p %c{2}: %m%n
 
 </article>
     </main>
-    
+
 <footer class="footer">
     <span>&copy; 2021 <a href="https://rex0520.github.io/">Rex</a></span>
     <span>
@@ -888,12 +888,12 @@ log4j.appender.stdout.layout.ConversionPattern=%d{HH:mm:ss} %p %c{2}: %m%n
         if (container.classList.contains("highlight")) {
             container.appendChild(copybutton);
         } else if (container.parentNode.firstChild == container) {
-            
+
         } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
-            
+
             codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
         } else {
-            
+
             codeblock.parentNode.appendChild(copybutton);
         }
     });

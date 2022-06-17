@@ -11,7 +11,7 @@
 <meta name="author" content="Rex">
 <link rel="canonical" href="https://rex0520.github.io/posts/back/java/microservices/docker%E5%9F%BA%E7%A1%80/" />
 <link crossorigin="anonymous" href="/assets/css/stylesheet.min.css" rel="preload stylesheet" as="style">
-<link rel="preload" href="http://cdn.rexweb.xyz/img/20210821105340.png" as="image">
+<link rel="preload" href="http://cdn.rexhub.xyz/img/20210821105340.png" as="image">
 <script defer crossorigin="anonymous" src="/assets/js/highlight.min.js" onload="hljs.initHighlightingOnLoad();"></script>
 <link rel="icon" href="https://rex0520.github.io/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="https://rex0520.github.io/favicon-16x16.png">
@@ -20,7 +20,7 @@
 <link rel="mask-icon" href="https://rex0520.github.io/%3Clink%20/%20abs%20url%3E">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<meta name="generator" content="Hugo 0.87.0" />
+<meta name="generator" content="Hugo 0.100.2" />
 <noscript>
     <style>
         #theme-toggle,
@@ -60,12 +60,12 @@
 </noscript><meta property="og:title" content="Docker基础" />
 <meta property="og:description" content="Docker基础" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://rex0520.github.io/posts/back/java/microservices/docker%E5%9F%BA%E7%A1%80/" /><meta property="og:image" content="https://cdn.rexweb.xyz/img/20210820141535.jpg"/><meta property="article:section" content="posts" />
+<meta property="og:url" content="https://rex0520.github.io/posts/back/java/microservices/docker%E5%9F%BA%E7%A1%80/" /><meta property="og:image" content="https://cdn.rexhub.xyz/img/20210820141535.jpg"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2021-06-25T00:00:00&#43;00:00" />
 <meta property="article:modified_time" content="2021-06-25T00:00:00&#43;00:00" /><meta property="og:site_name" content="RexHub" />
 
 <meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="https://cdn.rexweb.xyz/img/20210820141535.jpg"/>
+<meta name="twitter:image" content="https://cdn.rexhub.xyz/img/20210820141535.jpg"/>
 
 <meta name="twitter:title" content="Docker基础"/>
 <meta name="twitter:description" content="Docker基础"/>
@@ -101,8 +101,8 @@
   "keywords": [
     "微服务"
   ],
-  "articleBody": "Docker 概念  Docker是一个用来装程序及其环境的容器,属于Linux容器的 一种封装,提供简单易用的容器使用接口。它是目前最流行的 Linux容器解决方案。\n 痛点  环境配置 虚拟机  资源占用多 冗余步骤多 启动时间慢   Docker的基础 — Linux容器  启动快 占用资源少 体积小    用途  提供统一的环境 提供快速拓展、弹性伸缩的云服务 防止其他用户的进程把服务器资源占用过多  特点   标准化\n 运输方式（把程序和环境从一个机器运到另一个机器） 存储方式（程序和环境的存储） API接口（不需要Tomcat等应用的命令了，都标准化了）    灵活：即使是最复杂的应用也可以集装箱化\n  轻量级：容器利用并共享主机内核\n  便携式：可以在本地构建\n  Docker的组成、架构、重要概念 images（镜像）:  存储：联合文件系统，UnionFS    Container（容器）：  镜像类似于Java中的类，而容器就是实例 容器的这一层是可以修改的，而镜像是不可以修改的 同一个镜像可以生成多个容器独立运行，而他们之间没有任何的干扰  Repository（仓库）：   官方仓库\n  阿里云仓库\n  网易云仓库\n  时速云\n  DaoCloud\n  共有 vs 私有\n  client和daemon  client提供给用户一个终端，用户输入Docker提供的命令来管理本地或远程的服务 daemon：服务端守护进程，接受client发送的命令并执行相应的操作  Docker的网络模式  Bridge 桥接：独立（网卡独立、路由独立、iptable规则独立）的网络，与主机桥接 Host 主机：不是独立的网络，与主机使用同一个网络 None 没有网络 端口映射技术  制作自己的Docker容器，dockerfile实战   dockerfile作用：文本文件，用来配置镜像，docker根据这个来生成对应的镜像文件\n  dockerfile的好处：\n 便于版本控制 便于维护环境 便于新人初步了解程序    写自己的dockerfile\n  FROMalpine:latest # alpine--极小型的Linux环境，表示这个镜像基于这个系统MAINTAINERimooc # 描述这个镜像由谁来维护CMD echo 'hello my dockerfile' # 根据自己的业务需求来写    常用命令 docker images # 查询当前镜像列表 docker pull image # 拉取镜像到本地 docker run images image # 前台运行 docker run -d image # 后台运行 d表示detech docker ps # 查看当前后台运行的容器 docker exec -it status bash # -i代表容器输入有效 -t分配一个终端 docker stop status # 关闭容器 docker run -p 8080:80 # 本机8080端口映射到容器的80端口 -p自己定义 -P随机分配主机端口 netstat -na|grep 8080 # 查询端口状态 docker build -t hello_docker . #编译当前的Dockerfile文件，-t指定镜像名字 systemctl stop docker # 停止docker服务 ",
-  "wordCount" : "138",
+  "articleBody": "Docker 概念 Docker是一个用来装程序及其环境的容器,属于Linux容器的 一种封装,提供简单易用的容器使用接口。它是目前最流行的 Linux容器解决方案。\n痛点 环境配置 虚拟机 资源占用多 冗余步骤多 启动时间慢 Docker的基础 — Linux容器 启动快 占用资源少 体积小 用途 提供统一的环境 提供快速拓展、弹性伸缩的云服务 防止其他用户的进程把服务器资源占用过多 特点 标准化\n运输方式（把程序和环境从一个机器运到另一个机器） 存储方式（程序和环境的存储） API接口（不需要Tomcat等应用的命令了，都标准化了） 灵活：即使是最复杂的应用也可以集装箱化\n轻量级：容器利用并共享主机内核\n便携式：可以在本地构建\nDocker的组成、架构、重要概念 images（镜像）: 存储：联合文件系统，UnionFS Container（容器）： 镜像类似于Java中的类，而容器就是实例 容器的这一层是可以修改的，而镜像是不可以修改的 同一个镜像可以生成多个容器独立运行，而他们之间没有任何的干扰 Repository（仓库）： 官方仓库\n阿里云仓库\n网易云仓库\n时速云\nDaoCloud\n共有 vs 私有\nclient和daemon client提供给用户一个终端，用户输入Docker提供的命令来管理本地或远程的服务 daemon：服务端守护进程，接受client发送的命令并执行相应的操作 Docker的网络模式 Bridge 桥接：独立（网卡独立、路由独立、iptable规则独立）的网络，与主机桥接 Host 主机：不是独立的网络，与主机使用同一个网络 None 没有网络 端口映射技术 制作自己的Docker容器，dockerfile实战 dockerfile作用：文本文件，用来配置镜像，docker根据这个来生成对应的镜像文件\ndockerfile的好处：\n便于版本控制 便于维护环境 便于新人初步了解程序 写自己的dockerfile\nFROM alpine:latest # alpine--极小型的Linux环境，表示这个镜像基于这个系统 MAINTAINER imooc # 描述这个镜像由谁来维护 CMD echo 'hello my dockerfile' # 根据自己的业务需求来写 常用命令 docker images # 查询当前镜像列表 docker pull image # 拉取镜像到本地 docker run images image # 前台运行 docker run -d image # 后台运行 d表示detech docker ps # 查看当前后台运行的容器 docker exec -it status bash # -i代表容器输入有效 -t分配一个终端 docker stop status # 关闭容器 docker run -p 8080:80 # 本机8080端口映射到容器的80端口 -p自己定义 -P随机分配主机端口 netstat -na|grep 8080 # 查询端口状态 docker build -t hello_docker . #编译当前的Dockerfile文件，-t指定镜像名字 systemctl stop docker # 停止docker服务 ",
+  "wordCount" : "142",
   "inLanguage": "en",
   "datePublished": "2021-06-25T00:00:00Z",
   "dateModified": "2021-06-25T00:00:00Z",
@@ -142,7 +142,7 @@
     <nav class="nav">
         <div class="logo">
             <a href="https://rex0520.github.io/" accesskey="h" title="Home (Alt + H)">
-                <img src="http://cdn.rexweb.xyz/img/20210821105340.png" alt="logo" aria-label="logo"
+                <img src="http://cdn.rexhub.xyz/img/20210821105340.png" alt="logo" aria-label="logo"
                     height="35">Home</a>
             <span class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)">
@@ -372,26 +372,26 @@ Linux容器解决方案。</p>
 <p>写自己的dockerfile</p>
 <ul>
 <li>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-dockerfile" data-lang="dockerfile"><span class="k">FROM</span><span class="s"> alpine:latest  # alpine--极小型的Linux环境，表示这个镜像基于这个系统</span><span class="err">
-</span><span class="err"></span><span class="k">MAINTAINER</span><span class="s"> imooc # 描述这个镜像由谁来维护</span><span class="err">
-</span><span class="err"></span><span class="k">CMD</span> <span class="nb">echo</span> <span class="s1">&#39;hello my dockerfile&#39;</span> <span class="c1"># 根据自己的业务需求来写</span><span class="err">
-</span></code></pre></div></li>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-dockerfile" data-lang="dockerfile"><span class="line"><span class="cl"><span class="k">FROM</span><span class="s"> alpine:latest  # alpine--极小型的Linux环境，表示这个镜像基于这个系统</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">MAINTAINER</span><span class="s"> imooc # 描述这个镜像由谁来维护</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">CMD</span> <span class="nb">echo</span> <span class="s1">&#39;hello my dockerfile&#39;</span> <span class="c1"># 根据自己的业务需求来写</span><span class="err">
+</span></span></span></code></pre></div></li>
 </ul>
 </li>
 </ul>
 <h2 id="常用命令">常用命令<a hidden class="anchor" aria-hidden="true" href="#常用命令">#</a></h2>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">docker images <span class="c1"># 查询当前镜像列表</span>
-docker pull image <span class="c1"># 拉取镜像到本地</span>
-docker run images image <span class="c1"># 前台运行</span>
-docker run -d image <span class="c1"># 后台运行 d表示detech</span>
-docker ps <span class="c1"># 查看当前后台运行的容器</span>
-docker <span class="nb">exec</span> -it status bash <span class="c1"># -i代表容器输入有效 -t分配一个终端</span>
-docker stop status <span class="c1"># 关闭容器</span>
-docker run -p 8080:80 <span class="c1"># 本机8080端口映射到容器的80端口 -p自己定义 -P随机分配主机端口</span>
-netstat -na<span class="p">|</span>grep <span class="m">8080</span> <span class="c1"># 查询端口状态</span>
-docker build -t hello_docker . <span class="c1">#编译当前的Dockerfile文件，-t指定镜像名字</span>
-systemctl stop docker <span class="c1"># 停止docker服务</span>
-</code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">docker images <span class="c1"># 查询当前镜像列表</span>
+</span></span><span class="line"><span class="cl">docker pull image <span class="c1"># 拉取镜像到本地</span>
+</span></span><span class="line"><span class="cl">docker run images image <span class="c1"># 前台运行</span>
+</span></span><span class="line"><span class="cl">docker run -d image <span class="c1"># 后台运行 d表示detech</span>
+</span></span><span class="line"><span class="cl">docker ps <span class="c1"># 查看当前后台运行的容器</span>
+</span></span><span class="line"><span class="cl">docker <span class="nb">exec</span> -it status bash <span class="c1"># -i代表容器输入有效 -t分配一个终端</span>
+</span></span><span class="line"><span class="cl">docker stop status <span class="c1"># 关闭容器</span>
+</span></span><span class="line"><span class="cl">docker run -p 8080:80 <span class="c1"># 本机8080端口映射到容器的80端口 -p自己定义 -P随机分配主机端口</span>
+</span></span><span class="line"><span class="cl">netstat -na<span class="p">|</span>grep <span class="m">8080</span> <span class="c1"># 查询端口状态</span>
+</span></span><span class="line"><span class="cl">docker build -t hello_docker . <span class="c1">#编译当前的Dockerfile文件，-t指定镜像名字</span>
+</span></span><span class="line"><span class="cl">systemctl stop docker <span class="c1"># 停止docker服务</span>
+</span></span></code></pre></div>
 
   </div>
 

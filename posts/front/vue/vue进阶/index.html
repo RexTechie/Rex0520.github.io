@@ -11,7 +11,7 @@
 <meta name="author" content="Rex">
 <link rel="canonical" href="https://rex0520.github.io/posts/front/vue/vue%E8%BF%9B%E9%98%B6/" />
 <link crossorigin="anonymous" href="/assets/css/stylesheet.min.css" rel="preload stylesheet" as="style">
-<link rel="preload" href="http://cdn.rexweb.xyz/img/20210821105340.png" as="image">
+<link rel="preload" href="http://cdn.rexhub.xyz/img/20210821105340.png" as="image">
 <script defer crossorigin="anonymous" src="/assets/js/highlight.min.js" onload="hljs.initHighlightingOnLoad();"></script>
 <link rel="icon" href="https://rex0520.github.io/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="https://rex0520.github.io/favicon-16x16.png">
@@ -20,7 +20,7 @@
 <link rel="mask-icon" href="https://rex0520.github.io/%3Clink%20/%20abs%20url%3E">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<meta name="generator" content="Hugo 0.87.0" />
+<meta name="generator" content="Hugo 0.100.2" />
 <noscript>
     <style>
         #theme-toggle,
@@ -60,12 +60,12 @@
 </noscript><meta property="og:title" content="Vue进阶" />
 <meta property="og:description" content="Vue进阶" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://rex0520.github.io/posts/front/vue/vue%E8%BF%9B%E9%98%B6/" /><meta property="og:image" content="https://cdn.rexweb.xyz/img/20210820141535.jpg"/><meta property="article:section" content="posts" />
+<meta property="og:url" content="https://rex0520.github.io/posts/front/vue/vue%E8%BF%9B%E9%98%B6/" /><meta property="og:image" content="https://cdn.rexhub.xyz/img/20210820141535.jpg"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2021-03-25T00:00:00&#43;00:00" />
 <meta property="article:modified_time" content="2021-03-25T00:00:00&#43;00:00" /><meta property="og:site_name" content="RexHub" />
 
 <meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="https://cdn.rexweb.xyz/img/20210820141535.jpg"/>
+<meta name="twitter:image" content="https://cdn.rexhub.xyz/img/20210820141535.jpg"/>
 
 <meta name="twitter:title" content="Vue进阶"/>
 <meta name="twitter:description" content="Vue进阶"/>
@@ -101,7 +101,7 @@
   "keywords": [
     "Vue"
   ],
-  "articleBody": "Vue进阶 Vue路由 1.初始路由 **路由**：表示一种对应关系，某些事物的一一对应的关系 **后端路由**：后端路由是由服务器端进行实现，并完成资源的分发（url与资源/数据的对应关系） **前端路由**：前端路由是依靠hash值（锚点链接）的变化进行实现页面内容的切换（锚点与组件之间的关系）  2.vue-router   vue-router工作原理\n  它是一个Vue.js官方提供的路由管理器，是一个功能更加强大的前端路由器，可以实现前端界面内容切换\n  SPA：Single Page Application，单页面应用，整个网站只有一个页面\n  SPA推荐使用vue-router，实现界面内容的切换\n  vue-router提供两种模式\n  hash模式：hash又叫锚点：比如#/login，根据hash改变，来实现界面切换\n  history模式：history模式不会出现#号比较美观，利用history.pushState()来完成URL的跳转而且无须重写加载页面\n  示例代码\nconst router = new VueRouter({ mode: 'history', router: [...] })   vue-router默认为hash模式，需要通过mode来改变模式\n        vue-router基本使用\n  引入vue-router.js\n  定义路由链接和路由视图\n代码示例：\ndiv id=\"app\" router-link to=\"/login\" tag=\"span\"前往登录router-link router-viewrouter-view div router-link是路由链接，to代表链接地址，tag代表渲染的标签\nrouter-view是路由视图，用于显示路由链接对应的组件\n  定义路由匹配规则\n代码示例\nvar login = { template: \"登录组件\" } const router = new VueRouter({ routes: [ { path: '/login', component: login } ] }); 在实例化VueRouter的时候传入routes\n通过routes定义路由匹配规则，可以定义多个\n匹配规则是一个对象，key是路由链接path，value是组件component\n  注册路由\n代码示例\nvar vm = new Vue({ el: '#app', router: router }); 在实例化Vue的时候，通过选项router来注册路由\n    路由对象属性\n  this.$router表示全局路由器对象，就是通过router选项注册的VueRouter路由管理器对象\n  this.$route代表当前路由对象，而已获取当前路由相关信息\n  路由对象属性\n   属性名 类型 说明     $route.path String 对应当前路由的路径   $route.query Object 一个{key:value}对象，表示URL查询参数   $route.params Object 一个{key:value}对象，路由跳转携带参数   $route.hash String 在history模式下获取当前路由hash值（带#），如果没有hash值，则为空字符串   $route.fullPath String 完成解析后的URL，包含查询参数和hash的完整路径   $route.name String 当前路由的名称   $route.matched Array 路由记录，当前路由下路由声明的所有信息，从父路由（如果有）到当前路由为止   $route.redirectedFrom String 如果存在重定向，即为重定向来源的路由        3.用户登录注册案例 4.动态路由   什么是动态路由\n可以匹配带有不同参数的url的路由规则就是动态路由\n  query方式传参\n  通过？传参\n  传参\n  示例\ndiv id=\"app\" router-link to=\"/user?id=1\u0026name=Rex\"登录router-link router-viewrouter-view div template id=\"user\" h1 id: {{this.$route.query.id}} name: {{this.$route.query.name}} h1 template   传参语法：?参数名1=参数值1\u0026参数名2=参数值2\n    定义路由\nconst router = new VueRouter({ routes: [{ path: '/user', component: user }] })   获取参数\n{{this.$route.query.参数名}}\n    params方式传参\n  通过url本身传递\n  传参\n  示例代码\ndiv id=\"app\" router-link to=\"/user/10/admin\"登录router-link router-viewrouter-view div template id=\"user\" h1 id:{{this.$route.params.id}} name:{{this.$route.params.name}} h1 template   传参语法：/参数值1/参数值2，这里只需要传递值即可\n    定义动态路由\n  实例代码\nconst router = new VueRouter({ routes: [ { path: \"/user/:id/:name\", component: user } ] })   动态路由语法，:参数名，以冒号开头就代表动态匹配\n  :id就会匹配10，:name就会匹配admin\n    获取参数\n{{$route.params.参数名}}\n    5. 嵌套路由   什么是嵌套路由\n  界面中如果存在嵌套组件,那么就需要组件对应的路由也是嵌套路由\n  定义嵌套路由:\n  通过在路由对象中定义children属性,定义嵌套的子路由\n  示例代码\nvar router = new VueRouter({ routes:[{ path: '/home', component: home, children:[ {path: 'login', component: login}, {path: 'register', component: register} ] }] })     使用嵌套路由\n  示例代码:\nrouter-link to=\"/父路由的地址/要去的子路由\"router-link   子路由的url是:父path/子path\n      6. 命名路由   如果路由的path比较长,使用的时候比较麻烦,这时候可以给路由起个名字,用的时候通过名字使用\n  定义命名路由\n  示例代码\n​\nconst router = new VueRouter({ routes: [ { path: '/user/:id', name: 'user', component: user } ] })   在定义路由对象时,通过name来给路由起名字\n    使用命名路由\n  示例代码\nrouter-link :to=\"{name:'user', params: {id:123}}\"登录router-link   使用属性绑定,是因为to的值是一个js对象\n    7. 命名视图   给视图起名字,就是命名视图\n  在开发中想同时显示多个同级视图,这时候就需要使用命名视图\n  定义命名视图\n  示例代码\ndiv id=\"app\" router-viewrouter-view div class=\"container\" router-view name=\"left\"router-view router-view name=\"main\"router-view div div   通过name属性给router-view添加名字\n    路由规则使用命名视图\n  示例代码\nvar header = { template: 'header头部区域' } var sidebar = { template: 'sidebar测导航区域' } var mainbox = { template: 'mainBox主题区域' }   路由对象中通过components来使用多个视图\n    8. 编程式导航   router.push()\n  push:推,push方法可以实现url跳转\n  语法:\n  //先获取router实例 var router = new VueRouter() //字符串形式 router.push('user') //对象形式 router.push({path:'/login?url='+this.$route.path}) //命名路由 router.push({name:'user', params:{userId:123}}) //带查询参数/user?id=1 route.push({path:'user',queyr:{id:'1'}})   push可以传递一个字符串路径,也可以是对象\n  对象中可以是路径path,也可以是路由的名字\n    注意\n  在参数对象中,如果提供了path,params会被忽略,为了传参数,需要提供路由的name或者手写带有参数的路径\n  const userId = '123' router.push({name:'user', params:{userId}}) // /user/123 router.push({path:'/user/${userId}'})\t// /user/123 //这里的params不生效 router.push({path:'/user', params:{userId}})// /user       router.replace()\n  replace:替换,可以替换当前界面的url\n  语法\n//编程式 router.replace({path:'user'}) //声明式    与push的区别:push有history记录,replace没有\n    router.go()\n go:去,可以实现前进后退 go()方法,接受正数或负数,表示前进或后退 后退一个界面:$router.go(-1) 前进一个界面:$router.go(1)    Vuex状态管理 初始Vuex   Vuex是一套组件状态（数据）管理维护工具\n  使得Vue组件的状态更加容易维护\n  创建Vuex的store示例\n  const store = new Vuex.Store({ state:{}, mutations:{} })   使用Vuex就是使用store来对状态进行管理\n  Vuex通过store(存储来存储数据)，并且管理数据\n    Vuex的下载和安装   script引入文件\n  下载Vuex\n  引入\nscript src=\"../js/vuex.js\"script   使用\n  创建store\nconst store = new Vuex.Store({ state: { name: 'vuex.js直接引用' } }) 实例化Store的时候，可以传入state选项\nstate选项：状态选项，数据选项，用于定义要存储的数据\n  挂载store\nvar vm = new Vue({ el: '#app', store })   使用state数据\ndiv id=\"app\" p {{this.$store.state.name}} p div 获取state数据是一层一层的获取的\nthis中有store选项，所以：this.$store\nstore中有state，所以this.$store.state\nstate中有name，所以this.$store.state.name\n  使用计算属性\n  上边的方式，使用state数据，太麻烦了，每次都要this.$store.state.name\n  我们可以在计算属性中将state数据返回，相当于将state数据变为计算属性，这样在使用的时候就简单很多\n  定义计算属性\nvar vm = new Vue({ el: '#app', store, computed: { name() { return this.$store.state.name; } } })   使用\ndiv id=\"app\" p {{name}} p div     mapState辅助函数\n  当一个组件需要获取多个状态时，将这些状态都声明为计算属性有些麻烦，这时候可以使用mapState辅助函数来生成计算属性\n  使用mapState\nvar vm = new Vue({ el: '#app', store, computed: Vuex.mapState({ //key:计算属性的名字  //value:函数，将state数据返回  name: state = state.name }) })  mapState是Vuex提供的一个方法 mapState，是状态映射，理解为将state数据映射（转换）为计算属性 mapState接受一个对象，对象中可以映射多个数据 对象中的key是计算属性的名字，value是一个箭头函数，箭头函数有一个state参数然后直接将state的数据返回即可    使用数据\ndiv id=\"app\" p {{name}} p div         npm安装\n  需要船舰出来一个项目才可以导入npm安装的包\n 创建项目需要脚手架vue-cli npm install vue-cli –save    创建webpack模板的vue项目\n vue init webpack demo02 cd demo02    安装vuex\n npm install vuex@3.1.1 –save    定义store的数据\n  创建store\\index.js文件，用来导出store实例\n  import Vue from 'vue' import Vuex from 'Vuex' Vue.use(Vuex) export default new Vuex.Store({ state: {name: '正在使用Vuex'} }) 通过import导入npm安装的包\n通过Vue.use安装Vuex\nexport default将store导出，其他组件都可以使用\n    导入store\n  修改src\\main.js文件导入相关文件\n  import Vue from 'vue' import App from './App' import router from './router' import store from './store' Vue.config.productionTip = false  导入Vue，并且配置productionTip为false 导入根组件App 导入路由router 导入数据store      注册store\n  修改src\\main.js文件，在Vue实例中注册store\n  /*eslint-disable no new*/ new Vue({ el:'#app', router, components:{App}, template:'', store })  eslint-disable no-new：是关闭eslint语法校验 components:{App}:注册组件App template: ''使用组件App，App.vue中的#app的div el: ‘#app’, 这个是index.html中的div      修改App.vue\n  映射state数据\nscript import { mapState } from \"vuex\"; export default { name: \"App\", computed: mapState({ name: (state) = state.name, }), }; script   使用数据\ntemplate div id=\"app\" p{{ name }}p img src=\"./assets/logo.png\" / router-view / div template     运行项目 npm run dev\n    Vuex状态管理模式   单项数据流机制：在Vue中，组件的状态变化是通过Vue单向数据流的设计理念实现的。\n  单项数据流组成部分主要包括\n State：驱动应用的数据源 View：以声明方式将state映射到视图 Actions：响应在View上的用户输入导致状态变化     代码:\nnew Vue({ //State  data(){ return {count: 0} }, //View  template: '{{ count }}', //Actions  methods:{ increment(){ this.count++; } } })   Vuex的工作流程关系 actions、mutations和state的关系\n State数据render渲染到vue组件 用户在Vue组件中点击按钮，触发逻辑Actions Actions中通过commit触发修改数据逻辑Mutations Mutations修改的state，重新渲染到Vue组件  Vuex配置选项 1.mutations   mutations是一个对象，可以定义多个方法\n  mutations方法用来操作state数据（翻译：变化，理解为数据变化）\n  mutations方法接受state对象作为参数\n  在组件中通过store.commit(“mutations方法名”)来触发mutations方法执行\n  代码：\nconst store = new Vuex.Store({ state: { param: \"\" }, mutations: { reciver(state, param) { this.state.param = param; console.log(param); } } }) new Vue({ el: \"#app\", store: store, methods: { param() { this.$store.commit({ type: \"reciver\", name: \"我是传递的数据\" }) } }, })   2.actions   actions类似于mutations，不同之处在于actions是异步执行的（翻译：动作，理解为执行异步动作）\n  actions函数接受store对象，用于完成mutations提交\n  store的dispatch方法触发actions函数\n  代码\n  const store = new Vuex.Store({ state: { count: 0 }, //mutations：专门用来修改state的数据  mutations: { increment(state) { state.count++; } }, actions: { add(context) { setTimeout(() = { context.commit(\"increment\") }, 1000); } } })   context即为store实例\n  简写\nactions:{ add({commit}){ commit(\"increment\")\t}\t}     var vm = new Vue({ el: '#app', store, methods: { calc() { this.$store.dispatch(\"add\"); } }, }); store的dispatch方法，用于触发actions方法\n    3.getters   getters，类似于Vue实例的computed计算属性（翻译：获取者，获取计算之后的数据）\n  定义\nconst store = new Vuex.Store({ state: { todos: [{ id: 1, text: '列表1' }, { id: 2, text: '列表2' }], id: 0 }, mutations: { searchM(state, id) { state.id = id; } }, getters: { searchG: state = { return state.todos.filter( todo = (todo.id == state.id) ) } } }) getters是计算属性，计算属性其实是方法，只不过使用的时候是属性\n  使用\ndiv id=\"app\" h2列表查询h2 input type=\"text\" v-model=\"id\" button @click=\"search\"搜索button p搜索结果：{{this.$store.getters.searchG}}p ul li v-for=\"item in this.$store.state.todos\"{{item}}li ul div   4.modules   modules模块就是为了应对复杂的业务逻辑，将数据与操作数据的逻辑分模块处理\n  modules的配置选项：\n  与store数据参考中的参数是相同的\n  key:{\t//key表示模块名称  state,\t//初始数据  mutations,\t//状态提交，同步 \tactions,\t//状态分发，异步  getters,\t//计算属性  modules\t//模块 }   代码\nconst moduleA = { state: { nameA: 'A' } } const moduleB = { state: { nameB: 'B' } } const store = new Vuex.Store({ modules: { a: moduleA, b: moduleB } }); console.log(store.state.a); console.log(store.state.b);     5.plugins   用于给Vuex添加插件，插件本身为函数\n  函数接受参数store对象作为参数\n  代码\nconst myPlugin = store = { store.subscribe((mutation, state) = { // 每次mutation提交后调用，mutation格式{type, paylooad}  console.log(mutation.type, mutation.payload); }) } const store = new Vuex.Store({ mutations: { do(state) { console.log(state); } }, plugins: [myPlugin] }); var vm = new Vue({ el: '#app', store, }); store.commit('do', 'plugin') 插件函数中通过store实例对象的subscribe函数可以用来处理mutation\nsubscribe函数接受参数为mutation和state\n  作用：一般在项目中我们会使用plugin初始化一些数据\n  6.devtools  用来设置是否在devtools调试工具中应用Vuex 默认值为true，表示在启用，设为false表示停止使用  Vuex中的API 模块注册   store.registerModule()用于动态创建模块的接口\n  与modules选项作用类似，但是registerModule()更加灵活\n  代码\n  const store = new Vuex.Store({ state: {}, }); store.registerModule('myModule', { state: { name: \"我是注册模块的数据\" } }) modules选项只能在实例化store的时候，注册模块\nregisterMudule()方法只要是能够获取到store对象的地方都可以注册\n    状态替换   store.replaceState()方法用于实现状态替换\n  该方法接受新的state对象\n  代码\nconst store = new Vuex.Store({ state: { name: '我是初始值数据' } }); store.replaceState({ name: \"替换后的新数据\" }) var vm = new Vue({ el: \"#app\", store, }) div id=\"app\" p{{this.$store.state.name}}p div   ",
+  "articleBody": "Vue进阶 Vue路由 1.初始路由 **路由**：表示一种对应关系，某些事物的一一对应的关系 **后端路由**：后端路由是由服务器端进行实现，并完成资源的分发（url与资源/数据的对应关系） **前端路由**：前端路由是依靠hash值（锚点链接）的变化进行实现页面内容的切换（锚点与组件之间的关系） 2.vue-router vue-router工作原理\n它是一个Vue.js官方提供的路由管理器，是一个功能更加强大的前端路由器，可以实现前端界面内容切换\nSPA：Single Page Application，单页面应用，整个网站只有一个页面\nSPA推荐使用vue-router，实现界面内容的切换\nvue-router提供两种模式\nhash模式：hash又叫锚点：比如#/login，根据hash改变，来实现界面切换\nhistory模式：history模式不会出现#号比较美观，利用history.pushState()来完成URL的跳转而且无须重写加载页面\n示例代码\nconst router = new VueRouter({ mode: 'history', router: [...] }) vue-router默认为hash模式，需要通过mode来改变模式\nvue-router基本使用\n引入vue-router.js\n定义路由链接和路由视图\n代码示例：\n\u003cdiv id=\"app\"\u003e \u003crouter-link to=\"/login\" tag=\"span\"\u003e前往登录\u003c/router-link\u003e \u003crouter-view\u003e\u003c/router-view\u003e \u003c/div\u003e router-link是路由链接，to代表链接地址，tag代表渲染的标签\nrouter-view是路由视图，用于显示路由链接对应的组件\n定义路由匹配规则\n代码示例\nvar login = { template: \"登录组件\" } const router = new VueRouter({ routes: [ { path: '/login', component: login } ] }); 在实例化VueRouter的时候传入routes\n通过routes定义路由匹配规则，可以定义多个\n匹配规则是一个对象，key是路由链接path，value是组件component\n注册路由\n代码示例\nvar vm = new Vue({ el: '#app', router: router }); 在实例化Vue的时候，通过选项router来注册路由\n路由对象属性\nthis.$router表示全局路由器对象，就是通过router选项注册的VueRouter路由管理器对象\nthis.$route代表当前路由对象，而已获取当前路由相关信息\n路由对象属性\n属性名 类型 说明 $route.path String 对应当前路由的路径 $route.query Object 一个{key:value}对象，表示URL查询参数 $route.params Object 一个{key:value}对象，路由跳转携带参数 $route.hash String 在history模式下获取当前路由hash值（带#），如果没有hash值，则为空字符串 $route.fullPath String 完成解析后的URL，包含查询参数和hash的完整路径 $route.name String 当前路由的名称 $route.matched Array 路由记录，当前路由下路由声明的所有信息，从父路由（如果有）到当前路由为止 $route.redirectedFrom String 如果存在重定向，即为重定向来源的路由 3.用户登录注册案例 4.动态路由 什么是动态路由\n可以匹配带有不同参数的url的路由规则就是动态路由\nquery方式传参\n通过？传参\n传参\n示例\n\u003cdiv id=\"app\"\u003e \u003crouter-link to=\"/user?id=1\u0026name=Rex\"\u003e登录\u003c/router-link\u003e \u003crouter-view\u003e\u003c/router-view\u003e \u003c/div\u003e \u003ctemplate id=\"user\"\u003e \u003ch1\u003e id: {{this.$route.query.id}} name: {{this.$route.query.name}} \u003c/h1\u003e \u003c/template\u003e 传参语法：?参数名1=参数值1\u0026参数名2=参数值2\n定义路由\nconst router = new VueRouter({ routes: [{ path: '/user', component: user }] }) 获取参数\n{{this.$route.query.参数名}}\nparams方式传参\n通过url本身传递\n传参\n示例代码\n\u003cdiv id=\"app\"\u003e \u003crouter-link to=\"/user/10/admin\"\u003e登录\u003c/router-link\u003e \u003crouter-view\u003e\u003c/router-view\u003e \u003c/div\u003e \u003ctemplate id=\"user\"\u003e \u003ch1\u003e id:{{this.$route.params.id}} name:{{this.$route.params.name}} \u003c/h1\u003e \u003c/template\u003e 传参语法：/参数值1/参数值2，这里只需要传递值即可\n定义动态路由\n实例代码\nconst router = new VueRouter({ routes: [ { path: \"/user/:id/:name\", component: user } ] }) 动态路由语法，:参数名，以冒号开头就代表动态匹配\n:id就会匹配10，:name就会匹配admin\n获取参数\n{{$route.params.参数名}}\n5. 嵌套路由 什么是嵌套路由\n界面中如果存在嵌套组件,那么就需要组件对应的路由也是嵌套路由\n定义嵌套路由:\n通过在路由对象中定义children属性,定义嵌套的子路由\n示例代码\nvar router = new VueRouter({ routes:[{ path: '/home', component: home, children:[ {path: 'login', component: login}, {path: 'register', component: register} ] }] }) 使用嵌套路由\n示例代码:\n\u003crouter-link to=\"/父路由的地址/要去的子路由\"\u003e\u003c/router-link\u003e 子路由的url是:父path/子path\n6. 命名路由 如果路由的path比较长,使用的时候比较麻烦,这时候可以给路由起个名字,用的时候通过名字使用\n定义命名路由\n示例代码\n​\nconst router = new VueRouter({ routes: [ { path: '/user/:id', name: 'user', component: user } ] }) 在定义路由对象时,通过name来给路由起名字\n使用命名路由\n示例代码\n\u003crouter-link :to=\"{name:'user', params: {id:123}}\"\u003e登录\u003c/router-link\u003e 使用属性绑定,是因为to的值是一个js对象\n7. 命名视图 给视图起名字,就是命名视图\n在开发中想同时显示多个同级视图,这时候就需要使用命名视图\n定义命名视图\n示例代码\n\u003cdiv id=\"app\"\u003e \u003crouter-view\u003e\u003c/router-view\u003e \u003cdiv class=\"container\"\u003e \u003crouter-view name=\"left\"\u003e\u003c/router-view\u003e \u003crouter-view name=\"main\"\u003e\u003c/router-view\u003e \u003c/div\u003e \u003c/div\u003e 通过name属性给router-view添加名字\n路由规则使用命名视图\n示例代码\nvar header = { template: 'header头部区域' } var sidebar = { template: 'sidebar测导航区域' } var mainbox = { template: 'mainBox主题区域' } 路由对象中通过components来使用多个视图\n8. 编程式导航 router.push()\npush:推,push方法可以实现url跳转\n语法:\n//先获取router实例 var router = new VueRouter() //字符串形式 router.push('user') //对象形式 router.push({path:'/login?url='+this.$route.path}) //命名路由 router.push({name:'user', params:{userId:123}}) //带查询参数/user?id=1 route.push({path:'user',queyr:{id:'1'}}) push可以传递一个字符串路径,也可以是对象\n对象中可以是路径path,也可以是路由的名字\n注意\n在参数对象中,如果提供了path,params会被忽略,为了传参数,需要提供路由的name或者手写带有参数的路径\nconst userId = '123' router.push({name:'user', params:{userId}}) // /user/123 router.push({path:'/user/${userId}'})\t// /user/123 //这里的params不生效 router.push({path:'/user', params:{userId}})// /user router.replace()\nreplace:替换,可以替换当前界面的url\n语法\n//编程式 router.replace({path:'user'}) //声明式 与push的区别:push有history记录,replace没有\nrouter.go()\ngo:去,可以实现前进后退 go()方法,接受正数或负数,表示前进或后退 后退一个界面:$router.go(-1) 前进一个界面:$router.go(1) Vuex状态管理 初始Vuex Vuex是一套组件状态（数据）管理维护工具\n使得Vue组件的状态更加容易维护\n创建Vuex的store示例\nconst store = new Vuex.Store({ state:{}, mutations:{} }) 使用Vuex就是使用store来对状态进行管理\nVuex通过store(存储来存储数据)，并且管理数据\nVuex的下载和安装 script引入文件\n下载Vuex\n引入\n\u003cscript src=\"../js/vuex.js\"\u003e\u003c/script\u003e 使用\n创建store\nconst store = new Vuex.Store({ state: { name: 'vuex.js直接引用' } }) 实例化Store的时候，可以传入state选项\nstate选项：状态选项，数据选项，用于定义要存储的数据\n挂载store\nvar vm = new Vue({ el: '#app', store }) 使用state数据\n\u003cdiv id=\"app\"\u003e \u003cp\u003e {{this.$store.state.name}} \u003c/p\u003e \u003c/div\u003e 获取state数据是一层一层的获取的\nthis中有store选项，所以：this.$store\nstore中有state，所以this.$store.state\nstate中有name，所以this.$store.state.name\n使用计算属性\n上边的方式，使用state数据，太麻烦了，每次都要this.$store.state.name\n我们可以在计算属性中将state数据返回，相当于将state数据变为计算属性，这样在使用的时候就简单很多\n定义计算属性\nvar vm = new Vue({ el: '#app', store, computed: { name() { return this.$store.state.name; } } }) 使用\n\u003cdiv id=\"app\"\u003e \u003cp\u003e {{name}} \u003c/p\u003e \u003c/div\u003e mapState辅助函数\n当一个组件需要获取多个状态时，将这些状态都声明为计算属性有些麻烦，这时候可以使用mapState辅助函数来生成计算属性\n使用mapState\nvar vm = new Vue({ el: '#app', store, computed: Vuex.mapState({ //key:计算属性的名字 //value:函数，将state数据返回 name: state =\u003e state.name }) }) mapState是Vuex提供的一个方法 mapState，是状态映射，理解为将state数据映射（转换）为计算属性 mapState接受一个对象，对象中可以映射多个数据 对象中的key是计算属性的名字，value是一个箭头函数，箭头函数有一个state参数然后直接将state的数据返回即可 使用数据\n\u003cdiv id=\"app\"\u003e \u003cp\u003e {{name}} \u003c/p\u003e \u003c/div\u003e npm安装\n需要船舰出来一个项目才可以导入npm安装的包\n创建项目需要脚手架vue-cli npm install vue-cli –save 创建webpack模板的vue项目\nvue init webpack demo02 cd demo02 安装vuex\nnpm install vuex@3.1.1 –save 定义store的数据\n创建store\\index.js文件，用来导出store实例\nimport Vue from 'vue' import Vuex from 'Vuex' Vue.use(Vuex) export default new Vuex.Store({ state: {name: '正在使用Vuex'} }) 通过import导入npm安装的包\n通过Vue.use安装Vuex\nexport default将store导出，其他组件都可以使用\n导入store\n修改src\\main.js文件导入相关文件\nimport Vue from 'vue' import App from './App' import router from './router' import store from './store' Vue.config.productionTip = false 导入Vue，并且配置productionTip为false 导入根组件App 导入路由router 导入数据store 注册store\n修改src\\main.js文件，在Vue实例中注册store\n/*eslint-disable no new*/ new Vue({ el:'#app', router, components:{App}, template:'', store }) eslint-disable no-new：是关闭eslint语法校验 components:{App}:注册组件App template: ''使用组件App，App.vue中的#app的div el: ‘#app’, 这个是index.html中的div 修改App.vue\n映射state数据\n\u003cscript\u003e import { mapState } from \"vuex\"; export default { name: \"App\", computed: mapState({ name: (state) =\u003e state.name, }), }; \u003c/script\u003e 使用数据\n\u003ctemplate\u003e \u003cdiv id=\"app\"\u003e \u003cp\u003e{{ name }}\u003c/p\u003e \u003cimg src=\"./assets/logo.png\" /\u003e \u003crouter-view /\u003e \u003c/div\u003e \u003c/template\u003e 运行项目 npm run dev\nVuex状态管理模式 单项数据流机制：在Vue中，组件的状态变化是通过Vue单向数据流的设计理念实现的。\n单项数据流组成部分主要包括\nState：驱动应用的数据源 View：以声明方式将state映射到视图 Actions：响应在View上的用户输入导致状态变化 代码:\nnew Vue({ //State data(){ return {count: 0} }, //View template: '{{ count }}', //Actions methods:{ increment(){ this.count++; } } }) Vuex的工作流程关系 actions、mutations和state的关系\nState数据render渲染到vue组件 用户在Vue组件中点击按钮，触发逻辑Actions Actions中通过commit触发修改数据逻辑Mutations Mutations修改的state，重新渲染到Vue组件 Vuex配置选项 1.mutations mutations是一个对象，可以定义多个方法\nmutations方法用来操作state数据（翻译：变化，理解为数据变化）\nmutations方法接受state对象作为参数\n在组件中通过store.commit(“mutations方法名”)来触发mutations方法执行\n代码：\nconst store = new Vuex.Store({ state: { param: \"\" }, mutations: { reciver(state, param) { this.state.param = param; console.log(param); } } }) new Vue({ el: \"#app\", store: store, methods: { param() { this.$store.commit({ type: \"reciver\", name: \"我是传递的数据\" }) } }, }) 2.actions actions类似于mutations，不同之处在于actions是异步执行的（翻译：动作，理解为执行异步动作）\nactions函数接受store对象，用于完成mutations提交\nstore的dispatch方法触发actions函数\n代码\nconst store = new Vuex.Store({ state: { count: 0 }, //mutations：专门用来修改state的数据 mutations: { increment(state) { state.count++; } }, actions: { add(context) { setTimeout(() =\u003e { context.commit(\"increment\") }, 1000); } } }) context即为store实例\n简写\nactions:{ add({commit}){ commit(\"increment\")\t}\t} var vm = new Vue({ el: '#app', store, methods: { calc() { this.$store.dispatch(\"add\"); } }, }); store的dispatch方法，用于触发actions方法\n3.getters getters，类似于Vue实例的computed计算属性（翻译：获取者，获取计算之后的数据）\n定义\nconst store = new Vuex.Store({ state: { todos: [{ id: 1, text: '列表1' }, { id: 2, text: '列表2' }], id: 0 }, mutations: { searchM(state, id) { state.id = id; } }, getters: { searchG: state =\u003e { return state.todos.filter( todo =\u003e (todo.id == state.id) ) } } }) getters是计算属性，计算属性其实是方法，只不过使用的时候是属性\n使用\n\u003cdiv id=\"app\"\u003e \u003ch2\u003e列表查询\u003c/h2\u003e \u003cinput type=\"text\" v-model=\"id\"\u003e \u003cbutton @click=\"search\"\u003e搜索\u003c/button\u003e \u003cp\u003e搜索结果：{{this.$store.getters.searchG}}\u003c/p\u003e \u003cul\u003e \u003cli v-for=\"item in this.$store.state.todos\"\u003e{{item}}\u003c/li\u003e \u003c/ul\u003e \u003c/div\u003e 4.modules modules模块就是为了应对复杂的业务逻辑，将数据与操作数据的逻辑分模块处理\nmodules的配置选项：\n与store数据参考中的参数是相同的\nkey:{\t//key表示模块名称 state,\t//初始数据 mutations,\t//状态提交，同步 actions,\t//状态分发，异步 getters,\t//计算属性 modules\t//模块 } 代码\nconst moduleA = { state: { nameA: 'A' } } const moduleB = { state: { nameB: 'B' } } const store = new Vuex.Store({ modules: { a: moduleA, b: moduleB } }); console.log(store.state.a); console.log(store.state.b); 5.plugins 用于给Vuex添加插件，插件本身为函数\n函数接受参数store对象作为参数\n代码\nconst myPlugin = store =\u003e { store.subscribe((mutation, state) =\u003e { // 每次mutation提交后调用，mutation格式{type, paylooad} console.log(mutation.type, mutation.payload); }) } const store = new Vuex.Store({ mutations: { do(state) { console.log(state); } }, plugins: [myPlugin] }); var vm = new Vue({ el: '#app', store, }); store.commit('do', 'plugin') 插件函数中通过store实例对象的subscribe函数可以用来处理mutation\nsubscribe函数接受参数为mutation和state\n作用：一般在项目中我们会使用plugin初始化一些数据\n6.devtools 用来设置是否在devtools调试工具中应用Vuex 默认值为true，表示在启用，设为false表示停止使用 Vuex中的API 模块注册 store.registerModule()用于动态创建模块的接口\n与modules选项作用类似，但是registerModule()更加灵活\n代码\nconst store = new Vuex.Store({ state: {}, }); store.registerModule('myModule', { state: { name: \"我是注册模块的数据\" } }) modules选项只能在实例化store的时候，注册模块\nregisterMudule()方法只要是能够获取到store对象的地方都可以注册\n状态替换 store.replaceState()方法用于实现状态替换\n该方法接受新的state对象\n代码\nconst store = new Vuex.Store({ state: { name: '我是初始值数据' } }); store.replaceState({ name: \"替换后的新数据\" }) var vm = new Vue({ el: \"#app\", store, }) \u003cdiv id=\"app\"\u003e \u003cp\u003e{{this.$store.state.name}}\u003c/p\u003e \u003c/div\u003e ",
   "wordCount" : "974",
   "inLanguage": "en",
   "datePublished": "2021-03-25T00:00:00Z",
@@ -142,7 +142,7 @@
     <nav class="nav">
         <div class="logo">
             <a href="https://rex0520.github.io/" accesskey="h" title="Home (Alt + H)">
-                <img src="http://cdn.rexweb.xyz/img/20210821105340.png" alt="logo" aria-label="logo"
+                <img src="http://cdn.rexhub.xyz/img/20210821105340.png" alt="logo" aria-label="logo"
                     height="35">Home</a>
             <span class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)">
@@ -320,11 +320,11 @@
 <ul>
 <li>
 <p>示例代码</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">router</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">VueRouter</span><span class="p">({</span>
-    <span class="nx">mode</span><span class="o">:</span> <span class="s1">&#39;history&#39;</span><span class="p">,</span>
-    <span class="nx">router</span><span class="o">:</span> <span class="p">[...]</span>
-<span class="p">})</span>
-</code></pre></div></li>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">router</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">VueRouter</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">mode</span><span class="o">:</span> <span class="s1">&#39;history&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">router</span><span class="o">:</span> <span class="p">[...]</span>
+</span></span><span class="line"><span class="cl"><span class="p">})</span>
+</span></span></code></pre></div></li>
 <li>
 <p>vue-router默认为hash模式，需要通过mode来改变模式</p>
 </li>
@@ -343,39 +343,39 @@
 <li>
 <p>定义路由链接和路由视图</p>
 <p>代码示例：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;app&#34;</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">router-link</span> <span class="na">to</span><span class="o">=</span><span class="s">&#34;/login&#34;</span> <span class="na">tag</span><span class="o">=</span><span class="s">&#34;span&#34;</span><span class="p">&gt;</span>前往登录<span class="p">&lt;/</span><span class="nt">router-link</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">router-view</span><span class="p">&gt;&lt;/</span><span class="nt">router-view</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</code></pre></div><p><strong>router-link</strong>是路由链接，to代表链接地址，tag代表渲染的标签</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;app&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">router-link</span> <span class="na">to</span><span class="o">=</span><span class="s">&#34;/login&#34;</span> <span class="na">tag</span><span class="o">=</span><span class="s">&#34;span&#34;</span><span class="p">&gt;</span>前往登录<span class="p">&lt;/</span><span class="nt">router-link</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">router-view</span><span class="p">&gt;&lt;/</span><span class="nt">router-view</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span></code></pre></div><p><strong>router-link</strong>是路由链接，to代表链接地址，tag代表渲染的标签</p>
 <p><strong>router-view</strong>是路由视图，用于显示路由链接对应的组件</p>
 </li>
 <li>
 <p>定义路由匹配规则</p>
 <p>代码示例</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">login</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="nx">template</span><span class="o">:</span> <span class="s2">&#34;&lt;h1&gt;登录组件&lt;/h1&gt;&#34;</span>
-<span class="p">}</span>
-<span class="kr">const</span> <span class="nx">router</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">VueRouter</span><span class="p">({</span>
-    <span class="nx">routes</span><span class="o">:</span> <span class="p">[</span>
-        <span class="p">{</span>
-            <span class="nx">path</span><span class="o">:</span> <span class="s1">&#39;/login&#39;</span><span class="p">,</span>
-            <span class="nx">component</span><span class="o">:</span> <span class="nx">login</span>
-        <span class="p">}</span>
-    <span class="p">]</span>
-<span class="p">});</span>
-</code></pre></div><p>在实例化VueRouter的时候传入routes</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">login</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">template</span><span class="o">:</span> <span class="s2">&#34;&lt;h1&gt;登录组件&lt;/h1&gt;&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">router</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">VueRouter</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">routes</span><span class="o">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">path</span><span class="o">:</span> <span class="s1">&#39;/login&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">component</span><span class="o">:</span> <span class="nx">login</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="p">});</span>
+</span></span></code></pre></div><p>在实例化VueRouter的时候传入routes</p>
 <p>通过routes定义路由匹配规则，可以定义多个</p>
 <p>匹配规则是一个对象，key是路由链接path，value是组件component</p>
 </li>
 <li>
 <p>注册路由</p>
 <p>代码示例</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">vm</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
-    <span class="nx">el</span><span class="o">:</span> <span class="s1">&#39;#app&#39;</span><span class="p">,</span>
-    <span class="nx">router</span><span class="o">:</span> <span class="nx">router</span>
-<span class="p">});</span>
-</code></pre></div><p>在实例化Vue的时候，通过选项router来注册路由</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">vm</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">el</span><span class="o">:</span> <span class="s1">&#39;#app&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">router</span><span class="o">:</span> <span class="nx">router</span>
+</span></span><span class="line"><span class="cl"><span class="p">});</span>
+</span></span></code></pre></div><p>在实例化Vue的时候，通过选项router来注册路由</p>
 </li>
 </ol>
 </li>
@@ -463,16 +463,16 @@
 <ol>
 <li>
 <p>示例</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;app&#34;</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">router-link</span> <span class="na">to</span><span class="o">=</span><span class="s">&#34;/user?id=1&amp;name=Rex&#34;</span><span class="p">&gt;</span>登录<span class="p">&lt;/</span><span class="nt">router-link</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">router-view</span><span class="p">&gt;&lt;/</span><span class="nt">router-view</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">template</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;user&#34;</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>
-        id: {{this.$route.query.id}} name: {{this.$route.query.name}}
-    <span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">template</span><span class="p">&gt;</span>
-</code></pre></div></li>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;app&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">router-link</span> <span class="na">to</span><span class="o">=</span><span class="s">&#34;/user?id=1&amp;name=Rex&#34;</span><span class="p">&gt;</span>登录<span class="p">&lt;/</span><span class="nt">router-link</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">router-view</span><span class="p">&gt;&lt;/</span><span class="nt">router-view</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">template</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;user&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">        id: {{this.$route.query.id}} name: {{this.$route.query.name}}
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">template</span><span class="p">&gt;</span>
+</span></span></code></pre></div></li>
 <li>
 <p>传参语法：?参数名1=参数值1&amp;参数名2=参数值2</p>
 </li>
@@ -480,13 +480,13 @@
 </li>
 <li>
 <p>定义路由</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">router</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">VueRouter</span><span class="p">({</span>
-    <span class="nx">routes</span><span class="o">:</span> <span class="p">[{</span>
-        <span class="nx">path</span><span class="o">:</span> <span class="s1">&#39;/user&#39;</span><span class="p">,</span>
-        <span class="nx">component</span><span class="o">:</span> <span class="nx">user</span>
-    <span class="p">}]</span>
-<span class="p">})</span>
-</code></pre></div></li>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">router</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">VueRouter</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">routes</span><span class="o">:</span> <span class="p">[{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">path</span><span class="o">:</span> <span class="s1">&#39;/user&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">component</span><span class="o">:</span> <span class="nx">user</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}]</span>
+</span></span><span class="line"><span class="cl"><span class="p">})</span>
+</span></span></code></pre></div></li>
 <li>
 <p>获取参数</p>
 <p>{{this.$route.query.参数名}}</p>
@@ -504,16 +504,16 @@
 <ol>
 <li>
 <p>示例代码</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;app&#34;</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">router-link</span> <span class="na">to</span><span class="o">=</span><span class="s">&#34;/user/10/admin&#34;</span><span class="p">&gt;</span>登录<span class="p">&lt;/</span><span class="nt">router-link</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">router-view</span><span class="p">&gt;&lt;/</span><span class="nt">router-view</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">template</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;user&#34;</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>
-        id:{{this.$route.params.id}} name:{{this.$route.params.name}}
-    <span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">template</span><span class="p">&gt;</span>
-</code></pre></div></li>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;app&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">router-link</span> <span class="na">to</span><span class="o">=</span><span class="s">&#34;/user/10/admin&#34;</span><span class="p">&gt;</span>登录<span class="p">&lt;/</span><span class="nt">router-link</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">router-view</span><span class="p">&gt;&lt;/</span><span class="nt">router-view</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">template</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;user&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">        id:{{this.$route.params.id}} name:{{this.$route.params.name}}
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">template</span><span class="p">&gt;</span>
+</span></span></code></pre></div></li>
 <li>
 <p>传参语法：/参数值1/参数值2，这里只需要传递值即可</p>
 </li>
@@ -524,12 +524,12 @@
 <ol>
 <li>
 <p>实例代码</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">router</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">VueRouter</span><span class="p">({</span>
-    <span class="nx">routes</span><span class="o">:</span> <span class="p">[</span>
-        <span class="p">{</span> <span class="nx">path</span><span class="o">:</span> <span class="s2">&#34;/user/:id/:name&#34;</span><span class="p">,</span> <span class="nx">component</span><span class="o">:</span> <span class="nx">user</span> <span class="p">}</span>
-    <span class="p">]</span>
-<span class="p">})</span>
-</code></pre></div></li>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">router</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">VueRouter</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">routes</span><span class="o">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span> <span class="nx">path</span><span class="o">:</span> <span class="s2">&#34;/user/:id/:name&#34;</span><span class="p">,</span> <span class="nx">component</span><span class="o">:</span> <span class="nx">user</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="p">})</span>
+</span></span></code></pre></div></li>
 <li>
 <p>动态路由语法，:参数名，以冒号开头就代表动态匹配</p>
 </li>
@@ -561,17 +561,17 @@
 </li>
 <li>
 <p>示例代码</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">router</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">VueRouter</span><span class="p">({</span>
-    <span class="nx">routes</span><span class="o">:</span><span class="p">[{</span>
-        <span class="nx">path</span><span class="o">:</span> <span class="s1">&#39;/home&#39;</span><span class="p">,</span>
-        <span class="nx">component</span><span class="o">:</span> <span class="nx">home</span><span class="p">,</span>
-        <span class="nx">children</span><span class="o">:</span><span class="p">[</span>
-            <span class="p">{</span><span class="nx">path</span><span class="o">:</span> <span class="s1">&#39;login&#39;</span><span class="p">,</span> <span class="nx">component</span><span class="o">:</span> <span class="nx">login</span><span class="p">},</span>
-            <span class="p">{</span><span class="nx">path</span><span class="o">:</span> <span class="s1">&#39;register&#39;</span><span class="p">,</span> <span class="nx">component</span><span class="o">:</span> <span class="nx">register</span><span class="p">}</span>
-        <span class="p">]</span>
-    <span class="p">}]</span>
-<span class="p">})</span>
-</code></pre></div></li>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">router</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">VueRouter</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">routes</span><span class="o">:</span><span class="p">[{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">path</span><span class="o">:</span> <span class="s1">&#39;/home&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">component</span><span class="o">:</span> <span class="nx">home</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">children</span><span class="o">:</span><span class="p">[</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span><span class="nx">path</span><span class="o">:</span> <span class="s1">&#39;login&#39;</span><span class="p">,</span> <span class="nx">component</span><span class="o">:</span> <span class="nx">login</span><span class="p">},</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span><span class="nx">path</span><span class="o">:</span> <span class="s1">&#39;register&#39;</span><span class="p">,</span> <span class="nx">component</span><span class="o">:</span> <span class="nx">register</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}]</span>
+</span></span><span class="line"><span class="cl"><span class="p">})</span>
+</span></span></code></pre></div></li>
 </ol>
 </li>
 <li>
@@ -579,8 +579,8 @@
 <ol>
 <li>
 <p>示例代码:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">router-link</span> <span class="na">to</span><span class="o">=</span><span class="s">&#34;/父路由的地址/要去的子路由&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">router-link</span><span class="p">&gt;</span>
-</code></pre></div></li>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">router-link</span> <span class="na">to</span><span class="o">=</span><span class="s">&#34;/父路由的地址/要去的子路由&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">router-link</span><span class="p">&gt;</span>
+</span></span></code></pre></div></li>
 <li>
 <p>子路由的url是:父path/子path</p>
 </li>
@@ -600,12 +600,12 @@
 <li>
 <p>示例代码</p>
 <p>​</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">router</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">VueRouter</span><span class="p">({</span>
-    <span class="nx">routes</span><span class="o">:</span> <span class="p">[</span>
-        <span class="p">{</span> <span class="nx">path</span><span class="o">:</span> <span class="s1">&#39;/user/:id&#39;</span><span class="p">,</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;user&#39;</span><span class="p">,</span> <span class="nx">component</span><span class="o">:</span> <span class="nx">user</span> <span class="p">}</span>
-    <span class="p">]</span>
-<span class="p">})</span>
-</code></pre></div></li>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">router</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">VueRouter</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">routes</span><span class="o">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span> <span class="nx">path</span><span class="o">:</span> <span class="s1">&#39;/user/:id&#39;</span><span class="p">,</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;user&#39;</span><span class="p">,</span> <span class="nx">component</span><span class="o">:</span> <span class="nx">user</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="p">})</span>
+</span></span></code></pre></div></li>
 <li>
 <p>在定义路由对象时,通过name来给路由起名字</p>
 </li>
@@ -616,8 +616,8 @@
 <ol>
 <li>
 <p>示例代码</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">router-link</span> <span class="na">:to</span><span class="o">=</span><span class="s">&#34;{name:&#39;user&#39;, params: {id:123}}&#34;</span><span class="p">&gt;</span>登录<span class="p">&lt;/</span><span class="nt">router-link</span><span class="p">&gt;</span>
-</code></pre></div></li>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">router-link</span> <span class="na">:to</span><span class="o">=</span><span class="s">&#34;{name:&#39;user&#39;, params: {id:123}}&#34;</span><span class="p">&gt;</span>登录<span class="p">&lt;/</span><span class="nt">router-link</span><span class="p">&gt;</span>
+</span></span></code></pre></div></li>
 <li>
 <p>使用属性绑定,是因为to的值是一个js对象</p>
 </li>
@@ -637,14 +637,14 @@
 <ol>
 <li>
 <p>示例代码</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;app&#34;</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">router-view</span><span class="p">&gt;&lt;/</span><span class="nt">router-view</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;container&#34;</span><span class="p">&gt;</span>
-        <span class="p">&lt;</span><span class="nt">router-view</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;left&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">router-view</span><span class="p">&gt;</span>
-        <span class="p">&lt;</span><span class="nt">router-view</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;main&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">router-view</span><span class="p">&gt;</span>
-    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</code></pre></div></li>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;app&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">router-view</span><span class="p">&gt;&lt;/</span><span class="nt">router-view</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;container&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">&lt;</span><span class="nt">router-view</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;left&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">router-view</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">&lt;</span><span class="nt">router-view</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;main&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">router-view</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span></code></pre></div></li>
 <li>
 <p>通过name属性给router-view添加名字</p>
 </li>
@@ -655,16 +655,16 @@
 <ol>
 <li>
 <p>示例代码</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">header</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="nx">template</span><span class="o">:</span> <span class="s1">&#39;&lt;h1 class=&#34;header&#34;&gt;header头部区域&lt;/h1&gt;&#39;</span>
-<span class="p">}</span>
-<span class="kd">var</span> <span class="nx">sidebar</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="nx">template</span><span class="o">:</span> <span class="s1">&#39;&lt;h1 class=&#34;sidebar&#34;&gt;sidebar测导航区域&lt;/h1&gt;&#39;</span>
-<span class="p">}</span>
-<span class="kd">var</span> <span class="nx">mainbox</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="nx">template</span><span class="o">:</span> <span class="s1">&#39;&lt;h1 class=&#34;main&#34;&gt;mainBox主题区域&lt;/h1&gt;&#39;</span>
-<span class="p">}</span>
-</code></pre></div></li>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">header</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">template</span><span class="o">:</span> <span class="s1">&#39;&lt;h1 class=&#34;header&#34;&gt;header头部区域&lt;/h1&gt;&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">sidebar</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">template</span><span class="o">:</span> <span class="s1">&#39;&lt;h1 class=&#34;sidebar&#34;&gt;sidebar测导航区域&lt;/h1&gt;&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">mainbox</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">template</span><span class="o">:</span> <span class="s1">&#39;&lt;h1 class=&#34;main&#34;&gt;mainBox主题区域&lt;/h1&gt;&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div></li>
 <li>
 <p>路由对象中通过components来使用多个视图</p>
 </li>
@@ -683,17 +683,17 @@
 <p>语法:</p>
 <ol>
 <li>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">//先获取router实例
-var router = new VueRouter()
-//字符串形式
-router.push(&#39;user&#39;)
-//对象形式
-router.push({path:&#39;/login?url=&#39;+this.$route.path})
-//命名路由
-router.push({name:&#39;user&#39;, params:{userId:123}})
-//带查询参数/user?id=1
-route.push({path:&#39;user&#39;,queyr:{id:&#39;1&#39;}})
-</code></pre></div></li>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">//先获取router实例
+</span></span><span class="line"><span class="cl">var router = new VueRouter()
+</span></span><span class="line"><span class="cl">//字符串形式
+</span></span><span class="line"><span class="cl">router.push(&#39;user&#39;)
+</span></span><span class="line"><span class="cl">//对象形式
+</span></span><span class="line"><span class="cl">router.push({path:&#39;/login?url=&#39;+this.$route.path})
+</span></span><span class="line"><span class="cl">//命名路由
+</span></span><span class="line"><span class="cl">router.push({name:&#39;user&#39;, params:{userId:123}})
+</span></span><span class="line"><span class="cl">//带查询参数/user?id=1
+</span></span><span class="line"><span class="cl">route.push({path:&#39;user&#39;,queyr:{id:&#39;1&#39;}})
+</span></span></code></pre></div></li>
 <li>
 <p>push可以传递一个字符串路径,也可以是对象</p>
 </li>
@@ -709,12 +709,12 @@ route.push({path:&#39;user&#39;,queyr:{id:&#39;1&#39;}})
 <p>在参数对象中,如果提供了path,params会被忽略,为了传参数,需要提供路由的name或者手写带有参数的路径</p>
 </li>
 <li>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">const userId = &#39;123&#39;
-router.push({name:&#39;user&#39;, params:{userId}}) // /user/123
-router.push({path:&#39;/user/${userId}&#39;})		// /user/123
-//这里的params不生效
-router.push({path:&#39;/user&#39;, params:{userId}})// /user
-</code></pre></div></li>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">const userId = &#39;123&#39;
+</span></span><span class="line"><span class="cl">router.push({name:&#39;user&#39;, params:{userId}}) // /user/123
+</span></span><span class="line"><span class="cl">router.push({path:&#39;/user/${userId}&#39;})		// /user/123
+</span></span><span class="line"><span class="cl">//这里的params不生效
+</span></span><span class="line"><span class="cl">router.push({path:&#39;/user&#39;, params:{userId}})// /user
+</span></span></code></pre></div></li>
 </ol>
 </li>
 </ol>
@@ -727,11 +727,11 @@ router.push({path:&#39;/user&#39;, params:{userId}})// /user
 </li>
 <li>
 <p>语法</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">//编程式
-router.replace({path:&#39;user&#39;})
-//声明式
-&lt;router-link :to=&#34;{path:&#39;user&#39;} replace&#34;&gt;&lt;/router-link&gt;
-</code></pre></div></li>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">//编程式
+</span></span><span class="line"><span class="cl">router.replace({path:&#39;user&#39;})
+</span></span><span class="line"><span class="cl">//声明式
+</span></span><span class="line"><span class="cl">&lt;router-link :to=&#34;{path:&#39;user&#39;} replace&#34;&gt;&lt;/router-link&gt;
+</span></span></code></pre></div></li>
 <li>
 <p>与push的区别:push有history记录,replace没有</p>
 </li>
@@ -760,11 +760,11 @@ router.replace({path:&#39;user&#39;})
 <p>创建Vuex的store示例</p>
 <ul>
 <li>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">const</span> <span class="n">store</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Vuex</span><span class="o">.</span><span class="na">Store</span><span class="o">({</span>
-	<span class="n">state</span><span class="o">:{},</span>
-    <span class="n">mutations</span><span class="o">:{}</span>
-<span class="o">})</span>
-</code></pre></div></li>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">const</span> <span class="n">store</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Vuex</span><span class="o">.</span><span class="na">Store</span><span class="o">({</span>
+</span></span><span class="line"><span class="cl">	<span class="n">state</span><span class="o">:{},</span>
+</span></span><span class="line"><span class="cl">    <span class="n">mutations</span><span class="o">:{}</span>
+</span></span><span class="line"><span class="cl"><span class="o">})</span>
+</span></span></code></pre></div></li>
 <li>
 <p>使用Vuex就是使用store来对状态进行管理</p>
 </li>
@@ -784,37 +784,36 @@ router.replace({path:&#39;user&#39;})
 </li>
 <li>
 <p>引入</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;../js/vuex.js&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
-
-</code></pre></div></li>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;../js/vuex.js&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span></code></pre></div></li>
 <li>
 <p>使用</p>
 <ol>
 <li>
 <p>创建store</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kr">const</span> <span class="nx">store</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Vuex</span><span class="p">.</span><span class="nx">Store</span><span class="p">({</span>
-    <span class="nx">state</span><span class="o">:</span> <span class="p">{</span>
-        <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;vuex.js直接引用&#39;</span>
-    <span class="p">}</span>
-<span class="p">})</span>
-</code></pre></div><p>实例化Store的时候，可以传入state选项</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">store</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Vuex</span><span class="p">.</span><span class="nx">Store</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">state</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;vuex.js直接引用&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">})</span>
+</span></span></code></pre></div><p>实例化Store的时候，可以传入state选项</p>
 <p>state选项：状态选项，数据选项，用于定义要存储的数据</p>
 </li>
 <li>
 <p>挂载store</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">vm</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
-    <span class="nx">el</span><span class="o">:</span> <span class="s1">&#39;#app&#39;</span><span class="p">,</span>
-    <span class="nx">store</span>
-<span class="p">})</span>
-</code></pre></div></li>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">vm</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">el</span><span class="o">:</span> <span class="s1">&#39;#app&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">store</span>
+</span></span><span class="line"><span class="cl"><span class="p">})</span>
+</span></span></code></pre></div></li>
 <li>
 <p>使用state数据</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;app&#34;</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>
-        {{this.$store.state.name}}
-    <span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</code></pre></div><p>获取state数据是一层一层的获取的</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;app&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">        {{this.$store.state.name}}
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span></code></pre></div><p>获取state数据是一层一层的获取的</p>
 <p>this中有store选项，所以：this.$store</p>
 <p>store中有state，所以this.$store.state</p>
 <p>state中有name，所以this.$store.state.name</p>
@@ -830,24 +829,24 @@ router.replace({path:&#39;user&#39;})
 </li>
 <li>
 <p>定义计算属性</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">vm</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
-    <span class="nx">el</span><span class="o">:</span> <span class="s1">&#39;#app&#39;</span><span class="p">,</span>
-    <span class="nx">store</span><span class="p">,</span>
-    <span class="nx">computed</span><span class="o">:</span> <span class="p">{</span>
-        <span class="nx">name</span><span class="p">()</span> <span class="p">{</span>
-            <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">$store</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">name</span><span class="p">;</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">})</span>
-</code></pre></div></li>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">vm</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">el</span><span class="o">:</span> <span class="s1">&#39;#app&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">store</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">computed</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">name</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">$store</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">name</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">})</span>
+</span></span></code></pre></div></li>
 <li>
 <p>使用</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;app&#34;</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>
-        {{name}}
-    <span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</code></pre></div></li>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;app&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">        {{name}}
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span></code></pre></div></li>
 </ol>
 </li>
 <li>
@@ -858,17 +857,17 @@ router.replace({path:&#39;user&#39;})
 </li>
 <li>
 <p>使用mapState</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">vm</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
-    <span class="nx">el</span><span class="o">:</span> <span class="s1">&#39;#app&#39;</span><span class="p">,</span>
-    <span class="nx">store</span><span class="p">,</span>
-    <span class="nx">computed</span><span class="o">:</span>
-    <span class="nx">Vuex</span><span class="p">.</span><span class="nx">mapState</span><span class="p">({</span>
-        <span class="c1">//key:计算属性的名字
-</span><span class="c1"></span>        <span class="c1">//value:函数，将state数据返回
-</span><span class="c1"></span>        <span class="nx">name</span><span class="o">:</span> <span class="nx">state</span> <span class="p">=&gt;</span> <span class="nx">state</span><span class="p">.</span><span class="nx">name</span>
-    <span class="p">})</span>
-<span class="p">})</span>
-</code></pre></div><ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">vm</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">el</span><span class="o">:</span> <span class="s1">&#39;#app&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">store</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">computed</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">Vuex</span><span class="p">.</span><span class="nx">mapState</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//key:计算属性的名字
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="c1">//value:函数，将state数据返回
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nx">name</span><span class="o">:</span> <span class="nx">state</span> <span class="p">=&gt;</span> <span class="nx">state</span><span class="p">.</span><span class="nx">name</span>
+</span></span><span class="line"><span class="cl">    <span class="p">})</span>
+</span></span><span class="line"><span class="cl"><span class="p">})</span>
+</span></span></code></pre></div><ul>
 <li>mapState是Vuex提供的一个方法</li>
 <li>mapState，是状态映射，理解为将state数据映射（转换）为计算属性</li>
 <li>mapState接受一个对象，对象中可以映射多个数据</li>
@@ -877,12 +876,12 @@ router.replace({path:&#39;user&#39;})
 </li>
 <li>
 <p>使用数据</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;app&#34;</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>
-        {{name}}
-    <span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</code></pre></div></li>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;app&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">        {{name}}
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span></code></pre></div></li>
 </ol>
 </li>
 </ol>
@@ -919,13 +918,13 @@ router.replace({path:&#39;user&#39;})
 <p>创建store\index.js文件，用来导出store实例</p>
 </li>
 <li>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kr">import</span> <span class="nx">Vue</span> <span class="nx">from</span> <span class="s1">&#39;vue&#39;</span>
-<span class="kr">import</span> <span class="nx">Vuex</span> <span class="nx">from</span> <span class="s1">&#39;Vuex&#39;</span>
-<span class="nx">Vue</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">Vuex</span><span class="p">)</span>
-<span class="kr">export</span> <span class="k">default</span> <span class="k">new</span> <span class="nx">Vuex</span><span class="p">.</span><span class="nx">Store</span><span class="p">({</span>
-    <span class="nx">state</span><span class="o">:</span> <span class="p">{</span><span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;正在使用Vuex&#39;</span><span class="p">}</span>
-<span class="p">})</span>
-</code></pre></div><p>通过import导入npm安装的包</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">import</span> <span class="nx">Vue</span> <span class="nx">from</span> <span class="s1">&#39;vue&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="nx">Vuex</span> <span class="nx">from</span> <span class="s1">&#39;Vuex&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">Vue</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">Vuex</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="kr">export</span> <span class="k">default</span> <span class="k">new</span> <span class="nx">Vuex</span><span class="p">.</span><span class="nx">Store</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">state</span><span class="o">:</span> <span class="p">{</span><span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;正在使用Vuex&#39;</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">})</span>
+</span></span></code></pre></div><p>通过import导入npm安装的包</p>
 <p>通过Vue.use安装Vuex</p>
 <p>export default将store导出，其他组件都可以使用</p>
 </li>
@@ -938,13 +937,13 @@ router.replace({path:&#39;user&#39;})
 <p>修改src\main.js文件导入相关文件</p>
 </li>
 <li>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kr">import</span> <span class="nx">Vue</span> <span class="nx">from</span> <span class="s1">&#39;vue&#39;</span>
-<span class="kr">import</span> <span class="nx">App</span> <span class="nx">from</span> <span class="s1">&#39;./App&#39;</span>
-<span class="kr">import</span> <span class="nx">router</span> <span class="nx">from</span> <span class="s1">&#39;./router&#39;</span>
-<span class="kr">import</span> <span class="nx">store</span> <span class="nx">from</span> <span class="s1">&#39;./store&#39;</span>
-
-<span class="nx">Vue</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">productionTip</span> <span class="o">=</span> <span class="kc">false</span>
-</code></pre></div><ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">import</span> <span class="nx">Vue</span> <span class="nx">from</span> <span class="s1">&#39;vue&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="nx">App</span> <span class="nx">from</span> <span class="s1">&#39;./App&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="nx">router</span> <span class="nx">from</span> <span class="s1">&#39;./router&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="nx">store</span> <span class="nx">from</span> <span class="s1">&#39;./store&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">Vue</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">productionTip</span> <span class="o">=</span> <span class="kc">false</span>
+</span></span></code></pre></div><ol>
 <li>导入Vue，并且配置productionTip为false</li>
 <li>导入根组件App</li>
 <li>导入路由router</li>
@@ -960,15 +959,15 @@ router.replace({path:&#39;user&#39;})
 <p>修改src\main.js文件，在Vue实例中注册store</p>
 </li>
 <li>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="cm">/*eslint-disable no new*/</span>
-<span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
-	<span class="nx">el</span><span class="o">:</span><span class="s1">&#39;#app&#39;</span><span class="p">,</span>
-    <span class="nx">router</span><span class="p">,</span>
-    <span class="nx">components</span><span class="o">:</span><span class="p">{</span><span class="nx">App</span><span class="p">},</span>
-    <span class="nx">template</span><span class="o">:</span><span class="s1">&#39;&lt;App/&gt;&#39;</span><span class="p">,</span>
-    <span class="nx">store</span>
-<span class="p">})</span>
-</code></pre></div><ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="cm">/*eslint-disable no new*/</span>
+</span></span><span class="line"><span class="cl"><span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">el</span><span class="o">:</span><span class="s1">&#39;#app&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">router</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">components</span><span class="o">:</span><span class="p">{</span><span class="nx">App</span><span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">template</span><span class="o">:</span><span class="s1">&#39;&lt;App/&gt;&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">store</span>
+</span></span><span class="line"><span class="cl"><span class="p">})</span>
+</span></span></code></pre></div><ol>
 <li>eslint-disable no-new：是关闭eslint语法校验</li>
 <li>components:{App}:注册组件App</li>
 <li>template: <code>'&lt;App/&gt;'</code>使用组件App，App.vue中的#app的div</li>
@@ -982,26 +981,26 @@ router.replace({path:&#39;user&#39;})
 <ol>
 <li>
 <p>映射state数据</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
-<span class="kr">import</span> <span class="p">{</span> <span class="nx">mapState</span> <span class="p">}</span> <span class="nx">from</span> <span class="s2">&#34;vuex&#34;</span><span class="p">;</span>
-<span class="kr">export</span> <span class="k">default</span> <span class="p">{</span>
-  <span class="nx">name</span><span class="o">:</span> <span class="s2">&#34;App&#34;</span><span class="p">,</span>
-  <span class="nx">computed</span><span class="o">:</span> <span class="nx">mapState</span><span class="p">({</span>
-    <span class="nx">name</span><span class="o">:</span> <span class="p">(</span><span class="nx">state</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">state</span><span class="p">.</span><span class="nx">name</span><span class="p">,</span>
-  <span class="p">}),</span>
-<span class="p">};</span>
-<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
-</code></pre></div></li>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">mapState</span> <span class="p">}</span> <span class="nx">from</span> <span class="s2">&#34;vuex&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">export</span> <span class="k">default</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">name</span><span class="o">:</span> <span class="s2">&#34;App&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">computed</span><span class="o">:</span> <span class="nx">mapState</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">name</span><span class="o">:</span> <span class="p">(</span><span class="nx">state</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">state</span><span class="p">.</span><span class="nx">name</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}),</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span></code></pre></div></li>
 <li>
 <p>使用数据</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">template</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;app&#34;</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>{{ name }}<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;./assets/logo.png&#34;</span> <span class="p">/&gt;</span>
-    <span class="p">&lt;</span><span class="nt">router-view</span> <span class="p">/&gt;</span>
-  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">template</span><span class="p">&gt;</span>
-</code></pre></div></li>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">template</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;app&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>{{ name }}<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;./assets/logo.png&#34;</span> <span class="p">/&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">router-view</span> <span class="p">/&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">template</span><span class="p">&gt;</span>
+</span></span></code></pre></div></li>
 </ol>
 </li>
 <li>
@@ -1027,21 +1026,21 @@ router.replace({path:&#39;user&#39;})
 </li>
 <li>
 <p>代码:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
-    <span class="c1">//State
-</span><span class="c1"></span>    <span class="nx">data</span><span class="p">(){</span>
-        <span class="k">return</span> <span class="p">{</span><span class="nx">count</span><span class="o">:</span> <span class="mi">0</span><span class="p">}</span>
-    <span class="p">},</span>
-    <span class="c1">//View
-</span><span class="c1"></span>    <span class="nx">template</span><span class="o">:</span> <span class="s1">&#39;&lt;div&gt;{{ count }}&lt;/div&gt;&#39;</span><span class="p">,</span>
-    <span class="c1">//Actions
-</span><span class="c1"></span>    <span class="nx">methods</span><span class="o">:</span><span class="p">{</span>
-        <span class="nx">increment</span><span class="p">(){</span>
-            <span class="k">this</span><span class="p">.</span><span class="nx">count</span><span class="o">++</span><span class="p">;</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">})</span>
-</code></pre></div></li>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//State
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">data</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="p">{</span><span class="nx">count</span><span class="o">:</span> <span class="mi">0</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//View
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">template</span><span class="o">:</span> <span class="s1">&#39;&lt;div&gt;{{ count }}&lt;/div&gt;&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//Actions
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">methods</span><span class="o">:</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">increment</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">            <span class="k">this</span><span class="p">.</span><span class="nx">count</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">})</span>
+</span></span></code></pre></div></li>
 </ol>
 <h4 id="vuex的工作流程关系">Vuex的工作流程关系<a hidden class="anchor" aria-hidden="true" href="#vuex的工作流程关系">#</a></h4>
 <p>actions、mutations和state的关系</p>
@@ -1070,27 +1069,27 @@ router.replace({path:&#39;user&#39;})
 </li>
 <li>
 <p>代码：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">store</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Vuex</span><span class="p">.</span><span class="nx">Store</span><span class="p">({</span>
-    <span class="nx">state</span><span class="o">:</span> <span class="p">{</span>
-        <span class="nx">param</span><span class="o">:</span> <span class="s2">&#34;&#34;</span>
-    <span class="p">},</span>
-    <span class="nx">mutations</span><span class="o">:</span> <span class="p">{</span>
-        <span class="nx">reciver</span><span class="p">(</span><span class="nx">state</span><span class="p">,</span> <span class="nx">param</span><span class="p">)</span> <span class="p">{</span>
-            <span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">param</span> <span class="o">=</span> <span class="nx">param</span><span class="p">;</span>
-            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">param</span><span class="p">);</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">})</span>
-</code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
-    <span class="nx">el</span><span class="o">:</span> <span class="s2">&#34;#app&#34;</span><span class="p">,</span>
-    <span class="nx">store</span><span class="o">:</span> <span class="nx">store</span><span class="p">,</span>
-    <span class="nx">methods</span><span class="o">:</span> <span class="p">{</span>
-        <span class="nx">param</span><span class="p">()</span> <span class="p">{</span>
-            <span class="k">this</span><span class="p">.</span><span class="nx">$store</span><span class="p">.</span><span class="nx">commit</span><span class="p">({</span> <span class="nx">type</span><span class="o">:</span> <span class="s2">&#34;reciver&#34;</span><span class="p">,</span> <span class="nx">name</span><span class="o">:</span> <span class="s2">&#34;我是传递的数据&#34;</span> <span class="p">})</span>
-        <span class="p">}</span>
-    <span class="p">},</span>
-<span class="p">})</span>
-</code></pre></div></li>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">store</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Vuex</span><span class="p">.</span><span class="nx">Store</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">state</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">param</span><span class="o">:</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">mutations</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">reciver</span><span class="p">(</span><span class="nx">state</span><span class="p">,</span> <span class="nx">param</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">param</span> <span class="o">=</span> <span class="nx">param</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">param</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">})</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">el</span><span class="o">:</span> <span class="s2">&#34;#app&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">store</span><span class="o">:</span> <span class="nx">store</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">methods</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">param</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">this</span><span class="p">.</span><span class="nx">$store</span><span class="p">.</span><span class="nx">commit</span><span class="p">({</span> <span class="nx">type</span><span class="o">:</span> <span class="s2">&#34;reciver&#34;</span><span class="p">,</span> <span class="nx">name</span><span class="o">:</span> <span class="s2">&#34;我是传递的数据&#34;</span> <span class="p">})</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl"><span class="p">})</span>
+</span></span></code></pre></div></li>
 </ol>
 <h4 id="2actions">2.actions<a hidden class="anchor" aria-hidden="true" href="#2actions">#</a></h4>
 <ol>
@@ -1107,49 +1106,49 @@ router.replace({path:&#39;user&#39;})
 <p>代码</p>
 <ol>
 <li>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">store</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Vuex</span><span class="p">.</span><span class="nx">Store</span><span class="p">({</span>
-    <span class="nx">state</span><span class="o">:</span> <span class="p">{</span>
-        <span class="nx">count</span><span class="o">:</span> <span class="mi">0</span>
-    <span class="p">},</span>
-    <span class="c1">//mutations：专门用来修改state的数据
-</span><span class="c1"></span>    <span class="nx">mutations</span><span class="o">:</span> <span class="p">{</span>
-        <span class="nx">increment</span><span class="p">(</span><span class="nx">state</span><span class="p">)</span> <span class="p">{</span>
-            <span class="nx">state</span><span class="p">.</span><span class="nx">count</span><span class="o">++</span><span class="p">;</span>
-        <span class="p">}</span>
-    <span class="p">},</span>
-    <span class="nx">actions</span><span class="o">:</span> <span class="p">{</span>
-        <span class="nx">add</span><span class="p">(</span><span class="nx">context</span><span class="p">)</span> <span class="p">{</span>
-            <span class="nx">setTimeout</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
-                <span class="nx">context</span><span class="p">.</span><span class="nx">commit</span><span class="p">(</span><span class="s2">&#34;increment&#34;</span><span class="p">)</span>
-            <span class="p">},</span> <span class="mi">1000</span><span class="p">);</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">})</span>
-</code></pre></div><ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">store</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Vuex</span><span class="p">.</span><span class="nx">Store</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">state</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">count</span><span class="o">:</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//mutations：专门用来修改state的数据
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">mutations</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">increment</span><span class="p">(</span><span class="nx">state</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">state</span><span class="p">.</span><span class="nx">count</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">actions</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">add</span><span class="p">(</span><span class="nx">context</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">setTimeout</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="nx">context</span><span class="p">.</span><span class="nx">commit</span><span class="p">(</span><span class="s2">&#34;increment&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="p">},</span> <span class="mi">1000</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">})</span>
+</span></span></code></pre></div><ol>
 <li>
 <p>context即为store实例</p>
 </li>
 <li>
 <p>简写</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">actions</span><span class="o">:</span><span class="p">{</span>
-	<span class="nx">add</span><span class="p">({</span><span class="nx">commit</span><span class="p">}){</span>
-       <span class="nx">commit</span><span class="p">(</span><span class="s2">&#34;increment&#34;</span><span class="p">)</span>		
-	<span class="p">}</span>	
-<span class="p">}</span>
-</code></pre></div></li>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="nx">actions</span><span class="o">:</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">add</span><span class="p">({</span><span class="nx">commit</span><span class="p">}){</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">commit</span><span class="p">(</span><span class="s2">&#34;increment&#34;</span><span class="p">)</span>		
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>	
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div></li>
 </ol>
 </li>
 <li>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">vm</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
-    <span class="nx">el</span><span class="o">:</span> <span class="s1">&#39;#app&#39;</span><span class="p">,</span>
-    <span class="nx">store</span><span class="p">,</span>
-    <span class="nx">methods</span><span class="o">:</span> <span class="p">{</span>
-        <span class="nx">calc</span><span class="p">()</span> <span class="p">{</span>
-            <span class="k">this</span><span class="p">.</span><span class="nx">$store</span><span class="p">.</span><span class="nx">dispatch</span><span class="p">(</span><span class="s2">&#34;add&#34;</span><span class="p">);</span>
-        <span class="p">}</span>
-    <span class="p">},</span>
-<span class="p">});</span>
-</code></pre></div><p>store的dispatch方法，用于触发actions方法</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">vm</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">el</span><span class="o">:</span> <span class="s1">&#39;#app&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">store</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">methods</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">calc</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">this</span><span class="p">.</span><span class="nx">$store</span><span class="p">.</span><span class="nx">dispatch</span><span class="p">(</span><span class="s2">&#34;add&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl"><span class="p">});</span>
+</span></span></code></pre></div><p>store的dispatch方法，用于触发actions方法</p>
 </li>
 </ol>
 </li>
@@ -1161,44 +1160,44 @@ router.replace({path:&#39;user&#39;})
 </li>
 <li>
 <p>定义</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">store</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Vuex</span><span class="p">.</span><span class="nx">Store</span><span class="p">({</span>
-    <span class="nx">state</span><span class="o">:</span> <span class="p">{</span>
-        <span class="nx">todos</span><span class="o">:</span> <span class="p">[{</span>
-            <span class="nx">id</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
-            <span class="nx">text</span><span class="o">:</span> <span class="s1">&#39;列表1&#39;</span>
-        <span class="p">},</span> <span class="p">{</span>
-            <span class="nx">id</span><span class="o">:</span> <span class="mi">2</span><span class="p">,</span>
-            <span class="nx">text</span><span class="o">:</span> <span class="s1">&#39;列表2&#39;</span>
-        <span class="p">}],</span>
-        <span class="nx">id</span><span class="o">:</span> <span class="mi">0</span>
-    <span class="p">},</span>
-    <span class="nx">mutations</span><span class="o">:</span> <span class="p">{</span>
-        <span class="nx">searchM</span><span class="p">(</span><span class="nx">state</span><span class="p">,</span> <span class="nx">id</span><span class="p">)</span> <span class="p">{</span>
-            <span class="nx">state</span><span class="p">.</span><span class="nx">id</span> <span class="o">=</span> <span class="nx">id</span><span class="p">;</span>
-        <span class="p">}</span>
-    <span class="p">},</span>
-    <span class="nx">getters</span><span class="o">:</span> <span class="p">{</span>
-        <span class="nx">searchG</span><span class="o">:</span> <span class="nx">state</span> <span class="p">=&gt;</span> <span class="p">{</span>
-            <span class="k">return</span> <span class="nx">state</span><span class="p">.</span><span class="nx">todos</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span>
-                <span class="nx">todo</span> <span class="p">=&gt;</span> <span class="p">(</span><span class="nx">todo</span><span class="p">.</span><span class="nx">id</span> <span class="o">==</span> <span class="nx">state</span><span class="p">.</span><span class="nx">id</span><span class="p">)</span>
-            <span class="p">)</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">})</span>
-</code></pre></div><p>getters是计算属性，计算属性其实是方法，只不过使用的时候是属性</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">store</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Vuex</span><span class="p">.</span><span class="nx">Store</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">state</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">todos</span><span class="o">:</span> <span class="p">[{</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">id</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">text</span><span class="o">:</span> <span class="s1">&#39;列表1&#39;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">},</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">id</span><span class="o">:</span> <span class="mi">2</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">text</span><span class="o">:</span> <span class="s1">&#39;列表2&#39;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}],</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">id</span><span class="o">:</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">mutations</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">searchM</span><span class="p">(</span><span class="nx">state</span><span class="p">,</span> <span class="nx">id</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">state</span><span class="p">.</span><span class="nx">id</span> <span class="o">=</span> <span class="nx">id</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">getters</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">searchG</span><span class="o">:</span> <span class="nx">state</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="nx">state</span><span class="p">.</span><span class="nx">todos</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">                <span class="nx">todo</span> <span class="p">=&gt;</span> <span class="p">(</span><span class="nx">todo</span><span class="p">.</span><span class="nx">id</span> <span class="o">==</span> <span class="nx">state</span><span class="p">.</span><span class="nx">id</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">})</span>
+</span></span></code></pre></div><p>getters是计算属性，计算属性其实是方法，只不过使用的时候是属性</p>
 </li>
 <li>
 <p>使用</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;app&#34;</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span>列表查询<span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;text&#34;</span> <span class="na">v-model</span><span class="o">=</span><span class="s">&#34;id&#34;</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">button</span> <span class="err">@</span><span class="na">click</span><span class="o">=</span><span class="s">&#34;search&#34;</span><span class="p">&gt;</span>搜索<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>搜索结果：{{this.$store.getters.searchG}}<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">ul</span><span class="p">&gt;</span>
-        <span class="p">&lt;</span><span class="nt">li</span> <span class="na">v-for</span><span class="o">=</span><span class="s">&#34;item in this.$store.state.todos&#34;</span><span class="p">&gt;</span>{{item}}<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
-    <span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</code></pre></div></li>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;app&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span>列表查询<span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;text&#34;</span> <span class="na">v-model</span><span class="o">=</span><span class="s">&#34;id&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">button</span> <span class="err">@</span><span class="na">click</span><span class="o">=</span><span class="s">&#34;search&#34;</span><span class="p">&gt;</span>搜索<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>搜索结果：{{this.$store.getters.searchG}}<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">ul</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">&lt;</span><span class="nt">li</span> <span class="na">v-for</span><span class="o">=</span><span class="s">&#34;item in this.$store.state.todos&#34;</span><span class="p">&gt;</span>{{item}}<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span></code></pre></div></li>
 </ol>
 <h4 id="4modules">4.modules<a hidden class="anchor" aria-hidden="true" href="#4modules">#</a></h4>
 <ol>
@@ -1212,35 +1211,35 @@ router.replace({path:&#39;user&#39;})
 <p>与store数据参考中的参数是相同的</p>
 </li>
 <li>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="nx">key</span><span class="o">:</span><span class="p">{</span>		<span class="c1">//key表示模块名称
-</span><span class="c1"></span>    <span class="nx">state</span><span class="p">,</span>	<span class="c1">//初始数据
-</span><span class="c1"></span>    <span class="nx">mutations</span><span class="p">,</span>	<span class="c1">//状态提交，同步
-</span><span class="c1"></span>	<span class="nx">actions</span><span class="p">,</span>	<span class="c1">//状态分发，异步
-</span><span class="c1"></span>    <span class="nx">getters</span><span class="p">,</span>	<span class="c1">//计算属性
-</span><span class="c1"></span>    <span class="nx">modules</span>		<span class="c1">//模块
-</span><span class="c1"></span><span class="p">}</span>
-</code></pre></div></li>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">key</span><span class="o">:</span><span class="p">{</span>		<span class="c1">//key表示模块名称
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">state</span><span class="p">,</span>	<span class="c1">//初始数据
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">mutations</span><span class="p">,</span>	<span class="c1">//状态提交，同步
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">actions</span><span class="p">,</span>	<span class="c1">//状态分发，异步
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">getters</span><span class="p">,</span>	<span class="c1">//计算属性
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">modules</span>		<span class="c1">//模块
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span></code></pre></div></li>
 <li>
 <p>代码</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">moduleA</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="nx">state</span><span class="o">:</span> <span class="p">{</span>
-        <span class="nx">nameA</span><span class="o">:</span> <span class="s1">&#39;A&#39;</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-<span class="kr">const</span> <span class="nx">moduleB</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="nx">state</span><span class="o">:</span> <span class="p">{</span>
-        <span class="nx">nameB</span><span class="o">:</span> <span class="s1">&#39;B&#39;</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-<span class="kr">const</span> <span class="nx">store</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Vuex</span><span class="p">.</span><span class="nx">Store</span><span class="p">({</span>
-    <span class="nx">modules</span><span class="o">:</span> <span class="p">{</span>
-        <span class="nx">a</span><span class="o">:</span> <span class="nx">moduleA</span><span class="p">,</span>
-        <span class="nx">b</span><span class="o">:</span> <span class="nx">moduleB</span>
-    <span class="p">}</span>
-<span class="p">});</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">store</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">a</span><span class="p">);</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">store</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">b</span><span class="p">);</span>
-</code></pre></div></li>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">moduleA</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">state</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">nameA</span><span class="o">:</span> <span class="s1">&#39;A&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">moduleB</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">state</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">nameB</span><span class="o">:</span> <span class="s1">&#39;B&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">store</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Vuex</span><span class="p">.</span><span class="nx">Store</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">modules</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">a</span><span class="o">:</span> <span class="nx">moduleA</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">b</span><span class="o">:</span> <span class="nx">moduleB</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">});</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">store</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">a</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">store</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">b</span><span class="p">);</span>
+</span></span></code></pre></div></li>
 </ol>
 </li>
 </ol>
@@ -1254,26 +1253,26 @@ router.replace({path:&#39;user&#39;})
 </li>
 <li>
 <p>代码</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">myPlugin</span> <span class="o">=</span> <span class="nx">store</span> <span class="p">=&gt;</span> <span class="p">{</span>
-    <span class="nx">store</span><span class="p">.</span><span class="nx">subscribe</span><span class="p">((</span><span class="nx">mutation</span><span class="p">,</span> <span class="nx">state</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-        <span class="c1">// 每次mutation提交后调用，mutation格式{type, paylooad}
-</span><span class="c1"></span>        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">mutation</span><span class="p">.</span><span class="nx">type</span><span class="p">,</span> <span class="nx">mutation</span><span class="p">.</span><span class="nx">payload</span><span class="p">);</span>
-    <span class="p">})</span>
-<span class="p">}</span>
-<span class="kr">const</span> <span class="nx">store</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Vuex</span><span class="p">.</span><span class="nx">Store</span><span class="p">({</span>
-    <span class="nx">mutations</span><span class="o">:</span> <span class="p">{</span>
-        <span class="k">do</span><span class="p">(</span><span class="nx">state</span><span class="p">)</span> <span class="p">{</span>
-            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">state</span><span class="p">);</span>
-        <span class="p">}</span>
-    <span class="p">},</span>
-    <span class="nx">plugins</span><span class="o">:</span> <span class="p">[</span><span class="nx">myPlugin</span><span class="p">]</span>
-<span class="p">});</span>
-<span class="kd">var</span> <span class="nx">vm</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
-    <span class="nx">el</span><span class="o">:</span> <span class="s1">&#39;#app&#39;</span><span class="p">,</span>
-    <span class="nx">store</span><span class="p">,</span>
-<span class="p">});</span>
-<span class="nx">store</span><span class="p">.</span><span class="nx">commit</span><span class="p">(</span><span class="s1">&#39;do&#39;</span><span class="p">,</span> <span class="s1">&#39;plugin&#39;</span><span class="p">)</span>
-</code></pre></div><p>插件函数中通过store实例对象的subscribe函数可以用来处理mutation</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">myPlugin</span> <span class="o">=</span> <span class="nx">store</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">store</span><span class="p">.</span><span class="nx">subscribe</span><span class="p">((</span><span class="nx">mutation</span><span class="p">,</span> <span class="nx">state</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 每次mutation提交后调用，mutation格式{type, paylooad}
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">mutation</span><span class="p">.</span><span class="nx">type</span><span class="p">,</span> <span class="nx">mutation</span><span class="p">.</span><span class="nx">payload</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">})</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">store</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Vuex</span><span class="p">.</span><span class="nx">Store</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">mutations</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">do</span><span class="p">(</span><span class="nx">state</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">state</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">plugins</span><span class="o">:</span> <span class="p">[</span><span class="nx">myPlugin</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="p">});</span>
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">vm</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">el</span><span class="o">:</span> <span class="s1">&#39;#app&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">store</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="p">});</span>
+</span></span><span class="line"><span class="cl"><span class="nx">store</span><span class="p">.</span><span class="nx">commit</span><span class="p">(</span><span class="s1">&#39;do&#39;</span><span class="p">,</span> <span class="s1">&#39;plugin&#39;</span><span class="p">)</span>
+</span></span></code></pre></div><p>插件函数中通过store实例对象的subscribe函数可以用来处理mutation</p>
 <p>subscribe函数接受参数为mutation和state</p>
 </li>
 <li>
@@ -1298,15 +1297,15 @@ router.replace({path:&#39;user&#39;})
 <p>代码</p>
 <ol>
 <li>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">store</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Vuex</span><span class="p">.</span><span class="nx">Store</span><span class="p">({</span>
-    <span class="nx">state</span><span class="o">:</span> <span class="p">{},</span>
-<span class="p">});</span>
-<span class="nx">store</span><span class="p">.</span><span class="nx">registerModule</span><span class="p">(</span><span class="s1">&#39;myModule&#39;</span><span class="p">,</span> <span class="p">{</span>
-    <span class="nx">state</span><span class="o">:</span> <span class="p">{</span>
-        <span class="nx">name</span><span class="o">:</span> <span class="s2">&#34;我是注册模块的数据&#34;</span>
-    <span class="p">}</span>
-<span class="p">})</span>
-</code></pre></div><p>modules选项只能在实例化store的时候，注册模块</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">store</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Vuex</span><span class="p">.</span><span class="nx">Store</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">state</span><span class="o">:</span> <span class="p">{},</span>
+</span></span><span class="line"><span class="cl"><span class="p">});</span>
+</span></span><span class="line"><span class="cl"><span class="nx">store</span><span class="p">.</span><span class="nx">registerModule</span><span class="p">(</span><span class="s1">&#39;myModule&#39;</span><span class="p">,</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">state</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">name</span><span class="o">:</span> <span class="s2">&#34;我是注册模块的数据&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">})</span>
+</span></span></code></pre></div><p>modules选项只能在实例化store的时候，注册模块</p>
 <p>registerMudule()方法只要是能够获取到store对象的地方都可以注册</p>
 </li>
 </ol>
@@ -1322,20 +1321,20 @@ router.replace({path:&#39;user&#39;})
 </li>
 <li>
 <p>代码</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">store</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Vuex</span><span class="p">.</span><span class="nx">Store</span><span class="p">({</span>
-    <span class="nx">state</span><span class="o">:</span> <span class="p">{</span>
-        <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;我是初始值数据&#39;</span>
-    <span class="p">}</span>
-<span class="p">});</span>
-<span class="nx">store</span><span class="p">.</span><span class="nx">replaceState</span><span class="p">({</span> <span class="nx">name</span><span class="o">:</span> <span class="s2">&#34;替换后的新数据&#34;</span> <span class="p">})</span>
-<span class="kd">var</span> <span class="nx">vm</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
-    <span class="nx">el</span><span class="o">:</span> <span class="s2">&#34;#app&#34;</span><span class="p">,</span>
-    <span class="nx">store</span><span class="p">,</span>
-<span class="p">})</span>
-</code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;app&#34;</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>{{this.$store.state.name}}<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</code></pre></div></li>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">store</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Vuex</span><span class="p">.</span><span class="nx">Store</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">state</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;我是初始值数据&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">});</span>
+</span></span><span class="line"><span class="cl"><span class="nx">store</span><span class="p">.</span><span class="nx">replaceState</span><span class="p">({</span> <span class="nx">name</span><span class="o">:</span> <span class="s2">&#34;替换后的新数据&#34;</span> <span class="p">})</span>
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">vm</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">el</span><span class="o">:</span> <span class="s2">&#34;#app&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">store</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="p">})</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;app&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>{{this.$store.state.name}}<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span></code></pre></div></li>
 </ol>
 
 
@@ -1351,7 +1350,7 @@ router.replace({path:&#39;user&#39;})
     <br>
     <span>HTML5</span>
   </a>
-  <a class="next" href="https://rex0520.github.io/posts/back/java/jdbctool/jpa%E5%AD%A6%E4%B9%A0/">
+  <a class="next" href="https://rex0520.github.io/posts/back/java/jdbctool/jpa%D1%A7%CF%B0/">
     <span class="title">Next Page »</span>
     <br>
     <span>JPA学习</span>

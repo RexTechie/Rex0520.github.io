@@ -11,7 +11,7 @@
 <meta name="author" content="Rex">
 <link rel="canonical" href="https://rex0520.github.io/posts/" />
 <link crossorigin="anonymous" href="/assets/css/stylesheet.min.css" rel="preload stylesheet" as="style">
-<link rel="preload" href="http://cdn.rexweb.xyz/img/20210821105340.png" as="image">
+<link rel="preload" href="http://cdn.rexhub.xyz/img/20210821105340.png" as="image">
 <link rel="icon" href="https://rex0520.github.io/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="https://rex0520.github.io/favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="https://rex0520.github.io/favicon-32x32.png">
@@ -19,7 +19,7 @@
 <link rel="mask-icon" href="https://rex0520.github.io/%3Clink%20/%20abs%20url%3E">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<meta name="generator" content="Hugo 0.87.0" />
+<meta name="generator" content="Hugo 0.100.2" />
 <link rel="alternate" type="application/rss+xml" href="https://rex0520.github.io/posts/index.xml">
 <noscript>
     <style>
@@ -60,10 +60,10 @@
 </noscript><meta property="og:title" content="Posts" />
 <meta property="og:description" content="Rex的个人博客" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://rex0520.github.io/posts/" /><meta property="og:image" content="https://cdn.rexweb.xyz/img/20210820141535.jpg"/><meta property="og:site_name" content="RexHub" />
+<meta property="og:url" content="https://rex0520.github.io/posts/" /><meta property="og:image" content="https://cdn.rexhub.xyz/img/20210820141535.jpg"/><meta property="og:site_name" content="RexHub" />
 
 <meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="https://cdn.rexweb.xyz/img/20210820141535.jpg"/>
+<meta name="twitter:image" content="https://cdn.rexhub.xyz/img/20210820141535.jpg"/>
 
 <meta name="twitter:title" content="Posts"/>
 <meta name="twitter:description" content="Rex的个人博客"/>
@@ -101,7 +101,7 @@
     <nav class="nav">
         <div class="logo">
             <a href="https://rex0520.github.io/" accesskey="h" title="Home (Alt + H)">
-                <img src="http://cdn.rexweb.xyz/img/20210821105340.png" alt="logo" aria-label="logo"
+                <img src="http://cdn.rexhub.xyz/img/20210821105340.png" alt="logo" aria-label="logo"
                     height="35">Home</a>
             <span class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)">
@@ -165,7 +165,7 @@
     </h2>
   </header>
   <section class="entry-content">
-    <p>Spring Boot学习 SpringBoot概述 Spring Boot诞生历史  Spring的缺点：配置过于繁琐 Spring Boot开发团队：Pivotal  Spring Boot简洁  简化初始搭建以及开发过程 不再需要定义样板化的配置 快速应用开发领域 天下武功，唯快不破  Spring、Spring MVC和Spring Boot  Spring最初利用IOC和AOP解耦 按照这种模式搞了MVC框架 写很多样板代码很麻烦，就有了Spring Boot Spring Cloud是在Spring Boot基础上诞生的  Spring Boot核心特点  开箱即用 约定优于配置  Spring Boot版本介绍  CURRENT ：最新的GA版本 GA(General Availability)：发布版本 SNAPSHOP（快照）：该版本的内容会被随时的修改  Spring Boot 2.0都更新了什么  环境升级:java 8&#43;, tomcat 8&#43;，Thymeleaf 3,，Hibernate 5.2 默认的软件优化: Spring Security 新的功能:http2.0的支持 https://github.com/spring-projects/spring-boot/wiki/spring-boot-2.0-release-notes  </p>
+    <p>Spring Boot学习 SpringBoot概述 Spring Boot诞生历史 Spring的缺点：配置过于繁琐 Spring Boot开发团队：Pivotal Spring Boot简洁 简化初始搭建以及开发过程 不再需要定义样板化的配置 快速应用开发领域 天下武功，唯快不破 Spring、Spring MVC和Spring Boot Spring最初利用IOC和AOP解耦 按照这种模式搞了MVC框架 写很多样板代码很麻烦，就有了Spring Boot Spring Cloud是在Spring Boot基础上诞生的 Spring Boot核心特点 开箱即用 约定优于配置 Spring Boot版本介绍 CURRENT ：最新的GA版本 GA(General Availability)：发布版本 SNAPSHOP（快照）：该版本的内容会被随时的修改 Spring Boot 2.0都更新了什么 环境升级:java 8&#43;, tomcat 8&#43;，Thymeleaf 3,，Hibernate 5.2 默认的软件优化: Spring Security 新的功能:http2.0的支持 https://github.com/spring-projects/spring-boot/wiki/spring-boot-2.0-release-notes </p>
   </section>
   <footer class="entry-footer">2021-02-04&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Rex</footer>
   <a class="entry-link" aria-label="post link to SpringBoot记录" href="https://rex0520.github.io/posts/back/java/framework/springboot/springboot%E8%AE%B0%E5%BD%95/"></a>
@@ -177,8 +177,9 @@
     </h2>
   </header>
   <section class="entry-content">
-    <p>Spring JDBC与事务管理 Spring JDBC  Spring JDBC是Spring框架用于处理关系型数据库的模块 Spring JDBC对JDBC API进行封装，极大简化开发工作量 JdbcTemplate是Spring JDBC核心类，提供数据CRUD方法  Spring JDBC的使用步骤  Maven工程引入依赖spring-jdbc applicationContext.xml配置DataSource数据源 在Dao注入JdbcTemplate对象，实现数据CRUD  JdbcTemplate实现增删改查 Spring JDBC配置过程代码示例：  applicationContext.xml
-&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt; &lt;beans xmlns=&#34;http://www.springframework.org/schema/beans&#34; xmlns:xsi=&#34;http://www.w3.org/2001/XMLSchema-instance&#34; xmlns:context=&#34;http://www.springframework.org/schema/context&#34; xsi:schemaLocation=&#34; http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd&#34;&gt; &lt;!-- 数据源 --&gt; &lt;bean id=&#34;dataSource&#34; class=&#34;org.springframework.jdbc.datasource.DriverManagerDataSource&#34;&gt; &lt;property name=&#34;driverClassName&#34; value=&#34;com.mysql.cj.jdbc.Driver&#34;&gt;&lt;/property&gt; &lt;property name=&#34;url&#34; value=&#34;jdbc:mysql://localhost:3306/imooc?useSSL=false&amp;amp;useUnicode=true&amp;amp;characterEncoding=UTF-8&amp;amp;serverTimezone=Asia/Shanghai&amp;amp;allowPublicKeyRetrieval=true&#34;&gt;&lt;/property&gt; &lt;property name=&#34;username&#34; value=&#34;root&#34;&gt;&lt;/property&gt; &lt;property name=&#34;password&#34; value=&#34;root&#34;&gt;&lt;/property&gt; &lt;/bean&gt; &lt;!--JdbcTemplate提供CRUD的API--&gt; &lt;bean id=&#34;jdbcTemplate&#34; class=&#34;org.springframework.jdbc.core.JdbcTemplate&#34;&gt; &lt;property name=&#34;dataSource&#34; ref=&#34;dataSource&#34;&gt;&lt;/property&gt; &lt;/bean&gt; &lt;bean id=&#34;employeeDao&#34; class=&#34;com.imooc.spring.jdbc.dao.EmployeeDao&#34;&gt; &lt;!--为Dao注入JdbcTemplate对象--&gt; &lt;property name=&#34;jdbcTemplate&#34; ref=&#34;jdbcTemplate&#34;&gt;&lt;/property&gt; &lt;/bean&gt; &lt;/beans&gt; Employee....</p>
+    <p>Spring JDBC与事务管理 Spring JDBC Spring JDBC是Spring框架用于处理关系型数据库的模块 Spring JDBC对JDBC API进行封装，极大简化开发工作量 JdbcTemplate是Spring JDBC核心类，提供数据CRUD方法 Spring JDBC的使用步骤 Maven工程引入依赖spring-jdbc applicationContext.xml配置DataSource数据源 在Dao注入JdbcTemplate对象，实现数据CRUD JdbcTemplate实现增删改查 Spring JDBC配置过程代码示例： applicationContext.xml
+&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt; &lt;beans xmlns=&#34;http://www.springframework.org/schema/beans&#34; xmlns:xsi=&#34;http://www.w3.org/2001/XMLSchema-instance&#34; xmlns:context=&#34;http://www.springframework.org/schema/context&#34; xsi:schemaLocation=&#34; http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd&#34;&gt; &lt;!-- 数据源 --&gt; &lt;bean id=&#34;dataSource&#34; class=&#34;org.springframework.jdbc.datasource.DriverManagerDataSource&#34;&gt; &lt;property name=&#34;driverClassName&#34; value=&#34;com.mysql.cj.jdbc.Driver&#34;&gt;&lt;/property&gt; &lt;property name=&#34;url&#34; value=&#34;jdbc:mysql://localhost:3306/imooc?useSSL=false&amp;amp;useUnicode=true&amp;amp;characterEncoding=UTF-8&amp;amp;serverTimezone=Asia/Shanghai&amp;amp;allowPublicKeyRetrieval=true&#34;&gt;&lt;/property&gt; &lt;property name=&#34;username&#34; value=&#34;root&#34;&gt;&lt;/property&gt; &lt;property name=&#34;password&#34; value=&#34;root&#34;&gt;&lt;/property&gt; &lt;/bean&gt; &lt;!--JdbcTemplate提供CRUD的API--&gt; &lt;bean id=&#34;jdbcTemplate&#34; class=&#34;org.springframework.jdbc.core.JdbcTemplate&#34;&gt; &lt;property name=&#34;dataSource&#34; ref=&#34;dataSource&#34;&gt;&lt;/property&gt; &lt;/bean&gt; &lt;bean id=&#34;employeeDao&#34; class=&#34;com.imooc.spring.jdbc.dao.EmployeeDao&#34;&gt; &lt;!--为Dao注入JdbcTemplate对象--&gt; &lt;property name=&#34;jdbcTemplate&#34; ref=&#34;jdbcTemplate&#34;&gt;&lt;/property&gt; &lt;/bean&gt; &lt;/beans&gt; Employee.java
+package com....</p>
   </section>
   <footer class="entry-footer">2021-01-06&nbsp;·&nbsp;9 min&nbsp;·&nbsp;Rex</footer>
   <a class="entry-link" aria-label="post link to Springjdbc" href="https://rex0520.github.io/posts/back/java/framework/spring/springjdbc/"></a>
@@ -190,7 +191,7 @@
     </h2>
   </header>
   <section class="entry-content">
-    <p>Spring 框架概述 1、Spring 是轻量级的开源的JavaEE框架 2、Spring 解决企业应用开发的复杂性 3、Spring有两个核心的部分：IOC和AOP （1）IOC：控制反转，把创建对象的过程交给Spring进行管理 （2）AOP：面向切面，不修改源代码进行功能增强 4、Spring特点 （1）方便解耦，简化开发 （2）AOP编程支持 （3）方便程序测试 （4）方便和其他框架进行整合 （5）方便进行事务操作 （6）降低API的开发难度 Core Container  Beans Core Context Expression  </p>
+    <p>Spring 框架概述 1、Spring 是轻量级的开源的JavaEE框架 2、Spring 解决企业应用开发的复杂性 3、Spring有两个核心的部分：IOC和AOP （1）IOC：控制反转，把创建对象的过程交给Spring进行管理 （2）AOP：面向切面，不修改源代码进行功能增强 4、Spring特点 （1）方便解耦，简化开发 （2）AOP编程支持 （3）方便程序测试 （4）方便和其他框架进行整合 （5）方便进行事务操作 （6）降低API的开发难度 Core Container Beans Core Context Expression </p>
   </section>
   <footer class="entry-footer">2021-01-05&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Rex</footer>
   <a class="entry-link" aria-label="post link to Spring框架概述" href="https://rex0520.github.io/posts/back/java/framework/spring/spring%E6%A1%86%E6%9E%B6%E6%A6%82%E8%BF%B0/"></a>
@@ -202,9 +203,9 @@
     </h2>
   </header>
   <section class="entry-content">
-    <p>Spring AOP面向切面编程 Spring AOP  Spring AOP - Aspect Oriented Programming 面向切面编程 AOP的做法是将通用、于业务无关的功能抽象封装为切面类 切面可配置在目标方法的执行前、后运行，真正做到即插即用  Spring AOP  用到的依赖dependency：
+    <p>Spring AOP面向切面编程 Spring AOP Spring AOP - Aspect Oriented Programming 面向切面编程 AOP的做法是将通用、于业务无关的功能抽象封装为切面类 切面可配置在目标方法的执行前、后运行，真正做到即插即用 Spring AOP 用到的依赖dependency：
 &lt;dependencies&gt; &lt;dependency&gt; &lt;groupId&gt;org.springframework&lt;/groupId&gt; &lt;artifactId&gt;spring-context&lt;/artifactId&gt; &lt;version&gt;5.3.2&lt;/version&gt; &lt;/dependency&gt; &lt;dependency&gt; &lt;groupId&gt;org.aspectj&lt;/groupId&gt; &lt;artifactId&gt;aspectjweaver&lt;/artifactId&gt; &lt;version&gt;1.9.6&lt;/version&gt; &lt;/dependency&gt; &lt;/dependencies&gt; applicationContext.xml中schema依赖
-&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt; &lt;beans xmlns=&#34;http://www.springframework.org/schema/beans&#34; xmlns:xsi=&#34;http://www.w3.org/2001/XMLSchema-instance&#34; xmlns:aop=&#34;http://www.springframework.org/schema/aop&#34; xsi:schemaLocation=&#34; http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd&#34;&gt; &lt;!-- bean definitions here --&gt; &lt;/beans&gt;  Spring AOP概念 Spring AOP与AspectJ的关系  Eclipse AspectJ，一种基于Java平台的面向切面编程的语言 Spring AOP使用AspectJWeaver实现类与方法的匹配 Spring AOP利用代理模式实现对象运行时功能扩展  几个关键概念    注解 说明     Aspect 切面，具体的可插拔组件功能类，通常一个切面只实现一个通用功能   Target Class/Method 目标类、目标方法，指真正要执行与业务相关的方法   PointCut 切入点，使用execution表达式说明切面要作用在系统的哪些类上   JoinPoint 连接点，切面运行过程中时包括了目标类/方法元数据的对象   Advice 通知，说明具体的切面的执行时机，Spring包含了五种不同类型通知    AOP配置过程  依赖AspectJ 实现切面类/方法 配置Aspect Bean 定义PointCut 配置Advice  JoinPoint核心方法    注解 说明     Object getTarget() 获取IoC容器内目标对象   Signature getSignature() 获取目标方法   Object[] getArgs() 获取目标方法参数    PointCut切点表达式 通知 五种通知类型    注解 说明     Before Advice 前置通知，目标方法运行前执行   After Returning Advice 返回后通知，目标方法返回数据后执行   After Throwing Advice 异常通知，目标方法抛出异常后执行   After Advice 后置通知，目标方法运行   Around Advice 最强大通知，自定义通知执行时机，可决定目标方法是否运行    特殊的“通知”-引介增强  引介增强(Introduction Interceptor)是对类的增强，而非方法 引介增强允许在运行时为目标类增加新属性或方法 引介增强允许在运行时改变类的行为，让类随运行环境动态变更  Spring AOP实现原理  Spring基于代理模式实现功能动态扩展，包含俩种形式 目标类拥有接口，通过JDK动态代理实现功能扩展 目标类没有接口，通过CGLib组件实现功能扩展  代理模式：  代理模式通过代理对象对原对象的实现功能扩展  静态代理示例：  UserService....</p>
+&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt; &lt;beans xmlns=&#34;http://www.springframework.org/schema/beans&#34; xmlns:xsi=&#34;http://www.w3.org/2001/XMLSchema-instance&#34; xmlns:aop=&#34;http://www.springframework.org/schema/aop&#34; xsi:schemaLocation=&#34; http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd&#34;&gt; &lt;!-- bean definitions here --&gt; &lt;/beans&gt; Spring AOP概念 Spring AOP与AspectJ的关系 Eclipse AspectJ，一种基于Java平台的面向切面编程的语言 Spring AOP使用AspectJWeaver实现类与方法的匹配 Spring AOP利用代理模式实现对象运行时功能扩展 几个关键概念 注解 说明 Aspect 切面，具体的可插拔组件功能类，通常一个切面只实现一个通用功能 Target Class/Method 目标类、目标方法，指真正要执行与业务相关的方法 PointCut 切入点，使用execution表达式说明切面要作用在系统的哪些类上 JoinPoint 连接点，切面运行过程中时包括了目标类/方法元数据的对象 Advice 通知，说明具体的切面的执行时机，Spring包含了五种不同类型通知 AOP配置过程 依赖AspectJ 实现切面类/方法 配置Aspect Bean 定义PointCut 配置Advice JoinPoint核心方法 注解 说明 Object getTarget() 获取IoC容器内目标对象 Signature getSignature() 获取目标方法 Object[] getArgs() 获取目标方法参数 PointCut切点表达式 通知 五种通知类型 注解 说明 Before Advice 前置通知，目标方法运行前执行 After Returning Advice 返回后通知，目标方法返回数据后执行 After Throwing Advice 异常通知，目标方法抛出异常后执行 After Advice 后置通知，目标方法运行 Around Advice 最强大通知，自定义通知执行时机，可决定目标方法是否运行 特殊的“通知”-引介增强 引介增强(Introduction Interceptor)是对类的增强，而非方法 引介增强允许在运行时为目标类增加新属性或方法 引介增强允许在运行时改变类的行为，让类随运行环境动态变更 Spring AOP实现原理 Spring基于代理模式实现功能动态扩展，包含俩种形式 目标类拥有接口，通过JDK动态代理实现功能扩展 目标类没有接口，通过CGLib组件实现功能扩展 代理模式： 代理模式通过代理对象对原对象的实现功能扩展 静态代理示例： UserService....</p>
   </section>
   <footer class="entry-footer">2021-01-04&nbsp;·&nbsp;5 min&nbsp;·&nbsp;Rex</footer>
   <a class="entry-link" aria-label="post link to Springaop面向切面编程" href="https://rex0520.github.io/posts/back/java/framework/spring/springaop%E9%9D%A2%E5%90%91%E5%88%87%E9%9D%A2%E7%BC%96%E7%A8%8B/"></a>
@@ -216,12 +217,17 @@
     </h2>
   </header>
   <section class="entry-content">
-    <p>Spring IoC与Bean管理 Spring快速入门 IoC控制反转  IoC控制反转，全称Inverse of Control，是一种设计理念，把对象创建和对象之间的调用过程，交给spring进行管理 由代理人来创建与管理对象，消费者通过代理人来获取对象 IoC的目的是降低对象之间直接耦合 加入IoC容器将对象统一管理，让对象关联变为弱耦合  DI依赖注入  IoC是设计理念，是现代程序设计遵循的标准，是宏观目标 DI(Dependency Injection)是具体技术实现，是微观实现 DI在Java中利用反射技术实现对象注入（Injection）  Spring Spring的含义  Spring可从狭义与广义俩个角度看待 狭义的Spring是指Spring框架（Spring Framework） 广义的Spring是指Spring生态体系  狭义的Spring  Spring框架是企业开发复杂性的一站式解决方案 Spring框架的核心是IoC容器与AOP面向切面变成 Spring IoC负责创建与管理系统对象，并在此基础上扩展功能  传统开发方式  对象直接引用导致对象硬性关联，程序难以扩展维护  Spring IoC  IoC容器是Spring生态的地基用于统一创建与管理对象依赖  Spring IoC容器职责  对象的控制器交由第三方统一管理（IoC控制反转） 利用Java反射技术实现运行时对象创建与关联（DI依赖注入） 基于配置提高应用程序的可维护性与扩展性  IOC底层原理：  xml解析、工厂模式、反射  IOC(接口)   IOC思想基于IOC容器完成，IOC容器底层就是对象工厂
-  Spring提供IOC容器实现两种方式：（两个接口）
-  BeanFactory：IOC容器基本实现方式，是Spring内部的使用的接口，不提供给开发人员使用
+    <p>Spring IoC与Bean管理 Spring快速入门 IoC控制反转 IoC控制反转，全称Inverse of Control，是一种设计理念，把对象创建和对象之间的调用过程，交给spring进行管理 由代理人来创建与管理对象，消费者通过代理人来获取对象 IoC的目的是降低对象之间直接耦合 加入IoC容器将对象统一管理，让对象关联变为弱耦合 DI依赖注入 IoC是设计理念，是现代程序设计遵循的标准，是宏观目标 DI(Dependency Injection)是具体技术实现，是微观实现 DI在Java中利用反射技术实现对象注入（Injection） Spring Spring的含义 Spring可从狭义与广义俩个角度看待 狭义的Spring是指Spring框架（Spring Framework） 广义的Spring是指Spring生态体系 狭义的Spring Spring框架是企业开发复杂性的一站式解决方案 Spring框架的核心是IoC容器与AOP面向切面变成 Spring IoC负责创建与管理系统对象，并在此基础上扩展功能 传统开发方式 对象直接引用导致对象硬性关联，程序难以扩展维护 Spring IoC IoC容器是Spring生态的地基用于统一创建与管理对象依赖 Spring IoC容器职责 对象的控制器交由第三方统一管理（IoC控制反转） 利用Java反射技术实现运行时对象创建与关联（DI依赖注入） 基于配置提高应用程序的可维护性与扩展性 IOC底层原理： xml解析、工厂模式、反射 IOC(接口) IOC思想基于IOC容器完成，IOC容器底层就是对象工厂
+Spring提供IOC容器实现两种方式：（两个接口）
+BeanFactory：IOC容器基本实现方式，是Spring内部的使用的接口，不提供给开发人员使用
 特点：
 ​	加载配置文件时候不会创建对象，在获取对象（使用）才去创建对象
-  ApplicationContext：BeanFactory接口的子接口，提供更多更强大的功能， 一般由开发人员进行使用...</p>
+ApplicationContext：BeanFactory接口的子接口，提供更多更强大的功能， 一般由开发人员进行使用
+特点：加载配置文件时候就会把配置文件对象进行创建
+ApplicationContext接口
+代码示例： 需要引入的依赖
+&lt;dependency&gt; &lt;groupId&gt;org.springframework&lt;/groupId&gt; &lt;artifactId&gt;spring-context&lt;/artifactId&gt; &lt;version&gt;5.3.1&lt;/version&gt; &lt;/dependency&gt; Apple.java
+package com.imooc.spring.ioc.entity; /** * @author CubeMonkey * @create 2020-11-27 23:57 */ public class Apple { private String title; private String color; private String origin; public Apple() { } public Apple(String title, String color, String origin) { this....</p>
   </section>
   <footer class="entry-footer">2021-01-04&nbsp;·&nbsp;4 min&nbsp;·&nbsp;Rex</footer>
   <a class="entry-link" aria-label="post link to Springioc与bean管理" href="https://rex0520.github.io/posts/back/java/framework/spring/springioc%E4%B8%8Ebean%E7%AE%A1%E7%90%86/"></a>

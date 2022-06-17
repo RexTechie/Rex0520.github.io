@@ -11,7 +11,7 @@
 <meta name="author" content="Rex">
 <link rel="canonical" href="https://rex0520.github.io/tags/css/" />
 <link crossorigin="anonymous" href="/assets/css/stylesheet.min.css" rel="preload stylesheet" as="style">
-<link rel="preload" href="http://cdn.rexweb.xyz/img/20210821105340.png" as="image">
+<link rel="preload" href="http://cdn.rexhub.xyz/img/20210821105340.png" as="image">
 <link rel="icon" href="https://rex0520.github.io/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="https://rex0520.github.io/favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="https://rex0520.github.io/favicon-32x32.png">
@@ -19,7 +19,7 @@
 <link rel="mask-icon" href="https://rex0520.github.io/%3Clink%20/%20abs%20url%3E">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<meta name="generator" content="Hugo 0.87.0" />
+<meta name="generator" content="Hugo 0.100.2" />
 <link rel="alternate" type="application/rss+xml" href="https://rex0520.github.io/tags/css/index.xml">
 <noscript>
     <style>
@@ -60,10 +60,10 @@
 </noscript><meta property="og:title" content="CSS" />
 <meta property="og:description" content="Rex的个人博客" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://rex0520.github.io/tags/css/" /><meta property="og:image" content="https://cdn.rexweb.xyz/img/20210820141535.jpg"/><meta property="og:site_name" content="RexHub" />
+<meta property="og:url" content="https://rex0520.github.io/tags/css/" /><meta property="og:image" content="https://cdn.rexhub.xyz/img/20210820141535.jpg"/><meta property="og:site_name" content="RexHub" />
 
 <meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="https://cdn.rexweb.xyz/img/20210820141535.jpg"/>
+<meta name="twitter:image" content="https://cdn.rexhub.xyz/img/20210820141535.jpg"/>
 
 <meta name="twitter:title" content="CSS"/>
 <meta name="twitter:description" content="Rex的个人博客"/>
@@ -86,7 +86,7 @@
     <nav class="nav">
         <div class="logo">
             <a href="https://rex0520.github.io/" accesskey="h" title="Home (Alt + H)">
-                <img src="http://cdn.rexweb.xyz/img/20210821105340.png" alt="logo" aria-label="logo"
+                <img src="http://cdn.rexhub.xyz/img/20210821105340.png" alt="logo" aria-label="logo"
                     height="35">Home</a>
             <span class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)">
@@ -150,8 +150,13 @@
     </h2>
   </header>
   <section class="entry-content">
-    <p>CSS3 CSS新增选择器 属性选择器    选择器 简介     E[attr] 选择具有attr属性的E元素   E[attr=“val”] 选择具有attr属性且属性值等于E的元素   E[attr^=“val”] 匹配具有attr属性且值以val开头的E元素   E[attr$=“val”] 匹配具有attr属性且值以val结尾的E元素   E[attr*=“val”] 匹配具有attr属性且值中含有val的E元素    属性选择器的权重为10
-结构伪类选择器    选择符 简介     E:first-child 匹配父元素中的第一个子元素E   E:last-child 匹配父元素中最后一个E元素   E:nth-child(n) 匹配父元素中的第n个子元素E   E:first-of-type 指定类型E的第一个   E:last-of-type 指定类型E的最后一个   E:nth-of-type(n) 指定类型E的第n个    nth-child(n)...</p>
+    <p>CSS3 CSS新增选择器 属性选择器 选择器 简介 E[attr] 选择具有attr属性的E元素 E[attr=“val”] 选择具有attr属性且属性值等于E的元素 E[attr^=“val”] 匹配具有attr属性且值以val开头的E元素 E[attr$=“val”] 匹配具有attr属性且值以val结尾的E元素 E[attr*=“val”] 匹配具有attr属性且值中含有val的E元素 属性选择器的权重为10
+结构伪类选择器 选择符 简介 E:first-child 匹配父元素中的第一个子元素E E:last-child 匹配父元素中最后一个E元素 E:nth-child(n) 匹配父元素中的第n个子元素E E:first-of-type 指定类型E的第一个 E:last-of-type 指定类型E的最后一个 E:nth-of-type(n) 指定类型E的第n个 nth-child(n)
+n可以是数字，关键字和公式 n如果是是数字，就是选择第n个子元素，里面数字从1开始 n可以是关键字：even偶数，odd奇数 伪元素选择器 ​	伪元素选择器可以帮助我们利用CSS创建新标签元素，而不需要HTML标签，从而简化HTML结构
+选择器 简介 ::before 在元素内部的前面插入内容 ::after 在元素内部的后面插入内容 注意：
+before和after创建一个元素，但是属于行内元素 新创建的这个元素在文档树中是找不到的，所以我们称为伪元素 语法：element::before{} before和after必须有content属性 before在父元素内容的前面创建元素，after在父元素内容的后面插入元素 伪元素选择器和标签选择器一样，权重为1 CSS3盒子模型 box-sizing: content-box 盒子大小为width&#43;padding&#43;border(以前默认的) border-box 盒子大小width 其他特性（了解） filter CSS属性将模糊或颜色偏移等图形效果应用于元素。
+filter: 函数(); 例如filter:blur(5px); blur模糊处理数值越大越模糊 calc()此CSS函数让你在声明CSS属性值时执行一些计算。
+width:calc(100%-80px); CSS过渡 transition:要过渡的属性 花费时间 运动曲线 何时开始;...</p>
   </section>
   <footer class="entry-footer">2021-06-18&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Rex</footer>
   <a class="entry-link" aria-label="post link to CSS3" href="https://rex0520.github.io/posts/front/css3/"></a>
@@ -163,15 +168,20 @@
     </h2>
   </header>
   <section class="entry-content">
-    <p>CSS CSS简介  层叠样式表(Cascading Style Sheets)的简称 美化HTML、布局网页 结构（HTML）-样式（CSS）分离  语法规范： ​	选择器{属性:值}
-h1{color: red;} 语法风格   紧凑格式
-h3 {color:red}   展开格式(强推)
-h3 { color: pink; font-size:20px; }   选择器： CSS引入方式  内部样式表 行内样式表 外部样式表  CSS常用选择器 基础选择器  标签选择器 类选择器 id选择器 通配符选择器  复合选择器   后代选择器
+    <p>CSS CSS简介 层叠样式表(Cascading Style Sheets)的简称 美化HTML、布局网页 结构（HTML）-样式（CSS）分离 语法规范： ​	选择器{属性:值}
+h1{color: red;} 语法风格 紧凑格式
+h3 {color:red} 展开格式(强推)
+h3 { color: pink; font-size:20px; } 选择器： CSS引入方式 内部样式表 行内样式表 外部样式表 CSS常用选择器 基础选择器 标签选择器 类选择器 id选择器 通配符选择器 复合选择器 后代选择器
 元素1 元素2 { 样式声明 }
-  子选择器：只能选择作为某元素的最近一级 元素，
+子选择器：只能选择作为某元素的最近一级 元素，
 元素1&gt;元素2 { 样式声明 }
-  并集选择器
-元素1,元素2 { 样式声明 }...</p>
+并集选择器
+元素1,元素2 { 样式声明 }
+伪类选择器
+链接伪类选择器：必须按照lvha的顺序
+a:link /*选择所有未被访问的链接*/ a:visited /*选择所有已被访问的链接*/ a:hover /*选择鼠标指针位于其上的链接*/ a:active /*选择活动链接*/ focus伪类选择器用于获取焦点的表单元素。
+input:focus{ background-color: yellow; } CSS三大特性： 层叠性
+解决样式冲突问题...</p>
   </section>
   <footer class="entry-footer">2021-05-14&nbsp;·&nbsp;4 min&nbsp;·&nbsp;Rex</footer>
   <a class="entry-link" aria-label="post link to CSS" href="https://rex0520.github.io/posts/front/css/"></a>

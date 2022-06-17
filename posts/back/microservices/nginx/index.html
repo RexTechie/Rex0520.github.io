@@ -11,7 +11,7 @@
 <meta name="author" content="Rex">
 <link rel="canonical" href="https://rex0520.github.io/posts/back/microservices/nginx/" />
 <link crossorigin="anonymous" href="/assets/css/stylesheet.min.css" rel="preload stylesheet" as="style">
-<link rel="preload" href="http://cdn.rexweb.xyz/img/20210821105340.png" as="image">
+<link rel="preload" href="http://cdn.rexhub.xyz/img/20210821105340.png" as="image">
 <link rel="icon" href="https://rex0520.github.io/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="https://rex0520.github.io/favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="https://rex0520.github.io/favicon-32x32.png">
@@ -23,12 +23,12 @@
 <meta property="og:title" content="Nginx学习" />
 <meta property="og:description" content="微服务学习记录" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://rex0520.github.io/posts/back/microservices/nginx/" /><meta property="og:image" content="https://cdn.rexweb.xyz/img/20210820141535.jpg"/><meta property="article:section" content="posts" />
+<meta property="og:url" content="https://rex0520.github.io/posts/back/microservices/nginx/" /><meta property="og:image" content="https://cdn.rexhub.xyz/img/20210820141535.jpg"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2021-06-22T00:00:00&#43;00:00" />
 <meta property="article:modified_time" content="2021-06-22T00:00:00&#43;00:00" /><meta property="og:site_name" content="RexHub" />
 
 <meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="https://cdn.rexweb.xyz/img/20210820141535.jpg"/>
+<meta name="twitter:image" content="https://cdn.rexhub.xyz/img/20210820141535.jpg"/>
 
 <meta name="twitter:title" content="Nginx学习"/>
 <meta name="twitter:description" content="微服务学习记录"/>
@@ -44,7 +44,7 @@
       "position":  1 ,
       "name": "Posts",
       "item": "https://rex0520.github.io/posts/"
-    }, 
+    },
     {
       "@type": "ListItem",
       "position":  2 ,
@@ -142,7 +142,7 @@
     <nav class="nav">
         <div class="logo">
             <a href="https://rex0520.github.io/" accesskey="h" title="Home (Alt + H)">
-                <img src="http://cdn.rexweb.xyz/img/20210821105340.png" alt="logo" aria-label="logo"
+                <img src="http://cdn.rexhub.xyz/img/20210821105340.png" alt="logo" aria-label="logo"
                     height="35">Home</a>
             <span class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)">
@@ -217,10 +217,10 @@
         <div class="inner"><ul>
                 <li>
                     <a href="#nginx" aria-label="Nginx">Nginx</a><ul>
-                        
+
                 <li>
                     <a href="#nginx%e4%bb%8b%e7%bb%8d" aria-label="Nginx介绍">Nginx介绍</a><ul>
-                        
+
                 <li>
                     <a href="#%e4%bd%bf%e7%94%a8%e5%9c%ba%e6%99%af" aria-label="使用场景">使用场景</a></li>
                 <li>
@@ -488,7 +488,7 @@ nginx -s stop<span class="p">|</span>quit<span class="p">|</span> <span class="c
 </span><span class="c1"></span>    <span class="c1">#}
 </span><span class="c1"></span>    <span class="c1"># deny access to .htaccess files, if Apache&#39;s document root
 </span><span class="c1"></span>    <span class="c1"># concurs with nginx&#39;s one
-</span><span class="c1"></span>    <span class="c1"># 
+</span><span class="c1"></span>    <span class="c1">#
 </span><span class="c1"></span>    <span class="c1">#location ~ /\.ht {   //访问的url中，以/.ht开头的，如，www.example.com/.htaccess，会被拒绝，返回403状态码。
 </span><span class="c1"></span>    <span class="c1">#    deny  all;  //这里的all指的是所有的请求。
 </span><span class="c1"></span>    <span class="c1">#}
@@ -733,12 +733,12 @@ nginx -s stop<span class="p">|</span>quit<span class="p">|</span> <span class="c
         if (container.classList.contains("highlight")) {
             container.appendChild(copybutton);
         } else if (container.parentNode.firstChild == container) {
-            
+
         } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
-            
+
             codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
         } else {
-            
+
             codeblock.parentNode.appendChild(copybutton);
         }
     });

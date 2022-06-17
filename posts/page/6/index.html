@@ -11,7 +11,7 @@
 <meta name="author" content="Rex">
 <link rel="canonical" href="https://rex0520.github.io/posts/" />
 <link crossorigin="anonymous" href="/assets/css/stylesheet.min.css" rel="preload stylesheet" as="style">
-<link rel="preload" href="http://cdn.rexweb.xyz/img/20210821105340.png" as="image">
+<link rel="preload" href="http://cdn.rexhub.xyz/img/20210821105340.png" as="image">
 <link rel="icon" href="https://rex0520.github.io/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="https://rex0520.github.io/favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="https://rex0520.github.io/favicon-32x32.png">
@@ -19,7 +19,7 @@
 <link rel="mask-icon" href="https://rex0520.github.io/%3Clink%20/%20abs%20url%3E">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<meta name="generator" content="Hugo 0.87.0" />
+<meta name="generator" content="Hugo 0.100.2" />
 <link rel="alternate" type="application/rss+xml" href="https://rex0520.github.io/posts/index.xml">
 <noscript>
     <style>
@@ -60,10 +60,10 @@
 </noscript><meta property="og:title" content="Posts" />
 <meta property="og:description" content="Rex的个人博客" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://rex0520.github.io/posts/" /><meta property="og:image" content="https://cdn.rexweb.xyz/img/20210820141535.jpg"/><meta property="og:site_name" content="RexHub" />
+<meta property="og:url" content="https://rex0520.github.io/posts/" /><meta property="og:image" content="https://cdn.rexhub.xyz/img/20210820141535.jpg"/><meta property="og:site_name" content="RexHub" />
 
 <meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="https://cdn.rexweb.xyz/img/20210820141535.jpg"/>
+<meta name="twitter:image" content="https://cdn.rexhub.xyz/img/20210820141535.jpg"/>
 
 <meta name="twitter:title" content="Posts"/>
 <meta name="twitter:description" content="Rex的个人博客"/>
@@ -101,7 +101,7 @@
     <nav class="nav">
         <div class="logo">
             <a href="https://rex0520.github.io/" accesskey="h" title="Home (Alt + H)">
-                <img src="http://cdn.rexweb.xyz/img/20210821105340.png" alt="logo" aria-label="logo"
+                <img src="http://cdn.rexhub.xyz/img/20210821105340.png" alt="logo" aria-label="logo"
                     height="35">Home</a>
             <span class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)">
@@ -165,15 +165,20 @@
     </h2>
   </header>
   <section class="entry-content">
-    <p>CSS CSS简介  层叠样式表(Cascading Style Sheets)的简称 美化HTML、布局网页 结构（HTML）-样式（CSS）分离  语法规范： ​	选择器{属性:值}
-h1{color: red;} 语法风格   紧凑格式
-h3 {color:red}   展开格式(强推)
-h3 { color: pink; font-size:20px; }   选择器： CSS引入方式  内部样式表 行内样式表 外部样式表  CSS常用选择器 基础选择器  标签选择器 类选择器 id选择器 通配符选择器  复合选择器   后代选择器
+    <p>CSS CSS简介 层叠样式表(Cascading Style Sheets)的简称 美化HTML、布局网页 结构（HTML）-样式（CSS）分离 语法规范： ​	选择器{属性:值}
+h1{color: red;} 语法风格 紧凑格式
+h3 {color:red} 展开格式(强推)
+h3 { color: pink; font-size:20px; } 选择器： CSS引入方式 内部样式表 行内样式表 外部样式表 CSS常用选择器 基础选择器 标签选择器 类选择器 id选择器 通配符选择器 复合选择器 后代选择器
 元素1 元素2 { 样式声明 }
-  子选择器：只能选择作为某元素的最近一级 元素，
+子选择器：只能选择作为某元素的最近一级 元素，
 元素1&gt;元素2 { 样式声明 }
-  并集选择器
-元素1,元素2 { 样式声明 }...</p>
+并集选择器
+元素1,元素2 { 样式声明 }
+伪类选择器
+链接伪类选择器：必须按照lvha的顺序
+a:link /*选择所有未被访问的链接*/ a:visited /*选择所有已被访问的链接*/ a:hover /*选择鼠标指针位于其上的链接*/ a:active /*选择活动链接*/ focus伪类选择器用于获取焦点的表单元素。
+input:focus{ background-color: yellow; } CSS三大特性： 层叠性
+解决样式冲突问题...</p>
   </section>
   <footer class="entry-footer">2021-05-14&nbsp;·&nbsp;4 min&nbsp;·&nbsp;Rex</footer>
   <a class="entry-link" aria-label="post link to CSS" href="https://rex0520.github.io/posts/front/css/"></a>
@@ -185,17 +190,22 @@ h3 { color: pink; font-size:20px; }   选择器： CSS引入方式  内部样式
     </h2>
   </header>
   <section class="entry-content">
-    <p>网页开发 浏览器内核    浏览器 内核 备注     IE Trident IE、猎豹、360极速浏览器、百度浏览器   firefox Gecko 火狐浏览器内核   Safari Webkit 苹果浏览器内核   Chrome/Opera Blink Chrome/Opera浏览器内核。Blink其实是Webkit的分支    Web标准 目的： ​	浏览器不同，他们显示页面或者排版不同
-构成：  结构 - HTML 表现 - CSS 行为 - JavaScript  SEO优化 TDK三大标签   title
+    <p>网页开发 浏览器内核 浏览器 内核 备注 IE Trident IE、猎豹、360极速浏览器、百度浏览器 firefox Gecko 火狐浏览器内核 Safari Webkit 苹果浏览器内核 Chrome/Opera Blink Chrome/Opera浏览器内核。Blink其实是Webkit的分支 Web标准 目的： ​	浏览器不同，他们显示页面或者排版不同
+构成： 结构 - HTML 表现 - CSS 行为 - JavaScript SEO优化 TDK三大标签 title
 title是搜索引擎了解网页入口和网页主题归属的最佳判断点
 建议：网站名（产品名）-网站的介绍（尽量不超过30个汉字）
-  description
+description
 简要说明我们网站主要是做什么的。
 我们提倡，description作为网站的总体业务和主题概况
-  keyword
+keyword
 keywords是页面关键字，是搜索引擎的关注点之一。
 keywords最好限制为6~8个关键字，关键字之间用英文逗号隔开，采用关键词1，关键词2的形式
-  LOGO SEO优化  logo里面首先放一个h1标签，目的是为了提权，告诉搜索引擎，这个地方很重要 h1里面再放一个链接，可以返回首页的，把logo的背景图片给链接即可。 为了搜索引擎收录我们，我们链接里面要放文字（网站名称），但是文字不要显示出来  方法1：text-index移到盒子外面（text-indent:-9999px），然后overflow:hidden，淘宝的做法 方法2：直接给font-size:0;就看不到文字了，京东的做法。   最后给链接一个title属性，这样鼠标放到logo上就可以看到提示文字了  HTML标签 声明部分 文档类型声明标签 ​	&lt;!...</p>
+LOGO SEO优化 logo里面首先放一个h1标签，目的是为了提权，告诉搜索引擎，这个地方很重要 h1里面再放一个链接，可以返回首页的，把logo的背景图片给链接即可。 为了搜索引擎收录我们，我们链接里面要放文字（网站名称），但是文字不要显示出来 方法1：text-index移到盒子外面（text-indent:-9999px），然后overflow:hidden，淘宝的做法 方法2：直接给font-size:0;就看不到文字了，京东的做法。 最后给链接一个title属性，这样鼠标放到logo上就可以看到提示文字了 HTML标签 声明部分 文档类型声明标签 ​	&lt;!DOCTYPE&gt;文档类型声明，作用就是告诉浏览器使用哪种HTML版本来显示网页
+&lt;!DOCTYPE html&gt;指当前页面采用HTML5版本来显示网页
+lang语言种类 en定义语言为中文 zh-CN定义语言为中文 这个对于网页的编码没有什么影响，主要针对浏览器和搜索引擎
+字符集 ​	&lt;meta charset=&#34;UTF-8&#34;&gt;在&lt;head&gt;标签内，用于指定HTML文档的编码方式
+charset常用的值有：GB2312，BIG5，GBK和UTF-8，其中UTF-8为万国码，包含了各个国家的字符
+图标： &lt;link rel=&#34;shortcut icon&#34; href=&#34;....</p>
   </section>
   <footer class="entry-footer">2021-05-14&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Rex</footer>
   <a class="entry-link" aria-label="post link to 网页开发" href="https://rex0520.github.io/posts/front/%E7%BD%91%E9%A1%B5%E5%BC%80%E5%8F%91/"></a>
@@ -208,11 +218,14 @@ keywords最好限制为6~8个关键字，关键字之间用英文逗号隔开，
   </header>
   <section class="entry-content">
     <p>HTML5 TIP: 存在兼容性问题，基本上IE&#43;9以上版本的浏览器才支持
-语义化标签  &lt;head&gt;: 头部标签 &lt;nav&gt;: 导航标签 &lt;artivle&gt;: 内容标签 &lt;section&gt;: 定义文档某个区域 &lt;aside&gt;: 侧边栏标签 &lt;footer&gt;: 尾部标签  注意：
- 这种语义化标准主要是针对搜索引擎的 这些新标签页面可以使用多次 在IE9中，需要把这些元素转换为块级元素 移动端更喜欢使用这些标签  多媒体标签   &lt;vedio&gt;
-   浏览器 MP4 Webm ogg     Internet Explore Yes No No   Chrome Yes Yes Yes   Firefox Yes
+语义化标签 &lt;head&gt;: 头部标签 &lt;nav&gt;: 导航标签 &lt;artivle&gt;: 内容标签 &lt;section&gt;: 定义文档某个区域 &lt;aside&gt;: 侧边栏标签 &lt;footer&gt;: 尾部标签 注意：
+这种语义化标准主要是针对搜索引擎的 这些新标签页面可以使用多次 在IE9中，需要把这些元素转换为块级元素 移动端更喜欢使用这些标签 多媒体标签 &lt;vedio&gt;
+浏览器 MP4 Webm ogg Internet Explore Yes No No Chrome Yes Yes Yes Firefox Yes
 从Firefox21版本开始
-Linux系统从Firefox30开始 Yes Yes   Safari Yes No No   Opera Yes Yes Yes    语法：...</p>
+Linux系统从Firefox30开始 Yes Yes Safari Yes No No Opera Yes Yes Yes 语法：
+&lt;video src=&#34;文件地址&#34; controls=&#34;controls&#34;&gt;&lt;/video&gt;
+属性：
+属性 值 描述 autoplay autoplay 如果出现该属性，则视频在就绪后马上播放。 controls controls 如果出现该属性，则向用户显示控件，比如播放按钮。 height pixels 设置视频播放器的高度。 loop loop 如果出现该属性，则当媒介文件完成播放后再次开始播放。 muted muted 规定视频的音频输出应该被静音。 poster URL 规定视频下载时显示的图像，或者在用户点击播放按钮前显示的图像。 preload preload 如果出现该属性，则视频在页面加载时进行加载，并预备播放。如果使用 “autoplay”，则忽略该属性。 src url 要播放的视频的 URL。 width pixels 设置视频播放器的宽度。 &lt;audeo&gt;...</p>
   </section>
   <footer class="entry-footer">2021-05-12&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Rex</footer>
   <a class="entry-link" aria-label="post link to HTML5" href="https://rex0520.github.io/posts/front/html5/"></a>
@@ -224,20 +237,28 @@ Linux系统从Firefox30开始 Yes Yes   Safari Yes No No   Opera Yes Yes Yes    
     </h2>
   </header>
   <section class="entry-content">
-    <p>Vue进阶 Vue路由 1.初始路由 **路由**：表示一种对应关系，某些事物的一一对应的关系 **后端路由**：后端路由是由服务器端进行实现，并完成资源的分发（url与资源/数据的对应关系） **前端路由**：前端路由是依靠hash值（锚点链接）的变化进行实现页面内容的切换（锚点与组件之间的关系）  2.vue-router   vue-router工作原理
-  它是一个Vue.js官方提供的路由管理器，是一个功能更加强大的前端路由器，可以实现前端界面内容切换
-  SPA：Single Page Application，单页面应用，整个网站只有一个页面
-  SPA推荐使用vue-router，实现界面内容的切换
-  vue-router提供两种模式
-  hash模式：hash又叫锚点：比如#/login，根据hash改变，来实现界面切换
-  history模式：history模式不会出现#号比较美观，利用history.pushState()来完成URL的跳转而且无须重写加载页面
-  示例代码
-const router = new VueRouter({ mode: &#39;history&#39;, router: [...] })   vue-router默认为hash模式，需要通过mode来改变模式
-        vue-router基本使用
-  引入vue-router.js
-  定义路由链接和路由视图
+    <p>Vue进阶 Vue路由 1.初始路由 **路由**：表示一种对应关系，某些事物的一一对应的关系 **后端路由**：后端路由是由服务器端进行实现，并完成资源的分发（url与资源/数据的对应关系） **前端路由**：前端路由是依靠hash值（锚点链接）的变化进行实现页面内容的切换（锚点与组件之间的关系） 2.vue-router vue-router工作原理
+它是一个Vue.js官方提供的路由管理器，是一个功能更加强大的前端路由器，可以实现前端界面内容切换
+SPA：Single Page Application，单页面应用，整个网站只有一个页面
+SPA推荐使用vue-router，实现界面内容的切换
+vue-router提供两种模式
+hash模式：hash又叫锚点：比如#/login，根据hash改变，来实现界面切换
+history模式：history模式不会出现#号比较美观，利用history.pushState()来完成URL的跳转而且无须重写加载页面
+示例代码
+const router = new VueRouter({ mode: &#39;history&#39;, router: [...] }) vue-router默认为hash模式，需要通过mode来改变模式
+vue-router基本使用
+引入vue-router.js
+定义路由链接和路由视图
 代码示例：
-&lt;div id=&#34;app&#34;&gt; &lt;router-link to=&#34;/login&#34; tag=&#34;span&#34;&gt;前往登录&lt;/router-link&gt; &lt;router-view&gt;&lt;/router-view&gt; &lt;/div&gt; router-link是路由链接，to代表链接地址，tag代表渲染的标签...</p>
+&lt;div id=&#34;app&#34;&gt; &lt;router-link to=&#34;/login&#34; tag=&#34;span&#34;&gt;前往登录&lt;/router-link&gt; &lt;router-view&gt;&lt;/router-view&gt; &lt;/div&gt; router-link是路由链接，to代表链接地址，tag代表渲染的标签
+router-view是路由视图，用于显示路由链接对应的组件
+定义路由匹配规则
+代码示例
+var login = { template: &#34;&lt;h1&gt;登录组件&lt;/h1&gt;&#34; } const router = new VueRouter({ routes: [ { path: &#39;/login&#39;, component: login } ] }); 在实例化VueRouter的时候传入routes
+通过routes定义路由匹配规则，可以定义多个
+匹配规则是一个对象，key是路由链接path，value是组件component
+注册路由
+代码示例...</p>
   </section>
   <footer class="entry-footer">2021-03-25&nbsp;·&nbsp;5 min&nbsp;·&nbsp;Rex</footer>
   <a class="entry-link" aria-label="post link to Vue进阶" href="https://rex0520.github.io/posts/front/vue/vue%E8%BF%9B%E9%98%B6/"></a>
@@ -250,10 +271,18 @@ const router = new VueRouter({ mode: &#39;history&#39;, router: [...] })   vue-r
   </header>
   <section class="entry-content">
     <p>JPA 一、什么是jpa ​	JPA是Java Persistence API的意思，是一种ORM框架。是使用JDK 5.0注解或XML描述对象－关系表的映射关系的元数据，并将运行期的面向对象语言程序中的实体对象持久化到数据库中。
-二、基于注解的使用  JPA常用注解    注解 解释     @Entity 声明类为实体或表。   @Table 声明表名。   @Basic 指明非约束明确的各个字段。   @Embedded 指定类或它的值是一个可嵌入的类的实体的属性。   @Id 指定的类的属性，用于识别（一个表中的主键）。   @GeneratedValue 指定如何标识属性可以被初始化，例如自动、手动、或从序列表中获得的值。   @Transient 指定的属性，它是不持久的，即：该值永远不会存储再数据库中。   @Column 指定持久属性栏属性。   @SequenceGenerator 指定在@GeneratedValue注解中指定的属性的值。它创建了一个序列。   @TableGenerator 指定在@GeneratedValue批注指定属性的值发生器。它创造了的值生成的表。   @AccessType 这种类型的注释用于设置访问类型。如果设置@AccessType(FIELD)，则可以直接访问变量并且不需要getter和setter，但必须为public。如果设置@AccessType(PROPERTY)，通过getter和setter方法访问Entity的变量。   @JoinColumn 指定一个实体组织或实体的集合。这是用在多对一和一对多关联。   @UniqueConstraint 指定的字段和用于主要或辅助表的唯一约束。   @ColumnResult 参考使用select字句的SQL查询中的列明。   @ManyToMany 定义了连接表之间的多对多的的关系   @ManyToOne 定义了连接表之间的多对一的关系   @OneToMany 定义了连接表之间存在一个一对多的关系。   @OneToOne 定义了连接表之间有一个一对一的关系   @NamedQueries 指定命名查询的列表   @NamedQuery 指定使用静态名称的查询。      三、使用   在application....</p>
+二、基于注解的使用 JPA常用注解 注解 解释 @Entity 声明类为实体或表。 @Table 声明表名。 @Basic 指明非约束明确的各个字段。 @Embedded 指定类或它的值是一个可嵌入的类的实体的属性。 @Id 指定的类的属性，用于识别（一个表中的主键）。 @GeneratedValue 指定如何标识属性可以被初始化，例如自动、手动、或从序列表中获得的值。 @Transient 指定的属性，它是不持久的，即：该值永远不会存储再数据库中。 @Column 指定持久属性栏属性。 @SequenceGenerator 指定在@GeneratedValue注解中指定的属性的值。它创建了一个序列。 @TableGenerator 指定在@GeneratedValue批注指定属性的值发生器。它创造了的值生成的表。 @AccessType 这种类型的注释用于设置访问类型。如果设置@AccessType(FIELD)，则可以直接访问变量并且不需要getter和setter，但必须为public。如果设置@AccessType(PROPERTY)，通过getter和setter方法访问Entity的变量。 @JoinColumn 指定一个实体组织或实体的集合。这是用在多对一和一对多关联。 @UniqueConstraint 指定的字段和用于主要或辅助表的唯一约束。 @ColumnResult 参考使用select字句的SQL查询中的列明。 @ManyToMany 定义了连接表之间的多对多的的关系 @ManyToOne 定义了连接表之间的多对一的关系 @OneToMany 定义了连接表之间存在一个一对多的关系。 @OneToOne 定义了连接表之间有一个一对一的关系 @NamedQueries 指定命名查询的列表 @NamedQuery 指定使用静态名称的查询。 三、使用 在application.properties文件中的配置
+#jpa的配置 spring.jpa.database-platform=org.hibernate.dialect.MySQL5InnoDBDialect spring.jpa.show-sql=true spring.jpa.hibernate.ddl-auto=create tips:
+​	jpa.hibernate.ddl-auto是hibernate的配置属性，其主要作用是：自动创建、更新、验证数据库表结构。该参数的几种配置如下：
+create：每次加载hibernate时都会删除上一次的生成的表，然后根据你的model类再重新来生成新表，哪怕两次没有任何改变也要这样执行，这就是导致数据库表数据丢失的一个重要原因。
+create-drop：每次加载hibernate时根据model类生成表，但是sessionFactory一关闭,表就自动删除。
+update：最常用的属性，第一次加载hibernate时根据model类会自动建立起表的结构（前提是先建立好数据库），以后加载hibernate时根据model类自动更新表结构，即使表结构改变了但表中的行仍然存在不会删除以前的行。要注意的是当部署到服务器后，表结构是不会被马上建立起来的，是要等应用第一次运行起来后才会。
+validate：每次加载hibernate时，验证创建数据库表结构，只会和数据库中的表进行比较，不会创建新表，但是会插入新值。
+四、JPQL查询 ​	常用关键字
+keyword sample jpaql snippet And findByLastnameAndFirstname …where x....</p>
   </section>
   <footer class="entry-footer">2021-03-22&nbsp;·&nbsp;4 min&nbsp;·&nbsp;Rex</footer>
-  <a class="entry-link" aria-label="post link to JPA学习" href="https://rex0520.github.io/posts/back/java/jdbctool/jpa%E5%AD%A6%E4%B9%A0/"></a>
+  <a class="entry-link" aria-label="post link to JPA学习" href="https://rex0520.github.io/posts/back/java/jdbctool/jpa%D1%A7%CF%B0/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

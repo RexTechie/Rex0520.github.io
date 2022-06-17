@@ -5,8 +5,8 @@
     <link>https://rex0520.github.io/tags/%E9%9D%9E%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93/</link>
     <description>Recent content in 非关系型数据库 on Rex</description>
     <image>
-      <url>https://cdn.rexweb.xyz/img/20210820141535.jpg</url>
-      <link>https://cdn.rexweb.xyz/img/20210820141535.jpg</link>
+      <url>https://cdn.rexhub.xyz/img/20210820141535.jpg</url>
+      <link>https://cdn.rexhub.xyz/img/20210820141535.jpg</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <lastBuildDate>Fri, 09 Jul 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://rex0520.github.io/tags/%E9%9D%9E%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93/index.xml" rel="self" type="application/rss+xml" />
@@ -14,19 +14,19 @@
       <title>Mongodb学习</title>
       <link>https://rex0520.github.io/posts/back/nosql/mongodb/</link>
       <pubDate>Fri, 09 Jul 2021 00:00:00 +0000</pubDate>
-      
+
       <guid>https://rex0520.github.io/posts/back/nosql/mongodb/</guid>
       <description>数据库学习记录</description>
     </item>
-    
+
     <item>
       <title>Redis入门</title>
       <link>https://rex0520.github.io/posts/back/nosql/redis/</link>
       <pubDate>Fri, 09 Jul 2021 00:00:00 +0000</pubDate>
-      
+
       <guid>https://rex0520.github.io/posts/back/nosql/redis/</guid>
       <description>数据库学习记录</description>
     </item>
-    
+
   </channel>
 </rss>

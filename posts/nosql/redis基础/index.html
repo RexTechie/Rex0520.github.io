@@ -11,7 +11,7 @@
 <meta name="author" content="Rex">
 <link rel="canonical" href="https://rex0520.github.io/posts/nosql/redis%E5%9F%BA%E7%A1%80/" />
 <link crossorigin="anonymous" href="/assets/css/stylesheet.min.css" rel="preload stylesheet" as="style">
-<link rel="preload" href="http://cdn.rexweb.xyz/img/20210821105340.png" as="image">
+<link rel="preload" href="http://cdn.rexhub.xyz/img/20210821105340.png" as="image">
 <script defer crossorigin="anonymous" src="/assets/js/highlight.min.js" onload="hljs.initHighlightingOnLoad();"></script>
 <link rel="icon" href="https://rex0520.github.io/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="https://rex0520.github.io/favicon-16x16.png">
@@ -20,7 +20,7 @@
 <link rel="mask-icon" href="https://rex0520.github.io/%3Clink%20/%20abs%20url%3E">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<meta name="generator" content="Hugo 0.87.0" />
+<meta name="generator" content="Hugo 0.100.2" />
 <noscript>
     <style>
         #theme-toggle,
@@ -60,12 +60,12 @@
 </noscript><meta property="og:title" content="Redis基础" />
 <meta property="og:description" content="Redis基础" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://rex0520.github.io/posts/nosql/redis%E5%9F%BA%E7%A1%80/" /><meta property="og:image" content="https://cdn.rexweb.xyz/img/20210820141535.jpg"/><meta property="article:section" content="posts" />
+<meta property="og:url" content="https://rex0520.github.io/posts/nosql/redis%E5%9F%BA%E7%A1%80/" /><meta property="og:image" content="https://cdn.rexhub.xyz/img/20210820141535.jpg"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2021-02-09T00:00:00&#43;00:00" />
 <meta property="article:modified_time" content="2021-02-09T00:00:00&#43;00:00" /><meta property="og:site_name" content="RexHub" />
 
 <meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="https://cdn.rexweb.xyz/img/20210820141535.jpg"/>
+<meta name="twitter:image" content="https://cdn.rexhub.xyz/img/20210820141535.jpg"/>
 
 <meta name="twitter:title" content="Redis基础"/>
 <meta name="twitter:description" content="Redis基础"/>
@@ -101,7 +101,7 @@
   "keywords": [
     "NoSQL"
   ],
-  "articleBody": "Redis入门 Redis介绍  Redis是Key-Value型NoSQL数据库 Redis将数据存储在内存中，同时也能持久化到磁盘 Redis常用于缓存，利用内存的高效提高程序的处理速度  Redis特点  速度快 持久化 主从复制 广泛的语言支持 多种数据结构 分布式与高可用  Redis的安装与使用 在Linux系统中安装Redis  https://redis.io/download\n 在windows系统中安装Redis  https://github.com/microsoftarchive/redis/releases\n Redis的常用基本配置    配置项 示例 说明     daemonize daemonize yes 是否启用后台允许，默认no   port port 6379 设置端口号，默认6379   logfile logfile 日志文件 设置日志文件   databases databases 255 设置redis数据库总量   dir dir数据文件目录 设置数据文件存储目录   requirepass requirepass 12345 设置使用密码    Redis通用命令    命令 示例 说明     select select 0 选择0号数据库   set set name lily 设置key=name,value=lily   get get hello 获得key=hello结果   keys keys he* 根据Pattern表达式查询符合条件的Key   dbsize dbsize 返回key的总数   exists exists a 检查key=a是否存在   del del a 删除key=a的数据   expire expire hello 20 设置key=hello 20秒后过期   ttl ttl 查看key=a的过期剩余时间    Redis数据类型  String - 字符串类型 Hash - Hash类型 List - 列表类型 Set - 集合类型 Zset - 有序集合类型  String字符串类型   String最大512mb 建议单个kv不超过100kb\n  字符串命令\n   命令 示例 说明     get get hello 获得key=hello结果   set set hello world 设置key=hello，value=hello   mset\nmget mset hello world java best\nmget hello java 一次性设置或者获取多个值   del del hello 删除key=hello   incr/decr incr count\ndecr count key值自增/自减1   incrby/decrby incrby count 99\ndecrby count 99 自增自减指定步长      Hash键值类型  Hash类型用于存储结构化数据 Hash命令     命令 示例 说明     hget hget emp:1 age 获取hash中key=age的值   hset hset emp:1 age 23 设置hash中age=23   hmset\nhmget\nhgetall hmset emp:1 age 30 name kaka\nhmget emp:1 age name\nhgetall emp:1 name 设置hash多个值\n获取hash多个值\n获取hash所有值   hdel hdel emp:1 age 删除emp:1的age   hexists hexists emp:1 name 检查是否存在   hlen hlen emp:1 获取指定长度    List列表类型   List列表就是一系列字符串的“数组”，按插入顺序排序\n  List列表最大长度为2的32次方-1，可以包含40亿个元素\n  List命令\n​\n   命令 示例 说明     rpush rpush listkey c b a 右侧插入   lpush lpush listkey f e d 左侧插入   rpop rpop listkey 右侧插入   lpop lpop listkey 左侧插入      Set与Zset集合类型  Set集合是字符串的无序集合，集合成员是唯一的 Zset集合是字符串的有序集合，集合成员是唯一的  Java客户端-Jedis  Jedis是Java语言开发的Redis客户端工具包 Jedis只是对Redis命令的封装，掌握Redis命令便可轻易上手  ",
+  "articleBody": "Redis入门 Redis介绍 Redis是Key-Value型NoSQL数据库 Redis将数据存储在内存中，同时也能持久化到磁盘 Redis常用于缓存，利用内存的高效提高程序的处理速度 Redis特点 速度快 持久化 主从复制 广泛的语言支持 多种数据结构 分布式与高可用 Redis的安装与使用 在Linux系统中安装Redis https://redis.io/download\n在windows系统中安装Redis https://github.com/microsoftarchive/redis/releases\nRedis的常用基本配置 配置项 示例 说明 daemonize daemonize yes 是否启用后台允许，默认no port port 6379 设置端口号，默认6379 logfile logfile 日志文件 设置日志文件 databases databases 255 设置redis数据库总量 dir dir数据文件目录 设置数据文件存储目录 requirepass requirepass 12345 设置使用密码 Redis通用命令 命令 示例 说明 select select 0 选择0号数据库 set set name lily 设置key=name,value=lily get get hello 获得key=hello结果 keys keys he* 根据Pattern表达式查询符合条件的Key dbsize dbsize 返回key的总数 exists exists a 检查key=a是否存在 del del a 删除key=a的数据 expire expire hello 20 设置key=hello 20秒后过期 ttl ttl 查看key=a的过期剩余时间 Redis数据类型 String - 字符串类型 Hash - Hash类型 List - 列表类型 Set - 集合类型 Zset - 有序集合类型 String字符串类型 String最大512mb 建议单个kv不超过100kb\n字符串命令\n命令 示例 说明 get get hello 获得key=hello结果 set set hello world 设置key=hello，value=hello mset\nmget mset hello world java best\nmget hello java 一次性设置或者获取多个值 del del hello 删除key=hello incr/decr incr count\ndecr count key值自增/自减1 incrby/decrby incrby count 99\ndecrby count 99 自增自减指定步长 Hash键值类型 Hash类型用于存储结构化数据 Hash命令 命令 示例 说明 hget hget emp:1 age 获取hash中key=age的值 hset hset emp:1 age 23 设置hash中age=23 hmset\nhmget\nhgetall hmset emp:1 age 30 name kaka\nhmget emp:1 age name\nhgetall emp:1 name 设置hash多个值\n获取hash多个值\n获取hash所有值 hdel hdel emp:1 age 删除emp:1的age hexists hexists emp:1 name 检查是否存在 hlen hlen emp:1 获取指定长度 List列表类型 List列表就是一系列字符串的“数组”，按插入顺序排序\nList列表最大长度为2的32次方-1，可以包含40亿个元素\nList命令\n​\n命令 示例 说明 rpush rpush listkey c b a 右侧插入 lpush lpush listkey f e d 左侧插入 rpop rpop listkey 右侧插入 lpop lpop listkey 左侧插入 Set与Zset集合类型 Set集合是字符串的无序集合，集合成员是唯一的 Zset集合是字符串的有序集合，集合成员是唯一的 Java客户端-Jedis Jedis是Java语言开发的Redis客户端工具包 Jedis只是对Redis命令的封装，掌握Redis命令便可轻易上手 ",
   "wordCount" : "232",
   "inLanguage": "en",
   "datePublished": "2021-02-09T00:00:00Z",
@@ -142,7 +142,7 @@
     <nav class="nav">
         <div class="logo">
             <a href="https://rex0520.github.io/" accesskey="h" title="Home (Alt + H)">
-                <img src="http://cdn.rexweb.xyz/img/20210821105340.png" alt="logo" aria-label="logo"
+                <img src="http://cdn.rexhub.xyz/img/20210821105340.png" alt="logo" aria-label="logo"
                     height="35">Home</a>
             <span class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)">

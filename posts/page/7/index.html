@@ -11,7 +11,7 @@
 <meta name="author" content="Rex">
 <link rel="canonical" href="https://rex0520.github.io/posts/" />
 <link crossorigin="anonymous" href="/assets/css/stylesheet.min.css" rel="preload stylesheet" as="style">
-<link rel="preload" href="http://cdn.rexweb.xyz/img/20210821105340.png" as="image">
+<link rel="preload" href="http://cdn.rexhub.xyz/img/20210821105340.png" as="image">
 <link rel="icon" href="https://rex0520.github.io/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="https://rex0520.github.io/favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="https://rex0520.github.io/favicon-32x32.png">
@@ -19,7 +19,7 @@
 <link rel="mask-icon" href="https://rex0520.github.io/%3Clink%20/%20abs%20url%3E">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<meta name="generator" content="Hugo 0.87.0" />
+<meta name="generator" content="Hugo 0.100.2" />
 <link rel="alternate" type="application/rss+xml" href="https://rex0520.github.io/posts/index.xml">
 <noscript>
     <style>
@@ -60,10 +60,10 @@
 </noscript><meta property="og:title" content="Posts" />
 <meta property="og:description" content="Rex的个人博客" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://rex0520.github.io/posts/" /><meta property="og:image" content="https://cdn.rexweb.xyz/img/20210820141535.jpg"/><meta property="og:site_name" content="RexHub" />
+<meta property="og:url" content="https://rex0520.github.io/posts/" /><meta property="og:image" content="https://cdn.rexhub.xyz/img/20210820141535.jpg"/><meta property="og:site_name" content="RexHub" />
 
 <meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="https://cdn.rexweb.xyz/img/20210820141535.jpg"/>
+<meta name="twitter:image" content="https://cdn.rexhub.xyz/img/20210820141535.jpg"/>
 
 <meta name="twitter:title" content="Posts"/>
 <meta name="twitter:description" content="Rex的个人博客"/>
@@ -101,7 +101,7 @@
     <nav class="nav">
         <div class="logo">
             <a href="https://rex0520.github.io/" accesskey="h" title="Home (Alt + H)">
-                <img src="http://cdn.rexweb.xyz/img/20210821105340.png" alt="logo" aria-label="logo"
+                <img src="http://cdn.rexhub.xyz/img/20210821105340.png" alt="logo" aria-label="logo"
                     height="35">Home</a>
             <span class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)">
@@ -165,15 +165,18 @@
     </h2>
   </header>
   <section class="entry-content">
-    <p>Vue动画 Vue过渡和动画 1. 过渡和动画基础   什么是过渡和动画
-  过渡：从一个状态向另一个状态变化的过程
-  动画：与过渡非常类似，只不过动画控制的过程更加细腻，更加精准
-  过渡语法：
+    <p>Vue动画 Vue过渡和动画 1. 过渡和动画基础 什么是过渡和动画
+过渡：从一个状态向另一个状态变化的过程
+动画：与过渡非常类似，只不过动画控制的过程更加细腻，更加精准
+过渡语法：
 &lt;transition name=&#34;fade&#34;&gt; &lt;!-- 需要添加过渡的div标签--&gt; &lt;div&gt;&lt;/div&gt; &lt;/transition&gt; name指定的是过渡所需要的样式名的前提
-    transition组件
-  Vue给transition标签，提供了六个过度类
-   过渡类型 说明     v-enter 进入过渡的开始状态，作用于开始的一帧   v-enter-active 进入过渡生效时的状态，作用于整个过程   v-enter-to 进入过渡的结束状态，作用于结束的一帧   v-leave 离开过渡的开始状态，作用于开始的一帧   v-leave-active 离开过渡生效时的状态，作用于整个过程   v-leave-to 离开过渡的结束状态，作用于结束的一帧      过渡类分析图
-  代码示例：...</p>
+transition组件
+Vue给transition标签，提供了六个过度类
+过渡类型 说明 v-enter 进入过渡的开始状态，作用于开始的一帧 v-enter-active 进入过渡生效时的状态，作用于整个过程 v-enter-to 进入过渡的结束状态，作用于结束的一帧 v-leave 离开过渡的开始状态，作用于开始的一帧 v-leave-active 离开过渡生效时的状态，作用于整个过程 v-leave-to 离开过渡的结束状态，作用于结束的一帧 过渡类分析图
+代码示例：
+html：
+&lt;div id=&#34;app&#34;&gt; &lt;button @click=&#34;toggle&#34;&gt;调整box的宽度&lt;/button&gt; &lt;transition name=&#34;box&#34;&gt; &lt;div v-if=&#34;show&#34; class=&#34;chart&#34;&gt;&lt;/div&gt; &lt;/transition&gt; &lt;/div&gt; css：
+/* 图形的初始状态 */ .chart { width: 200px; height: 50px; background-color: orange; } .box-enter-active, .box-leave-active { transition: width 3s; } .box-enter, .box-leave-to { width: 0px; } ....</p>
   </section>
   <footer class="entry-footer">2021-03-15&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Rex</footer>
   <a class="entry-link" aria-label="post link to Vue动画" href="https://rex0520.github.io/posts/front/vue/vue%E5%8A%A8%E7%94%BB/"></a>
@@ -185,20 +188,20 @@
     </h2>
   </header>
   <section class="entry-content">
-    <p>Vue基础 初始Vue 前端技术的发展   HTML：用于编写网页的结构
-  CSS：用于美化网页
-  JS：用于处理页面的交互效果
-  JQuery：JS的升级版，代码简洁，更高效的开发项目
-  Vue：采用虚拟DOM技术，代码更加简洁
+    <p>Vue基础 初始Vue 前端技术的发展 HTML：用于编写网页的结构
+CSS：用于美化网页
+JS：用于处理页面的交互效果
+JQuery：JS的升级版，代码简洁，更高效的开发项目
+Vue：采用虚拟DOM技术，代码更加简洁
 虚拟DOM技术
- 和真实DOM结构类似的JS对象 可以提高浏览器的渲染速度    什么是Vue   一条基于构建用户界面的渐进式框架
- 渐进式理解：Vue提供的一系列技术，可以渐渐的，一步一步的使用这个框架 框架理解：解决一类问题的解决方案，理解为工具    Vue的数据绑定基于MVVM设计思想
+和真实DOM结构类似的JS对象 可以提高浏览器的渲染速度 什么是Vue 一条基于构建用户界面的渐进式框架
+渐进式理解：Vue提供的一系列技术，可以渐渐的，一步一步的使用这个框架 框架理解：解决一类问题的解决方案，理解为工具 Vue的数据绑定基于MVVM设计思想
 MVVM：Model，View，ViewModel
 可以将模型数据与视图连接起来
- 模型数据变化会影响视图 视图数据变化会影响模型    Vue的优势  轻量级：Vue简单、直接，所以Vue使用起来更加友好 数据绑定：数据驱动视图，视图也可以驱动数据 指令：指令绑定在元素上时，指令会给绑定的元素添加一些特殊的行为 插件：插件用于对Vue框架功能进行扩展  Vue、Angular和React的区别：  Angular相对Vue学习成本高，更复杂，性能稍差 React采用了特殊的JSX语法，Vue中推崇编写以*.vue后缀命名的文件格式  Vue开发基础上 1.Vue实例   说明
-  Vue实例：通过new关键字实例化Vue({})构造函数
-  实例化Vue时的参数内的属性，我们称之为选项：
-       选项 说明     data Vue实例数据对象   methods 定义Vue实例中的方法   component 定义子组件   computed 计算属性   filters 过滤器   el 唯一根元素   watch 监听数据变化    el唯一根标签：在创建Vue实例时，el表示唯一根标签，通过指定class或id选择器可用来将页面结构与Vue实例对象vm进行绑定。  el：element，元素 el选项表示：当前Vue实例绑定的页面怨怒是 绑定的这个元素，作为Vue实例在界面上的元素 el选项的值：“id或类选择器” 注意：Vue的数据只能在el绑定的元素内部使用   data初始数据：Vue实例的数据对象为data，Vue会将data的属性转换为getter、setter，从而让data的属性能够响应数据变化。  data：数据 data选项表示：当前Vue实例可以使用的数据 data选项的值：对象，对象中可以定义多个数据 js中获取data数据：vm....</p>
+模型数据变化会影响视图 视图数据变化会影响模型 Vue的优势 轻量级：Vue简单、直接，所以Vue使用起来更加友好 数据绑定：数据驱动视图，视图也可以驱动数据 指令：指令绑定在元素上时，指令会给绑定的元素添加一些特殊的行为 插件：插件用于对Vue框架功能进行扩展 Vue、Angular和React的区别： Angular相对Vue学习成本高，更复杂，性能稍差 React采用了特殊的JSX语法，Vue中推崇编写以*.vue后缀命名的文件格式 Vue开发基础上 1.Vue实例 说明
+Vue实例：通过new关键字实例化Vue({})构造函数
+实例化Vue时的参数内的属性，我们称之为选项：
+选项 说明 data Vue实例数据对象 methods 定义Vue实例中的方法 component 定义子组件 computed 计算属性 filters 过滤器 el 唯一根元素 watch 监听数据变化 el唯一根标签：在创建Vue实例时，el表示唯一根标签，通过指定class或id选择器可用来将页面结构与Vue实例对象vm进行绑定。 el：element，元素 el选项表示：当前Vue实例绑定的页面怨怒是 绑定的这个元素，作为Vue实例在界面上的元素 el选项的值：“id或类选择器” 注意：Vue的数据只能在el绑定的元素内部使用 data初始数据：Vue实例的数据对象为data，Vue会将data的属性转换为getter、setter，从而让data的属性能够响应数据变化。 data：数据 data选项表示：当前Vue实例可以使用的数据 data选项的值：对象，对象中可以定义多个数据 js中获取data数据：vm.$data.name、vm.name methods定义方法： method：方法，为啥加s，因为可以有多个方法 methods选项表示：当前Vue实例可以用到的方法 methods选项的值：对象，对象中定义方法 computed计算属性：计算属性结果会被缓存起来，当依赖的响应式属性发生变化时，才会重新计算，返回最终结果。 computed：计算 computed选项表示：当前Vue实例可以用到的计算属性 computed选项的值：对象，对象中定义方法 应用场景：当有些数据需要随着其他数据变动而变动时，就需要使用computed计算数学；一般处理计算逻辑 注意：计算属性，定义时是一个方法，但是当属性使用（所以才叫计算属性）；计算属性需要将结果放回；计算属性具有缓存，这就意味着只要计算属性的依赖没有进行相应的数据更新，那么computed会直接从缓存中获取值，多次访问都会返回之前的计算结果 watch状态监听：用来检测Vue实例中的数据变动 watch：观察、检测 watch选项表示：检测data选项中的数据变化 watch选项的值：对象，对象中定义方法 应用场景：要在数据变化同时进行异步操作或者是比较大的开销时使用 注意：watch是检测data的数据变化，watch的方法必须与data的属性名一致 filter过滤器：对数据进行格式化，比如字符串字母变大写，日期格式化等。 filter：过滤器 filters选项表示：对data选项中的数据进行格式化 filters选项的值：对象，对象中定义方法 应用场景：对数据格式化（字符串中首字母大写，字符串大小写转换、日期格式化） 注意：过滤器函数，必须定义一个参数，此参数就是使用过滤器的数据，将格式化的结果返回 使用过滤器：插值表达式使用：{{data属性名 | 过滤器名称}}或属性绑定使用 v-bind=&#34;{{data属性名 | 过滤器名称}}&#34; 2....</p>
   </section>
   <footer class="entry-footer">2021-03-10&nbsp;·&nbsp;4 min&nbsp;·&nbsp;Rex</footer>
   <a class="entry-link" aria-label="post link to Vue基础" href="https://rex0520.github.io/posts/front/vue/vue%E5%9F%BA%E7%A1%80/"></a>
@@ -210,9 +213,9 @@ MVVM：Model，View，ViewModel
     </h2>
   </header>
   <section class="entry-content">
-    <p>Lambda表达式 什么是Lambda表达式  JDK8开始支持Lambda表达式，用来让程序编写更优雅 利用Lambda可以更简洁的实现匿名内部类与函数声明与调用 基于Lambda提供stream流式处理极大简化对集合的操作  Lambda表达式语法格式： 说明： 代码示例：  MathOperation.java
+    <p>Lambda表达式 什么是Lambda表达式 JDK8开始支持Lambda表达式，用来让程序编写更优雅 利用Lambda可以更简洁的实现匿名内部类与函数声明与调用 基于Lambda提供stream流式处理极大简化对集合的操作 Lambda表达式语法格式： 说明： 代码示例： MathOperation.java
 package com.imooc.lambda; /** * 四则运算接口 * @author CubeMonkey * @create 2020-10-23 17:39 */ @FunctionalInterface //通知编译器这是函数式接口，进行抽象方法检查 public interface MathOperation { public Float operate(Integer a, Integer b); } LambdaSample.java
-package com.imooc.lambda; /** * @author CubeMonkey * @create 2020-10-23 17:42 */ public class LambdaSample { public static void main(String[] args) { //1.标准的使用方式  //约束条件：Lambda表达式只能实现有且只有一个抽象方法的接口，Java称为&#34;函数式接口&#34;  MathOperation addition = (Integer a, Integer b)-&gt;{ System....</p>
+package com.imooc.lambda; /** * @author CubeMonkey * @create 2020-10-23 17:42 */ public class LambdaSample { public static void main(String[] args) { //1.标准的使用方式 //约束条件：Lambda表达式只能实现有且只有一个抽象方法的接口，Java称为&#34;函数式接口&#34; MathOperation addition = (Integer a, Integer b)-&gt;{ System.out.println(&#34;加法运算&#34;); return a&#43;b&#43;0f; }; System....</p>
   </section>
   <footer class="entry-footer">2021-03-09&nbsp;·&nbsp;4 min&nbsp;·&nbsp;Rex</footer>
   <a class="entry-link" aria-label="post link to Lambda(java)" href="https://rex0520.github.io/posts/back/java/lambda/"></a>
@@ -224,7 +227,13 @@ package com.imooc.lambda; /** * @author CubeMonkey * @create 2020-10-23 17:42 */
     </h2>
   </header>
   <section class="entry-content">
-    <p>Maven入门 Maven介绍  Maven是项目管理工具，对软件项目提供构建与依赖管理 Maven是Apache下的Java开源项目 Maven为Java项目提供了统一的管理方式，已成为业界标准  解决了的问题  工程的结构不统一 第三方jar包多的时候，不便于管理 工程打包的困难  Maven核心特性  项目设置遵循统一的规则，保证不同开发环境的兼容性 强大的依赖管理，项目依赖组件自动下载、自动更新 可扩展的插件机制，使用简单，功能丰富  Maven的坐标： GroupId：机构或者团队的英文，采用&#34;逆向域名&#34;形式书写 ArtifactId：项目名称，说明其用途，例如：cms(内容管理系统)，oa(办公自动化系统) Version：版本号，一般采用“版本&#43;单词”形式，例如：1.0.0.RELEASE Maven项目标准结构    目录 用途     ${basedir} 根目录，用于保存pom.xml   ${basedir}/src/main/java Java源代码目录   ${basedir}/src/main/resources 资源目录，保存配置文件、静态图片等   ${basedir}/src/test/java 测试类的源代码   ${basedir}/src/test/resources 测试时需要使用的资源文件   ${basedir}/target 项目输出的目录，用于存储jar、war文件   ${basedir}/target/classes 字节码(.class)的编译输出目录   ${basedir}/pom.xml 项目(Project)对象(Object)模型(Model)文件    Maven的依赖管理 说明  Maven利用dependency(依赖)自动下载、管理第三方Jar 在pom....</p>
+    <p>Maven入门 Maven介绍 Maven是项目管理工具，对软件项目提供构建与依赖管理 Maven是Apache下的Java开源项目 Maven为Java项目提供了统一的管理方式，已成为业界标准 解决了的问题 工程的结构不统一 第三方jar包多的时候，不便于管理 工程打包的困难 Maven核心特性 项目设置遵循统一的规则，保证不同开发环境的兼容性 强大的依赖管理，项目依赖组件自动下载、自动更新 可扩展的插件机制，使用简单，功能丰富 Maven的坐标： GroupId：机构或者团队的英文，采用&#34;逆向域名&#34;形式书写 ArtifactId：项目名称，说明其用途，例如：cms(内容管理系统)，oa(办公自动化系统) Version：版本号，一般采用“版本&#43;单词”形式，例如：1.0.0.RELEASE Maven项目标准结构 目录 用途 ${basedir} 根目录，用于保存pom.xml ${basedir}/src/main/java Java源代码目录 ${basedir}/src/main/resources 资源目录，保存配置文件、静态图片等 ${basedir}/src/test/java 测试类的源代码 ${basedir}/src/test/resources 测试时需要使用的资源文件 ${basedir}/target 项目输出的目录，用于存储jar、war文件 ${basedir}/target/classes 字节码(.class)的编译输出目录 ${basedir}/pom.xml 项目(Project)对象(Object)模型(Model)文件 Maven的依赖管理 说明 Maven利用dependency(依赖)自动下载、管理第三方Jar 在pom.xml文件中配置项目依赖的第三方组件 maven自动将依赖从远程仓库下载至本地仓库，并在工程中引用 获取 apache：https://search.maven.org/
+阿里云：https://maven.aliyun.com/mvn/search
+本地仓库与中央仓库 使用代理：
+&lt;repositories&gt; &lt;repository&gt; &lt;!-- 创建私服的地址 --&gt; &lt;id&gt;aliyun&lt;/id&gt; &lt;name&gt;aliyun&lt;/name&gt; &lt;url&gt;https://maven.aliyun.com/repository/public&lt;/url&gt; &lt;/repository&gt; &lt;/repositories&gt; 普通项目的创建与打包案例（实现中文与拼音的转化） 创建&amp;使用： 新建一个Maven项目，默认的jdk是1.5，将jdk的版本调整为1.8
+配置第三方组件，使得maven自动从远程仓库中下载第三方jar包到本地仓库
+核心语句
+&lt;dependencies&gt; &lt;dependency&gt; &lt;groupId&gt;mysql&lt;/groupId&gt; &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt; &lt;version&gt;5.1.47&lt;/version&gt; &lt;/dependency&gt;	&lt;dependency&gt; &lt;groupId&gt;com.belerweb&lt;/groupId&gt; &lt;artifactId&gt;pinyin4j&lt;/artifactId&gt; &lt;version&gt;2....</p>
   </section>
   <footer class="entry-footer">2021-03-09&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Rex</footer>
   <a class="entry-link" aria-label="post link to Maven基础" href="https://rex0520.github.io/posts/back/java/maven/maven%E5%9F%BA%E7%A1%80/"></a>
@@ -236,7 +245,7 @@ package com.imooc.lambda; /** * @author CubeMonkey * @create 2020-10-23 17:42 */
     </h2>
   </header>
   <section class="entry-content">
-    <p>MyBatis基础入门 软件开发中的框架  框架是可被应用开发者定制的应用骨架 框架是一种规则，保证开发者遵循相同的方式开发程序 框架提倡“不要重复造轮子”，对基础功能进行封装  框架的优点  极大提高了开发效率 统一的编码规则，有利于团队管理 灵活配置的应用，拥有更好的维护性  SSM开发框架  S -&gt; Spring S -&gt; Spring MVC M -&gt; MyBatis  什么是MyBatis  MyBatis是优秀的持久层框架 MyBatis使用XML将SQL与程序解耦，便于维护 MyBatis学习简单，执行高效，是JDBC的延展  MyBatis开发流程  引入MyBatis依赖 创建核心配置文件 创建实体(Entity)类 创建Mapper映射文件 初始化SessionFactory 利用SqlSession对象操作数据  MyBatis环境配置 mybatis-config.xml说明  MyBatis采用XML格式配置数据库环境信息 MyBatis环境配置标签 environment包含数据库驱动、URL、用户名于密码  mybatis-config.xml示例： &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34; ?&gt; &lt;!DOCTYPE configuration PUBLIC &#34;-//mybatis.org//DTD Config 3.0//EN&#34; &#34;http://mybatis.org/dtd/mybatis-3-config.dtd&#34;&gt; &lt;configuration&gt; &lt;environments default=&#34;dev&#34;&gt; &lt;!--根据环境，不同的环境不同的id，dev-&gt;开发环境 prd-&gt;生产环境 --&gt; &lt;environment id=&#34;dev&#34;&gt; &lt;!--采用JDBC方式对数据库事务进行commit/rollback--&gt; &lt;transactionManager type=&#34;JDBC&#34;&gt;&lt;/transactionManager&gt; &lt;!...</p>
+    <p>MyBatis基础入门 软件开发中的框架 框架是可被应用开发者定制的应用骨架 框架是一种规则，保证开发者遵循相同的方式开发程序 框架提倡“不要重复造轮子”，对基础功能进行封装 框架的优点 极大提高了开发效率 统一的编码规则，有利于团队管理 灵活配置的应用，拥有更好的维护性 SSM开发框架 S -&gt; Spring S -&gt; Spring MVC M -&gt; MyBatis 什么是MyBatis MyBatis是优秀的持久层框架 MyBatis使用XML将SQL与程序解耦，便于维护 MyBatis学习简单，执行高效，是JDBC的延展 MyBatis开发流程 引入MyBatis依赖 创建核心配置文件 创建实体(Entity)类 创建Mapper映射文件 初始化SessionFactory 利用SqlSession对象操作数据 MyBatis环境配置 mybatis-config.xml说明 MyBatis采用XML格式配置数据库环境信息 MyBatis环境配置标签 environment包含数据库驱动、URL、用户名于密码 mybatis-config.xml示例： &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34; ?&gt; &lt;!DOCTYPE configuration PUBLIC &#34;-//mybatis.org//DTD Config 3.0//EN&#34; &#34;http://mybatis.org/dtd/mybatis-3-config.dtd&#34;&gt; &lt;configuration&gt; &lt;environments default=&#34;dev&#34;&gt; &lt;!--根据环境，不同的环境不同的id，dev-&gt;开发环境 prd-&gt;生产环境 --&gt; &lt;environment id=&#34;dev&#34;&gt; &lt;!--采用JDBC方式对数据库事务进行commit/rollback--&gt; &lt;transactionManager type=&#34;JDBC&#34;&gt;&lt;/transactionManager&gt; &lt;!--数据连接方式管理数据库连接--&gt; &lt;dataSource type=&#34;POOLED&#34;&gt; &lt;property name=&#34;driver&#34; value=&#34;com.mysql.cj.jdbc.Driver&#34;/&gt; &lt;property name=&#34;url&#34; value=&#34;jdbc:mysql://localhost:3306/babytun?useUnicode=true&amp;amp;characterEncoding=UTF-8&#34;/&gt; &lt;property name=&#34;username&#34; value=&#34;root&#34;/&gt; &lt;property name=&#34;password&#34; value=&#34;root&#34;/&gt; &lt;/dataSource&gt; &lt;/environment&gt; &lt;environment id=&#34;prd&#34;&gt; &lt;!...</p>
   </section>
   <footer class="entry-footer">2021-03-09&nbsp;·&nbsp;8 min&nbsp;·&nbsp;Rex</footer>
   <a class="entry-link" aria-label="post link to Mybatis基础" href="https://rex0520.github.io/posts/back/java/jdbctool/mybatis%E5%9F%BA%E7%A1%80/"></a>

@@ -11,7 +11,7 @@
 <meta name="author" content="Rex">
 <link rel="canonical" href="https://rex0520.github.io/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" />
 <link crossorigin="anonymous" href="/assets/css/stylesheet.min.css" rel="preload stylesheet" as="style">
-<link rel="preload" href="http://cdn.rexweb.xyz/img/20210821105340.png" as="image">
+<link rel="preload" href="http://cdn.rexhub.xyz/img/20210821105340.png" as="image">
 <link rel="icon" href="https://rex0520.github.io/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="https://rex0520.github.io/favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="https://rex0520.github.io/favicon-32x32.png">
@@ -19,7 +19,7 @@
 <link rel="mask-icon" href="https://rex0520.github.io/%3Clink%20/%20abs%20url%3E">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<meta name="generator" content="Hugo 0.87.0" />
+<meta name="generator" content="Hugo 0.100.2" />
 <link rel="alternate" type="application/rss+xml" href="https://rex0520.github.io/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/index.xml">
 <noscript>
     <style>
@@ -60,10 +60,10 @@
 </noscript><meta property="og:title" content="数据库" />
 <meta property="og:description" content="Rex的个人博客" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://rex0520.github.io/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" /><meta property="og:image" content="https://cdn.rexweb.xyz/img/20210820141535.jpg"/><meta property="og:site_name" content="RexHub" />
+<meta property="og:url" content="https://rex0520.github.io/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" /><meta property="og:image" content="https://cdn.rexhub.xyz/img/20210820141535.jpg"/><meta property="og:site_name" content="RexHub" />
 
 <meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="https://cdn.rexweb.xyz/img/20210820141535.jpg"/>
+<meta name="twitter:image" content="https://cdn.rexhub.xyz/img/20210820141535.jpg"/>
 
 <meta name="twitter:title" content="数据库"/>
 <meta name="twitter:description" content="Rex的个人博客"/>
@@ -86,7 +86,7 @@
     <nav class="nav">
         <div class="logo">
             <a href="https://rex0520.github.io/" accesskey="h" title="Home (Alt + H)">
-                <img src="http://cdn.rexweb.xyz/img/20210821105340.png" alt="logo" aria-label="logo"
+                <img src="http://cdn.rexhub.xyz/img/20210821105340.png" alt="logo" aria-label="logo"
                     height="35">Home</a>
             <span class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)">
@@ -150,23 +150,27 @@
     </h2>
   </header>
   <section class="entry-content">
-    <p>MongoDB 简介：   MongoDB是为快速开发互联网Web应用而设计的数据库系统。 MongoDB的设许目标是极简、灵活、作为Web应用栈的一部分。 MongoDB的数据模型是面向文档的,所谓文档是- - -种类似于JSON的结构,简单理解MongoDB这个数据库中存的是各种各样的JSON。 ( BSON )   三个概念   数据库( database )
- 数据库是-个仓库,在仓库中可以存放集合。
-   集合( collection )
- 集合类似于数组,在集合中可以存放文档。
-   文档( dotument )
- 文档数据库中的最小单位,我们存储和操作的 内容都是文档。
-   基本指令   show dbs
- 显示当前的所有数据库
-   use 数据库名
- 进入指定的数据库中
-   db
- 显示当前所处的数据库
-   show collections
- 显示数据库中所有的集合
-   db....</p>
+    <p>MongoDB 简介： MongoDB是为快速开发互联网Web应用而设计的数据库系统。 MongoDB的设许目标是极简、灵活、作为Web应用栈的一部分。 MongoDB的数据模型是面向文档的,所谓文档是- - -种类似于JSON的结构,简单理解MongoDB这个数据库中存的是各种各样的JSON。 ( BSON ) 三个概念 数据库( database )
+数据库是-个仓库,在仓库中可以存放集合。
+集合( collection )
+集合类似于数组,在集合中可以存放文档。
+文档( dotument )
+文档数据库中的最小单位,我们存储和操作的 内容都是文档。
+基本指令 show dbs
+显示当前的所有数据库
+use 数据库名
+进入指定的数据库中
+db
+显示当前所处的数据库
+show collections
+显示数据库中所有的集合
+db.&lt;collection&gt;.insert(doc)
+向集合中插入一个文档
+db.&lt;collections&gt;.find()
+查看数据库字段
+插入文档 /* 向数据库插入文档	db.&lt;collection&gt;.insert( &lt;document or array of documents&gt;， { wirteConcern: &lt;document&gt;, ordered: &lt;boolean&gt; } ) documents: 必填，表示需要插入的文档，可以是多个文档 writeConcern：可选项，写策略 ordered：可选，表示多个文档是否按照文档顺序写入 -- 向集合中插入一个或多个文档 -- 当我们向集合中插入文档时，如果没有给文档指定_id属性，则数据库会自动为文档添加_id， 该属性用来作为文档的唯一标识 -- _id可以自己指定，如果指定了数据库就不会再添加了，如果自己指定_id，也必须确保他的唯一性 db.collection.insertOne() -- 插入一个文档对象 db....</p>
   </section>
-  <footer class="entry-footer">2021-07-09&nbsp;·&nbsp;8 min&nbsp;·&nbsp;Rex</footer>
+  <footer class="entry-footer">2021-07-09&nbsp;·&nbsp;9 min&nbsp;·&nbsp;Rex</footer>
   <a class="entry-link" aria-label="post link to Mongodb基础" href="https://rex0520.github.io/posts/nosql/mongodb/"></a>
 </article>
 
@@ -176,9 +180,9 @@
     </h2>
   </header>
   <section class="entry-content">
-    <p>Redis入门 Redis介绍  Redis是Key-Value型NoSQL数据库 Redis将数据存储在内存中，同时也能持久化到磁盘 Redis常用于缓存，利用内存的高效提高程序的处理速度  Redis特点  速度快 持久化 主从复制 广泛的语言支持 多种数据结构 分布式与高可用  Redis的安装与使用 在Linux系统中安装Redis  https://redis.io/download
- 在windows系统中安装Redis  https://github.com/microsoftarchive/redis/releases
- Redis的常用基本配置    配置项 示例 说明     daemonize daemonize yes 是否启用后台允许，默认no   port port 6379 设置端口号，默认6379   logfile logfile 日志文件 设置日志文件   databases databases 255 设置redis数据库总量   dir dir数据文件目录 设置数据文件存储目录   requirepass requirepass 12345 设置使用密码    Redis通用命令    命令 示例 说明     select select 0 选择0号数据库   set set name lily 设置key=name,value=lily   get get hello 获得key=hello结果   keys keys he* 根据Pattern表达式查询符合条件的Key   dbsize dbsize 返回key的总数   exists exists a 检查key=a是否存在   del del a 删除key=a的数据   expire expire hello 20 设置key=hello 20秒后过期   ttl ttl 查看key=a的过期剩余时间    Redis数据类型  String - 字符串类型 Hash - Hash类型 List - 列表类型 Set - 集合类型 Zset - 有序集合类型  String字符串类型   String最大512mb 建议单个kv不超过100kb...</p>
+    <p>Redis入门 Redis介绍 Redis是Key-Value型NoSQL数据库 Redis将数据存储在内存中，同时也能持久化到磁盘 Redis常用于缓存，利用内存的高效提高程序的处理速度 Redis特点 速度快 持久化 主从复制 广泛的语言支持 多种数据结构 分布式与高可用 Redis的安装与使用 在Linux系统中安装Redis https://redis.io/download
+在windows系统中安装Redis https://github.com/microsoftarchive/redis/releases
+Redis的常用基本配置 配置项 示例 说明 daemonize daemonize yes 是否启用后台允许，默认no port port 6379 设置端口号，默认6379 logfile logfile 日志文件 设置日志文件 databases databases 255 设置redis数据库总量 dir dir数据文件目录 设置数据文件存储目录 requirepass requirepass 12345 设置使用密码 Redis通用命令 命令 示例 说明 select select 0 选择0号数据库 set set name lily 设置key=name,value=lily get get hello 获得key=hello结果 keys keys he* 根据Pattern表达式查询符合条件的Key dbsize dbsize 返回key的总数 exists exists a 检查key=a是否存在 del del a 删除key=a的数据 expire expire hello 20 设置key=hello 20秒后过期 ttl ttl 查看key=a的过期剩余时间 Redis数据类型 String - 字符串类型 Hash - Hash类型 List - 列表类型 Set - 集合类型 Zset - 有序集合类型 String字符串类型 String最大512mb 建议单个kv不超过100kb...</p>
   </section>
   <footer class="entry-footer">2021-02-09&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Rex</footer>
   <a class="entry-link" aria-label="post link to Redis基础" href="https://rex0520.github.io/posts/nosql/redis%E5%9F%BA%E7%A1%80/"></a>

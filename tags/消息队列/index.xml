@@ -5,8 +5,8 @@
     <link>https://rex0520.github.io/tags/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/</link>
     <description>Recent content in 消息队列 on Rex</description>
     <image>
-      <url>https://cdn.rexweb.xyz/img/20210820141535.jpg</url>
-      <link>https://cdn.rexweb.xyz/img/20210820141535.jpg</link>
+      <url>https://cdn.rexhub.xyz/img/20210820141535.jpg</url>
+      <link>https://cdn.rexhub.xyz/img/20210820141535.jpg</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <lastBuildDate>Mon, 21 Jun 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://rex0520.github.io/tags/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/index.xml" rel="self" type="application/rss+xml" />
@@ -14,10 +14,10 @@
       <title>RabbitMQ学习</title>
       <link>https://rex0520.github.io/posts/back/microservices/rabbitmq/</link>
       <pubDate>Mon, 21 Jun 2021 00:00:00 +0000</pubDate>
-      
+
       <guid>https://rex0520.github.io/posts/back/microservices/rabbitmq/</guid>
       <description>后端开发</description>
     </item>
-    
+
   </channel>
 </rss>

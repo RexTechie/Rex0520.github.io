@@ -11,7 +11,7 @@
 <meta name="author" content="Rex">
 <link rel="canonical" href="https://rex0520.github.io/posts/back/go/study/%E8%BF%90%E7%AE%97%E7%AC%A6/" />
 <link crossorigin="anonymous" href="/assets/css/stylesheet.min.css" rel="preload stylesheet" as="style">
-<link rel="preload" href="http://cdn.rexweb.xyz/img/20210821105340.png" as="image">
+<link rel="preload" href="http://cdn.rexhub.xyz/img/20210821105340.png" as="image">
 <script defer crossorigin="anonymous" src="/assets/js/highlight.min.js" onload="hljs.initHighlightingOnLoad();"></script>
 <link rel="icon" href="https://rex0520.github.io/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="https://rex0520.github.io/favicon-16x16.png">
@@ -20,7 +20,7 @@
 <link rel="mask-icon" href="https://rex0520.github.io/%3Clink%20/%20abs%20url%3E">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<meta name="generator" content="Hugo 0.87.0" />
+<meta name="generator" content="Hugo 0.100.2" />
 <noscript>
     <style>
         #theme-toggle,
@@ -61,12 +61,12 @@
 <meta property="og:description" content="Go学习之路" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://rex0520.github.io/posts/back/go/study/%E8%BF%90%E7%AE%97%E7%AC%A6/" />
-<meta property="og:image" content="https://cdn.rexweb.xyz/img/20211213103407.jpg" /><meta property="article:section" content="posts" />
+<meta property="og:image" content="https://cdn.rexhub.xyz/img/20211213103407.jpg" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2021-12-24T00:00:00&#43;00:00" />
 <meta property="article:modified_time" content="2021-12-24T00:00:00&#43;00:00" /><meta property="og:site_name" content="RexHub" />
 
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:image" content="https://cdn.rexweb.xyz/img/20211213103407.jpg" />
+<meta name="twitter:image" content="https://cdn.rexhub.xyz/img/20211213103407.jpg" />
 <meta name="twitter:title" content="运算符【Go学习之路】"/>
 <meta name="twitter:description" content="Go学习之路"/>
 
@@ -101,10 +101,10 @@
   "keywords": [
     "Go"
   ],
-  "articleBody": "运算符【Go学习之路】  运算符是一种特殊的符号，用以表示数据的运算、赋值和比较等（特别注意go语言里无三元运算符）\n 分类 算术运算符  用于对数值类型的变量进行运算\n    运算符 运算 范例 结果     + 正号 +3 3   - 负号 -4 -4   + 加 5 + 5 10   - 减 6 - 4 2   * 乘 3 * 4 12   / 除 5 / 5 1   % 取模(取余) 7 % 5 2   ++ 自增 a = 2 a++ a = 3   – 自减 a= 2 a– a = 1   + 字符串拼接 “He” + “llo” “Hello”      基本使用\npackage main import ( \"fmt\" ) func main() { //特别注意\"/\"、\"%\"、\"++\"、\"--\"  // \"/\"的使用 \t// 说明，如果运算的数都是整数，那么除后，去掉小数部分，保留整数部分 \tfmt.Println(10 / 4) // 2  var n1 float32 = 10 / 4 fmt.Println(n1) // 2  // 如果我们希望保留小数部分，则需要有浮点数参与运算 \tvar n2 float32 = 10.0 / 4 fmt.Println(n2) // 2.5  // \"%\"的使用 \t// 取余公式 a % b = a - (a / b * b) \tfmt.Println(\"10 % 3 =\", 10%3) // 1 \tfmt.Println(\"-10 % 3 =\", -10%3) // -1 \tfmt.Println(\"10 % -3 =\", 10%-3) // 1 \tfmt.Println(\"-10 % -3 =\", -10%-3) //-1  // ++ 和 --的使用 \tvar i int = 10 i++ // 等价i = i + 1 \tfmt.Println(\"i =\", i) // 11 \ti-- // 等价 i = i - 1 \tfmt.Println(\"i =\", i) // 10 }   细节说明\n  对于除号“/”，它的整数除和小数除是有区别的：整数除法，只保留整数部分而舍弃小数部分\n  当对一个数取模时，可以等价a % b = a - (a / b * b)\n  Golang的设计者去掉C / Java中自增自减容易混淆的写法，让Golang更加简洁，统一。（强制性的，太搞笑了，估计是汤普森看不下C语言的八股文考试了）\n Golang的自增自减只能当作一个独立语句使用，b := a++ 或者 b:=a –都是错的，在其他的语言里是被允许的 Golang的++和–只能写在变量的后面，不能写在变量的前面，++a，–a都是错的，在其他的语言里是被允许的 if i++  0 {xxx}的 写法也是不被允许的  package main import ( \"fmt\" ) func main() { var i int = 1 // var b int = i++ //语法错误 \ti++ var b int = i fmt.Println(\"b =\", b) // ++i //语法错误 \tfmt.Println(\"b =\", b) if i++  0 { //语法错误  fmt.Println(\"i =\", i) } }     赋值运算符  赋值运算符就是将某个运算后的值，赋给指定的变量\n    运算符 描述 示例     = 简单的赋值运算符，将一个表达式的值赋给一个左值 c = a + b，将a+b表达式结果赋给c   += 相加后再赋值 c += a 等价于 c = c + a   -= 相减后再赋值 c -= a 等价于 c = c-a   *= 相乘后再赋值 c *= a 等价于 c = c * a   /= 相除后再赋值 c /= a 等价于 c = c / a   %= 求余后再赋值 c % a 等价于 c = c % a   «= 左移后赋值 c «= a 等价于c = c « a   »= 右移后赋值 c »= a等价于c = c » a   \u0026= 按位与后赋值 c \u0026= a等价于 c = c \u0026 a   ^= 按位异或后赋值 c ^= a 等价于 c = c ^ a   != 按位或后赋值 c != 2 等于c = c | 2      基本使用\npackage main import \"fmt\" func main() { // 赋值运算符的使用演示 \t// var i int \t// i = 10 // 基本赋值  // 有两个变量，a和b，要求将其进行交换，最终打印结果 \t// a = 9, b = 2 ==  a = 2, b = 9 \ta, b := 9, 2 fmt.Println(\"========交换前===========\") fmt.Println(\"a =\", a) fmt.Println(\"b =\", b) t := a a = b b = t fmt.Println(\"========交换后===========\") fmt.Println(\"a =\", a) fmt.Println(\"b =\", b) fmt.Println(\"======复合赋值的操作======\") //复合赋值的操作 \ta += 17 //等价于a = a + 17 \tfmt.Println(\"a =\", a) } // 结果 //========交换前=========== //a = 9 //b = 2 //========交换后=========== //a = 2 //b = 9 //======复合赋值的操作====== //a = 19   细节说明\n 运算顺序从右往左 赋值运算符的左边，只能是变量，右边可以说变量、表达式、常量值    比较运算符/关系运算符  关系运算符的结果都是bool类型，也就是要么是true，要么是false，关系表达式经常用在if结构的条件中或循环结构条件中\n    运算符 运算 范例 结果     == 相等 4==3 false   != 不等于 4!=3 true    小于 4 false    大于 4  3 true    小于等于 4 false   = 大于等于 4 = 3 true      基本使用\npackage main import \"fmt\" func main() { var n1 int = 9 var n2 int = 8 fmt.Println(n1 == n2) // false \tfmt.Println(n1 != n2) // true \tfmt.Println(n1  n2) // true \tfmt.Println(n1  n2) // false \tfmt.Println(n1 = n2) // true \tfmt.Println(n1  n2) // false  flag := n1  n2 fmt.Println(\"flag =\", flag) // true }   细节说明\n 关系运算符的结果都是bool型，也就是要么true，要么是false 关系运算符组成的表达式，我们称为\"关系表达式\", a  b 比较运算符\" == “不能写成 \" = \"    逻辑运算符  连接多个条件(关系表达式)，最终结果也是一个bool\n    运算符 运算 范例 结果     \u0026\u0026 逻辑与运算符。操作符两边都为true则为true，反之则为false (1 == 1) \u0026\u0026 (2 == 2) true   || 逻辑或运算符。操作符两边有一个true则为true，反之则为false (1 == 2) \u0026\u0026 (2 == 2) true   ! 逻辑非运算符。如果条件为true，则逻辑为false，否则为true !(1 == 1) false      基本使用\npackage main import \"fmt\" func main() { // 演示逻辑运算符的使用 \u0026\u0026 \tage := 40 if age  30 \u0026\u0026 age  50 { fmt.Println(\"ok1\") } if age  30 \u0026\u0026 age  40 { fmt.Println(\"ok1\") } // ok1  // 演示逻辑运算符的使用 || \tif age  30 || age  50 { fmt.Println(\"ok3\") } if age  30 || age  40 { fmt.Println(\"ok4\") } // ok3 \t// ok4  // 演示逻辑非的使用 ! \tif age  30 { fmt.Println(\"ok5\") } if !(age  30) { fmt.Println(\"ok6\") } //ok5 }   细节说明\n \u0026\u0026也叫短路与：如果第一个条件为false，则第二个条件不会判断，最终为false ||也叫短路或：如果第一个条件为true，则第二个条件不会判断，最终结果为true    位运算符    运算符 运算 范例     \u0026 按位与 1 \u0026 0 = 0   | 按位或 1 | 0 = 1   ^ 按位异或 1^0 = 1   ~ 按位取反 ~1 = 0    其他运算符    运算符 描述 范例     \u0026 返回变量存储的地址 \u0026a；将给出变量的实际地址   * 指针变量 *a；是一个指针变量      基本使用\npackage main import \"fmt\" func main() { // 演示 \u0026 和 *的使用（指针）  a := 100 fmt.Println(\"a的地址\", \u0026a) //0xc0000160b0  var ptr *int = \u0026a fmt.Println(\"ptr指向的值是\", *ptr) //100 }   运算符优先级    分类 描述 关联性     后缀 () [] - . ++ – 左到右   单目 + - ! ~ (type) * \u0026 sizeof 右到左   乘、除、取余 * / % 左到右   加、减 + - 左到右   移位 « » 左到右   比较(关系) =  左到右   相等(关系) == != 左到右   按位AND \u0026 左到右   按位XOR ^ 左到右   按位OR | 左到右   逻辑AND \u0026\u0026 左到右   逻辑OR || 左到右   赋值运算符 = += -= *= /= %= »= «= \u0026= ^= != 右到左   逗号 , 左到右    ",
+  "articleBody": "运算符【Go学习之路】 运算符是一种特殊的符号，用以表示数据的运算、赋值和比较等（特别注意go语言里无三元运算符）\n分类 算术运算符 用于对数值类型的变量进行运算\n运算符 运算 范例 结果 + 正号 +3 3 - 负号 -4 -4 + 加 5 + 5 10 - 减 6 - 4 2 * 乘 3 * 4 12 / 除 5 / 5 1 % 取模(取余) 7 % 5 2 ++ 自增 a = 2 a++ a = 3 – 自减 a= 2 a– a = 1 + 字符串拼接 “He” + “llo” “Hello” 基本使用\npackage main import ( \"fmt\" ) func main() { //特别注意\"/\"、\"%\"、\"++\"、\"--\" // \"/\"的使用 // 说明，如果运算的数都是整数，那么除后，去掉小数部分，保留整数部分 fmt.Println(10 / 4) // 2 var n1 float32 = 10 / 4 fmt.Println(n1) // 2 // 如果我们希望保留小数部分，则需要有浮点数参与运算 var n2 float32 = 10.0 / 4 fmt.Println(n2) // 2.5 // \"%\"的使用 // 取余公式 a % b = a - (a / b * b) fmt.Println(\"10 % 3 =\", 10%3) // 1 fmt.Println(\"-10 % 3 =\", -10%3) // -1 fmt.Println(\"10 % -3 =\", 10%-3) // 1 fmt.Println(\"-10 % -3 =\", -10%-3) //-1 // ++ 和 --的使用 var i int = 10 i++ // 等价i = i + 1 fmt.Println(\"i =\", i) // 11 i-- // 等价 i = i - 1 fmt.Println(\"i =\", i) // 10 } 细节说明\n对于除号“/”，它的整数除和小数除是有区别的：整数除法，只保留整数部分而舍弃小数部分\n当对一个数取模时，可以等价a % b = a - (a / b * b)\nGolang的设计者去掉C / Java中自增自减容易混淆的写法，让Golang更加简洁，统一。（强制性的，太搞笑了，估计是汤普森看不下C语言的八股文考试了）\nGolang的自增自减只能当作一个独立语句使用，b := a++ 或者 b:=a –都是错的，在其他的语言里是被允许的 Golang的++和–只能写在变量的后面，不能写在变量的前面，++a，–a都是错的，在其他的语言里是被允许的 if i++ \u003e 0 {xxx}的 写法也是不被允许的 package main import ( \"fmt\" ) func main() { var i int = 1 // var b int = i++ //语法错误 i++ var b int = i fmt.Println(\"b =\", b) // ++i //语法错误 fmt.Println(\"b =\", b) if i++ \u003e 0 { //语法错误 fmt.Println(\"i =\", i) } } 赋值运算符 赋值运算符就是将某个运算后的值，赋给指定的变量\n运算符 描述 示例 = 简单的赋值运算符，将一个表达式的值赋给一个左值 c = a + b，将a+b表达式结果赋给c += 相加后再赋值 c += a 等价于 c = c + a -= 相减后再赋值 c -= a 等价于 c = c-a *= 相乘后再赋值 c *= a 等价于 c = c * a /= 相除后再赋值 c /= a 等价于 c = c / a %= 求余后再赋值 c % a 等价于 c = c % a «= 左移后赋值 c «= a 等价于c = c « a »= 右移后赋值 c »= a等价于c = c » a \u0026= 按位与后赋值 c \u0026= a等价于 c = c \u0026 a ^= 按位异或后赋值 c ^= a 等价于 c = c ^ a != 按位或后赋值 c != 2 等于c = c | 2 基本使用\npackage main import \"fmt\" func main() { // 赋值运算符的使用演示 // var i int // i = 10 // 基本赋值 // 有两个变量，a和b，要求将其进行交换，最终打印结果 // a = 9, b = 2 == \u003e a = 2, b = 9 a, b := 9, 2 fmt.Println(\"========交换前===========\") fmt.Println(\"a =\", a) fmt.Println(\"b =\", b) t := a a = b b = t fmt.Println(\"========交换后===========\") fmt.Println(\"a =\", a) fmt.Println(\"b =\", b) fmt.Println(\"======复合赋值的操作======\") //复合赋值的操作 a += 17 //等价于a = a + 17 fmt.Println(\"a =\", a) } // 结果 //========交换前=========== //a = 9 //b = 2 //========交换后=========== //a = 2 //b = 9 //======复合赋值的操作====== //a = 19 细节说明\n运算顺序从右往左 赋值运算符的左边，只能是变量，右边可以说变量、表达式、常量值 比较运算符/关系运算符 关系运算符的结果都是bool类型，也就是要么是true，要么是false，关系表达式经常用在if结构的条件中或循环结构条件中\n运算符 运算 范例 结果 == 相等 4==3 false != 不等于 4!=3 true \u003c 小于 4 \u003c 3 false \u003e 大于 4 \u003e 3 true \u003c= 小于等于 4 \u003c= 3 false \u003e= 大于等于 4 \u003e= 3 true 基本使用\npackage main import \"fmt\" func main() { var n1 int = 9 var n2 int = 8 fmt.Println(n1 == n2) // false fmt.Println(n1 != n2) // true fmt.Println(n1 \u003e n2) // true fmt.Println(n1 \u003c n2) // false fmt.Println(n1 \u003e= n2) // true fmt.Println(n1 \u003c= n2) // false flag := n1 \u003e n2 fmt.Println(\"flag =\", flag) // true } 细节说明\n关系运算符的结果都是bool型，也就是要么true，要么是false 关系运算符组成的表达式，我们称为\"关系表达式\", a \u003e b 比较运算符\" == “不能写成 \" = \" 逻辑运算符 连接多个条件(关系表达式)，最终结果也是一个bool\n运算符 运算 范例 结果 \u0026\u0026 逻辑与运算符。操作符两边都为true则为true，反之则为false (1 == 1) \u0026\u0026 (2 == 2) true || 逻辑或运算符。操作符两边有一个true则为true，反之则为false (1 == 2) \u0026\u0026 (2 == 2) true ! 逻辑非运算符。如果条件为true，则逻辑为false，否则为true !(1 == 1) false 基本使用\npackage main import \"fmt\" func main() { // 演示逻辑运算符的使用 \u0026\u0026 age := 40 if age \u003e 30 \u0026\u0026 age \u003c 50 { fmt.Println(\"ok1\") } if age \u003e 30 \u0026\u0026 age \u003c 40 { fmt.Println(\"ok1\") } // ok1 // 演示逻辑运算符的使用 || if age \u003e 30 || age \u003c 50 { fmt.Println(\"ok3\") } if age \u003e 30 || age \u003c 40 { fmt.Println(\"ok4\") } // ok3 // ok4 // 演示逻辑非的使用 ! if age \u003e 30 { fmt.Println(\"ok5\") } if !(age \u003e 30) { fmt.Println(\"ok6\") } //ok5 } 细节说明\n\u0026\u0026也叫短路与：如果第一个条件为false，则第二个条件不会判断，最终为false ||也叫短路或：如果第一个条件为true，则第二个条件不会判断，最终结果为true 位运算符 运算符 运算 范例 \u0026 按位与 1 \u0026 0 = 0 | 按位或 1 | 0 = 1 ^ 按位异或 1^0 = 1 ~ 按位取反 ~1 = 0 其他运算符 运算符 描述 范例 \u0026 返回变量存储的地址 \u0026a；将给出变量的实际地址 * 指针变量 *a；是一个指针变量 基本使用\npackage main import \"fmt\" func main() { // 演示 \u0026 和 *的使用（指针） a := 100 fmt.Println(\"a的地址\", \u0026a) //0xc0000160b0 var ptr *int = \u0026a fmt.Println(\"ptr指向的值是\", *ptr) //100 } 运算符优先级 分类 描述 关联性 后缀 () [] -\u003e . ++ – 左到右 单目 + - ! ~ (type) * \u0026 sizeof 右到左 乘、除、取余 * / % 左到右 加、减 + - 左到右 移位 « » 左到右 比较(关系) \u003c \u003c= \u003e= \u003e 左到右 相等(关系) == != 左到右 按位AND \u0026 左到右 按位XOR ^ 左到右 按位OR | 左到右 逻辑AND \u0026\u0026 左到右 逻辑OR || 左到右 赋值运算符 = += -= *= /= %= »= «= \u0026= ^= != 右到左 逗号 , 左到右 ",
   "wordCount" : "854",
   "inLanguage": "en",
-  "image":"https://cdn.rexweb.xyz/img/20211213103407.jpg","datePublished": "2021-12-24T00:00:00Z",
+  "image":"https://cdn.rexhub.xyz/img/20211213103407.jpg","datePublished": "2021-12-24T00:00:00Z",
   "dateModified": "2021-12-24T00:00:00Z",
   "author":{
     "@type": "Person",
@@ -142,7 +142,7 @@
     <nav class="nav">
         <div class="logo">
             <a href="https://rex0520.github.io/" accesskey="h" title="Home (Alt + H)">
-                <img src="http://cdn.rexweb.xyz/img/20210821105340.png" alt="logo" aria-label="logo"
+                <img src="http://cdn.rexhub.xyz/img/20210821105340.png" alt="logo" aria-label="logo"
                     height="35">Home</a>
             <span class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)">
@@ -209,7 +209,7 @@
     <div class="post-meta">2021-12-24&nbsp;·&nbsp;5 min&nbsp;·&nbsp;Rex&nbsp;|&nbsp;<a href="https://github.com/Rex0520/Rex0520.github.io" rel="noopener noreferrer" target="_blank">来这修改</a>
 </div>
   </header> 
-<figure class="entry-cover"><img loading="lazy" src="https://cdn.rexweb.xyz/img/20211213103407.jpg" alt="">
+<figure class="entry-cover"><img loading="lazy" src="https://cdn.rexhub.xyz/img/20211213103407.jpg" alt="">
         
 </figure><div class="toc">
     <details  open>
@@ -331,42 +331,41 @@
 <ul>
 <li>
 <p>基本使用</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-golang" data-lang="golang"><span class="kn">package</span> <span class="nx">main</span>
-
-<span class="kn">import</span> <span class="p">(</span>
-	<span class="s">&#34;fmt&#34;</span>
-<span class="p">)</span>
-
-<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
-	<span class="c1">//特别注意&#34;/&#34;、&#34;%&#34;、&#34;++&#34;、&#34;--&#34;
-</span><span class="c1"></span>
-	<span class="c1">// &#34;/&#34;的使用
-</span><span class="c1"></span>	<span class="c1">// 说明，如果运算的数都是整数，那么除后，去掉小数部分，保留整数部分
-</span><span class="c1"></span>	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="mi">10</span> <span class="o">/</span> <span class="mi">4</span><span class="p">)</span> <span class="c1">// 2
-</span><span class="c1"></span>
-	<span class="kd">var</span> <span class="nx">n1</span> <span class="kt">float32</span> <span class="p">=</span> <span class="mi">10</span> <span class="o">/</span> <span class="mi">4</span>
-	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">n1</span><span class="p">)</span> <span class="c1">// 2
-</span><span class="c1"></span>
-	<span class="c1">// 如果我们希望保留小数部分，则需要有浮点数参与运算
-</span><span class="c1"></span>	<span class="kd">var</span> <span class="nx">n2</span> <span class="kt">float32</span> <span class="p">=</span> <span class="mf">10.0</span> <span class="o">/</span> <span class="mi">4</span>
-	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">n2</span><span class="p">)</span> <span class="c1">// 2.5
-</span><span class="c1"></span>
-	<span class="c1">// &#34;%&#34;的使用
-</span><span class="c1"></span>	<span class="c1">// 取余公式 a % b = a - (a / b * b)
-</span><span class="c1"></span>	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;10 % 3 =&#34;</span><span class="p">,</span> <span class="mi">10</span><span class="o">%</span><span class="mi">3</span><span class="p">)</span>     <span class="c1">// 1
-</span><span class="c1"></span>	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;-10 % 3 =&#34;</span><span class="p">,</span> <span class="o">-</span><span class="mi">10</span><span class="o">%</span><span class="mi">3</span><span class="p">)</span>   <span class="c1">// -1
-</span><span class="c1"></span>	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;10 % -3 =&#34;</span><span class="p">,</span> <span class="mi">10</span><span class="o">%-</span><span class="mi">3</span><span class="p">)</span>   <span class="c1">// 1
-</span><span class="c1"></span>	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;-10 % -3 =&#34;</span><span class="p">,</span> <span class="o">-</span><span class="mi">10</span><span class="o">%-</span><span class="mi">3</span><span class="p">)</span> <span class="c1">//-1
-</span><span class="c1"></span>
-	<span class="c1">// ++ 和 --的使用
-</span><span class="c1"></span>	<span class="kd">var</span> <span class="nx">i</span> <span class="kt">int</span> <span class="p">=</span> <span class="mi">10</span>
-	<span class="nx">i</span><span class="o">++</span>                   <span class="c1">// 等价i = i + 1
-</span><span class="c1"></span>	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;i =&#34;</span><span class="p">,</span> <span class="nx">i</span><span class="p">)</span> <span class="c1">// 11
-</span><span class="c1"></span>	<span class="nx">i</span><span class="o">--</span>                   <span class="c1">// 等价 i = i - 1
-</span><span class="c1"></span>	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;i =&#34;</span><span class="p">,</span> <span class="nx">i</span><span class="p">)</span> <span class="c1">// 10
-</span><span class="c1"></span><span class="p">}</span>
-
-</code></pre></div></li>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-golang" data-lang="golang"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;fmt&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">//特别注意&#34;/&#34;、&#34;%&#34;、&#34;++&#34;、&#34;--&#34;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// &#34;/&#34;的使用
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="c1">// 说明，如果运算的数都是整数，那么除后，去掉小数部分，保留整数部分
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="mi">10</span> <span class="o">/</span> <span class="mi">4</span><span class="p">)</span> <span class="c1">// 2
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">	<span class="kd">var</span> <span class="nx">n1</span> <span class="kt">float32</span> <span class="p">=</span> <span class="mi">10</span> <span class="o">/</span> <span class="mi">4</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">n1</span><span class="p">)</span> <span class="c1">// 2
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// 如果我们希望保留小数部分，则需要有浮点数参与运算
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="kd">var</span> <span class="nx">n2</span> <span class="kt">float32</span> <span class="p">=</span> <span class="mf">10.0</span> <span class="o">/</span> <span class="mi">4</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">n2</span><span class="p">)</span> <span class="c1">// 2.5
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// &#34;%&#34;的使用
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="c1">// 取余公式 a % b = a - (a / b * b)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;10 % 3 =&#34;</span><span class="p">,</span> <span class="mi">10</span><span class="o">%</span><span class="mi">3</span><span class="p">)</span>     <span class="c1">// 1
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;-10 % 3 =&#34;</span><span class="p">,</span> <span class="o">-</span><span class="mi">10</span><span class="o">%</span><span class="mi">3</span><span class="p">)</span>   <span class="c1">// -1
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;10 % -3 =&#34;</span><span class="p">,</span> <span class="mi">10</span><span class="o">%-</span><span class="mi">3</span><span class="p">)</span>   <span class="c1">// 1
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;-10 % -3 =&#34;</span><span class="p">,</span> <span class="o">-</span><span class="mi">10</span><span class="o">%-</span><span class="mi">3</span><span class="p">)</span> <span class="c1">//-1
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// ++ 和 --的使用
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="kd">var</span> <span class="nx">i</span> <span class="kt">int</span> <span class="p">=</span> <span class="mi">10</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">i</span><span class="o">++</span>                   <span class="c1">// 等价i = i + 1
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;i =&#34;</span><span class="p">,</span> <span class="nx">i</span><span class="p">)</span> <span class="c1">// 11
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">i</span><span class="o">--</span>                   <span class="c1">// 等价 i = i - 1
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;i =&#34;</span><span class="p">,</span> <span class="nx">i</span><span class="p">)</span> <span class="c1">// 10
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span></code></pre></div></li>
 <li>
 <p>细节说明</p>
 <ul>
@@ -383,27 +382,26 @@
 <li>Golang的++和&ndash;只能写在变量的后面，不能写在变量的前面，++a，&ndash;a都是错的，在其他的语言里是被允许的</li>
 <li>if i++ &gt; 0 {xxx}的 写法也是不被允许的</li>
 </ul>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-golang" data-lang="golang"><span class="kn">package</span> <span class="nx">main</span>
-
-<span class="kn">import</span> <span class="p">(</span>
-	<span class="s">&#34;fmt&#34;</span>
-<span class="p">)</span>
-
-<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
-	<span class="kd">var</span> <span class="nx">i</span> <span class="kt">int</span> <span class="p">=</span> <span class="mi">1</span>
-	<span class="c1">// var b int = i++ //语法错误
-</span><span class="c1"></span>	<span class="nx">i</span><span class="o">++</span>
-	<span class="kd">var</span> <span class="nx">b</span> <span class="kt">int</span> <span class="p">=</span> <span class="nx">i</span>
-	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;b =&#34;</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span>
-	<span class="c1">// ++i //语法错误
-</span><span class="c1"></span>	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;b =&#34;</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span>
-
-	<span class="k">if</span> <span class="nx">i</span><span class="o">++</span> <span class="p">&gt;</span> <span class="mi">0</span> <span class="p">{</span> <span class="c1">//语法错误
-</span><span class="c1"></span>        <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;i =&#34;</span><span class="p">,</span> <span class="nx">i</span><span class="p">)</span>
-	<span class="p">}</span>
-<span class="p">}</span>
-
-</code></pre></div></li>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-golang" data-lang="golang"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;fmt&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">var</span> <span class="nx">i</span> <span class="kt">int</span> <span class="p">=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// var b int = i++ //语法错误
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">i</span><span class="o">++</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">var</span> <span class="nx">b</span> <span class="kt">int</span> <span class="p">=</span> <span class="nx">i</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;b =&#34;</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// ++i //语法错误
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;b =&#34;</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">i</span><span class="o">++</span> <span class="p">&gt;</span> <span class="mi">0</span> <span class="p">{</span> <span class="c1">//语法错误
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;i =&#34;</span><span class="p">,</span> <span class="nx">i</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div></li>
 </ul>
 </li>
 </ul>
@@ -480,44 +478,44 @@
 <ul>
 <li>
 <p>基本使用</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-golang" data-lang="golang"><span class="kn">package</span> <span class="nx">main</span>
-
-<span class="kn">import</span> <span class="s">&#34;fmt&#34;</span>
-
-<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
-	<span class="c1">// 赋值运算符的使用演示
-</span><span class="c1"></span>	<span class="c1">// var i int
-</span><span class="c1"></span>	<span class="c1">// i = 10 // 基本赋值
-</span><span class="c1"></span>
-	<span class="c1">// 有两个变量，a和b，要求将其进行交换，最终打印结果
-</span><span class="c1"></span>	<span class="c1">// a = 9, b = 2 == &gt; a = 2, b = 9
-</span><span class="c1"></span>	<span class="nx">a</span><span class="p">,</span> <span class="nx">b</span> <span class="o">:=</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">2</span>
-	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;========交换前===========&#34;</span><span class="p">)</span>
-	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;a =&#34;</span><span class="p">,</span> <span class="nx">a</span><span class="p">)</span>
-	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;b =&#34;</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span>
-	<span class="nx">t</span> <span class="o">:=</span> <span class="nx">a</span>
-	<span class="nx">a</span> <span class="p">=</span> <span class="nx">b</span>
-	<span class="nx">b</span> <span class="p">=</span> <span class="nx">t</span>
-	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;========交换后===========&#34;</span><span class="p">)</span>
-	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;a =&#34;</span><span class="p">,</span> <span class="nx">a</span><span class="p">)</span>
-	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;b =&#34;</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span>
-
-	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;======复合赋值的操作======&#34;</span><span class="p">)</span>
-	<span class="c1">//复合赋值的操作
-</span><span class="c1"></span>	<span class="nx">a</span> <span class="o">+=</span> <span class="mi">17</span> <span class="c1">//等价于a = a + 17
-</span><span class="c1"></span>	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;a =&#34;</span><span class="p">,</span> <span class="nx">a</span><span class="p">)</span>
-<span class="p">}</span>
-
-<span class="c1">// 结果
-</span><span class="c1">//========交换前===========
-</span><span class="c1">//a = 9
-</span><span class="c1">//b = 2
-</span><span class="c1">//========交换后===========
-</span><span class="c1">//a = 2
-</span><span class="c1">//b = 9
-</span><span class="c1">//======复合赋值的操作======
-</span><span class="c1">//a = 19
-</span></code></pre></div></li>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-golang" data-lang="golang"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="s">&#34;fmt&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// 赋值运算符的使用演示
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="c1">// var i int
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="c1">// i = 10 // 基本赋值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// 有两个变量，a和b，要求将其进行交换，最终打印结果
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="c1">// a = 9, b = 2 == &gt; a = 2, b = 9
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">a</span><span class="p">,</span> <span class="nx">b</span> <span class="o">:=</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">2</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;========交换前===========&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;a =&#34;</span><span class="p">,</span> <span class="nx">a</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;b =&#34;</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">t</span> <span class="o">:=</span> <span class="nx">a</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">a</span> <span class="p">=</span> <span class="nx">b</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">b</span> <span class="p">=</span> <span class="nx">t</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;========交换后===========&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;a =&#34;</span><span class="p">,</span> <span class="nx">a</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;b =&#34;</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;======复合赋值的操作======&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">//复合赋值的操作
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">a</span> <span class="o">+=</span> <span class="mi">17</span> <span class="c1">//等价于a = a + 17
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;a =&#34;</span><span class="p">,</span> <span class="nx">a</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 结果
+</span></span></span><span class="line"><span class="cl"><span class="c1">//========交换前===========
+</span></span></span><span class="line"><span class="cl"><span class="c1">//a = 9
+</span></span></span><span class="line"><span class="cl"><span class="c1">//b = 2
+</span></span></span><span class="line"><span class="cl"><span class="c1">//========交换后===========
+</span></span></span><span class="line"><span class="cl"><span class="c1">//a = 2
+</span></span></span><span class="line"><span class="cl"><span class="c1">//b = 9
+</span></span></span><span class="line"><span class="cl"><span class="c1">//======复合赋值的操作======
+</span></span></span><span class="line"><span class="cl"><span class="c1">//a = 19
+</span></span></span></code></pre></div></li>
 <li>
 <p>细节说明</p>
 <ul>
@@ -581,25 +579,24 @@
 <ul>
 <li>
 <p>基本使用</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-golang" data-lang="golang"><span class="kn">package</span> <span class="nx">main</span>
-
-<span class="kn">import</span> <span class="s">&#34;fmt&#34;</span>
-
-<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
-	<span class="kd">var</span> <span class="nx">n1</span> <span class="kt">int</span> <span class="p">=</span> <span class="mi">9</span>
-	<span class="kd">var</span> <span class="nx">n2</span> <span class="kt">int</span> <span class="p">=</span> <span class="mi">8</span>
-	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">n1</span> <span class="o">==</span> <span class="nx">n2</span><span class="p">)</span> <span class="c1">// false
-</span><span class="c1"></span>	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">n1</span> <span class="o">!=</span> <span class="nx">n2</span><span class="p">)</span> <span class="c1">// true
-</span><span class="c1"></span>	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">n1</span> <span class="p">&gt;</span> <span class="nx">n2</span><span class="p">)</span>  <span class="c1">// true
-</span><span class="c1"></span>	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">n1</span> <span class="p">&lt;</span> <span class="nx">n2</span><span class="p">)</span>  <span class="c1">// false
-</span><span class="c1"></span>	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">n1</span> <span class="o">&gt;=</span> <span class="nx">n2</span><span class="p">)</span> <span class="c1">// true
-</span><span class="c1"></span>	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">n1</span> <span class="o">&lt;=</span> <span class="nx">n2</span><span class="p">)</span> <span class="c1">// false
-</span><span class="c1"></span>
-	<span class="nx">flag</span> <span class="o">:=</span> <span class="nx">n1</span> <span class="p">&gt;</span> <span class="nx">n2</span>
-	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;flag =&#34;</span><span class="p">,</span> <span class="nx">flag</span><span class="p">)</span> <span class="c1">// true
-</span><span class="c1"></span><span class="p">}</span>
-
-</code></pre></div></li>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-golang" data-lang="golang"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="s">&#34;fmt&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">var</span> <span class="nx">n1</span> <span class="kt">int</span> <span class="p">=</span> <span class="mi">9</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">var</span> <span class="nx">n2</span> <span class="kt">int</span> <span class="p">=</span> <span class="mi">8</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">n1</span> <span class="o">==</span> <span class="nx">n2</span><span class="p">)</span> <span class="c1">// false
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">n1</span> <span class="o">!=</span> <span class="nx">n2</span><span class="p">)</span> <span class="c1">// true
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">n1</span> <span class="p">&gt;</span> <span class="nx">n2</span><span class="p">)</span>  <span class="c1">// true
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">n1</span> <span class="p">&lt;</span> <span class="nx">n2</span><span class="p">)</span>  <span class="c1">// false
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">n1</span> <span class="o">&gt;=</span> <span class="nx">n2</span><span class="p">)</span> <span class="c1">// true
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">n1</span> <span class="o">&lt;=</span> <span class="nx">n2</span><span class="p">)</span> <span class="c1">// false
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">	<span class="nx">flag</span> <span class="o">:=</span> <span class="nx">n1</span> <span class="p">&gt;</span> <span class="nx">n2</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;flag =&#34;</span><span class="p">,</span> <span class="nx">flag</span><span class="p">)</span> <span class="c1">// true
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span></code></pre></div></li>
 <li>
 <p>细节说明</p>
 <ul>
@@ -646,45 +643,44 @@
 <ul>
 <li>
 <p>基本使用</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-golang" data-lang="golang"><span class="kn">package</span> <span class="nx">main</span>
-
-<span class="kn">import</span> <span class="s">&#34;fmt&#34;</span>
-
-<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
-	<span class="c1">// 演示逻辑运算符的使用 &amp;&amp;
-</span><span class="c1"></span>	<span class="nx">age</span> <span class="o">:=</span> <span class="mi">40</span>
-	<span class="k">if</span> <span class="nx">age</span> <span class="p">&gt;</span> <span class="mi">30</span> <span class="o">&amp;&amp;</span> <span class="nx">age</span> <span class="p">&lt;</span> <span class="mi">50</span> <span class="p">{</span>
-      <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;ok1&#34;</span><span class="p">)</span>
-	<span class="p">}</span>
-
-	<span class="k">if</span> <span class="nx">age</span> <span class="p">&gt;</span> <span class="mi">30</span> <span class="o">&amp;&amp;</span> <span class="nx">age</span> <span class="p">&lt;</span> <span class="mi">40</span> <span class="p">{</span>
-      <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;ok1&#34;</span><span class="p">)</span>
-	<span class="p">}</span>
-	<span class="c1">// ok1
-</span><span class="c1"></span>
-	<span class="c1">// 演示逻辑运算符的使用 ||
-</span><span class="c1"></span>	<span class="k">if</span> <span class="nx">age</span> <span class="p">&gt;</span> <span class="mi">30</span> <span class="o">||</span> <span class="nx">age</span> <span class="p">&lt;</span> <span class="mi">50</span> <span class="p">{</span>
-      <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;ok3&#34;</span><span class="p">)</span>
-	<span class="p">}</span>
-
-	<span class="k">if</span> <span class="nx">age</span> <span class="p">&gt;</span> <span class="mi">30</span> <span class="o">||</span> <span class="nx">age</span> <span class="p">&lt;</span> <span class="mi">40</span> <span class="p">{</span>
-      <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;ok4&#34;</span><span class="p">)</span>
-	<span class="p">}</span>
-	<span class="c1">// ok3
-</span><span class="c1"></span>	<span class="c1">// ok4
-</span><span class="c1"></span>
-	<span class="c1">// 演示逻辑非的使用 !
-</span><span class="c1"></span>	<span class="k">if</span> <span class="nx">age</span> <span class="p">&gt;</span> <span class="mi">30</span> <span class="p">{</span>
-      <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;ok5&#34;</span><span class="p">)</span>
-	<span class="p">}</span>
-
-	<span class="k">if</span> <span class="p">!(</span><span class="nx">age</span> <span class="p">&gt;</span> <span class="mi">30</span><span class="p">)</span> <span class="p">{</span>
-      <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;ok6&#34;</span><span class="p">)</span>
-	<span class="p">}</span>
-	<span class="c1">//ok5
-</span><span class="c1"></span><span class="p">}</span>
-
-</code></pre></div></li>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-golang" data-lang="golang"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="s">&#34;fmt&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// 演示逻辑运算符的使用 &amp;&amp;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">age</span> <span class="o">:=</span> <span class="mi">40</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">age</span> <span class="p">&gt;</span> <span class="mi">30</span> <span class="o">&amp;&amp;</span> <span class="nx">age</span> <span class="p">&lt;</span> <span class="mi">50</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;ok1&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">age</span> <span class="p">&gt;</span> <span class="mi">30</span> <span class="o">&amp;&amp;</span> <span class="nx">age</span> <span class="p">&lt;</span> <span class="mi">40</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;ok1&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// ok1
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// 演示逻辑运算符的使用 ||
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="k">if</span> <span class="nx">age</span> <span class="p">&gt;</span> <span class="mi">30</span> <span class="o">||</span> <span class="nx">age</span> <span class="p">&lt;</span> <span class="mi">50</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;ok3&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">age</span> <span class="p">&gt;</span> <span class="mi">30</span> <span class="o">||</span> <span class="nx">age</span> <span class="p">&lt;</span> <span class="mi">40</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;ok4&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// ok3
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="c1">// ok4
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// 演示逻辑非的使用 !
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="k">if</span> <span class="nx">age</span> <span class="p">&gt;</span> <span class="mi">30</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;ok5&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="p">!(</span><span class="nx">age</span> <span class="p">&gt;</span> <span class="mi">30</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;ok6&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">//ok5
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span></code></pre></div></li>
 <li>
 <p>细节说明</p>
 <ul>
@@ -750,21 +746,20 @@
 <ul>
 <li>
 <p>基本使用</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
-
-<span class="kn">import</span> <span class="s">&#34;fmt&#34;</span>
-
-<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
-	<span class="c1">// 演示 &amp; 和 *的使用（指针）
-</span><span class="c1"></span>
-	<span class="nx">a</span> <span class="o">:=</span> <span class="mi">100</span>
-	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;a的地址&#34;</span><span class="p">,</span> <span class="o">&amp;</span><span class="nx">a</span><span class="p">)</span> <span class="c1">//0xc0000160b0
-</span><span class="c1"></span>
-	<span class="kd">var</span> <span class="nx">ptr</span> <span class="o">*</span><span class="kt">int</span> <span class="p">=</span> <span class="o">&amp;</span><span class="nx">a</span>
-	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;ptr指向的值是&#34;</span><span class="p">,</span> <span class="o">*</span><span class="nx">ptr</span><span class="p">)</span> <span class="c1">//100
-</span><span class="c1"></span><span class="p">}</span>
-
-</code></pre></div></li>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="s">&#34;fmt&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// 演示 &amp; 和 *的使用（指针）
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">	<span class="nx">a</span> <span class="o">:=</span> <span class="mi">100</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;a的地址&#34;</span><span class="p">,</span> <span class="o">&amp;</span><span class="nx">a</span><span class="p">)</span> <span class="c1">//0xc0000160b0
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">	<span class="kd">var</span> <span class="nx">ptr</span> <span class="o">*</span><span class="kt">int</span> <span class="p">=</span> <span class="o">&amp;</span><span class="nx">a</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;ptr指向的值是&#34;</span><span class="p">,</span> <span class="o">*</span><span class="nx">ptr</span><span class="p">)</span> <span class="c1">//100
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span></code></pre></div></li>
 </ul>
 <h2 id="运算符优先级">运算符优先级<a hidden class="anchor" aria-hidden="true" href="#运算符优先级">#</a></h2>
 <table>

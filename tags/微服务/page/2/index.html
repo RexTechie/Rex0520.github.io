@@ -11,7 +11,7 @@
 <meta name="author" content="Rex">
 <link rel="canonical" href="https://rex0520.github.io/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" />
 <link crossorigin="anonymous" href="/assets/css/stylesheet.min.css" rel="preload stylesheet" as="style">
-<link rel="preload" href="http://cdn.rexweb.xyz/img/20210821105340.png" as="image">
+<link rel="preload" href="http://cdn.rexhub.xyz/img/20210821105340.png" as="image">
 <link rel="icon" href="https://rex0520.github.io/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="https://rex0520.github.io/favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="https://rex0520.github.io/favicon-32x32.png">
@@ -19,7 +19,7 @@
 <link rel="mask-icon" href="https://rex0520.github.io/%3Clink%20/%20abs%20url%3E">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<meta name="generator" content="Hugo 0.87.0" />
+<meta name="generator" content="Hugo 0.100.2" />
 <link rel="alternate" type="application/rss+xml" href="https://rex0520.github.io/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/index.xml">
 <noscript>
     <style>
@@ -60,10 +60,10 @@
 </noscript><meta property="og:title" content="微服务" />
 <meta property="og:description" content="Rex的个人博客" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://rex0520.github.io/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" /><meta property="og:image" content="https://cdn.rexweb.xyz/img/20210820141535.jpg"/><meta property="og:site_name" content="RexHub" />
+<meta property="og:url" content="https://rex0520.github.io/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" /><meta property="og:image" content="https://cdn.rexhub.xyz/img/20210820141535.jpg"/><meta property="og:site_name" content="RexHub" />
 
 <meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="https://cdn.rexweb.xyz/img/20210820141535.jpg"/>
+<meta name="twitter:image" content="https://cdn.rexhub.xyz/img/20210820141535.jpg"/>
 
 <meta name="twitter:title" content="微服务"/>
 <meta name="twitter:description" content="Rex的个人博客"/>
@@ -86,7 +86,7 @@
     <nav class="nav">
         <div class="logo">
             <a href="https://rex0520.github.io/" accesskey="h" title="Home (Alt + H)">
-                <img src="http://cdn.rexweb.xyz/img/20210821105340.png" alt="logo" aria-label="logo"
+                <img src="http://cdn.rexhub.xyz/img/20210821105340.png" alt="logo" aria-label="logo"
                     height="35">Home</a>
             <span class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)">
@@ -150,8 +150,10 @@
     </h2>
   </header>
   <section class="entry-content">
-    <p>RabbitMQ RabbitMQ简介 核心思想  接受并转发消息。
- producer: P queue: queue_name Consumer: C 消息队列：  业务无关 FIFO 容灾 性能  特点：  开源、跨语言 Erlang语言编写 应用广泛 社区活跃、API丰富  AMBQ协议  Advanced Message Queue Protocol   RabbitMQ核心概念  Server：服务 connection：与Server建立连接 channel：信道，几乎所有的操作都在信道上进行，客户端可以建立多个信道 message：消息，有properties和body组成 virtual host：虚拟主机，顶层隔离。同一个虚拟主机下，不能有重复的交换机和queue Exchange：交换机，接收生产者的消息的，然后根据指定的路由器去把消息转发到锁绑定的队列上 binding：绑定交换机和队列 routing key：路由键，路由规则，虚拟机可以用它来确定这个消息如何进行一个路由 queue：队列，消费者只需要监听队列来消费信息，不需要关注消息来自于哪个Exchange Exchange和Message Queue存在着绑定的关系，一个Exchange可以绑定多个消息队列 消息流转过程      RabbitMQ常用命令 systemctl start rabbitmq-server # 启动rabbitmq rabbitmqctl status # 查看状态 RabbitMQ后台管理  http://1.117.91.88:15672/#/connections rabbitmq management...</p>
+    <p>RabbitMQ RabbitMQ简介 核心思想 接受并转发消息。
+producer: P queue: queue_name Consumer: C 消息队列： 业务无关 FIFO 容灾 性能 特点： 开源、跨语言 Erlang语言编写 应用广泛 社区活跃、API丰富 AMBQ协议 Advanced Message Queue Protocol RabbitMQ核心概念 Server：服务 connection：与Server建立连接 channel：信道，几乎所有的操作都在信道上进行，客户端可以建立多个信道 message：消息，有properties和body组成 virtual host：虚拟主机，顶层隔离。同一个虚拟主机下，不能有重复的交换机和queue Exchange：交换机，接收生产者的消息的，然后根据指定的路由器去把消息转发到锁绑定的队列上 binding：绑定交换机和队列 routing key：路由键，路由规则，虚拟机可以用它来确定这个消息如何进行一个路由 queue：队列，消费者只需要监听队列来消费信息，不需要关注消息来自于哪个Exchange Exchange和Message Queue存在着绑定的关系，一个Exchange可以绑定多个消息队列 消息流转过程 RabbitMQ常用命令 systemctl start rabbitmq-server # 启动rabbitmq rabbitmqctl status # 查看状态 RabbitMQ后台管理 http://1.117.91.88:15672/#/connections rabbitmq management
+RabbitMQ应用 第一个java应用 Hello world 导入依赖
+&lt;dependency&gt; &lt;groupId&gt;com.rabbitmq&lt;/groupId&gt; &lt;artifactId&gt;amqp-client&lt;/artifactId&gt; &lt;version&gt;5.8.0&lt;/version&gt; &lt;/dependency&gt; &lt;dependency&gt; &lt;groupId&gt;org.slf4j&lt;/groupId&gt; &lt;artifactId&gt;slf4j-nop&lt;/artifactId&gt; &lt;version&gt;1.7.29&lt;/version&gt; &lt;/dependency&gt; Send.java...</p>
   </section>
   <footer class="entry-footer">2021-06-21&nbsp;·&nbsp;11 min&nbsp;·&nbsp;Rex</footer>
   <a class="entry-link" aria-label="post link to Rabbitmq使用" href="https://rex0520.github.io/posts/back/java/microservices/rabbitmq/"></a>
@@ -163,9 +165,9 @@
     </h2>
   </header>
   <section class="entry-content">
-    <p>Nginx的安装 Linux安装  登录root账号 执行yum install yum-utils 运行vim /etc/yum.repos.d/nginx.repo [nginx-stable] name=nginx stable repo baseurl=http://nginx.org/packages/centos/7/$basearch/ gpgcheck=1 enabled=1 gpgkey=https://nginx.org/keys/nginx_signing.key module_hotfixes=true [nginx-mainline] name=nginx mainline repo baseurl=http://nginx.org/packages/mainline/centos/7/$basearch/ gpgcheck=1 enabled=0 gpgkey=https://nginx.org/keys/nginx_signing.key module_hotfixes=true  然后查看源 yum list | grep nginx 看到存在稳定版的源，确认无误。 运行安装命令 yum install nginx 1:1.16.1-1.el7.ngx 过程中输入y，确认 查看版本，若出现版本号，则安装成功 用whereis nginx可以查看到目录： nginx: /usr/sbin/nginx /usr/lib64/nginx /etc/nginx /usr/share/nginx /usr/share/man/man8/nginx.8.gz  MacOS的安装  安装homebrew，然后nginx使用安装brew： $ brew install nginx  笔记：
- nginx的配置文件位于中/usr/local/etc/nginx/nginx.conf。 要编辑配置文件或运行nginx，您需要使用sudo： sudo nano /usr/local/etc/nginx/nginx.conf和 sudo nginx …
- Windows下的安装 不推荐，nginx不适合运行在Windows上，功能不完整，我们尽量运行在linux上。</p>
+    <p>Nginx的安装 Linux安装 登录root账号 执行yum install yum-utils 运行vim /etc/yum.repos.d/nginx.repo [nginx-stable] name=nginx stable repo baseurl=http://nginx.org/packages/centos/7/$basearch/ gpgcheck=1 enabled=1 gpgkey=https://nginx.org/keys/nginx_signing.key module_hotfixes=true [nginx-mainline] name=nginx mainline repo baseurl=http://nginx.org/packages/mainline/centos/7/$basearch/ gpgcheck=1 enabled=0 gpgkey=https://nginx.org/keys/nginx_signing.key module_hotfixes=true 然后查看源 yum list | grep nginx 看到存在稳定版的源，确认无误。 运行安装命令 yum install nginx 1:1.16.1-1.el7.ngx 过程中输入y，确认 查看版本，若出现版本号，则安装成功 用whereis nginx可以查看到目录： nginx: /usr/sbin/nginx /usr/lib64/nginx /etc/nginx /usr/share/nginx /usr/share/man/man8/nginx.8.gz MacOS的安装 安装homebrew，然后nginx使用安装brew： $ brew install nginx 笔记：
+nginx的配置文件位于中/usr/local/etc/nginx/nginx.conf。 要编辑配置文件或运行nginx，您需要使用sudo： sudo nano /usr/local/etc/nginx/nginx.conf和 sudo nginx …
+Windows下的安装 不推荐，nginx不适合运行在Windows上，功能不完整，我们尽量运行在linux上。</p>
   </section>
   <footer class="entry-footer">2021-06-12&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Rex</footer>
   <a class="entry-link" aria-label="post link to Nginx的入门" href="https://rex0520.github.io/posts/back/java/microservices/nginx%E7%9A%84%E5%AE%89%E8%A3%85/"></a>
@@ -177,11 +179,14 @@
     </h2>
   </header>
   <section class="entry-content">
-    <p>Docker的安装 在Cent OS安装docker  先有一个Cent OS 7.6系统   这个很重要，不同版本按照的时候是不一样的。查看CentOS版本 cat /etc/redhat-release
- 用root账户登录进去 配置国内yum源   wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo yum clean all yum makecache
- 卸载旧版本   较旧的Docker版本称为docker或docker-engine。如果已安装这些程序，请卸载它们以及相关的依赖项。 如果yum报告未安装这些软件包，也没问题。
- docker-client \ docker-client-latest \ docker-common \ docker-latest \ docker-latest-logrotate \ docker-logrotate \ docker-engine 更新yum   yum check-update yum update
- 安装所需的软件包  yum install -y yum-utils \ device-mapper-persistent-data \ lvm2 使用以下命令来设置稳定的存储库。   sudo yum-config-manager –add-repo http://mirrors....</p>
+    <p>Docker的安装 在Cent OS安装docker 先有一个Cent OS 7.6系统 这个很重要，不同版本按照的时候是不一样的。查看CentOS版本 cat /etc/redhat-release
+用root账户登录进去 配置国内yum源 wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo yum clean all yum makecache
+卸载旧版本 较旧的Docker版本称为docker或docker-engine。如果已安装这些程序，请卸载它们以及相关的依赖项。 如果yum报告未安装这些软件包，也没问题。
+docker-client \ docker-client-latest \ docker-common \ docker-latest \ docker-latest-logrotate \ docker-logrotate \ docker-engine 更新yum yum check-update yum update
+安装所需的软件包 yum install -y yum-utils \ device-mapper-persistent-data \ lvm2 使用以下命令来设置稳定的存储库。 sudo yum-config-manager –add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
+查看docker版本 yum list docker-ce –showduplicates | sort -r
+安装指定的版本 yum install docker-ce-18.09.0 docker-ce-cli-18.09.0 containerd.io
+Docker 是服务器—-客户端架构。命令行运行docker命令的时候，需要本机有 Docker 服务。用下面的命令启动 systemctl start docker...</p>
   </section>
   <footer class="entry-footer">2021-06-11&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Rex</footer>
   <a class="entry-link" aria-label="post link to Docker的安装" href="https://rex0520.github.io/posts/back/java/microservices/docker%E7%9A%84%E5%AE%89%E8%A3%85/"></a>
@@ -193,8 +198,13 @@
     </h2>
   </header>
   <section class="entry-content">
-    <p>分布式 定义：  利用物理架构形成多个自治的处理元素，不共享主内存, 但是通过发送信息合作。— Leslie Lamport
- 实际项目的演进过程  一个项目，大而全 多台机器，部署同样的应用 分布式：权限系统、员工系统、请假系统  分布式的作用 为什么需要分布式  解决单体应用的问题  应用代码耦合严重，功能扩展难 新需求开发交互周期长，测试工程量大 新加入的开发同事需要很长时间才能属性系统 升级维护困难（改动任何一点地方都要升级整个系统） 系统性能提升艰难，可用性低，不稳定    分布式的好处  增大系统容量 加强系统可用 因为模块化，所以系统模块重用度高 因为软件服务模块被拆分，开发和发布速度可以并行变得更块 系统拓展性更高 团队协作流程也会得到改善 技术升级  分布式和单体结构的对比     传统单体结构 分布式架构     新人的学习成本 业务逻辑成本高 架构逻辑成本高   部署、运维 容易 发布频繁，发布顺序复杂、运维难   隔离性 一损俱损，殃及鱼塘 故障影响范围小   架构设计 难度低 难度指数级上升   系统性能 响应快、吞吐量小 响应慢、吞吐量大   测试成本 低 很高   技术多样性 技术单一且封闭 技术多样且开放   系统扩展性 扩展性差 扩展性很好   系统管理成本 成本低 成本高    CAP定理   CAP理论：三者不可兼得...</p>
+    <p>分布式 定义： 利用物理架构形成多个自治的处理元素，不共享主内存, 但是通过发送信息合作。— Leslie Lamport
+实际项目的演进过程 一个项目，大而全 多台机器，部署同样的应用 分布式：权限系统、员工系统、请假系统 分布式的作用 为什么需要分布式 解决单体应用的问题 应用代码耦合严重，功能扩展难 新需求开发交互周期长，测试工程量大 新加入的开发同事需要很长时间才能属性系统 升级维护困难（改动任何一点地方都要升级整个系统） 系统性能提升艰难，可用性低，不稳定 分布式的好处 增大系统容量 加强系统可用 因为模块化，所以系统模块重用度高 因为软件服务模块被拆分，开发和发布速度可以并行变得更块 系统拓展性更高 团队协作流程也会得到改善 技术升级 分布式和单体结构的对比 传统单体结构 分布式架构 新人的学习成本 业务逻辑成本高 架构逻辑成本高 部署、运维 容易 发布频繁，发布顺序复杂、运维难 隔离性 一损俱损，殃及鱼塘 故障影响范围小 架构设计 难度低 难度指数级上升 系统性能 响应快、吞吐量小 响应慢、吞吐量大 测试成本 低 很高 技术多样性 技术单一且封闭 技术多样且开放 系统扩展性 扩展性差 扩展性很好 系统管理成本 成本低 成本高 CAP定理 CAP理论：三者不可兼得
+C：（Consistency，一致性）：读操作是否总能读到前一个写操作的结果 A：（Availbilty，可用性）：非故障节点应该在合理的时间内做出合理的响应，但是可能不是最新的数据 P：（Partition tolerance，分区容错性）：当出现网络分区现象后，系统能够继续运行 分区容错（P）
+一致性（C）
+可用性(A)
+CAP的选取
+火车票 C 银行转账 A 集群、分布式、微服务的区别 集群与分布式 集群：一个业拆分多个子业务，部署在不同的服务器上 分布式：同一个业务，部署在多个服务器上 集群和微服务 集群：分散压力 微服务：分散能力 分布式和微服务 分布式：系统部署方式，部署角度（后） 微服务：架构设计方式，逻辑角度（先） </p>
   </section>
   <footer class="entry-footer">2021-06-10&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Rex</footer>
   <a class="entry-link" aria-label="post link to 分布式" href="https://rex0520.github.io/posts/back/java/microservices/%E5%88%86%E5%B8%83%E5%BC%8F/"></a>

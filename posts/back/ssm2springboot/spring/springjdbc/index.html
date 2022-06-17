@@ -11,7 +11,7 @@
 <meta name="author" content="Rex">
 <link rel="canonical" href="https://rex0520.github.io/posts/back/ssm2springboot/spring/springjdbc/" />
 <link crossorigin="anonymous" href="/assets/css/stylesheet.min.css" rel="preload stylesheet" as="style">
-<link rel="preload" href="http://cdn.rexweb.xyz/img/20210821105340.png" as="image">
+<link rel="preload" href="http://cdn.rexhub.xyz/img/20210821105340.png" as="image">
 <link rel="icon" href="https://rex0520.github.io/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="https://rex0520.github.io/favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="https://rex0520.github.io/favicon-32x32.png">
@@ -23,12 +23,12 @@
 <meta property="og:title" content="SpringJDBC" />
 <meta property="og:description" content="Spring学习记录" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://rex0520.github.io/posts/back/ssm2springboot/spring/springjdbc/" /><meta property="og:image" content="https://cdn.rexweb.xyz/img/20210820141535.jpg"/><meta property="article:section" content="posts" />
+<meta property="og:url" content="https://rex0520.github.io/posts/back/ssm2springboot/spring/springjdbc/" /><meta property="og:image" content="https://cdn.rexhub.xyz/img/20210820141535.jpg"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2021-01-06T00:00:00&#43;00:00" />
 <meta property="article:modified_time" content="2021-01-06T00:00:00&#43;00:00" /><meta property="og:site_name" content="RexHub" />
 
 <meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="https://cdn.rexweb.xyz/img/20210820141535.jpg"/>
+<meta name="twitter:image" content="https://cdn.rexhub.xyz/img/20210820141535.jpg"/>
 
 <meta name="twitter:title" content="SpringJDBC"/>
 <meta name="twitter:description" content="Spring学习记录"/>
@@ -44,7 +44,7 @@
       "position":  1 ,
       "name": "Posts",
       "item": "https://rex0520.github.io/posts/"
-    }, 
+    },
     {
       "@type": "ListItem",
       "position":  2 ,
@@ -142,7 +142,7 @@
     <nav class="nav">
         <div class="logo">
             <a href="https://rex0520.github.io/" accesskey="h" title="Home (Alt + H)">
-                <img src="http://cdn.rexweb.xyz/img/20210821105340.png" alt="logo" aria-label="logo"
+                <img src="http://cdn.rexhub.xyz/img/20210821105340.png" alt="logo" aria-label="logo"
                     height="35">Home</a>
             <span class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)">
@@ -217,14 +217,14 @@
         <div class="inner"><ul>
                 <li>
                     <a href="#spring-jdbc%e4%b8%8e%e4%ba%8b%e5%8a%a1%e7%ae%a1%e7%90%86" aria-label="Spring JDBC与事务管理">Spring JDBC与事务管理</a><ul>
-                        
+
                 <li>
                     <a href="#spring-jdbc" aria-label="Spring JDBC">Spring JDBC</a></li>
                 <li>
                     <a href="#spring-jdbc%e7%9a%84%e4%bd%bf%e7%94%a8%e6%ad%a5%e9%aa%a4" aria-label="Spring JDBC的使用步骤">Spring JDBC的使用步骤</a></li>
                 <li>
                     <a href="#jdbctemplate%e5%ae%9e%e7%8e%b0%e5%a2%9e%e5%88%a0%e6%94%b9%e6%9f%a5" aria-label="JdbcTemplate实现增删改查">JdbcTemplate实现增删改查</a><ul>
-                        
+
                 <li>
                     <a href="#spring-jdbc%e9%85%8d%e7%bd%ae%e8%bf%87%e7%a8%8b%e4%bb%a3%e7%a0%81%e7%a4%ba%e4%be%8b" aria-label="Spring JDBC配置过程代码示例：">Spring JDBC配置过程代码示例：</a></li>
                 <li>
@@ -234,7 +234,7 @@
                 </li>
                 <li>
                     <a href="#spring%e7%bc%96%e7%a8%8b%e5%bc%8f%e4%ba%8b%e5%8a%a1" aria-label="Spring编程式事务">Spring编程式事务</a><ul>
-                        
+
                 <li>
                     <a href="#%e4%bb%80%e4%b9%88%e6%98%af%e4%ba%8b%e5%8a%a1" aria-label="什么是事务">什么是事务</a></li>
                 <li>
@@ -244,7 +244,7 @@
                 </li>
                 <li>
                     <a href="#spring%e5%a3%b0%e6%98%8e%e5%bc%8f%e4%ba%8b%e5%8a%a1" aria-label="Spring声明式事务">Spring声明式事务</a><ul>
-                        
+
                 <li>
                     <a href="#%e5%a3%b0%e6%98%8e%e5%bc%8f%e4%ba%8b%e5%8a%a1" aria-label="声明式事务">声明式事务</a></li>
                 <li>
@@ -253,14 +253,14 @@
                     <a href="#%e4%bb%a3%e7%a0%81%e7%a4%ba%e4%be%8b-1" aria-label="代码示例：">代码示例：</a></li>
                 <li>
                     <a href="#%e4%ba%8b%e5%8a%a1%e4%bc%a0%e6%92%ad%e8%a1%8c%e4%b8%ba" aria-label="事务传播行为">事务传播行为</a><ul>
-                        
+
                 <li>
                     <a href="#%e4%ba%8b%e5%8a%a1%e4%bc%a0%e6%92%ad%e8%a1%8c%e4%b8%ba%e4%b8%83%e7%a7%8d%e7%b1%bb%e5%9e%8b" aria-label="事务传播行为七种类型">事务传播行为七种类型</a></li></ul>
                 </li></ul>
                 </li>
                 <li>
                     <a href="#spring%e6%b3%a8%e8%a7%a3%e9%85%8d%e7%bd%ae%e5%a3%b0%e6%98%8e%e5%bc%8f%e4%ba%8b%e5%8a%a1" aria-label="Spring注解配置声明式事务">Spring注解配置声明式事务</a><ul>
-                        
+
                 <li>
                     <a href="#%e4%bb%a3%e7%a0%81%e7%a4%ba%e4%be%8b-2" aria-label="代码示例">代码示例</a>
                 </li>
@@ -1091,7 +1091,7 @@
 16:55:40.507 [main] DEBUG org.springframework.jdbc.core.JdbcTemplate - SQLWarning ignored: SQL state &#39;22007&#39;, error code &#39;1292&#39;, message [Incorrect date value: &#39;2021-01-05 16:55:40.502&#39; for column &#39;hiredate&#39; at row 1]
 16:55:40.507 [main] DEBUG org.springframework.jdbc.datasource.DataSourceTransactionManager - Initiating transaction rollback
 16:55:40.507 [main] DEBUG org.springframework.jdbc.datasource.DataSourceTransactionManager - Rolling back JDBC transaction on Connection [com.mysql.cj.jdbc.ConnectionImpl@3646a422]
-16:55:40.521 [main] DEBUG 
+16:55:40.521 [main] DEBUG
 ...
 
 java.lang.RuntimeException: 意料之外的异常...
@@ -2070,12 +2070,12 @@ java.lang.RuntimeException: 意料之外的异常...
         if (container.classList.contains("highlight")) {
             container.appendChild(copybutton);
         } else if (container.parentNode.firstChild == container) {
-            
+
         } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
-            
+
             codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
         } else {
-            
+
             codeblock.parentNode.appendChild(copybutton);
         }
     });

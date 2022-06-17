@@ -11,7 +11,7 @@
 <meta name="author" content="Rex">
 <link rel="canonical" href="https://rex0520.github.io/posts/back/java/microservices/nginx%E4%BD%BF%E7%94%A8/" />
 <link crossorigin="anonymous" href="/assets/css/stylesheet.min.css" rel="preload stylesheet" as="style">
-<link rel="preload" href="http://cdn.rexweb.xyz/img/20210821105340.png" as="image">
+<link rel="preload" href="http://cdn.rexhub.xyz/img/20210821105340.png" as="image">
 <script defer crossorigin="anonymous" src="/assets/js/highlight.min.js" onload="hljs.initHighlightingOnLoad();"></script>
 <link rel="icon" href="https://rex0520.github.io/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="https://rex0520.github.io/favicon-16x16.png">
@@ -20,7 +20,7 @@
 <link rel="mask-icon" href="https://rex0520.github.io/%3Clink%20/%20abs%20url%3E">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<meta name="generator" content="Hugo 0.87.0" />
+<meta name="generator" content="Hugo 0.100.2" />
 <noscript>
     <style>
         #theme-toggle,
@@ -60,12 +60,12 @@
 </noscript><meta property="og:title" content="Nginx使用" />
 <meta property="og:description" content="Nginx使用" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://rex0520.github.io/posts/back/java/microservices/nginx%E4%BD%BF%E7%94%A8/" /><meta property="og:image" content="https://cdn.rexweb.xyz/img/20210820141535.jpg"/><meta property="article:section" content="posts" />
+<meta property="og:url" content="https://rex0520.github.io/posts/back/java/microservices/nginx%E4%BD%BF%E7%94%A8/" /><meta property="og:image" content="https://cdn.rexhub.xyz/img/20210820141535.jpg"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2021-06-22T00:00:00&#43;00:00" />
 <meta property="article:modified_time" content="2021-06-22T00:00:00&#43;00:00" /><meta property="og:site_name" content="RexHub" />
 
 <meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="https://cdn.rexweb.xyz/img/20210820141535.jpg"/>
+<meta name="twitter:image" content="https://cdn.rexhub.xyz/img/20210820141535.jpg"/>
 
 <meta name="twitter:title" content="Nginx使用"/>
 <meta name="twitter:description" content="Nginx使用"/>
@@ -101,7 +101,7 @@
   "keywords": [
     "微服务"
   ],
-  "articleBody": "Nginx Nginx介绍 使用场景  HTTP的反向代理服务器  负载均衡 缓存   动态静态资源分离  优点  高并发、高性能 可扩展性好，体现在模块化设计 高可靠性，可以持续不断数十年运行 热部署，不停止服务来升级nginx 开源、可商用  Nginx常用命令 ./nginx # 启动nginx ps -aux|grep nginx # 查看nginx相关进程，也可以查到nginx运行的路径 nginx -h # 帮助 nginx -c # 读取指定配置文件 nginx -s stop # 关闭nginx nginx -t # 检查当前配置文件是否有问题，查看当前配置文件路径 nginx -v # 简要版本信息 -V详细信息 nginx -s stop|quit| # -s信号 stop立即停止，quit优雅停止，reload重启，reopen更换日志文件 Nginx配置文件   语法\n ;结尾 {}组织多条指令 include 引入 #注释 $ 变量    默认配置文件分析\n  nginx.conf\n# 运行用户，默认是nginx user nginx; # nginx进程数,一般设置为和cpu核数一样 worker_processes 1; # 全局错误日志路径 error_log /var/log/nginx/error.log warn; # 进程pid路径 pid /var/run/nginx.pid; events { # 最大连接数  worker_connections 1024; } # 设置http服务器 http { include /etc/nginx/mime.types; default_type application/octet-stream; # 设置日志的格式  log_format main '$remote_addr - $remote_user [$time_local] \"$request\" ' '$status $body_bytes_sent \"$http_referer\" ' '\"$http_user_agent\" \"$http_x_forwarded_for\"'; # 访问日志的路径  access_log /var/log/nginx/access.log main; # 开启高效传输模式  sendfile on; #tcp_nopush on; # 长连接超时时间，单位是秒  keepalive_timeout 65; #传输时是否压缩，压缩的话需要解压，但是传的大小就小了  #gzip on; #加载其他的配置文件，一带多  include /etc/nginx/conf.d/*.conf; }   server { listen 80; //监听端口为80，可以自定义其他端口，也可以加上IP地址，如，listen 127.0.0.1:8080; server_name localhost; //定义网站域名，可以写多个，用空格分隔。 #charset koi8-r; //定义网站的字符集，一般不设置，而是在网页代码中设置。  #access_log logs/host.access.log main; //定义访问日志，可以针对每一个server（即每一个站点）设置它们自己的访问日志。  ##在server{}里有很多location配置段  location / { root html; //定义网站根目录，目录可以是相对路径也可以是绝对路径。 index index.html index.htm; //定义站点的默认页。 } #error_page 404 /404.html; //定义404页面  # redirect server error pages to the static page /50x.html  #  error_page 500 502 503 504 /50x.html; //当状态码为500、502、503、504时，则访问50x.html location = /50x.html { root html; //定义50x.html所在路径 } # proxy the PHP scripts to Apache listening on 127.0.0.1:80  #  #定义访问php脚本时，将会执行本location{}部分指令  #location ~ \\.php$ {  # proxy_pass http://127.0.0.1; //proxy_pass后面指定要访问的url链接，用proxy_pass实现代理。  #}  # pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000  #  #location ~ \\.php$ {  # root html;  # fastcgi_pass 127.0.0.1:9000; //定义FastCGI服务器监听端口与地址，支持两种形式，1 IP:Port， 2 unix:/path/to/sockt  # fastcgi_index index.php;  # fastcgi_param SCRIPT_FILENAME /scripts$fastcgi_script_name; //定义SCRIPT_FILENAME变量，后面的路径/scripts为上面的root指定的目录  # include fastcgi_params; //引用prefix/conf/fastcgi_params文件，该文件定义了fastcgi相关的变量  #}  # deny access to .htaccess files, if Apache's document root  # concurs with nginx's one  #  #location ~ /\\.ht { //访问的url中，以/.ht开头的，如，www.example.com/.htaccess，会被拒绝，返回403状态码。  # deny all; //这里的all指的是所有的请求。  #} } # another virtual host using mix of IP-, name-, and port-based configuration # #server { # listen 8000; //监听8000端口 # listen somename:8080; //指定ip:port # server_name somename alias another.alias; //指定多个server_name # location / { # root html; # index index.html index.htm; # } #} # HTTPS server # #server { # listen 443 ssl; //监听443端口，即ssl # server_name localhost; ### 以下为ssl相关配置 # ssl_certificate cert.pem; //指定pem文件路径 # ssl_certificate_key cert.key; //指定key文件路径 # ssl_session_cache shared:SSL:1m; //指定session cache大小 # ssl_session_timeout 5m; //指定session超时时间 # ssl_protocols TLSv1 TLSv1.1 TLSv1.2; //指定ssl协议 # ssl_ciphers HIGH:!aNULL:!MD5; //指定ssl算法 # ssl_prefer_server_ciphers on; //优先采取服务器算法 # location / { # root html; # index index.html index.htm; # } #}   location ^~ /api { rewrite ^/api/(.*)$ /$1 break; proxy_pass http://localhost:8080; proxy_set_header X-Real-IP $remote_addr; proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; proxy_set_header Host $host; proxy_redirect off; }     ",
+  "articleBody": "Nginx Nginx介绍 使用场景 HTTP的反向代理服务器 负载均衡 缓存 动态静态资源分离 优点 高并发、高性能 可扩展性好，体现在模块化设计 高可靠性，可以持续不断数十年运行 热部署，不停止服务来升级nginx 开源、可商用 Nginx常用命令 ./nginx # 启动nginx ps -aux|grep nginx # 查看nginx相关进程，也可以查到nginx运行的路径 nginx -h # 帮助 nginx -c # 读取指定配置文件 nginx -s stop # 关闭nginx nginx -t # 检查当前配置文件是否有问题，查看当前配置文件路径 nginx -v # 简要版本信息 -V详细信息 nginx -s stop|quit| # -s信号 stop立即停止，quit优雅停止，reload重启，reopen更换日志文件 Nginx配置文件 语法\n;结尾 {}组织多条指令 include 引入 #注释 $ 变量 默认配置文件分析\nnginx.conf\n# 运行用户，默认是nginx user nginx; # nginx进程数,一般设置为和cpu核数一样 worker_processes 1; # 全局错误日志路径 error_log /var/log/nginx/error.log warn; # 进程pid路径 pid /var/run/nginx.pid; events { # 最大连接数 worker_connections 1024; } # 设置http服务器 http { include /etc/nginx/mime.types; default_type application/octet-stream; # 设置日志的格式 log_format main '$remote_addr - $remote_user [$time_local] \"$request\" ' '$status $body_bytes_sent \"$http_referer\" ' '\"$http_user_agent\" \"$http_x_forwarded_for\"'; # 访问日志的路径 access_log /var/log/nginx/access.log main; # 开启高效传输模式 sendfile on; #tcp_nopush on; # 长连接超时时间，单位是秒 keepalive_timeout 65; #传输时是否压缩，压缩的话需要解压，但是传的大小就小了 #gzip on; #加载其他的配置文件，一带多 include /etc/nginx/conf.d/*.conf; } server { listen 80; //监听端口为80，可以自定义其他端口，也可以加上IP地址，如，listen 127.0.0.1:8080; server_name localhost; //定义网站域名，可以写多个，用空格分隔。 #charset koi8-r; //定义网站的字符集，一般不设置，而是在网页代码中设置。 #access_log logs/host.access.log main; //定义访问日志，可以针对每一个server（即每一个站点）设置它们自己的访问日志。 ##在server{}里有很多location配置段 location / { root html; //定义网站根目录，目录可以是相对路径也可以是绝对路径。 index index.html index.htm; //定义站点的默认页。 } #error_page 404 /404.html; //定义404页面 # redirect server error pages to the static page /50x.html # error_page 500 502 503 504 /50x.html; //当状态码为500、502、503、504时，则访问50x.html location = /50x.html { root html; //定义50x.html所在路径 } # proxy the PHP scripts to Apache listening on 127.0.0.1:80 # #定义访问php脚本时，将会执行本location{}部分指令 #location ~ \\.php$ { # proxy_pass http://127.0.0.1; //proxy_pass后面指定要访问的url链接，用proxy_pass实现代理。 #} # pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000 # #location ~ \\.php$ { # root html; # fastcgi_pass 127.0.0.1:9000; //定义FastCGI服务器监听端口与地址，支持两种形式，1 IP:Port， 2 unix:/path/to/sockt # fastcgi_index index.php; # fastcgi_param SCRIPT_FILENAME /scripts$fastcgi_script_name; //定义SCRIPT_FILENAME变量，后面的路径/scripts为上面的root指定的目录 # include fastcgi_params; //引用prefix/conf/fastcgi_params文件，该文件定义了fastcgi相关的变量 #} # deny access to .htaccess files, if Apache's document root # concurs with nginx's one # #location ~ /\\.ht { //访问的url中，以/.ht开头的，如，www.example.com/.htaccess，会被拒绝，返回403状态码。 # deny all; //这里的all指的是所有的请求。 #} } # another virtual host using mix of IP-, name-, and port-based configuration # #server { # listen 8000; //监听8000端口 # listen somename:8080; //指定ip:port # server_name somename alias another.alias; //指定多个server_name # location / { # root html; # index index.html index.htm; # } #} # HTTPS server # #server { # listen 443 ssl; //监听443端口，即ssl # server_name localhost; ### 以下为ssl相关配置 # ssl_certificate cert.pem; //指定pem文件路径 # ssl_certificate_key cert.key; //指定key文件路径 # ssl_session_cache shared:SSL:1m; //指定session cache大小 # ssl_session_timeout 5m; //指定session超时时间 # ssl_protocols TLSv1 TLSv1.1 TLSv1.2; //指定ssl协议 # ssl_ciphers HIGH:!aNULL:!MD5; //指定ssl算法 # ssl_prefer_server_ciphers on; //优先采取服务器算法 # location / { # root html; # index index.html index.htm; # } #} location ^~ /api { rewrite ^/api/(.*)$ /$1 break; proxy_pass http://localhost:8080; proxy_set_header X-Real-IP $remote_addr; proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; proxy_set_header Host $host; proxy_redirect off; } ",
   "wordCount" : "402",
   "inLanguage": "en",
   "datePublished": "2021-06-22T00:00:00Z",
@@ -142,7 +142,7 @@
     <nav class="nav">
         <div class="logo">
             <a href="https://rex0520.github.io/" accesskey="h" title="Home (Alt + H)">
-                <img src="http://cdn.rexweb.xyz/img/20210821105340.png" alt="logo" aria-label="logo"
+                <img src="http://cdn.rexhub.xyz/img/20210821105340.png" alt="logo" aria-label="logo"
                     height="35">Home</a>
             <span class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)">
@@ -259,16 +259,15 @@
 <li>开源、可商用</li>
 </ul>
 <h2 id="nginx常用命令">Nginx常用命令<a hidden class="anchor" aria-hidden="true" href="#nginx常用命令">#</a></h2>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">./nginx <span class="c1"># 启动nginx</span>
-ps -aux<span class="p">|</span>grep nginx <span class="c1"># 查看nginx相关进程，也可以查到nginx运行的路径</span>
-nginx -h <span class="c1"># 帮助</span>
-nginx -c <span class="c1"># 读取指定配置文件</span>
-nginx -s stop <span class="c1"># 关闭nginx</span>
-nginx -t <span class="c1"># 检查当前配置文件是否有问题，查看当前配置文件路径</span>
-nginx -v <span class="c1"># 简要版本信息 -V详细信息</span>
-nginx -s stop<span class="p">|</span>quit<span class="p">|</span> <span class="c1"># -s信号 stop立即停止，quit优雅停止，reload重启，reopen更换日志文件</span>
-
-</code></pre></div><h2 id="nginx配置文件">Nginx配置文件<a hidden class="anchor" aria-hidden="true" href="#nginx配置文件">#</a></h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">./nginx <span class="c1"># 启动nginx</span>
+</span></span><span class="line"><span class="cl">ps -aux<span class="p">|</span>grep nginx <span class="c1"># 查看nginx相关进程，也可以查到nginx运行的路径</span>
+</span></span><span class="line"><span class="cl">nginx -h <span class="c1"># 帮助</span>
+</span></span><span class="line"><span class="cl">nginx -c <span class="c1"># 读取指定配置文件</span>
+</span></span><span class="line"><span class="cl">nginx -s stop <span class="c1"># 关闭nginx</span>
+</span></span><span class="line"><span class="cl">nginx -t <span class="c1"># 检查当前配置文件是否有问题，查看当前配置文件路径</span>
+</span></span><span class="line"><span class="cl">nginx -v <span class="c1"># 简要版本信息 -V详细信息</span>
+</span></span><span class="line"><span class="cl">nginx -s stop<span class="p">|</span>quit<span class="p">|</span> <span class="c1"># -s信号 stop立即停止，quit优雅停止，reload重启，reopen更换日志文件</span>
+</span></span></code></pre></div><h2 id="nginx配置文件">Nginx配置文件<a hidden class="anchor" aria-hidden="true" href="#nginx配置文件">#</a></h2>
 <ul>
 <li>
 <p>语法</p>
@@ -285,126 +284,125 @@ nginx -s stop<span class="p">|</span>quit<span class="p">|</span> <span class="c
 <ul>
 <li>
 <p>nginx.conf</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-nginx" data-lang="nginx"><span class="c1"># 运行用户，默认是nginx
-</span><span class="c1"></span><span class="k">user</span>  <span class="s">nginx</span><span class="p">;</span>
-<span class="c1"># nginx进程数,一般设置为和cpu核数一样
-</span><span class="c1"></span><span class="k">worker_processes</span>  <span class="mi">1</span><span class="p">;</span>
-
-<span class="c1"># 全局错误日志路径
-</span><span class="c1"></span><span class="k">error_log</span>  <span class="s">/var/log/nginx/error.log</span> <span class="s">warn</span><span class="p">;</span>
-<span class="c1"># 进程pid路径
-</span><span class="c1"></span><span class="k">pid</span>        <span class="s">/var/run/nginx.pid</span><span class="p">;</span>
-
-
-<span class="k">events</span> <span class="p">{</span>
-<span class="c1"># 最大连接数
-</span><span class="c1"></span>    <span class="kn">worker_connections</span>  <span class="mi">1024</span><span class="p">;</span>
-<span class="p">}</span>
-
-
-<span class="c1"># 设置http服务器
-</span><span class="c1"></span><span class="k">http</span> <span class="p">{</span>
-    <span class="kn">include</span>       <span class="s">/etc/nginx/mime.types</span><span class="p">;</span>
-    <span class="kn">default_type</span>  <span class="s">application/octet-stream</span><span class="p">;</span>
-<span class="c1"># 设置日志的格式
-</span><span class="c1"></span>    <span class="kn">log_format</span>  <span class="s">main</span>  <span class="s">&#39;</span><span class="nv">$remote_addr</span> <span class="s">-</span> <span class="nv">$remote_user</span> <span class="s">[</span><span class="nv">$time_local]</span> <span class="s">&#34;</span><span class="nv">$request&#34;</span> <span class="s">&#39;</span>
-                      <span class="s">&#39;</span><span class="nv">$status</span> <span class="nv">$body_bytes_sent</span> <span class="s">&#34;</span><span class="nv">$http_referer&#34;</span> <span class="s">&#39;</span>
-                      <span class="s">&#39;&#34;</span><span class="nv">$http_user_agent&#34;</span> <span class="s">&#34;</span><span class="nv">$http_x_forwarded_for&#34;&#39;</span><span class="p">;</span>
-<span class="c1"># 访问日志的路径
-</span><span class="c1"></span>    <span class="kn">access_log</span>  <span class="s">/var/log/nginx/access.log</span>  <span class="s">main</span><span class="p">;</span>
-
-<span class="c1"># 开启高效传输模式
-</span><span class="c1"></span>    <span class="kn">sendfile</span>        <span class="no">on</span><span class="p">;</span>
-    <span class="c1">#tcp_nopush     on;
-</span><span class="c1"># 长连接超时时间，单位是秒
-</span><span class="c1"></span>    <span class="kn">keepalive_timeout</span>  <span class="mi">65</span><span class="p">;</span>
-<span class="c1">#传输时是否压缩，压缩的话需要解压，但是传的大小就小了
-</span><span class="c1"></span>    <span class="c1">#gzip  on;
-</span><span class="c1">#加载其他的配置文件，一带多
-</span><span class="c1"></span>    <span class="kn">include</span> <span class="s">/etc/nginx/conf.d/*.conf</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div></li>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-nginx" data-lang="nginx"><span class="line"><span class="cl"><span class="c1"># 运行用户，默认是nginx
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">user</span>  <span class="s">nginx</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># nginx进程数,一般设置为和cpu核数一样
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">worker_processes</span>  <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 全局错误日志路径
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">error_log</span>  <span class="s">/var/log/nginx/error.log</span> <span class="s">warn</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 进程pid路径
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">pid</span>        <span class="s">/var/run/nginx.pid</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">events</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 最大连接数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kn">worker_connections</span>  <span class="mi">1024</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 设置http服务器
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">http</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kn">include</span>       <span class="s">/etc/nginx/mime.types</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kn">default_type</span>  <span class="s">application/octet-stream</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 设置日志的格式
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kn">log_format</span>  <span class="s">main</span>  <span class="s">&#39;</span><span class="nv">$remote_addr</span> <span class="s">-</span> <span class="nv">$remote_user</span> <span class="s">[</span><span class="nv">$time_local]</span> <span class="s">&#34;</span><span class="nv">$request&#34;</span> <span class="s">&#39;</span>
+</span></span><span class="line"><span class="cl">                      <span class="s">&#39;</span><span class="nv">$status</span> <span class="nv">$body_bytes_sent</span> <span class="s">&#34;</span><span class="nv">$http_referer&#34;</span> <span class="s">&#39;</span>
+</span></span><span class="line"><span class="cl">                      <span class="s">&#39;&#34;</span><span class="nv">$http_user_agent&#34;</span> <span class="s">&#34;</span><span class="nv">$http_x_forwarded_for&#34;&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 访问日志的路径
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kn">access_log</span>  <span class="s">/var/log/nginx/access.log</span>  <span class="s">main</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 开启高效传输模式
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kn">sendfile</span>        <span class="no">on</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">#tcp_nopush     on;
+</span></span></span><span class="line"><span class="cl"><span class="c1"># 长连接超时时间，单位是秒
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kn">keepalive_timeout</span>  <span class="mi">65</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#传输时是否压缩，压缩的话需要解压，但是传的大小就小了
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">#gzip  on;
+</span></span></span><span class="line"><span class="cl"><span class="c1">#加载其他的配置文件，一带多
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kn">include</span> <span class="s">/etc/nginx/conf.d/*.conf</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div></li>
 <li>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-nginx" data-lang="nginx"><span class="k">server</span> <span class="p">{</span>
-    <span class="kn">listen</span>       <span class="mi">80</span><span class="p">;</span>  <span class="kn">//监听端口为80，可以自定义其他端口，也可以加上IP地址，如，listen</span> <span class="n">127.0.0.1</span><span class="p">:</span><span class="mi">8080</span><span class="p">;</span>
-    <span class="kn">server_name</span>  <span class="s">localhost</span><span class="p">;</span> <span class="kn">//定义网站域名，可以写多个，用空格分隔。</span>
-    <span class="c1">#charset koi8-r; //定义网站的字符集，一般不设置，而是在网页代码中设置。
-</span><span class="c1"></span>    <span class="c1">#access_log  logs/host.access.log  main; //定义访问日志，可以针对每一个server（即每一个站点）设置它们自己的访问日志。
-</span><span class="c1"></span>    <span class="c1">##在server{}里有很多location配置段
-</span><span class="c1"></span>    <span class="s">location</span> <span class="s">/</span> <span class="p">{</span>
-        <span class="kn">root</span>   <span class="s">html</span><span class="p">;</span>  <span class="kn">//定义网站根目录，目录可以是相对路径也可以是绝对路径。</span>
-        <span class="s">index</span>  <span class="s">index.html</span> <span class="s">index.htm</span><span class="p">;</span> <span class="kn">//定义站点的默认页。</span>
-    <span class="err">}</span>
-    <span class="c1">#error_page  404              /404.html;  //定义404页面
-</span><span class="c1"></span>    <span class="c1"># redirect server error pages to the static page /50x.html
-</span><span class="c1"></span>    <span class="c1">#
-</span><span class="c1"></span>    <span class="s">error_page</span>   <span class="mi">500</span> <span class="mi">502</span> <span class="mi">503</span> <span class="mi">504</span>  <span class="s">/50x.html</span><span class="p">;</span>  <span class="kn">//当状态码为500、502、503、504时，则访问50x.html</span>
-    <span class="s">location</span> <span class="p">=</span> <span class="s">/50x.html</span> <span class="p">{</span>
-        <span class="kn">root</span>   <span class="s">html</span><span class="p">;</span>  <span class="kn">//定义50x.html所在路径</span>
-    <span class="err">}</span>
-    <span class="c1"># proxy the PHP scripts to Apache listening on 127.0.0.1:80
-</span><span class="c1"></span>    <span class="c1">#
-</span><span class="c1"></span>    <span class="c1">#定义访问php脚本时，将会执行本location{}部分指令
-</span><span class="c1"></span>    <span class="c1">#location ~ \.php$ {
-</span><span class="c1"></span>    <span class="c1">#    proxy_pass   http://127.0.0.1;  //proxy_pass后面指定要访问的url链接，用proxy_pass实现代理。
-</span><span class="c1"></span>    <span class="c1">#}
-</span><span class="c1"></span>    <span class="c1"># pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000
-</span><span class="c1"></span>    <span class="c1">#
-</span><span class="c1"></span>    <span class="c1">#location ~ \.php$ {
-</span><span class="c1"></span>    <span class="c1">#    root           html;
-</span><span class="c1"></span>    <span class="c1">#    fastcgi_pass   127.0.0.1:9000;  //定义FastCGI服务器监听端口与地址，支持两种形式，1 IP:Port， 2 unix:/path/to/sockt
-</span><span class="c1"></span>    <span class="c1">#    fastcgi_index  index.php;
-</span><span class="c1"></span>    <span class="c1">#    fastcgi_param  SCRIPT_FILENAME  /scripts$fastcgi_script_name;  //定义SCRIPT_FILENAME变量，后面的路径/scripts为上面的root指定的目录
-</span><span class="c1"></span>    <span class="c1">#    include        fastcgi_params; //引用prefix/conf/fastcgi_params文件，该文件定义了fastcgi相关的变量
-</span><span class="c1"></span>    <span class="c1">#}
-</span><span class="c1"></span>    <span class="c1"># deny access to .htaccess files, if Apache&#39;s document root
-</span><span class="c1"></span>    <span class="c1"># concurs with nginx&#39;s one
-</span><span class="c1"></span>    <span class="c1"># 
-</span><span class="c1"></span>    <span class="c1">#location ~ /\.ht {   //访问的url中，以/.ht开头的，如，www.example.com/.htaccess，会被拒绝，返回403状态码。
-</span><span class="c1"></span>    <span class="c1">#    deny  all;  //这里的all指的是所有的请求。
-</span><span class="c1"></span>    <span class="c1">#}
-</span><span class="c1"></span><span class="err">}</span>
-<span class="c1"># another virtual host using mix of IP-, name-, and port-based configuration
-</span><span class="c1">#
-</span><span class="c1">#server {
-</span><span class="c1">#    listen       8000;  //监听8000端口
-</span><span class="c1">#    listen       somename:8080;  //指定ip:port
-</span><span class="c1">#    server_name  somename  alias  another.alias;  //指定多个server_name
-</span><span class="c1">#    location / {
-</span><span class="c1">#        root   html;
-</span><span class="c1">#        index  index.html index.htm;
-</span><span class="c1">#    }
-</span><span class="c1">#}
-</span><span class="c1"># HTTPS server
-</span><span class="c1">#
-</span><span class="c1">#server {
-</span><span class="c1">#    listen       443 ssl;  //监听443端口，即ssl
-</span><span class="c1">#    server_name  localhost;
-</span><span class="c1">### 以下为ssl相关配置
-</span><span class="c1">#    ssl_certificate      cert.pem;    //指定pem文件路径
-</span><span class="c1">#    ssl_certificate_key  cert.key;  //指定key文件路径
-</span><span class="c1">#    ssl_session_cache    shared:SSL:1m;  //指定session cache大小
-</span><span class="c1">#    ssl_session_timeout  5m;  //指定session超时时间
-</span><span class="c1">#    ssl_protocols TLSv1 TLSv1.1 TLSv1.2;   //指定ssl协议
-</span><span class="c1">#    ssl_ciphers  HIGH:!aNULL:!MD5;  //指定ssl算法
-</span><span class="c1">#    ssl_prefer_server_ciphers  on;  //优先采取服务器算法
-</span><span class="c1">#    location / {
-</span><span class="c1">#        root   html;
-</span><span class="c1">#        index  index.html index.htm;
-</span><span class="c1">#    }
-</span><span class="c1">#}
-</span></code></pre></div></li>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-nginx" data-lang="nginx"><span class="line"><span class="cl"><span class="k">server</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kn">listen</span>       <span class="mi">80</span><span class="p">;</span>  <span class="kn">//监听端口为80，可以自定义其他端口，也可以加上IP地址，如，listen</span> <span class="n">127.0.0.1</span><span class="p">:</span><span class="mi">8080</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kn">server_name</span>  <span class="s">localhost</span><span class="p">;</span> <span class="kn">//定义网站域名，可以写多个，用空格分隔。</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">#charset koi8-r; //定义网站的字符集，一般不设置，而是在网页代码中设置。
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">#access_log  logs/host.access.log  main; //定义访问日志，可以针对每一个server（即每一个站点）设置它们自己的访问日志。
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">##在server{}里有很多location配置段
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="s">location</span> <span class="s">/</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kn">root</span>   <span class="s">html</span><span class="p">;</span>  <span class="kn">//定义网站根目录，目录可以是相对路径也可以是绝对路径。</span>
+</span></span><span class="line"><span class="cl">        <span class="s">index</span>  <span class="s">index.html</span> <span class="s">index.htm</span><span class="p">;</span> <span class="kn">//定义站点的默认页。</span>
+</span></span><span class="line"><span class="cl">    <span class="err">}</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">#error_page  404              /404.html;  //定义404页面
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1"># redirect server error pages to the static page /50x.html
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">#
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="s">error_page</span>   <span class="mi">500</span> <span class="mi">502</span> <span class="mi">503</span> <span class="mi">504</span>  <span class="s">/50x.html</span><span class="p">;</span>  <span class="kn">//当状态码为500、502、503、504时，则访问50x.html</span>
+</span></span><span class="line"><span class="cl">    <span class="s">location</span> <span class="p">=</span> <span class="s">/50x.html</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kn">root</span>   <span class="s">html</span><span class="p">;</span>  <span class="kn">//定义50x.html所在路径</span>
+</span></span><span class="line"><span class="cl">    <span class="err">}</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># proxy the PHP scripts to Apache listening on 127.0.0.1:80
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">#
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">#定义访问php脚本时，将会执行本location{}部分指令
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">#location ~ \.php$ {
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">#    proxy_pass   http://127.0.0.1;  //proxy_pass后面指定要访问的url链接，用proxy_pass实现代理。
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">#}
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1"># pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">#
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">#location ~ \.php$ {
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">#    root           html;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">#    fastcgi_pass   127.0.0.1:9000;  //定义FastCGI服务器监听端口与地址，支持两种形式，1 IP:Port， 2 unix:/path/to/sockt
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">#    fastcgi_index  index.php;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">#    fastcgi_param  SCRIPT_FILENAME  /scripts$fastcgi_script_name;  //定义SCRIPT_FILENAME变量，后面的路径/scripts为上面的root指定的目录
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">#    include        fastcgi_params; //引用prefix/conf/fastcgi_params文件，该文件定义了fastcgi相关的变量
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">#}
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1"># deny access to .htaccess files, if Apache&#39;s document root
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1"># concurs with nginx&#39;s one
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1"># 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">#location ~ /\.ht {   //访问的url中，以/.ht开头的，如，www.example.com/.htaccess，会被拒绝，返回403状态码。
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">#    deny  all;  //这里的all指的是所有的请求。
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">#}
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="err">}</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># another virtual host using mix of IP-, name-, and port-based configuration
+</span></span></span><span class="line"><span class="cl"><span class="c1">#
+</span></span></span><span class="line"><span class="cl"><span class="c1">#server {
+</span></span></span><span class="line"><span class="cl"><span class="c1">#    listen       8000;  //监听8000端口
+</span></span></span><span class="line"><span class="cl"><span class="c1">#    listen       somename:8080;  //指定ip:port
+</span></span></span><span class="line"><span class="cl"><span class="c1">#    server_name  somename  alias  another.alias;  //指定多个server_name
+</span></span></span><span class="line"><span class="cl"><span class="c1">#    location / {
+</span></span></span><span class="line"><span class="cl"><span class="c1">#        root   html;
+</span></span></span><span class="line"><span class="cl"><span class="c1">#        index  index.html index.htm;
+</span></span></span><span class="line"><span class="cl"><span class="c1">#    }
+</span></span></span><span class="line"><span class="cl"><span class="c1">#}
+</span></span></span><span class="line"><span class="cl"><span class="c1"># HTTPS server
+</span></span></span><span class="line"><span class="cl"><span class="c1">#
+</span></span></span><span class="line"><span class="cl"><span class="c1">#server {
+</span></span></span><span class="line"><span class="cl"><span class="c1">#    listen       443 ssl;  //监听443端口，即ssl
+</span></span></span><span class="line"><span class="cl"><span class="c1">#    server_name  localhost;
+</span></span></span><span class="line"><span class="cl"><span class="c1">### 以下为ssl相关配置
+</span></span></span><span class="line"><span class="cl"><span class="c1">#    ssl_certificate      cert.pem;    //指定pem文件路径
+</span></span></span><span class="line"><span class="cl"><span class="c1">#    ssl_certificate_key  cert.key;  //指定key文件路径
+</span></span></span><span class="line"><span class="cl"><span class="c1">#    ssl_session_cache    shared:SSL:1m;  //指定session cache大小
+</span></span></span><span class="line"><span class="cl"><span class="c1">#    ssl_session_timeout  5m;  //指定session超时时间
+</span></span></span><span class="line"><span class="cl"><span class="c1">#    ssl_protocols TLSv1 TLSv1.1 TLSv1.2;   //指定ssl协议
+</span></span></span><span class="line"><span class="cl"><span class="c1">#    ssl_ciphers  HIGH:!aNULL:!MD5;  //指定ssl算法
+</span></span></span><span class="line"><span class="cl"><span class="c1">#    ssl_prefer_server_ciphers  on;  //优先采取服务器算法
+</span></span></span><span class="line"><span class="cl"><span class="c1">#    location / {
+</span></span></span><span class="line"><span class="cl"><span class="c1">#        root   html;
+</span></span></span><span class="line"><span class="cl"><span class="c1">#        index  index.html index.htm;
+</span></span></span><span class="line"><span class="cl"><span class="c1">#    }
+</span></span></span><span class="line"><span class="cl"><span class="c1">#}
+</span></span></span></code></pre></div></li>
 <li>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-nginx" data-lang="nginx">    <span class="k">location</span> <span class="s">^~</span> <span class="s">/api</span> <span class="p">{</span>
-        <span class="kn">rewrite</span> <span class="s">^/api/(.*)</span>$ <span class="s">/</span><span class="nv">$1</span> <span class="s">break</span><span class="p">;</span>
-        <span class="kn">proxy_pass</span> <span class="s">http://localhost:8080</span><span class="p">;</span>
-        <span class="kn">proxy_set_header</span> <span class="s">X-Real-IP</span> <span class="nv">$remote_addr</span><span class="p">;</span>
-        <span class="kn">proxy_set_header</span> <span class="s">X-Forwarded-For</span> <span class="nv">$proxy_add_x_forwarded_for</span><span class="p">;</span>
-        <span class="kn">proxy_set_header</span> <span class="s">Host</span> <span class="nv">$host</span><span class="p">;</span>
-        <span class="kn">proxy_redirect</span>   <span class="no">off</span><span class="p">;</span>
-    <span class="p">}</span>
-
-</code></pre></div></li>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-nginx" data-lang="nginx"><span class="line"><span class="cl">    <span class="k">location</span> <span class="s">^~</span> <span class="s">/api</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kn">rewrite</span> <span class="s">^/api/(.*)</span>$ <span class="s">/</span><span class="nv">$1</span> <span class="s">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="kn">proxy_pass</span> <span class="s">http://localhost:8080</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="kn">proxy_set_header</span> <span class="s">X-Real-IP</span> <span class="nv">$remote_addr</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="kn">proxy_set_header</span> <span class="s">X-Forwarded-For</span> <span class="nv">$proxy_add_x_forwarded_for</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="kn">proxy_set_header</span> <span class="s">Host</span> <span class="nv">$host</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="kn">proxy_redirect</span>   <span class="no">off</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span></code></pre></div></li>
 </ul>
 </li>
 </ul>

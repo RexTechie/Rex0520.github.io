@@ -11,7 +11,7 @@
 <meta name="author" content="Rex">
 <link rel="canonical" href="https://rex0520.github.io/posts/back/java/framework/spring/%E5%9F%BA%E4%BA%8Ejavaconfig%E9%85%8D%E7%BD%AE%E7%9A%84ioc%E5%AE%B9%E5%99%A8/" />
 <link crossorigin="anonymous" href="/assets/css/stylesheet.min.css" rel="preload stylesheet" as="style">
-<link rel="preload" href="http://cdn.rexweb.xyz/img/20210821105340.png" as="image">
+<link rel="preload" href="http://cdn.rexhub.xyz/img/20210821105340.png" as="image">
 <script defer crossorigin="anonymous" src="/assets/js/highlight.min.js" onload="hljs.initHighlightingOnLoad();"></script>
 <link rel="icon" href="https://rex0520.github.io/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="https://rex0520.github.io/favicon-16x16.png">
@@ -20,7 +20,7 @@
 <link rel="mask-icon" href="https://rex0520.github.io/%3Clink%20/%20abs%20url%3E">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<meta name="generator" content="Hugo 0.87.0" />
+<meta name="generator" content="Hugo 0.100.2" />
 <noscript>
     <style>
         #theme-toggle,
@@ -60,12 +60,12 @@
 </noscript><meta property="og:title" content="基于javaconfig配置的ioc容器" />
 <meta property="og:description" content="基于javaconfig配置的ioc容器" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://rex0520.github.io/posts/back/java/framework/spring/%E5%9F%BA%E4%BA%8Ejavaconfig%E9%85%8D%E7%BD%AE%E7%9A%84ioc%E5%AE%B9%E5%99%A8/" /><meta property="og:image" content="https://cdn.rexweb.xyz/img/20210820141535.jpg"/><meta property="article:section" content="posts" />
+<meta property="og:url" content="https://rex0520.github.io/posts/back/java/framework/spring/%E5%9F%BA%E4%BA%8Ejavaconfig%E9%85%8D%E7%BD%AE%E7%9A%84ioc%E5%AE%B9%E5%99%A8/" /><meta property="og:image" content="https://cdn.rexhub.xyz/img/20210820141535.jpg"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2021-01-03T00:00:00&#43;00:00" />
 <meta property="article:modified_time" content="2021-01-03T00:00:00&#43;00:00" /><meta property="og:site_name" content="RexHub" />
 
 <meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="https://cdn.rexweb.xyz/img/20210820141535.jpg"/>
+<meta name="twitter:image" content="https://cdn.rexhub.xyz/img/20210820141535.jpg"/>
 
 <meta name="twitter:title" content="基于javaconfig配置的ioc容器"/>
 <meta name="twitter:description" content="基于javaconfig配置的ioc容器"/>
@@ -101,7 +101,7 @@
   "keywords": [
     "Spring"
   ],
-  "articleBody": "基于Java Config配置的IoC容器 基于Java Config的优势  完全摆脱XML的束缚，使用独立Java类管理对象与依赖 注解配置相对分散，利用Java Config可对配置集中管理 可以在编译时进行依赖检查，不容易出错  Java Config核心注解    注解 说明     @Configuration 描述类，说明当前类是Java Config配置类，完全替代XML文件   @Bean 描述方法，方法返回对象将被IoC容器管理，beanId默认为方法名   @ImportResource 描述类，加载静态文件，可使用@Value注解获取   @CompoenentScan 描述类，同XML的context:component-scan标签    ",
+  "articleBody": "基于Java Config配置的IoC容器 基于Java Config的优势 完全摆脱XML的束缚，使用独立Java类管理对象与依赖 注解配置相对分散，利用Java Config可对配置集中管理 可以在编译时进行依赖检查，不容易出错 Java Config核心注解 注解 说明 @Configuration 描述类，说明当前类是Java Config配置类，完全替代XML文件 @Bean 描述方法，方法返回对象将被IoC容器管理，beanId默认为方法名 @ImportResource 描述类，加载静态文件，可使用@Value注解获取 @CompoenentScan 描述类，同XML的context:component-scan标签 ",
   "wordCount" : "21",
   "inLanguage": "en",
   "datePublished": "2021-01-03T00:00:00Z",
@@ -142,7 +142,7 @@
     <nav class="nav">
         <div class="logo">
             <a href="https://rex0520.github.io/" accesskey="h" title="Home (Alt + H)">
-                <img src="http://cdn.rexweb.xyz/img/20210821105340.png" alt="logo" aria-label="logo"
+                <img src="http://cdn.rexhub.xyz/img/20210821105340.png" alt="logo" aria-label="logo"
                     height="35">Home</a>
             <span class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)">
