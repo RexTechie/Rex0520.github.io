@@ -161,6 +161,21 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>Nginx使用
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>Nginx Nginx介绍 使用场景 HTTP的反向代理服务器 负载均衡 缓存 动态静态资源分离 优点 高并发、高性能 可扩展性好，体现在模块化设计 高可靠性，可以持续不断数十年运行 热部署，不停止服务来升级nginx 开源、可商用 Nginx常用命令 ./nginx # 启动nginx ps -aux|grep nginx # 查看nginx相关进程，也可以查到nginx运行的路径 nginx -h # 帮助 nginx -c # 读取指定配置文件 nginx -s stop # 关闭nginx nginx -t # 检查当前配置文件是否有问题，查看当前配置文件路径 nginx -v # 简要版本信息 -V详细信息 nginx -s stop|quit| # -s信号 stop立即停止，quit优雅停止，reload重启，reopen更换日志文件 Nginx配置文件 语法
+;结尾 {}组织多条指令 include 引入 #注释 $ 变量 默认配置文件分析
+nginx.conf
+# 运行用户，默认是nginx user nginx; # nginx进程数,一般设置为和cpu核数一样 worker_processes 1; # 全局错误日志路径 error_log /var/log/nginx/error....</p>
+  </section>
+  <footer class="entry-footer">2021-06-22&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Rex</footer>
+  <a class="entry-link" aria-label="post link to Nginx使用" href="https://rex0520.github.io/posts/back/java/microservices/nginx%E4%BD%BF%E7%94%A8/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>微服务
     </h2>
   </header>
@@ -222,25 +237,6 @@ Windows下的安装 不推荐，nginx不适合运行在Windows上，功能不完
   </section>
   <footer class="entry-footer">2021-06-12&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Rex</footer>
   <a class="entry-link" aria-label="post link to Nginx的入门" href="https://rex0520.github.io/posts/back/java/microservices/nginx%E7%9A%84%E5%AE%89%E8%A3%85/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>Docker的安装
-    </h2>
-  </header>
-  <section class="entry-content">
-    <p>Docker的安装 在Cent OS安装docker 先有一个Cent OS 7.6系统 这个很重要，不同版本按照的时候是不一样的。查看CentOS版本 cat /etc/redhat-release
-用root账户登录进去 配置国内yum源 wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo yum clean all yum makecache
-卸载旧版本 较旧的Docker版本称为docker或docker-engine。如果已安装这些程序，请卸载它们以及相关的依赖项。 如果yum报告未安装这些软件包，也没问题。
-docker-client \ docker-client-latest \ docker-common \ docker-latest \ docker-latest-logrotate \ docker-logrotate \ docker-engine 更新yum yum check-update yum update
-安装所需的软件包 yum install -y yum-utils \ device-mapper-persistent-data \ lvm2 使用以下命令来设置稳定的存储库。 sudo yum-config-manager –add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
-查看docker版本 yum list docker-ce –showduplicates | sort -r
-安装指定的版本 yum install docker-ce-18.09.0 docker-ce-cli-18.09.0 containerd.io
-Docker 是服务器—-客户端架构。命令行运行docker命令的时候，需要本机有 Docker 服务。用下面的命令启动 systemctl start docker...</p>
-  </section>
-  <footer class="entry-footer">2021-06-11&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Rex</footer>
-  <a class="entry-link" aria-label="post link to Docker的安装" href="https://rex0520.github.io/posts/back/java/microservices/docker%E7%9A%84%E5%AE%89%E8%A3%85/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

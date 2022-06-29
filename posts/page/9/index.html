@@ -161,6 +161,20 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>Redis基础
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>Redis入门 Redis介绍 Redis是Key-Value型NoSQL数据库 Redis将数据存储在内存中，同时也能持久化到磁盘 Redis常用于缓存，利用内存的高效提高程序的处理速度 Redis特点 速度快 持久化 主从复制 广泛的语言支持 多种数据结构 分布式与高可用 Redis的安装与使用 在Linux系统中安装Redis https://redis.io/download
+在windows系统中安装Redis https://github.com/microsoftarchive/redis/releases
+Redis的常用基本配置 配置项 示例 说明 daemonize daemonize yes 是否启用后台允许，默认no port port 6379 设置端口号，默认6379 logfile logfile 日志文件 设置日志文件 databases databases 255 设置redis数据库总量 dir dir数据文件目录 设置数据文件存储目录 requirepass requirepass 12345 设置使用密码 Redis通用命令 命令 示例 说明 select select 0 选择0号数据库 set set name lily 设置key=name,value=lily get get hello 获得key=hello结果 keys keys he* 根据Pattern表达式查询符合条件的Key dbsize dbsize 返回key的总数 exists exists a 检查key=a是否存在 del del a 删除key=a的数据 expire expire hello 20 设置key=hello 20秒后过期 ttl ttl 查看key=a的过期剩余时间 Redis数据类型 String - 字符串类型 Hash - Hash类型 List - 列表类型 Set - 集合类型 Zset - 有序集合类型 String字符串类型 String最大512mb 建议单个kv不超过100kb...</p>
+  </section>
+  <footer class="entry-footer">2021-02-09&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Rex</footer>
+  <a class="entry-link" aria-label="post link to Redis基础" href="https://rex0520.github.io/posts/nosql/redis%E5%9F%BA%E7%A1%80/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>SpringBoot记录
     </h2>
   </header>
@@ -209,28 +223,6 @@ package com....</p>
   </section>
   <footer class="entry-footer">2021-01-04&nbsp;·&nbsp;5 min&nbsp;·&nbsp;Rex</footer>
   <a class="entry-link" aria-label="post link to Springaop面向切面编程" href="https://rex0520.github.io/posts/back/java/framework/spring/springaop%E9%9D%A2%E5%90%91%E5%88%87%E9%9D%A2%E7%BC%96%E7%A8%8B/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>Springioc与bean管理
-    </h2>
-  </header>
-  <section class="entry-content">
-    <p>Spring IoC与Bean管理 Spring快速入门 IoC控制反转 IoC控制反转，全称Inverse of Control，是一种设计理念，把对象创建和对象之间的调用过程，交给spring进行管理 由代理人来创建与管理对象，消费者通过代理人来获取对象 IoC的目的是降低对象之间直接耦合 加入IoC容器将对象统一管理，让对象关联变为弱耦合 DI依赖注入 IoC是设计理念，是现代程序设计遵循的标准，是宏观目标 DI(Dependency Injection)是具体技术实现，是微观实现 DI在Java中利用反射技术实现对象注入（Injection） Spring Spring的含义 Spring可从狭义与广义俩个角度看待 狭义的Spring是指Spring框架（Spring Framework） 广义的Spring是指Spring生态体系 狭义的Spring Spring框架是企业开发复杂性的一站式解决方案 Spring框架的核心是IoC容器与AOP面向切面变成 Spring IoC负责创建与管理系统对象，并在此基础上扩展功能 传统开发方式 对象直接引用导致对象硬性关联，程序难以扩展维护 Spring IoC IoC容器是Spring生态的地基用于统一创建与管理对象依赖 Spring IoC容器职责 对象的控制器交由第三方统一管理（IoC控制反转） 利用Java反射技术实现运行时对象创建与关联（DI依赖注入） 基于配置提高应用程序的可维护性与扩展性 IOC底层原理： xml解析、工厂模式、反射 IOC(接口) IOC思想基于IOC容器完成，IOC容器底层就是对象工厂
-Spring提供IOC容器实现两种方式：（两个接口）
-BeanFactory：IOC容器基本实现方式，是Spring内部的使用的接口，不提供给开发人员使用
-特点：
-​	加载配置文件时候不会创建对象，在获取对象（使用）才去创建对象
-ApplicationContext：BeanFactory接口的子接口，提供更多更强大的功能， 一般由开发人员进行使用
-特点：加载配置文件时候就会把配置文件对象进行创建
-ApplicationContext接口
-代码示例： 需要引入的依赖
-&lt;dependency&gt; &lt;groupId&gt;org.springframework&lt;/groupId&gt; &lt;artifactId&gt;spring-context&lt;/artifactId&gt; &lt;version&gt;5.3.1&lt;/version&gt; &lt;/dependency&gt; Apple.java
-package com.imooc.spring.ioc.entity; /** * @author CubeMonkey * @create 2020-11-27 23:57 */ public class Apple { private String title; private String color; private String origin; public Apple() { } public Apple(String title, String color, String origin) { this....</p>
-  </section>
-  <footer class="entry-footer">2021-01-04&nbsp;·&nbsp;4 min&nbsp;·&nbsp;Rex</footer>
-  <a class="entry-link" aria-label="post link to Springioc与bean管理" href="https://rex0520.github.io/posts/back/java/framework/spring/springioc%E4%B8%8Ebean%E7%AE%A1%E7%90%86/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
