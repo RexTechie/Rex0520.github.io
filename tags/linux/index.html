@@ -5,11 +5,11 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
-<title>Posts | Rex</title>
+<title>Linux | Rex</title>
 <meta name="keywords" content="" />
-<meta name="description" content="Posts - Rex">
+<meta name="description" content="Rex的个人博客">
 <meta name="author" content="Rex">
-<link rel="canonical" href="https://rex0520.github.io/posts/" />
+<link rel="canonical" href="https://rex0520.github.io/tags/linux/" />
 <link crossorigin="anonymous" href="/assets/css/stylesheet.min.css" rel="preload stylesheet" as="style">
 <link rel="preload" href="http://cdn.rexhub.xyz/img/20210821105340.png" as="image">
 <link rel="icon" href="https://rex0520.github.io/favicon.ico">
@@ -20,7 +20,7 @@
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
 <meta name="generator" content="Hugo 0.100.2" />
-<link rel="alternate" type="application/rss+xml" href="https://rex0520.github.io/posts/index.xml">
+<link rel="alternate" type="application/rss+xml" href="https://rex0520.github.io/tags/linux/index.xml">
 <noscript>
     <style>
         #theme-toggle,
@@ -57,32 +57,17 @@
         }
 
     </style>
-</noscript><meta property="og:title" content="Posts" />
+</noscript><meta property="og:title" content="Linux" />
 <meta property="og:description" content="Rex的个人博客" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://rex0520.github.io/posts/" /><meta property="og:image" content="https://cdn.rexhub.xyz/img/20210820141535.jpg"/><meta property="og:site_name" content="RexHub" />
+<meta property="og:url" content="https://rex0520.github.io/tags/linux/" /><meta property="og:image" content="https://cdn.rexhub.xyz/img/20210820141535.jpg"/><meta property="og:site_name" content="RexHub" />
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://cdn.rexhub.xyz/img/20210820141535.jpg"/>
 
-<meta name="twitter:title" content="Posts"/>
+<meta name="twitter:title" content="Linux"/>
 <meta name="twitter:description" content="Rex的个人博客"/>
 
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position":  1 ,
-      "name": "Posts",
-      "item": "https://rex0520.github.io/posts/"
-    }
-  ]
-}
-</script>
 </head>
 
 <body class="list" id="top">
@@ -129,7 +114,7 @@
         <ul id="menu">
             <li>
                 <a href="https://rex0520.github.io/posts/" title="文章">
-                    <span class="active">文章</span>
+                    <span>文章</span>
                 </a>
             </li>
             <li>
@@ -155,76 +140,21 @@
         </ul>
     </nav>
 </header><main class="main"> 
-<header class="page-header"><div class="breadcrumbs"><a href="https://rex0520.github.io/">Home</a></div>
-  <h1>Posts</h1>
+<header class="page-header"><div class="breadcrumbs"><a href="https://rex0520.github.io/">Home</a>&nbsp;»&nbsp;<a href="https://rex0520.github.io/tags/">Tags</a></div>
+  <h1>Linux</h1>
 </header>
 
-<article class="post-entry"> 
+<article class="post-entry tag-entry"> 
   <header class="entry-header">
-    <h2>Reflect
+    <h2>启动项目脚本
     </h2>
   </header>
   <section class="entry-content">
-    <p>反射Reflect 什么是反射 反射(Reflect)是在运行时动态访问类与对象的技术 反射是JDK1.2版本后的高级特性，隶属于java.lang.reflect 大多是Java框架都基于反射实现参数、动态注入等特性 反射的核心类 Class类 Constructor构造方法类 Method方法类 Field成员变量类 Class类 Class是JVM中代表&#34;类和接口&#34;类 Class对象具体包含了某个特定类的结构信息 通过Class对象可获取对应类的构造方法/方法/成员变量 Class核心方法 方法 用途 Class.forName() 静态方法，用于获取指定Class对象 classObj.newInstance() 通过默认构造方法创建新的对象 classObj.getConstructor() 获得指定的public修饰构造方法Construct对象 classObj.getMethod() 获取指定的public修饰方法Method对象 classObj.getField() 获取指定的public修饰成员变量的Field对象 使用案例： Employee.java
-package com.imooc.reflect.entity; /** * 员工实体类 * @author CubeMonkey * @create 2020-10-21 16:01 */ public class Employee { static{ System.out.println(&#34;Employee已被加载到内存中，并已初始化&#34;); } private Integer eno; private String ename; private Float salary; private String dname; public Employee(){ System.out.println(&#34;Employee默认构造方法已被执行&#34;); } public Integer getEno() { return eno; } public void setEno(Integer eno) { this....</p>
+    <p>启动项目脚本 #!/bin/sh if [ -z $1 ];then echo &#34;请输入可运行的jar名称&#34; exit 1 fi appName=$1 logFileName=runlog ## 检查jar包是否存在 if [ ! -f $appName ];then echo &#34;当前路径[`pwd`]不存在[$appName]&#34; #	echo &#34;$appName不存在&#34; exit 1 fi ## 如果原先已在运行，则先停止该进程 pid=`jps -l|grep $appName|awk &#39;{print $1}&#39;` if [ -n &#34;$pid&#34; ];then echo &#34;已存在进程[$pid]&#34; kill -9 $pid echo &#34;已停止进程[$pid]，重新启动应用&#34; fi ## 删除控制台日志文件 if [ -f &#34;$logFileName&#34; ];then rm -rf $logFileName fi ## 启动应用 nohup java -Xms128m -Xmx256m -jar $appName --spring.profiles.active=prod &gt; ....</p>
   </section>
-  <footer class="entry-footer">2020-10-23&nbsp;·&nbsp;5 min&nbsp;·&nbsp;Rex</footer>
-  <a class="entry-link" aria-label="post link to Reflect" href="https://rex0520.github.io/posts/back/java/reflect/"></a>
+  <footer class="entry-footer">2022-07-05&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Rex</footer>
+  <a class="entry-link" aria-label="post link to 启动项目脚本" href="https://rex0520.github.io/posts/linux/%E5%90%AF%E5%8A%A8%E9%A1%B9%E7%9B%AE%E8%84%9A%E6%9C%AC/"></a>
 </article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>Emos项目学习记录
-    </h2>
-  </header>
-  <section class="entry-content">
-    <p>Emos项目学习记录 学习点： 加密算法
-这里采用的是IBM开发的AES算法。这种对称加密算法在加密和解密数据的时候，使用相同的密钥。也就是说密钥既可以用来加密数据，也可以解密数据。关于AES算法的优点我这里不展开说明了，大家可以自己百度查阅资料。MySQL数据库提供了内置的DES加密和解密的函数，我们只需要调用即可。加密的函数叫做AES_ENCRPT()，解密的函数叫做AES_DECRPT()
-​	数据库：登录sql，若查询记录结果只有一条，可以加limit 1加快查询个数
-&lt;select id=&#34;login&#34; parameterType=&#34;com.example.emos.api.emos.model.form.LoginForm&#34; resultType=&#34;Integer&#34;&gt; SELECT id FROM tb_user WHERE username = #{username} AND password = HEX(AES_ENCRYPT(#{password}, #{username})) LIMIT 1; &lt;/select&gt; 数据库：数据库查询操作的返回值用封装类，防止结果为null值不能赋给一般数据类型；若是增删改返回结果肯定为数字且不为null，表示影响的记录个数，可以用一般数据类型
-数据库：要不要用MySQL方言？，可能会存在可移植性差
-后端：不能随意删除记录，需要查询有没有相关的引用
-数据库：写sql的时候需要注意状态字段(status)
-后端：分页查询的时候限制分页的start(1, &#43;∞)，size(10, 50)
-数据库：灵活使用数据库中的json字段
-后端工作流中采用了QuartZ定时器引起、Activeti引擎
-业务：审批会议前需注意：1.结束时间必须大于开始时间 2.会议开始时间不能早于当前时间
-前端：可用day.js转换日期格式
-数据库：数据类型的数据范围、
-日期格式： datetime: 8字节
-timestamp：4字节 表示范围有限：~2038年就满了
-甘特图：用于描述任务
-工作流：通过工作流来控制审批系统
-bug解决: 移除springdoc-openapi-spring-boot-2-webmvc依赖中的jackson-dataformat-xml，否则会使controller返回结果为xml格式
-重复新增用户的提示不友好
-会议室中，删除模块的bug</p>
-  </section>
-  <footer class="entry-footer">1 min&nbsp;·&nbsp;Rex</footer>
-  <a class="entry-link" aria-label="post link to Emos项目学习记录" href="https://rex0520.github.io/posts/proj/emos/emos%E9%A1%B9%E7%9B%AE%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>Emos项目搭建
-    </h2>
-  </header>
-  <section class="entry-content">
-    <p>emos项目准备 项目结构 已有项目： 工作流项目(emos-workflow) 小程序项目(emos-wx) 小程序后端项目(emos-wx-api) 待开发项目 Web办公系统前端项目(emos-vue) Web办公系统后端项目(emos-api) 数据表分类： 序号 类型 特征 备注 1 工作流数据表 以 act_ 开头 存储工作流的各项数据 2 定时器数据表 以 qrtz_ 开头 存储QuartZ定时器数据 3 业务表 以 tb_ 开头 保存业务数据 4 系统表 以 sys_ 开头 保存系统配置信息 后端： 依赖库： Lombok – 生成对象的Get/Set方法
-Spring Web – spring的web开发框架
-MyBatis Framework – mybatis的开发框架
-MySQL Driver – MySQL数据库驱动
-Spring Data Redis(Access &#43; Driver) – Redis连接&#43;驱动工具
-Spring Data MongoDB – MongoDB连接工具
-Spring for RabbitMQ – RabbitMQ消息队列连接工具...</p>
-  </section>
-  <footer class="entry-footer">10 min&nbsp;·&nbsp;Rex</footer>
-  <a class="entry-link" aria-label="post link to Emos项目搭建" href="https://rex0520.github.io/posts/proj/emos/emos%E9%A1%B9%E7%9B%AE%E6%90%AD%E5%BB%BA/"></a>
-</article>
-<footer class="page-footer">
-  <nav class="pagination">
-    <a class="prev" href="https://rex0520.github.io/posts/page/10/">« Prev Page</a>
-  </nav>
-</footer>
     </main>
     
 <footer class="footer">

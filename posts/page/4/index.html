@@ -161,6 +161,32 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>Docker基础
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>Docker 概念 Docker是一个用来装程序及其环境的容器,属于Linux容器的 一种封装,提供简单易用的容器使用接口。它是目前最流行的 Linux容器解决方案。
+痛点 环境配置 虚拟机 资源占用多 冗余步骤多 启动时间慢 Docker的基础 — Linux容器 启动快 占用资源少 体积小 用途 提供统一的环境 提供快速拓展、弹性伸缩的云服务 防止其他用户的进程把服务器资源占用过多 特点 标准化
+运输方式（把程序和环境从一个机器运到另一个机器） 存储方式（程序和环境的存储） API接口（不需要Tomcat等应用的命令了，都标准化了） 灵活：即使是最复杂的应用也可以集装箱化
+轻量级：容器利用并共享主机内核
+便携式：可以在本地构建
+Docker的组成、架构、重要概念 images（镜像）: 存储：联合文件系统，UnionFS Container（容器）： 镜像类似于Java中的类，而容器就是实例 容器的这一层是可以修改的，而镜像是不可以修改的 同一个镜像可以生成多个容器独立运行，而他们之间没有任何的干扰 Repository（仓库）： 官方仓库
+阿里云仓库
+网易云仓库
+时速云
+DaoCloud
+共有 vs 私有
+client和daemon client提供给用户一个终端，用户输入Docker提供的命令来管理本地或远程的服务 daemon：服务端守护进程，接受client发送的命令并执行相应的操作 Docker的网络模式 Bridge 桥接：独立（网卡独立、路由独立、iptable规则独立）的网络，与主机桥接 Host 主机：不是独立的网络，与主机使用同一个网络 None 没有网络 端口映射技术 制作自己的Docker容器，dockerfile实战 dockerfile作用：文本文件，用来配置镜像，docker根据这个来生成对应的镜像文件
+dockerfile的好处：
+便于版本控制 便于维护环境 便于新人初步了解程序 写自己的dockerfile
+FROM alpine:latest # alpine--极小型的Linux环境，表示这个镜像基于这个系统 MAINTAINER imooc # 描述这个镜像由谁来维护 CMD echo &#39;hello my dockerfile&#39; # 根据自己的业务需求来写 常用命令 docker images # 查询当前镜像列表 docker pull image # 拉取镜像到本地 docker run images image # 前台运行 docker run -d image # 后台运行 d表示detech docker ps # 查看当前后台运行的容器 docker exec -it status bash # -i代表容器输入有效 -t分配一个终端 docker stop status # 关闭容器 docker run -p 8080:80 # 本机8080端口映射到容器的80端口 -p自己定义 -P随机分配主机端口 netstat -na|grep 8080 # 查询端口状态 docker build -t hello_docker ....</p>
+  </section>
+  <footer class="entry-footer">2021-06-25&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Rex</footer>
+  <a class="entry-link" aria-label="post link to Docker基础" href="https://rex0520.github.io/posts/back/java/microservices/docker%E5%9F%BA%E7%A1%80/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>Nginx使用
     </h2>
   </header>
@@ -223,20 +249,6 @@ width:calc(100%-80px); CSS过渡 transition:要过渡的属性 花费时间 运�
   </section>
   <footer class="entry-footer">2021-06-18&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Rex</footer>
   <a class="entry-link" aria-label="post link to CSS3" href="https://rex0520.github.io/posts/front/css3/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>Nginx的入门
-    </h2>
-  </header>
-  <section class="entry-content">
-    <p>Nginx的安装 Linux安装 登录root账号 执行yum install yum-utils 运行vim /etc/yum.repos.d/nginx.repo [nginx-stable] name=nginx stable repo baseurl=http://nginx.org/packages/centos/7/$basearch/ gpgcheck=1 enabled=1 gpgkey=https://nginx.org/keys/nginx_signing.key module_hotfixes=true [nginx-mainline] name=nginx mainline repo baseurl=http://nginx.org/packages/mainline/centos/7/$basearch/ gpgcheck=1 enabled=0 gpgkey=https://nginx.org/keys/nginx_signing.key module_hotfixes=true 然后查看源 yum list | grep nginx 看到存在稳定版的源，确认无误。 运行安装命令 yum install nginx 1:1.16.1-1.el7.ngx 过程中输入y，确认 查看版本，若出现版本号，则安装成功 用whereis nginx可以查看到目录： nginx: /usr/sbin/nginx /usr/lib64/nginx /etc/nginx /usr/share/nginx /usr/share/man/man8/nginx.8.gz MacOS的安装 安装homebrew，然后nginx使用安装brew： $ brew install nginx 笔记：
-nginx的配置文件位于中/usr/local/etc/nginx/nginx.conf。 要编辑配置文件或运行nginx，您需要使用sudo： sudo nano /usr/local/etc/nginx/nginx.conf和 sudo nginx …
-Windows下的安装 不推荐，nginx不适合运行在Windows上，功能不完整，我们尽量运行在linux上。</p>
-  </section>
-  <footer class="entry-footer">2021-06-12&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Rex</footer>
-  <a class="entry-link" aria-label="post link to Nginx的入门" href="https://rex0520.github.io/posts/back/java/microservices/nginx%E7%9A%84%E5%AE%89%E8%A3%85/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

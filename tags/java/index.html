@@ -146,6 +146,18 @@
 
 <article class="post-entry tag-entry"> 
   <header class="entry-header">
+    <h2>启动项目脚本
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>启动项目脚本 #!/bin/sh if [ -z $1 ];then echo &#34;请输入可运行的jar名称&#34; exit 1 fi appName=$1 logFileName=runlog ## 检查jar包是否存在 if [ ! -f $appName ];then echo &#34;当前路径[`pwd`]不存在[$appName]&#34; #	echo &#34;$appName不存在&#34; exit 1 fi ## 如果原先已在运行，则先停止该进程 pid=`jps -l|grep $appName|awk &#39;{print $1}&#39;` if [ -n &#34;$pid&#34; ];then echo &#34;已存在进程[$pid]&#34; kill -9 $pid echo &#34;已停止进程[$pid]，重新启动应用&#34; fi ## 删除控制台日志文件 if [ -f &#34;$logFileName&#34; ];then rm -rf $logFileName fi ## 启动应用 nohup java -Xms128m -Xmx256m -jar $appName --spring.profiles.active=prod &gt; ....</p>
+  </section>
+  <footer class="entry-footer">2022-07-05&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Rex</footer>
+  <a class="entry-link" aria-label="post link to 启动项目脚本" href="https://rex0520.github.io/posts/linux/%E5%90%AF%E5%8A%A8%E9%A1%B9%E7%9B%AE%E8%84%9A%E6%9C%AC/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
     <h2>Emos项目学习记录
     </h2>
   </header>
