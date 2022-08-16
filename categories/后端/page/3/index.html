@@ -146,6 +146,57 @@
 
 <article class="post-entry tag-entry"> 
   <header class="entry-header">
+    <h2>Docker的安装
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>Docker的安装 在Cent OS安装docker 先有一个Cent OS 7.6系统 这个很重要，不同版本按照的时候是不一样的。查看CentOS版本 cat /etc/redhat-release
+用root账户登录进去 配置国内yum源 wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo yum clean all yum makecache
+卸载旧版本 较旧的Docker版本称为docker或docker-engine。如果已安装这些程序，请卸载它们以及相关的依赖项。 如果yum报告未安装这些软件包，也没问题。
+docker-client \ docker-client-latest \ docker-common \ docker-latest \ docker-latest-logrotate \ docker-logrotate \ docker-engine 更新yum yum check-update yum update
+安装所需的软件包 yum install -y yum-utils \ device-mapper-persistent-data \ lvm2 使用以下命令来设置稳定的存储库。 sudo yum-config-manager –add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
+查看docker版本 yum list docker-ce –showduplicates | sort -r
+安装指定的版本 yum install docker-ce-18.09.0 docker-ce-cli-18.09.0 containerd.io
+Docker 是服务器—-客户端架构。命令行运行docker命令的时候，需要本机有 Docker 服务。用下面的命令启动 systemctl start docker...</p>
+  </section>
+  <footer class="entry-footer">2021-06-11&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Rex</footer>
+  <a class="entry-link" aria-label="post link to Docker的安装" href="https://rex0520.github.io/posts/back/java/microservices/docker%E7%9A%84%E5%AE%89%E8%A3%85/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2>分布式
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>分布式 定义： 利用物理架构形成多个自治的处理元素，不共享主内存, 但是通过发送信息合作。— Leslie Lamport
+实际项目的演进过程 一个项目，大而全 多台机器，部署同样的应用 分布式：权限系统、员工系统、请假系统 分布式的作用 为什么需要分布式 解决单体应用的问题 应用代码耦合严重，功能扩展难 新需求开发交互周期长，测试工程量大 新加入的开发同事需要很长时间才能属性系统 升级维护困难（改动任何一点地方都要升级整个系统） 系统性能提升艰难，可用性低，不稳定 分布式的好处 增大系统容量 加强系统可用 因为模块化，所以系统模块重用度高 因为软件服务模块被拆分，开发和发布速度可以并行变得更块 系统拓展性更高 团队协作流程也会得到改善 技术升级 分布式和单体结构的对比 传统单体结构 分布式架构 新人的学习成本 业务逻辑成本高 架构逻辑成本高 部署、运维 容易 发布频繁，发布顺序复杂、运维难 隔离性 一损俱损，殃及鱼塘 故障影响范围小 架构设计 难度低 难度指数级上升 系统性能 响应快、吞吐量小 响应慢、吞吐量大 测试成本 低 很高 技术多样性 技术单一且封闭 技术多样且开放 系统扩展性 扩展性差 扩展性很好 系统管理成本 成本低 成本高 CAP定理 CAP理论：三者不可兼得
+C：（Consistency，一致性）：读操作是否总能读到前一个写操作的结果 A：（Availbilty，可用性）：非故障节点应该在合理的时间内做出合理的响应，但是可能不是最新的数据 P：（Partition tolerance，分区容错性）：当出现网络分区现象后，系统能够继续运行 分区容错（P）
+一致性（C）
+可用性(A)
+CAP的选取
+火车票 C 银行转账 A 集群、分布式、微服务的区别 集群与分布式 集群：一个业拆分多个子业务，部署在不同的服务器上 分布式：同一个业务，部署在多个服务器上 集群和微服务 集群：分散压力 微服务：分散能力 分布式和微服务 分布式：系统部署方式，部署角度（后） 微服务：架构设计方式，逻辑角度（先） </p>
+  </section>
+  <footer class="entry-footer">2021-06-10&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Rex</footer>
+  <a class="entry-link" aria-label="post link to 分布式" href="https://rex0520.github.io/posts/back/java/microservices/%E5%88%86%E5%B8%83%E5%BC%8F/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2>Threadlocal详解
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>ThreadLocal详解 使用场景： 每个线程需要一个独享的对象（通常是工具类，典型需要使用的类有SimpleDateFormat和Random）
+每个Thread内有自己的实例副本，不共享 比喻：教材只有一本，一起做笔记有线程安全问题。复印后没有问题，ThreadLocal相当于生成了一个副本 重写initialValue方法
+package treadlocal; import java.text.SimpleDateFormat; import java.util.Date; import java.util.concurrent.ExecutorService; import java.util.concurrent.Executors; /** * @Description: 利用ThreadLocal，给每个线程分配自己的dateFormat对象，保证了线程安全，高效利用内存 * @Author: Rex * @Create: 2021-06-09 14:43 */ public class ThreadLocalNormalUsage05 { public static ExecutorService executor = Executors.newFixedThreadPool(10); public static void main(String[] args) throws InterruptedException { for (int i = 0; i &lt; 1000; i&#43;&#43;) { int finalI = i; executor.submit(new Thread(new Runnable() { @Override public void run() { String date = new ThreadLocalNormalUsage05()....</p>
+  </section>
+  <footer class="entry-footer">2021-06-08&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Rex</footer>
+  <a class="entry-link" aria-label="post link to Threadlocal详解" href="https://rex0520.github.io/posts/back/java/threadpool/threadlocal%E8%AF%A6%E8%A7%A3/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
     <h2>关于reentrantlock和condition
     </h2>
   </header>
@@ -175,71 +226,6 @@ JVM停止的情况 已调用System.exit()方法 所有非守护程序线程都�
   </section>
   <footer class="entry-footer">2021-06-08&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Rex</footer>
   <a class="entry-link" aria-label="post link to 守护线程" href="https://rex0520.github.io/posts/back/java/threadpool/%E5%AE%88%E6%8A%A4%E7%BA%BF%E7%A8%8B/"></a>
-</article>
-
-<article class="post-entry tag-entry"> 
-  <header class="entry-header">
-    <h2>线程池
-    </h2>
-  </header>
-  <section class="entry-content">
-    <p>线程池 线程池介绍 软件中的池可以理解为计划经济
-优点：
-复用线程 控制资源总量 好处：
-加快响应速度 合理利用CPU和内存 统一管理 适用场合
-服务器接收到大量请求时，使用线程池技术是非常合适的，它可以大大减少线程的创建和销毁次数，提高服务器的工作效率 实际上，在开发中，如果需要创建5个以上的线程，那么就可以使用线程池来管理 创建和停止线程池 线程池构造方法的参数 参数名 类型 含义 corePoolSize int 核心线程数 maxPoolSize int 最大线程数 keepAliveTime long 保持存活时间 workQueue BlockingQueue 任务存储队列 threadFactory ThreadFactory 当线程池需要新的线程的时候，会使用threadFactory来生成新的线程 Handler RejectedExecutionHandler 由于线程池无法接受你所提交的任务的拒绝策略 添加线程规则 如果线程数小于corePoolSize，创建一个新线程来运行新任务。 如果线程数等于（或大于）corePoolSize但少于maxmumPoolSize，则将任务放入队列。 如果队列已满，并且线程数小于maxPoolSize，则创建一个新线程。 如果队列已满，并且线程数大于或等于maxPoolSize，则拒绝。 是否需要增加线程的判断顺序是：
-corePoolSize workQueue maxPoolSize 增减线程的特点 通过设置corePoolSize和maximumPoolSize相同，就可以创建固定大小的线程池 线程池希望保持较少的线程数，并且只有在负载变得很大时才增加它 举例：
-线程池：核心池大小为5，最大池大小为10，队列为100 因为线程中的请求最多会创建5个，然后任务将被添加到队列中，直到达到100。当队列已满时，将创建最新的线程maxPoolSize，最多到10个线程，如果再来任务，就拒绝 keepAliveTime
-如果线程池当前的线程数多于corePoolSize，那么如果多余的线程空闲时间超过keepAliveTime，他们就会被终止 ThreadFactory
-默认使用Executors.defaultThreadFactory() 创建出来的都在同一个线程组 如果自己指定ThreadFactory，那么就可以改变线程名、线程组、优先级、是否是守护线程等。 工作队列
-有3种最常见的队列类型：
-直接交接：SynchronousQueue
-适用于任务不多的情况，只作为中转
-内部没有容量，maxPoolSize需要设置的大一点
-无界队列：LinkedBlockingQueue
-可以防止浏览突增
-但是如果处理的速度跟不上任务提交的速度，队列里的东西会越来越多造成内存浪费或OOM(Out of Memory)异常
-不会被塞满，maxPoolSize无效
-有界队列：ArrayBlockingQueue
-可以设置maxPoolSize，控制队列容量...</p>
-  </section>
-  <footer class="entry-footer">2021-06-08&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Rex</footer>
-  <a class="entry-link" aria-label="post link to 线程池" href="https://rex0520.github.io/posts/back/java/threadpool/%E7%BA%BF%E7%A8%8B%E6%B1%A0/"></a>
-</article>
-
-<article class="post-entry tag-entry"> 
-  <header class="entry-header">
-    <h2>JPA学习
-    </h2>
-  </header>
-  <section class="entry-content">
-    <p>JPA 一、什么是jpa ​	JPA是Java Persistence API的意思，是一种ORM框架。是使用JDK 5.0注解或XML描述对象－关系表的映射关系的元数据，并将运行期的面向对象语言程序中的实体对象持久化到数据库中。
-二、基于注解的使用 JPA常用注解 注解 解释 @Entity 声明类为实体或表。 @Table 声明表名。 @Basic 指明非约束明确的各个字段。 @Embedded 指定类或它的值是一个可嵌入的类的实体的属性。 @Id 指定的类的属性，用于识别（一个表中的主键）。 @GeneratedValue 指定如何标识属性可以被初始化，例如自动、手动、或从序列表中获得的值。 @Transient 指定的属性，它是不持久的，即：该值永远不会存储再数据库中。 @Column 指定持久属性栏属性。 @SequenceGenerator 指定在@GeneratedValue注解中指定的属性的值。它创建了一个序列。 @TableGenerator 指定在@GeneratedValue批注指定属性的值发生器。它创造了的值生成的表。 @AccessType 这种类型的注释用于设置访问类型。如果设置@AccessType(FIELD)，则可以直接访问变量并且不需要getter和setter，但必须为public。如果设置@AccessType(PROPERTY)，通过getter和setter方法访问Entity的变量。 @JoinColumn 指定一个实体组织或实体的集合。这是用在多对一和一对多关联。 @UniqueConstraint 指定的字段和用于主要或辅助表的唯一约束。 @ColumnResult 参考使用select字句的SQL查询中的列明。 @ManyToMany 定义了连接表之间的多对多的的关系 @ManyToOne 定义了连接表之间的多对一的关系 @OneToMany 定义了连接表之间存在一个一对多的关系。 @OneToOne 定义了连接表之间有一个一对一的关系 @NamedQueries 指定命名查询的列表 @NamedQuery 指定使用静态名称的查询。 三、使用 在application.properties文件中的配置
-#jpa的配置 spring.jpa.database-platform=org.hibernate.dialect.MySQL5InnoDBDialect spring.jpa.show-sql=true spring.jpa.hibernate.ddl-auto=create tips:
-​	jpa.hibernate.ddl-auto是hibernate的配置属性，其主要作用是：自动创建、更新、验证数据库表结构。该参数的几种配置如下：
-create：每次加载hibernate时都会删除上一次的生成的表，然后根据你的model类再重新来生成新表，哪怕两次没有任何改变也要这样执行，这就是导致数据库表数据丢失的一个重要原因。
-create-drop：每次加载hibernate时根据model类生成表，但是sessionFactory一关闭,表就自动删除。
-update：最常用的属性，第一次加载hibernate时根据model类会自动建立起表的结构（前提是先建立好数据库），以后加载hibernate时根据model类自动更新表结构，即使表结构改变了但表中的行仍然存在不会删除以前的行。要注意的是当部署到服务器后，表结构是不会被马上建立起来的，是要等应用第一次运行起来后才会。
-validate：每次加载hibernate时，验证创建数据库表结构，只会和数据库中的表进行比较，不会创建新表，但是会插入新值。
-四、JPQL查询 ​	常用关键字
-keyword sample jpaql snippet And findByLastnameAndFirstname …where x....</p>
-  </section>
-  <footer class="entry-footer">2021-03-22&nbsp;·&nbsp;4 min&nbsp;·&nbsp;Rex</footer>
-  <a class="entry-link" aria-label="post link to JPA学习" href="https://rex0520.github.io/posts/back/java/jdbctool/jpa%D1%A7%CF%B0/"></a>
-</article>
-
-<article class="post-entry tag-entry"> 
-  <header class="entry-header">
-    <h2>Lambda(java)
-    </h2>
-  </header>
-  <section class="entry-content">
-    <p>Lambda表达式 什么是Lambda表达式 JDK8开始支持Lambda表达式，用来让程序编写更优雅 利用Lambda可以更简洁的实现匿名内部类与函数声明与调用 基于Lambda提供stream流式处理极大简化对集合的操作 Lambda表达式语法格式： 说明： 代码示例： MathOperation.java
-package com.imooc.lambda; /** * 四则运算接口 * @author CubeMonkey * @create 2020-10-23 17:39 */ @FunctionalInterface //通知编译器这是函数式接口，进行抽象方法检查 public interface MathOperation { public Float operate(Integer a, Integer b); } LambdaSample.java
-package com.imooc.lambda; /** * @author CubeMonkey * @create 2020-10-23 17:42 */ public class LambdaSample { public static void main(String[] args) { //1.标准的使用方式 //约束条件：Lambda表达式只能实现有且只有一个抽象方法的接口，Java称为&#34;函数式接口&#34; MathOperation addition = (Integer a, Integer b)-&gt;{ System.out.println(&#34;加法运算&#34;); return a&#43;b&#43;0f; }; System....</p>
-  </section>
-  <footer class="entry-footer">2021-03-09&nbsp;·&nbsp;4 min&nbsp;·&nbsp;Rex</footer>
-  <a class="entry-link" aria-label="post link to Lambda(java)" href="https://rex0520.github.io/posts/back/java/lambda/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

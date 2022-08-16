@@ -160,6 +160,51 @@
 </header>
 
 <article class="post-entry"> 
+  <header class="entry-header">
+    <h2>温工美院数据库
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>小程序数据表 模块表 字段名 类型 注释 id int 模块编号 module_code varchar(50) 模块码 module_name varchar(50) 模块名 create_time datetime 创建时间 update_time datetime 更新时间 creator datetime 创建人 updater datetime 更新人 行为表 字段名 类型 注释 id int 行为编号 action_code varchar(50) 行为码 action_name varchar(50) 行为名 create_time datetime 创建时间 update_time datetime 更新时间 creator datetime 创建人 updater datetime 更新人 用户表 字段名 类型 注释 id bigname 用户编号 real_name varchar(20) 实名 nick_name varchar(20) 用户昵称 password varchar(20) 用户密码 avatar_url varchar(255) 用户头像 gender tinyint 用户性别，0-男生，1-女生 tel varchar(20) 手机号 email varchar(20) 邮箱 create_time datetime 创建时间 update_time datetime 更新时间 creator datetime 创建人 updater datetime 更新人 角色表 字段名 类型 注释 id bigint 角色编号 name varchar(20) 角色名称 desc varchar(20) 角色描述 systemic tinyint 是否为系统内置 create_time datetime 创建时间 update_time datetime 更新时间 creator bigint 创建人编号 updater bigint 更新人编号 权限表 字段名 类型 注释 id bigint 权限编号 permission_code varchar(255) 权限码 module_id int 模块编号 action_id int 行为编号(增、删、改、查) create_time datetime 创建时间 update_time datetime 更新时间 creator bigint 创建人编号 updater bigint 更新人编号 用户角色表 字段名 类型 注释 id bigint 用户角色编号 user_id bigint 用户编号 role_id bigint 角色编号 create_time datetime 创建时间 update_time datetime 更新时间 creator bigint 创建人编号 updater bigint 更新人编号 角色权限表 字段名 类型 注释 id bigint 角色权限编号 role_id bigint 角色编号 permission_id bigint 权限编号 create_time datetime 创建时间 update_time datetime 更新时间 creator bigint 创建人编号 updater bigint 更新人编号 微信用户模块 字段名 类型 注释 id bigint 用户编号 open_id varchar(50) 微信用户唯一标识符 auth_ token varchar(50) 用户登录时的token union_id varchar(50) 用户在开放平台下的唯一标识符 avatar_url varchar(255) 用户头像 tel varchar(255) 用户手机号 real_name varchar(20) 实名 gender tinyint 用户性别，0-男生，1-女生 id_card varchar(20) 身份证号 last_location varchar(20) 上次登录地点 create_time datetime 创建时间 update_time datetime 更新时间,可当作上次登录时间使用 creator bigint 创建人编号 updater bigint 更新人编号 </p>
+  </section>
+  <footer class="entry-footer">2022-03-24&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Rex</footer>
+  <a class="entry-link" aria-label="post link to 温工美院数据库" href="https://rex0520.github.io/posts/proj/doc/%E6%B8%A9%E5%B7%A5%E7%BE%8E%E9%99%A2/%E6%95%B0%E6%8D%AE%E5%BA%93/"></a>
+</article>
+
+<article class="post-entry"> 
+<figure class="entry-cover"><img loading="lazy" src="https://cdn.rexhub.xyz/img/20220119170744.svg" alt="">
+</figure>
+  <header class="entry-header">
+    <h2>内网穿透
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>内网穿透工具 开发中用到内网穿透做一些开发时的搭配或者线上环境的演示还是挺多的，目前先记录下各种内网穿透的特点以及使用的方式（因为frpc的操作我老是会忘记，所以这里记录下😅）
+Ngrok ngrok 是一个反向代理，通过在公共端点和本地运行的 Web 服务器之间建立一个安全的通道，实现内网主机的服务可以暴露给外网。ngrok 可捕获和分析所有通道上的流量，便于后期分析和重放，所以ngrok可以很方便地协助服务端程序测试。详情见文档
+这玩意可以免费使用，但是自定义域名需要收费，免费使用的ngrok每个隧道只能由40个连接
+特点 稳定 跨平台 记录流量 操作简单 使用 进入官网，并拿到authtoken 下载安装所需要的工具 配置authtoken：ngrok authtoken [token]， 开启隧道: ngrok http 80[所需的端口] frp[还没操作过有空操作一波] zeroTier[老师推荐也还没操作过，有空操作一波] </p>
+  </section>
+  <footer class="entry-footer">2022-01-19&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Rex</footer>
+  <a class="entry-link" aria-label="post link to 内网穿透" href="https://rex0520.github.io/posts/tools/%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/"></a>
+</article>
+
+<article class="post-entry"> 
+<figure class="entry-cover"><img loading="lazy" src="https://cdn.rexhub.xyz/img/20211213103407.jpg" alt="">
+</figure>
+  <header class="entry-header">
+    <h2>运算符【Go学习之路】
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>运算符【Go学习之路】 运算符是一种特殊的符号，用以表示数据的运算、赋值和比较等（特别注意go语言里无三元运算符）
+分类 算术运算符 用于对数值类型的变量进行运算
+运算符 运算 范例 结果 &#43; 正号 &#43;3 3 - 负号 -4 -4 &#43; 加 5 &#43; 5 10 - 减 6 - 4 2 * 乘 3 * 4 12 / 除 5 / 5 1 % 取模(取余) 7 % 5 2 &#43;&#43; 自增 a = 2 a&#43;&#43; a = 3 – 自减 a= 2 a– a = 1 &#43; 字符串拼接 “He” &#43; “llo” “Hello” 基本使用...</p>
+  </section>
+  <footer class="entry-footer">2021-12-24&nbsp;·&nbsp;5 min&nbsp;·&nbsp;Rex</footer>
+  <a class="entry-link" aria-label="post link to 运算符【Go学习之路】" href="https://rex0520.github.io/posts/back/go/study/%E8%BF%90%E7%AE%97%E7%AC%A6/"></a>
+</article>
+
+<article class="post-entry"> 
 <figure class="entry-cover"><img loading="lazy" src="https://cdn.rexhub.xyz/img/20211213103407.jpg" alt="">
 </figure>
   <header class="entry-header">
@@ -208,75 +253,6 @@ graph LR A[.go] --&gt;|go build| B[可执行文件] --&gt;|运行| C[结果] 直
   </section>
   <footer class="entry-footer">2021-12-13&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Rex</footer>
   <a class="entry-link" aria-label="post link to 初识Golang【Go学习之旅】" href="https://rex0520.github.io/posts/back/go/study/%E5%88%9D%E8%AF%86golang/"></a>
-</article>
-
-<article class="post-entry"> 
-<figure class="entry-cover"><img loading="lazy" src="https://cdn.rexhub.xyz/img/20211203144729.jpeg" alt="">
-</figure>
-  <header class="entry-header">
-    <h2>无诈校园微信小程序后端接口文档
-    </h2>
-  </header>
-  <section class="entry-content">
-    <p>无诈校园微信小程序后端接口文档 baseUrl = “http://localhost:8090/fraud-prevention/api” 服务器Url=“http://1.117.91.88:52016/fraud-prevention/api” 用户模块 登录 url: /front/user/login
-method: Get
-request param: code
-response body:
-{ &#34;code&#34;: 200, &#34;msg&#34;: &#34;success&#34;, &#34;data&#34;:&#34;98cb5a80-4199-44ce-a5f0-9f09c4bc438f&#34; } 获取当前登录用户数据 url: /front/user/current
-method: Get
-request param: 空
-response body
-{ &#34;code&#34;: 200, &#34;msg&#34;: &#34;success&#34;, &#34;data&#34;: { &#34;id&#34;: &#34;1412572056239054850&#34;, &#34;schoolName&#34;: &#34;温州职业技术学院&#34;, &#34;deptName&#34;: &#34;人工智能学院&#34;, &#34;className&#34;: &#34;软件1901&#34;, &#34;avatarUrl&#34;: &#34;https://thirdwx.qlogo.cn/mmopen/vi_32/LDUQrb7oLTQ4JiccNicdPhHQ0jTjs4ic0mVpUb8uP9ic4jS1ydEzeYuQDu9ZsJHLYDpMT6atMktQFEBSE1dBfIVlMw/132&#34;, &#34;phone&#34;: &#34;15706753061&#34;, &#34;name&#34;: &#34;林瑞星(Rex)&#34;, &#34;gender&#34;: &#34;男&#34;, &#34;number&#34;: &#34;19002090117&#34;, &#34;totalScore&#34;: 350 } } 验证用户是否授权 url: /front/user/auth
-method: Get
-request param: 空...</p>
-  </section>
-  <footer class="entry-footer">2021-12-03&nbsp;·&nbsp;6 min&nbsp;·&nbsp;Rex</footer>
-  <a class="entry-link" aria-label="post link to 无诈校园微信小程序后端接口文档" href="https://rex0520.github.io/posts/proj/doc/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%90%8E%E7%AB%AF%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/"></a>
-</article>
-
-<article class="post-entry"> 
-<figure class="entry-cover"><img loading="lazy" src="https://cdn.rexhub.xyz/img/20211223001812.jpeg" alt="">
-</figure>
-  <header class="entry-header">
-    <h2>FraudPrevention后台管理系统开发文档
-    </h2>
-  </header>
-  <section class="entry-content">
-    <p>FraudPrevention后台管理系统开发文档 baseUrl = “http://localhost:8090/fraud-prevention/api”
-服务器Url=“http://1.117.91.88:52016/fraud-prevention/api”
-通用模块 获取验证码 url: /admin/captcha
-method: Get
-request body: 空
-response body
-&#34;code&#34;: 200, &#34;msg&#34;: &#34;success&#34;, &#34;data&#34;: { token: &#34;xxxxxx&#34;, //验证码token captchaImg: &#34;data:image/jpeg;base64,xxxxxx&#34;, //base64格式的验证码图片 } } 获取所有模块信息 url: /admin/modules
-method: Get
-request body: 空
-response body:
-{ &#34;code&#34;: 200, &#34;msg&#34;: &#34;success&#34;, &#34;data&#34;: [ { &#34;id&#34;: 1, &#34;moduleCode&#34;: &#34;USER&#34;, &#34;moduleName&#34;: &#34;用户管理&#34; }, { &#34;id&#34;: 2, &#34;moduleCode&#34;: &#34;ROLE&#34;, &#34;moduleName&#34;: &#34;角色管理&#34; }, { &#34;id&#34;: 3, &#34;moduleCode&#34;: &#34;PERM&#34;, &#34;moduleName&#34;: &#34;权限管理&#34; }, { &#34;id&#34;: 4, &#34;moduleCode&#34;: &#34;TEACHER&#34;, &#34;moduleName&#34;: &#34;教师管理&#34; } ] } 需提前登录...</p>
-  </section>
-  <footer class="entry-footer">2021-11-04&nbsp;·&nbsp;19 min&nbsp;·&nbsp;Rex</footer>
-  <a class="entry-link" aria-label="post link to FraudPrevention后台管理系统开发文档" href="https://rex0520.github.io/posts/proj/doc/fraudprevention%E5%BC%80%E5%8F%91%E6%96%87%E6%A1%A3/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>微信支付接口
-    </h2>
-  </header>
-  <section class="entry-content">
-    <p>微信支付 微信支付功能的实现需要调用微信官方的支付接口，而微信支付也有多种形式，如:JSAPI支付、APP支付、Native支付、小程序支付等等，接口也有V2、V3版本，这里主要说明Native的V3版本的使用。特别需要注意的是，使用微信支付功能的接口需要有商户号。
-在支付的功能中，必不可少的是商品订单和支付订单，商品订单是本地后台系统生成的，而我这里使用的案例是用罚款单为例并非商品。支付订单是微信服务器生成的，只需要调用微信支付API
-微信支付官方文档
-微信支付前期准备 开通微信支付功能 对于商家来说，想要开通微信支付，必须要去微信商户平台注册（https://pay.weixin.qq.com/index.php/core/home/login?return_url=%2F），然后把工商登记证明、企业银行账户开户证明、组织机构代码证提交上去，经过半天的审核，如果没有问题，你就开通了微信支付功能。
-如果想要在网站或者小程序上面使用微信支付，还要在微信公众平台上面关联你自己的微信商户账号。前提是你的微信开发者账号必须是企业身份，个人身份的开发者账号是无法调用微信支付API的。
-引入官方的SDK包 说明下这里的微信官方sdk主要对签名方面、加密解密方面做了较好的支持，其他方面还是要自己构造参数、发送请求。
-sdk官方文档
-&lt;dependency&gt; &lt;groupId&gt;com.github.wechatpay-apiv3&lt;/groupId&gt; &lt;artifactId&gt;wechatpay-apache-httpclient&lt;/artifactId&gt; &lt;version&gt;0.2.2&lt;/version&gt; &lt;/dependency&gt; WechatPay.java
-这个是我对sdk做了个进一步的封装，这里是初始化
-package com.example.emos.api.common.util; import cn.hutool.json.JSONObject; import cn.hutool.json.JSONUtil; import com.example.emos.api.common.exception.EmosException; import com.fasterxml.jackson.databind.ObjectMapper; import com.fasterxml.jackson.databind.node.ObjectNode; import com.wechat.pay.contrib.apache.httpclient.WechatPayHttpClientBuilder; import com.wechat.pay.contrib.apache.httpclient.auth.AutoUpdateCertificatesVerifier; import com.wechat.pay.contrib.apache.httpclient.auth.PrivateKeySigner; import com.wechat.pay.contrib.apache.httpclient.auth.WechatPay2Credentials; import com.wechat.pay.contrib.apache.httpclient.auth.WechatPay2Validator; import com.wechat.pay.contrib.apache.httpclient.util.AesUtil; import com.wechat.pay.contrib.apache.httpclient.util.PemUtil; import lombok.extern.slf4j.Slf4j; import org.apache.http.HttpEntity; import org.apache.http.StatusLine; import org.apache.http.client.methods.CloseableHttpResponse; import org.apache.http.client.methods.HttpGet; import org.apache.http.client.methods.HttpPost; import org.apache.http.client.utils.URIBuilder; import org.apache.http.entity.StringEntity; import org.apache.http.impl.client.CloseableHttpClient; import org.apache.http.util.EntityUtils; import org.springframework.beans.factory.annotation.Value; import org.springframework.stereotype.Component; import java.io.*; import java....</p>
-  </section>
-  <footer class="entry-footer">2021-10-15&nbsp;·&nbsp;3 min&nbsp;·&nbsp;Rex</footer>
-  <a class="entry-link" aria-label="post link to 微信支付接口" href="https://rex0520.github.io/posts/api/pay/%E5%BE%AE%E4%BF%A1%E6%94%AF%E4%BB%98%E6%8E%A5%E5%8F%A3/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

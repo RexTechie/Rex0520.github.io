@@ -146,6 +146,73 @@
 
 <article class="post-entry tag-entry"> 
   <header class="entry-header">
+    <h2>SpringBoot学习（入门篇）
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>SpringBoot学习（入门篇） 简单使用 浏览器中输入http://127.0.0.1:8080/hello, 显示hello, springboot2的字样
+创建maven工程
+生成pom.xml文件，引入相关依赖
+&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt; &lt;project xmlns=&#34;http://maven.apache.org/POM/4.0.0&#34; xmlns:xsi=&#34;http://www.w3.org/2001/XMLSchema-instance&#34; xsi:schemaLocation=&#34;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&#34;&gt; &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt; &lt;groupId&gt;xyz.rexhub &lt;/groupId&gt; &lt;artifactId&gt;boot-01-helloworld&lt;/artifactId&gt; &lt;version&gt;1.0-SNAPSHOT&lt;/version&gt; &lt;!--项目打包文件格式--&gt; &lt;packaging&gt;jar&lt;/packaging&gt; &lt;properties&gt; &lt;maven.compiler.source&gt;8&lt;/maven.compiler.source&gt; &lt;maven.compiler.target&gt;8&lt;/maven.compiler.target&gt; &lt;/properties&gt; &lt;parent&gt; &lt;!--springboot框架基础依赖--&gt; &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt; &lt;artifactId&gt;spring-boot-starter-parent&lt;/artifactId&gt; &lt;version&gt;2.3.4.RELEASE&lt;/version&gt; &lt;/parent&gt; &lt;dependencies&gt; &lt;!--springboot web依赖--&gt; &lt;dependency&gt; &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt; &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt; &lt;/dependency&gt; &lt;/dependencies&gt; &lt;build&gt; &lt;!--maven构建工具插件--&gt; &lt;plugins&gt; &lt;plugin&gt; &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt; &lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt; &lt;/plugin&gt; &lt;/plugins&gt; &lt;/build&gt; &lt;/project&gt; 创建主程序
+package xyz.rexhub.boot; import org.springframework.boot.SpringApplication; import org.springframework.boot.autoconfigure.SpringBootApplication; /** * Description: 主程序类 * * @author rex * @date 2022-07-06 23:21 */ @SpringBootApplication public class MainApplication { public static void main(String[] args) { SpringApplication....</p>
+  </section>
+  <footer class="entry-footer">2022-08-16&nbsp;·&nbsp;4 min&nbsp;·&nbsp;Rex</footer>
+  <a class="entry-link" aria-label="post link to SpringBoot学习（入门篇）" href="https://rex0520.github.io/posts/back/java/framework/springboot/springboot%E5%AD%A6%E4%B9%A0%E5%85%A5%E9%97%A8%E7%AF%87/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2>SpringBoot学习（核心功能篇-Web开发）
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>SpringBoot学习（核心功能篇-Web开发） SpringMVC自动配置概览 Springboot为SpringMVC提供了自动装配，以下自动装配添加的特性
+内容协商视图解析器(ContentNegotiatingViewResolver)和BeanName视图解析器(BeanNameViewResolver) 静态资源(包括Webjars) 自动注册Converter、GenericConverter、Formatter(格式转换) 支持HttpMessageConverters(配合内容协商) 自动注册MessageCodesResolver（国际化用，使用较小，一般开发俩套网站） 静态index.html页支持 自定义Favicon 静态资源访问 静态资源目录
+只要静态资源放在类路径下: /static(or /public or /resources or /META_INF/resources)
+访问：当前项目根路径/&#43; 静态资源名
+原理：静态映射/**。
+​	请求进来，先去找Controller看能不能处理。不能处理的所有请求又都交给静态资源处理器。静态资源也找不到404
+spring.web.resources.static-locations可以修改默认映射地址
+spring: web: resources: static-locations: [classpath:/haha/] 静态资源访问前缀
+默认无前缀
+spring.mvc.static-path-pattern配置
+spring: mvc: static-path-pattern: /res/** 当前项目 &#43; static-path-pattern &#43; 静态资源名 = 静态资源文件夹下找
+webjar
+在https://www.webjars.org里找
+z&lt;dependency&gt; &lt;groupId&gt;org.webjars.npm&lt;/groupId&gt; &lt;artifactId&gt;jquery&lt;/artifactId&gt; &lt;version&gt;3.6.0&lt;/version&gt; &lt;/dependency&gt; 访问地址：http://localhost:8080/webjars/jquery/3.6.0/jquery.js
+欢迎页支持
+静态资源路径下index.html
+可以配置静态资源路径
+受静态资源的路径影响，需要访问静态资源路径&#43;/
+#spring: # mvc: # static-path-pattern: /res/** web: resources: static-locations: [classpath:/haha/] controller能处理静态页
+自定义Favicon
+将favicon.ico放置静态资源路径下即可
+静态资源配置原理 SpringBoot启动自动配置类xxxAutoConfiguration类（自动配置）...</p>
+  </section>
+  <footer class="entry-footer">2022-08-16&nbsp;·&nbsp;6 min&nbsp;·&nbsp;Rex</footer>
+  <a class="entry-link" aria-label="post link to SpringBoot学习（核心功能篇-Web开发）" href="https://rex0520.github.io/posts/back/java/framework/springboot/springboot%E5%AD%A6%E4%B9%A0%E6%A0%B8%E5%BF%83%E5%8A%9F%E8%83%BD%E7%AF%87-web%E5%BC%80%E5%8F%91/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2>SpringBoot学习（核心功能篇-配置功能）
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>SpringBoot学习（核心功能篇-配置功能） properties yaml YAML 是 “YAML Ain’t Markup Language”（YAML 不是一种标记语言）的递归缩写。在开发的这种语言时，YAML 的意思其实是：“Yet Another Markup Language”（仍是一种标记语言）。
+非常适合用来做以数据为中心的配置文件
+基本语法 key: value；kv之间有空格 大小写敏感 使用缩进表示层级关系 缩进不允许使用tab，只允许空格 缩进的空格数不重要，只要相同层级的元素左对齐即可 ‘#‘表示注释 字符串无需加引号，如果要加，‘‘与&#34;“表示字符串内容 会被 转义/不转义 数据类型 字面量：单个的、不可再分的值。date、boolean、string、number、null
+k: v 对象：键值对的集合。map、hash、set、object
+行内写法：k: (k1:v1, k2:v2, k3:v3) # 或 k: k1: v1 k2: v2 k3: v3 数组：一组按次序排序的值。array、list、queue
+行内写法：k: [v1, v3, v4] # 或 k: - v1 - v2 - v3 示例 ​	java
+package xyz.rexhub.xyz.bean; import lombok.Data; import lombok.ToString; import org.springframework.boot.context.properties.ConfigurationProperties; import org....</p>
+  </section>
+  <footer class="entry-footer">2022-08-16&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Rex</footer>
+  <a class="entry-link" aria-label="post link to SpringBoot学习（核心功能篇-配置功能）" href="https://rex0520.github.io/posts/back/java/framework/springboot/springboot%E5%AD%A6%E4%B9%A0%E6%A0%B8%E5%BF%83%E5%8A%9F%E8%83%BD%E7%AF%87-%E9%85%8D%E7%BD%AE%E5%8A%9F%E8%83%BD/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
     <h2>SpringBoot记录
     </h2>
   </header>

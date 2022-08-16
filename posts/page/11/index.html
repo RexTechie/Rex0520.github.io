@@ -161,6 +161,43 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>Springtest与junit4整合
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>Spring Test与JUnit4整合 Spring Test测试模块 Spring Test是Spring中用于测试的模块 Sprint Test对JUnit单元测试框架有良好的整合 通过Spring Test可在JUnit在单元测试时自动初始化IoC容器 Spring与JUnit4整合过程 Maven工程依赖spring-test 利用@RunWith与@ContextConfiguration描述测试用例类 测试用例类从容器获取对象完成测试用例的执行 </p>
+  </section>
+  <footer class="entry-footer">2021-01-03&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Rex</footer>
+  <a class="entry-link" aria-label="post link to Springtest与junit4整合" href="https://rex0520.github.io/posts/back/java/framework/spring/springtest%E4%B8%8Ejunit4%E6%95%B4%E5%90%88/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>基于javaconfig配置的ioc容器
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>基于Java Config配置的IoC容器 基于Java Config的优势 完全摆脱XML的束缚，使用独立Java类管理对象与依赖 注解配置相对分散，利用Java Config可对配置集中管理 可以在编译时进行依赖检查，不容易出错 Java Config核心注解 注解 说明 @Configuration 描述类，说明当前类是Java Config配置类，完全替代XML文件 @Bean 描述方法，方法返回对象将被IoC容器管理，beanId默认为方法名 @ImportResource 描述类，加载静态文件，可使用@Value注解获取 @CompoenentScan 描述类，同XML的context:component-scan标签 </p>
+  </section>
+  <footer class="entry-footer">2021-01-03&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Rex</footer>
+  <a class="entry-link" aria-label="post link to 基于javaconfig配置的ioc容器" href="https://rex0520.github.io/posts/back/java/framework/spring/%E5%9F%BA%E4%BA%8Ejavaconfig%E9%85%8D%E7%BD%AE%E7%9A%84ioc%E5%AE%B9%E5%99%A8/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>基于注解配置ioc容器
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>基于注解配置IoC容器 基于注解的优势 摆脱繁琐的XML形式的bean与依赖注入配置 基于“声明式”的原则，更适合轻量级的现代企业应用 让代码可读性变得更好，让研发人员拥有更好的开发体验 三类注解 组件类型注解-声明当前类的功能与职责 自动装配注解-根据属性特征自动注入对象 元数据注解-更细化的辅助IoC容器管理对象的 注解 组件类型注解： 四种组件类型注解 注解 说明 @Component 组件注解，通用注解，被该注解描述的类将被IoC容器管理并实例化 @Controller xA语义注解，说明当前类是MVC应用中的控制器类 @Service 语义注解，说明当前类是Service业务服务类 @Repository 语义注解，说明当前类用于业务持久层，通常描述对应Dao类 开启组件扫描： &lt;!--XML配置开启组件扫描，才能使用注解--&gt; &lt;context:component-scan base-package=&#34;com.imooc&#34;&gt; &lt;context:exclude-filter type=&#34;regex&#34; expression=&#34;com.imooc.exl.*&#34;&gt; &lt;/context:exclude-filter&gt; &lt;/context:component-scan&gt; 基于注解初始化IoC容器 ​	applicationContext.xml
+&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt; &lt;beans xmlns=&#34;http://www.springframework.org/schema/beans&#34; xmlns:xsi=&#34;http://www.w3.org/2001/XMLSchema-instance&#34; xmlns:context=&#34;http://www.springframework.org/schema/context&#34; xsi:schemaLocation=&#34;http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd&#34;&gt; &lt;!--在IoC容器初始化时自动扫描四种组件类型注解并完成实例化 @Repository @Service @Controller @Component --&gt; &lt;context:component-scan base-package=&#34;com.imooc&#34;/&gt; &lt;/beans&gt; 自动装配注解： 两类自动装配注解： 分类 注解 说明 按类型装配 @Autowired 按容器内对象类型动态注入属性，由Spring机构提供 @Inject 基于JSR-330(Dependency Injection for Java)标准，其他同@Autowired,但不支持request属性 按名称装配 @Named 与@Inject配合使用，JSR-330规范，按属性名自动装配属性 @Resource 基于JSR-250规范，优先按名称，再按类型智能匹配 Autowired: pring IoC容器会自动通过反射技术将属性private修饰符自动改为public，直接进行赋值, 不再执行set方法。如果装配注解放在set方法上，则自动按类型/名称对set方法参数进行注入...</p>
+  </section>
+  <footer class="entry-footer">2021-01-03&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Rex</footer>
+  <a class="entry-link" aria-label="post link to 基于注解配置ioc容器" href="https://rex0520.github.io/posts/back/java/framework/spring/%E5%9F%BA%E4%BA%8E%E6%B3%A8%E8%A7%A3%E9%85%8D%E7%BD%AEioc%E5%AE%B9%E5%99%A8/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>Reflect
     </h2>
   </header>
@@ -202,27 +239,10 @@ bug解决: 移除springdoc-openapi-spring-boot-2-webmvc依赖中的jackson-dataf
   <footer class="entry-footer">1 min&nbsp;·&nbsp;Rex</footer>
   <a class="entry-link" aria-label="post link to Emos项目学习记录" href="https://rex0520.github.io/posts/proj/emos/emos%E9%A1%B9%E7%9B%AE%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/"></a>
 </article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>Emos项目搭建
-    </h2>
-  </header>
-  <section class="entry-content">
-    <p>emos项目准备 项目结构 已有项目： 工作流项目(emos-workflow) 小程序项目(emos-wx) 小程序后端项目(emos-wx-api) 待开发项目 Web办公系统前端项目(emos-vue) Web办公系统后端项目(emos-api) 数据表分类： 序号 类型 特征 备注 1 工作流数据表 以 act_ 开头 存储工作流的各项数据 2 定时器数据表 以 qrtz_ 开头 存储QuartZ定时器数据 3 业务表 以 tb_ 开头 保存业务数据 4 系统表 以 sys_ 开头 保存系统配置信息 后端： 依赖库： Lombok – 生成对象的Get/Set方法
-Spring Web – spring的web开发框架
-MyBatis Framework – mybatis的开发框架
-MySQL Driver – MySQL数据库驱动
-Spring Data Redis(Access &#43; Driver) – Redis连接&#43;驱动工具
-Spring Data MongoDB – MongoDB连接工具
-Spring for RabbitMQ – RabbitMQ消息队列连接工具...</p>
-  </section>
-  <footer class="entry-footer">10 min&nbsp;·&nbsp;Rex</footer>
-  <a class="entry-link" aria-label="post link to Emos项目搭建" href="https://rex0520.github.io/posts/proj/emos/emos%E9%A1%B9%E7%9B%AE%E6%90%AD%E5%BB%BA/"></a>
-</article>
 <footer class="page-footer">
   <nav class="pagination">
     <a class="prev" href="https://rex0520.github.io/posts/page/10/">« Prev Page</a>
+    <a class="next" href="https://rex0520.github.io/posts/page/12/">Next Page »</a>
   </nav>
 </footer>
     </main>

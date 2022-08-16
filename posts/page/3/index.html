@@ -160,6 +160,75 @@
 </header>
 
 <article class="post-entry"> 
+<figure class="entry-cover"><img loading="lazy" src="https://cdn.rexhub.xyz/img/20211203144729.jpeg" alt="">
+</figure>
+  <header class="entry-header">
+    <h2>无诈校园微信小程序后端接口文档
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>无诈校园微信小程序后端接口文档 baseUrl = “http://localhost:8090/fraud-prevention/api” 服务器Url=“http://1.117.91.88:52016/fraud-prevention/api” 用户模块 登录 url: /front/user/login
+method: Get
+request param: code
+response body:
+{ &#34;code&#34;: 200, &#34;msg&#34;: &#34;success&#34;, &#34;data&#34;:&#34;98cb5a80-4199-44ce-a5f0-9f09c4bc438f&#34; } 获取当前登录用户数据 url: /front/user/current
+method: Get
+request param: 空
+response body
+{ &#34;code&#34;: 200, &#34;msg&#34;: &#34;success&#34;, &#34;data&#34;: { &#34;id&#34;: &#34;1412572056239054850&#34;, &#34;schoolName&#34;: &#34;温州职业技术学院&#34;, &#34;deptName&#34;: &#34;人工智能学院&#34;, &#34;className&#34;: &#34;软件1901&#34;, &#34;avatarUrl&#34;: &#34;https://thirdwx.qlogo.cn/mmopen/vi_32/LDUQrb7oLTQ4JiccNicdPhHQ0jTjs4ic0mVpUb8uP9ic4jS1ydEzeYuQDu9ZsJHLYDpMT6atMktQFEBSE1dBfIVlMw/132&#34;, &#34;phone&#34;: &#34;15706753061&#34;, &#34;name&#34;: &#34;林瑞星(Rex)&#34;, &#34;gender&#34;: &#34;男&#34;, &#34;number&#34;: &#34;19002090117&#34;, &#34;totalScore&#34;: 350 } } 验证用户是否授权 url: /front/user/auth
+method: Get
+request param: 空...</p>
+  </section>
+  <footer class="entry-footer">2021-12-03&nbsp;·&nbsp;6 min&nbsp;·&nbsp;Rex</footer>
+  <a class="entry-link" aria-label="post link to 无诈校园微信小程序后端接口文档" href="https://rex0520.github.io/posts/proj/doc/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%90%8E%E7%AB%AF%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/"></a>
+</article>
+
+<article class="post-entry"> 
+<figure class="entry-cover"><img loading="lazy" src="https://cdn.rexhub.xyz/img/20211223001812.jpeg" alt="">
+</figure>
+  <header class="entry-header">
+    <h2>FraudPrevention后台管理系统开发文档
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>FraudPrevention后台管理系统开发文档 baseUrl = “http://localhost:8090/fraud-prevention/api”
+服务器Url=“http://1.117.91.88:52016/fraud-prevention/api”
+通用模块 获取验证码 url: /admin/captcha
+method: Get
+request body: 空
+response body
+&#34;code&#34;: 200, &#34;msg&#34;: &#34;success&#34;, &#34;data&#34;: { token: &#34;xxxxxx&#34;, //验证码token captchaImg: &#34;data:image/jpeg;base64,xxxxxx&#34;, //base64格式的验证码图片 } } 获取所有模块信息 url: /admin/modules
+method: Get
+request body: 空
+response body:
+{ &#34;code&#34;: 200, &#34;msg&#34;: &#34;success&#34;, &#34;data&#34;: [ { &#34;id&#34;: 1, &#34;moduleCode&#34;: &#34;USER&#34;, &#34;moduleName&#34;: &#34;用户管理&#34; }, { &#34;id&#34;: 2, &#34;moduleCode&#34;: &#34;ROLE&#34;, &#34;moduleName&#34;: &#34;角色管理&#34; }, { &#34;id&#34;: 3, &#34;moduleCode&#34;: &#34;PERM&#34;, &#34;moduleName&#34;: &#34;权限管理&#34; }, { &#34;id&#34;: 4, &#34;moduleCode&#34;: &#34;TEACHER&#34;, &#34;moduleName&#34;: &#34;教师管理&#34; } ] } 需提前登录...</p>
+  </section>
+  <footer class="entry-footer">2021-11-04&nbsp;·&nbsp;19 min&nbsp;·&nbsp;Rex</footer>
+  <a class="entry-link" aria-label="post link to FraudPrevention后台管理系统开发文档" href="https://rex0520.github.io/posts/proj/doc/fraudprevention%E5%BC%80%E5%8F%91%E6%96%87%E6%A1%A3/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>微信支付接口
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>微信支付 微信支付功能的实现需要调用微信官方的支付接口，而微信支付也有多种形式，如:JSAPI支付、APP支付、Native支付、小程序支付等等，接口也有V2、V3版本，这里主要说明Native的V3版本的使用。特别需要注意的是，使用微信支付功能的接口需要有商户号。
+在支付的功能中，必不可少的是商品订单和支付订单，商品订单是本地后台系统生成的，而我这里使用的案例是用罚款单为例并非商品。支付订单是微信服务器生成的，只需要调用微信支付API
+微信支付官方文档
+微信支付前期准备 开通微信支付功能 对于商家来说，想要开通微信支付，必须要去微信商户平台注册（https://pay.weixin.qq.com/index.php/core/home/login?return_url=%2F），然后把工商登记证明、企业银行账户开户证明、组织机构代码证提交上去，经过半天的审核，如果没有问题，你就开通了微信支付功能。
+如果想要在网站或者小程序上面使用微信支付，还要在微信公众平台上面关联你自己的微信商户账号。前提是你的微信开发者账号必须是企业身份，个人身份的开发者账号是无法调用微信支付API的。
+引入官方的SDK包 说明下这里的微信官方sdk主要对签名方面、加密解密方面做了较好的支持，其他方面还是要自己构造参数、发送请求。
+sdk官方文档
+&lt;dependency&gt; &lt;groupId&gt;com.github.wechatpay-apiv3&lt;/groupId&gt; &lt;artifactId&gt;wechatpay-apache-httpclient&lt;/artifactId&gt; &lt;version&gt;0.2.2&lt;/version&gt; &lt;/dependency&gt; WechatPay.java
+这个是我对sdk做了个进一步的封装，这里是初始化
+package com.example.emos.api.common.util; import cn.hutool.json.JSONObject; import cn.hutool.json.JSONUtil; import com.example.emos.api.common.exception.EmosException; import com.fasterxml.jackson.databind.ObjectMapper; import com.fasterxml.jackson.databind.node.ObjectNode; import com.wechat.pay.contrib.apache.httpclient.WechatPayHttpClientBuilder; import com.wechat.pay.contrib.apache.httpclient.auth.AutoUpdateCertificatesVerifier; import com.wechat.pay.contrib.apache.httpclient.auth.PrivateKeySigner; import com.wechat.pay.contrib.apache.httpclient.auth.WechatPay2Credentials; import com.wechat.pay.contrib.apache.httpclient.auth.WechatPay2Validator; import com.wechat.pay.contrib.apache.httpclient.util.AesUtil; import com.wechat.pay.contrib.apache.httpclient.util.PemUtil; import lombok.extern.slf4j.Slf4j; import org.apache.http.HttpEntity; import org.apache.http.StatusLine; import org.apache.http.client.methods.CloseableHttpResponse; import org.apache.http.client.methods.HttpGet; import org.apache.http.client.methods.HttpPost; import org.apache.http.client.utils.URIBuilder; import org.apache.http.entity.StringEntity; import org.apache.http.impl.client.CloseableHttpClient; import org.apache.http.util.EntityUtils; import org.springframework.beans.factory.annotation.Value; import org.springframework.stereotype.Component; import java.io.*; import java....</p>
+  </section>
+  <footer class="entry-footer">2021-10-15&nbsp;·&nbsp;3 min&nbsp;·&nbsp;Rex</footer>
+  <a class="entry-link" aria-label="post link to 微信支付接口" href="https://rex0520.github.io/posts/api/pay/%E5%BE%AE%E4%BF%A1%E6%94%AF%E4%BB%98%E6%8E%A5%E5%8F%A3/"></a>
+</article>
+
+<article class="post-entry"> 
   <header class="entry-header">
     <h2>腾讯TRTC
     </h2>
@@ -201,70 +270,6 @@ mescroll.js：滚动插件 解决移动端滚动不流畅、延迟等问题 基�
   </section>
   <footer class="entry-footer">2021-10-11&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Rex</footer>
   <a class="entry-link" aria-label="post link to 前端常用轮子" href="https://rex0520.github.io/posts/front/tools/%E5%89%8D%E7%AB%AF%E5%B8%B8%E7%94%A8%E8%BD%AE%E5%AD%90/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>Zookeeper
-    </h2>
-  </header>
-  <section class="entry-content">
-    <p>Zookeeper 定义： Zookeeper：A Distributed Coordination Service for Distributed Applications(
-Zookeeper是开源的高性能的分布式应用协调系统，一个高性能的分布式数据一致性解决方案
-5大特点 顺序一致性：发出去的顺序==执行的顺序 原子性：请求同步到各个节点要么都成果要么都失败 单一视图：多个节点无论连哪个看的东西都是一致的 可靠性：给节点写了数据，这个数据会一直保留，直到有另外的操作把数据写掉，才会发生变化 及时性：在一定的时间段（可接受的时间段）内能从服务器上读到最新的数据状态 架构图、集群、工作过程 Zookeeper和CAP的关系 CP：一致性&#43;分区容错性 能得到一致的数据结果，同时系统对网络具备容错性 但是它不能保证每次服务请求的可用性 作用 分布式服务注册与订阅 统一配置文件 生成分布式唯一ID Master节点选举 分布式锁 节点znode 模型-树结构 节点性质 树形结构，也可以理解为linux的文件目录 每一个节点都是znode，里面可以包含数据，也可以有子节点 点分为永久节点和临时节点(session失效，也就是客户端段凯后，临时节点消失) 每个znode都有版本号，每当数据变化，版本号会累加（乐观锁） 删除或修改节点，版本号不匹配的话（版本号已过时），会报错 每个节点存储的数据不宜过大，几k即可 节点可以设置权限，来限制用户的访问 Zookeeper保证读和写都是原子操作，且每次读写操作都是对数据的完整读取或完整写入 节点类型 持久节点 临时节点 顺序节点 节点属性 dataVersion 数据版本号，每次对内容修改dataVersion&#43;1 cversion 子节点版本号，如果子节点内容发送变化cversion&#43;1 aclVersion acl-权限控制列表，权限发生变化的时候aclVersion&#43;1 常用命令 查看节点ls 查看节点的数据和状态get 创建(create [-s 顺序节点] [-e 临时节点])、修改(set)、删除(delete)节点 Watcher机制 触发器、监督者
-事件类型
-EventType 触发条件 NodeCreated（节点创建） Watcher监听的对应数据节点被创建 NodeDeleted（节点删除） Watcher监听的对应数据节点被删除 NodeDataChanged（节点数据修改） Watcher监听的对应数据节点的数据内容发送变更 NodeChildrenChanged（子节点变更） Watcher监听的对应数据节点的子节点列表发送变更 ACL access control list 权限控制 它使用权限位来允许/禁止对节点极其所用域的各种操作 ACL仅与特点的znode有关，与子节点无关 Schema ACL:[schema采用的权限机制: id用户:permissions权限组合字符串] world id: anyone auth 需要设定对应的用户和密码（明文） digest 同auth，不同的是加密使用密文 ip 指定ip super 超级权限 权限字符串crdwa Created 创建子节点的权限 Read 读 Delete 删除子节点的权限 Write 写 Admin 最高权限 使用权限 区分开发/测试/运维环境，防止误操作 可以针对不同IP而产生具体的配置，更安全 代码 java原生 导入依赖...</p>
-  </section>
-  <footer class="entry-footer">2021-08-21&nbsp;·&nbsp;4 min&nbsp;·&nbsp;Rex</footer>
-  <a class="entry-link" aria-label="post link to Zookeeper" href="https://rex0520.github.io/posts/back/java/microservices/zookeeper/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>Dubbo基础
-    </h2>
-  </header>
-  <section class="entry-content">
-    <p>Dubbo 关于Dubbo 轻量级，高性能的RPC框架 并不是要成为一个微服务的全面解决发难 以Java语言而出名 Dubbo现状 全称是Apache Dubbo 微店，网易云音乐，考拉，滴滴，中国电信，人寿 star有30k&#43;个，fork有20k&#43;个 RPC RPC—–远程过程调用
-早期单机时代：IPC（Inter-Process Communication）
-单个电脑运行的各个进程之间相互通信
-网络时代：把IPC扩展到网络上，这就是RPC
-实现RPC很头疼，于是就有了RPC框架
-调用其他机器上的程序和调用本地的程序一样方便
-常见的RPC框架 阿里的Dubbo（性能好） 新浪的Montan（轻量级，项目架构复杂度低，适合RPC源码学习） Facebook的Thrift （可伸缩的跨语言框架，有很强的代码生成语言） HTTP和RPC对比 普通话（HTTP，规范–效率低）和方言（RPC，传输效率和运行速度更高），普通话本质上也是一种方言，只不过它是官方的方言 传输效率：RPC可以自己定制，通过定制自己的请求，让整体传输的内容更少，这样的效率更高，而HTTP会传输一些无用的内容 性能消耗，主要在于序列化和反序列化的耗时：RPC可以实现高效的二进制传输，HTTP大部分要通过JSON格式来传输 负载均衡：RPC自带负载均衡策略，HTTP需要借助其他的组件，如Nginx Dubbo工作原理 模块 说明 Provider 暴露服务的服务提供方 Consumer 调用远程服务的服务消费方 Registry 服务注册与发现的注册中心 Monitor 统计服务的调用次数和调用时间的监控中心 Container 服务运行容器 服务容器负责启动，加载，运行服务提供者 服务提供者在启动时，向注册中心注册自己提供的服务 服务消费者在启动时，向注册中心订阅自己所需的服务 注册中心返回服务提供者地址列表给消费者 从提供者地址列表中，选一台提供者进行调用 定期发送一次统计数据到监控中心 </p>
-  </section>
-  <footer class="entry-footer">2021-07-23&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Rex</footer>
-  <a class="entry-link" aria-label="post link to Dubbo基础" href="https://rex0520.github.io/posts/back/java/microservices/dubbo%E5%9F%BA%E7%A1%80/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>Mongodb基础
-    </h2>
-  </header>
-  <section class="entry-content">
-    <p>MongoDB 简介： MongoDB是为快速开发互联网Web应用而设计的数据库系统。 MongoDB的设许目标是极简、灵活、作为Web应用栈的一部分。 MongoDB的数据模型是面向文档的,所谓文档是- - -种类似于JSON的结构,简单理解MongoDB这个数据库中存的是各种各样的JSON。 ( BSON ) 三个概念 数据库( database )
-数据库是-个仓库,在仓库中可以存放集合。
-集合( collection )
-集合类似于数组,在集合中可以存放文档。
-文档( dotument )
-文档数据库中的最小单位,我们存储和操作的 内容都是文档。
-基本指令 show dbs
-显示当前的所有数据库
-use 数据库名
-进入指定的数据库中
-db
-显示当前所处的数据库
-show collections
-显示数据库中所有的集合
-db.&lt;collection&gt;.insert(doc)
-向集合中插入一个文档
-db.&lt;collections&gt;.find()
-查看数据库字段
-插入文档 /* 向数据库插入文档	db.&lt;collection&gt;.insert( &lt;document or array of documents&gt;， { wirteConcern: &lt;document&gt;, ordered: &lt;boolean&gt; } ) documents: 必填，表示需要插入的文档，可以是多个文档 writeConcern：可选项，写策略 ordered：可选，表示多个文档是否按照文档顺序写入 -- 向集合中插入一个或多个文档 -- 当我们向集合中插入文档时，如果没有给文档指定_id属性，则数据库会自动为文档添加_id， 该属性用来作为文档的唯一标识 -- _id可以自己指定，如果指定了数据库就不会再添加了，如果自己指定_id，也必须确保他的唯一性 db.collection.insertOne() -- 插入一个文档对象 db....</p>
-  </section>
-  <footer class="entry-footer">2021-07-09&nbsp;·&nbsp;9 min&nbsp;·&nbsp;Rex</footer>
-  <a class="entry-link" aria-label="post link to Mongodb基础" href="https://rex0520.github.io/posts/nosql/mongodb/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

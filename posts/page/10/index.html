@@ -161,6 +161,44 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>SpringBoot记录
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>Spring Boot学习 SpringBoot概述 Spring Boot诞生历史 Spring的缺点：配置过于繁琐 Spring Boot开发团队：Pivotal Spring Boot简洁 简化初始搭建以及开发过程 不再需要定义样板化的配置 快速应用开发领域 天下武功，唯快不破 Spring、Spring MVC和Spring Boot Spring最初利用IOC和AOP解耦 按照这种模式搞了MVC框架 写很多样板代码很麻烦，就有了Spring Boot Spring Cloud是在Spring Boot基础上诞生的 Spring Boot核心特点 开箱即用 约定优于配置 Spring Boot版本介绍 CURRENT ：最新的GA版本 GA(General Availability)：发布版本 SNAPSHOP（快照）：该版本的内容会被随时的修改 Spring Boot 2.0都更新了什么 环境升级:java 8&#43;, tomcat 8&#43;，Thymeleaf 3,，Hibernate 5.2 默认的软件优化: Spring Security 新的功能:http2.0的支持 https://github.com/spring-projects/spring-boot/wiki/spring-boot-2.0-release-notes </p>
+  </section>
+  <footer class="entry-footer">2021-02-04&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Rex</footer>
+  <a class="entry-link" aria-label="post link to SpringBoot记录" href="https://rex0520.github.io/posts/back/java/framework/springboot/springboot%E8%AE%B0%E5%BD%95/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>Springjdbc
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>Spring JDBC与事务管理 Spring JDBC Spring JDBC是Spring框架用于处理关系型数据库的模块 Spring JDBC对JDBC API进行封装，极大简化开发工作量 JdbcTemplate是Spring JDBC核心类，提供数据CRUD方法 Spring JDBC的使用步骤 Maven工程引入依赖spring-jdbc applicationContext.xml配置DataSource数据源 在Dao注入JdbcTemplate对象，实现数据CRUD JdbcTemplate实现增删改查 Spring JDBC配置过程代码示例： applicationContext.xml
+&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt; &lt;beans xmlns=&#34;http://www.springframework.org/schema/beans&#34; xmlns:xsi=&#34;http://www.w3.org/2001/XMLSchema-instance&#34; xmlns:context=&#34;http://www.springframework.org/schema/context&#34; xsi:schemaLocation=&#34; http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd&#34;&gt; &lt;!-- 数据源 --&gt; &lt;bean id=&#34;dataSource&#34; class=&#34;org.springframework.jdbc.datasource.DriverManagerDataSource&#34;&gt; &lt;property name=&#34;driverClassName&#34; value=&#34;com.mysql.cj.jdbc.Driver&#34;&gt;&lt;/property&gt; &lt;property name=&#34;url&#34; value=&#34;jdbc:mysql://localhost:3306/imooc?useSSL=false&amp;amp;useUnicode=true&amp;amp;characterEncoding=UTF-8&amp;amp;serverTimezone=Asia/Shanghai&amp;amp;allowPublicKeyRetrieval=true&#34;&gt;&lt;/property&gt; &lt;property name=&#34;username&#34; value=&#34;root&#34;&gt;&lt;/property&gt; &lt;property name=&#34;password&#34; value=&#34;root&#34;&gt;&lt;/property&gt; &lt;/bean&gt; &lt;!--JdbcTemplate提供CRUD的API--&gt; &lt;bean id=&#34;jdbcTemplate&#34; class=&#34;org.springframework.jdbc.core.JdbcTemplate&#34;&gt; &lt;property name=&#34;dataSource&#34; ref=&#34;dataSource&#34;&gt;&lt;/property&gt; &lt;/bean&gt; &lt;bean id=&#34;employeeDao&#34; class=&#34;com.imooc.spring.jdbc.dao.EmployeeDao&#34;&gt; &lt;!--为Dao注入JdbcTemplate对象--&gt; &lt;property name=&#34;jdbcTemplate&#34; ref=&#34;jdbcTemplate&#34;&gt;&lt;/property&gt; &lt;/bean&gt; &lt;/beans&gt; Employee.java
+package com....</p>
+  </section>
+  <footer class="entry-footer">2021-01-06&nbsp;·&nbsp;9 min&nbsp;·&nbsp;Rex</footer>
+  <a class="entry-link" aria-label="post link to Springjdbc" href="https://rex0520.github.io/posts/back/java/framework/spring/springjdbc/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>Spring框架概述
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>Spring 框架概述 1、Spring 是轻量级的开源的JavaEE框架 2、Spring 解决企业应用开发的复杂性 3、Spring有两个核心的部分：IOC和AOP （1）IOC：控制反转，把创建对象的过程交给Spring进行管理 （2）AOP：面向切面，不修改源代码进行功能增强 4、Spring特点 （1）方便解耦，简化开发 （2）AOP编程支持 （3）方便程序测试 （4）方便和其他框架进行整合 （5）方便进行事务操作 （6）降低API的开发难度 Core Container Beans Core Context Expression </p>
+  </section>
+  <footer class="entry-footer">2021-01-05&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Rex</footer>
+  <a class="entry-link" aria-label="post link to Spring框架概述" href="https://rex0520.github.io/posts/back/java/framework/spring/spring%E6%A1%86%E6%9E%B6%E6%A6%82%E8%BF%B0/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>Springaop面向切面编程
     </h2>
   </header>
@@ -193,43 +231,6 @@ package com.imooc.spring.ioc.entity; /** * @author CubeMonkey * @create 2020-11-
   </section>
   <footer class="entry-footer">2021-01-04&nbsp;·&nbsp;4 min&nbsp;·&nbsp;Rex</footer>
   <a class="entry-link" aria-label="post link to Springioc与bean管理" href="https://rex0520.github.io/posts/back/java/framework/spring/springioc%E4%B8%8Ebean%E7%AE%A1%E7%90%86/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>Springtest与junit4整合
-    </h2>
-  </header>
-  <section class="entry-content">
-    <p>Spring Test与JUnit4整合 Spring Test测试模块 Spring Test是Spring中用于测试的模块 Sprint Test对JUnit单元测试框架有良好的整合 通过Spring Test可在JUnit在单元测试时自动初始化IoC容器 Spring与JUnit4整合过程 Maven工程依赖spring-test 利用@RunWith与@ContextConfiguration描述测试用例类 测试用例类从容器获取对象完成测试用例的执行 </p>
-  </section>
-  <footer class="entry-footer">2021-01-03&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Rex</footer>
-  <a class="entry-link" aria-label="post link to Springtest与junit4整合" href="https://rex0520.github.io/posts/back/java/framework/spring/springtest%E4%B8%8Ejunit4%E6%95%B4%E5%90%88/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>基于javaconfig配置的ioc容器
-    </h2>
-  </header>
-  <section class="entry-content">
-    <p>基于Java Config配置的IoC容器 基于Java Config的优势 完全摆脱XML的束缚，使用独立Java类管理对象与依赖 注解配置相对分散，利用Java Config可对配置集中管理 可以在编译时进行依赖检查，不容易出错 Java Config核心注解 注解 说明 @Configuration 描述类，说明当前类是Java Config配置类，完全替代XML文件 @Bean 描述方法，方法返回对象将被IoC容器管理，beanId默认为方法名 @ImportResource 描述类，加载静态文件，可使用@Value注解获取 @CompoenentScan 描述类，同XML的context:component-scan标签 </p>
-  </section>
-  <footer class="entry-footer">2021-01-03&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Rex</footer>
-  <a class="entry-link" aria-label="post link to 基于javaconfig配置的ioc容器" href="https://rex0520.github.io/posts/back/java/framework/spring/%E5%9F%BA%E4%BA%8Ejavaconfig%E9%85%8D%E7%BD%AE%E7%9A%84ioc%E5%AE%B9%E5%99%A8/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>基于注解配置ioc容器
-    </h2>
-  </header>
-  <section class="entry-content">
-    <p>基于注解配置IoC容器 基于注解的优势 摆脱繁琐的XML形式的bean与依赖注入配置 基于“声明式”的原则，更适合轻量级的现代企业应用 让代码可读性变得更好，让研发人员拥有更好的开发体验 三类注解 组件类型注解-声明当前类的功能与职责 自动装配注解-根据属性特征自动注入对象 元数据注解-更细化的辅助IoC容器管理对象的 注解 组件类型注解： 四种组件类型注解 注解 说明 @Component 组件注解，通用注解，被该注解描述的类将被IoC容器管理并实例化 @Controller xA语义注解，说明当前类是MVC应用中的控制器类 @Service 语义注解，说明当前类是Service业务服务类 @Repository 语义注解，说明当前类用于业务持久层，通常描述对应Dao类 开启组件扫描： &lt;!--XML配置开启组件扫描，才能使用注解--&gt; &lt;context:component-scan base-package=&#34;com.imooc&#34;&gt; &lt;context:exclude-filter type=&#34;regex&#34; expression=&#34;com.imooc.exl.*&#34;&gt; &lt;/context:exclude-filter&gt; &lt;/context:component-scan&gt; 基于注解初始化IoC容器 ​	applicationContext.xml
-&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt; &lt;beans xmlns=&#34;http://www.springframework.org/schema/beans&#34; xmlns:xsi=&#34;http://www.w3.org/2001/XMLSchema-instance&#34; xmlns:context=&#34;http://www.springframework.org/schema/context&#34; xsi:schemaLocation=&#34;http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd&#34;&gt; &lt;!--在IoC容器初始化时自动扫描四种组件类型注解并完成实例化 @Repository @Service @Controller @Component --&gt; &lt;context:component-scan base-package=&#34;com.imooc&#34;/&gt; &lt;/beans&gt; 自动装配注解： 两类自动装配注解： 分类 注解 说明 按类型装配 @Autowired 按容器内对象类型动态注入属性，由Spring机构提供 @Inject 基于JSR-330(Dependency Injection for Java)标准，其他同@Autowired,但不支持request属性 按名称装配 @Named 与@Inject配合使用，JSR-330规范，按属性名自动装配属性 @Resource 基于JSR-250规范，优先按名称，再按类型智能匹配 Autowired: pring IoC容器会自动通过反射技术将属性private修饰符自动改为public，直接进行赋值, 不再执行set方法。如果装配注解放在set方法上，则自动按类型/名称对set方法参数进行注入...</p>
-  </section>
-  <footer class="entry-footer">2021-01-03&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Rex</footer>
-  <a class="entry-link" aria-label="post link to 基于注解配置ioc容器" href="https://rex0520.github.io/posts/back/java/framework/spring/%E5%9F%BA%E4%BA%8E%E6%B3%A8%E8%A7%A3%E9%85%8D%E7%BD%AEioc%E5%AE%B9%E5%99%A8/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

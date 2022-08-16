@@ -9,7 +9,34 @@
       <link>https://cdn.rexhub.xyz/img/20210820141535.jpg</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Tue, 05 Jul 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://rex0520.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 16 Aug 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://rex0520.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>SpringBoot学习（入门篇）</title>
+      <link>https://rex0520.github.io/posts/back/java/framework/springboot/springboot%E5%AD%A6%E4%B9%A0%E5%85%A5%E9%97%A8%E7%AF%87/</link>
+      <pubDate>Tue, 16 Aug 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://rex0520.github.io/posts/back/java/framework/springboot/springboot%E5%AD%A6%E4%B9%A0%E5%85%A5%E9%97%A8%E7%AF%87/</guid>
+      <description>SpringBoot学习</description>
+    </item>
+    
+    <item>
+      <title>SpringBoot学习（核心功能篇-Web开发）</title>
+      <link>https://rex0520.github.io/posts/back/java/framework/springboot/springboot%E5%AD%A6%E4%B9%A0%E6%A0%B8%E5%BF%83%E5%8A%9F%E8%83%BD%E7%AF%87-web%E5%BC%80%E5%8F%91/</link>
+      <pubDate>Tue, 16 Aug 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://rex0520.github.io/posts/back/java/framework/springboot/springboot%E5%AD%A6%E4%B9%A0%E6%A0%B8%E5%BF%83%E5%8A%9F%E8%83%BD%E7%AF%87-web%E5%BC%80%E5%8F%91/</guid>
+      <description>SpringBoot学习</description>
+    </item>
+    
+    <item>
+      <title>SpringBoot学习（核心功能篇-配置功能）</title>
+      <link>https://rex0520.github.io/posts/back/java/framework/springboot/springboot%E5%AD%A6%E4%B9%A0%E6%A0%B8%E5%BF%83%E5%8A%9F%E8%83%BD%E7%AF%87-%E9%85%8D%E7%BD%AE%E5%8A%9F%E8%83%BD/</link>
+      <pubDate>Tue, 16 Aug 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://rex0520.github.io/posts/back/java/framework/springboot/springboot%E5%AD%A6%E4%B9%A0%E6%A0%B8%E5%BF%83%E5%8A%9F%E8%83%BD%E7%AF%87-%E9%85%8D%E7%BD%AE%E5%8A%9F%E8%83%BD/</guid>
+      <description>SpringBoot学习</description>
+    </item>
+    
     <item>
       <title>启动项目脚本</title>
       <link>https://rex0520.github.io/posts/linux/%E5%90%AF%E5%8A%A8%E9%A1%B9%E7%9B%AE%E8%84%9A%E6%9C%AC/</link>

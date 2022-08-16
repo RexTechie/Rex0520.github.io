@@ -161,6 +161,49 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>Mybatis进阶
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>MyBatis进阶 什么是日志 日志文件是用于记录系统操作事件的记录文件或文件集合 日志保存历史数据，是诊断问题以及理解系统活动的重要依据 SLF4j与Logback 日志的使用: 引入logback依赖
+&lt;dependency&gt; &lt;groupId&gt;ch.qos.logback&lt;/groupId&gt; &lt;artifactId&gt;logback-classic&lt;/artifactId&gt; &lt;version&gt;1.2.3&lt;/version&gt; &lt;/dependency&gt; 创建logback.xml，并写入如下代码：
+&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34; ?&gt; &lt;configuration&gt; &lt;appender name=&#34;console&#34; class=&#34;ch.qos.logback.core.ConsoleAppender&#34;&gt; &lt;encoder&gt; &lt;pattern&gt;%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n&lt;/pattern&gt; &lt;/encoder&gt; &lt;/appender&gt; &lt;!-- 日志输出级别（优先级高到低） error: 错误 - 系统的故障日志 warn: 警告 - 存在风险或使用不当的日志 info: 一般性消息 debug: 程序内部用于调试信息 trace: 程序允许的跟踪信息 --&gt; &lt;root level=&#34;debug&#34;&gt; &lt;appender-ref ref=&#34;console&#34;&gt;&lt;/appender-ref&gt; &lt;/root&gt; &lt;/configuration&gt; 动态SQL 动态SQL是指根据参数数据动态组织SQL的技术 代码示例： goods.xml中加入如下sql语句
+&lt;select id=&#34;dynamicSelect&#34; parameterType=&#34;java.util.Map&#34; resultType=&#34;com.imooc.mybatis.entity.Goods&#34;&gt; select * from t_goods &lt;where&gt; &lt;if test=&#34;categoryId != null&#34;&gt; and category_id = #{categoryId} &lt;/if&gt; &lt;if test=&#34;currentPrice !...</p>
+  </section>
+  <footer class="entry-footer">2021-03-09&nbsp;·&nbsp;7 min&nbsp;·&nbsp;Rex</footer>
+  <a class="entry-link" aria-label="post link to Mybatis进阶" href="https://rex0520.github.io/posts/back/java/jdbctool/mybatis%E8%BF%9B%E9%98%B6/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>Restful开发风格
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>RESTful开发风格 REST与RESTful REST(Representational State Transfer)-表现层状态转换，资源在网络中以某种表现形式进行状态转移 RESTful是基于REST理念的一套开发风格，是具体的开发规则 RESTful传输数据 RESTful开发规范 使用URL作为用户交互入口 明确的语义规范(GET|POST|PUT|DELETE-&gt;查|增|改|删) 只返回数据(JSON|XML)，不包含任何展现 RESTful命名要求 URI 说明 修改建议 GET /articles?au=lily 正确用法 GET /a/1 URI必须具有语义 GET /student/1 POST /createArticle/1 URI必须使用名词 POST /article/1 GET /articles/author/1 URI扁平化，不超两级 GET /articles/author?id=1 DELETE /articles/1 URI名词区分单复数 GET /articles?au=lily
+DELETE /article/1 开发第一个RESTful应用 RestfulController.java
+package com.imooc.restful.controller; import org.springframework.stereotype.Controller; import org.springframework.web.bind.annotation.*; /** * @author Rex * @create 2021-01-12 12:00 */ @Controller @RequestMapping(&#34;/restful&#34;) public class RestfulController { @GetMapping(&#34;/request&#34;) @ResponseBody public String doGetRequest(){ return &#34;{\&#34;message\&#34;:\&#34;返回查询结果\&#34;}&#34;; } @PostMapping(&#34;/request&#34;) @ResponseBody public String doPostRequest(){ return &#34;{\&#34;message\&#34;:\&#34;数据新建成功\&#34;}&#34;; } @PutMapping(&#34;/request&#34;) @ResponseBody public String doPutRequest(){ return &#34;{\&#34;message\&#34;:\&#34;数据更新成功\&#34;}&#34;; } @DeleteMapping(&#34;/request&#34;) @ResponseBody public String doDeleteRequest(){ return &#34;{\&#34;message\&#34;:\&#34;数据删除成功\&#34;}&#34;; } } client....</p>
+  </section>
+  <footer class="entry-footer">2021-03-09&nbsp;·&nbsp;3 min&nbsp;·&nbsp;Rex</footer>
+  <a class="entry-link" aria-label="post link to Restful开发风格" href="https://rex0520.github.io/posts/back/java/framework/springmvc/restful/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>SpringMVC基础
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>Spring MVC Spring MVC介绍 MVC是什么 Spring MVC Spring MVC是Spring体系的轻量级WEB MVC框架 Spring MVC的核心Controller控制器，用于处理请求，产生响应 Spring MVC基于Spring IoC容器运行，所有对象被IoC管理 Spring 5.X版本变化 Spring 5.x最低要求JDK8与J2EE 7(Servlet 3.1/Tomcat 8.5&#43;) Spring 5.x支持JDK8/9,可以使用新特性 Spring 5.x最重要的新特性支持响应式编程 Spring MVC环境配置 Maven依赖spring-webmvc web.xml配置DispatcherServlet 配置applicationContext的mvc标记 开发Controller控制器 简单示例： applicationContext.xml:
+&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt; &lt;beans xmlns=&#34;http://www.springframework.org/schema/beans&#34; xmlns:mvc=&#34;http://www.springframework.org/schema/mvc&#34; xmlns:context=&#34;http://www.springframework.org/schema/context&#34; xmlns:xsi=&#34;http://www.w3.org/2001/XMLSchema-instance&#34; xmlns:mv=&#34;http://www.springframework.org/schema/mvc&#34; xsi:schemaLocation=&#34;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd&#34;&gt; &lt;!-- context:component-scan 标签作用 在Spring IOC初始化过程中，自动创建并管理com.imooc.springmvc及子包 拥有以下注解的对象 @Repository @Service @Controller @Component --&gt; &lt;context:component-scan base-package=&#34;com.imooc.springmvc&#34;/&gt; &lt;!--启用Spring MVC的注解开发模式--&gt; &lt;mvc:annotation-driven/&gt; &lt;!--将图片/JS/CSS等静态资源排除在外，可提高执行效率--&gt; &lt;mvc:default-servlet-handler/&gt; &lt;/beans&gt; web.xml
+&lt;?xml version=&#34;1....</p>
+  </section>
+  <footer class="entry-footer">2021-03-09&nbsp;·&nbsp;3 min&nbsp;·&nbsp;Rex</footer>
+  <a class="entry-link" aria-label="post link to SpringMVC基础" href="https://rex0520.github.io/posts/back/java/framework/springmvc/springmvc%E5%9F%BA%E7%A1%80/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>SpringMVC拦截器
     </h2>
   </header>
@@ -185,44 +228,6 @@ Redis的常用基本配置 配置项 示例 说明 daemonize daemonize yes 是�
   </section>
   <footer class="entry-footer">2021-02-09&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Rex</footer>
   <a class="entry-link" aria-label="post link to Redis基础" href="https://rex0520.github.io/posts/nosql/redis%E5%9F%BA%E7%A1%80/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>SpringBoot记录
-    </h2>
-  </header>
-  <section class="entry-content">
-    <p>Spring Boot学习 SpringBoot概述 Spring Boot诞生历史 Spring的缺点：配置过于繁琐 Spring Boot开发团队：Pivotal Spring Boot简洁 简化初始搭建以及开发过程 不再需要定义样板化的配置 快速应用开发领域 天下武功，唯快不破 Spring、Spring MVC和Spring Boot Spring最初利用IOC和AOP解耦 按照这种模式搞了MVC框架 写很多样板代码很麻烦，就有了Spring Boot Spring Cloud是在Spring Boot基础上诞生的 Spring Boot核心特点 开箱即用 约定优于配置 Spring Boot版本介绍 CURRENT ：最新的GA版本 GA(General Availability)：发布版本 SNAPSHOP（快照）：该版本的内容会被随时的修改 Spring Boot 2.0都更新了什么 环境升级:java 8&#43;, tomcat 8&#43;，Thymeleaf 3,，Hibernate 5.2 默认的软件优化: Spring Security 新的功能:http2.0的支持 https://github.com/spring-projects/spring-boot/wiki/spring-boot-2.0-release-notes </p>
-  </section>
-  <footer class="entry-footer">2021-02-04&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Rex</footer>
-  <a class="entry-link" aria-label="post link to SpringBoot记录" href="https://rex0520.github.io/posts/back/java/framework/springboot/springboot%E8%AE%B0%E5%BD%95/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>Springjdbc
-    </h2>
-  </header>
-  <section class="entry-content">
-    <p>Spring JDBC与事务管理 Spring JDBC Spring JDBC是Spring框架用于处理关系型数据库的模块 Spring JDBC对JDBC API进行封装，极大简化开发工作量 JdbcTemplate是Spring JDBC核心类，提供数据CRUD方法 Spring JDBC的使用步骤 Maven工程引入依赖spring-jdbc applicationContext.xml配置DataSource数据源 在Dao注入JdbcTemplate对象，实现数据CRUD JdbcTemplate实现增删改查 Spring JDBC配置过程代码示例： applicationContext.xml
-&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt; &lt;beans xmlns=&#34;http://www.springframework.org/schema/beans&#34; xmlns:xsi=&#34;http://www.w3.org/2001/XMLSchema-instance&#34; xmlns:context=&#34;http://www.springframework.org/schema/context&#34; xsi:schemaLocation=&#34; http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd&#34;&gt; &lt;!-- 数据源 --&gt; &lt;bean id=&#34;dataSource&#34; class=&#34;org.springframework.jdbc.datasource.DriverManagerDataSource&#34;&gt; &lt;property name=&#34;driverClassName&#34; value=&#34;com.mysql.cj.jdbc.Driver&#34;&gt;&lt;/property&gt; &lt;property name=&#34;url&#34; value=&#34;jdbc:mysql://localhost:3306/imooc?useSSL=false&amp;amp;useUnicode=true&amp;amp;characterEncoding=UTF-8&amp;amp;serverTimezone=Asia/Shanghai&amp;amp;allowPublicKeyRetrieval=true&#34;&gt;&lt;/property&gt; &lt;property name=&#34;username&#34; value=&#34;root&#34;&gt;&lt;/property&gt; &lt;property name=&#34;password&#34; value=&#34;root&#34;&gt;&lt;/property&gt; &lt;/bean&gt; &lt;!--JdbcTemplate提供CRUD的API--&gt; &lt;bean id=&#34;jdbcTemplate&#34; class=&#34;org.springframework.jdbc.core.JdbcTemplate&#34;&gt; &lt;property name=&#34;dataSource&#34; ref=&#34;dataSource&#34;&gt;&lt;/property&gt; &lt;/bean&gt; &lt;bean id=&#34;employeeDao&#34; class=&#34;com.imooc.spring.jdbc.dao.EmployeeDao&#34;&gt; &lt;!--为Dao注入JdbcTemplate对象--&gt; &lt;property name=&#34;jdbcTemplate&#34; ref=&#34;jdbcTemplate&#34;&gt;&lt;/property&gt; &lt;/bean&gt; &lt;/beans&gt; Employee.java
-package com....</p>
-  </section>
-  <footer class="entry-footer">2021-01-06&nbsp;·&nbsp;9 min&nbsp;·&nbsp;Rex</footer>
-  <a class="entry-link" aria-label="post link to Springjdbc" href="https://rex0520.github.io/posts/back/java/framework/spring/springjdbc/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>Spring框架概述
-    </h2>
-  </header>
-  <section class="entry-content">
-    <p>Spring 框架概述 1、Spring 是轻量级的开源的JavaEE框架 2、Spring 解决企业应用开发的复杂性 3、Spring有两个核心的部分：IOC和AOP （1）IOC：控制反转，把创建对象的过程交给Spring进行管理 （2）AOP：面向切面，不修改源代码进行功能增强 4、Spring特点 （1）方便解耦，简化开发 （2）AOP编程支持 （3）方便程序测试 （4）方便和其他框架进行整合 （5）方便进行事务操作 （6）降低API的开发难度 Core Container Beans Core Context Expression </p>
-  </section>
-  <footer class="entry-footer">2021-01-05&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Rex</footer>
-  <a class="entry-link" aria-label="post link to Spring框架概述" href="https://rex0520.github.io/posts/back/java/framework/spring/spring%E6%A1%86%E6%9E%B6%E6%A6%82%E8%BF%B0/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
