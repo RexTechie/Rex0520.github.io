@@ -161,6 +161,21 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>SpringBoot源码分析（请求部分）
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>SpringBoot源码分析（请求部分） 引言 👀看了尚硅谷雷神的SpringBoot2源码分析，颇有感触🤙，请求处理这部分的源码真的是太精彩了，决定自己在好好的debug几次，再记录下笔记！以前不理解什么叫作“框架 = 设计模式 &#43; 反射 &#43; 注解”，觉得设计模式不就是一些代码风格么，反射不就是运行时动态获取类的内部信息并执行其的一些方法么。注解不就是定义补充。但看了SpringBoot源码后才知道如果没有设计模式，有些复杂逻辑的代码不做一些封装📦处理的话就会变成💩山代码，效率低、难理解、难扩展。而通过反射，可以使得框架有更高的灵活性和扩展性。
+接口创建 SpringBoot的特点开箱即用，即内部已经为我们做了大量的配置，包括请求参数解析、数据响应、内容协商等等，如果是用传统的servlet(SpringBoot底层已经封装了tomcat)会变得极其复杂，而springboot我们只需要几个注解就可以完成一个简单的接口。 Example:
+@GetMapping(&#34;/girl&#34;) public String getGirlFriend(@RequestParam String girlfriend){ return String.format(&#34;Get a girlfriend: %s&#34;, girlfriend); } 这样就成功创建了一个简单的接口，使用GetMapping来说明请求方式(“get”)和请求路径(&#34;/girl&#34;), 可以用url拼接参数的方式传参数（&#34;/girl?girlfriend=xxx&#34;）。按照以前sevlet，获取参数需要request.getParameter(“girlfriend”),post方法则要从request.getInputStream()获取BufferReader后再做处理；返回值想要返回json格式，需要用工具类，将对象拼接成json格式，然后用response.getWriter().println(girlfriend)写出，如果是中文还需要进行编码处理。而现在这些繁琐并且重复的操作springboot全做了处理，使我们在开发的过程中只需要注意业务部分的代码实现。
+请求处理过程概览 请求映射 处理并获取请求参数 调用目标方法 数据响应与内容协商 请求映射 请求进来会进到DispatchServlet.doDispatch()(Tips: DispatchServlet是HttpServlet的一个子类，由Spring进行封装)中，SpringMVC功能分析都从这个类开始分析 protected void doDispatch(HttpServletRequest request, HttpServletResponse response) throws Exception { HttpServletRequest processedRequest = request; HandlerExecutionChain mappedHandler = null; boolean multipartRequestParsed = false; WebAsyncManager asyncManager = WebAsyncUtils.getAsyncManager(request); try { ModelAndView mv = null; Exception dispatchException = null; try { processedRequest = checkMultipart(request); multipartRequestParsed = (processedRequest !...</p>
+  </section>
+  <footer class="entry-footer">2022-09-25&nbsp;·&nbsp;7 min&nbsp;·&nbsp;Rex</footer>
+  <a class="entry-link" aria-label="post link to SpringBoot源码分析（请求部分）" href="https://rex0520.github.io/posts/back/java/framework/springboot/springboot%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E8%AF%B7%E6%B1%82%E9%83%A8%E5%88%86/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>SpringBoot学习（入门篇）
     </h2>
   </header>
@@ -168,44 +183,11 @@
     <p>SpringBoot学习（入门篇） 简单使用 浏览器中输入http://127.0.0.1:8080/hello, 显示hello, springboot2的字样
 创建maven工程
 生成pom.xml文件，引入相关依赖
-&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt; &lt;project xmlns=&#34;http://maven.apache.org/POM/4.0.0&#34; xmlns:xsi=&#34;http://www.w3.org/2001/XMLSchema-instance&#34; xsi:schemaLocation=&#34;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&#34;&gt; &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt; &lt;groupId&gt;xyz.rexhub &lt;/groupId&gt; &lt;artifactId&gt;boot-01-helloworld&lt;/artifactId&gt; &lt;version&gt;1.0-SNAPSHOT&lt;/version&gt; &lt;!--项目打包文件格式--&gt; &lt;packaging&gt;jar&lt;/packaging&gt; &lt;properties&gt; &lt;maven.compiler.source&gt;8&lt;/maven.compiler.source&gt; &lt;maven.compiler.target&gt;8&lt;/maven.compiler.target&gt; &lt;/properties&gt; &lt;parent&gt; &lt;!--springboot框架基础依赖--&gt; &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt; &lt;artifactId&gt;spring-boot-starter-parent&lt;/artifactId&gt; &lt;version&gt;2.3.4.RELEASE&lt;/version&gt; &lt;/parent&gt; &lt;dependencies&gt; &lt;!--springboot web依赖--&gt; &lt;dependency&gt; &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt; &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt; &lt;/dependency&gt; &lt;/dependencies&gt; &lt;build&gt; &lt;!--maven构建工具插件--&gt; &lt;plugins&gt; &lt;plugin&gt; &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt; &lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt; &lt;/plugin&gt; &lt;/plugins&gt; &lt;/build&gt; &lt;/project&gt; 创建主程序
+&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt; &lt;project xmlns=&#34;http://maven.apache.org/POM/4.0.0&#34; xmlns:xsi=&#34;http://www.w3.org/2001/XMLSchema-instance&#34; xsi:schemaLocation=&#34;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&#34;&gt; &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt; &lt;groupId&gt;xyz.rexhub&lt;/groupId&gt; &lt;artifactId&gt;boot-01-helloworld&lt;/artifactId&gt; &lt;version&gt;1.0-SNAPSHOT&lt;/version&gt; &lt;!--项目打包文件格式--&gt; &lt;packaging&gt;jar&lt;/packaging&gt; &lt;properties&gt; &lt;maven.compiler.source&gt;8&lt;/maven.compiler.source&gt; &lt;maven.compiler.target&gt;8&lt;/maven.compiler.target&gt; &lt;/properties&gt; &lt;parent&gt; &lt;!--springboot框架基础依赖--&gt; &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt; &lt;artifactId&gt;spring-boot-starter-parent&lt;/artifactId&gt; &lt;version&gt;2.3.4.RELEASE&lt;/version&gt; &lt;/parent&gt; &lt;dependencies&gt; &lt;!--springboot web依赖--&gt; &lt;dependency&gt; &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt; &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt; &lt;/dependency&gt; &lt;/dependencies&gt; &lt;build&gt; &lt;!--maven构建工具插件--&gt; &lt;plugins&gt; &lt;plugin&gt; &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt; &lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt; &lt;/plugin&gt; &lt;/plugins&gt; &lt;/build&gt; &lt;/project&gt; 创建主程序
 package xyz.rexhub.boot; import org.springframework.boot.SpringApplication; import org.springframework.boot.autoconfigure.SpringBootApplication; /** * Description: 主程序类 * * @author rex * @date 2022-07-06 23:21 */ @SpringBootApplication public class MainApplication { public static void main(String[] args) { SpringApplication....</p>
   </section>
   <footer class="entry-footer">2022-08-16&nbsp;·&nbsp;4 min&nbsp;·&nbsp;Rex</footer>
   <a class="entry-link" aria-label="post link to SpringBoot学习（入门篇）" href="https://rex0520.github.io/posts/back/java/framework/springboot/springboot%E5%AD%A6%E4%B9%A0%E5%85%A5%E9%97%A8%E7%AF%87/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>SpringBoot学习（核心功能篇-Web开发）
-    </h2>
-  </header>
-  <section class="entry-content">
-    <p>SpringBoot学习（核心功能篇-Web开发） SpringMVC自动配置概览 Springboot为SpringMVC提供了自动装配，以下自动装配添加的特性
-内容协商视图解析器(ContentNegotiatingViewResolver)和BeanName视图解析器(BeanNameViewResolver) 静态资源(包括Webjars) 自动注册Converter、GenericConverter、Formatter(格式转换) 支持HttpMessageConverters(配合内容协商) 自动注册MessageCodesResolver（国际化用，使用较小，一般开发俩套网站） 静态index.html页支持 自定义Favicon 静态资源访问 静态资源目录
-只要静态资源放在类路径下: /static(or /public or /resources or /META_INF/resources)
-访问：当前项目根路径/&#43; 静态资源名
-原理：静态映射/**。
-​	请求进来，先去找Controller看能不能处理。不能处理的所有请求又都交给静态资源处理器。静态资源也找不到404
-spring.web.resources.static-locations可以修改默认映射地址
-spring: web: resources: static-locations: [classpath:/haha/] 静态资源访问前缀
-默认无前缀
-spring.mvc.static-path-pattern配置
-spring: mvc: static-path-pattern: /res/** 当前项目 &#43; static-path-pattern &#43; 静态资源名 = 静态资源文件夹下找
-webjar
-在https://www.webjars.org里找
-z&lt;dependency&gt; &lt;groupId&gt;org.webjars.npm&lt;/groupId&gt; &lt;artifactId&gt;jquery&lt;/artifactId&gt; &lt;version&gt;3.6.0&lt;/version&gt; &lt;/dependency&gt; 访问地址：http://localhost:8080/webjars/jquery/3.6.0/jquery.js
-欢迎页支持
-静态资源路径下index.html
-可以配置静态资源路径
-受静态资源的路径影响，需要访问静态资源路径&#43;/
-#spring: # mvc: # static-path-pattern: /res/** web: resources: static-locations: [classpath:/haha/] controller能处理静态页
-自定义Favicon
-将favicon.ico放置静态资源路径下即可
-静态资源配置原理 SpringBoot启动自动配置类xxxAutoConfiguration类（自动配置）...</p>
-  </section>
-  <footer class="entry-footer">2022-08-16&nbsp;·&nbsp;6 min&nbsp;·&nbsp;Rex</footer>
-  <a class="entry-link" aria-label="post link to SpringBoot学习（核心功能篇-Web开发）" href="https://rex0520.github.io/posts/back/java/framework/springboot/springboot%E5%AD%A6%E4%B9%A0%E6%A0%B8%E5%BF%83%E5%8A%9F%E8%83%BD%E7%AF%87-web%E5%BC%80%E5%8F%91/"></a>
 </article>
 
 <article class="post-entry"> 
