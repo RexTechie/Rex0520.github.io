@@ -155,7 +155,7 @@
 @GetMapping(&#34;/girl&#34;) public String getGirlFriend(@RequestParam String girlfriend){ return String.format(&#34;Get a girlfriend: %s&#34;, girlfriend); } 这样就成功创建了一个简单的接口，使用GetMapping来说明请求方式(“get”)和请求路径(&#34;/girl&#34;), 可以用url拼接参数的方式传参数（&#34;/girl?girlfriend=xxx&#34;）。按照以前sevlet，获取参数需要request.getParameter(“girlfriend”),post方法则要从request.getInputStream()获取BufferReader后再做处理；返回值想要返回json格式，需要用工具类，将对象拼接成json格式，然后用response.getWriter().println(girlfriend)写出，如果是中文还需要进行编码处理。而现在这些繁琐并且重复的操作springboot全做了处理，使我们在开发的过程中只需要注意业务部分的代码实现。
 请求处理过程概览 请求映射 处理并获取请求参数 调用目标方法 数据响应与内容协商 请求映射 请求进来会进到DispatchServlet.doDispatch()(Tips: DispatchServlet是HttpServlet的一个子类，由Spring进行封装)中，SpringMVC功能分析都从这个类开始分析 protected void doDispatch(HttpServletRequest request, HttpServletResponse response) throws Exception { HttpServletRequest processedRequest = request; HandlerExecutionChain mappedHandler = null; boolean multipartRequestParsed = false; WebAsyncManager asyncManager = WebAsyncUtils.getAsyncManager(request); try { ModelAndView mv = null; Exception dispatchException = null; try { processedRequest = checkMultipart(request); multipartRequestParsed = (processedRequest !...</p>
   </section>
-  <footer class="entry-footer">2022-09-25&nbsp;·&nbsp;7 min&nbsp;·&nbsp;Rex</footer>
+  <footer class="entry-footer">2022-09-25&nbsp;·&nbsp;6 min&nbsp;·&nbsp;Rex</footer>
   <a class="entry-link" aria-label="post link to SpringBoot源码分析（请求部分）" href="https://rex0520.github.io/posts/back/java/framework/springboot/springboot%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E8%AF%B7%E6%B1%82%E9%83%A8%E5%88%86/"></a>
 </article>
 
