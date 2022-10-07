@@ -161,6 +161,20 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>Druid数据库连接池
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>Druid数据库连接池 概述 什么是连接池？🤔 Java连接数据库有很多中方式，最原始的方式就是直接使用数据库驱动连接数据库，但是这种方式有很多的弊端，如每次执行sql都需要创建和关闭数据库连接器，需要消耗大量的资源，如果没关闭成功还会导致内存泄漏的问题，以及一些线程问题。而数据库连接池主要做的是，预先创建好一定量的数据库连接放到池子中，当需要执行sql语句的时候取出一个数据库连接执行sql语句，用完了放回去，如果系统关闭则断开所有的数据库连接，并释放内存。
+常见的数据库连接池的配置参数 url 数据库地址 username 数据库账号 password 数据库密码 driverClassName 数据库驱动 maxActive 池子中支持的最大连接数（一般是可能的并发的数量） maxIdle 池子中连接最大的空闲数。（即使没有使用连接，池子里也会有maxIdle个连接） minIdle 池子中连接最小的空闲数。（当连接少于这个值，池子会自动创建连接补充到这个值） initialSize 池子中一开始的连接数 maxWait 连接最大的等待时间，如果超过这个时间会报错，-1的话就是无限等待 常见的数据库连接池 HikariCP Hikari在日语中是光的意思，主打高性能高效率。SpringBoot默认的数据库连接池使用的就是HikariCP。他的优点在于 有精简的字节码(代码量比较少) 优化了代理和拦截器 定义了集合类型：ConcurrentBag提高并发读写效率 Druid Druid是Alibaba的一个开源的数据库连接池，😲官方自称Java最好的数据库连接池，（但是实测HikariCP的性能要更强🤪）不过我觉得除了性能之外也要综合考虑其他的功能。Druid集成了强大的监控功能（SQL、Web、Session等等）、黑白名单拦截，这点我觉得在真实的生产环节中有很大优势，可以根据监控的信息调整项目使之变得更高效。 DBCP、C3P0 这俩款用的好像比较少，就不多介绍了。 Druid 正片开始，这几天学习了Druid发现，Druid不仅仅是在数据库连接池的性能方面做的很好，而且还有强大的监控功能，所以在此记录下他和SpringBoot的搭配。配置参考Druid的官方文档，官方介绍的确实很详细了，不过我这边记录的会和官方有点不一样，使用的有自动装配的druid
+集成SpringBoot 配置Maven，引入druid &lt;dependency&gt; &lt;groupId&gt;com.alibaba&lt;/groupId&gt; &lt;artifactId&gt;druid-spring-boot-starter&lt;/artifactId&gt; &lt;version&gt;1.1.13&lt;/version&gt; &lt;/dependency&gt; 在里面的DruidDataSourceAutoConfigure文件已经对druid做了大量配置，按照官方还需要写配置类来配置druid一些连接信息（数据库连接信息、监控配置等等），而这边大部分的配置只需要写在application.yml/application.properties里就好了，剩下的就让DruidDataSourceAutoConfigure来将这些配置绑定在druid上就好。所以接下来的一步也非常的简单，就是写配置文件 编写配置信息 spring: datasource: url: jdbc:mysql://localhost:3306/proj_template?serverTimezone=Asia/Shanghai&amp;useUnicode=true&amp;charsetEncoding=utf-8&amp;useSSL=true&amp;allowPublicKeyRetrieval=true username: root password: root driver-class-name: com.mysql.cj.jdbc.Driver druid: filter: slf4j: enabled: true # 开启日志功能 wall: enabled: true # 开启防火墙功能 stat: enabled: true # 开启sql监控功能 slow-sql-millis: 1000 # 配置SQL慢的标准 log-slow-sql: true # 是否开启记录执行慢的sql stat-view-servlet: enabled: true # 开启监控页功能 login-username: rex # 监控页登录账号 login-password: pwdofrex # 监控页登录密码 reset-enable: false # 配置是否允许重置监控信息 web-stat-filter: enabled: true # 开启web监控 exclusions: &#34;*....</p>
+  </section>
+  <footer class="entry-footer">2022-10-07&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Rex</footer>
+  <a class="entry-link" aria-label="post link to Druid数据库连接池" href="https://rex0520.github.io/posts/back/java/jdbctool/druid%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E6%B1%A0/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>SpringBoot源码分析（请求部分）
     </h2>
   </header>
@@ -218,42 +232,6 @@ package xyz.rexhub.xyz.bean; import lombok.Data; import lombok.ToString; import 
   </section>
   <footer class="entry-footer">2022-07-05&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Rex</footer>
   <a class="entry-link" aria-label="post link to 启动项目脚本" href="https://rex0520.github.io/posts/linux/%E5%90%AF%E5%8A%A8%E9%A1%B9%E7%9B%AE%E8%84%9A%E6%9C%AC/"></a>
-</article>
-
-<article class="post-entry"> 
-<figure class="entry-cover"><img loading="lazy" src="http://cdn.rexhub.xyz/tc/git.jpeg" alt="">
-</figure>
-  <header class="entry-header">
-    <h2>Git学习
-    </h2>
-  </header>
-  <section class="entry-content">
-    <p>Git Git概述 Git是一个免费的，开源的分布式版本控制系统， 可以快速高效地处理从小型到大型的各种项目
-Git易于学习，占地面积小，性能极快，它具有廉价的本地库，方便的暂存区域和多个工作该分支等特性，其性能优于Subversion, CSV, Perforce和Clearcase等版本控制工具
-版本控制 版本控制是一种记录文件内容变化，以便将来查阅特定版本修订情况的系统
-版本控制其实最重要的是可以记录文件修改历史记录，从而让用户能够查看历史版本，方便版本切换
-版本控制工具 集中化的版本控制系统（sv、svn）
-集中化的版本控制系统诸如csv、svn等，都有一个单一的集中管理的服务器，保存所有文件的修订版本，而协同工作的人们都通过客户端连到这台服务器，取出最新的文件或者提交更新。
-优点：管理员可轻松掌控每个开发者的权限
-缺点：中央服务器单点故障
-分布式版本控制工具（Git、Mercurial、Bazaar、Darcs）
-像Git这种分不少版本控制工具，客户端提取的不是最新版本的文件快照，而是把代码仓库完整地镜像下来(本地库)。
-Git和代码托管中心 代码托管中心是基于网络服务器的远程代码仓库，一般简单称为远程库。
-局域网
-GitLab
-GitLab是由GitLabInc.开发，使用MIT许可证的基于网络的Git仓库管理工具，且具有wiki和issue跟踪功能。使用Git作为代码管理工具，并在此基础上搭建起来的web服务。 GitLab由乌克兰程序员DmitriyZaporozhets 和ValerySizov开发，它使用Ruby语言写成。后来，一些部分用Go语言重写。截止2018年5月，该公司约有290名团队成员，以及2000多名开源贡献者。GitLab 被IBM，Sony, NASA, Alibaba, Invincea, O’ReillyMedia, Leibniz-Rechenzentrum(LRZ)， CERN, SpaceX 等组织使用。
-官网 安装文档
-互联网
-Github（外网）
-GitHub于2008年4月10日正式上线，除了Git代码仓库托管及基本的Web管理界面以外，还提供了订阅、讨论组、文本渲染、在线文件编辑器、协作图谱（报表）、代码片段分享（Gist）等功能。目前，其注册用户已经超过350万，托管版本数量也是非常之多，其中不乏知名开源项目Ruby on Rails、jQuery、python等。
-官网
-Gitee码云（国内服务器）
-众所周知, GitHub服务器在国外,使用GitHub作为项目托管网站,如果网速不好的话，严重影响使用体验，甚至会出现登录不上的情况。
-官网
-Git 常用命令 命令名称 作用 git config –global user.name 用户名 设置用户签名 git config –global user.email 邮箱 设置用户签名 git init 初始化本地库 git status 查看本地库状态 git add 文件名 添加到暂存区 git commit -m “日志信息” 文件名 提交到本地库 git reflog 查看历史记录 git reset –hard 版本号 版本穿梭 分支操作 理解 在版本控制中。同时推进多个任务，为每个任务，我们就可以创建每个任务的单独分支。使用分支意味着程序员可以把自己的工作从开发主线上分离开来，开发自己分支的时候，不会影响主线分支的运行。...</p>
-  </section>
-  <footer class="entry-footer">2022-06-29&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Rex</footer>
-  <a class="entry-link" aria-label="post link to Git学习" href="https://rex0520.github.io/posts/git/git%E5%AD%A6%E4%B9%A0/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

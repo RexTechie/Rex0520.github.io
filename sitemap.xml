@@ -3,24 +3,30 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://rex0520.github.io/categories/</loc>
-    <lastmod>2022-09-25T00:00:00+00:00</lastmod>
+    <lastmod>2022-10-07T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://rex0520.github.io/posts/back/java/jdbctool/druid%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E6%B1%A0/</loc>
+    <lastmod>2022-10-07T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://rex0520.github.io/tags/jdbc/</loc>
+    <lastmod>2022-10-07T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://rex0520.github.io/posts/</loc>
-    <lastmod>2022-09-25T00:00:00+00:00</lastmod>
+    <lastmod>2022-10-07T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://rex0520.github.io/</loc>
-    <lastmod>2022-09-25T00:00:00+00:00</lastmod>
+    <lastmod>2022-10-07T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://rex0520.github.io/tags/</loc>
+    <lastmod>2022-10-07T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://rex0520.github.io/categories/%E5%90%8E%E7%AB%AF/</loc>
+    <lastmod>2022-10-07T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://rex0520.github.io/tags/springboot/</loc>
     <lastmod>2022-09-25T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://rex0520.github.io/posts/back/java/framework/springboot/springboot%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E8%AF%B7%E6%B1%82%E9%83%A8%E5%88%86/</loc>
-    <lastmod>2022-09-25T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://rex0520.github.io/tags/</loc>
-    <lastmod>2022-09-25T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://rex0520.github.io/categories/%E5%90%8E%E7%AB%AF/</loc>
     <lastmod>2022-09-25T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://rex0520.github.io/posts/back/java/framework/springboot/springboot%E5%AD%A6%E4%B9%A0%E5%85%A5%E9%97%A8%E7%AF%87/</loc>
@@ -194,9 +200,6 @@
     <loc>https://rex0520.github.io/posts/front/vue/vue%E8%BF%9B%E9%98%B6/</loc>
     <lastmod>2021-03-25T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://rex0520.github.io/tags/jpa/</loc>
-    <lastmod>2021-03-22T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://rex0520.github.io/posts/back/java/jdbctool/jpa%D1%A7%CF%B0/</loc>
     <lastmod>2021-03-22T00:00:00+00:00</lastmod>
   </url><url>
@@ -216,9 +219,6 @@
     <lastmod>2021-03-09T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://rex0520.github.io/posts/back/java/maven/maven%E5%9F%BA%E7%A1%80/</loc>
-    <lastmod>2021-03-09T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://rex0520.github.io/tags/mybatis/</loc>
     <lastmod>2021-03-09T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://rex0520.github.io/posts/back/java/jdbctool/mybatis%E5%9F%BA%E7%A1%80/</loc>

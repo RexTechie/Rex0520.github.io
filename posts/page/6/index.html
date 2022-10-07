@@ -161,6 +161,25 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>Docker的安装
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>Docker的安装 在Cent OS安装docker 先有一个Cent OS 7.6系统 这个很重要，不同版本按照的时候是不一样的。查看CentOS版本 cat /etc/redhat-release
+用root账户登录进去 配置国内yum源 wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo yum clean all yum makecache
+卸载旧版本 较旧的Docker版本称为docker或docker-engine。如果已安装这些程序，请卸载它们以及相关的依赖项。 如果yum报告未安装这些软件包，也没问题。
+docker-client \ docker-client-latest \ docker-common \ docker-latest \ docker-latest-logrotate \ docker-logrotate \ docker-engine 更新yum yum check-update yum update
+安装所需的软件包 yum install -y yum-utils \ device-mapper-persistent-data \ lvm2 使用以下命令来设置稳定的存储库。 sudo yum-config-manager –add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
+查看docker版本 yum list docker-ce –showduplicates | sort -r
+安装指定的版本 yum install docker-ce-18.09.0 docker-ce-cli-18.09.0 containerd.io
+Docker 是服务器—-客户端架构。命令行运行docker命令的时候，需要本机有 Docker 服务。用下面的命令启动 systemctl start docker...</p>
+  </section>
+  <footer class="entry-footer">2021-06-11&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Rex</footer>
+  <a class="entry-link" aria-label="post link to Docker的安装" href="https://rex0520.github.io/posts/back/java/microservices/docker%E7%9A%84%E5%AE%89%E8%A3%85/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>分布式
     </h2>
   </header>
@@ -222,36 +241,6 @@ JVM停止的情况 已调用System.exit()方法 所有非守护程序线程都�
   </section>
   <footer class="entry-footer">2021-06-08&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Rex</footer>
   <a class="entry-link" aria-label="post link to 守护线程" href="https://rex0520.github.io/posts/back/java/threadpool/%E5%AE%88%E6%8A%A4%E7%BA%BF%E7%A8%8B/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>线程池
-    </h2>
-  </header>
-  <section class="entry-content">
-    <p>线程池 线程池介绍 软件中的池可以理解为计划经济
-优点：
-复用线程 控制资源总量 好处：
-加快响应速度 合理利用CPU和内存 统一管理 适用场合
-服务器接收到大量请求时，使用线程池技术是非常合适的，它可以大大减少线程的创建和销毁次数，提高服务器的工作效率 实际上，在开发中，如果需要创建5个以上的线程，那么就可以使用线程池来管理 创建和停止线程池 线程池构造方法的参数 参数名 类型 含义 corePoolSize int 核心线程数 maxPoolSize int 最大线程数 keepAliveTime long 保持存活时间 workQueue BlockingQueue 任务存储队列 threadFactory ThreadFactory 当线程池需要新的线程的时候，会使用threadFactory来生成新的线程 Handler RejectedExecutionHandler 由于线程池无法接受你所提交的任务的拒绝策略 添加线程规则 如果线程数小于corePoolSize，创建一个新线程来运行新任务。 如果线程数等于（或大于）corePoolSize但少于maxmumPoolSize，则将任务放入队列。 如果队列已满，并且线程数小于maxPoolSize，则创建一个新线程。 如果队列已满，并且线程数大于或等于maxPoolSize，则拒绝。 是否需要增加线程的判断顺序是：
-corePoolSize workQueue maxPoolSize 增减线程的特点 通过设置corePoolSize和maximumPoolSize相同，就可以创建固定大小的线程池 线程池希望保持较少的线程数，并且只有在负载变得很大时才增加它 举例：
-线程池：核心池大小为5，最大池大小为10，队列为100 因为线程中的请求最多会创建5个，然后任务将被添加到队列中，直到达到100。当队列已满时，将创建最新的线程maxPoolSize，最多到10个线程，如果再来任务，就拒绝 keepAliveTime
-如果线程池当前的线程数多于corePoolSize，那么如果多余的线程空闲时间超过keepAliveTime，他们就会被终止 ThreadFactory
-默认使用Executors.defaultThreadFactory() 创建出来的都在同一个线程组 如果自己指定ThreadFactory，那么就可以改变线程名、线程组、优先级、是否是守护线程等。 工作队列
-有3种最常见的队列类型：
-直接交接：SynchronousQueue
-适用于任务不多的情况，只作为中转
-内部没有容量，maxPoolSize需要设置的大一点
-无界队列：LinkedBlockingQueue
-可以防止浏览突增
-但是如果处理的速度跟不上任务提交的速度，队列里的东西会越来越多造成内存浪费或OOM(Out of Memory)异常
-不会被塞满，maxPoolSize无效
-有界队列：ArrayBlockingQueue
-可以设置maxPoolSize，控制队列容量...</p>
-  </section>
-  <footer class="entry-footer">2021-06-08&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Rex</footer>
-  <a class="entry-link" aria-label="post link to 线程池" href="https://rex0520.github.io/posts/back/java/threadpool/%E7%BA%BF%E7%A8%8B%E6%B1%A0/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

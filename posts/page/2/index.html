@@ -160,6 +160,42 @@
 </header>
 
 <article class="post-entry"> 
+<figure class="entry-cover"><img loading="lazy" src="http://cdn.rexhub.xyz/tc/git.jpeg" alt="">
+</figure>
+  <header class="entry-header">
+    <h2>Git学习
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>Git Git概述 Git是一个免费的，开源的分布式版本控制系统， 可以快速高效地处理从小型到大型的各种项目
+Git易于学习，占地面积小，性能极快，它具有廉价的本地库，方便的暂存区域和多个工作该分支等特性，其性能优于Subversion, CSV, Perforce和Clearcase等版本控制工具
+版本控制 版本控制是一种记录文件内容变化，以便将来查阅特定版本修订情况的系统
+版本控制其实最重要的是可以记录文件修改历史记录，从而让用户能够查看历史版本，方便版本切换
+版本控制工具 集中化的版本控制系统（sv、svn）
+集中化的版本控制系统诸如csv、svn等，都有一个单一的集中管理的服务器，保存所有文件的修订版本，而协同工作的人们都通过客户端连到这台服务器，取出最新的文件或者提交更新。
+优点：管理员可轻松掌控每个开发者的权限
+缺点：中央服务器单点故障
+分布式版本控制工具（Git、Mercurial、Bazaar、Darcs）
+像Git这种分不少版本控制工具，客户端提取的不是最新版本的文件快照，而是把代码仓库完整地镜像下来(本地库)。
+Git和代码托管中心 代码托管中心是基于网络服务器的远程代码仓库，一般简单称为远程库。
+局域网
+GitLab
+GitLab是由GitLabInc.开发，使用MIT许可证的基于网络的Git仓库管理工具，且具有wiki和issue跟踪功能。使用Git作为代码管理工具，并在此基础上搭建起来的web服务。 GitLab由乌克兰程序员DmitriyZaporozhets 和ValerySizov开发，它使用Ruby语言写成。后来，一些部分用Go语言重写。截止2018年5月，该公司约有290名团队成员，以及2000多名开源贡献者。GitLab 被IBM，Sony, NASA, Alibaba, Invincea, O’ReillyMedia, Leibniz-Rechenzentrum(LRZ)， CERN, SpaceX 等组织使用。
+官网 安装文档
+互联网
+Github（外网）
+GitHub于2008年4月10日正式上线，除了Git代码仓库托管及基本的Web管理界面以外，还提供了订阅、讨论组、文本渲染、在线文件编辑器、协作图谱（报表）、代码片段分享（Gist）等功能。目前，其注册用户已经超过350万，托管版本数量也是非常之多，其中不乏知名开源项目Ruby on Rails、jQuery、python等。
+官网
+Gitee码云（国内服务器）
+众所周知, GitHub服务器在国外,使用GitHub作为项目托管网站,如果网速不好的话，严重影响使用体验，甚至会出现登录不上的情况。
+官网
+Git 常用命令 命令名称 作用 git config –global user.name 用户名 设置用户签名 git config –global user.email 邮箱 设置用户签名 git init 初始化本地库 git status 查看本地库状态 git add 文件名 添加到暂存区 git commit -m “日志信息” 文件名 提交到本地库 git reflog 查看历史记录 git reset –hard 版本号 版本穿梭 分支操作 理解 在版本控制中。同时推进多个任务，为每个任务，我们就可以创建每个任务的单独分支。使用分支意味着程序员可以把自己的工作从开发主线上分离开来，开发自己分支的时候，不会影响主线分支的运行。...</p>
+  </section>
+  <footer class="entry-footer">2022-06-29&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Rex</footer>
+  <a class="entry-link" aria-label="post link to Git学习" href="https://rex0520.github.io/posts/git/git%E5%AD%A6%E4%B9%A0/"></a>
+</article>
+
+<article class="post-entry"> 
   <header class="entry-header">
     <h2>温工美院数据库
     </h2>
@@ -229,30 +265,6 @@ Golang变量使用的三种方式
   </section>
   <footer class="entry-footer">2021-12-14&nbsp;·&nbsp;8 min&nbsp;·&nbsp;Rex</footer>
   <a class="entry-link" aria-label="post link to 变量【Go学习之路】" href="https://rex0520.github.io/posts/back/go/study/%E5%8F%98%E9%87%8F/"></a>
-</article>
-
-<article class="post-entry"> 
-<figure class="entry-cover"><img loading="lazy" src="https://cdn.rexhub.xyz/img/20211213103407.jpg" alt="">
-</figure>
-  <header class="entry-header">
-    <h2>初识Golang【Go学习之旅】
-    </h2>
-  </header>
-  <section class="entry-content">
-    <p>初识Golang【Go学习之旅】 👨‍💻一时兴起打算简略的学习一下golang，目前非常热门，有着高效率、高性能、高并发的特性，引起了朕极大的兴趣。简略的记录下学习记录✍，以便今后查阅与回顾。学习资源来自b站尚硅谷韩老师的课程
-Go语言诞生小故事 核心开发团队 Ken Thompson(肯·汤普森)： 图灵奖和美国国家技术奖获得者。他与Dennis Ritchie是Unix的原创者。Thomspson也发明了后来衍生出C语言和B语言程序语言，同时也是C语言的主要发明人 Rob Pike(罗布·派克)：曾是贝尔实验室(Bell Labs)的Unix团队，和Plan 9操作系统计划的成员。他与Thompson，并共创出广泛使用的UTF-8字元编码。奥运会射箭银奖、天文学家。。。。太强了 Robert Griesemer：曾协助制造Java的HotSpot编译器，和Chrome浏览器的Javascript引擎V8 Google为什么创造Go语言 计算机硬件技术更新频繁，性能提示很快。目前主流的编程语言明显落后于硬件，不能合理利用多核多CPU的优势提升软件系统性能 软件系统复杂度越来越高，维护成本越来越高。目前缺乏一个足够简洁高效的编程语言【现有的编程语言：1.风格不统一 2.计算能力弱 3.处理大并发弱】 速度快的语言编译慢(C/C&#43;&#43;)，开发效率高的语言运行慢(Python)，同时还存在内存泄漏的一系列的困扰。 Go语言发展历史 2007年，谷歌工程师Rob Pike，Ken Thompson和Robert Griesemer开始设计一门全新的语言，这是Go语言的最初原型 2009年11月10日，Google将Go语言以开放源代码的方式向全球发布。 2015年8月19日，Go1.5版发布，本次更新中移除了“最后参与的C代码” 2017年2月17日，Go1.8发布 2017年8月24日，Go1.9发布 2018年2月16日 ，Go1.10发布 ….. 至今2021.12.11 Go最新1.17 Go语言特点 从C语言中继承了很多理念，包括表达式语法，控制结构，基础数据类型，调用参数传值，指针等等，也保留了和C语言一样的编译执行方式及弱化的指针
-引入包的概念，用于组织程序结构，Go语言的一个文件都要归属于一个包，而不能单独存在
-垃圾回收机制，内存自动回收，不需要开发人员管理
-天然并发
-从语言层面支持并发，实现简单 goroutine，轻量级线程，可实现大并发处理，高效利用多核。 基于CPS并发模型(Communicating Sequential Processes)实现 吸收了管道通信机制，形成Go语言特有的管道channel
-通过管道channel，可以实现不同的goroute之间的相互通信
-函数返回多个值
-func getSumAndSub(n1 int, n2 int)(int, int){ sum := n1&#43;n2 sub := n1 -n2 return sum, sub } 新的创意：切片(slice)、延时执行defer等
-GoLang执行流程分析 先编译在执行
-graph LR A[.go] --&gt;|go build| B[可执行文件] --&gt;|运行| C[结果] 直接执行...</p>
-  </section>
-  <footer class="entry-footer">2021-12-13&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Rex</footer>
-  <a class="entry-link" aria-label="post link to 初识Golang【Go学习之旅】" href="https://rex0520.github.io/posts/back/go/study/%E5%88%9D%E8%AF%86golang/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
