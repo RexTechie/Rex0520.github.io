@@ -161,28 +161,6 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2>Springioc与bean管理
-    </h2>
-  </header>
-  <section class="entry-content">
-    <p>Spring IoC与Bean管理 Spring快速入门 IoC控制反转 IoC控制反转，全称Inverse of Control，是一种设计理念，把对象创建和对象之间的调用过程，交给spring进行管理 由代理人来创建与管理对象，消费者通过代理人来获取对象 IoC的目的是降低对象之间直接耦合 加入IoC容器将对象统一管理，让对象关联变为弱耦合 DI依赖注入 IoC是设计理念，是现代程序设计遵循的标准，是宏观目标 DI(Dependency Injection)是具体技术实现，是微观实现 DI在Java中利用反射技术实现对象注入（Injection） Spring Spring的含义 Spring可从狭义与广义俩个角度看待 狭义的Spring是指Spring框架（Spring Framework） 广义的Spring是指Spring生态体系 狭义的Spring Spring框架是企业开发复杂性的一站式解决方案 Spring框架的核心是IoC容器与AOP面向切面变成 Spring IoC负责创建与管理系统对象，并在此基础上扩展功能 传统开发方式 对象直接引用导致对象硬性关联，程序难以扩展维护 Spring IoC IoC容器是Spring生态的地基用于统一创建与管理对象依赖 Spring IoC容器职责 对象的控制器交由第三方统一管理（IoC控制反转） 利用Java反射技术实现运行时对象创建与关联（DI依赖注入） 基于配置提高应用程序的可维护性与扩展性 IOC底层原理： xml解析、工厂模式、反射 IOC(接口) IOC思想基于IOC容器完成，IOC容器底层就是对象工厂
-Spring提供IOC容器实现两种方式：（两个接口）
-BeanFactory：IOC容器基本实现方式，是Spring内部的使用的接口，不提供给开发人员使用
-特点：
-​	加载配置文件时候不会创建对象，在获取对象（使用）才去创建对象
-ApplicationContext：BeanFactory接口的子接口，提供更多更强大的功能， 一般由开发人员进行使用
-特点：加载配置文件时候就会把配置文件对象进行创建
-ApplicationContext接口
-代码示例： 需要引入的依赖
-&lt;dependency&gt; &lt;groupId&gt;org.springframework&lt;/groupId&gt; &lt;artifactId&gt;spring-context&lt;/artifactId&gt; &lt;version&gt;5.3.1&lt;/version&gt; &lt;/dependency&gt; Apple.java
-package com.imooc.spring.ioc.entity; /** * @author CubeMonkey * @create 2020-11-27 23:57 */ public class Apple { private String title; private String color; private String origin; public Apple() { } public Apple(String title, String color, String origin) { this....</p>
-  </section>
-  <footer class="entry-footer">2021-01-04&nbsp;·&nbsp;4 min&nbsp;·&nbsp;Rex</footer>
-  <a class="entry-link" aria-label="post link to Springioc与bean管理" href="https://rex0520.github.io/posts/back/java/framework/spring/springioc%E4%B8%8Ebean%E7%AE%A1%E7%90%86/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
     <h2>Springtest与junit4整合
     </h2>
   </header>
@@ -229,6 +207,37 @@ package com.imooc.reflect.entity; /** * 员工实体类 * @author CubeMonkey * @
   </section>
   <footer class="entry-footer">2020-10-23&nbsp;·&nbsp;5 min&nbsp;·&nbsp;Rex</footer>
   <a class="entry-link" aria-label="post link to Reflect" href="https://rex0520.github.io/posts/back/java/reflect/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>Emos项目学习记录
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>Emos项目学习记录 学习点： 加密算法
+这里采用的是IBM开发的AES算法。这种对称加密算法在加密和解密数据的时候，使用相同的密钥。也就是说密钥既可以用来加密数据，也可以解密数据。关于AES算法的优点我这里不展开说明了，大家可以自己百度查阅资料。MySQL数据库提供了内置的DES加密和解密的函数，我们只需要调用即可。加密的函数叫做AES_ENCRPT()，解密的函数叫做AES_DECRPT()
+​	数据库：登录sql，若查询记录结果只有一条，可以加limit 1加快查询个数
+&lt;select id=&#34;login&#34; parameterType=&#34;com.example.emos.api.emos.model.form.LoginForm&#34; resultType=&#34;Integer&#34;&gt; SELECT id FROM tb_user WHERE username = #{username} AND password = HEX(AES_ENCRYPT(#{password}, #{username})) LIMIT 1; &lt;/select&gt; 数据库：数据库查询操作的返回值用封装类，防止结果为null值不能赋给一般数据类型；若是增删改返回结果肯定为数字且不为null，表示影响的记录个数，可以用一般数据类型
+数据库：要不要用MySQL方言？，可能会存在可移植性差
+后端：不能随意删除记录，需要查询有没有相关的引用
+数据库：写sql的时候需要注意状态字段(status)
+后端：分页查询的时候限制分页的start(1, &#43;∞)，size(10, 50)
+数据库：灵活使用数据库中的json字段
+后端工作流中采用了QuartZ定时器引起、Activeti引擎
+业务：审批会议前需注意：1.结束时间必须大于开始时间 2.会议开始时间不能早于当前时间
+前端：可用day.js转换日期格式
+数据库：数据类型的数据范围、
+日期格式： datetime: 8字节
+timestamp：4字节 表示范围有限：~2038年就满了
+甘特图：用于描述任务
+工作流：通过工作流来控制审批系统
+bug解决: 移除springdoc-openapi-spring-boot-2-webmvc依赖中的jackson-dataformat-xml，否则会使controller返回结果为xml格式
+重复新增用户的提示不友好
+会议室中，删除模块的bug</p>
+  </section>
+  <footer class="entry-footer">1 min&nbsp;·&nbsp;Rex</footer>
+  <a class="entry-link" aria-label="post link to Emos项目学习记录" href="https://rex0520.github.io/posts/proj/emos/emos%E9%A1%B9%E7%9B%AE%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
