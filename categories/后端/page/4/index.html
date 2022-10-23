@@ -146,6 +146,21 @@
 
 <article class="post-entry tag-entry"> 
   <header class="entry-header">
+    <h2>关于reentrantlock和condition
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>关于ReentrantLock和Condition ReentrantLock是Java中一种常见的“锁”，锁是什么？ 并发编程的时候，比如说有一个业务是读写操作，那多个线程执行这个业务就会造成已经写入的数据又写一遍，就会造成数据错乱。
+所以需要引入锁，进行数据同步，强制使得该业务执行的时候只有一个线程在执行，从而保证不会插入多条重复数据。
+一些共享资源也是需要加锁，从而保证数据的一致性。
+使用Condition实现线程等待和唤醒 通常在开发并发程序的时候，会碰到需要停止正在执行业务A，来执行另一个业务B，当业务B执行完成后业务A继续执行。ReentrantLock通过Condtion等待/唤醒这样的机制。</p>
+  </section>
+  <footer class="entry-footer">2021-06-08&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Rex</footer>
+  <a class="entry-link" aria-label="post link to 关于reentrantlock和condition" href="https://rex0520.github.io/posts/back/java/threadpool/%E5%85%B3%E4%BA%8Ereentrantlock%E5%92%8Ccondition/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
     <h2>守护线程
     </h2>
   </header>
@@ -225,24 +240,6 @@ package com.imooc.lambda; /** * @author CubeMonkey * @create 2020-10-23 17:42 */
   </section>
   <footer class="entry-footer">2021-03-09&nbsp;·&nbsp;4 min&nbsp;·&nbsp;Rex</footer>
   <a class="entry-link" aria-label="post link to Lambda(java)" href="https://rex0520.github.io/posts/back/java/lambda/"></a>
-</article>
-
-<article class="post-entry tag-entry"> 
-  <header class="entry-header">
-    <h2>Maven基础
-    </h2>
-  </header>
-  <section class="entry-content">
-    <p>Maven入门 Maven介绍 Maven是项目管理工具，对软件项目提供构建与依赖管理 Maven是Apache下的Java开源项目 Maven为Java项目提供了统一的管理方式，已成为业界标准 解决了的问题 工程的结构不统一 第三方jar包多的时候，不便于管理 工程打包的困难 Maven核心特性 项目设置遵循统一的规则，保证不同开发环境的兼容性 强大的依赖管理，项目依赖组件自动下载、自动更新 可扩展的插件机制，使用简单，功能丰富 Maven的坐标： GroupId：机构或者团队的英文，采用&#34;逆向域名&#34;形式书写 ArtifactId：项目名称，说明其用途，例如：cms(内容管理系统)，oa(办公自动化系统) Version：版本号，一般采用“版本&#43;单词”形式，例如：1.0.0.RELEASE Maven项目标准结构 目录 用途 ${basedir} 根目录，用于保存pom.xml ${basedir}/src/main/java Java源代码目录 ${basedir}/src/main/resources 资源目录，保存配置文件、静态图片等 ${basedir}/src/test/java 测试类的源代码 ${basedir}/src/test/resources 测试时需要使用的资源文件 ${basedir}/target 项目输出的目录，用于存储jar、war文件 ${basedir}/target/classes 字节码(.class)的编译输出目录 ${basedir}/pom.xml 项目(Project)对象(Object)模型(Model)文件 Maven的依赖管理 说明 Maven利用dependency(依赖)自动下载、管理第三方Jar 在pom.xml文件中配置项目依赖的第三方组件 maven自动将依赖从远程仓库下载至本地仓库，并在工程中引用 获取 apache：https://search.maven.org/
-阿里云：https://maven.aliyun.com/mvn/search
-本地仓库与中央仓库 使用代理：
-&lt;repositories&gt; &lt;repository&gt; &lt;!-- 创建私服的地址 --&gt; &lt;id&gt;aliyun&lt;/id&gt; &lt;name&gt;aliyun&lt;/name&gt; &lt;url&gt;https://maven.aliyun.com/repository/public&lt;/url&gt; &lt;/repository&gt; &lt;/repositories&gt; 普通项目的创建与打包案例（实现中文与拼音的转化） 创建&amp;使用： 新建一个Maven项目，默认的jdk是1.5，将jdk的版本调整为1.8
-配置第三方组件，使得maven自动从远程仓库中下载第三方jar包到本地仓库
-核心语句
-&lt;dependencies&gt; &lt;dependency&gt; &lt;groupId&gt;mysql&lt;/groupId&gt; &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt; &lt;version&gt;5.1.47&lt;/version&gt; &lt;/dependency&gt;	&lt;dependency&gt; &lt;groupId&gt;com.belerweb&lt;/groupId&gt; &lt;artifactId&gt;pinyin4j&lt;/artifactId&gt; &lt;version&gt;2....</p>
-  </section>
-  <footer class="entry-footer">2021-03-09&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Rex</footer>
-  <a class="entry-link" aria-label="post link to Maven基础" href="https://rex0520.github.io/posts/back/java/maven/maven%E5%9F%BA%E7%A1%80/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

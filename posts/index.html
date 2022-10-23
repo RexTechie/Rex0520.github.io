@@ -161,6 +161,20 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>SpringBoot配置启动
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>SpringBoot配置启动 背景 在实际开发的过程中，常常会有这样的需求，项目打包上线后需要更改一些配置，如果每次都需要重新在自己的电脑上打包后上线，这样的操作其实是非常繁琐的，所以需要有些自定义的配置文件，让项目以自定义的配置文件来启动项目。 之前自己在实际的开发中其实也遇到过这样的情况，项目是用在Windows server上的，需要对方来实时观测数据的准确性来调整配置数据，那时候因为只有这个小需求，也就没有写个web前端来做调整了，所以就想着用配置文件的方式，在这个过程中踩了很多坑，csdn也没有很全面的说明，这次进行了深入的学习，这边的配置是针对于springboot项目的
+关于Profile application-profile使用 指定配置环境application-{env}.yml，env是我们的环境，一般application-prod.yml为生产环境下运行、application-test.yml为测试环境下运行 激活指定环境 配置文件激活 在application.yml中配置spring.profiles.active来激活制定的{env}环境 命令行激活 java -jar xxx.jar –spring.profiles.active=prod – person.name=haha tips: 默认配置和环境变量同时生效 同名配置按优先级覆盖，优先级：命令行参数 &gt; 命令行指定的环境配置 &gt; 默认配置环境 SpringBoot中的@Profile注解 @Profile注解主要是用于条件装配，它的参数为制定的环境
+import lombok.extern.slf4j.Slf4j; import org.springframework.beans.factory.annotation.Autowired; import org.springframework.beans.factory.annotation.Value; import org.springframework.context.annotation.Bean; import org.springframework.context.annotation.Configuration; import org.springframework.context.annotation.Profile; import space.rexhub.boot05webadmin.bean.ConfigProperties; @Profile(&#34;prod&#34;) @Configuration @Slf4j public class ProdConfigure { @Value(&#34;${rexhub.username}&#34;) private String username; @Value(&#34;${rexhub.password}&#34;) private String password; @Bean public ConfigProperties configProperties(){ ConfigProperties configProperties = new ConfigProperties(); configProperties.setUsername(username); configProperties.setPassword(password); log.info(&#34;prod: &#34;&#43; configProperties); return configProperties; } } 如上述代码所示，当profile激活了prod时，才会把下面的配置加载到容器中，这种配置方式可以针对于不同的环境配置特定环境下特定的配置信息，不需要写在外边频繁修改的。...</p>
+  </section>
+  <footer class="entry-footer">2022-10-23&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Rex</footer>
+  <a class="entry-link" aria-label="post link to SpringBoot配置启动" href="https://rex0520.github.io/posts/back/java/framework/springboot/springboot%E9%85%8D%E7%BD%AE%E5%90%AF%E5%8A%A8/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>Druid数据库连接池
     </h2>
   </header>
@@ -220,18 +234,6 @@ package xyz.rexhub.xyz.bean; import lombok.Data; import lombok.ToString; import 
   </section>
   <footer class="entry-footer">2022-08-16&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Rex</footer>
   <a class="entry-link" aria-label="post link to SpringBoot学习（核心功能篇-配置功能）" href="https://rex0520.github.io/posts/back/java/framework/springboot/springboot%E5%AD%A6%E4%B9%A0%E6%A0%B8%E5%BF%83%E5%8A%9F%E8%83%BD%E7%AF%87-%E9%85%8D%E7%BD%AE%E5%8A%9F%E8%83%BD/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>启动项目脚本
-    </h2>
-  </header>
-  <section class="entry-content">
-    <p>启动项目脚本 #!/bin/sh if [ -z $1 ];then echo &#34;请输入可运行的jar名称&#34; exit 1 fi appName=$1 logFileName=runlog ## 检查jar包是否存在 if [ ! -f $appName ];then echo &#34;当前路径[`pwd`]不存在[$appName]&#34; #	echo &#34;$appName不存在&#34; exit 1 fi ## 如果原先已在运行，则先停止该进程 pid=`jps -l|grep $appName|awk &#39;{print $1}&#39;` if [ -n &#34;$pid&#34; ];then echo &#34;已存在进程[$pid]&#34; kill -9 $pid echo &#34;已停止进程[$pid]，重新启动应用&#34; fi ## 删除控制台日志文件 if [ -f &#34;$logFileName&#34; ];then rm -rf $logFileName fi ## 启动应用 nohup java -Xms128m -Xmx256m -jar $appName --spring.profiles.active=prod &gt; ....</p>
-  </section>
-  <footer class="entry-footer">2022-07-05&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Rex</footer>
-  <a class="entry-link" aria-label="post link to 启动项目脚本" href="https://rex0520.github.io/posts/linux/%E5%90%AF%E5%8A%A8%E9%A1%B9%E7%9B%AE%E8%84%9A%E6%9C%AC/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

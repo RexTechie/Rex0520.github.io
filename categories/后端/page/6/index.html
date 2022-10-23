@@ -146,6 +146,20 @@
 
 <article class="post-entry tag-entry"> 
   <header class="entry-header">
+    <h2>SpringMVC拦截器
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>SpringMVC拦截器 拦截器-Interceptor 拦截器(Interveptor)用于对URL请求进行前置/后置过滤 Interceptor与Filter用途相似，但实现方式不同 Interceptor底层就是基于Spring AOP面向切面编程实现 拦截器开发流程 Maven依赖servlet-api
+&lt;dependency&gt; &lt;groupId&gt;javax.servlet&lt;/groupId&gt; &lt;artifactId&gt;javax.servlet-api&lt;/artifactId&gt; &lt;version&gt;4.0.1&lt;/version&gt; &lt;scope&gt;provided&lt;/scope&gt; &lt;/dependency&gt; 实现HandlerInterceptor
+package com.imooc.restful.interceptor; import org.springframework.web.servlet.HandlerInterceptor; import org.springframework.web.servlet.ModelAndView; import javax.servlet.http.HttpServletRequest; import javax.servlet.http.HttpServletResponse; /** * @author Rex * @create 2021-01-12 17:55 */ public class MyInterceptor implements HandlerInterceptor { @Override public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception { System.out.println(request.getRequestURL()&#43;&#34;-准备执行&#34;); return true; } @Override public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception { System....</p>
+  </section>
+  <footer class="entry-footer">2021-03-09&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Rex</footer>
+  <a class="entry-link" aria-label="post link to SpringMVC拦截器" href="https://rex0520.github.io/posts/back/java/framework/springmvc/springmvc%E6%8B%A6%E6%88%AA%E5%99%A8/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
     <h2>Springjdbc
     </h2>
   </header>
@@ -204,18 +218,6 @@ package com.imooc.spring.ioc.entity; /** * @author CubeMonkey * @create 2020-11-
   </section>
   <footer class="entry-footer">2021-01-04&nbsp;·&nbsp;4 min&nbsp;·&nbsp;Rex</footer>
   <a class="entry-link" aria-label="post link to Springioc与bean管理" href="https://rex0520.github.io/posts/back/java/framework/spring/springioc%E4%B8%8Ebean%E7%AE%A1%E7%90%86/"></a>
-</article>
-
-<article class="post-entry tag-entry"> 
-  <header class="entry-header">
-    <h2>Springtest与junit4整合
-    </h2>
-  </header>
-  <section class="entry-content">
-    <p>Spring Test与JUnit4整合 Spring Test测试模块 Spring Test是Spring中用于测试的模块 Sprint Test对JUnit单元测试框架有良好的整合 通过Spring Test可在JUnit在单元测试时自动初始化IoC容器 Spring与JUnit4整合过程 Maven工程依赖spring-test 利用@RunWith与@ContextConfiguration描述测试用例类 测试用例类从容器获取对象完成测试用例的执行 </p>
-  </section>
-  <footer class="entry-footer">2021-01-03&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Rex</footer>
-  <a class="entry-link" aria-label="post link to Springtest与junit4整合" href="https://rex0520.github.io/posts/back/java/framework/spring/springtest%E4%B8%8Ejunit4%E6%95%B4%E5%90%88/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

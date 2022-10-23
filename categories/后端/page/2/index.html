@@ -146,6 +146,22 @@
 
 <article class="post-entry tag-entry"> 
   <header class="entry-header">
+    <h2>Zookeeper
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>Zookeeper 定义： Zookeeper：A Distributed Coordination Service for Distributed Applications(
+Zookeeper是开源的高性能的分布式应用协调系统，一个高性能的分布式数据一致性解决方案
+5大特点 顺序一致性：发出去的顺序==执行的顺序 原子性：请求同步到各个节点要么都成果要么都失败 单一视图：多个节点无论连哪个看的东西都是一致的 可靠性：给节点写了数据，这个数据会一直保留，直到有另外的操作把数据写掉，才会发生变化 及时性：在一定的时间段（可接受的时间段）内能从服务器上读到最新的数据状态 架构图、集群、工作过程 Zookeeper和CAP的关系 CP：一致性&#43;分区容错性 能得到一致的数据结果，同时系统对网络具备容错性 但是它不能保证每次服务请求的可用性 作用 分布式服务注册与订阅 统一配置文件 生成分布式唯一ID Master节点选举 分布式锁 节点znode 模型-树结构 节点性质 树形结构，也可以理解为linux的文件目录 每一个节点都是znode，里面可以包含数据，也可以有子节点 点分为永久节点和临时节点(session失效，也就是客户端段凯后，临时节点消失) 每个znode都有版本号，每当数据变化，版本号会累加（乐观锁） 删除或修改节点，版本号不匹配的话（版本号已过时），会报错 每个节点存储的数据不宜过大，几k即可 节点可以设置权限，来限制用户的访问 Zookeeper保证读和写都是原子操作，且每次读写操作都是对数据的完整读取或完整写入 节点类型 持久节点 临时节点 顺序节点 节点属性 dataVersion 数据版本号，每次对内容修改dataVersion&#43;1 cversion 子节点版本号，如果子节点内容发送变化cversion&#43;1 aclVersion acl-权限控制列表，权限发生变化的时候aclVersion&#43;1 常用命令 查看节点ls 查看节点的数据和状态get 创建(create [-s 顺序节点] [-e 临时节点])、修改(set)、删除(delete)节点 Watcher机制 触发器、监督者
+事件类型
+EventType 触发条件 NodeCreated（节点创建） Watcher监听的对应数据节点被创建 NodeDeleted（节点删除） Watcher监听的对应数据节点被删除 NodeDataChanged（节点数据修改） Watcher监听的对应数据节点的数据内容发送变更 NodeChildrenChanged（子节点变更） Watcher监听的对应数据节点的子节点列表发送变更 ACL access control list 权限控制 它使用权限位来允许/禁止对节点极其所用域的各种操作 ACL仅与特点的znode有关，与子节点无关 Schema ACL:[schema采用的权限机制: id用户:permissions权限组合字符串] world id: anyone auth 需要设定对应的用户和密码（明文） digest 同auth，不同的是加密使用密文 ip 指定ip super 超级权限 权限字符串crdwa Created 创建子节点的权限 Read 读 Delete 删除子节点的权限 Write 写 Admin 最高权限 使用权限 区分开发/测试/运维环境，防止误操作 可以针对不同IP而产生具体的配置，更安全 代码 java原生 导入依赖...</p>
+  </section>
+  <footer class="entry-footer">2021-08-21&nbsp;·&nbsp;4 min&nbsp;·&nbsp;Rex</footer>
+  <a class="entry-link" aria-label="post link to Zookeeper" href="https://rex0520.github.io/posts/back/java/microservices/zookeeper/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
     <h2>Dubbo基础
     </h2>
   </header>
@@ -219,21 +235,6 @@ nginx.conf
   </section>
   <footer class="entry-footer">2021-06-22&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Rex</footer>
   <a class="entry-link" aria-label="post link to 微服务" href="https://rex0520.github.io/posts/back/java/microservices/%E5%BE%AE%E6%9C%8D%E5%8A%A1/"></a>
-</article>
-
-<article class="post-entry tag-entry"> 
-  <header class="entry-header">
-    <h2>Rabbitmq使用
-    </h2>
-  </header>
-  <section class="entry-content">
-    <p>RabbitMQ RabbitMQ简介 核心思想 接受并转发消息。
-producer: P queue: queue_name Consumer: C 消息队列： 业务无关 FIFO 容灾 性能 特点： 开源、跨语言 Erlang语言编写 应用广泛 社区活跃、API丰富 AMBQ协议 Advanced Message Queue Protocol RabbitMQ核心概念 Server：服务 connection：与Server建立连接 channel：信道，几乎所有的操作都在信道上进行，客户端可以建立多个信道 message：消息，有properties和body组成 virtual host：虚拟主机，顶层隔离。同一个虚拟主机下，不能有重复的交换机和queue Exchange：交换机，接收生产者的消息的，然后根据指定的路由器去把消息转发到锁绑定的队列上 binding：绑定交换机和队列 routing key：路由键，路由规则，虚拟机可以用它来确定这个消息如何进行一个路由 queue：队列，消费者只需要监听队列来消费信息，不需要关注消息来自于哪个Exchange Exchange和Message Queue存在着绑定的关系，一个Exchange可以绑定多个消息队列 消息流转过程 RabbitMQ常用命令 systemctl start rabbitmq-server # 启动rabbitmq rabbitmqctl status # 查看状态 RabbitMQ后台管理 http://1.117.91.88:15672/#/connections rabbitmq management
-RabbitMQ应用 第一个java应用 Hello world 导入依赖
-&lt;dependency&gt; &lt;groupId&gt;com.rabbitmq&lt;/groupId&gt; &lt;artifactId&gt;amqp-client&lt;/artifactId&gt; &lt;version&gt;5.8.0&lt;/version&gt; &lt;/dependency&gt; &lt;dependency&gt; &lt;groupId&gt;org.slf4j&lt;/groupId&gt; &lt;artifactId&gt;slf4j-nop&lt;/artifactId&gt; &lt;version&gt;1.7.29&lt;/version&gt; &lt;/dependency&gt; Send.java...</p>
-  </section>
-  <footer class="entry-footer">2021-06-21&nbsp;·&nbsp;11 min&nbsp;·&nbsp;Rex</footer>
-  <a class="entry-link" aria-label="post link to Rabbitmq使用" href="https://rex0520.github.io/posts/back/java/microservices/rabbitmq/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
