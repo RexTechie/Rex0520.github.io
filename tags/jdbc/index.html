@@ -9,18 +9,18 @@
 <meta name="keywords" content="" />
 <meta name="description" content="Rex的个人博客">
 <meta name="author" content="Rex">
-<link rel="canonical" href="https://rex0520.github.io/tags/jdbc/" />
+<link rel="canonical" href="https://rexhub.space/tags/jdbc/" />
 <link crossorigin="anonymous" href="/assets/css/stylesheet.min.css" rel="preload stylesheet" as="style">
-<link rel="preload" href="http://cdn.rexhub.xyz/img/20210821105340.png" as="image">
-<link rel="icon" href="https://rex0520.github.io/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://rex0520.github.io/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://rex0520.github.io/favicon-32x32.png">
-<link rel="apple-touch-icon" href="https://rex0520.github.io/apple-touch-icon.png">
-<link rel="mask-icon" href="https://rex0520.github.io/%3Clink%20/%20abs%20url%3E">
+<link rel="preload" href="https://rexhub-1301356141.cos.ap-shanghai.myqcloud.com/profile/blog-icon.png" as="image">
+<link rel="icon" href="https://rexhub.space/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://rexhub.space/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://rexhub.space/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://rexhub.space/apple-touch-icon.png">
+<link rel="mask-icon" href="https://rexhub.space/%3Clink%20/%20abs%20url%3E">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
 <meta name="generator" content="Hugo 0.100.2" />
-<link rel="alternate" type="application/rss+xml" href="https://rex0520.github.io/tags/jdbc/index.xml">
+<link rel="alternate" type="application/rss+xml" href="https://rexhub.space/tags/jdbc/index.xml">
 <noscript>
     <style>
         #theme-toggle,
@@ -60,7 +60,7 @@
 </noscript><meta property="og:title" content="JDBC" />
 <meta property="og:description" content="Rex的个人博客" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://rex0520.github.io/tags/jdbc/" /><meta property="og:image" content="https://cdn.rexhub.xyz/img/20210820141535.jpg"/><meta property="og:site_name" content="RexHub" />
+<meta property="og:url" content="https://rexhub.space/tags/jdbc/" /><meta property="og:image" content="https://cdn.rexhub.xyz/img/20210820141535.jpg"/><meta property="og:site_name" content="RexHub" />
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://cdn.rexhub.xyz/img/20210820141535.jpg"/>
@@ -85,8 +85,8 @@
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="https://rex0520.github.io/" accesskey="h" title="Home (Alt + H)">
-                <img src="http://cdn.rexhub.xyz/img/20210821105340.png" alt="logo" aria-label="logo"
+            <a href="https://rexhub.space/" accesskey="h" title="Home (Alt + H)">
+                <img src="https://rexhub-1301356141.cos.ap-shanghai.myqcloud.com/profile/blog-icon.png" alt="logo" aria-label="logo"
                     height="35">Home</a>
             <span class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)">
@@ -113,34 +113,34 @@
         </div>
         <ul id="menu">
             <li>
-                <a href="https://rex0520.github.io/posts/" title="文章">
+                <a href="https://rexhub.space/posts/" title="文章">
                     <span>文章</span>
                 </a>
             </li>
             <li>
-                <a href="https://rex0520.github.io/categories/" title="分类">
+                <a href="https://rexhub.space/categories/" title="分类">
                     <span>分类</span>
                 </a>
             </li>
             <li>
-                <a href="https://rex0520.github.io/tags/" title="标签">
+                <a href="https://rexhub.space/tags/" title="标签">
                     <span>标签</span>
                 </a>
             </li>
             <li>
-                <a href="https://rex0520.github.io/archives/" title="时间轴">
+                <a href="https://rexhub.space/archives/" title="时间轴">
                     <span>时间轴</span>
                 </a>
             </li>
             <li>
-                <a href="https://rex0520.github.io/search/" title="搜索 (Alt &#43; /)" accesskey=/>
+                <a href="https://rexhub.space/search/" title="搜索 (Alt &#43; /)" accesskey=/>
                     <span>搜索</span>
                 </a>
             </li>
         </ul>
     </nav>
 </header><main class="main"> 
-<header class="page-header"><div class="breadcrumbs"><a href="https://rex0520.github.io/">Home</a>&nbsp;»&nbsp;<a href="https://rex0520.github.io/tags/">Tags</a></div>
+<header class="page-header"><div class="breadcrumbs"><a href="https://rexhub.space/">Home</a>&nbsp;»&nbsp;<a href="https://rexhub.space/tags/">Tags</a></div>
   <h1>JDBC</h1>
 </header>
 
@@ -155,7 +155,7 @@
 集成SpringBoot 配置Maven，引入druid &lt;dependency&gt; &lt;groupId&gt;com.alibaba&lt;/groupId&gt; &lt;artifactId&gt;druid-spring-boot-starter&lt;/artifactId&gt; &lt;version&gt;1.1.13&lt;/version&gt; &lt;/dependency&gt; 在里面的DruidDataSourceAutoConfigure文件已经对druid做了大量配置，按照官方还需要写配置类来配置druid一些连接信息（数据库连接信息、监控配置等等），而这边大部分的配置只需要写在application.yml/application.properties里就好了，剩下的就让DruidDataSourceAutoConfigure来将这些配置绑定在druid上就好。所以接下来的一步也非常的简单，就是写配置文件 编写配置信息 spring: datasource: url: jdbc:mysql://localhost:3306/proj_template?serverTimezone=Asia/Shanghai&amp;useUnicode=true&amp;charsetEncoding=utf-8&amp;useSSL=true&amp;allowPublicKeyRetrieval=true username: root password: root driver-class-name: com.mysql.cj.jdbc.Driver druid: filter: slf4j: enabled: true # 开启日志功能 wall: enabled: true # 开启防火墙功能 stat: enabled: true # 开启sql监控功能 slow-sql-millis: 1000 # 配置SQL慢的标准 log-slow-sql: true # 是否开启记录执行慢的sql stat-view-servlet: enabled: true # 开启监控页功能 login-username: rex # 监控页登录账号 login-password: pwdofrex # 监控页登录密码 reset-enable: false # 配置是否允许重置监控信息 web-stat-filter: enabled: true # 开启web监控 exclusions: &#34;*....</p>
   </section>
   <footer class="entry-footer">2022-10-07&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Rex</footer>
-  <a class="entry-link" aria-label="post link to Druid数据库连接池" href="https://rex0520.github.io/posts/back/java/jdbctool/druid%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E6%B1%A0/"></a>
+  <a class="entry-link" aria-label="post link to Druid数据库连接池" href="https://rexhub.space/posts/back/java/jdbctool/druid%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E6%B1%A0/"></a>
 </article>
 
 <article class="post-entry tag-entry"> 
@@ -176,7 +176,7 @@ validate：每次加载hibernate时，验证创建数据库表结构，只会和
 keyword sample jpaql snippet And findByLastnameAndFirstname …where x....</p>
   </section>
   <footer class="entry-footer">2021-03-22&nbsp;·&nbsp;4 min&nbsp;·&nbsp;Rex</footer>
-  <a class="entry-link" aria-label="post link to JPA学习" href="https://rex0520.github.io/posts/back/java/jdbctool/jpa%D1%A7%CF%B0/"></a>
+  <a class="entry-link" aria-label="post link to JPA学习" href="https://rexhub.space/posts/back/java/jdbctool/jpa%D1%A7%CF%B0/"></a>
 </article>
 
 <article class="post-entry tag-entry"> 
@@ -188,7 +188,7 @@ keyword sample jpaql snippet And findByLastnameAndFirstname …where x....</p>
     <p>MyBatis基础入门 软件开发中的框架 框架是可被应用开发者定制的应用骨架 框架是一种规则，保证开发者遵循相同的方式开发程序 框架提倡“不要重复造轮子”，对基础功能进行封装 框架的优点 极大提高了开发效率 统一的编码规则，有利于团队管理 灵活配置的应用，拥有更好的维护性 SSM开发框架 S -&gt; Spring S -&gt; Spring MVC M -&gt; MyBatis 什么是MyBatis MyBatis是优秀的持久层框架 MyBatis使用XML将SQL与程序解耦，便于维护 MyBatis学习简单，执行高效，是JDBC的延展 MyBatis开发流程 引入MyBatis依赖 创建核心配置文件 创建实体(Entity)类 创建Mapper映射文件 初始化SessionFactory 利用SqlSession对象操作数据 MyBatis环境配置 mybatis-config.xml说明 MyBatis采用XML格式配置数据库环境信息 MyBatis环境配置标签 environment包含数据库驱动、URL、用户名于密码 mybatis-config.xml示例： &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34; ?&gt; &lt;!DOCTYPE configuration PUBLIC &#34;-//mybatis.org//DTD Config 3.0//EN&#34; &#34;http://mybatis.org/dtd/mybatis-3-config.dtd&#34;&gt; &lt;configuration&gt; &lt;environments default=&#34;dev&#34;&gt; &lt;!--根据环境，不同的环境不同的id，dev-&gt;开发环境 prd-&gt;生产环境 --&gt; &lt;environment id=&#34;dev&#34;&gt; &lt;!--采用JDBC方式对数据库事务进行commit/rollback--&gt; &lt;transactionManager type=&#34;JDBC&#34;&gt;&lt;/transactionManager&gt; &lt;!--数据连接方式管理数据库连接--&gt; &lt;dataSource type=&#34;POOLED&#34;&gt; &lt;property name=&#34;driver&#34; value=&#34;com.mysql.cj.jdbc.Driver&#34;/&gt; &lt;property name=&#34;url&#34; value=&#34;jdbc:mysql://localhost:3306/babytun?useUnicode=true&amp;amp;characterEncoding=UTF-8&#34;/&gt; &lt;property name=&#34;username&#34; value=&#34;root&#34;/&gt; &lt;property name=&#34;password&#34; value=&#34;root&#34;/&gt; &lt;/dataSource&gt; &lt;/environment&gt; &lt;environment id=&#34;prd&#34;&gt; &lt;!...</p>
   </section>
   <footer class="entry-footer">2021-03-09&nbsp;·&nbsp;8 min&nbsp;·&nbsp;Rex</footer>
-  <a class="entry-link" aria-label="post link to Mybatis基础" href="https://rex0520.github.io/posts/back/java/jdbctool/mybatis%E5%9F%BA%E7%A1%80/"></a>
+  <a class="entry-link" aria-label="post link to Mybatis基础" href="https://rexhub.space/posts/back/java/jdbctool/mybatis%E5%9F%BA%E7%A1%80/"></a>
 </article>
 
 <article class="post-entry tag-entry"> 
@@ -203,12 +203,12 @@ keyword sample jpaql snippet And findByLastnameAndFirstname …where x....</p>
 &lt;select id=&#34;dynamicSelect&#34; parameterType=&#34;java.util.Map&#34; resultType=&#34;com.imooc.mybatis.entity.Goods&#34;&gt; select * from t_goods &lt;where&gt; &lt;if test=&#34;categoryId != null&#34;&gt; and category_id = #{categoryId} &lt;/if&gt; &lt;if test=&#34;currentPrice !...</p>
   </section>
   <footer class="entry-footer">2021-03-09&nbsp;·&nbsp;7 min&nbsp;·&nbsp;Rex</footer>
-  <a class="entry-link" aria-label="post link to Mybatis进阶" href="https://rex0520.github.io/posts/back/java/jdbctool/mybatis%E8%BF%9B%E9%98%B6/"></a>
+  <a class="entry-link" aria-label="post link to Mybatis进阶" href="https://rexhub.space/posts/back/java/jdbctool/mybatis%E8%BF%9B%E9%98%B6/"></a>
 </article>
     </main>
     
 <footer class="footer">
-  <span>&copy; 2022 <a href="https://rex0520.github.io/">Rex中心站</a></span>
+  <span>&copy; 2022 <a href="https://rexhub.space/">Rex中心站</a></span>
   <span>
     Powered by
     <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &

@@ -2,245 +2,245 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Tags on Rex中心站</title>
-    <link>https://rex0520.github.io/tags/</link>
+    <link>https://rexhub.space/tags/</link>
     <description>Recent content in Tags on Rex中心站</description>
     <image>
       <url>https://cdn.rexhub.xyz/img/20210820141535.jpg</url>
       <link>https://cdn.rexhub.xyz/img/20210820141535.jpg</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sun, 23 Oct 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://rex0520.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 23 Oct 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://rexhub.space/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>SpringBoot</title>
-      <link>https://rex0520.github.io/tags/springboot/</link>
+      <link>https://rexhub.space/tags/springboot/</link>
       <pubDate>Sun, 23 Oct 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://rex0520.github.io/tags/springboot/</guid>
+      <guid>https://rexhub.space/tags/springboot/</guid>
       <description></description>
     </item>
     
     <item>
       <title>JDBC</title>
-      <link>https://rex0520.github.io/tags/jdbc/</link>
+      <link>https://rexhub.space/tags/jdbc/</link>
       <pubDate>Fri, 07 Oct 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://rex0520.github.io/tags/jdbc/</guid>
+      <guid>https://rexhub.space/tags/jdbc/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Java</title>
-      <link>https://rex0520.github.io/tags/java/</link>
+      <link>https://rexhub.space/tags/java/</link>
       <pubDate>Tue, 05 Jul 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://rex0520.github.io/tags/java/</guid>
+      <guid>https://rexhub.space/tags/java/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Linux</title>
-      <link>https://rex0520.github.io/tags/linux/</link>
+      <link>https://rexhub.space/tags/linux/</link>
       <pubDate>Tue, 05 Jul 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://rex0520.github.io/tags/linux/</guid>
+      <guid>https://rexhub.space/tags/linux/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Git</title>
-      <link>https://rex0520.github.io/tags/git/</link>
+      <link>https://rexhub.space/tags/git/</link>
       <pubDate>Wed, 29 Jun 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://rex0520.github.io/tags/git/</guid>
+      <guid>https://rexhub.space/tags/git/</guid>
       <description></description>
     </item>
     
     <item>
       <title>文档</title>
-      <link>https://rex0520.github.io/tags/%E6%96%87%E6%A1%A3/</link>
+      <link>https://rexhub.space/tags/%E6%96%87%E6%A1%A3/</link>
       <pubDate>Thu, 24 Mar 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://rex0520.github.io/tags/%E6%96%87%E6%A1%A3/</guid>
+      <guid>https://rexhub.space/tags/%E6%96%87%E6%A1%A3/</guid>
       <description></description>
     </item>
     
     <item>
       <title>工具</title>
-      <link>https://rex0520.github.io/tags/%E5%B7%A5%E5%85%B7/</link>
+      <link>https://rexhub.space/tags/%E5%B7%A5%E5%85%B7/</link>
       <pubDate>Wed, 19 Jan 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://rex0520.github.io/tags/%E5%B7%A5%E5%85%B7/</guid>
+      <guid>https://rexhub.space/tags/%E5%B7%A5%E5%85%B7/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Go</title>
-      <link>https://rex0520.github.io/tags/go/</link>
+      <link>https://rexhub.space/tags/go/</link>
       <pubDate>Fri, 24 Dec 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://rex0520.github.io/tags/go/</guid>
+      <guid>https://rexhub.space/tags/go/</guid>
       <description></description>
     </item>
     
     <item>
       <title>支付</title>
-      <link>https://rex0520.github.io/tags/%E6%94%AF%E4%BB%98/</link>
+      <link>https://rexhub.space/tags/%E6%94%AF%E4%BB%98/</link>
       <pubDate>Fri, 15 Oct 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://rex0520.github.io/tags/%E6%94%AF%E4%BB%98/</guid>
+      <guid>https://rexhub.space/tags/%E6%94%AF%E4%BB%98/</guid>
       <description></description>
     </item>
     
     <item>
       <title>trtc</title>
-      <link>https://rex0520.github.io/tags/trtc/</link>
+      <link>https://rexhub.space/tags/trtc/</link>
       <pubDate>Tue, 12 Oct 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://rex0520.github.io/tags/trtc/</guid>
+      <guid>https://rexhub.space/tags/trtc/</guid>
       <description></description>
     </item>
     
     <item>
       <title>音视频</title>
-      <link>https://rex0520.github.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/</link>
+      <link>https://rexhub.space/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/</link>
       <pubDate>Tue, 12 Oct 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://rex0520.github.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/</guid>
+      <guid>https://rexhub.space/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/</guid>
       <description></description>
     </item>
     
     <item>
       <title>微服务</title>
-      <link>https://rex0520.github.io/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/</link>
+      <link>https://rexhub.space/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/</link>
       <pubDate>Sat, 21 Aug 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://rex0520.github.io/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/</guid>
+      <guid>https://rexhub.space/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/</guid>
       <description></description>
     </item>
     
     <item>
       <title>NoSQL</title>
-      <link>https://rex0520.github.io/tags/nosql/</link>
+      <link>https://rexhub.space/tags/nosql/</link>
       <pubDate>Fri, 09 Jul 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://rex0520.github.io/tags/nosql/</guid>
+      <guid>https://rexhub.space/tags/nosql/</guid>
       <description></description>
     </item>
     
     <item>
       <title>CSS</title>
-      <link>https://rex0520.github.io/tags/css/</link>
+      <link>https://rexhub.space/tags/css/</link>
       <pubDate>Fri, 18 Jun 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://rex0520.github.io/tags/css/</guid>
+      <guid>https://rexhub.space/tags/css/</guid>
       <description></description>
     </item>
     
     <item>
       <title>线程池</title>
-      <link>https://rex0520.github.io/tags/%E7%BA%BF%E7%A8%8B%E6%B1%A0/</link>
+      <link>https://rexhub.space/tags/%E7%BA%BF%E7%A8%8B%E6%B1%A0/</link>
       <pubDate>Tue, 08 Jun 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://rex0520.github.io/tags/%E7%BA%BF%E7%A8%8B%E6%B1%A0/</guid>
+      <guid>https://rexhub.space/tags/%E7%BA%BF%E7%A8%8B%E6%B1%A0/</guid>
       <description></description>
     </item>
     
     <item>
       <title>HTML</title>
-      <link>https://rex0520.github.io/tags/html/</link>
+      <link>https://rexhub.space/tags/html/</link>
       <pubDate>Fri, 14 May 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://rex0520.github.io/tags/html/</guid>
+      <guid>https://rexhub.space/tags/html/</guid>
       <description></description>
     </item>
     
     <item>
       <title>HTML5</title>
-      <link>https://rex0520.github.io/tags/html5/</link>
+      <link>https://rexhub.space/tags/html5/</link>
       <pubDate>Wed, 12 May 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://rex0520.github.io/tags/html5/</guid>
+      <guid>https://rexhub.space/tags/html5/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Vue</title>
-      <link>https://rex0520.github.io/tags/vue/</link>
+      <link>https://rexhub.space/tags/vue/</link>
       <pubDate>Thu, 25 Mar 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://rex0520.github.io/tags/vue/</guid>
+      <guid>https://rexhub.space/tags/vue/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Build Tool</title>
+      <link>https://rexhub.space/tags/build-tool/</link>
+      <pubDate>Tue, 09 Mar 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rexhub.space/tags/build-tool/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Lambda</title>
-      <link>https://rex0520.github.io/tags/lambda/</link>
+      <link>https://rexhub.space/tags/lambda/</link>
       <pubDate>Tue, 09 Mar 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://rex0520.github.io/tags/lambda/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Maven</title>
-      <link>https://rex0520.github.io/tags/maven/</link>
-      <pubDate>Tue, 09 Mar 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://rex0520.github.io/tags/maven/</guid>
+      <guid>https://rexhub.space/tags/lambda/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Restful</title>
-      <link>https://rex0520.github.io/tags/restful/</link>
+      <link>https://rexhub.space/tags/restful/</link>
       <pubDate>Tue, 09 Mar 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://rex0520.github.io/tags/restful/</guid>
+      <guid>https://rexhub.space/tags/restful/</guid>
       <description></description>
     </item>
     
     <item>
       <title>SpringMVC</title>
-      <link>https://rex0520.github.io/tags/springmvc/</link>
+      <link>https://rexhub.space/tags/springmvc/</link>
       <pubDate>Tue, 09 Mar 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://rex0520.github.io/tags/springmvc/</guid>
+      <guid>https://rexhub.space/tags/springmvc/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Spring</title>
-      <link>https://rex0520.github.io/tags/spring/</link>
+      <link>https://rexhub.space/tags/spring/</link>
       <pubDate>Wed, 06 Jan 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://rex0520.github.io/tags/spring/</guid>
+      <guid>https://rexhub.space/tags/spring/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Reflect</title>
-      <link>https://rex0520.github.io/tags/reflect/</link>
+      <link>https://rexhub.space/tags/reflect/</link>
       <pubDate>Fri, 23 Oct 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://rex0520.github.io/tags/reflect/</guid>
+      <guid>https://rexhub.space/tags/reflect/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Spring Boot</title>
-      <link>https://rex0520.github.io/tags/spring-boot/</link>
+      <link>https://rexhub.space/tags/spring-boot/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://rex0520.github.io/tags/spring-boot/</guid>
+      <guid>https://rexhub.space/tags/spring-boot/</guid>
       <description></description>
     </item>
     
     <item>
       <title>项目</title>
-      <link>https://rex0520.github.io/tags/%E9%A1%B9%E7%9B%AE/</link>
+      <link>https://rexhub.space/tags/%E9%A1%B9%E7%9B%AE/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://rex0520.github.io/tags/%E9%A1%B9%E7%9B%AE/</guid>
+      <guid>https://rexhub.space/tags/%E9%A1%B9%E7%9B%AE/</guid>
       <description></description>
     </item>
     

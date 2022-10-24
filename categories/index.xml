@@ -2,101 +2,101 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Categories on Rex中心站</title>
-    <link>https://rex0520.github.io/categories/</link>
+    <link>https://rexhub.space/categories/</link>
     <description>Recent content in Categories on Rex中心站</description>
     <image>
       <url>https://cdn.rexhub.xyz/img/20210820141535.jpg</url>
       <link>https://cdn.rexhub.xyz/img/20210820141535.jpg</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sun, 23 Oct 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://rex0520.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 23 Oct 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://rexhub.space/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>后端</title>
-      <link>https://rex0520.github.io/categories/%E5%90%8E%E7%AB%AF/</link>
+      <link>https://rexhub.space/categories/%E5%90%8E%E7%AB%AF/</link>
       <pubDate>Sun, 23 Oct 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://rex0520.github.io/categories/%E5%90%8E%E7%AB%AF/</guid>
+      <guid>https://rexhub.space/categories/%E5%90%8E%E7%AB%AF/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Linux</title>
-      <link>https://rex0520.github.io/categories/linux/</link>
+      <link>https://rexhub.space/categories/linux/</link>
       <pubDate>Tue, 05 Jul 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://rex0520.github.io/categories/linux/</guid>
+      <guid>https://rexhub.space/categories/linux/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Git</title>
-      <link>https://rex0520.github.io/categories/git/</link>
+      <link>https://rexhub.space/categories/git/</link>
       <pubDate>Wed, 29 Jun 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://rex0520.github.io/categories/git/</guid>
+      <guid>https://rexhub.space/categories/git/</guid>
       <description></description>
     </item>
     
     <item>
       <title>文档</title>
-      <link>https://rex0520.github.io/categories/%E6%96%87%E6%A1%A3/</link>
+      <link>https://rexhub.space/categories/%E6%96%87%E6%A1%A3/</link>
       <pubDate>Thu, 24 Mar 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://rex0520.github.io/categories/%E6%96%87%E6%A1%A3/</guid>
+      <guid>https://rexhub.space/categories/%E6%96%87%E6%A1%A3/</guid>
       <description></description>
     </item>
     
     <item>
       <title>工具</title>
-      <link>https://rex0520.github.io/categories/%E5%B7%A5%E5%85%B7/</link>
+      <link>https://rexhub.space/categories/%E5%B7%A5%E5%85%B7/</link>
       <pubDate>Wed, 19 Jan 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://rex0520.github.io/categories/%E5%B7%A5%E5%85%B7/</guid>
+      <guid>https://rexhub.space/categories/%E5%B7%A5%E5%85%B7/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Go</title>
-      <link>https://rex0520.github.io/categories/go/</link>
+      <link>https://rexhub.space/categories/go/</link>
       <pubDate>Fri, 24 Dec 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://rex0520.github.io/categories/go/</guid>
+      <guid>https://rexhub.space/categories/go/</guid>
       <description></description>
     </item>
     
     <item>
       <title>接口</title>
-      <link>https://rex0520.github.io/categories/%E6%8E%A5%E5%8F%A3/</link>
+      <link>https://rexhub.space/categories/%E6%8E%A5%E5%8F%A3/</link>
       <pubDate>Fri, 15 Oct 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://rex0520.github.io/categories/%E6%8E%A5%E5%8F%A3/</guid>
+      <guid>https://rexhub.space/categories/%E6%8E%A5%E5%8F%A3/</guid>
       <description></description>
     </item>
     
     <item>
       <title>前端</title>
-      <link>https://rex0520.github.io/categories/%E5%89%8D%E7%AB%AF/</link>
+      <link>https://rexhub.space/categories/%E5%89%8D%E7%AB%AF/</link>
       <pubDate>Mon, 11 Oct 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://rex0520.github.io/categories/%E5%89%8D%E7%AB%AF/</guid>
+      <guid>https://rexhub.space/categories/%E5%89%8D%E7%AB%AF/</guid>
       <description></description>
     </item>
     
     <item>
       <title>数据库</title>
-      <link>https://rex0520.github.io/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/</link>
+      <link>https://rexhub.space/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/</link>
       <pubDate>Fri, 09 Jul 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://rex0520.github.io/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/</guid>
+      <guid>https://rexhub.space/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/</guid>
       <description></description>
     </item>
     
     <item>
       <title>项目</title>
-      <link>https://rex0520.github.io/categories/%E9%A1%B9%E7%9B%AE/</link>
+      <link>https://rexhub.space/categories/%E9%A1%B9%E7%9B%AE/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://rex0520.github.io/categories/%E9%A1%B9%E7%9B%AE/</guid>
+      <guid>https://rexhub.space/categories/%E9%A1%B9%E7%9B%AE/</guid>
       <description></description>
     </item>
     

@@ -2,83 +2,83 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>前端 on Rex中心站</title>
-    <link>https://rex0520.github.io/categories/%E5%89%8D%E7%AB%AF/</link>
+    <link>https://rexhub.space/categories/%E5%89%8D%E7%AB%AF/</link>
     <description>Recent content in 前端 on Rex中心站</description>
     <image>
       <url>https://cdn.rexhub.xyz/img/20210820141535.jpg</url>
       <link>https://cdn.rexhub.xyz/img/20210820141535.jpg</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Mon, 11 Oct 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://rex0520.github.io/categories/%E5%89%8D%E7%AB%AF/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 11 Oct 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://rexhub.space/categories/%E5%89%8D%E7%AB%AF/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>前端常用轮子</title>
-      <link>https://rex0520.github.io/posts/front/tools/%E5%89%8D%E7%AB%AF%E5%B8%B8%E7%94%A8%E8%BD%AE%E5%AD%90/</link>
+      <link>https://rexhub.space/posts/front/tools/%E5%89%8D%E7%AB%AF%E5%B8%B8%E7%94%A8%E8%BD%AE%E5%AD%90/</link>
       <pubDate>Mon, 11 Oct 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://rex0520.github.io/posts/front/tools/%E5%89%8D%E7%AB%AF%E5%B8%B8%E7%94%A8%E8%BD%AE%E5%AD%90/</guid>
+      <guid>https://rexhub.space/posts/front/tools/%E5%89%8D%E7%AB%AF%E5%B8%B8%E7%94%A8%E8%BD%AE%E5%AD%90/</guid>
       <description>前端常用轮子</description>
     </item>
     
     <item>
       <title>CSS3</title>
-      <link>https://rex0520.github.io/posts/front/css3/</link>
+      <link>https://rexhub.space/posts/front/css3/</link>
       <pubDate>Fri, 18 Jun 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://rex0520.github.io/posts/front/css3/</guid>
+      <guid>https://rexhub.space/posts/front/css3/</guid>
       <description>CSS3</description>
     </item>
     
     <item>
       <title>CSS</title>
-      <link>https://rex0520.github.io/posts/front/css/</link>
+      <link>https://rexhub.space/posts/front/css/</link>
       <pubDate>Fri, 14 May 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://rex0520.github.io/posts/front/css/</guid>
+      <guid>https://rexhub.space/posts/front/css/</guid>
       <description>CSS</description>
     </item>
     
     <item>
       <title>网页开发</title>
-      <link>https://rex0520.github.io/posts/front/%E7%BD%91%E9%A1%B5%E5%BC%80%E5%8F%91/</link>
+      <link>https://rexhub.space/posts/front/%E7%BD%91%E9%A1%B5%E5%BC%80%E5%8F%91/</link>
       <pubDate>Fri, 14 May 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://rex0520.github.io/posts/front/%E7%BD%91%E9%A1%B5%E5%BC%80%E5%8F%91/</guid>
+      <guid>https://rexhub.space/posts/front/%E7%BD%91%E9%A1%B5%E5%BC%80%E5%8F%91/</guid>
       <description>网页开发</description>
     </item>
     
     <item>
       <title>HTML5</title>
-      <link>https://rex0520.github.io/posts/front/html5/</link>
+      <link>https://rexhub.space/posts/front/html5/</link>
       <pubDate>Wed, 12 May 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://rex0520.github.io/posts/front/html5/</guid>
+      <guid>https://rexhub.space/posts/front/html5/</guid>
       <description>HTML5</description>
     </item>
     
     <item>
       <title>Vue进阶</title>
-      <link>https://rex0520.github.io/posts/front/vue/vue%E8%BF%9B%E9%98%B6/</link>
+      <link>https://rexhub.space/posts/front/vue/vue%E8%BF%9B%E9%98%B6/</link>
       <pubDate>Thu, 25 Mar 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://rex0520.github.io/posts/front/vue/vue%E8%BF%9B%E9%98%B6/</guid>
+      <guid>https://rexhub.space/posts/front/vue/vue%E8%BF%9B%E9%98%B6/</guid>
       <description>Vue进阶</description>
     </item>
     
     <item>
       <title>Vue动画</title>
-      <link>https://rex0520.github.io/posts/front/vue/vue%E5%8A%A8%E7%94%BB/</link>
+      <link>https://rexhub.space/posts/front/vue/vue%E5%8A%A8%E7%94%BB/</link>
       <pubDate>Mon, 15 Mar 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://rex0520.github.io/posts/front/vue/vue%E5%8A%A8%E7%94%BB/</guid>
+      <guid>https://rexhub.space/posts/front/vue/vue%E5%8A%A8%E7%94%BB/</guid>
       <description>Vue动画</description>
     </item>
     
     <item>
       <title>Vue基础</title>
-      <link>https://rex0520.github.io/posts/front/vue/vue%E5%9F%BA%E7%A1%80/</link>
+      <link>https://rexhub.space/posts/front/vue/vue%E5%9F%BA%E7%A1%80/</link>
       <pubDate>Wed, 10 Mar 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://rex0520.github.io/posts/front/vue/vue%E5%9F%BA%E7%A1%80/</guid>
+      <guid>https://rexhub.space/posts/front/vue/vue%E5%9F%BA%E7%A1%80/</guid>
       <description>Vue基础</description>
     </item>
     

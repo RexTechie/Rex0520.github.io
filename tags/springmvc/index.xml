@@ -2,38 +2,38 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>SpringMVC on Rex中心站</title>
-    <link>https://rex0520.github.io/tags/springmvc/</link>
+    <link>https://rexhub.space/tags/springmvc/</link>
     <description>Recent content in SpringMVC on Rex中心站</description>
     <image>
       <url>https://cdn.rexhub.xyz/img/20210820141535.jpg</url>
       <link>https://cdn.rexhub.xyz/img/20210820141535.jpg</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Tue, 09 Mar 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://rex0520.github.io/tags/springmvc/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 09 Mar 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://rexhub.space/tags/springmvc/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Restful开发风格</title>
-      <link>https://rex0520.github.io/posts/back/java/framework/springmvc/restful/</link>
+      <link>https://rexhub.space/posts/back/java/framework/springmvc/restful/</link>
       <pubDate>Tue, 09 Mar 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://rex0520.github.io/posts/back/java/framework/springmvc/restful/</guid>
+      <guid>https://rexhub.space/posts/back/java/framework/springmvc/restful/</guid>
       <description>Restful开发风格</description>
     </item>
     
     <item>
       <title>SpringMVC基础</title>
-      <link>https://rex0520.github.io/posts/back/java/framework/springmvc/springmvc%E5%9F%BA%E7%A1%80/</link>
+      <link>https://rexhub.space/posts/back/java/framework/springmvc/springmvc%E5%9F%BA%E7%A1%80/</link>
       <pubDate>Tue, 09 Mar 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://rex0520.github.io/posts/back/java/framework/springmvc/springmvc%E5%9F%BA%E7%A1%80/</guid>
+      <guid>https://rexhub.space/posts/back/java/framework/springmvc/springmvc%E5%9F%BA%E7%A1%80/</guid>
       <description>SpringMVC记录</description>
     </item>
     
     <item>
       <title>SpringMVC拦截器</title>
-      <link>https://rex0520.github.io/posts/back/java/framework/springmvc/springmvc%E6%8B%A6%E6%88%AA%E5%99%A8/</link>
+      <link>https://rexhub.space/posts/back/java/framework/springmvc/springmvc%E6%8B%A6%E6%88%AA%E5%99%A8/</link>
       <pubDate>Tue, 09 Mar 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://rex0520.github.io/posts/back/java/framework/springmvc/springmvc%E6%8B%A6%E6%88%AA%E5%99%A8/</guid>
+      <guid>https://rexhub.space/posts/back/java/framework/springmvc/springmvc%E6%8B%A6%E6%88%AA%E5%99%A8/</guid>
       <description>SpringMVC记录</description>
     </item>
     

@@ -9,18 +9,18 @@
 <meta name="keywords" content="" />
 <meta name="description" content="Rex的个人博客">
 <meta name="author" content="Rex">
-<link rel="canonical" href="https://rex0520.github.io/tags/springmvc/" />
+<link rel="canonical" href="https://rexhub.space/tags/springmvc/" />
 <link crossorigin="anonymous" href="/assets/css/stylesheet.min.css" rel="preload stylesheet" as="style">
-<link rel="preload" href="http://cdn.rexhub.xyz/img/20210821105340.png" as="image">
-<link rel="icon" href="https://rex0520.github.io/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://rex0520.github.io/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://rex0520.github.io/favicon-32x32.png">
-<link rel="apple-touch-icon" href="https://rex0520.github.io/apple-touch-icon.png">
-<link rel="mask-icon" href="https://rex0520.github.io/%3Clink%20/%20abs%20url%3E">
+<link rel="preload" href="https://rexhub-1301356141.cos.ap-shanghai.myqcloud.com/profile/blog-icon.png" as="image">
+<link rel="icon" href="https://rexhub.space/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://rexhub.space/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://rexhub.space/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://rexhub.space/apple-touch-icon.png">
+<link rel="mask-icon" href="https://rexhub.space/%3Clink%20/%20abs%20url%3E">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
 <meta name="generator" content="Hugo 0.100.2" />
-<link rel="alternate" type="application/rss+xml" href="https://rex0520.github.io/tags/springmvc/index.xml">
+<link rel="alternate" type="application/rss+xml" href="https://rexhub.space/tags/springmvc/index.xml">
 <noscript>
     <style>
         #theme-toggle,
@@ -60,7 +60,7 @@
 </noscript><meta property="og:title" content="SpringMVC" />
 <meta property="og:description" content="Rex的个人博客" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://rex0520.github.io/tags/springmvc/" /><meta property="og:image" content="https://cdn.rexhub.xyz/img/20210820141535.jpg"/><meta property="og:site_name" content="RexHub" />
+<meta property="og:url" content="https://rexhub.space/tags/springmvc/" /><meta property="og:image" content="https://cdn.rexhub.xyz/img/20210820141535.jpg"/><meta property="og:site_name" content="RexHub" />
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://cdn.rexhub.xyz/img/20210820141535.jpg"/>
@@ -85,8 +85,8 @@
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="https://rex0520.github.io/" accesskey="h" title="Home (Alt + H)">
-                <img src="http://cdn.rexhub.xyz/img/20210821105340.png" alt="logo" aria-label="logo"
+            <a href="https://rexhub.space/" accesskey="h" title="Home (Alt + H)">
+                <img src="https://rexhub-1301356141.cos.ap-shanghai.myqcloud.com/profile/blog-icon.png" alt="logo" aria-label="logo"
                     height="35">Home</a>
             <span class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)">
@@ -113,34 +113,34 @@
         </div>
         <ul id="menu">
             <li>
-                <a href="https://rex0520.github.io/posts/" title="文章">
+                <a href="https://rexhub.space/posts/" title="文章">
                     <span>文章</span>
                 </a>
             </li>
             <li>
-                <a href="https://rex0520.github.io/categories/" title="分类">
+                <a href="https://rexhub.space/categories/" title="分类">
                     <span>分类</span>
                 </a>
             </li>
             <li>
-                <a href="https://rex0520.github.io/tags/" title="标签">
+                <a href="https://rexhub.space/tags/" title="标签">
                     <span>标签</span>
                 </a>
             </li>
             <li>
-                <a href="https://rex0520.github.io/archives/" title="时间轴">
+                <a href="https://rexhub.space/archives/" title="时间轴">
                     <span>时间轴</span>
                 </a>
             </li>
             <li>
-                <a href="https://rex0520.github.io/search/" title="搜索 (Alt &#43; /)" accesskey=/>
+                <a href="https://rexhub.space/search/" title="搜索 (Alt &#43; /)" accesskey=/>
                     <span>搜索</span>
                 </a>
             </li>
         </ul>
     </nav>
 </header><main class="main"> 
-<header class="page-header"><div class="breadcrumbs"><a href="https://rex0520.github.io/">Home</a>&nbsp;»&nbsp;<a href="https://rex0520.github.io/tags/">Tags</a></div>
+<header class="page-header"><div class="breadcrumbs"><a href="https://rexhub.space/">Home</a>&nbsp;»&nbsp;<a href="https://rexhub.space/tags/">Tags</a></div>
   <h1>SpringMVC</h1>
 </header>
 
@@ -155,7 +155,7 @@ DELETE /article/1 开发第一个RESTful应用 RestfulController.java
 package com.imooc.restful.controller; import org.springframework.stereotype.Controller; import org.springframework.web.bind.annotation.*; /** * @author Rex * @create 2021-01-12 12:00 */ @Controller @RequestMapping(&#34;/restful&#34;) public class RestfulController { @GetMapping(&#34;/request&#34;) @ResponseBody public String doGetRequest(){ return &#34;{\&#34;message\&#34;:\&#34;返回查询结果\&#34;}&#34;; } @PostMapping(&#34;/request&#34;) @ResponseBody public String doPostRequest(){ return &#34;{\&#34;message\&#34;:\&#34;数据新建成功\&#34;}&#34;; } @PutMapping(&#34;/request&#34;) @ResponseBody public String doPutRequest(){ return &#34;{\&#34;message\&#34;:\&#34;数据更新成功\&#34;}&#34;; } @DeleteMapping(&#34;/request&#34;) @ResponseBody public String doDeleteRequest(){ return &#34;{\&#34;message\&#34;:\&#34;数据删除成功\&#34;}&#34;; } } client....</p>
   </section>
   <footer class="entry-footer">2021-03-09&nbsp;·&nbsp;3 min&nbsp;·&nbsp;Rex</footer>
-  <a class="entry-link" aria-label="post link to Restful开发风格" href="https://rex0520.github.io/posts/back/java/framework/springmvc/restful/"></a>
+  <a class="entry-link" aria-label="post link to Restful开发风格" href="https://rexhub.space/posts/back/java/framework/springmvc/restful/"></a>
 </article>
 
 <article class="post-entry tag-entry"> 
@@ -169,7 +169,7 @@ package com.imooc.restful.controller; import org.springframework.stereotype.Cont
 &lt;?xml version=&#34;1....</p>
   </section>
   <footer class="entry-footer">2021-03-09&nbsp;·&nbsp;3 min&nbsp;·&nbsp;Rex</footer>
-  <a class="entry-link" aria-label="post link to SpringMVC基础" href="https://rex0520.github.io/posts/back/java/framework/springmvc/springmvc%E5%9F%BA%E7%A1%80/"></a>
+  <a class="entry-link" aria-label="post link to SpringMVC基础" href="https://rexhub.space/posts/back/java/framework/springmvc/springmvc%E5%9F%BA%E7%A1%80/"></a>
 </article>
 
 <article class="post-entry tag-entry"> 
@@ -183,12 +183,12 @@ package com.imooc.restful.controller; import org.springframework.stereotype.Cont
 package com.imooc.restful.interceptor; import org.springframework.web.servlet.HandlerInterceptor; import org.springframework.web.servlet.ModelAndView; import javax.servlet.http.HttpServletRequest; import javax.servlet.http.HttpServletResponse; /** * @author Rex * @create 2021-01-12 17:55 */ public class MyInterceptor implements HandlerInterceptor { @Override public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception { System.out.println(request.getRequestURL()&#43;&#34;-准备执行&#34;); return true; } @Override public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception { System....</p>
   </section>
   <footer class="entry-footer">2021-03-09&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Rex</footer>
-  <a class="entry-link" aria-label="post link to SpringMVC拦截器" href="https://rex0520.github.io/posts/back/java/framework/springmvc/springmvc%E6%8B%A6%E6%88%AA%E5%99%A8/"></a>
+  <a class="entry-link" aria-label="post link to SpringMVC拦截器" href="https://rexhub.space/posts/back/java/framework/springmvc/springmvc%E6%8B%A6%E6%88%AA%E5%99%A8/"></a>
 </article>
     </main>
     
 <footer class="footer">
-  <span>&copy; 2022 <a href="https://rex0520.github.io/">Rex中心站</a></span>
+  <span>&copy; 2022 <a href="https://rexhub.space/">Rex中心站</a></span>
   <span>
     Powered by
     <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &

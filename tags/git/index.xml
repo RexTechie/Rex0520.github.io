@@ -2,20 +2,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Git on Rex中心站</title>
-    <link>https://rex0520.github.io/tags/git/</link>
+    <link>https://rexhub.space/tags/git/</link>
     <description>Recent content in Git on Rex中心站</description>
     <image>
       <url>https://cdn.rexhub.xyz/img/20210820141535.jpg</url>
       <link>https://cdn.rexhub.xyz/img/20210820141535.jpg</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Wed, 29 Jun 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://rex0520.github.io/tags/git/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 29 Jun 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://rexhub.space/tags/git/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Git学习</title>
-      <link>https://rex0520.github.io/posts/git/git%E5%AD%A6%E4%B9%A0/</link>
+      <link>https://rexhub.space/posts/git/git%E5%AD%A6%E4%B9%A0/</link>
       <pubDate>Wed, 29 Jun 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://rex0520.github.io/posts/git/git%E5%AD%A6%E4%B9%A0/</guid>
+      <guid>https://rexhub.space/posts/git/git%E5%AD%A6%E4%B9%A0/</guid>
       <description>Git入门</description>
     </item>
     

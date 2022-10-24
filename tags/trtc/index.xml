@@ -2,20 +2,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>trtc on Rex中心站</title>
-    <link>https://rex0520.github.io/tags/trtc/</link>
+    <link>https://rexhub.space/tags/trtc/</link>
     <description>Recent content in trtc on Rex中心站</description>
     <image>
       <url>https://cdn.rexhub.xyz/img/20210820141535.jpg</url>
       <link>https://cdn.rexhub.xyz/img/20210820141535.jpg</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Tue, 12 Oct 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://rex0520.github.io/tags/trtc/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 12 Oct 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://rexhub.space/tags/trtc/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>腾讯TRTC</title>
-      <link>https://rex0520.github.io/posts/api/%E8%85%BE%E8%AE%AFtrtc/</link>
+      <link>https://rexhub.space/posts/api/%E8%85%BE%E8%AE%AFtrtc/</link>
       <pubDate>Tue, 12 Oct 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://rex0520.github.io/posts/api/%E8%85%BE%E8%AE%AFtrtc/</guid>
+      <guid>https://rexhub.space/posts/api/%E8%85%BE%E8%AE%AFtrtc/</guid>
       <description>腾讯音视频trtc的使用</description>
     </item>
     

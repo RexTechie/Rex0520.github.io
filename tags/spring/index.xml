@@ -2,74 +2,74 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Spring on Rex中心站</title>
-    <link>https://rex0520.github.io/tags/spring/</link>
+    <link>https://rexhub.space/tags/spring/</link>
     <description>Recent content in Spring on Rex中心站</description>
     <image>
       <url>https://cdn.rexhub.xyz/img/20210820141535.jpg</url>
       <link>https://cdn.rexhub.xyz/img/20210820141535.jpg</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Wed, 06 Jan 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://rex0520.github.io/tags/spring/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 06 Jan 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://rexhub.space/tags/spring/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Springjdbc</title>
-      <link>https://rex0520.github.io/posts/back/java/framework/spring/springjdbc/</link>
+      <link>https://rexhub.space/posts/back/java/framework/spring/springjdbc/</link>
       <pubDate>Wed, 06 Jan 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://rex0520.github.io/posts/back/java/framework/spring/springjdbc/</guid>
+      <guid>https://rexhub.space/posts/back/java/framework/spring/springjdbc/</guid>
       <description>Springjdbc</description>
     </item>
     
     <item>
       <title>Spring框架概述</title>
-      <link>https://rex0520.github.io/posts/back/java/framework/spring/spring%E6%A1%86%E6%9E%B6%E6%A6%82%E8%BF%B0/</link>
+      <link>https://rexhub.space/posts/back/java/framework/spring/spring%E6%A1%86%E6%9E%B6%E6%A6%82%E8%BF%B0/</link>
       <pubDate>Tue, 05 Jan 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://rex0520.github.io/posts/back/java/framework/spring/spring%E6%A1%86%E6%9E%B6%E6%A6%82%E8%BF%B0/</guid>
+      <guid>https://rexhub.space/posts/back/java/framework/spring/spring%E6%A1%86%E6%9E%B6%E6%A6%82%E8%BF%B0/</guid>
       <description>Spring框架概述</description>
     </item>
     
     <item>
       <title>Springaop面向切面编程</title>
-      <link>https://rex0520.github.io/posts/back/java/framework/spring/springaop%E9%9D%A2%E5%90%91%E5%88%87%E9%9D%A2%E7%BC%96%E7%A8%8B/</link>
+      <link>https://rexhub.space/posts/back/java/framework/spring/springaop%E9%9D%A2%E5%90%91%E5%88%87%E9%9D%A2%E7%BC%96%E7%A8%8B/</link>
       <pubDate>Mon, 04 Jan 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://rex0520.github.io/posts/back/java/framework/spring/springaop%E9%9D%A2%E5%90%91%E5%88%87%E9%9D%A2%E7%BC%96%E7%A8%8B/</guid>
+      <guid>https://rexhub.space/posts/back/java/framework/spring/springaop%E9%9D%A2%E5%90%91%E5%88%87%E9%9D%A2%E7%BC%96%E7%A8%8B/</guid>
       <description>Springaop面向切面编程</description>
     </item>
     
     <item>
       <title>Springioc与bean管理</title>
-      <link>https://rex0520.github.io/posts/back/java/framework/spring/springioc%E4%B8%8Ebean%E7%AE%A1%E7%90%86/</link>
+      <link>https://rexhub.space/posts/back/java/framework/spring/springioc%E4%B8%8Ebean%E7%AE%A1%E7%90%86/</link>
       <pubDate>Mon, 04 Jan 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://rex0520.github.io/posts/back/java/framework/spring/springioc%E4%B8%8Ebean%E7%AE%A1%E7%90%86/</guid>
+      <guid>https://rexhub.space/posts/back/java/framework/spring/springioc%E4%B8%8Ebean%E7%AE%A1%E7%90%86/</guid>
       <description>Springioc与bean管理</description>
     </item>
     
     <item>
       <title>Springtest与junit4整合</title>
-      <link>https://rex0520.github.io/posts/back/java/framework/spring/springtest%E4%B8%8Ejunit4%E6%95%B4%E5%90%88/</link>
+      <link>https://rexhub.space/posts/back/java/framework/spring/springtest%E4%B8%8Ejunit4%E6%95%B4%E5%90%88/</link>
       <pubDate>Sun, 03 Jan 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://rex0520.github.io/posts/back/java/framework/spring/springtest%E4%B8%8Ejunit4%E6%95%B4%E5%90%88/</guid>
+      <guid>https://rexhub.space/posts/back/java/framework/spring/springtest%E4%B8%8Ejunit4%E6%95%B4%E5%90%88/</guid>
       <description>Springtest与junit4整合</description>
     </item>
     
     <item>
       <title>基于javaconfig配置的ioc容器</title>
-      <link>https://rex0520.github.io/posts/back/java/framework/spring/%E5%9F%BA%E4%BA%8Ejavaconfig%E9%85%8D%E7%BD%AE%E7%9A%84ioc%E5%AE%B9%E5%99%A8/</link>
+      <link>https://rexhub.space/posts/back/java/framework/spring/%E5%9F%BA%E4%BA%8Ejavaconfig%E9%85%8D%E7%BD%AE%E7%9A%84ioc%E5%AE%B9%E5%99%A8/</link>
       <pubDate>Sun, 03 Jan 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://rex0520.github.io/posts/back/java/framework/spring/%E5%9F%BA%E4%BA%8Ejavaconfig%E9%85%8D%E7%BD%AE%E7%9A%84ioc%E5%AE%B9%E5%99%A8/</guid>
+      <guid>https://rexhub.space/posts/back/java/framework/spring/%E5%9F%BA%E4%BA%8Ejavaconfig%E9%85%8D%E7%BD%AE%E7%9A%84ioc%E5%AE%B9%E5%99%A8/</guid>
       <description>基于javaconfig配置的ioc容器</description>
     </item>
     
     <item>
       <title>基于注解配置ioc容器</title>
-      <link>https://rex0520.github.io/posts/back/java/framework/spring/%E5%9F%BA%E4%BA%8E%E6%B3%A8%E8%A7%A3%E9%85%8D%E7%BD%AEioc%E5%AE%B9%E5%99%A8/</link>
+      <link>https://rexhub.space/posts/back/java/framework/spring/%E5%9F%BA%E4%BA%8E%E6%B3%A8%E8%A7%A3%E9%85%8D%E7%BD%AEioc%E5%AE%B9%E5%99%A8/</link>
       <pubDate>Sun, 03 Jan 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://rex0520.github.io/posts/back/java/framework/spring/%E5%9F%BA%E4%BA%8E%E6%B3%A8%E8%A7%A3%E9%85%8D%E7%BD%AEioc%E5%AE%B9%E5%99%A8/</guid>
+      <guid>https://rexhub.space/posts/back/java/framework/spring/%E5%9F%BA%E4%BA%8E%E6%B3%A8%E8%A7%A3%E9%85%8D%E7%BD%AEioc%E5%AE%B9%E5%99%A8/</guid>
       <description>基于注解配置ioc容器</description>
     </item>
     

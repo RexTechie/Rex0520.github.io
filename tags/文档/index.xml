@@ -2,38 +2,38 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>文档 on Rex中心站</title>
-    <link>https://rex0520.github.io/tags/%E6%96%87%E6%A1%A3/</link>
+    <link>https://rexhub.space/tags/%E6%96%87%E6%A1%A3/</link>
     <description>Recent content in 文档 on Rex中心站</description>
     <image>
       <url>https://cdn.rexhub.xyz/img/20210820141535.jpg</url>
       <link>https://cdn.rexhub.xyz/img/20210820141535.jpg</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Thu, 24 Mar 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://rex0520.github.io/tags/%E6%96%87%E6%A1%A3/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 24 Mar 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://rexhub.space/tags/%E6%96%87%E6%A1%A3/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>温工美院数据库</title>
-      <link>https://rex0520.github.io/posts/proj/doc/%E6%B8%A9%E5%B7%A5%E7%BE%8E%E9%99%A2/%E6%95%B0%E6%8D%AE%E5%BA%93/</link>
+      <link>https://rexhub.space/posts/proj/doc/%E6%B8%A9%E5%B7%A5%E7%BE%8E%E9%99%A2/%E6%95%B0%E6%8D%AE%E5%BA%93/</link>
       <pubDate>Thu, 24 Mar 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://rex0520.github.io/posts/proj/doc/%E6%B8%A9%E5%B7%A5%E7%BE%8E%E9%99%A2/%E6%95%B0%E6%8D%AE%E5%BA%93/</guid>
+      <guid>https://rexhub.space/posts/proj/doc/%E6%B8%A9%E5%B7%A5%E7%BE%8E%E9%99%A2/%E6%95%B0%E6%8D%AE%E5%BA%93/</guid>
       <description>温工美院</description>
     </item>
     
     <item>
       <title>无诈校园微信小程序后端接口文档</title>
-      <link>https://rex0520.github.io/posts/proj/doc/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%90%8E%E7%AB%AF%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/</link>
+      <link>https://rexhub.space/posts/proj/doc/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%90%8E%E7%AB%AF%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/</link>
       <pubDate>Fri, 03 Dec 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://rex0520.github.io/posts/proj/doc/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%90%8E%E7%AB%AF%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/</guid>
+      <guid>https://rexhub.space/posts/proj/doc/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%90%8E%E7%AB%AF%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/</guid>
       <description>反诈项目文档</description>
     </item>
     
     <item>
       <title>FraudPrevention后台管理系统开发文档</title>
-      <link>https://rex0520.github.io/posts/proj/doc/fraudprevention%E5%BC%80%E5%8F%91%E6%96%87%E6%A1%A3/</link>
+      <link>https://rexhub.space/posts/proj/doc/fraudprevention%E5%BC%80%E5%8F%91%E6%96%87%E6%A1%A3/</link>
       <pubDate>Thu, 04 Nov 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://rex0520.github.io/posts/proj/doc/fraudprevention%E5%BC%80%E5%8F%91%E6%96%87%E6%A1%A3/</guid>
+      <guid>https://rexhub.space/posts/proj/doc/fraudprevention%E5%BC%80%E5%8F%91%E6%96%87%E6%A1%A3/</guid>
       <description>反诈项目文档</description>
     </item>
     
