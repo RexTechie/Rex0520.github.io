@@ -161,6 +161,27 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>微信支付接口
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>微信支付 微信支付功能的实现需要调用微信官方的支付接口，而微信支付也有多种形式，如:JSAPI支付、APP支付、Native支付、小程序支付等等，接口也有V2、V3版本，这里主要说明Native的V3版本的使用。特别需要注意的是，使用微信支付功能的接口需要有商户号。
+在支付的功能中，必不可少的是商品订单和支付订单，商品订单是本地后台系统生成的，而我这里使用的案例是用罚款单为例并非商品。支付订单是微信服务器生成的，只需要调用微信支付API
+微信支付官方文档
+微信支付前期准备 开通微信支付功能 对于商家来说，想要开通微信支付，必须要去微信商户平台注册（https://pay.weixin.qq.com/index.php/core/home/login?return_url=%2F），然后把工商登记证明、企业银行账户开户证明、组织机构代码证提交上去，经过半天的审核，如果没有问题，你就开通了微信支付功能。
+如果想要在网站或者小程序上面使用微信支付，还要在微信公众平台上面关联你自己的微信商户账号。前提是你的微信开发者账号必须是企业身份，个人身份的开发者账号是无法调用微信支付API的。
+引入官方的SDK包 说明下这里的微信官方sdk主要对签名方面、加密解密方面做了较好的支持，其他方面还是要自己构造参数、发送请求。
+sdk官方文档
+&lt;dependency&gt; &lt;groupId&gt;com.github.wechatpay-apiv3&lt;/groupId&gt; &lt;artifactId&gt;wechatpay-apache-httpclient&lt;/artifactId&gt; &lt;version&gt;0.2.2&lt;/version&gt; &lt;/dependency&gt; WechatPay.java
+这个是我对sdk做了个进一步的封装，这里是初始化
+package com.example.emos.api.common.util; import cn.hutool.json.JSONObject; import cn.hutool.json.JSONUtil; import com.example.emos.api.common.exception.EmosException; import com.fasterxml.jackson.databind.ObjectMapper; import com.fasterxml.jackson.databind.node.ObjectNode; import com.wechat.pay.contrib.apache.httpclient.WechatPayHttpClientBuilder; import com.wechat.pay.contrib.apache.httpclient.auth.AutoUpdateCertificatesVerifier; import com.wechat.pay.contrib.apache.httpclient.auth.PrivateKeySigner; import com.wechat.pay.contrib.apache.httpclient.auth.WechatPay2Credentials; import com.wechat.pay.contrib.apache.httpclient.auth.WechatPay2Validator; import com.wechat.pay.contrib.apache.httpclient.util.AesUtil; import com.wechat.pay.contrib.apache.httpclient.util.PemUtil; import lombok.extern.slf4j.Slf4j; import org.apache.http.HttpEntity; import org.apache.http.StatusLine; import org.apache.http.client.methods.CloseableHttpResponse; import org.apache.http.client.methods.HttpGet; import org.apache.http.client.methods.HttpPost; import org.apache.http.client.utils.URIBuilder; import org.apache.http.entity.StringEntity; import org.apache.http.impl.client.CloseableHttpClient; import org.apache.http.util.EntityUtils; import org.springframework.beans.factory.annotation.Value; import org.springframework.stereotype.Component; import java.io.*; import java....</p>
+  </section>
+  <footer class="entry-footer">2021-10-15&nbsp;·&nbsp;3 min&nbsp;·&nbsp;Rex</footer>
+  <a class="entry-link" aria-label="post link to 微信支付接口" href="https://rexhub.space/posts/api/pay/%E5%BE%AE%E4%BF%A1%E6%94%AF%E4%BB%98%E6%8E%A5%E5%8F%A3/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>腾讯TRTC
     </h2>
   </header>
@@ -235,36 +256,6 @@ EventType 触发条件 NodeCreated（节点创建） Watcher监听的对应数�
   </section>
   <footer class="entry-footer">2021-07-23&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Rex</footer>
   <a class="entry-link" aria-label="post link to Dubbo基础" href="https://rexhub.space/posts/back/java/microservices/dubbo%E5%9F%BA%E7%A1%80/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>Mongodb基础
-    </h2>
-  </header>
-  <section class="entry-content">
-    <p>MongoDB 简介： MongoDB是为快速开发互联网Web应用而设计的数据库系统。 MongoDB的设许目标是极简、灵活、作为Web应用栈的一部分。 MongoDB的数据模型是面向文档的,所谓文档是- - -种类似于JSON的结构,简单理解MongoDB这个数据库中存的是各种各样的JSON。 ( BSON ) 三个概念 数据库( database )
-数据库是-个仓库,在仓库中可以存放集合。
-集合( collection )
-集合类似于数组,在集合中可以存放文档。
-文档( dotument )
-文档数据库中的最小单位,我们存储和操作的 内容都是文档。
-基本指令 show dbs
-显示当前的所有数据库
-use 数据库名
-进入指定的数据库中
-db
-显示当前所处的数据库
-show collections
-显示数据库中所有的集合
-db.&lt;collection&gt;.insert(doc)
-向集合中插入一个文档
-db.&lt;collections&gt;.find()
-查看数据库字段
-插入文档 /* 向数据库插入文档	db.&lt;collection&gt;.insert( &lt;document or array of documents&gt;， { wirteConcern: &lt;document&gt;, ordered: &lt;boolean&gt; } ) documents: 必填，表示需要插入的文档，可以是多个文档 writeConcern：可选项，写策略 ordered：可选，表示多个文档是否按照文档顺序写入 -- 向集合中插入一个或多个文档 -- 当我们向集合中插入文档时，如果没有给文档指定_id属性，则数据库会自动为文档添加_id， 该属性用来作为文档的唯一标识 -- _id可以自己指定，如果指定了数据库就不会再添加了，如果自己指定_id，也必须确保他的唯一性 db.collection.insertOne() -- 插入一个文档对象 db....</p>
-  </section>
-  <footer class="entry-footer">2021-07-09&nbsp;·&nbsp;9 min&nbsp;·&nbsp;Rex</footer>
-  <a class="entry-link" aria-label="post link to Mongodb基础" href="https://rexhub.space/posts/nosql/mongodb/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

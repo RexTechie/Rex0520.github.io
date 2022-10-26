@@ -161,6 +161,24 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>SpringBoot学习（核心功能篇-配置功能）
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>SpringBoot学习（核心功能篇-配置功能） properties yaml YAML 是 “YAML Ain’t Markup Language”（YAML 不是一种标记语言）的递归缩写。在开发的这种语言时，YAML 的意思其实是：“Yet Another Markup Language”（仍是一种标记语言）。
+非常适合用来做以数据为中心的配置文件
+基本语法 key: value；kv之间有空格 大小写敏感 使用缩进表示层级关系 缩进不允许使用tab，只允许空格 缩进的空格数不重要，只要相同层级的元素左对齐即可 ‘#‘表示注释 字符串无需加引号，如果要加，‘‘与&#34;“表示字符串内容 会被 转义/不转义 数据类型 字面量：单个的、不可再分的值。date、boolean、string、number、null
+k: v 对象：键值对的集合。map、hash、set、object
+行内写法：k: (k1:v1, k2:v2, k3:v3) # 或 k: k1: v1 k2: v2 k3: v3 数组：一组按次序排序的值。array、list、queue
+行内写法：k: [v1, v3, v4] # 或 k: - v1 - v2 - v3 示例 ​	java
+package xyz.rexhub.xyz.bean; import lombok.Data; import lombok.ToString; import org.springframework.boot.context.properties.ConfigurationProperties; import org....</p>
+  </section>
+  <footer class="entry-footer">2022-08-16&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Rex</footer>
+  <a class="entry-link" aria-label="post link to SpringBoot学习（核心功能篇-配置功能）" href="https://rexhub.space/posts/back/java/framework/springboot/springboot%E5%AD%A6%E4%B9%A0%E6%A0%B8%E5%BF%83%E5%8A%9F%E8%83%BD%E7%AF%87-%E9%85%8D%E7%BD%AE%E5%8A%9F%E8%83%BD/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>启动项目脚本
     </h2>
   </header>
@@ -234,22 +252,6 @@ Ngrok ngrok 是一个反向代理，通过在公共端点和本地运行的 Web 
   </section>
   <footer class="entry-footer">2022-01-19&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Rex</footer>
   <a class="entry-link" aria-label="post link to 内网穿透" href="https://rexhub.space/posts/tools/%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/"></a>
-</article>
-
-<article class="post-entry"> 
-<figure class="entry-cover"><img loading="lazy" src="https://cdn.rexhub.xyz/img/20211213103407.jpg" alt="">
-</figure>
-  <header class="entry-header">
-    <h2>运算符【Go学习之路】
-    </h2>
-  </header>
-  <section class="entry-content">
-    <p>运算符【Go学习之路】 运算符是一种特殊的符号，用以表示数据的运算、赋值和比较等（特别注意go语言里无三元运算符）
-分类 算术运算符 用于对数值类型的变量进行运算
-运算符 运算 范例 结果 &#43; 正号 &#43;3 3 - 负号 -4 -4 &#43; 加 5 &#43; 5 10 - 减 6 - 4 2 * 乘 3 * 4 12 / 除 5 / 5 1 % 取模(取余) 7 % 5 2 &#43;&#43; 自增 a = 2 a&#43;&#43; a = 3 – 自减 a= 2 a– a = 1 &#43; 字符串拼接 “He” &#43; “llo” “Hello” 基本使用...</p>
-  </section>
-  <footer class="entry-footer">2021-12-24&nbsp;·&nbsp;5 min&nbsp;·&nbsp;Rex</footer>
-  <a class="entry-link" aria-label="post link to 运算符【Go学习之路】" href="https://rexhub.space/posts/back/go/study/%E8%BF%90%E7%AE%97%E7%AC%A6/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

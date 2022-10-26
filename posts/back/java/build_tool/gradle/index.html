@@ -61,8 +61,8 @@
 <meta property="og:description" content="Maven基础" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://rexhub.space/posts/back/java/build_tool/gradle/" /><meta property="og:image" content="https://cdn.rexhub.xyz/img/20210820141535.jpg"/><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2021-03-09T00:00:00&#43;00:00" />
-<meta property="article:modified_time" content="2021-03-09T00:00:00&#43;00:00" /><meta property="og:site_name" content="RexHub" />
+<meta property="article:published_time" content="2022-10-26T00:00:00&#43;00:00" />
+<meta property="article:modified_time" content="2022-10-26T00:00:00&#43;00:00" /><meta property="og:site_name" content="RexHub" />
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://cdn.rexhub.xyz/img/20210820141535.jpg"/>
@@ -101,11 +101,11 @@
   "keywords": [
     "Build Tool"
   ],
-  "articleBody": "Gradle构建工具 身边有学习安卓的大佬强烈推荐我学习了解下Gradle这款构建工具，说是将会是未来的主流，所以来此学习并记录下。\n货比三家 Ant Maven Gradle 公司 Apache Apache Google 语言 xml xml Groovy 构建性能 速度最快 速度最低 中间 依赖管理 ivy管理 GAV管理 GNV管理 插件管理 简单 复杂 简单 侧重 小型项目构建 项目包管理 大型项目构建 流行程度(2022) 低 高 中（未来趋势） 总结：各有各的优缺点，虽然gradle结合了ant和maven的优点，但是现在的兼容性还比较查\nGradle目录结构 ",
-  "wordCount" : "36",
+  "articleBody": "Gradle构建工具 身边有学习安卓的大佬强烈推荐我学习了解下Gradle这款构建工具，说是将会是未来的主流，所以来此学习并记录下。\n货比三家 Ant Maven Gradle 公司 Apache Apache Google 语言 xml xml Groovy 构建性能 速度最快 速度最低 中间 依赖管理 ivy管理 GAV管理 GNV管理 插件管理 简单 复杂 简单 侧重 小型项目构建 项目包管理 大型项目构建 流行程度(2022) 低 高 中（未来趋势） 总结：各有各的优缺点，虽然gradle结合了ant和maven的优点，但是现在的兼容性还比较查\nGradle目录构结 目录 功能 /build 封装编译后的文件、测试报告 /gradle/wrapper/ 封装包装器文件夹 /src 速度最快｜ /gradlew mac/linux端包装器启动脚本 /gradlew.bat windows端包装器启动脚本 /build.gradle 构建脚本（类似maven的pom） /setting.gradle 设置项目信息 文件结构与maven极其相似🫤，都是基于约定大于配置（Convention over configuration）的设定\n常用命令 命令 作用 gradle clean gradle classes 编译业务代码和配置文件 gradle test 编译测试代码，生成测试报告｜ gradle build 构建项目 gradle build -x test 跳过测试构建 下载源配置 在gradle安转目录的init.d文件夹下新建一个init.gradle文件 init.gradle\nallprojects { repositories { mavenLocal() maven { name \"Alibaba\"; url \"https://maven.aliyun.com/repository/public\" } maven { name \"Spring\"; url \"http://repo.spring.io/libs-milestone/\" } mavenCentral() } buildscript { repositories { maven { name \"Alibaba\"; url 'https://maven.aliyun.com/repository/public' } maven { name \"Spring\"; url 'http://repo.spring.io/plugins-release/' } maven { name \"M2\"; url 'https://plugins.gradle.org/m2/' } } } } 说明（从上至下搜索）\nmavenLocal() 从本地maven找，需配置M2_HOME环境变量，变量值为maven地址 Alibaba 阿里下载源 mavenCentral() maven中央仓库 tip: 配置源参考阿里云官方 Wrapper包装器 GradlerWrapper为解决没有gradle的环境下使用gradle项目的问题。只需要使用构建项目时生成的gradlew/gradlew.bat，需注意的是使用gradlew的命令需要依赖于jdk\n运行的依赖包在gradle/wrapper下 Gradle的使用方式和gradlew是一样的 可使用gradle wrapper指定参数控制wrapper版本（升级项目的gradle）， 参数 说明 –gradle-version 用于指定使用的Gradle版本 –gradle-distribution-url 用于指定下载Gradle发行的url地址 ",
+  "wordCount" : "147",
   "inLanguage": "en",
-  "datePublished": "2021-03-09T00:00:00Z",
-  "dateModified": "2021-03-09T00:00:00Z",
+  "datePublished": "2022-10-26T00:00:00Z",
+  "dateModified": "2022-10-26T00:00:00Z",
   "author":{
     "@type": "Person",
     "name": "Rex"
@@ -206,7 +206,7 @@
     <div class="post-description">
       Maven基础
     </div>
-    <div class="post-meta">2021-03-09&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Rex
+    <div class="post-meta">2022-10-26&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Rex
 </div>
   </header> <div class="toc">
     <details  open>
@@ -222,7 +222,13 @@
                 <li>
                     <a href="#%e8%b4%a7%e6%af%94%e4%b8%89%e5%ae%b6" aria-label="货比三家">货比三家</a></li>
                 <li>
-                    <a href="#gradle%e7%9b%ae%e5%bd%95%e7%bb%93%e6%9e%84" aria-label="Gradle目录结构">Gradle目录结构</a>
+                    <a href="#gradle%e7%9b%ae%e5%bd%95%e6%9e%84%e7%bb%93" aria-label="Gradle目录构结">Gradle目录构结</a></li>
+                <li>
+                    <a href="#%e5%b8%b8%e7%94%a8%e5%91%bd%e4%bb%a4" aria-label="常用命令">常用命令</a></li>
+                <li>
+                    <a href="#%e4%b8%8b%e8%bd%bd%e6%ba%90%e9%85%8d%e7%bd%ae" aria-label="下载源配置">下载源配置</a></li>
+                <li>
+                    <a href="#wrapper%e5%8c%85%e8%a3%85%e5%99%a8" aria-label="Wrapper包装器">Wrapper包装器</a>
                 </li>
             </ul>
             </ul>
@@ -292,7 +298,146 @@
 </tbody>
 </table>
 <p>总结：各有各的优缺点，虽然gradle结合了ant和maven的优点，但是现在的兼容性还比较查</p>
-<h3 id="gradle目录结构">Gradle目录结构<a hidden class="anchor" aria-hidden="true" href="#gradle目录结构">#</a></h3>
+<h3 id="gradle目录构结">Gradle目录构结<a hidden class="anchor" aria-hidden="true" href="#gradle目录构结">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>目录</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>/build</td>
+<td>封装编译后的文件、测试报告</td>
+</tr>
+<tr>
+<td>/gradle/wrapper/</td>
+<td>封装包装器文件夹</td>
+</tr>
+<tr>
+<td>/src</td>
+<td>速度最快｜</td>
+</tr>
+<tr>
+<td>/gradlew</td>
+<td>mac/linux端包装器启动脚本</td>
+</tr>
+<tr>
+<td>/gradlew.bat</td>
+<td>windows端包装器启动脚本</td>
+</tr>
+<tr>
+<td>/build.gradle</td>
+<td>构建脚本（类似maven的pom）</td>
+</tr>
+<tr>
+<td>/setting.gradle</td>
+<td>设置项目信息</td>
+</tr>
+</tbody>
+</table>
+<p>文件结构与maven极其相似🫤，都是基于约定大于配置（Convention over configuration）的设定</p>
+<h3 id="常用命令">常用命令<a hidden class="anchor" aria-hidden="true" href="#常用命令">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>gradle clean</td>
+<td></td>
+</tr>
+<tr>
+<td>gradle classes</td>
+<td>编译业务代码和配置文件</td>
+</tr>
+<tr>
+<td>gradle test</td>
+<td>编译测试代码，生成测试报告｜</td>
+</tr>
+<tr>
+<td>gradle build</td>
+<td>构建项目</td>
+</tr>
+<tr>
+<td>gradle build -x test</td>
+<td>跳过测试构建</td>
+</tr>
+</tbody>
+</table>
+<h3 id="下载源配置">下载源配置<a hidden class="anchor" aria-hidden="true" href="#下载源配置">#</a></h3>
+<p>在gradle安转目录的init.d文件夹下新建一个init.gradle文件
+init.gradle</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-groovy" data-lang="groovy"><span class="line"><span class="cl"><span class="n">allprojects</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">repositories</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">mavenLocal</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">maven</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">      <span class="n">name</span> <span class="s2">&#34;Alibaba&#34;</span><span class="o">;</span> 
+</span></span><span class="line"><span class="cl">      <span class="n">url</span> <span class="s2">&#34;https://maven.aliyun.com/repository/public&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">maven</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">      <span class="n">name</span> <span class="s2">&#34;Spring&#34;</span><span class="o">;</span> 
+</span></span><span class="line"><span class="cl">      <span class="n">url</span> <span class="s2">&#34;http://repo.spring.io/libs-milestone/&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">mavenCentral</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="n">buildscript</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">repositories</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">      <span class="n">maven</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">name</span> <span class="s2">&#34;Alibaba&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">url</span> <span class="s1">&#39;https://maven.aliyun.com/repository/public&#39;</span>
+</span></span><span class="line"><span class="cl">      <span class="o">}</span>
+</span></span><span class="line"><span class="cl">      <span class="n">maven</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">name</span> <span class="s2">&#34;Spring&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">url</span> <span class="s1">&#39;http://repo.spring.io/plugins-release/&#39;</span>
+</span></span><span class="line"><span class="cl">      <span class="o">}</span>
+</span></span><span class="line"><span class="cl">      <span class="n">maven</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">name</span> <span class="s2">&#34;M2&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">url</span> <span class="s1">&#39;https://plugins.gradle.org/m2/&#39;</span>
+</span></span><span class="line"><span class="cl">      <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>说明（从上至下搜索）</p>
+<ul>
+<li>mavenLocal() 从本地maven找，需配置M2_HOME环境变量，变量值为maven地址</li>
+<li>Alibaba 阿里下载源</li>
+<li>mavenCentral() maven中央仓库
+tip: <a href="https://developer.aliyun.com/mvn/guide">配置源参考阿里云官方</a></li>
+</ul>
+<h3 id="wrapper包装器">Wrapper包装器<a hidden class="anchor" aria-hidden="true" href="#wrapper包装器">#</a></h3>
+<blockquote>
+<p>GradlerWrapper为解决没有gradle的环境下使用gradle项目的问题。只需要使用构建项目时生成的gradlew/gradlew.bat，需注意的是使用gradlew的命令需要依赖于jdk</p>
+</blockquote>
+<ul>
+<li>运行的依赖包在gradle/wrapper下</li>
+<li>Gradle的使用方式和gradlew是一样的</li>
+<li>可使用gradle wrapper指定参数控制wrapper版本（升级项目的gradle），
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&ndash;gradle-version</td>
+<td>用于指定使用的Gradle版本</td>
+</tr>
+<tr>
+<td>&ndash;gradle-distribution-url</td>
+<td>用于指定下载Gradle发行的url地址</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
 
 
   </div>
@@ -302,15 +447,10 @@
       <li><a href="https://rexhub.space/tags/build-tool/">Build Tool</a></li>
     </ul>
 <nav class="paginav">
-  <a class="prev" href="https://rexhub.space/posts/front/vue/vue%E5%9F%BA%E7%A1%80/">
-    <span class="title">« Prev Page</span>
-    <br>
-    <span>Vue基础</span>
-  </a>
-  <a class="next" href="https://rexhub.space/posts/back/java/lambda/">
+  <a class="next" href="https://rexhub.space/posts/back/java/framework/springboot/springboot%E9%85%8D%E7%BD%AE%E5%90%AF%E5%8A%A8/">
     <span class="title">Next Page »</span>
     <br>
-    <span>Lambda(java)</span>
+    <span>SpringBoot配置启动</span>
   </a>
 </nav>
 

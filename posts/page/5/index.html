@@ -161,6 +161,36 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>Mongodb基础
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>MongoDB 简介： MongoDB是为快速开发互联网Web应用而设计的数据库系统。 MongoDB的设许目标是极简、灵活、作为Web应用栈的一部分。 MongoDB的数据模型是面向文档的,所谓文档是- - -种类似于JSON的结构,简单理解MongoDB这个数据库中存的是各种各样的JSON。 ( BSON ) 三个概念 数据库( database )
+数据库是-个仓库,在仓库中可以存放集合。
+集合( collection )
+集合类似于数组,在集合中可以存放文档。
+文档( dotument )
+文档数据库中的最小单位,我们存储和操作的 内容都是文档。
+基本指令 show dbs
+显示当前的所有数据库
+use 数据库名
+进入指定的数据库中
+db
+显示当前所处的数据库
+show collections
+显示数据库中所有的集合
+db.&lt;collection&gt;.insert(doc)
+向集合中插入一个文档
+db.&lt;collections&gt;.find()
+查看数据库字段
+插入文档 /* 向数据库插入文档	db.&lt;collection&gt;.insert( &lt;document or array of documents&gt;， { wirteConcern: &lt;document&gt;, ordered: &lt;boolean&gt; } ) documents: 必填，表示需要插入的文档，可以是多个文档 writeConcern：可选项，写策略 ordered：可选，表示多个文档是否按照文档顺序写入 -- 向集合中插入一个或多个文档 -- 当我们向集合中插入文档时，如果没有给文档指定_id属性，则数据库会自动为文档添加_id， 该属性用来作为文档的唯一标识 -- _id可以自己指定，如果指定了数据库就不会再添加了，如果自己指定_id，也必须确保他的唯一性 db.collection.insertOne() -- 插入一个文档对象 db....</p>
+  </section>
+  <footer class="entry-footer">2021-07-09&nbsp;·&nbsp;9 min&nbsp;·&nbsp;Rex</footer>
+  <a class="entry-link" aria-label="post link to Mongodb基础" href="https://rexhub.space/posts/nosql/mongodb/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>Docker基础
     </h2>
   </header>
@@ -231,24 +261,6 @@ RabbitMQ应用 第一个java应用 Hello world 导入依赖
   </section>
   <footer class="entry-footer">2021-06-21&nbsp;·&nbsp;11 min&nbsp;·&nbsp;Rex</footer>
   <a class="entry-link" aria-label="post link to Rabbitmq使用" href="https://rexhub.space/posts/back/java/microservices/rabbitmq/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>CSS3
-    </h2>
-  </header>
-  <section class="entry-content">
-    <p>CSS3 CSS新增选择器 属性选择器 选择器 简介 E[attr] 选择具有attr属性的E元素 E[attr=“val”] 选择具有attr属性且属性值等于E的元素 E[attr^=“val”] 匹配具有attr属性且值以val开头的E元素 E[attr$=“val”] 匹配具有attr属性且值以val结尾的E元素 E[attr*=“val”] 匹配具有attr属性且值中含有val的E元素 属性选择器的权重为10
-结构伪类选择器 选择符 简介 E:first-child 匹配父元素中的第一个子元素E E:last-child 匹配父元素中最后一个E元素 E:nth-child(n) 匹配父元素中的第n个子元素E E:first-of-type 指定类型E的第一个 E:last-of-type 指定类型E的最后一个 E:nth-of-type(n) 指定类型E的第n个 nth-child(n)
-n可以是数字，关键字和公式 n如果是是数字，就是选择第n个子元素，里面数字从1开始 n可以是关键字：even偶数，odd奇数 伪元素选择器 ​	伪元素选择器可以帮助我们利用CSS创建新标签元素，而不需要HTML标签，从而简化HTML结构
-选择器 简介 ::before 在元素内部的前面插入内容 ::after 在元素内部的后面插入内容 注意：
-before和after创建一个元素，但是属于行内元素 新创建的这个元素在文档树中是找不到的，所以我们称为伪元素 语法：element::before{} before和after必须有content属性 before在父元素内容的前面创建元素，after在父元素内容的后面插入元素 伪元素选择器和标签选择器一样，权重为1 CSS3盒子模型 box-sizing: content-box 盒子大小为width&#43;padding&#43;border(以前默认的) border-box 盒子大小width 其他特性（了解） filter CSS属性将模糊或颜色偏移等图形效果应用于元素。
-filter: 函数(); 例如filter:blur(5px); blur模糊处理数值越大越模糊 calc()此CSS函数让你在声明CSS属性值时执行一些计算。
-width:calc(100%-80px); CSS过渡 transition:要过渡的属性 花费时间 运动曲线 何时开始;...</p>
-  </section>
-  <footer class="entry-footer">2021-06-18&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Rex</footer>
-  <a class="entry-link" aria-label="post link to CSS3" href="https://rexhub.space/posts/front/css3/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

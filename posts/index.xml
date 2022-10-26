@@ -9,7 +9,16 @@
       <link>https://cdn.rexhub.xyz/img/20210820141535.jpg</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sun, 23 Oct 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://rexhub.space/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 26 Oct 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://rexhub.space/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Gradle构建工具</title>
+      <link>https://rexhub.space/posts/back/java/build_tool/gradle/</link>
+      <pubDate>Wed, 26 Oct 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://rexhub.space/posts/back/java/build_tool/gradle/</guid>
+      <description>Maven基础</description>
+    </item>
+    
     <item>
       <title>SpringBoot配置启动</title>
       <link>https://rexhub.space/posts/back/java/framework/springboot/springboot%E9%85%8D%E7%BD%AE%E5%90%AF%E5%8A%A8/</link>
@@ -359,15 +368,6 @@
       
       <guid>https://rexhub.space/posts/front/vue/vue%E5%9F%BA%E7%A1%80/</guid>
       <description>Vue基础</description>
-    </item>
-    
-    <item>
-      <title>Gradle构建工具</title>
-      <link>https://rexhub.space/posts/back/java/build_tool/gradle/</link>
-      <pubDate>Tue, 09 Mar 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://rexhub.space/posts/back/java/build_tool/gradle/</guid>
-      <description>Maven基础</description>
     </item>
     
     <item>

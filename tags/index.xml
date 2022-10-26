@@ -9,7 +9,16 @@
       <link>https://cdn.rexhub.xyz/img/20210820141535.jpg</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sun, 23 Oct 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://rexhub.space/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 26 Oct 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://rexhub.space/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Build Tool</title>
+      <link>https://rexhub.space/tags/build-tool/</link>
+      <pubDate>Wed, 26 Oct 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://rexhub.space/tags/build-tool/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>SpringBoot</title>
       <link>https://rexhub.space/tags/springboot/</link>
@@ -169,15 +178,6 @@
       <pubDate>Thu, 25 Mar 2021 00:00:00 +0000</pubDate>
       
       <guid>https://rexhub.space/tags/vue/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Build Tool</title>
-      <link>https://rexhub.space/tags/build-tool/</link>
-      <pubDate>Tue, 09 Mar 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://rexhub.space/tags/build-tool/</guid>
       <description></description>
     </item>
     
