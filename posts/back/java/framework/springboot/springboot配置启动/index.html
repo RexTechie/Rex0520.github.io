@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
 <title>SpringBoot配置启动 | Rex中心站</title>
-<meta name="keywords" content="SpringBoot" />
+<meta name="keywords" content="Spring系列" />
 <meta name="description" content="SpringBoot学习">
 <meta name="author" content="Rex">
 <link rel="canonical" href="https://rexhub.space/posts/back/java/framework/springboot/springboot%E9%85%8D%E7%BD%AE%E5%90%AF%E5%8A%A8/" />
@@ -99,7 +99,7 @@
   "name": "SpringBoot配置启动",
   "description": "SpringBoot学习",
   "keywords": [
-    "SpringBoot"
+    "Spring系列"
   ],
   "articleBody": "SpringBoot配置启动 背景 在实际开发的过程中，常常会有这样的需求，项目打包上线后需要更改一些配置，如果每次都需要重新在自己的电脑上打包后上线，这样的操作其实是非常繁琐的，所以需要有些自定义的配置文件，让项目以自定义的配置文件来启动项目。 之前自己在实际的开发中其实也遇到过这样的情况，项目是用在Windows server上的，需要对方来实时观测数据的准确性来调整配置数据，那时候因为只有这个小需求，也就没有写个web前端来做调整了，所以就想着用配置文件的方式，在这个过程中踩了很多坑，csdn也没有很全面的说明，这次进行了深入的学习，这边的配置是针对于springboot项目的\n关于Profile application-profile使用 指定配置环境application-{env}.yml，env是我们的环境，一般application-prod.yml为生产环境下运行、application-test.yml为测试环境下运行 激活指定环境 配置文件激活 在application.yml中配置spring.profiles.active来激活制定的{env}环境 命令行激活 java -jar xxx.jar –spring.profiles.active=prod – person.name=haha tips: 默认配置和环境变量同时生效 同名配置按优先级覆盖，优先级：命令行参数 \u003e 命令行指定的环境配置 \u003e 默认配置环境 SpringBoot中的@Profile注解 @Profile注解主要是用于条件装配，它的参数为制定的环境\nimport lombok.extern.slf4j.Slf4j; import org.springframework.beans.factory.annotation.Autowired; import org.springframework.beans.factory.annotation.Value; import org.springframework.context.annotation.Bean; import org.springframework.context.annotation.Configuration; import org.springframework.context.annotation.Profile; import space.rexhub.boot05webadmin.bean.ConfigProperties; @Profile(\"prod\") @Configuration @Slf4j public class ProdConfigure { @Value(\"${rexhub.username}\") private String username; @Value(\"${rexhub.password}\") private String password; @Bean public ConfigProperties configProperties(){ ConfigProperties configProperties = new ConfigProperties(); configProperties.setUsername(username); configProperties.setPassword(password); log.info(\"prod: \"+ configProperties); return configProperties; } } 如上述代码所示，当profile激活了prod时，才会把下面的配置加载到容器中，这种配置方式可以针对于不同的环境配置特定环境下特定的配置信息，不需要写在外边频繁修改的。\nProfile分组 在配置文件中，还有种分组的概念，可以将配置环境按组的形式使用。 使用:\n在配置文件中分好配置组 spring: profiles: group: prodGroup[1]: prod prodGroup[2]: tencent 在命令行制定需要激活的配置组 java -jar xxx.jar --spring.profiles.active=prodGroup 关于外部配置 官方说明\n外部配置源 Java属性文件 YAML文件 系统环境变量 命令行参数 配置文件查找的位置（从里到外查找，外的覆盖里面的） classpath, 根路径(src下，resource下) classpath根路径下的config目录 jar包当前目录下 jar包路径下的config路径下 系统根目录下的config的直接子目录 配置文件加载顺序 当前项目内的application.yml、application.properties 当前项目内指定激活的application-{env}.yml、application-{env}.properties jar包外部的application.yml、application.properties jar包外部指定激活的application-{env}.yml、application-{env}.properties ",
   "wordCount" : "110",
@@ -354,7 +354,7 @@ tips:</li>
 
   <footer class="post-footer">
     <ul class="post-tags">
-      <li><a href="https://rexhub.space/tags/springboot/">SpringBoot</a></li>
+      <li><a href="https://rexhub.space/tags/spring%E7%B3%BB%E5%88%97/">Spring系列</a></li>
     </ul>
 <nav class="paginav">
   <a class="prev" href="https://rexhub.space/posts/back/java/build_tool/gradle/">
@@ -372,7 +372,7 @@ tips:</li>
 
 <div class="share-buttons">
     <a target="_blank" rel="noopener noreferrer" aria-label="share SpringBoot配置启动 on twitter"
-        href="https://twitter.com/intent/tweet/?text=SpringBoot%e9%85%8d%e7%bd%ae%e5%90%af%e5%8a%a8&amp;url=https%3a%2f%2frexhub.space%2fposts%2fback%2fjava%2fframework%2fspringboot%2fspringboot%25E9%2585%258D%25E7%25BD%25AE%25E5%2590%25AF%25E5%258A%25A8%2f&amp;hashtags=SpringBoot">
+        href="https://twitter.com/intent/tweet/?text=SpringBoot%e9%85%8d%e7%bd%ae%e5%90%af%e5%8a%a8&amp;url=https%3a%2f%2frexhub.space%2fposts%2fback%2fjava%2fframework%2fspringboot%2fspringboot%25E9%2585%258D%25E7%25BD%25AE%25E5%2590%25AF%25E5%258A%25A8%2f&amp;hashtags=Spring%e7%b3%bb%e5%88%97">
         <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
             <path
                 d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-253.927,424.544c135.939,0 210.268,-112.643 210.268,-210.268c0,-3.218 0,-6.437 -0.153,-9.502c14.406,-10.421 26.973,-23.448 36.935,-38.314c-13.18,5.824 -27.433,9.809 -42.452,11.648c15.326,-9.196 26.973,-23.602 32.49,-40.92c-14.252,8.429 -30.038,14.56 -46.896,17.931c-13.487,-14.406 -32.644,-23.295 -53.946,-23.295c-40.767,0 -73.87,33.104 -73.87,73.87c0,5.824 0.613,11.494 1.992,16.858c-61.456,-3.065 -115.862,-32.49 -152.337,-77.241c-6.284,10.881 -9.962,23.601 -9.962,37.088c0,25.594 13.027,48.276 32.95,61.456c-12.107,-0.307 -23.448,-3.678 -33.41,-9.196l0,0.92c0,35.862 25.441,65.594 59.311,72.49c-6.13,1.686 -12.72,2.606 -19.464,2.606c-4.751,0 -9.348,-0.46 -13.946,-1.38c9.349,29.426 36.628,50.728 68.965,51.341c-25.287,19.771 -57.164,31.571 -91.8,31.571c-5.977,0 -11.801,-0.306 -17.625,-1.073c32.337,21.15 71.264,33.41 112.95,33.41Z" />

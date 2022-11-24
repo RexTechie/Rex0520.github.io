@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Spring系列 | Rex中心站</title>
+<meta name="keywords" content="" />
+<meta name="description" content="Rex的个人博客">
+<meta name="author" content="Rex">
+<link rel="canonical" href="https://rexhub.space/tags/spring%E7%B3%BB%E5%88%97/" />
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.css" rel="preload stylesheet" as="style">
+<link rel="preload" href="https://rexhub-1301356141.cos.ap-shanghai.myqcloud.com/profile/blog-icon.png" as="image">
+<link rel="icon" href="https://rexhub.space/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://rexhub.space/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://rexhub.space/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://rexhub.space/apple-touch-icon.png">
+<link rel="mask-icon" href="https://rexhub.space/%3Clink%20/%20abs%20url%3E">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<meta name="generator" content="Hugo 0.100.2" />
+<link rel="alternate" type="application/rss+xml" href="https://rexhub.space/tags/spring%E7%B3%BB%E5%88%97/index.xml">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:title" content="Spring系列" />
+<meta property="og:description" content="Rex的个人博客" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://rexhub.space/tags/spring%E7%B3%BB%E5%88%97/" /><meta property="og:image" content="https://cdn.rexhub.xyz/img/20210820141535.jpg"/><meta property="og:site_name" content="RexHub" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://cdn.rexhub.xyz/img/20210820141535.jpg"/>
+
+<meta name="twitter:title" content="Spring系列"/>
+<meta name="twitter:description" content="Rex的个人博客"/>
+
+</head>
+
+<body class="list" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://rexhub.space/" accesskey="h" title="Home (Alt + H)">
+                <img src="https://rexhub-1301356141.cos.ap-shanghai.myqcloud.com/profile/blog-icon.png" alt="logo" aria-label="logo"
+                    height="35">Home</a>
+            <span class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </span>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://rexhub.space/posts/" title="文章">
+                    <span>文章</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://rexhub.space/categories/" title="分类">
+                    <span>分类</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://rexhub.space/tags/" title="标签">
+                    <span>标签</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://rexhub.space/archives/" title="时间轴">
+                    <span>时间轴</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://rexhub.space/search/" title="搜索 (Alt &#43; /)" accesskey=/>
+                    <span>搜索</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header><main class="main"> 
+<header class="page-header"><div class="breadcrumbs"><a href="https://rexhub.space/">Home</a>&nbsp;»&nbsp;<a href="https://rexhub.space/tags/">Tags</a></div>
+  <h1>Spring系列</h1>
+</header>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2>SpringBoot配置启动
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>SpringBoot配置启动 背景 在实际开发的过程中，常常会有这样的需求，项目打包上线后需要更改一些配置，如果每次都需要重新在自己的电脑上打包后上线，这样的操作其实是非常繁琐的，所以需要有些自定义的配置文件，让项目以自定义的配置文件来启动项目。 之前自己在实际的开发中其实也遇到过这样的情况，项目是用在Windows server上的，需要对方来实时观测数据的准确性来调整配置数据，那时候因为只有这个小需求，也就没有写个web前端来做调整了，所以就想着用配置文件的方式，在这个过程中踩了很多坑，csdn也没有很全面的说明，这次进行了深入的学习，这边的配置是针对于springboot项目的
+关于Profile application-profile使用 指定配置环境application-{env}.yml，env是我们的环境，一般application-prod.yml为生产环境下运行、application-test.yml为测试环境下运行 激活指定环境 配置文件激活 在application.yml中配置spring.profiles.active来激活制定的{env}环境 命令行激活 java -jar xxx.jar –spring.profiles.active=prod – person.name=haha tips: 默认配置和环境变量同时生效 同名配置按优先级覆盖，优先级：命令行参数 &gt; 命令行指定的环境配置 &gt; 默认配置环境 SpringBoot中的@Profile注解 @Profile注解主要是用于条件装配，它的参数为制定的环境
+import lombok.extern.slf4j.Slf4j; import org.springframework.beans.factory.annotation.Autowired; import org.springframework.beans.factory.annotation.Value; import org.springframework.context.annotation.Bean; import org.springframework.context.annotation.Configuration; import org.springframework.context.annotation.Profile; import space.rexhub.boot05webadmin.bean.ConfigProperties; @Profile(&#34;prod&#34;) @Configuration @Slf4j public class ProdConfigure { @Value(&#34;${rexhub.username}&#34;) private String username; @Value(&#34;${rexhub.password}&#34;) private String password; @Bean public ConfigProperties configProperties(){ ConfigProperties configProperties = new ConfigProperties(); configProperties.setUsername(username); configProperties.setPassword(password); log.info(&#34;prod: &#34;&#43; configProperties); return configProperties; } } 如上述代码所示，当profile激活了prod时，才会把下面的配置加载到容器中，这种配置方式可以针对于不同的环境配置特定环境下特定的配置信息，不需要写在外边频繁修改的。...</p>
+  </section>
+  <footer class="entry-footer">2022-10-23&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Rex</footer>
+  <a class="entry-link" aria-label="post link to SpringBoot配置启动" href="https://rexhub.space/posts/back/java/framework/springboot/springboot%E9%85%8D%E7%BD%AE%E5%90%AF%E5%8A%A8/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2>SpringBoot源码分析（请求部分）
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>SpringBoot源码分析（请求部分） 引言 👀看了尚硅谷雷神的SpringBoot2源码分析，颇有感触🤙，请求处理这部分的源码真的是太精彩了，决定自己在好好的debug几次，再记录下笔记！以前不理解什么叫作“框架 = 设计模式 &#43; 反射 &#43; 注解”，觉得设计模式不就是一些代码风格，反射不就是运行时动态获取类的内部信息并执行其的一些方法，注解不就是定义补充么。但看了SpringBoot源码后才知道如果没有设计模式，有些复杂逻辑的代码不做一些封装📦处理的话就会变成💩山代码，效率低、难理解、难扩展。而通过反射，可以使得框架有更高的灵活性和扩展性。使用注解则可以使代码更加简洁。
+接口创建 SpringBoot的特点开箱即用，即内部已经为我们做了大量的配置，包括请求参数解析、数据响应、内容协商等等，如果是用传统的servlet(SpringBoot底层已经封装了tomcat)会变得极其复杂，而springboot我们只需要几个注解就可以完成一个简单的接口。 Example:
+@GetMapping(&#34;/girl&#34;) public String getGirlFriend(@RequestParam String girlfriend){ return String.format(&#34;Get a girlfriend: %s&#34;, girlfriend); } 这样就成功创建了一个简单的接口，使用GetMapping来说明请求方式(“get”)和请求路径(&#34;/girl&#34;), 可以用url拼接参数的方式传参数（&#34;/girl?girlfriend=xxx&#34;）。按照以前sevlet，获取参数需要request.getParameter(“girlfriend”),post方法则要从request.getInputStream()获取BufferReader后再做处理；返回值想要返回json格式，需要用工具类，将对象拼接成json格式，然后用response.getWriter().println(girlfriend)写出，如果是中文还需要进行编码处理。而现在这些繁琐并且重复的操作springboot全做了处理，使我们在开发的过程中只需要注意业务部分的代码实现。
+请求处理过程概览 请求映射 处理并获取请求参数 调用目标方法 数据响应与内容协商 请求映射 请求进来会进到DispatchServlet.doDispatch()(Tips: DispatchServlet是HttpServlet的一个子类，由Spring进行封装)中，SpringMVC功能分析都从这个类开始分析 protected void doDispatch(HttpServletRequest request, HttpServletResponse response) throws Exception { HttpServletRequest processedRequest = request; HandlerExecutionChain mappedHandler = null; boolean multipartRequestParsed = false; WebAsyncManager asyncManager = WebAsyncUtils.getAsyncManager(request); try { ModelAndView mv = null; Exception dispatchException = null; try { processedRequest = checkMultipart(request); multipartRequestParsed = (processedRequest !...</p>
+  </section>
+  <footer class="entry-footer">2022-09-25&nbsp;·&nbsp;6 min&nbsp;·&nbsp;Rex</footer>
+  <a class="entry-link" aria-label="post link to SpringBoot源码分析（请求部分）" href="https://rexhub.space/posts/back/java/framework/springboot/springboot%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E8%AF%B7%E6%B1%82%E9%83%A8%E5%88%86/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2>SpringBoot学习（入门篇）
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>SpringBoot学习（入门篇） 简单使用 浏览器中输入http://127.0.0.1:8080/hello, 显示hello, springboot2的字样
+创建maven工程
+生成pom.xml文件，引入相关依赖
+&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt; &lt;project xmlns=&#34;http://maven.apache.org/POM/4.0.0&#34; xmlns:xsi=&#34;http://www.w3.org/2001/XMLSchema-instance&#34; xsi:schemaLocation=&#34;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&#34;&gt; &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt; &lt;groupId&gt;xyz.rexhub&lt;/groupId&gt; &lt;artifactId&gt;boot-01-helloworld&lt;/artifactId&gt; &lt;version&gt;1.0-SNAPSHOT&lt;/version&gt; &lt;!--项目打包文件格式--&gt; &lt;packaging&gt;jar&lt;/packaging&gt; &lt;properties&gt; &lt;maven.compiler.source&gt;8&lt;/maven.compiler.source&gt; &lt;maven.compiler.target&gt;8&lt;/maven.compiler.target&gt; &lt;/properties&gt; &lt;parent&gt; &lt;!--springboot框架基础依赖--&gt; &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt; &lt;artifactId&gt;spring-boot-starter-parent&lt;/artifactId&gt; &lt;version&gt;2.3.4.RELEASE&lt;/version&gt; &lt;/parent&gt; &lt;dependencies&gt; &lt;!--springboot web依赖--&gt; &lt;dependency&gt; &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt; &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt; &lt;/dependency&gt; &lt;/dependencies&gt; &lt;build&gt; &lt;!--maven构建工具插件--&gt; &lt;plugins&gt; &lt;plugin&gt; &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt; &lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt; &lt;/plugin&gt; &lt;/plugins&gt; &lt;/build&gt; &lt;/project&gt; 创建主程序
+package xyz.rexhub.boot; import org.springframework.boot.SpringApplication; import org.springframework.boot.autoconfigure.SpringBootApplication; /** * Description: 主程序类 * * @author rex * @date 2022-07-06 23:21 */ @SpringBootApplication public class MainApplication { public static void main(String[] args) { SpringApplication....</p>
+  </section>
+  <footer class="entry-footer">2022-08-16&nbsp;·&nbsp;4 min&nbsp;·&nbsp;Rex</footer>
+  <a class="entry-link" aria-label="post link to SpringBoot学习（入门篇）" href="https://rexhub.space/posts/back/java/framework/springboot/springboot%E5%AD%A6%E4%B9%A0%E5%85%A5%E9%97%A8%E7%AF%87/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2>SpringBoot学习（核心功能篇-配置功能）
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>SpringBoot学习（核心功能篇-配置功能） properties yaml YAML 是 “YAML Ain’t Markup Language”（YAML 不是一种标记语言）的递归缩写。在开发的这种语言时，YAML 的意思其实是：“Yet Another Markup Language”（仍是一种标记语言）。
+非常适合用来做以数据为中心的配置文件
+基本语法 key: value；kv之间有空格 大小写敏感 使用缩进表示层级关系 缩进不允许使用tab，只允许空格 缩进的空格数不重要，只要相同层级的元素左对齐即可 ‘#‘表示注释 字符串无需加引号，如果要加，‘‘与&#34;“表示字符串内容 会被 转义/不转义 数据类型 字面量：单个的、不可再分的值。date、boolean、string、number、null
+k: v 对象：键值对的集合。map、hash、set、object
+行内写法：k: (k1:v1, k2:v2, k3:v3) # 或 k: k1: v1 k2: v2 k3: v3 数组：一组按次序排序的值。array、list、queue
+行内写法：k: [v1, v3, v4] # 或 k: - v1 - v2 - v3 示例 ​	java
+package xyz.rexhub.xyz.bean; import lombok.Data; import lombok.ToString; import org.springframework.boot.context.properties.ConfigurationProperties; import org....</p>
+  </section>
+  <footer class="entry-footer">2022-08-16&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Rex</footer>
+  <a class="entry-link" aria-label="post link to SpringBoot学习（核心功能篇-配置功能）" href="https://rexhub.space/posts/back/java/framework/springboot/springboot%E5%AD%A6%E4%B9%A0%E6%A0%B8%E5%BF%83%E5%8A%9F%E8%83%BD%E7%AF%87-%E9%85%8D%E7%BD%AE%E5%8A%9F%E8%83%BD/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2>Restful开发风格
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>RESTful开发风格 REST与RESTful REST(Representational State Transfer)-表现层状态转换，资源在网络中以某种表现形式进行状态转移 RESTful是基于REST理念的一套开发风格，是具体的开发规则 RESTful传输数据 RESTful开发规范 使用URL作为用户交互入口 明确的语义规范(GET|POST|PUT|DELETE-&gt;查|增|改|删) 只返回数据(JSON|XML)，不包含任何展现 RESTful命名要求 URI 说明 修改建议 GET /articles?au=lily 正确用法 GET /a/1 URI必须具有语义 GET /student/1 POST /createArticle/1 URI必须使用名词 POST /article/1 GET /articles/author/1 URI扁平化，不超两级 GET /articles/author?id=1 DELETE /articles/1 URI名词区分单复数 GET /articles?au=lily
+DELETE /article/1 开发第一个RESTful应用 RestfulController.java
+package com.imooc.restful.controller; import org.springframework.stereotype.Controller; import org.springframework.web.bind.annotation.*; /** * @author Rex * @create 2021-01-12 12:00 */ @Controller @RequestMapping(&#34;/restful&#34;) public class RestfulController { @GetMapping(&#34;/request&#34;) @ResponseBody public String doGetRequest(){ return &#34;{\&#34;message\&#34;:\&#34;返回查询结果\&#34;}&#34;; } @PostMapping(&#34;/request&#34;) @ResponseBody public String doPostRequest(){ return &#34;{\&#34;message\&#34;:\&#34;数据新建成功\&#34;}&#34;; } @PutMapping(&#34;/request&#34;) @ResponseBody public String doPutRequest(){ return &#34;{\&#34;message\&#34;:\&#34;数据更新成功\&#34;}&#34;; } @DeleteMapping(&#34;/request&#34;) @ResponseBody public String doDeleteRequest(){ return &#34;{\&#34;message\&#34;:\&#34;数据删除成功\&#34;}&#34;; } } client....</p>
+  </section>
+  <footer class="entry-footer">2021-03-09&nbsp;·&nbsp;3 min&nbsp;·&nbsp;Rex</footer>
+  <a class="entry-link" aria-label="post link to Restful开发风格" href="https://rexhub.space/posts/back/java/framework/springmvc/restful/"></a>
+</article>
+<footer class="page-footer">
+  <nav class="pagination">
+    <a class="next" href="https://rexhub.space/tags/spring%E7%B3%BB%E5%88%97/page/2/">Next Page »</a>
+  </nav>
+</footer>
+    </main>
+    
+<footer class="footer">
+  <span>&copy; 2022 <a href="https://rexhub.space/">Rex中心站</a></span>
+  <span>
+    Powered by
+    <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+    <a href="https://git.io/hugopapermod" rel="noopener" target="_blank">PaperMod</a>
+  </span>
+  <span><a href="https://beian.miit.gov.cn/">浙ICP备2021016765号-2</a></span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+    <path d="M12 6H0l6-6z" />
+  </svg>
+</a>
+
+<script>
+  let menu = document.getElementById('menu')
+  menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+  menu.onscroll = function () {
+    localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+  }
+
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener("click", function (e) {
+      e.preventDefault();
+      var id = this.getAttribute("href").substr(1);
+      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+          behavior: "smooth"
+        });
+      } else {
+        document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+      }
+      if (id === "top") {
+        history.replaceState(null, null, " ");
+      } else {
+        history.pushState(null, null, `#${id}`);
+      }
+    });
+  });
+
+</script>
+<script>
+  var mybutton = document.getElementById("top-link");
+  window.onscroll = function () {
+    if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+      mybutton.style.visibility = "visible";
+      mybutton.style.opacity = "1";
+    } else {
+      mybutton.style.visibility = "hidden";
+      mybutton.style.opacity = "0";
+    }
+  };
+
+</script>
+<script>
+  document.getElementById("theme-toggle").addEventListener("click", () => {
+    if (document.body.className.includes("dark")) {
+      document.body.classList.remove('dark');
+      localStorage.setItem("pref-theme", 'light');
+    } else {
+      document.body.classList.add('dark');
+      localStorage.setItem("pref-theme", 'dark');
+    }
+  })
+
+</script>
+
+<script src="/assets/js/mermaid.min.js"></script>
+<script>
+  
+  
+  const mermaidKeywords = [
+    "graph TD",
+    "graph TB",
+    "graph BT",
+    "graph RL",
+    "graph LR",
+    "sequenceDiagram",
+    "gantt",
+    "classDiagram",
+    "gitGraph",
+    "erDiagram",
+    "journey"
+  ];
+  var htmlCollection = document.getElementsByClassName('language-fallback')
+  console.log(htmlCollection)
+  Array.prototype.slice.call(htmlCollection)
+  console.log(Array.prototype.slice.call(htmlCollection))
+  Array.from(htmlCollection).forEach(ele => {
+    var graphDefinition = ele.innerText;
+    if (mermaidKeywords.some((keyword) => graphDefinition.startsWith(keyword))) {
+      ele.parentElement.parentElement.outerHTML = `<div class="mermaid">${ele.innerText}</div>`
+    }
+  })
+  Array.from(document.getElementsByClassName('language-mermaid')).forEach(ele => {
+    ele.parentElement.outerHTML = `<div class="mermaid">${ele.innerText}</div>`
+  })
+</script>
+<style>
+   
+  .mermaid svg {
+    display: block;
+    margin: auto;
+  }
+</style>
+</body>
+
+</html>

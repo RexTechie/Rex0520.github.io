@@ -161,75 +161,6 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2>CSS3
-    </h2>
-  </header>
-  <section class="entry-content">
-    <p>CSS3 CSS新增选择器 属性选择器 选择器 简介 E[attr] 选择具有attr属性的E元素 E[attr=“val”] 选择具有attr属性且属性值等于E的元素 E[attr^=“val”] 匹配具有attr属性且值以val开头的E元素 E[attr$=“val”] 匹配具有attr属性且值以val结尾的E元素 E[attr*=“val”] 匹配具有attr属性且值中含有val的E元素 属性选择器的权重为10
-结构伪类选择器 选择符 简介 E:first-child 匹配父元素中的第一个子元素E E:last-child 匹配父元素中最后一个E元素 E:nth-child(n) 匹配父元素中的第n个子元素E E:first-of-type 指定类型E的第一个 E:last-of-type 指定类型E的最后一个 E:nth-of-type(n) 指定类型E的第n个 nth-child(n)
-n可以是数字，关键字和公式 n如果是是数字，就是选择第n个子元素，里面数字从1开始 n可以是关键字：even偶数，odd奇数 伪元素选择器 ​	伪元素选择器可以帮助我们利用CSS创建新标签元素，而不需要HTML标签，从而简化HTML结构
-选择器 简介 ::before 在元素内部的前面插入内容 ::after 在元素内部的后面插入内容 注意：
-before和after创建一个元素，但是属于行内元素 新创建的这个元素在文档树中是找不到的，所以我们称为伪元素 语法：element::before{} before和after必须有content属性 before在父元素内容的前面创建元素，after在父元素内容的后面插入元素 伪元素选择器和标签选择器一样，权重为1 CSS3盒子模型 box-sizing: content-box 盒子大小为width&#43;padding&#43;border(以前默认的) border-box 盒子大小width 其他特性（了解） filter CSS属性将模糊或颜色偏移等图形效果应用于元素。
-filter: 函数(); 例如filter:blur(5px); blur模糊处理数值越大越模糊 calc()此CSS函数让你在声明CSS属性值时执行一些计算。
-width:calc(100%-80px); CSS过渡 transition:要过渡的属性 花费时间 运动曲线 何时开始;...</p>
-  </section>
-  <footer class="entry-footer">2021-06-18&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Rex</footer>
-  <a class="entry-link" aria-label="post link to CSS3" href="https://rexhub.space/posts/front/css3/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>Nginx的入门
-    </h2>
-  </header>
-  <section class="entry-content">
-    <p>Nginx的安装 Linux安装 登录root账号 执行yum install yum-utils 运行vim /etc/yum.repos.d/nginx.repo [nginx-stable] name=nginx stable repo baseurl=http://nginx.org/packages/centos/7/$basearch/ gpgcheck=1 enabled=1 gpgkey=https://nginx.org/keys/nginx_signing.key module_hotfixes=true [nginx-mainline] name=nginx mainline repo baseurl=http://nginx.org/packages/mainline/centos/7/$basearch/ gpgcheck=1 enabled=0 gpgkey=https://nginx.org/keys/nginx_signing.key module_hotfixes=true 然后查看源 yum list | grep nginx 看到存在稳定版的源，确认无误。 运行安装命令 yum install nginx 1:1.16.1-1.el7.ngx 过程中输入y，确认 查看版本，若出现版本号，则安装成功 用whereis nginx可以查看到目录： nginx: /usr/sbin/nginx /usr/lib64/nginx /etc/nginx /usr/share/nginx /usr/share/man/man8/nginx.8.gz MacOS的安装 安装homebrew，然后nginx使用安装brew： $ brew install nginx 笔记：
-nginx的配置文件位于中/usr/local/etc/nginx/nginx.conf。 要编辑配置文件或运行nginx，您需要使用sudo： sudo nano /usr/local/etc/nginx/nginx.conf和 sudo nginx …
-Windows下的安装 不推荐，nginx不适合运行在Windows上，功能不完整，我们尽量运行在linux上。</p>
-  </section>
-  <footer class="entry-footer">2021-06-12&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Rex</footer>
-  <a class="entry-link" aria-label="post link to Nginx的入门" href="https://rexhub.space/posts/back/java/microservices/nginx%E7%9A%84%E5%AE%89%E8%A3%85/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>Docker的安装
-    </h2>
-  </header>
-  <section class="entry-content">
-    <p>Docker的安装 在Cent OS安装docker 先有一个Cent OS 7.6系统 这个很重要，不同版本按照的时候是不一样的。查看CentOS版本 cat /etc/redhat-release
-用root账户登录进去 配置国内yum源 wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo yum clean all yum makecache
-卸载旧版本 较旧的Docker版本称为docker或docker-engine。如果已安装这些程序，请卸载它们以及相关的依赖项。 如果yum报告未安装这些软件包，也没问题。
-docker-client \ docker-client-latest \ docker-common \ docker-latest \ docker-latest-logrotate \ docker-logrotate \ docker-engine 更新yum yum check-update yum update
-安装所需的软件包 yum install -y yum-utils \ device-mapper-persistent-data \ lvm2 使用以下命令来设置稳定的存储库。 sudo yum-config-manager –add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
-查看docker版本 yum list docker-ce –showduplicates | sort -r
-安装指定的版本 yum install docker-ce-18.09.0 docker-ce-cli-18.09.0 containerd.io
-Docker 是服务器—-客户端架构。命令行运行docker命令的时候，需要本机有 Docker 服务。用下面的命令启动 systemctl start docker...</p>
-  </section>
-  <footer class="entry-footer">2021-06-11&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Rex</footer>
-  <a class="entry-link" aria-label="post link to Docker的安装" href="https://rexhub.space/posts/back/java/microservices/docker%E7%9A%84%E5%AE%89%E8%A3%85/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>分布式
-    </h2>
-  </header>
-  <section class="entry-content">
-    <p>分布式 定义： 利用物理架构形成多个自治的处理元素，不共享主内存, 但是通过发送信息合作。— Leslie Lamport
-实际项目的演进过程 一个项目，大而全 多台机器，部署同样的应用 分布式：权限系统、员工系统、请假系统 分布式的作用 为什么需要分布式 解决单体应用的问题 应用代码耦合严重，功能扩展难 新需求开发交互周期长，测试工程量大 新加入的开发同事需要很长时间才能属性系统 升级维护困难（改动任何一点地方都要升级整个系统） 系统性能提升艰难，可用性低，不稳定 分布式的好处 增大系统容量 加强系统可用 因为模块化，所以系统模块重用度高 因为软件服务模块被拆分，开发和发布速度可以并行变得更块 系统拓展性更高 团队协作流程也会得到改善 技术升级 分布式和单体结构的对比 传统单体结构 分布式架构 新人的学习成本 业务逻辑成本高 架构逻辑成本高 部署、运维 容易 发布频繁，发布顺序复杂、运维难 隔离性 一损俱损，殃及鱼塘 故障影响范围小 架构设计 难度低 难度指数级上升 系统性能 响应快、吞吐量小 响应慢、吞吐量大 测试成本 低 很高 技术多样性 技术单一且封闭 技术多样且开放 系统扩展性 扩展性差 扩展性很好 系统管理成本 成本低 成本高 CAP定理 CAP理论：三者不可兼得
-C：（Consistency，一致性）：读操作是否总能读到前一个写操作的结果 A：（Availbilty，可用性）：非故障节点应该在合理的时间内做出合理的响应，但是可能不是最新的数据 P：（Partition tolerance，分区容错性）：当出现网络分区现象后，系统能够继续运行 分区容错（P）
-一致性（C）
-可用性(A)
-CAP的选取
-火车票 C 银行转账 A 集群、分布式、微服务的区别 集群与分布式 集群：一个业拆分多个子业务，部署在不同的服务器上 分布式：同一个业务，部署在多个服务器上 集群和微服务 集群：分散压力 微服务：分散能力 分布式和微服务 分布式：系统部署方式，部署角度（后） 微服务：架构设计方式，逻辑角度（先） </p>
-  </section>
-  <footer class="entry-footer">2021-06-10&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Rex</footer>
-  <a class="entry-link" aria-label="post link to 分布式" href="https://rexhub.space/posts/back/java/microservices/%E5%88%86%E5%B8%83%E5%BC%8F/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
     <h2>Threadlocal详解
     </h2>
   </header>
@@ -240,6 +171,94 @@ package treadlocal; import java.text.SimpleDateFormat; import java.util.Date; im
   </section>
   <footer class="entry-footer">2021-06-08&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Rex</footer>
   <a class="entry-link" aria-label="post link to Threadlocal详解" href="https://rexhub.space/posts/back/java/threadpool/threadlocal%E8%AF%A6%E8%A7%A3/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>关于reentrantlock和condition
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>关于ReentrantLock和Condition ReentrantLock是Java中一种常见的“锁”，锁是什么？ 并发编程的时候，比如说有一个业务是读写操作，那多个线程执行这个业务就会造成已经写入的数据又写一遍，就会造成数据错乱。
+所以需要引入锁，进行数据同步，强制使得该业务执行的时候只有一个线程在执行，从而保证不会插入多条重复数据。
+一些共享资源也是需要加锁，从而保证数据的一致性。
+使用Condition实现线程等待和唤醒 通常在开发并发程序的时候，会碰到需要停止正在执行业务A，来执行另一个业务B，当业务B执行完成后业务A继续执行。ReentrantLock通过Condtion等待/唤醒这样的机制。</p>
+  </section>
+  <footer class="entry-footer">2021-06-08&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Rex</footer>
+  <a class="entry-link" aria-label="post link to 关于reentrantlock和condition" href="https://rexhub.space/posts/back/java/threadpool/%E5%85%B3%E4%BA%8Ereentrantlock%E5%92%8Ccondition/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>守护线程
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>守护线程 两类线程： User Thread 用户线程 Daemon Thread 守护线程 分类标准是线程是否会阻止JVM的停止，只要当前JVM实例中尚存在任何一个非守护线程没有结束，守护线程就全部继续工作；只有当最后一个非守护线程结束时，所有守护线程才会随着JVM一同结束工作。（非守护线程等同于用户线程）
+JVM停止的情况 已调用System.exit()方法 所有非守护程序线程都已结束 而一般情况下我们不会调用System.exit()方法，所以大部分的Java程序的结束都是由于所有用户线程都结束而导致的。
+所以可以认为，任何一个守护线程都是整个JVM中所有用户线程（非守护线程）的管家。Daemon的作用是为其他线程的运行提供便利服务，守护线程最典型的应用就是 GC (垃圾回收器)，它是一个很称职的守护者。
+守护线程的特性 线程类型默认继承自父线程 守护线程创建的线程为默认是守护线程，同样，用户线程创建的线程默认为用户线程。非守护线程如果想创建一个守护线程，需要调用Thread.setDaemon来设置它（Thread类用布尔值daemon属性来表示线程是否是守护线程），并且，该方法必须在start之前调用，否则会抛出 IllegalThreadStateException 异常。 被谁启动 通常由JVM启动，而不是由用户去启动。当JVM启动时，通常会有一个非守护线程（通常为执行main函数的线程）。
+不影响JVM退出 当只剩下守护线程时，JVM就会退出，因为如果只剩下守护线程，就没必要继续运行程序了。
+守护线程没结束并不会影响JVM的正常停止:假设所有用户线程都结束了，那么就算有5个守护线程正在运行，JVM也会正常停止：
+守护线程和普通线程的区别 虚拟机的离开：如果 User Thread已经全部退出运行了，只剩下Daemon Thread存在了，虚拟机也就退出了，这是因为没有了“被守护者”，Daemon也就没有工作可做了，也就没有继续运行程序的必要了。 这就是守护线程的作用：告诉JVM不需要等待它退出,当JVM中所有的线程都是守护线程的时候，JVM就可以正常的退出了。 我们是否需要给线程设置为守护线程？ 我们通常不应把自己的线程设置为守护线程，因为设置为守护线程是很危险的。比如线程正在访问如文件、数据库的时候，所有用户线程都结束了，那么守护线程会在任何时候甚至在一个操作的中间发生中断，所以守护线程永远不应该去访问固有资源。</p>
+  </section>
+  <footer class="entry-footer">2021-06-08&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Rex</footer>
+  <a class="entry-link" aria-label="post link to 守护线程" href="https://rexhub.space/posts/back/java/threadpool/%E5%AE%88%E6%8A%A4%E7%BA%BF%E7%A8%8B/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>线程池
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>线程池 线程池介绍 软件中的池可以理解为计划经济
+优点：
+复用线程 控制资源总量 好处：
+加快响应速度 合理利用CPU和内存 统一管理 适用场合
+服务器接收到大量请求时，使用线程池技术是非常合适的，它可以大大减少线程的创建和销毁次数，提高服务器的工作效率 实际上，在开发中，如果需要创建5个以上的线程，那么就可以使用线程池来管理 创建和停止线程池 线程池构造方法的参数 参数名 类型 含义 corePoolSize int 核心线程数 maxPoolSize int 最大线程数 keepAliveTime long 保持存活时间 workQueue BlockingQueue 任务存储队列 threadFactory ThreadFactory 当线程池需要新的线程的时候，会使用threadFactory来生成新的线程 Handler RejectedExecutionHandler 由于线程池无法接受你所提交的任务的拒绝策略 添加线程规则 如果线程数小于corePoolSize，创建一个新线程来运行新任务。 如果线程数等于（或大于）corePoolSize但少于maxmumPoolSize，则将任务放入队列。 如果队列已满，并且线程数小于maxPoolSize，则创建一个新线程。 如果队列已满，并且线程数大于或等于maxPoolSize，则拒绝。 是否需要增加线程的判断顺序是：
+corePoolSize workQueue maxPoolSize 增减线程的特点 通过设置corePoolSize和maximumPoolSize相同，就可以创建固定大小的线程池 线程池希望保持较少的线程数，并且只有在负载变得很大时才增加它 举例：
+线程池：核心池大小为5，最大池大小为10，队列为100 因为线程中的请求最多会创建5个，然后任务将被添加到队列中，直到达到100。当队列已满时，将创建最新的线程maxPoolSize，最多到10个线程，如果再来任务，就拒绝 keepAliveTime
+如果线程池当前的线程数多于corePoolSize，那么如果多余的线程空闲时间超过keepAliveTime，他们就会被终止 ThreadFactory
+默认使用Executors.defaultThreadFactory() 创建出来的都在同一个线程组 如果自己指定ThreadFactory，那么就可以改变线程名、线程组、优先级、是否是守护线程等。 工作队列
+有3种最常见的队列类型：
+直接交接：SynchronousQueue
+适用于任务不多的情况，只作为中转
+内部没有容量，maxPoolSize需要设置的大一点
+无界队列：LinkedBlockingQueue
+可以防止浏览突增
+但是如果处理的速度跟不上任务提交的速度，队列里的东西会越来越多造成内存浪费或OOM(Out of Memory)异常
+不会被塞满，maxPoolSize无效
+有界队列：ArrayBlockingQueue
+可以设置maxPoolSize，控制队列容量...</p>
+  </section>
+  <footer class="entry-footer">2021-06-08&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Rex</footer>
+  <a class="entry-link" aria-label="post link to 线程池" href="https://rexhub.space/posts/back/java/threadpool/%E7%BA%BF%E7%A8%8B%E6%B1%A0/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>CSS
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>CSS CSS简介 层叠样式表(Cascading Style Sheets)的简称 美化HTML、布局网页 结构（HTML）-样式（CSS）分离 语法规范： ​	选择器{属性:值}
+h1{color: red;} 语法风格 紧凑格式
+h3 {color:red} 展开格式(强推)
+h3 { color: pink; font-size:20px; } 选择器： CSS引入方式 内部样式表 行内样式表 外部样式表 CSS常用选择器 基础选择器 标签选择器 类选择器 id选择器 通配符选择器 复合选择器 后代选择器
+元素1 元素2 { 样式声明 }
+子选择器：只能选择作为某元素的最近一级 元素，
+元素1&gt;元素2 { 样式声明 }
+并集选择器
+元素1,元素2 { 样式声明 }
+伪类选择器
+链接伪类选择器：必须按照lvha的顺序
+a:link /*选择所有未被访问的链接*/ a:visited /*选择所有已被访问的链接*/ a:hover /*选择鼠标指针位于其上的链接*/ a:active /*选择活动链接*/ focus伪类选择器用于获取焦点的表单元素。
+input:focus{ background-color: yellow; } CSS三大特性： 层叠性
+解决样式冲突问题...</p>
+  </section>
+  <footer class="entry-footer">2021-05-14&nbsp;·&nbsp;4 min&nbsp;·&nbsp;Rex</footer>
+  <a class="entry-link" aria-label="post link to CSS" href="https://rexhub.space/posts/front/css/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

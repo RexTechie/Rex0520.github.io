@@ -191,15 +191,6 @@
     </item>
     
     <item>
-      <title>Lambda(java)</title>
-      <link>https://rexhub.space/posts/back/java/lambda/</link>
-      <pubDate>Tue, 09 Mar 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://rexhub.space/posts/back/java/lambda/</guid>
-      <description>Lambda(java)</description>
-    </item>
-    
-    <item>
       <title>Maven</title>
       <link>https://rexhub.space/posts/back/java/build_tool/maven%E5%9F%BA%E7%A1%80/</link>
       <pubDate>Tue, 09 Mar 2021 00:00:00 +0000</pubDate>
@@ -314,15 +305,6 @@
       
       <guid>https://rexhub.space/posts/back/java/framework/spring/%E5%9F%BA%E4%BA%8E%E6%B3%A8%E8%A7%A3%E9%85%8D%E7%BD%AEioc%E5%AE%B9%E5%99%A8/</guid>
       <description>基于注解配置ioc容器</description>
-    </item>
-    
-    <item>
-      <title>Reflect</title>
-      <link>https://rexhub.space/posts/back/java/reflect/</link>
-      <pubDate>Fri, 23 Oct 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://rexhub.space/posts/back/java/reflect/</guid>
-      <description>Reflect(java)</description>
     </item>
     
   </channel>

@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
 <title>网页开发 | Rex中心站</title>
-<meta name="keywords" content="HTML" />
+<meta name="keywords" content="前端基础" />
 <meta name="description" content="网页开发">
 <meta name="author" content="Rex">
 <link rel="canonical" href="https://rexhub.space/posts/front/%E7%BD%91%E9%A1%B5%E5%BC%80%E5%8F%91/" />
@@ -99,7 +99,7 @@
   "name": "网页开发",
   "description": "网页开发",
   "keywords": [
-    "HTML"
+    "前端基础"
   ],
   "articleBody": "网页开发 浏览器内核 浏览器 内核 备注 IE Trident IE、猎豹、360极速浏览器、百度浏览器 firefox Gecko 火狐浏览器内核 Safari Webkit 苹果浏览器内核 Chrome/Opera Blink Chrome/Opera浏览器内核。Blink其实是Webkit的分支 Web标准 目的： ​\t浏览器不同，他们显示页面或者排版不同\n构成： 结构 - HTML 表现 - CSS 行为 - JavaScript SEO优化 TDK三大标签 title\ntitle是搜索引擎了解网页入口和网页主题归属的最佳判断点\n建议：网站名（产品名）-网站的介绍（尽量不超过30个汉字）\ndescription\n简要说明我们网站主要是做什么的。\n我们提倡，description作为网站的总体业务和主题概况\nkeyword\nkeywords是页面关键字，是搜索引擎的关注点之一。\nkeywords最好限制为6~8个关键字，关键字之间用英文逗号隔开，采用关键词1，关键词2的形式\nLOGO SEO优化 logo里面首先放一个h1标签，目的是为了提权，告诉搜索引擎，这个地方很重要 h1里面再放一个链接，可以返回首页的，把logo的背景图片给链接即可。 为了搜索引擎收录我们，我们链接里面要放文字（网站名称），但是文字不要显示出来 方法1：text-index移到盒子外面（text-indent:-9999px），然后overflow:hidden，淘宝的做法 方法2：直接给font-size:0;就看不到文字了，京东的做法。 最后给链接一个title属性，这样鼠标放到logo上就可以看到提示文字了 HTML标签 声明部分 文档类型声明标签 ​\t\u003c!DOCTYPE\u003e文档类型声明，作用就是告诉浏览器使用哪种HTML版本来显示网页\n\u003c!DOCTYPE html\u003e指当前页面采用HTML5版本来显示网页\nlang语言种类 en定义语言为中文 zh-CN定义语言为中文 这个对于网页的编码没有什么影响，主要针对浏览器和搜索引擎\n字符集 ​\t在标签内，用于指定HTML文档的编码方式\ncharset常用的值有：GB2312，BIG5，GBK和UTF-8，其中UTF-8为万国码，包含了各个国家的字符\n图标： \u003clink rel=\"shortcut icon\" href=\"./images/favicon.ico\"\u003e 常用标签 标题标签： - h -\u003e head的缩写 作为标题使用，并且依据重要性递减 段落：\np -\u003e paragraph\n可以把HTML文档分割为若干段落\n特点\n文本在一个段落中会根据浏览器窗口的大小自动换行 段落和段落之间保有空隙。 换行标签：\nbr -\u003e break 强制换行 特点 单标签。 标签只是简单地开始新的一行，跟段落不一样，段落之间会插入一些垂直的间距 文本格式化标签 语义 标签 说明 加粗 或者 更推荐使用标签加粗 语义更强烈 倾斜 或者 更推荐使用标签加粗 语义更强烈 删除线 或者 更推荐使用标签加粗 语义更强烈 下划线 或者 更推荐使用标签加粗 语义更强烈 div和span标签：、 div -\u003e division 分割、分区；span 跨度、跨距 特点： 标签用来布局，但是现在一行只能放一个。大盒子 标签用来布局，一行可以多个。小盒子 图像标签： img -\u003e image 图像\n图像标签属性\n属性 属性值 说明 src 图片路径 必须属性 alt 文本 替换文本。图像不能显示的文字 title 文本 提示文本。鼠标放到图像上，显示的文字 width 像素 设置图像的宽度 height 像素 设置图像的高度 border 像素 设置图像的边框粗细 超链接标签/锚点链接： a -\u003e anchor 锚\n属性\n属性 作用 href 用于指定连接目标的url地址，为href属性时，他就具有了超链接的功能 target 用于指定链接页面的打开方式，其中_self为默认值，__blank为在新窗口中打开 注释和特殊字符 注释标签： 特殊字符 特殊字符 描述 字符的代码 空格符 \u0026nbsp; \u003c 小于号 \u0026lt; \u003e 大于号 \u0026gt; \u0026 和号 \u0026amp; ￥ 人民币 \u0026yen; © 版权 \u0026copy; ® 注册商标 \u0026reg; ° 摄氏度 \u0026deg; ± 正负号 \u0026plusmn; × 乘号 \u0026times; ÷ 除号 \u0026divide; ² 平方2(上标2) \u0026sup2; ³ 立方3(上标3) \u0026sup3; 表格标签 用于定义表格的标签\n用于定义表格中的行，必须嵌套在标签中.\ntable row\n用于定义表格中的单元格，必须嵌套在标签中.\n字母td指表格(table data)，即数据单元格的内容。\n表头单元格\ntable head\n表格属性 属性名 属性值 描述 align left、center、right 规定表格相对周围元素的对齐方式 border 1或\"\" 规定表格单元格是否拥有边框，默认为\"\"，表示没有边框 cellpadding 像素值 规定单元边沿与其内容之间的空白，默认像素为1 cellspacing 像素值 规定单元格之间的空白，默认2像素 width 像素值 规定表格的宽度 表格结构标签 表格的头部区域\n表格的主体区域\n合并单元格 跨行合并：rowspan=“合并单元格的个数” 跨列合并：colspan=“合并单元格的个数” 列表标签：用来布局 特点：整齐、整洁、有序 无序列表：、\n有序列表：、\n自定义列表：、、\n表单 定义表单域：\n常用属性：\n属性 属性值 作用 action url地址 用于指定接受并处理表单数据的服务器程序的url地址 method get、post… 用于设置表单数据的提交方式，其取值为get或post等等 name 名称 用于指定表单的名称，以区分同一个页面的多个表单域 表单控件\ninput输入表单元素\ntype属性\n属性值 描述 button 定义可点击按钮（多数情况下，用于通过JavaScript启动脚本）。 checkbox 定义复选框 file 定义输入字段和浏览按钮，供文件上传 hidden 定义隐藏的输入字段 image 定义图像形式的提交按钮。 password 定义密码字段。该字段中的字符被掩码。 radio 定义单选按钮。 reset 定义重置按钮。重置按钮会清除表单中的所有数据 submit 定义提交按钮。提交按钮会把表单数据发送到服务器 text 定义单行的输入字段，用户可在其中输入文本。默认宽度为20个字符。 其他属性\n属性 属性值 描述 name 由用户自定义 定义input元素的名称 value 由用户自定义 规定input元素的值 checked checked 规定此input元素首次加载时应当被选中。 maxlength 正整数 规定输入字段中的字符的最大长度 label标签用于绑定表单元素\nselect下拉表单元素\ntextarea文本域元素\n表单信息\n",
   "wordCount" : "312",
@@ -833,7 +833,7 @@
 
   <footer class="post-footer">
     <ul class="post-tags">
-      <li><a href="https://rexhub.space/tags/html/">HTML</a></li>
+      <li><a href="https://rexhub.space/tags/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80/">前端基础</a></li>
     </ul>
 <nav class="paginav">
   <a class="prev" href="https://rexhub.space/posts/front/css/">
@@ -851,7 +851,7 @@
 
 <div class="share-buttons">
     <a target="_blank" rel="noopener noreferrer" aria-label="share 网页开发 on twitter"
-        href="https://twitter.com/intent/tweet/?text=%e7%bd%91%e9%a1%b5%e5%bc%80%e5%8f%91&amp;url=https%3a%2f%2frexhub.space%2fposts%2ffront%2f%25E7%25BD%2591%25E9%25A1%25B5%25E5%25BC%2580%25E5%258F%2591%2f&amp;hashtags=HTML">
+        href="https://twitter.com/intent/tweet/?text=%e7%bd%91%e9%a1%b5%e5%bc%80%e5%8f%91&amp;url=https%3a%2f%2frexhub.space%2fposts%2ffront%2f%25E7%25BD%2591%25E9%25A1%25B5%25E5%25BC%2580%25E5%258F%2591%2f&amp;hashtags=%e5%89%8d%e7%ab%af%e5%9f%ba%e7%a1%80">
         <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
             <path
                 d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-253.927,424.544c135.939,0 210.268,-112.643 210.268,-210.268c0,-3.218 0,-6.437 -0.153,-9.502c14.406,-10.421 26.973,-23.448 36.935,-38.314c-13.18,5.824 -27.433,9.809 -42.452,11.648c15.326,-9.196 26.973,-23.602 32.49,-40.92c-14.252,8.429 -30.038,14.56 -46.896,17.931c-13.487,-14.406 -32.644,-23.295 -53.946,-23.295c-40.767,0 -73.87,33.104 -73.87,73.87c0,5.824 0.613,11.494 1.992,16.858c-61.456,-3.065 -115.862,-32.49 -152.337,-77.241c-6.284,10.881 -9.962,23.601 -9.962,37.088c0,25.594 13.027,48.276 32.95,61.456c-12.107,-0.307 -23.448,-3.678 -33.41,-9.196l0,0.92c0,35.862 25.441,65.594 59.311,72.49c-6.13,1.686 -12.72,2.606 -19.464,2.606c-4.751,0 -9.348,-0.46 -13.946,-1.38c9.349,29.426 36.628,50.728 68.965,51.341c-25.287,19.771 -57.164,31.571 -91.8,31.571c-5.977,0 -11.801,-0.306 -17.625,-1.073c32.337,21.15 71.264,33.41 112.95,33.41Z" />

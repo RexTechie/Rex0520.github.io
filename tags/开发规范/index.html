@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>开发规范 | Rex中心站</title>
+<meta name="keywords" content="" />
+<meta name="description" content="Rex的个人博客">
+<meta name="author" content="Rex">
+<link rel="canonical" href="https://rexhub.space/tags/%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83/" />
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.css" rel="preload stylesheet" as="style">
+<link rel="preload" href="https://rexhub-1301356141.cos.ap-shanghai.myqcloud.com/profile/blog-icon.png" as="image">
+<link rel="icon" href="https://rexhub.space/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://rexhub.space/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://rexhub.space/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://rexhub.space/apple-touch-icon.png">
+<link rel="mask-icon" href="https://rexhub.space/%3Clink%20/%20abs%20url%3E">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<meta name="generator" content="Hugo 0.100.2" />
+<link rel="alternate" type="application/rss+xml" href="https://rexhub.space/tags/%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83/index.xml">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:title" content="开发规范" />
+<meta property="og:description" content="Rex的个人博客" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://rexhub.space/tags/%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83/" /><meta property="og:image" content="https://cdn.rexhub.xyz/img/20210820141535.jpg"/><meta property="og:site_name" content="RexHub" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://cdn.rexhub.xyz/img/20210820141535.jpg"/>
+
+<meta name="twitter:title" content="开发规范"/>
+<meta name="twitter:description" content="Rex的个人博客"/>
+
+</head>
+
+<body class="list" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://rexhub.space/" accesskey="h" title="Home (Alt + H)">
+                <img src="https://rexhub-1301356141.cos.ap-shanghai.myqcloud.com/profile/blog-icon.png" alt="logo" aria-label="logo"
+                    height="35">Home</a>
+            <span class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </span>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://rexhub.space/posts/" title="文章">
+                    <span>文章</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://rexhub.space/categories/" title="分类">
+                    <span>分类</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://rexhub.space/tags/" title="标签">
+                    <span>标签</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://rexhub.space/archives/" title="时间轴">
+                    <span>时间轴</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://rexhub.space/search/" title="搜索 (Alt &#43; /)" accesskey=/>
+                    <span>搜索</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header><main class="main"> 
+<header class="page-header"><div class="breadcrumbs"><a href="https://rexhub.space/">Home</a>&nbsp;»&nbsp;<a href="https://rexhub.space/tags/">Tags</a></div>
+  <h1>开发规范</h1>
+</header>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2>Restful开发风格
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>RESTful开发风格 REST与RESTful REST(Representational State Transfer)-表现层状态转换，资源在网络中以某种表现形式进行状态转移 RESTful是基于REST理念的一套开发风格，是具体的开发规则 RESTful传输数据 RESTful开发规范 使用URL作为用户交互入口 明确的语义规范(GET|POST|PUT|DELETE-&gt;查|增|改|删) 只返回数据(JSON|XML)，不包含任何展现 RESTful命名要求 URI 说明 修改建议 GET /articles?au=lily 正确用法 GET /a/1 URI必须具有语义 GET /student/1 POST /createArticle/1 URI必须使用名词 POST /article/1 GET /articles/author/1 URI扁平化，不超两级 GET /articles/author?id=1 DELETE /articles/1 URI名词区分单复数 GET /articles?au=lily
+DELETE /article/1 开发第一个RESTful应用 RestfulController.java
+package com.imooc.restful.controller; import org.springframework.stereotype.Controller; import org.springframework.web.bind.annotation.*; /** * @author Rex * @create 2021-01-12 12:00 */ @Controller @RequestMapping(&#34;/restful&#34;) public class RestfulController { @GetMapping(&#34;/request&#34;) @ResponseBody public String doGetRequest(){ return &#34;{\&#34;message\&#34;:\&#34;返回查询结果\&#34;}&#34;; } @PostMapping(&#34;/request&#34;) @ResponseBody public String doPostRequest(){ return &#34;{\&#34;message\&#34;:\&#34;数据新建成功\&#34;}&#34;; } @PutMapping(&#34;/request&#34;) @ResponseBody public String doPutRequest(){ return &#34;{\&#34;message\&#34;:\&#34;数据更新成功\&#34;}&#34;; } @DeleteMapping(&#34;/request&#34;) @ResponseBody public String doDeleteRequest(){ return &#34;{\&#34;message\&#34;:\&#34;数据删除成功\&#34;}&#34;; } } client....</p>
+  </section>
+  <footer class="entry-footer">2021-03-09&nbsp;·&nbsp;3 min&nbsp;·&nbsp;Rex</footer>
+  <a class="entry-link" aria-label="post link to Restful开发风格" href="https://rexhub.space/posts/back/java/framework/springmvc/restful/"></a>
+</article>
+    </main>
+    
+<footer class="footer">
+  <span>&copy; 2022 <a href="https://rexhub.space/">Rex中心站</a></span>
+  <span>
+    Powered by
+    <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+    <a href="https://git.io/hugopapermod" rel="noopener" target="_blank">PaperMod</a>
+  </span>
+  <span><a href="https://beian.miit.gov.cn/">浙ICP备2021016765号-2</a></span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+    <path d="M12 6H0l6-6z" />
+  </svg>
+</a>
+
+<script>
+  let menu = document.getElementById('menu')
+  menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+  menu.onscroll = function () {
+    localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+  }
+
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener("click", function (e) {
+      e.preventDefault();
+      var id = this.getAttribute("href").substr(1);
+      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+          behavior: "smooth"
+        });
+      } else {
+        document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+      }
+      if (id === "top") {
+        history.replaceState(null, null, " ");
+      } else {
+        history.pushState(null, null, `#${id}`);
+      }
+    });
+  });
+
+</script>
+<script>
+  var mybutton = document.getElementById("top-link");
+  window.onscroll = function () {
+    if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+      mybutton.style.visibility = "visible";
+      mybutton.style.opacity = "1";
+    } else {
+      mybutton.style.visibility = "hidden";
+      mybutton.style.opacity = "0";
+    }
+  };
+
+</script>
+<script>
+  document.getElementById("theme-toggle").addEventListener("click", () => {
+    if (document.body.className.includes("dark")) {
+      document.body.classList.remove('dark');
+      localStorage.setItem("pref-theme", 'light');
+    } else {
+      document.body.classList.add('dark');
+      localStorage.setItem("pref-theme", 'dark');
+    }
+  })
+
+</script>
+
+<script src="/assets/js/mermaid.min.js"></script>
+<script>
+  
+  
+  const mermaidKeywords = [
+    "graph TD",
+    "graph TB",
+    "graph BT",
+    "graph RL",
+    "graph LR",
+    "sequenceDiagram",
+    "gantt",
+    "classDiagram",
+    "gitGraph",
+    "erDiagram",
+    "journey"
+  ];
+  var htmlCollection = document.getElementsByClassName('language-fallback')
+  console.log(htmlCollection)
+  Array.prototype.slice.call(htmlCollection)
+  console.log(Array.prototype.slice.call(htmlCollection))
+  Array.from(htmlCollection).forEach(ele => {
+    var graphDefinition = ele.innerText;
+    if (mermaidKeywords.some((keyword) => graphDefinition.startsWith(keyword))) {
+      ele.parentElement.parentElement.outerHTML = `<div class="mermaid">${ele.innerText}</div>`
+    }
+  })
+  Array.from(document.getElementsByClassName('language-mermaid')).forEach(ele => {
+    ele.parentElement.outerHTML = `<div class="mermaid">${ele.innerText}</div>`
+  })
+</script>
+<style>
+   
+  .mermaid svg {
+    display: block;
+    margin: auto;
+  }
+</style>
+</body>
+
+</html>

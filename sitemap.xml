@@ -2,9 +2,6 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://rexhub.space/tags/build-tool/</loc>
-    <lastmod>2022-10-26T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://rexhub.space/categories/</loc>
     <lastmod>2022-10-26T00:00:00+00:00</lastmod>
   </url><url>
@@ -23,10 +20,13 @@
     <loc>https://rexhub.space/categories/%E5%90%8E%E7%AB%AF/</loc>
     <lastmod>2022-10-26T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://rexhub.space/tags/springboot/</loc>
-    <lastmod>2022-10-23T00:00:00+00:00</lastmod>
+    <loc>https://rexhub.space/tags/%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7/</loc>
+    <lastmod>2022-10-26T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://rexhub.space/posts/back/java/framework/springboot/springboot%E9%85%8D%E7%BD%AE%E5%90%AF%E5%8A%A8/</loc>
+    <lastmod>2022-10-23T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://rexhub.space/tags/spring%E7%B3%BB%E5%88%97/</loc>
     <lastmod>2022-10-23T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://rexhub.space/posts/back/java/jdbctool/druid%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E6%B1%A0/</loc>
@@ -44,16 +44,13 @@
     <loc>https://rexhub.space/posts/back/java/framework/springboot/springboot%E5%AD%A6%E4%B9%A0%E6%A0%B8%E5%BF%83%E5%8A%9F%E8%83%BD%E7%AF%87-%E9%85%8D%E7%BD%AE%E5%8A%9F%E8%83%BD/</loc>
     <lastmod>2022-08-16T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://rexhub.space/tags/java/</loc>
-    <lastmod>2022-07-05T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://rexhub.space/tags/linux/</loc>
     <lastmod>2022-07-05T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://rexhub.space/categories/linux/</loc>
+    <loc>https://rexhub.space/posts/linux/%E5%90%AF%E5%8A%A8%E9%A1%B9%E7%9B%AE%E8%84%9A%E6%9C%AC/</loc>
     <lastmod>2022-07-05T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://rexhub.space/posts/linux/%E5%90%AF%E5%8A%A8%E9%A1%B9%E7%9B%AE%E8%84%9A%E6%9C%AC/</loc>
+    <loc>https://rexhub.space/categories/%E8%BF%90%E7%BB%B4/</loc>
     <lastmod>2022-07-05T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://rexhub.space/tags/git/</loc>
@@ -64,24 +61,6 @@
   </url><url>
     <loc>https://rexhub.space/posts/git/git%E5%AD%A6%E4%B9%A0/</loc>
     <lastmod>2022-06-29T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://rexhub.space/tags/%E6%96%87%E6%A1%A3/</loc>
-    <lastmod>2022-03-24T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://rexhub.space/categories/%E6%96%87%E6%A1%A3/</loc>
-    <lastmod>2022-03-24T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://rexhub.space/posts/proj/doc/%E6%B8%A9%E5%B7%A5%E7%BE%8E%E9%99%A2/%E6%95%B0%E6%8D%AE%E5%BA%93/</loc>
-    <lastmod>2022-03-24T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://rexhub.space/posts/tools/%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/</loc>
-    <lastmod>2022-01-19T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://rexhub.space/tags/%E5%B7%A5%E5%85%B7/</loc>
-    <lastmod>2022-01-19T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://rexhub.space/categories/%E5%B7%A5%E5%85%B7/</loc>
-    <lastmod>2022-01-19T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://rexhub.space/tags/go/</loc>
     <lastmod>2021-12-24T00:00:00+00:00</lastmod>
@@ -98,25 +77,16 @@
     <loc>https://rexhub.space/posts/back/go/study/%E5%88%9D%E8%AF%86golang/</loc>
     <lastmod>2021-12-13T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://rexhub.space/posts/proj/doc/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%90%8E%E7%AB%AF%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/</loc>
-    <lastmod>2021-12-03T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://rexhub.space/posts/proj/doc/fraudprevention%E5%BC%80%E5%8F%91%E6%96%87%E6%A1%A3/</loc>
-    <lastmod>2021-11-04T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://rexhub.space/posts/api/pay/%E5%BE%AE%E4%BF%A1%E6%94%AF%E4%BB%98%E6%8E%A5%E5%8F%A3/</loc>
-    <lastmod>2021-10-15T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://rexhub.space/categories/%E6%8E%A5%E5%8F%A3/</loc>
+    <loc>https://rexhub.space/posts/thirdapi/%E5%BE%AE%E4%BF%A1%E6%94%AF%E4%BB%98%E6%8E%A5%E5%8F%A3/</loc>
     <lastmod>2021-10-15T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://rexhub.space/tags/%E6%94%AF%E4%BB%98/</loc>
     <lastmod>2021-10-15T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://rexhub.space/tags/trtc/</loc>
-    <lastmod>2021-10-12T00:00:00+00:00</lastmod>
+    <loc>https://rexhub.space/categories/%E7%AC%AC%E4%B8%89%E6%96%B9api/</loc>
+    <lastmod>2021-10-15T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://rexhub.space/posts/api/%E8%85%BE%E8%AE%AFtrtc/</loc>
+    <loc>https://rexhub.space/posts/thirdapi/%E8%85%BE%E8%AE%AFtrtc/</loc>
     <lastmod>2021-10-12T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://rexhub.space/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/</loc>
@@ -126,6 +96,9 @@
     <lastmod>2021-10-11T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://rexhub.space/posts/front/tools/%E5%89%8D%E7%AB%AF%E5%B8%B8%E7%94%A8%E8%BD%AE%E5%AD%90/</loc>
+    <lastmod>2021-10-11T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://rexhub.space/tags/%E5%B7%A5%E5%85%B7/</loc>
     <lastmod>2021-10-11T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://rexhub.space/posts/back/java/microservices/zookeeper/</loc>
@@ -140,10 +113,10 @@
     <loc>https://rexhub.space/posts/nosql/mongodb/</loc>
     <lastmod>2021-07-09T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://rexhub.space/tags/nosql/</loc>
+    <loc>https://rexhub.space/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/</loc>
     <lastmod>2021-07-09T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://rexhub.space/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/</loc>
+    <loc>https://rexhub.space/tags/%E9%9D%9E%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93/</loc>
     <lastmod>2021-07-09T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://rexhub.space/posts/back/java/microservices/docker%E5%9F%BA%E7%A1%80/</loc>
@@ -158,10 +131,10 @@
     <loc>https://rexhub.space/posts/back/java/microservices/rabbitmq/</loc>
     <lastmod>2021-06-21T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://rexhub.space/tags/css/</loc>
+    <loc>https://rexhub.space/posts/front/css3/</loc>
     <lastmod>2021-06-18T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://rexhub.space/posts/front/css3/</loc>
+    <loc>https://rexhub.space/tags/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80/</loc>
     <lastmod>2021-06-18T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://rexhub.space/posts/back/java/microservices/nginx%E7%9A%84%E5%AE%89%E8%A3%85/</loc>
@@ -191,19 +164,13 @@
     <loc>https://rexhub.space/posts/front/css/</loc>
     <lastmod>2021-05-14T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://rexhub.space/tags/html/</loc>
-    <lastmod>2021-05-14T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://rexhub.space/posts/front/%E7%BD%91%E9%A1%B5%E5%BC%80%E5%8F%91/</loc>
     <lastmod>2021-05-14T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://rexhub.space/tags/html5/</loc>
-    <lastmod>2021-05-12T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://rexhub.space/posts/front/html5/</loc>
     <lastmod>2021-05-12T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://rexhub.space/tags/vue/</loc>
+    <loc>https://rexhub.space/tags/vue%E7%B3%BB%E5%88%97/</loc>
     <lastmod>2021-03-25T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://rexhub.space/posts/front/vue/vue%E8%BF%9B%E9%98%B6/</loc>
@@ -218,12 +185,6 @@
     <loc>https://rexhub.space/posts/front/vue/vue%E5%9F%BA%E7%A1%80/</loc>
     <lastmod>2021-03-10T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://rexhub.space/tags/lambda/</loc>
-    <lastmod>2021-03-09T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://rexhub.space/posts/back/java/lambda/</loc>
-    <lastmod>2021-03-09T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://rexhub.space/posts/back/java/build_tool/maven%E5%9F%BA%E7%A1%80/</loc>
     <lastmod>2021-03-09T00:00:00+00:00</lastmod>
   </url><url>
@@ -233,13 +194,7 @@
     <loc>https://rexhub.space/posts/back/java/jdbctool/mybatis%E8%BF%9B%E9%98%B6/</loc>
     <lastmod>2021-03-09T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://rexhub.space/tags/restful/</loc>
-    <lastmod>2021-03-09T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://rexhub.space/posts/back/java/framework/springmvc/restful/</loc>
-    <lastmod>2021-03-09T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://rexhub.space/tags/springmvc/</loc>
     <lastmod>2021-03-09T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://rexhub.space/posts/back/java/framework/springmvc/springmvc%E5%9F%BA%E7%A1%80/</loc>
@@ -248,11 +203,11 @@
     <loc>https://rexhub.space/posts/back/java/framework/springmvc/springmvc%E6%8B%A6%E6%88%AA%E5%99%A8/</loc>
     <lastmod>2021-03-09T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>https://rexhub.space/tags/%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83/</loc>
+    <lastmod>2021-03-09T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://rexhub.space/posts/nosql/redis%E5%9F%BA%E7%A1%80/</loc>
     <lastmod>2021-02-09T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://rexhub.space/tags/spring/</loc>
-    <lastmod>2021-01-06T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://rexhub.space/posts/back/java/framework/spring/springjdbc/</loc>
     <lastmod>2021-01-06T00:00:00+00:00</lastmod>
@@ -275,12 +230,6 @@
     <loc>https://rexhub.space/posts/back/java/framework/spring/%E5%9F%BA%E4%BA%8E%E6%B3%A8%E8%A7%A3%E9%85%8D%E7%BD%AEioc%E5%AE%B9%E5%99%A8/</loc>
     <lastmod>2021-01-03T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://rexhub.space/tags/reflect/</loc>
-    <lastmod>2020-10-23T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://rexhub.space/posts/back/java/reflect/</loc>
-    <lastmod>2020-10-23T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://rexhub.space/posts/proj/emos/emos%E9%A1%B9%E7%9B%AE%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/</loc>
   </url><url>
     <loc>https://rexhub.space/posts/proj/emos/emos%E9%A1%B9%E7%9B%AE%E6%90%AD%E5%BB%BA/</loc>
@@ -288,8 +237,6 @@
     <loc>https://rexhub.space/search/</loc>
   </url><url>
     <loc>https://rexhub.space/series/</loc>
-  </url><url>
-    <loc>https://rexhub.space/tags/spring-boot/</loc>
   </url><url>
     <loc>https://rexhub.space/archives/</loc>
   </url><url>

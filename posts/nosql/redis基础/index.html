@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
 <title>Redis基础 | Rex中心站</title>
-<meta name="keywords" content="NoSQL" />
+<meta name="keywords" content="非关系型数据库" />
 <meta name="description" content="Redis基础">
 <meta name="author" content="Rex">
 <link rel="canonical" href="https://rexhub.space/posts/nosql/redis%E5%9F%BA%E7%A1%80/" />
@@ -99,7 +99,7 @@
   "name": "Redis基础",
   "description": "Redis基础",
   "keywords": [
-    "NoSQL"
+    "非关系型数据库"
   ],
   "articleBody": "Redis入门 Redis介绍 Redis是Key-Value型NoSQL数据库 Redis将数据存储在内存中，同时也能持久化到磁盘 Redis常用于缓存，利用内存的高效提高程序的处理速度 Redis特点 速度快 持久化 主从复制 广泛的语言支持 多种数据结构 分布式与高可用 Redis的安装与使用 在Linux系统中安装Redis https://redis.io/download\n在windows系统中安装Redis https://github.com/microsoftarchive/redis/releases\nRedis的常用基本配置 配置项 示例 说明 daemonize daemonize yes 是否启用后台允许，默认no port port 6379 设置端口号，默认6379 logfile logfile 日志文件 设置日志文件 databases databases 255 设置redis数据库总量 dir dir数据文件目录 设置数据文件存储目录 requirepass requirepass 12345 设置使用密码 Redis通用命令 命令 示例 说明 select select 0 选择0号数据库 set set name lily 设置key=name,value=lily get get hello 获得key=hello结果 keys keys he* 根据Pattern表达式查询符合条件的Key dbsize dbsize 返回key的总数 exists exists a 检查key=a是否存在 del del a 删除key=a的数据 expire expire hello 20 设置key=hello 20秒后过期 ttl ttl 查看key=a的过期剩余时间 Redis数据类型 String - 字符串类型 Hash - Hash类型 List - 列表类型 Set - 集合类型 Zset - 有序集合类型 String字符串类型 String最大512mb 建议单个kv不超过100kb\n字符串命令\n命令 示例 说明 get get hello 获得key=hello结果 set set hello world 设置key=hello，value=hello mset\nmget mset hello world java best\nmget hello java 一次性设置或者获取多个值 del del hello 删除key=hello incr/decr incr count\ndecr count key值自增/自减1 incrby/decrby incrby count 99\ndecrby count 99 自增自减指定步长 Hash键值类型 Hash类型用于存储结构化数据 Hash命令 命令 示例 说明 hget hget emp:1 age 获取hash中key=age的值 hset hset emp:1 age 23 设置hash中age=23 hmset\nhmget\nhgetall hmset emp:1 age 30 name kaka\nhmget emp:1 age name\nhgetall emp:1 name 设置hash多个值\n获取hash多个值\n获取hash所有值 hdel hdel emp:1 age 删除emp:1的age hexists hexists emp:1 name 检查是否存在 hlen hlen emp:1 获取指定长度 List列表类型 List列表就是一系列字符串的“数组”，按插入顺序排序\nList列表最大长度为2的32次方-1，可以包含40亿个元素\nList命令\n​\n命令 示例 说明 rpush rpush listkey c b a 右侧插入 lpush lpush listkey f e d 左侧插入 rpop rpop listkey 右侧插入 lpop lpop listkey 左侧插入 Set与Zset集合类型 Set集合是字符串的无序集合，集合成员是唯一的 Zset集合是字符串的有序集合，集合成员是唯一的 Java客户端-Jedis Jedis是Java语言开发的Redis客户端工具包 Jedis只是对Redis命令的封装，掌握Redis命令便可轻易上手 ",
   "wordCount" : "232",
@@ -544,7 +544,7 @@
 
   <footer class="post-footer">
     <ul class="post-tags">
-      <li><a href="https://rexhub.space/tags/nosql/">NoSQL</a></li>
+      <li><a href="https://rexhub.space/tags/%E9%9D%9E%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93/">非关系型数据库</a></li>
     </ul>
 <nav class="paginav">
   <a class="prev" href="https://rexhub.space/posts/back/java/framework/springmvc/springmvc%E6%8B%A6%E6%88%AA%E5%99%A8/">
@@ -562,7 +562,7 @@
 
 <div class="share-buttons">
     <a target="_blank" rel="noopener noreferrer" aria-label="share Redis基础 on twitter"
-        href="https://twitter.com/intent/tweet/?text=Redis%e5%9f%ba%e7%a1%80&amp;url=https%3a%2f%2frexhub.space%2fposts%2fnosql%2fredis%25E5%259F%25BA%25E7%25A1%2580%2f&amp;hashtags=NoSQL">
+        href="https://twitter.com/intent/tweet/?text=Redis%e5%9f%ba%e7%a1%80&amp;url=https%3a%2f%2frexhub.space%2fposts%2fnosql%2fredis%25E5%259F%25BA%25E7%25A1%2580%2f&amp;hashtags=%e9%9d%9e%e5%85%b3%e7%b3%bb%e5%9e%8b%e6%95%b0%e6%8d%ae%e5%ba%93">
         <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
             <path
                 d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-253.927,424.544c135.939,0 210.268,-112.643 210.268,-210.268c0,-3.218 0,-6.437 -0.153,-9.502c14.406,-10.421 26.973,-23.448 36.935,-38.314c-13.18,5.824 -27.433,9.809 -42.452,11.648c15.326,-9.196 26.973,-23.602 32.49,-40.92c-14.252,8.429 -30.038,14.56 -46.896,17.931c-13.487,-14.406 -32.644,-23.295 -53.946,-23.295c-40.767,0 -73.87,33.104 -73.87,73.87c0,5.824 0.613,11.494 1.992,16.858c-61.456,-3.065 -115.862,-32.49 -152.337,-77.241c-6.284,10.881 -9.962,23.601 -9.962,37.088c0,25.594 13.027,48.276 32.95,61.456c-12.107,-0.307 -23.448,-3.678 -33.41,-9.196l0,0.92c0,35.862 25.441,65.594 59.311,72.49c-6.13,1.686 -12.72,2.606 -19.464,2.606c-4.751,0 -9.348,-0.46 -13.946,-1.38c9.349,29.426 36.628,50.728 68.965,51.341c-25.287,19.771 -57.164,31.571 -91.8,31.571c-5.977,0 -11.801,-0.306 -17.625,-1.073c32.337,21.15 71.264,33.41 112.95,33.41Z" />

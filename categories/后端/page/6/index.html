@@ -146,20 +146,6 @@
 
 <article class="post-entry tag-entry"> 
   <header class="entry-header">
-    <h2>SpringMVC基础
-    </h2>
-  </header>
-  <section class="entry-content">
-    <p>Spring MVC Spring MVC介绍 MVC是什么 Spring MVC Spring MVC是Spring体系的轻量级WEB MVC框架 Spring MVC的核心Controller控制器，用于处理请求，产生响应 Spring MVC基于Spring IoC容器运行，所有对象被IoC管理 Spring 5.X版本变化 Spring 5.x最低要求JDK8与J2EE 7(Servlet 3.1/Tomcat 8.5&#43;) Spring 5.x支持JDK8/9,可以使用新特性 Spring 5.x最重要的新特性支持响应式编程 Spring MVC环境配置 Maven依赖spring-webmvc web.xml配置DispatcherServlet 配置applicationContext的mvc标记 开发Controller控制器 简单示例： applicationContext.xml:
-&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt; &lt;beans xmlns=&#34;http://www.springframework.org/schema/beans&#34; xmlns:mvc=&#34;http://www.springframework.org/schema/mvc&#34; xmlns:context=&#34;http://www.springframework.org/schema/context&#34; xmlns:xsi=&#34;http://www.w3.org/2001/XMLSchema-instance&#34; xmlns:mv=&#34;http://www.springframework.org/schema/mvc&#34; xsi:schemaLocation=&#34;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd&#34;&gt; &lt;!-- context:component-scan 标签作用 在Spring IOC初始化过程中，自动创建并管理com.imooc.springmvc及子包 拥有以下注解的对象 @Repository @Service @Controller @Component --&gt; &lt;context:component-scan base-package=&#34;com.imooc.springmvc&#34;/&gt; &lt;!--启用Spring MVC的注解开发模式--&gt; &lt;mvc:annotation-driven/&gt; &lt;!--将图片/JS/CSS等静态资源排除在外，可提高执行效率--&gt; &lt;mvc:default-servlet-handler/&gt; &lt;/beans&gt; web.xml
-&lt;?xml version=&#34;1....</p>
-  </section>
-  <footer class="entry-footer">2021-03-09&nbsp;·&nbsp;3 min&nbsp;·&nbsp;Rex</footer>
-  <a class="entry-link" aria-label="post link to SpringMVC基础" href="https://rexhub.space/posts/back/java/framework/springmvc/springmvc%E5%9F%BA%E7%A1%80/"></a>
-</article>
-
-<article class="post-entry tag-entry"> 
-  <header class="entry-header">
     <h2>SpringMVC拦截器
     </h2>
   </header>
@@ -210,6 +196,28 @@ package com....</p>
   </section>
   <footer class="entry-footer">2021-01-04&nbsp;·&nbsp;5 min&nbsp;·&nbsp;Rex</footer>
   <a class="entry-link" aria-label="post link to Springaop面向切面编程" href="https://rexhub.space/posts/back/java/framework/spring/springaop%E9%9D%A2%E5%90%91%E5%88%87%E9%9D%A2%E7%BC%96%E7%A8%8B/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2>Springioc与bean管理
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>Spring IoC与Bean管理 Spring快速入门 IoC控制反转 IoC控制反转，全称Inverse of Control，是一种设计理念，把对象创建和对象之间的调用过程，交给spring进行管理 由代理人来创建与管理对象，消费者通过代理人来获取对象 IoC的目的是降低对象之间直接耦合 加入IoC容器将对象统一管理，让对象关联变为弱耦合 DI依赖注入 IoC是设计理念，是现代程序设计遵循的标准，是宏观目标 DI(Dependency Injection)是具体技术实现，是微观实现 DI在Java中利用反射技术实现对象注入（Injection） Spring Spring的含义 Spring可从狭义与广义俩个角度看待 狭义的Spring是指Spring框架（Spring Framework） 广义的Spring是指Spring生态体系 狭义的Spring Spring框架是企业开发复杂性的一站式解决方案 Spring框架的核心是IoC容器与AOP面向切面变成 Spring IoC负责创建与管理系统对象，并在此基础上扩展功能 传统开发方式 对象直接引用导致对象硬性关联，程序难以扩展维护 Spring IoC IoC容器是Spring生态的地基用于统一创建与管理对象依赖 Spring IoC容器职责 对象的控制器交由第三方统一管理（IoC控制反转） 利用Java反射技术实现运行时对象创建与关联（DI依赖注入） 基于配置提高应用程序的可维护性与扩展性 IOC底层原理： xml解析、工厂模式、反射 IOC(接口) IOC思想基于IOC容器完成，IOC容器底层就是对象工厂
+Spring提供IOC容器实现两种方式：（两个接口）
+BeanFactory：IOC容器基本实现方式，是Spring内部的使用的接口，不提供给开发人员使用
+特点：
+​	加载配置文件时候不会创建对象，在获取对象（使用）才去创建对象
+ApplicationContext：BeanFactory接口的子接口，提供更多更强大的功能， 一般由开发人员进行使用
+特点：加载配置文件时候就会把配置文件对象进行创建
+ApplicationContext接口
+代码示例： 需要引入的依赖
+&lt;dependency&gt; &lt;groupId&gt;org.springframework&lt;/groupId&gt; &lt;artifactId&gt;spring-context&lt;/artifactId&gt; &lt;version&gt;5.3.1&lt;/version&gt; &lt;/dependency&gt; Apple.java
+package com.imooc.spring.ioc.entity; /** * @author CubeMonkey * @create 2020-11-27 23:57 */ public class Apple { private String title; private String color; private String origin; public Apple() { } public Apple(String title, String color, String origin) { this....</p>
+  </section>
+  <footer class="entry-footer">2021-01-04&nbsp;·&nbsp;4 min&nbsp;·&nbsp;Rex</footer>
+  <a class="entry-link" aria-label="post link to Springioc与bean管理" href="https://rexhub.space/posts/back/java/framework/spring/springioc%E4%B8%8Ebean%E7%AE%A1%E7%90%86/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

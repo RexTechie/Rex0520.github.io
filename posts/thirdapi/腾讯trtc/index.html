@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>腾讯TRTC | Rex中心站</title>
+<meta name="keywords" content="音视频" />
+<meta name="description" content="腾讯音视频trtc的使用">
+<meta name="author" content="Rex">
+<link rel="canonical" href="https://rexhub.space/posts/thirdapi/%E8%85%BE%E8%AE%AFtrtc/" />
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.css" rel="preload stylesheet" as="style">
+<link rel="preload" href="https://rexhub-1301356141.cos.ap-shanghai.myqcloud.com/profile/blog-icon.png" as="image">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.min.js" onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="https://rexhub.space/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://rexhub.space/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://rexhub.space/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://rexhub.space/apple-touch-icon.png">
+<link rel="mask-icon" href="https://rexhub.space/%3Clink%20/%20abs%20url%3E">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<meta name="generator" content="Hugo 0.100.2" />
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:title" content="腾讯TRTC" />
+<meta property="og:description" content="腾讯音视频trtc的使用" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://rexhub.space/posts/thirdapi/%E8%85%BE%E8%AE%AFtrtc/" /><meta property="og:image" content="https://cdn.rexhub.xyz/img/20210820141535.jpg"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-10-12T00:00:00&#43;00:00" />
+<meta property="article:modified_time" content="2021-10-12T00:00:00&#43;00:00" /><meta property="og:site_name" content="RexHub" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://cdn.rexhub.xyz/img/20210820141535.jpg"/>
+
+<meta name="twitter:title" content="腾讯TRTC"/>
+<meta name="twitter:description" content="腾讯音视频trtc的使用"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://rexhub.space/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "腾讯TRTC",
+      "item": "https://rexhub.space/posts/thirdapi/%E8%85%BE%E8%AE%AFtrtc/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "腾讯TRTC",
+  "name": "腾讯TRTC",
+  "description": "腾讯音视频trtc的使用",
+  "keywords": [
+    "音视频"
+  ],
+  "articleBody": "腾讯视频会议的使用-TRTC技术 概述： TRTC全称(Tencent Real-Time Communication) 即腾讯实时音视频服务，定位是解决实时通信的云服务，主要功能就是通过互联网，接受、处理、转发和保存大流量的音视频流数据，主要用于直播、视频会议场景。本文简略说明TRTC技术的使用，案例基于前端-vue，后端-java的springboot框架，具体的内容参考一下文档\n后端的准备 首先前端调用TRTC服务需要创建TrtcClient对象来管理，创建TrtcClient需要用到三个参数，分别是AppID，用户UserId，还有用户签名(UserSig)。而这里的用户签名是用Trtc的AppID和密钥，任意开发者查看HTML都能看到这些信息，所以生成用户签名的工作不能在前端完成，正确的做法应该是在后端项目生成用户签名\n用户签名(UserSig) （UserSig）是腾讯云设计的一种安全保护签名，使用HMAC SHA256加密算法计算得出。\n//UserSig 计算公式，其中 secretkey 为计算 usersig 用的加密密钥 usersig = hmacsha256(secretkey, (userid + sdkappid + currtime + expire + base64(userid + sdkappid + currtime + expire))) 关于userSig的各种语言生成方法在腾讯云的官方文档都有介绍\n这边我使用的springboot框架，所以用是java生成userSig的方式，需要在项目中创建一个TrtcUtil.java\npackage com.example.emos.api.config.tencet; import cn.hutool.core.util.StrUtil; import cn.hutool.json.JSONObject; import org.bson.internal.Base64; import org.springframework.beans.factory.annotation.Value; import org.springframework.stereotype.Component; import javax.crypto.Mac; import javax.crypto.spec.SecretKeySpec; import java.nio.charset.StandardCharsets; import java.security.InvalidKeyException; import java.security.NoSuchAlgorithmException; import java.util.Arrays; import java.util.zip.Deflater; /** * Description: 腾讯TRTC工具类 * * @author Rex * @date 2021-09-29 10:48 */ import java.io.UnsupportedEncodingException; import java.nio.charset.Charset; @Component public class TRTCUtil { @Value(\"${tencent.trtc.appId}\") private int appId; @Value(\"${tencent.trtc.expire}\") private int expire; @Value(\"${tencent.trtc.secretKey}\") private String secretKey; /** * 计算UserSig签名 * 函数内部使用HMAC-SHA256 非对称加密算法，对SdkAppId、userID和ExpireTime进行加密。 * @param userId 用户id * @return 用户签名 */ public String genUserSig(String userId) { return GenTLSSignature(appId, userId, expire, null, secretKey); } /** * 生成TLS票据 * @param sdkappid 应用的id * @param userId 用户id * @param expire 有效期，单位是秒 * @param userbuf 默认填写null * @param priKeyContent 生成tls票据使用的私钥内容 * @return 如果出错，会返回为空，或者有异常打印，成功返回有效的票据 */ private String GenTLSSignature(long sdkappid, String userId, long expire, byte[] userbuf, String priKeyContent) { if (StrUtil.isEmpty(priKeyContent)) { return \"\"; } long currTime = System.currentTimeMillis() / 1000; JSONObject sigDoc = new JSONObject(); sigDoc.set(\"TLS.ver\", \"2.0\"); sigDoc.set(\"TLS.identifier\", userId); sigDoc.set(\"TLS.sdkappid\", sdkappid); sigDoc.set(\"TLS.expire\", expire); sigDoc.set(\"TLS.time\", currTime); String base64UserBuf = null; if (null != userbuf) { base64UserBuf = Base64.encode(userbuf); sigDoc.set(\"TLS.userbuf\", base64UserBuf); } String sig = hmacsha256(sdkappid, userId, currTime, expire, priKeyContent, base64UserBuf); if (sig.length() == 0) { return \"\"; } sigDoc.set(\"TLS.sig\", sig); Deflater compressor = new Deflater(); compressor.setInput(sigDoc.toString().getBytes(Charset.forName(\"UTF-8\"))); compressor.finish(); byte[] compressedBytes = new byte[2048]; int compressedBytesLength = compressor.deflate(compressedBytes); compressor.end(); return new String(base64EncodeUrl(Arrays.copyOfRange(compressedBytes, 0, compressedBytesLength))); } /** * 用HmacSHA256算法进行加密 * @param sdkappid 应用id * @param userId 用户id * @param currTime 当前时间戳 * @param expire 有效期，单位秒 * @param priKeyContent 密钥内容 * @param base64Userbuf 默认填写null * @return 加密结果 */ private static String hmacsha256(long sdkappid, String userId, long currTime, long expire, String priKeyContent, String base64Userbuf) { String contentToBeSigned = \"TLS.identifier:\" + userId + \"\\n\" + \"TLS.sdkappid:\" + sdkappid + \"\\n\" + \"TLS.time:\" + currTime + \"\\n\" + \"TLS.expire:\" + expire + \"\\n\"; if (null != base64Userbuf) { contentToBeSigned += \"TLS.userbuf:\" + base64Userbuf + \"\\n\"; } try { byte[] byteKey = priKeyContent.getBytes(\"UTF-8\"); Mac hmac = Mac.getInstance(\"HmacSHA256\"); SecretKeySpec keySpec = new SecretKeySpec(byteKey, \"HmacSHA256\"); hmac.init(keySpec); byte[] byteSig = hmac.doFinal(contentToBeSigned.getBytes(\"UTF-8\")); return Base64.encode(byteSig); } catch (UnsupportedEncodingException e) { return \"\"; } catch (NoSuchAlgorithmException e) { return \"\"; } catch (InvalidKeyException e) { return \"\"; } } /** * 将base64字符串转换成URL格式的字符串 * @param input base64数据 * @return url可接受的base64数据 */ private static byte[] base64EncodeUrl(byte[] input) { byte[] base64 = Base64.encode(input).getBytes(); for (int i = 0; i \u003c base64.length; ++i) switch (base64[i]) { case '+': base64[i] = '*'; break; case '/': base64[i] = '-'; break; case '=': base64[i] = '_'; break; default: break; } return base64; } } 将UserSig返回给前端 接下的工作就非常简单了，将userId、appId、userSig生成返回给前端，接下来的写法就不多做说明，下面贴上返回的json格式\n{ \"code\":200, \"msg\":\"success\", \"data\":{ \"userSig\":\"eJyrVgrxCdZLrSjILEpVsrIwMzEw0AELlaUWKVkpGekZKEH4xSnZiQUFmSlKVoZANaZmlgZGUJWZKal5JZlpmRANJjD1melArmdhWUV6bnGZa3pVWZV5uXaqRZFbZlBJSopjuWNEYpZ-hllZqltiQEaUV7ktVGNJZi7QJYZmxiYGhuYmZqa1AFiAMM0_\", \"userId\":24, \"appId\":\"1400569020\" } } 前端 检查环境 Trtc.checkSystemRequirements() ，这个函数用于判断当前浏览器系统是否可以满足trtc的使用环境，在创建trtc之前要用这个方法检查一下，这个函数是异步的，要使用同步可以用\ntrtc.checkSystemRequirements().then(()=\u003e{ // 同步的函数 }) 日志 Trtc.Logger.setLogLevel(Trtc.Logger.LogLevel.ERROR)，设置trtc的日志输出级别\n创建TrtcClient Trtc.createClient()，需要传入mode、sdkAppId、userId、userSig\n使用示例:\nlet client = TRTC.createClient({ mode: 'rtc', sdkAppId: that.appId, userId: that.userId + '', userSig: that.userSig }); 监听新增远端流 client.on(“stream-add”, event=\u003e{})，当远端用户发布流后触发，一般在这个回调函数里要订阅远端流。通过远端流来获取新增的用户id，再更新到用户列表里；订阅远端流需要调用client.subscribe(remoteStream)，这里的remote可以由remote.stream调用获取。订阅好了remoteStream，就可以通过remoteStream.getUserId()获取用户信息。以下是代码示例：\nclient.on('stream-added', event =\u003e { let remoteStream = event.stream; //订阅远端流 client.subscribe(remoteStream); //从远端流获得远程用户userId(创建TrtcClient对象时候的参数) let userId = remoteStream.getUserId(); that.stream[userId] = remoteStream; }); 监听远端流订阅成功 client.on(“stream-subscribed”, event=\u003e{}), 若检测到客户端也调用了subscribe()，订阅了远端流，则触发该回调函数。下面是使用示例，remoteStream.play(userId + “\")会播放该用户id的音视频讯号\nclient.on('stream-subscribed', event =\u003e { let remoteStream = event.stream; let userId = remoteStream.getUserId(); //找到视频墙中某个远端用户的格子，把其中用于显示视频的DIV，置顶覆盖用户信息 $('#' + userId).css({ 'z-index': 1 }); //在这个置顶的DIV中播放远端音视频讯号 remoteStream.play(userId + ''); }); 监听远端删除流 client.on(“stream-remove”, event=\u003e{}),当远端用户退出的时候调用该回调函数。一般的，再这个函数里会关闭和该用户有关的信息，以下是代码示例\n//订阅远端删除流事件（远端用户退出会议室） client.on('stream-removed', event =\u003e { let remoteStream = event.stream; //取消订阅该远端流 client.unsubscribe(remoteStream); let userId = remoteStream.getUserId(); //TODO 在页面右侧的用户列表中删除该用户 //停止播放远端流视频，并且关闭远端流 remoteStream.stop(); remoteStream.close(); //删除模型层JSON中保存的远端流对象 delete that.stream[userId]; //把视频墙中该用户格子的视频DIV控件置底，显示用户基本信息 $('#' + userId).css({ 'z-index': '-1' }); $('#' + userId).html(''); }); 加入会议室 client.join({ roomId: that.roomId})，加入会议，这个roomId一般由后端生成获得。因为这个函数也是异步函数，所以要进入会议室后创建本地流、播放本地音视频、配置信息之类的要在client.join({ roomId: that.roomId}).then()的then里面调用，以下是代码示例\nclient .join({ roomId: that.roomId }) .then(() =\u003e { //成功进入会议室，然后创建本地流 let localStream = TRTC.createStream({ userId: that.userId + '', audio: true, video: true }); that.localStream = localStream; localStream.setVideoProfile('480p'); //设置分辨率 //初始化本地音视频流 localStream .initialize() .catch(error =\u003e { console.error('初始化本地流失败 ' + error); }).then(() =\u003e { console.log('初始化本地流成功'); //视频墙中第一个格子中的视频DIV置顶 $('#localStream').css({ 'z-index': 1 }); //播放本地音视频流 localStream.play('localStream'); //向远端用户推送本地流 client .publish(localStream) .catch(error =\u003e { console.error('本地流发布失败 ' + error); }) .then(() =\u003e { console.log('本地流发布成功'); }); }); }).catch(error =\u003e { console.error('进入房间失败: ' + error); }); 订阅语音音量事件 client.on(“audio-volumn”, event=\u003e{})，可以监听本地和远端的麦克风音量变化，一般会配合client.enableAudioVolumeEvaluation(30)使用，他会指定每隔一段事件调用这个事件，这里是30ms。下面是使用示例\n//订阅语音事件（无论本地还是远端说话，都会触发这个事件） client.on('audio-volume', event =\u003e { event.result.forEach(({ userId, audioVolume, stream }) =\u003e { //说话声音超过5，就设置话筒音量动画 if (audioVolume \u003e 5) { $('#mic-' + userId).css('top', `${100 - audioVolume * 3}%`); } else { $('#mic-' + userId).css('top', `100%`); } }); }); // 开启音量回调函数，并设置每 30ms 触发一次事件 client.enableAudioVolumeEvaluation(30); 监听远断流删除流 client.on(‘stream-removed’, event-\u003e{})，这个是监听到远端退出会议的时候调用的方法，以下是使用示例\n//订阅远端删除流事件（远端用户退出会议室） client.on('stream-removed', event =\u003e { let remoteStream = event.stream; client.unsubscribe(remoteStream); //取消订阅该远端流的所有事件 let userId = remoteStream.getUserId(); //上线用户列表中删除该用户 let i = that.userList.findIndex(function(one) { return one.userId == userId; }); that.userList.splice(i, 1); //停止播放远端流视频，并且关闭远端流 remoteStream.stop(); remoteStream.close(); //把远端流从stream中删除 delete that.stream[userId]; //把远端视频播放界面设置为-1层 $('#' + userId).css({ 'z-index': '-1' }); $('#' + userId).html(''); }); 退出视频会议室 client.unpublish()，这也是一个异步函数，要在退出后清除一些信息也要在then方法里。下面是使用示例,里面的client.leave是离开里面的会议室\n//获取当前本地使用的流，有可能是本地流或者共享流 let stream = that.getStream(); that.client.unpublish(stream).then(() =\u003e { // 取消发布本地流成功 that.client .leave() .then(() =\u003e { console.log('成功退出会议室'); //关闭本地流或者共享流 stream.stop(); stream.close(); //清空模型层的本地流 that.localStream = null; that.shareStream = null; //清空模型层的远端流 that.stream = {}; //销毁TrtcClient对象 that.client = null; that.userList = []; //清空用户列表 that.videoStatus = true; that.micStatus = true; that.shareStatus = false; //视频墙上本地流DIV区域置底 $('#localStream').css({ 'z-index': '-1' }); $('#localStream').html(''); //TODO 如果是播放大屏视频的时候退出会议，退出会议后需要隐藏大屏 }) .catch(error =\u003e { console.error('成功退出会议室失败' + error); }); }); 打开/关闭摄像头： localStream.unmuteVideo()/localStream.muteVideo()，localStream是本地流,在创建会议的时候生成\n打开/关闭麦克风 stream.unmuteAudio()/stream.muteAudio()，stream是本地流或共享流\n检测是否满足屏幕共享环境 TRTC.isScreenShareSupported()，与checkSystemRequirements类似\n创建屏幕共享 同样的也是调用TRTC.createStream创建共享流，需要传入screen:true参数，下面是使用示例\nlet shareStream = TRTC.createStream({ audio: that.micStatus, screen: true, userId: that.userId }); 设置屏幕的分辨率 shareStream.setScreenProfile(‘1080p’);\n下面是屏幕共享的使用示例\nshareHandle: function() { let that = this; //判断用户是否进入视频会议室 if (!that.meetingStatus) { that.$alert('请先进入视频会议才能共享屏幕', '提示信息', { confirmButtonText: '确定' }); return; } //检查浏览器是否支持屏幕共享 if (!TRTC.isScreenShareSupported()) { //提示当前浏览器不支持在线视频会议 this.$alert('当前浏览器不支持屏幕共享', '提示信息', { confirmButtonText: '确定' }); return; } that.shareStatus = !that.shareStatus; //开启屏幕共享 if (that.shareStatus) { //创建共享流 let shareStream = TRTC.createStream({ audio: that.micStatus, screen: true, userId: that.userId }); shareStream.setScreenProfile('1080p'); that.shareStream = shareStream; shareStream .initialize() .catch(error =\u003e { console.error('初始共享流失败 ' + error); }) .then(() =\u003e { //取消推送本地视频流 that.client.unpublish(that.localStream).then(() =\u003e { that.localStream.close(); //关闭本地流 that.localStream = null; //本地流设置为空 //隐藏本地视频窗口 $('#localStream').css({ 'z-index': -1 }); that.client.publish(shareStream); //向远端推送共享流 }); }); } //关闭屏幕共享 else { //重建本地视频流 let localStream = TRTC.createStream({ userId: that.userId + '', audio: that.micStatus, video: that.videoStatus }); that.localStream = localStream; localStream.setVideoProfile('480p'); localStream .initialize() .catch(error =\u003e { console.error('初始化本地流失败 ' + error); }) .then(() =\u003e { console.log('初始化本地流成功'); //取消共享流的推流 that.client.unpublish(that.shareStream).then(() =\u003e { that.shareStream.close(); //关闭共享流 that.shareStream = null; //共享流设置为空 //显示本地视频窗口 $('#localStream').css({ 'z-index': 1 }); localStream.play('localStream'); //播放本地流 //向远端推送本地视频流 that.client .publish(localStream) .catch(error =\u003e { console.error('本地流发布失败 ' + error); }) .then(() =\u003e { console.log('本地流发布成功'); }); }); }); } }, ",
+  "wordCount" : "984",
+  "inLanguage": "en",
+  "datePublished": "2021-10-12T00:00:00Z",
+  "dateModified": "2021-10-12T00:00:00Z",
+  "author":{
+    "@type": "Person",
+    "name": "Rex"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://rexhub.space/posts/thirdapi/%E8%85%BE%E8%AE%AFtrtc/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rex中心站",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://rexhub.space/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://rexhub.space/" accesskey="h" title="Home (Alt + H)">
+                <img src="https://rexhub-1301356141.cos.ap-shanghai.myqcloud.com/profile/blog-icon.png" alt="logo" aria-label="logo"
+                    height="35">Home</a>
+            <span class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </span>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://rexhub.space/posts/" title="文章">
+                    <span>文章</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://rexhub.space/categories/" title="分类">
+                    <span>分类</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://rexhub.space/tags/" title="标签">
+                    <span>标签</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://rexhub.space/archives/" title="时间轴">
+                    <span>时间轴</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://rexhub.space/search/" title="搜索 (Alt &#43; /)" accesskey=/>
+                    <span>搜索</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header><main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://rexhub.space/">Home</a>&nbsp;»&nbsp;<a href="https://rexhub.space/posts/">Posts</a></div>
+    <h1 class="post-title">
+      腾讯TRTC
+    </h1>
+    <div class="post-description">
+      腾讯音视频trtc的使用
+    </div>
+    <div class="post-meta">2021-10-12&nbsp;·&nbsp;5 min&nbsp;·&nbsp;Rex
+</div>
+  </header> <div class="toc">
+    <details  open>
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">Table of Contents</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#%e8%85%be%e8%ae%af%e8%a7%86%e9%a2%91%e4%bc%9a%e8%ae%ae%e7%9a%84%e4%bd%bf%e7%94%a8-trtc%e6%8a%80%e6%9c%af" aria-label="腾讯视频会议的使用-TRTC技术">腾讯视频会议的使用-TRTC技术</a><ul>
+                        
+                <li>
+                    <a href="#%e6%a6%82%e8%bf%b0" aria-label="概述：">概述：</a></li>
+                <li>
+                    <a href="#%e5%90%8e%e7%ab%af%e7%9a%84%e5%87%86%e5%a4%87" aria-label="后端的准备">后端的准备</a><ul>
+                        
+                <li>
+                    <a href="#%e7%94%a8%e6%88%b7%e7%ad%be%e5%90%8dusersig" aria-label="用户签名(UserSig)">用户签名(UserSig)</a></li>
+                <li>
+                    <a href="#%e5%b0%86usersig%e8%bf%94%e5%9b%9e%e7%bb%99%e5%89%8d%e7%ab%af" aria-label="将UserSig返回给前端">将UserSig返回给前端</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e5%89%8d%e7%ab%af" aria-label="前端">前端</a><ul>
+                        
+                <li>
+                    <a href="#%e6%a3%80%e6%9f%a5%e7%8e%af%e5%a2%83" aria-label="检查环境">检查环境</a></li>
+                <li>
+                    <a href="#%e6%97%a5%e5%bf%97" aria-label="日志">日志</a></li>
+                <li>
+                    <a href="#%e5%88%9b%e5%bb%batrtcclient" aria-label="创建TrtcClient">创建TrtcClient</a></li>
+                <li>
+                    <a href="#%e7%9b%91%e5%90%ac%e6%96%b0%e5%a2%9e%e8%bf%9c%e7%ab%af%e6%b5%81" aria-label="监听新增远端流">监听新增远端流</a></li>
+                <li>
+                    <a href="#%e7%9b%91%e5%90%ac%e8%bf%9c%e7%ab%af%e6%b5%81%e8%ae%a2%e9%98%85%e6%88%90%e5%8a%9f" aria-label="监听远端流订阅成功">监听远端流订阅成功</a></li>
+                <li>
+                    <a href="#%e7%9b%91%e5%90%ac%e8%bf%9c%e7%ab%af%e5%88%a0%e9%99%a4%e6%b5%81" aria-label="监听远端删除流">监听远端删除流</a></li>
+                <li>
+                    <a href="#%e5%8a%a0%e5%85%a5%e4%bc%9a%e8%ae%ae%e5%ae%a4" aria-label="加入会议室">加入会议室</a></li>
+                <li>
+                    <a href="#%e8%ae%a2%e9%98%85%e8%af%ad%e9%9f%b3%e9%9f%b3%e9%87%8f%e4%ba%8b%e4%bb%b6" aria-label="订阅语音音量事件">订阅语音音量事件</a></li>
+                <li>
+                    <a href="#%e7%9b%91%e5%90%ac%e8%bf%9c%e6%96%ad%e6%b5%81%e5%88%a0%e9%99%a4%e6%b5%81" aria-label="监听远断流删除流">监听远断流删除流</a></li>
+                <li>
+                    <a href="#%e9%80%80%e5%87%ba%e8%a7%86%e9%a2%91%e4%bc%9a%e8%ae%ae%e5%ae%a4" aria-label="退出视频会议室">退出视频会议室</a></li>
+                <li>
+                    <a href="#%e6%89%93%e5%bc%80%e5%85%b3%e9%97%ad%e6%91%84%e5%83%8f%e5%a4%b4" aria-label="打开/关闭摄像头：">打开/关闭摄像头：</a></li>
+                <li>
+                    <a href="#%e6%89%93%e5%bc%80%e5%85%b3%e9%97%ad%e9%ba%a6%e5%85%8b%e9%a3%8e" aria-label="打开/关闭麦克风">打开/关闭麦克风</a></li>
+                <li>
+                    <a href="#%e6%a3%80%e6%b5%8b%e6%98%af%e5%90%a6%e6%bb%a1%e8%b6%b3%e5%b1%8f%e5%b9%95%e5%85%b1%e4%ba%ab%e7%8e%af%e5%a2%83" aria-label="检测是否满足屏幕共享环境">检测是否满足屏幕共享环境</a></li>
+                <li>
+                    <a href="#%e5%88%9b%e5%bb%ba%e5%b1%8f%e5%b9%95%e5%85%b1%e4%ba%ab" aria-label="创建屏幕共享">创建屏幕共享</a></li>
+                <li>
+                    <a href="#%e8%ae%be%e7%bd%ae%e5%b1%8f%e5%b9%95%e7%9a%84%e5%88%86%e8%be%a8%e7%8e%87" aria-label="设置屏幕的分辨率">设置屏幕的分辨率</a>
+                </li>
+            </ul>
+            </li>
+            </ul>
+            </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><h1 id="腾讯视频会议的使用-trtc技术">腾讯视频会议的使用-TRTC技术<a hidden class="anchor" aria-hidden="true" href="#腾讯视频会议的使用-trtc技术">#</a></h1>
+<h2 id="概述">概述：<a hidden class="anchor" aria-hidden="true" href="#概述">#</a></h2>
+<blockquote>
+<p>TRTC全称(Tencent Real-Time Communication) 即腾讯实时音视频服务，定位是解决实时通信的云服务，主要功能就是通过互联网，接受、处理、转发和保存大流量的音视频流数据，主要用于直播、视频会议场景。本文简略说明TRTC技术的使用，案例基于前端-vue，后端-java的springboot框架，具体的内容参考一下文档</p>
+</blockquote>
+<h2 id="后端的准备">后端的准备<a hidden class="anchor" aria-hidden="true" href="#后端的准备">#</a></h2>
+<blockquote>
+<p>首先前端调用TRTC服务需要创建TrtcClient对象来管理，创建TrtcClient需要用到三个参数，分别是AppID，用户UserId，还有用户签名(UserSig)。而这里的用户签名是用Trtc的AppID和密钥，任意开发者查看HTML都能看到这些信息，所以生成用户签名的工作不能在前端完成，正确的做法应该是在后端项目生成用户签名</p>
+</blockquote>
+<h3 id="用户签名usersig">用户签名(UserSig)<a hidden class="anchor" aria-hidden="true" href="#用户签名usersig">#</a></h3>
+<p>（UserSig）是腾讯云设计的一种安全保护签名，使用HMAC SHA256加密算法计算得出。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">//UserSig 计算公式，其中 secretkey 为计算 usersig 用的加密密钥
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="n">usersig</span> <span class="o">=</span> <span class="n">hmacsha256</span><span class="o">(</span><span class="n">secretkey</span><span class="o">,</span> <span class="o">(</span><span class="n">userid</span> <span class="o">+</span> <span class="n">sdkappid</span> <span class="o">+</span> <span class="n">currtime</span> <span class="o">+</span> <span class="n">expire</span> <span class="o">+</span> 
+</span></span><span class="line"><span class="cl">                                 <span class="n">base64</span><span class="o">(</span><span class="n">userid</span> <span class="o">+</span> <span class="n">sdkappid</span> <span class="o">+</span> <span class="n">currtime</span> <span class="o">+</span> <span class="n">expire</span><span class="o">)))</span>
+</span></span></code></pre></div><p>关于userSig的各种语言生成方法在腾讯云的官方文档都有介绍</p>
+<p>这边我使用的springboot框架，所以用是java生成userSig的方式，需要在项目中创建一个TrtcUtil.java</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nn">com.example.emos.api.config.tencet</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">cn.hutool.core.util.StrUtil</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">cn.hutool.json.JSONObject</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">org.bson.internal.Base64</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">org.springframework.beans.factory.annotation.Value</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">org.springframework.stereotype.Component</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">javax.crypto.Mac</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">javax.crypto.spec.SecretKeySpec</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">java.nio.charset.StandardCharsets</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">java.security.InvalidKeyException</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">java.security.NoSuchAlgorithmException</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">java.util.Arrays</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">java.util.zip.Deflater</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * Description: 腾讯TRTC工具类
+</span></span></span><span class="line"><span class="cl"><span class="cm"> *
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * @author Rex
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * @date 2021-09-29 10:48
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">java.io.UnsupportedEncodingException</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">java.nio.charset.Charset</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nd">@Component</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">TRTCUtil</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nd">@Value</span><span class="o">(</span><span class="s">&#34;${tencent.trtc.appId}&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">private</span> <span class="kt">int</span> <span class="n">appId</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nd">@Value</span><span class="o">(</span><span class="s">&#34;${tencent.trtc.expire}&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">private</span> <span class="kt">int</span> <span class="n">expire</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nd">@Value</span><span class="o">(</span><span class="s">&#34;${tencent.trtc.secretKey}&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">private</span> <span class="n">String</span> <span class="n">secretKey</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm">   * 计算UserSig签名
+</span></span></span><span class="line"><span class="cl"><span class="cm">   * 函数内部使用HMAC-SHA256 非对称加密算法，对SdkAppId、userID和ExpireTime进行加密。
+</span></span></span><span class="line"><span class="cl"><span class="cm">   * @param userId 用户id
+</span></span></span><span class="line"><span class="cl"><span class="cm">   * @return 用户签名
+</span></span></span><span class="line"><span class="cl"><span class="cm">   */</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">public</span> <span class="n">String</span> <span class="nf">genUserSig</span><span class="o">(</span><span class="n">String</span> <span class="n">userId</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">GenTLSSignature</span><span class="o">(</span><span class="n">appId</span><span class="o">,</span> <span class="n">userId</span><span class="o">,</span> <span class="n">expire</span><span class="o">,</span> <span class="kc">null</span><span class="o">,</span> <span class="n">secretKey</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm">   * 生成TLS票据
+</span></span></span><span class="line"><span class="cl"><span class="cm">   * @param sdkappid 应用的id
+</span></span></span><span class="line"><span class="cl"><span class="cm">   * @param userId 用户id
+</span></span></span><span class="line"><span class="cl"><span class="cm">   * @param expire 有效期，单位是秒
+</span></span></span><span class="line"><span class="cl"><span class="cm">   * @param userbuf 默认填写null
+</span></span></span><span class="line"><span class="cl"><span class="cm">   * @param priKeyContent 生成tls票据使用的私钥内容
+</span></span></span><span class="line"><span class="cl"><span class="cm">   * @return 如果出错，会返回为空，或者有异常打印，成功返回有效的票据
+</span></span></span><span class="line"><span class="cl"><span class="cm">   */</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">private</span> <span class="n">String</span> <span class="nf">GenTLSSignature</span><span class="o">(</span><span class="kt">long</span> <span class="n">sdkappid</span><span class="o">,</span> <span class="n">String</span> <span class="n">userId</span><span class="o">,</span> <span class="kt">long</span> <span class="n">expire</span><span class="o">,</span> <span class="kt">byte</span><span class="o">[]</span> <span class="n">userbuf</span><span class="o">,</span> <span class="n">String</span> <span class="n">priKeyContent</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">(</span><span class="n">StrUtil</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">(</span><span class="n">priKeyContent</span><span class="o">))</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">return</span> <span class="s">&#34;&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">long</span> <span class="n">currTime</span> <span class="o">=</span> <span class="n">System</span><span class="o">.</span><span class="na">currentTimeMillis</span><span class="o">()</span> <span class="o">/</span> <span class="n">1000</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">JSONObject</span> <span class="n">sigDoc</span> <span class="o">=</span> <span class="k">new</span> <span class="n">JSONObject</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">sigDoc</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="s">&#34;TLS.ver&#34;</span><span class="o">,</span> <span class="s">&#34;2.0&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">sigDoc</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="s">&#34;TLS.identifier&#34;</span><span class="o">,</span> <span class="n">userId</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">sigDoc</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="s">&#34;TLS.sdkappid&#34;</span><span class="o">,</span> <span class="n">sdkappid</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">sigDoc</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="s">&#34;TLS.expire&#34;</span><span class="o">,</span> <span class="n">expire</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">sigDoc</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="s">&#34;TLS.time&#34;</span><span class="o">,</span> <span class="n">currTime</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">String</span> <span class="n">base64UserBuf</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">(</span><span class="kc">null</span> <span class="o">!=</span> <span class="n">userbuf</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">      <span class="n">base64UserBuf</span> <span class="o">=</span> <span class="n">Base64</span><span class="o">.</span><span class="na">encode</span><span class="o">(</span><span class="n">userbuf</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">      <span class="n">sigDoc</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="s">&#34;TLS.userbuf&#34;</span><span class="o">,</span> <span class="n">base64UserBuf</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">String</span> <span class="n">sig</span> <span class="o">=</span> <span class="n">hmacsha256</span><span class="o">(</span><span class="n">sdkappid</span><span class="o">,</span> <span class="n">userId</span><span class="o">,</span> <span class="n">currTime</span><span class="o">,</span> <span class="n">expire</span><span class="o">,</span> <span class="n">priKeyContent</span><span class="o">,</span> <span class="n">base64UserBuf</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">(</span><span class="n">sig</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">==</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">return</span> <span class="s">&#34;&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">sigDoc</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="s">&#34;TLS.sig&#34;</span><span class="o">,</span> <span class="n">sig</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">Deflater</span> <span class="n">compressor</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Deflater</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">compressor</span><span class="o">.</span><span class="na">setInput</span><span class="o">(</span><span class="n">sigDoc</span><span class="o">.</span><span class="na">toString</span><span class="o">().</span><span class="na">getBytes</span><span class="o">(</span><span class="n">Charset</span><span class="o">.</span><span class="na">forName</span><span class="o">(</span><span class="s">&#34;UTF-8&#34;</span><span class="o">)));</span>
+</span></span><span class="line"><span class="cl">    <span class="n">compressor</span><span class="o">.</span><span class="na">finish</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">byte</span><span class="o">[]</span> <span class="n">compressedBytes</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">byte</span><span class="o">[</span><span class="n">2048</span><span class="o">];</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">compressedBytesLength</span> <span class="o">=</span> <span class="n">compressor</span><span class="o">.</span><span class="na">deflate</span><span class="o">(</span><span class="n">compressedBytes</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">compressor</span><span class="o">.</span><span class="na">end</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="k">new</span> <span class="n">String</span><span class="o">(</span><span class="n">base64EncodeUrl</span><span class="o">(</span><span class="n">Arrays</span><span class="o">.</span><span class="na">copyOfRange</span><span class="o">(</span><span class="n">compressedBytes</span><span class="o">,</span> <span class="n">0</span><span class="o">,</span> <span class="n">compressedBytesLength</span><span class="o">)));</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm">   * 用HmacSHA256算法进行加密
+</span></span></span><span class="line"><span class="cl"><span class="cm">   * @param sdkappid 应用id
+</span></span></span><span class="line"><span class="cl"><span class="cm">   * @param userId 用户id
+</span></span></span><span class="line"><span class="cl"><span class="cm">   * @param currTime 当前时间戳
+</span></span></span><span class="line"><span class="cl"><span class="cm">   * @param expire 有效期，单位秒
+</span></span></span><span class="line"><span class="cl"><span class="cm">   * @param priKeyContent 密钥内容
+</span></span></span><span class="line"><span class="cl"><span class="cm">   * @param base64Userbuf 默认填写null
+</span></span></span><span class="line"><span class="cl"><span class="cm">   * @return 加密结果
+</span></span></span><span class="line"><span class="cl"><span class="cm">   */</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">private</span> <span class="kd">static</span> <span class="n">String</span> <span class="nf">hmacsha256</span><span class="o">(</span><span class="kt">long</span> <span class="n">sdkappid</span><span class="o">,</span> <span class="n">String</span> <span class="n">userId</span><span class="o">,</span> <span class="kt">long</span> <span class="n">currTime</span><span class="o">,</span> <span class="kt">long</span> <span class="n">expire</span><span class="o">,</span> <span class="n">String</span> <span class="n">priKeyContent</span><span class="o">,</span> <span class="n">String</span> <span class="n">base64Userbuf</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">String</span> <span class="n">contentToBeSigned</span> <span class="o">=</span> <span class="s">&#34;TLS.identifier:&#34;</span> <span class="o">+</span> <span class="n">userId</span> <span class="o">+</span> <span class="s">&#34;\n&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">+</span> <span class="s">&#34;TLS.sdkappid:&#34;</span> <span class="o">+</span> <span class="n">sdkappid</span> <span class="o">+</span> <span class="s">&#34;\n&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">+</span> <span class="s">&#34;TLS.time:&#34;</span> <span class="o">+</span> <span class="n">currTime</span> <span class="o">+</span> <span class="s">&#34;\n&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">+</span> <span class="s">&#34;TLS.expire:&#34;</span> <span class="o">+</span> <span class="n">expire</span> <span class="o">+</span> <span class="s">&#34;\n&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">(</span><span class="kc">null</span> <span class="o">!=</span> <span class="n">base64Userbuf</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">      <span class="n">contentToBeSigned</span> <span class="o">+=</span> <span class="s">&#34;TLS.userbuf:&#34;</span> <span class="o">+</span> <span class="n">base64Userbuf</span> <span class="o">+</span> <span class="s">&#34;\n&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">try</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">      <span class="kt">byte</span><span class="o">[]</span> <span class="n">byteKey</span> <span class="o">=</span> <span class="n">priKeyContent</span><span class="o">.</span><span class="na">getBytes</span><span class="o">(</span><span class="s">&#34;UTF-8&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">      <span class="n">Mac</span> <span class="n">hmac</span> <span class="o">=</span> <span class="n">Mac</span><span class="o">.</span><span class="na">getInstance</span><span class="o">(</span><span class="s">&#34;HmacSHA256&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">      <span class="n">SecretKeySpec</span> <span class="n">keySpec</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SecretKeySpec</span><span class="o">(</span><span class="n">byteKey</span><span class="o">,</span> <span class="s">&#34;HmacSHA256&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">      <span class="n">hmac</span><span class="o">.</span><span class="na">init</span><span class="o">(</span><span class="n">keySpec</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">      <span class="kt">byte</span><span class="o">[]</span> <span class="n">byteSig</span> <span class="o">=</span> <span class="n">hmac</span><span class="o">.</span><span class="na">doFinal</span><span class="o">(</span><span class="n">contentToBeSigned</span><span class="o">.</span><span class="na">getBytes</span><span class="o">(</span><span class="s">&#34;UTF-8&#34;</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">      <span class="k">return</span> <span class="n">Base64</span><span class="o">.</span><span class="na">encode</span><span class="o">(</span><span class="n">byteSig</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">UnsupportedEncodingException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">return</span> <span class="s">&#34;&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">NoSuchAlgorithmException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">return</span> <span class="s">&#34;&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">InvalidKeyException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">return</span> <span class="s">&#34;&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm">   * 将base64字符串转换成URL格式的字符串
+</span></span></span><span class="line"><span class="cl"><span class="cm">   * @param input base64数据
+</span></span></span><span class="line"><span class="cl"><span class="cm">   * @return url可接受的base64数据
+</span></span></span><span class="line"><span class="cl"><span class="cm">   */</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">private</span> <span class="kd">static</span> <span class="kt">byte</span><span class="o">[]</span> <span class="nf">base64EncodeUrl</span><span class="o">(</span><span class="kt">byte</span><span class="o">[]</span> <span class="n">input</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">byte</span><span class="o">[]</span> <span class="n">base64</span> <span class="o">=</span> <span class="n">Base64</span><span class="o">.</span><span class="na">encode</span><span class="o">(</span><span class="n">input</span><span class="o">).</span><span class="na">getBytes</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">base64</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">      <span class="k">switch</span> <span class="o">(</span><span class="n">base64</span><span class="o">[</span><span class="n">i</span><span class="o">])</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">case</span> <span class="sc">&#39;+&#39;</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">          <span class="n">base64</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="sc">&#39;*&#39;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">          <span class="k">break</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">case</span> <span class="sc">&#39;/&#39;</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">          <span class="n">base64</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="sc">&#39;-&#39;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">          <span class="k">break</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">case</span> <span class="sc">&#39;=&#39;</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">          <span class="n">base64</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="sc">&#39;_&#39;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">          <span class="k">break</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">default</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">          <span class="k">break</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">      <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">base64</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><h3 id="将usersig返回给前端">将UserSig返回给前端<a hidden class="anchor" aria-hidden="true" href="#将usersig返回给前端">#</a></h3>
+<p>接下的工作就非常简单了，将userId、appId、userSig生成返回给前端，接下来的写法就不多做说明，下面贴上返回的json格式</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;code&#34;</span><span class="p">:</span><span class="mi">200</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;msg&#34;</span><span class="p">:</span><span class="s2">&#34;success&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;data&#34;</span><span class="p">:{</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;userSig&#34;</span><span class="p">:</span><span class="s2">&#34;eJyrVgrxCdZLrSjILEpVsrIwMzEw0AELlaUWKVkpGekZKEH4xSnZiQUFmSlKVoZANaZmlgZGUJWZKal5JZlpmRANJjD1melArmdhWUV6bnGZa3pVWZV5uXaqRZFbZlBJSopjuWNEYpZ-hllZqltiQEaUV7ktVGNJZi7QJYZmxiYGhuYmZqa1AFiAMM0_&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">     <span class="nt">&#34;userId&#34;</span><span class="p">:</span><span class="mi">24</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">     <span class="nt">&#34;appId&#34;</span><span class="p">:</span><span class="s2">&#34;1400569020&#34;</span>
+</span></span><span class="line"><span class="cl"> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h2 id="前端">前端<a hidden class="anchor" aria-hidden="true" href="#前端">#</a></h2>
+<h3 id="检查环境">检查环境<a hidden class="anchor" aria-hidden="true" href="#检查环境">#</a></h3>
+<blockquote>
+<p>Trtc.checkSystemRequirements() ，这个函数用于判断当前浏览器系统是否可以满足trtc的使用环境，在创建trtc之前要用这个方法检查一下，这个函数是异步的，要使用同步可以用</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="nx">trtc</span><span class="p">.</span><span class="nx">checkSystemRequirements</span><span class="p">().</span><span class="nx">then</span><span class="p">(()=&gt;{</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// 同步的函数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">})</span>
+</span></span></code></pre></div></blockquote>
+<h3 id="日志">日志<a hidden class="anchor" aria-hidden="true" href="#日志">#</a></h3>
+<blockquote>
+<p>Trtc.Logger.setLogLevel(Trtc.Logger.LogLevel.ERROR)，设置trtc的日志输出级别</p>
+</blockquote>
+<h3 id="创建trtcclient">创建TrtcClient<a hidden class="anchor" aria-hidden="true" href="#创建trtcclient">#</a></h3>
+<blockquote>
+<p>Trtc.createClient()，需要传入mode、sdkAppId、userId、userSig</p>
+</blockquote>
+<p>使用示例:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="kd">let</span> <span class="nx">client</span> <span class="o">=</span> <span class="nx">TRTC</span><span class="p">.</span><span class="nx">createClient</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">mode</span><span class="o">:</span> <span class="s1">&#39;rtc&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">sdkAppId</span><span class="o">:</span> <span class="nx">that</span><span class="p">.</span><span class="nx">appId</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">userId</span><span class="o">:</span> <span class="nx">that</span><span class="p">.</span><span class="nx">userId</span> <span class="o">+</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">userSig</span><span class="o">:</span> <span class="nx">that</span><span class="p">.</span><span class="nx">userSig</span>
+</span></span><span class="line"><span class="cl"><span class="p">});</span>
+</span></span></code></pre></div><h3 id="监听新增远端流">监听新增远端流<a hidden class="anchor" aria-hidden="true" href="#监听新增远端流">#</a></h3>
+<blockquote>
+<p>client.on(&ldquo;stream-add&rdquo;, event=&gt;{})，当远端用户发布流后触发，一般在这个回调函数里要订阅远端流。通过远端流来获取新增的用户id，再更新到用户列表里；订阅远端流需要调用client.subscribe(remoteStream)，这里的remote可以由remote.stream调用获取。订阅好了remoteStream，就可以通过remoteStream.getUserId()获取用户信息。以下是代码示例：</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="nx">client</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;stream-added&#39;</span><span class="p">,</span> <span class="nx">event</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">let</span> <span class="nx">remoteStream</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">stream</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//订阅远端流
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">client</span><span class="p">.</span><span class="nx">subscribe</span><span class="p">(</span><span class="nx">remoteStream</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//从远端流获得远程用户userId(创建TrtcClient对象时候的参数)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">let</span> <span class="nx">userId</span> <span class="o">=</span> <span class="nx">remoteStream</span><span class="p">.</span><span class="nx">getUserId</span><span class="p">();</span> 
+</span></span><span class="line"><span class="cl">    <span class="nx">that</span><span class="p">.</span><span class="nx">stream</span><span class="p">[</span><span class="nx">userId</span><span class="p">]</span> <span class="o">=</span> <span class="nx">remoteStream</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">});</span>
+</span></span></code></pre></div><h3 id="监听远端流订阅成功">监听远端流订阅成功<a hidden class="anchor" aria-hidden="true" href="#监听远端流订阅成功">#</a></h3>
+<blockquote>
+<p>client.on(&ldquo;stream-subscribed&rdquo;, event=&gt;{}), 若检测到客户端也调用了subscribe()，订阅了远端流，则触发该回调函数。下面是使用示例，remoteStream.play(userId + &ldquo;&quot;)会播放该用户id的音视频讯号</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="nx">client</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;stream-subscribed&#39;</span><span class="p">,</span> <span class="nx">event</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">let</span> <span class="nx">remoteStream</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">stream</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">let</span> <span class="nx">userId</span> <span class="o">=</span> <span class="nx">remoteStream</span><span class="p">.</span><span class="nx">getUserId</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//找到视频墙中某个远端用户的格子，把其中用于显示视频的DIV，置顶覆盖用户信息
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#&#39;</span> <span class="o">+</span> <span class="nx">userId</span><span class="p">).</span><span class="nx">css</span><span class="p">({</span> <span class="s1">&#39;z-index&#39;</span><span class="o">:</span> <span class="mi">1</span> <span class="p">});</span> 
+</span></span><span class="line"><span class="cl">    <span class="c1">//在这个置顶的DIV中播放远端音视频讯号
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">remoteStream</span><span class="p">.</span><span class="nx">play</span><span class="p">(</span><span class="nx">userId</span> <span class="o">+</span> <span class="s1">&#39;&#39;</span><span class="p">);</span> 
+</span></span><span class="line"><span class="cl"><span class="p">});</span>
+</span></span></code></pre></div><h3 id="监听远端删除流">监听远端删除流<a hidden class="anchor" aria-hidden="true" href="#监听远端删除流">#</a></h3>
+<blockquote>
+<p>client.on(&ldquo;stream-remove&rdquo;, event=&gt;{}),当远端用户退出的时候调用该回调函数。一般的，再这个函数里会关闭和该用户有关的信息，以下是代码示例</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">//订阅远端删除流事件（远端用户退出会议室）
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">client</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;stream-removed&#39;</span><span class="p">,</span> <span class="nx">event</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">let</span> <span class="nx">remoteStream</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">stream</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//取消订阅该远端流
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">client</span><span class="p">.</span><span class="nx">unsubscribe</span><span class="p">(</span><span class="nx">remoteStream</span><span class="p">);</span> 
+</span></span><span class="line"><span class="cl">    <span class="kd">let</span> <span class="nx">userId</span> <span class="o">=</span> <span class="nx">remoteStream</span><span class="p">.</span><span class="nx">getUserId</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//TODO 在页面右侧的用户列表中删除该用户
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//停止播放远端流视频，并且关闭远端流
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">remoteStream</span><span class="p">.</span><span class="nx">stop</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">remoteStream</span><span class="p">.</span><span class="nx">close</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//删除模型层JSON中保存的远端流对象
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">delete</span> <span class="nx">that</span><span class="p">.</span><span class="nx">stream</span><span class="p">[</span><span class="nx">userId</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//把视频墙中该用户格子的视频DIV控件置底，显示用户基本信息
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#&#39;</span> <span class="o">+</span> <span class="nx">userId</span><span class="p">).</span><span class="nx">css</span><span class="p">({</span> <span class="s1">&#39;z-index&#39;</span><span class="o">:</span> <span class="s1">&#39;-1&#39;</span> <span class="p">});</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#&#39;</span> <span class="o">+</span> <span class="nx">userId</span><span class="p">).</span><span class="nx">html</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">});</span>
+</span></span></code></pre></div><h3 id="加入会议室">加入会议室<a hidden class="anchor" aria-hidden="true" href="#加入会议室">#</a></h3>
+<blockquote>
+<p>client.join({ roomId: that.roomId})，加入会议，这个roomId一般由后端生成获得。因为这个函数也是异步函数，所以要进入会议室后创建本地流、播放本地音视频、配置信息之类的要在client.join({ roomId: that.roomId}).then()的then里面调用，以下是代码示例</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">client</span>
+</span></span><span class="line"><span class="cl">    <span class="p">.</span><span class="nx">join</span><span class="p">({</span> <span class="nx">roomId</span><span class="o">:</span> <span class="nx">that</span><span class="p">.</span><span class="nx">roomId</span> <span class="p">})</span>
+</span></span><span class="line"><span class="cl">    <span class="p">.</span><span class="nx">then</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//成功进入会议室，然后创建本地流
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">let</span> <span class="nx">localStream</span> <span class="o">=</span> <span class="nx">TRTC</span><span class="p">.</span><span class="nx">createStream</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">userId</span><span class="o">:</span> <span class="nx">that</span><span class="p">.</span><span class="nx">userId</span> <span class="o">+</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">audio</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">video</span><span class="o">:</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">    <span class="p">});</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">that</span><span class="p">.</span><span class="nx">localStream</span> <span class="o">=</span> <span class="nx">localStream</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">localStream</span><span class="p">.</span><span class="nx">setVideoProfile</span><span class="p">(</span><span class="s1">&#39;480p&#39;</span><span class="p">);</span> <span class="c1">//设置分辨率
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//初始化本地音视频流
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">localStream</span>
+</span></span><span class="line"><span class="cl">        <span class="p">.</span><span class="nx">initialize</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">error</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s1">&#39;初始化本地流失败 &#39;</span> <span class="o">+</span> <span class="nx">error</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}).</span><span class="nx">then</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;初始化本地流成功&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//视频墙中第一个格子中的视频DIV置顶
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#localStream&#39;</span><span class="p">).</span><span class="nx">css</span><span class="p">({</span> <span class="s1">&#39;z-index&#39;</span><span class="o">:</span> <span class="mi">1</span> <span class="p">});</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//播放本地音视频流
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nx">localStream</span><span class="p">.</span><span class="nx">play</span><span class="p">(</span><span class="s1">&#39;localStream&#39;</span><span class="p">);</span> 
+</span></span><span class="line"><span class="cl">        <span class="c1">//向远端用户推送本地流
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nx">client</span>
+</span></span><span class="line"><span class="cl">            <span class="p">.</span><span class="nx">publish</span><span class="p">(</span><span class="nx">localStream</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">error</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s1">&#39;本地流发布失败 &#39;</span> <span class="o">+</span> <span class="nx">error</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">})</span>
+</span></span><span class="line"><span class="cl">            <span class="p">.</span><span class="nx">then</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;本地流发布成功&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">});</span>
+</span></span><span class="line"><span class="cl">    <span class="p">});</span>
+</span></span><span class="line"><span class="cl"><span class="p">}).</span><span class="k">catch</span><span class="p">(</span><span class="nx">error</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s1">&#39;进入房间失败: &#39;</span> <span class="o">+</span> <span class="nx">error</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">});</span>
+</span></span></code></pre></div><h3 id="订阅语音音量事件">订阅语音音量事件<a hidden class="anchor" aria-hidden="true" href="#订阅语音音量事件">#</a></h3>
+<blockquote>
+<p>client.on(&ldquo;audio-volumn&rdquo;, event=&gt;{})，可以监听本地和远端的麦克风音量变化，一般会配合client.enableAudioVolumeEvaluation(30)使用，他会指定每隔一段事件调用这个事件，这里是30ms。下面是使用示例</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">//订阅语音事件（无论本地还是远端说话，都会触发这个事件）
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">client</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;audio-volume&#39;</span><span class="p">,</span> <span class="nx">event</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">event</span><span class="p">.</span><span class="nx">result</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(({</span> <span class="nx">userId</span><span class="p">,</span> <span class="nx">audioVolume</span><span class="p">,</span> <span class="nx">stream</span> <span class="p">})</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//说话声音超过5，就设置话筒音量动画
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">if</span> <span class="p">(</span><span class="nx">audioVolume</span> <span class="o">&gt;</span> <span class="mi">5</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#mic-&#39;</span> <span class="o">+</span> <span class="nx">userId</span><span class="p">).</span><span class="nx">css</span><span class="p">(</span><span class="s1">&#39;top&#39;</span><span class="p">,</span> <span class="sb">`</span><span class="si">${</span><span class="mi">100</span> <span class="o">-</span> <span class="nx">audioVolume</span> <span class="o">*</span> <span class="mi">3</span><span class="si">}</span><span class="sb">%`</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#mic-&#39;</span> <span class="o">+</span> <span class="nx">userId</span><span class="p">).</span><span class="nx">css</span><span class="p">(</span><span class="s1">&#39;top&#39;</span><span class="p">,</span> <span class="sb">`100%`</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">});</span>
+</span></span><span class="line"><span class="cl"><span class="p">});</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 开启音量回调函数，并设置每 30ms 触发一次事件
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">client</span><span class="p">.</span><span class="nx">enableAudioVolumeEvaluation</span><span class="p">(</span><span class="mi">30</span><span class="p">);</span>
+</span></span></code></pre></div><h3 id="监听远断流删除流">监听远断流删除流<a hidden class="anchor" aria-hidden="true" href="#监听远断流删除流">#</a></h3>
+<blockquote>
+<p>client.on(&lsquo;stream-removed&rsquo;, event-&gt;{})，这个是监听到远端退出会议的时候调用的方法，以下是使用示例</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">//订阅远端删除流事件（远端用户退出会议室）
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">client</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;stream-removed&#39;</span><span class="p">,</span> <span class="nx">event</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">let</span> <span class="nx">remoteStream</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">stream</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">client</span><span class="p">.</span><span class="nx">unsubscribe</span><span class="p">(</span><span class="nx">remoteStream</span><span class="p">);</span> <span class="c1">//取消订阅该远端流的所有事件
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">let</span> <span class="nx">userId</span> <span class="o">=</span> <span class="nx">remoteStream</span><span class="p">.</span><span class="nx">getUserId</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//上线用户列表中删除该用户
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="nx">that</span><span class="p">.</span><span class="nx">userList</span><span class="p">.</span><span class="nx">findIndex</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">one</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="nx">one</span><span class="p">.</span><span class="nx">userId</span> <span class="o">==</span> <span class="nx">userId</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">});</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">that</span><span class="p">.</span><span class="nx">userList</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="nx">i</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//停止播放远端流视频，并且关闭远端流
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">remoteStream</span><span class="p">.</span><span class="nx">stop</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">remoteStream</span><span class="p">.</span><span class="nx">close</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//把远端流从stream中删除
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">delete</span> <span class="nx">that</span><span class="p">.</span><span class="nx">stream</span><span class="p">[</span><span class="nx">userId</span><span class="p">];</span> 
+</span></span><span class="line"><span class="cl">    <span class="c1">//把远端视频播放界面设置为-1层
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#&#39;</span> <span class="o">+</span> <span class="nx">userId</span><span class="p">).</span><span class="nx">css</span><span class="p">({</span> <span class="s1">&#39;z-index&#39;</span><span class="o">:</span> <span class="s1">&#39;-1&#39;</span> <span class="p">});</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#&#39;</span> <span class="o">+</span> <span class="nx">userId</span><span class="p">).</span><span class="nx">html</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">});</span>
+</span></span></code></pre></div><h3 id="退出视频会议室">退出视频会议室<a hidden class="anchor" aria-hidden="true" href="#退出视频会议室">#</a></h3>
+<blockquote>
+<p>client.unpublish()，这也是一个异步函数，要在退出后清除一些信息也要在then方法里。下面是使用示例,里面的client.leave是离开里面的会议室</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">//获取当前本地使用的流，有可能是本地流或者共享流
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">let</span> <span class="nx">stream</span> <span class="o">=</span> <span class="nx">that</span><span class="p">.</span><span class="nx">getStream</span><span class="p">();</span> 
+</span></span><span class="line"><span class="cl"><span class="nx">that</span><span class="p">.</span><span class="nx">client</span><span class="p">.</span><span class="nx">unpublish</span><span class="p">(</span><span class="nx">stream</span><span class="p">).</span><span class="nx">then</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 取消发布本地流成功
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">that</span><span class="p">.</span><span class="nx">client</span>
+</span></span><span class="line"><span class="cl">        <span class="p">.</span><span class="nx">leave</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="p">.</span><span class="nx">then</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;成功退出会议室&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">//关闭本地流或者共享流
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="nx">stream</span><span class="p">.</span><span class="nx">stop</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">stream</span><span class="p">.</span><span class="nx">close</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">			      <span class="c1">//清空模型层的本地流
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="nx">that</span><span class="p">.</span><span class="nx">localStream</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">that</span><span class="p">.</span><span class="nx">shareStream</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">			      <span class="c1">//清空模型层的远端流
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="nx">that</span><span class="p">.</span><span class="nx">stream</span> <span class="o">=</span> <span class="p">{};</span>
+</span></span><span class="line"><span class="cl">			      <span class="c1">//销毁TrtcClient对象
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="nx">that</span><span class="p">.</span><span class="nx">client</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">that</span><span class="p">.</span><span class="nx">userList</span> <span class="o">=</span> <span class="p">[];</span> <span class="c1">//清空用户列表
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="nx">that</span><span class="p">.</span><span class="nx">videoStatus</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">that</span><span class="p">.</span><span class="nx">micStatus</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">that</span><span class="p">.</span><span class="nx">shareStatus</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">			      <span class="c1">//视频墙上本地流DIV区域置底
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#localStream&#39;</span><span class="p">).</span><span class="nx">css</span><span class="p">({</span> <span class="s1">&#39;z-index&#39;</span><span class="o">:</span> <span class="s1">&#39;-1&#39;</span> <span class="p">});</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#localStream&#39;</span><span class="p">).</span><span class="nx">html</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">//TODO 如果是播放大屏视频的时候退出会议，退出会议后需要隐藏大屏
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="p">})</span>
+</span></span><span class="line"><span class="cl">        <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">error</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s1">&#39;成功退出会议室失败&#39;</span> <span class="o">+</span> <span class="nx">error</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">});</span>
+</span></span><span class="line"><span class="cl"><span class="p">});</span>
+</span></span></code></pre></div></blockquote>
+<h3 id="打开关闭摄像头">打开/关闭摄像头：<a hidden class="anchor" aria-hidden="true" href="#打开关闭摄像头">#</a></h3>
+<blockquote>
+<p>localStream.unmuteVideo()/localStream.muteVideo()，localStream是本地流,在创建会议的时候生成</p>
+</blockquote>
+<h3 id="打开关闭麦克风">打开/关闭麦克风<a hidden class="anchor" aria-hidden="true" href="#打开关闭麦克风">#</a></h3>
+<blockquote>
+<p>stream.unmuteAudio()/stream.muteAudio()，stream是本地流或共享流</p>
+</blockquote>
+<h3 id="检测是否满足屏幕共享环境">检测是否满足屏幕共享环境<a hidden class="anchor" aria-hidden="true" href="#检测是否满足屏幕共享环境">#</a></h3>
+<blockquote>
+<p>TRTC.isScreenShareSupported()，与checkSystemRequirements类似</p>
+</blockquote>
+<h3 id="创建屏幕共享">创建屏幕共享<a hidden class="anchor" aria-hidden="true" href="#创建屏幕共享">#</a></h3>
+<blockquote>
+<p>同样的也是调用TRTC.createStream创建共享流，需要传入screen:true参数，下面是使用示例</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">let</span> <span class="nx">shareStream</span> <span class="o">=</span> <span class="nx">TRTC</span><span class="p">.</span><span class="nx">createStream</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">audio</span><span class="o">:</span> <span class="nx">that</span><span class="p">.</span><span class="nx">micStatus</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">screen</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">userId</span><span class="o">:</span> <span class="nx">that</span><span class="p">.</span><span class="nx">userId</span>
+</span></span><span class="line"><span class="cl"><span class="p">});</span>
+</span></span></code></pre></div><h3 id="设置屏幕的分辨率">设置屏幕的分辨率<a hidden class="anchor" aria-hidden="true" href="#设置屏幕的分辨率">#</a></h3>
+<blockquote>
+<p>shareStream.setScreenProfile(&lsquo;1080p&rsquo;);</p>
+</blockquote>
+<p>下面是屏幕共享的使用示例</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">shareHandle</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">let</span> <span class="nx">that</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//判断用户是否进入视频会议室
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">that</span><span class="p">.</span><span class="nx">meetingStatus</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">that</span><span class="p">.</span><span class="nx">$alert</span><span class="p">(</span><span class="s1">&#39;请先进入视频会议才能共享屏幕&#39;</span><span class="p">,</span> <span class="s1">&#39;提示信息&#39;</span><span class="p">,</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">confirmButtonText</span><span class="o">:</span> <span class="s1">&#39;确定&#39;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">});</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//检查浏览器是否支持屏幕共享
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">TRTC</span><span class="p">.</span><span class="nx">isScreenShareSupported</span><span class="p">())</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//提示当前浏览器不支持在线视频会议
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">this</span><span class="p">.</span><span class="nx">$alert</span><span class="p">(</span><span class="s1">&#39;当前浏览器不支持屏幕共享&#39;</span><span class="p">,</span> <span class="s1">&#39;提示信息&#39;</span><span class="p">,</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">confirmButtonText</span><span class="o">:</span> <span class="s1">&#39;确定&#39;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">});</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">that</span><span class="p">.</span><span class="nx">shareStatus</span> <span class="o">=</span> <span class="o">!</span><span class="nx">that</span><span class="p">.</span><span class="nx">shareStatus</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//开启屏幕共享
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">if</span> <span class="p">(</span><span class="nx">that</span><span class="p">.</span><span class="nx">shareStatus</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//创建共享流
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="kd">let</span> <span class="nx">shareStream</span> <span class="o">=</span> <span class="nx">TRTC</span><span class="p">.</span><span class="nx">createStream</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">audio</span><span class="o">:</span> <span class="nx">that</span><span class="p">.</span><span class="nx">micStatus</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">screen</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">userId</span><span class="o">:</span> <span class="nx">that</span><span class="p">.</span><span class="nx">userId</span>
+</span></span><span class="line"><span class="cl">        <span class="p">});</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">shareStream</span><span class="p">.</span><span class="nx">setScreenProfile</span><span class="p">(</span><span class="s1">&#39;1080p&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">that</span><span class="p">.</span><span class="nx">shareStream</span> <span class="o">=</span> <span class="nx">shareStream</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">shareStream</span>
+</span></span><span class="line"><span class="cl">            <span class="p">.</span><span class="nx">initialize</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">            <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">error</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s1">&#39;初始共享流失败 &#39;</span> <span class="o">+</span> <span class="nx">error</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="p">})</span>
+</span></span><span class="line"><span class="cl">            <span class="p">.</span><span class="nx">then</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="c1">//取消推送本地视频流
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="nx">that</span><span class="p">.</span><span class="nx">client</span><span class="p">.</span><span class="nx">unpublish</span><span class="p">(</span><span class="nx">that</span><span class="p">.</span><span class="nx">localStream</span><span class="p">).</span><span class="nx">then</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="nx">that</span><span class="p">.</span><span class="nx">localStream</span><span class="p">.</span><span class="nx">close</span><span class="p">();</span> <span class="c1">//关闭本地流
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                    <span class="nx">that</span><span class="p">.</span><span class="nx">localStream</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span> <span class="c1">//本地流设置为空
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                    <span class="c1">//隐藏本地视频窗口
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                    <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#localStream&#39;</span><span class="p">).</span><span class="nx">css</span><span class="p">({</span> <span class="s1">&#39;z-index&#39;</span><span class="o">:</span> <span class="o">-</span><span class="mi">1</span> <span class="p">});</span>
+</span></span><span class="line"><span class="cl">                    <span class="nx">that</span><span class="p">.</span><span class="nx">client</span><span class="p">.</span><span class="nx">publish</span><span class="p">(</span><span class="nx">shareStream</span><span class="p">);</span> <span class="c1">//向远端推送共享流
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="p">});</span>
+</span></span><span class="line"><span class="cl">            <span class="p">});</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//关闭屏幕共享
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//重建本地视频流
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="kd">let</span> <span class="nx">localStream</span> <span class="o">=</span> <span class="nx">TRTC</span><span class="p">.</span><span class="nx">createStream</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">userId</span><span class="o">:</span> <span class="nx">that</span><span class="p">.</span><span class="nx">userId</span> <span class="o">+</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">audio</span><span class="o">:</span> <span class="nx">that</span><span class="p">.</span><span class="nx">micStatus</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">video</span><span class="o">:</span> <span class="nx">that</span><span class="p">.</span><span class="nx">videoStatus</span>
+</span></span><span class="line"><span class="cl">        <span class="p">});</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">that</span><span class="p">.</span><span class="nx">localStream</span> <span class="o">=</span> <span class="nx">localStream</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">localStream</span><span class="p">.</span><span class="nx">setVideoProfile</span><span class="p">(</span><span class="s1">&#39;480p&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">localStream</span>
+</span></span><span class="line"><span class="cl">            <span class="p">.</span><span class="nx">initialize</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">            <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">error</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s1">&#39;初始化本地流失败 &#39;</span> <span class="o">+</span> <span class="nx">error</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="p">})</span>
+</span></span><span class="line"><span class="cl">            <span class="p">.</span><span class="nx">then</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;初始化本地流成功&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">                <span class="c1">//取消共享流的推流
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="nx">that</span><span class="p">.</span><span class="nx">client</span><span class="p">.</span><span class="nx">unpublish</span><span class="p">(</span><span class="nx">that</span><span class="p">.</span><span class="nx">shareStream</span><span class="p">).</span><span class="nx">then</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="nx">that</span><span class="p">.</span><span class="nx">shareStream</span><span class="p">.</span><span class="nx">close</span><span class="p">();</span> <span class="c1">//关闭共享流
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                    <span class="nx">that</span><span class="p">.</span><span class="nx">shareStream</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span> <span class="c1">//共享流设置为空
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                    <span class="c1">//显示本地视频窗口
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                    <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#localStream&#39;</span><span class="p">).</span><span class="nx">css</span><span class="p">({</span> <span class="s1">&#39;z-index&#39;</span><span class="o">:</span> <span class="mi">1</span> <span class="p">});</span>
+</span></span><span class="line"><span class="cl">                    <span class="nx">localStream</span><span class="p">.</span><span class="nx">play</span><span class="p">(</span><span class="s1">&#39;localStream&#39;</span><span class="p">);</span> <span class="c1">//播放本地流
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                    <span class="c1">//向远端推送本地视频流
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                    <span class="nx">that</span><span class="p">.</span><span class="nx">client</span>
+</span></span><span class="line"><span class="cl">                        <span class="p">.</span><span class="nx">publish</span><span class="p">(</span><span class="nx">localStream</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                        <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">error</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                            <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s1">&#39;本地流发布失败 &#39;</span> <span class="o">+</span> <span class="nx">error</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">                        <span class="p">})</span>
+</span></span><span class="line"><span class="cl">                        <span class="p">.</span><span class="nx">then</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;本地流发布成功&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">                        <span class="p">});</span>
+</span></span><span class="line"><span class="cl">                <span class="p">});</span>
+</span></span><span class="line"><span class="cl">            <span class="p">});</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">},</span>
+</span></span></code></pre></div>
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://rexhub.space/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/">音视频</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://rexhub.space/posts/thirdapi/%E5%BE%AE%E4%BF%A1%E6%94%AF%E4%BB%98%E6%8E%A5%E5%8F%A3/">
+    <span class="title">« Prev Page</span>
+    <br>
+    <span>微信支付接口</span>
+  </a>
+  <a class="next" href="https://rexhub.space/posts/front/tools/%E5%89%8D%E7%AB%AF%E5%B8%B8%E7%94%A8%E8%BD%AE%E5%AD%90/">
+    <span class="title">Next Page »</span>
+    <br>
+    <span>前端常用轮子</span>
+  </a>
+</nav>
+
+
+<div class="share-buttons">
+    <a target="_blank" rel="noopener noreferrer" aria-label="share 腾讯TRTC on twitter"
+        href="https://twitter.com/intent/tweet/?text=%e8%85%be%e8%ae%afTRTC&amp;url=https%3a%2f%2frexhub.space%2fposts%2fthirdapi%2f%25E8%2585%25BE%25E8%25AE%25AFtrtc%2f&amp;hashtags=%e9%9f%b3%e8%a7%86%e9%a2%91">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-253.927,424.544c135.939,0 210.268,-112.643 210.268,-210.268c0,-3.218 0,-6.437 -0.153,-9.502c14.406,-10.421 26.973,-23.448 36.935,-38.314c-13.18,5.824 -27.433,9.809 -42.452,11.648c15.326,-9.196 26.973,-23.602 32.49,-40.92c-14.252,8.429 -30.038,14.56 -46.896,17.931c-13.487,-14.406 -32.644,-23.295 -53.946,-23.295c-40.767,0 -73.87,33.104 -73.87,73.87c0,5.824 0.613,11.494 1.992,16.858c-61.456,-3.065 -115.862,-32.49 -152.337,-77.241c-6.284,10.881 -9.962,23.601 -9.962,37.088c0,25.594 13.027,48.276 32.95,61.456c-12.107,-0.307 -23.448,-3.678 -33.41,-9.196l0,0.92c0,35.862 25.441,65.594 59.311,72.49c-6.13,1.686 -12.72,2.606 -19.464,2.606c-4.751,0 -9.348,-0.46 -13.946,-1.38c9.349,29.426 36.628,50.728 68.965,51.341c-25.287,19.771 -57.164,31.571 -91.8,31.571c-5.977,0 -11.801,-0.306 -17.625,-1.073c32.337,21.15 71.264,33.41 112.95,33.41Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share 腾讯TRTC on linkedin"
+        href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2frexhub.space%2fposts%2fthirdapi%2f%25E8%2585%25BE%25E8%25AE%25AFtrtc%2f&amp;title=%e8%85%be%e8%ae%afTRTC&amp;summary=%e8%85%be%e8%ae%afTRTC&amp;source=https%3a%2f%2frexhub.space%2fposts%2fthirdapi%2f%25E8%2585%25BE%25E8%25AE%25AFtrtc%2f">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-288.985,423.278l0,-225.717l-75.04,0l0,225.717l75.04,0Zm270.539,0l0,-129.439c0,-69.333 -37.018,-101.586 -86.381,-101.586c-39.804,0 -57.634,21.891 -67.617,37.266l0,-31.958l-75.021,0c0.995,21.181 0,225.717 0,225.717l75.02,0l0,-126.056c0,-6.748 0.486,-13.492 2.474,-18.315c5.414,-13.475 17.767,-27.434 38.494,-27.434c27.135,0 38.007,20.707 38.007,51.037l0,120.768l75.024,0Zm-307.552,-334.556c-25.674,0 -42.448,16.879 -42.448,39.002c0,21.658 16.264,39.002 41.455,39.002l0.484,0c26.165,0 42.452,-17.344 42.452,-39.002c-0.485,-22.092 -16.241,-38.954 -41.943,-39.002Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share 腾讯TRTC on reddit"
+        href="https://reddit.com/submit?url=https%3a%2f%2frexhub.space%2fposts%2fthirdapi%2f%25E8%2585%25BE%25E8%25AE%25AFtrtc%2f&title=%e8%85%be%e8%ae%afTRTC">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-3.446,265.638c0,-22.964 -18.616,-41.58 -41.58,-41.58c-11.211,0 -21.361,4.457 -28.841,11.666c-28.424,-20.508 -67.586,-33.757 -111.204,-35.278l18.941,-89.121l61.884,13.157c0.756,15.734 13.642,28.29 29.56,28.29c16.407,0 29.706,-13.299 29.706,-29.701c0,-16.403 -13.299,-29.702 -29.706,-29.702c-11.666,0 -21.657,6.792 -26.515,16.578l-69.105,-14.69c-1.922,-0.418 -3.939,-0.042 -5.585,1.036c-1.658,1.073 -2.811,2.761 -3.224,4.686l-21.152,99.438c-44.258,1.228 -84.046,14.494 -112.837,35.232c-7.468,-7.164 -17.589,-11.591 -28.757,-11.591c-22.965,0 -41.585,18.616 -41.585,41.58c0,16.896 10.095,31.41 24.568,37.918c-0.639,4.135 -0.99,8.328 -0.99,12.576c0,63.977 74.469,115.836 166.33,115.836c91.861,0 166.334,-51.859 166.334,-115.836c0,-4.218 -0.347,-8.387 -0.977,-12.493c14.564,-6.47 24.735,-21.034 24.735,-38.001Zm-119.474,108.193c-20.27,20.241 -59.115,21.816 -70.534,21.816c-11.428,0 -50.277,-1.575 -70.522,-21.82c-3.007,-3.008 -3.007,-7.882 0,-10.889c3.003,-2.999 7.882,-3.003 10.885,0c12.777,12.781 40.11,17.317 59.637,17.317c19.522,0 46.86,-4.536 59.657,-17.321c3.016,-2.999 7.886,-2.995 10.885,0.008c3.008,3.011 3.003,7.882 -0.008,10.889Zm-5.23,-48.781c-16.373,0 -29.701,-13.324 -29.701,-29.698c0,-16.381 13.328,-29.714 29.701,-29.714c16.378,0 29.706,13.333 29.706,29.714c0,16.374 -13.328,29.698 -29.706,29.698Zm-160.386,-29.702c0,-16.381 13.328,-29.71 29.714,-29.71c16.369,0 29.689,13.329 29.689,29.71c0,16.373 -13.32,29.693 -29.689,29.693c-16.386,0 -29.714,-13.32 -29.714,-29.693Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share 腾讯TRTC on facebook"
+        href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2frexhub.space%2fposts%2fthirdapi%2f%25E8%2585%25BE%25E8%25AE%25AFtrtc%2f">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-106.468,0l0,-192.915l66.6,0l12.672,-82.621l-79.272,0l0,-53.617c0,-22.603 11.073,-44.636 46.58,-44.636l36.042,0l0,-70.34c0,0 -32.71,-5.582 -63.982,-5.582c-65.288,0 -107.96,39.569 -107.96,111.204l0,62.971l-72.573,0l0,82.621l72.573,0l0,192.915l-191.104,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share 腾讯TRTC on whatsapp"
+        href="https://api.whatsapp.com/send?text=%e8%85%be%e8%ae%afTRTC%20-%20https%3a%2f%2frexhub.space%2fposts%2fthirdapi%2f%25E8%2585%25BE%25E8%25AE%25AFtrtc%2f">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-58.673,127.703c-33.842,-33.881 -78.847,-52.548 -126.798,-52.568c-98.799,0 -179.21,80.405 -179.249,179.234c-0.013,31.593 8.241,62.428 23.927,89.612l-25.429,92.884l95.021,-24.925c26.181,14.28 55.659,21.807 85.658,21.816l0.074,0c98.789,0 179.206,-80.413 179.247,-179.243c0.018,-47.895 -18.61,-92.93 -52.451,-126.81Zm-126.797,275.782l-0.06,0c-26.734,-0.01 -52.954,-7.193 -75.828,-20.767l-5.441,-3.229l-56.386,14.792l15.05,-54.977l-3.542,-5.637c-14.913,-23.72 -22.791,-51.136 -22.779,-79.287c0.033,-82.142 66.867,-148.971 149.046,-148.971c39.793,0.014 77.199,15.531 105.329,43.692c28.128,28.16 43.609,65.592 43.594,105.4c-0.034,82.149 -66.866,148.983 -148.983,148.984Zm81.721,-111.581c-4.479,-2.242 -26.499,-13.075 -30.604,-14.571c-4.105,-1.495 -7.091,-2.241 -10.077,2.241c-2.986,4.483 -11.569,14.572 -14.182,17.562c-2.612,2.988 -5.225,3.364 -9.703,1.12c-4.479,-2.241 -18.91,-6.97 -36.017,-22.23c-13.314,-11.876 -22.304,-26.542 -24.916,-31.026c-2.612,-4.484 -0.279,-6.908 1.963,-9.14c2.016,-2.007 4.48,-5.232 6.719,-7.847c2.24,-2.615 2.986,-4.484 4.479,-7.472c1.493,-2.99 0.747,-5.604 -0.374,-7.846c-1.119,-2.241 -10.077,-24.288 -13.809,-33.256c-3.635,-8.733 -7.327,-7.55 -10.077,-7.688c-2.609,-0.13 -5.598,-0.158 -8.583,-0.158c-2.986,0 -7.839,1.121 -11.944,5.604c-4.105,4.484 -15.675,15.32 -15.675,37.364c0,22.046 16.048,43.342 18.287,46.332c2.24,2.99 31.582,48.227 76.511,67.627c10.685,4.615 19.028,7.371 25.533,9.434c10.728,3.41 20.492,2.929 28.209,1.775c8.605,-1.285 26.499,-10.833 30.231,-21.295c3.732,-10.464 3.732,-19.431 2.612,-21.298c-1.119,-1.869 -4.105,-2.99 -8.583,-5.232Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share 腾讯TRTC on telegram"
+        href="https://telegram.me/share/url?text=%e8%85%be%e8%ae%afTRTC&amp;url=https%3a%2f%2frexhub.space%2fposts%2fthirdapi%2f%25E8%2585%25BE%25E8%25AE%25AFtrtc%2f">
+        <svg version="1.1" xml:space="preserve" viewBox="2 2 28 28">
+            <path
+                d="M26.49,29.86H5.5a3.37,3.37,0,0,1-2.47-1,3.35,3.35,0,0,1-1-2.47V5.48A3.36,3.36,0,0,1,3,3,3.37,3.37,0,0,1,5.5,2h21A3.38,3.38,0,0,1,29,3a3.36,3.36,0,0,1,1,2.46V26.37a3.35,3.35,0,0,1-1,2.47A3.38,3.38,0,0,1,26.49,29.86Zm-5.38-6.71a.79.79,0,0,0,.85-.66L24.73,9.24a.55.55,0,0,0-.18-.46.62.62,0,0,0-.41-.17q-.08,0-16.53,6.11a.59.59,0,0,0-.41.59.57.57,0,0,0,.43.52l4,1.24,1.61,4.83a.62.62,0,0,0,.63.43.56.56,0,0,0,.4-.17L16.54,20l4.09,3A.9.9,0,0,0,21.11,23.15ZM13.8,20.71l-1.21-4q8.72-5.55,8.78-5.55c.15,0,.23,0,.23.16a.18.18,0,0,1,0,.06s-2.51,2.3-7.52,6.8Z" />
+        </svg>
+    </a>
+</div>
+
+  </footer>
+<script src="https://utteranc.es/client.js" repo="Rex0520/blogcomment"
+  issue-term="title" theme="github-light" crossorigin="anonymous"
+  async>
+  </script>
+
+</article>
+    </main>
+    
+<footer class="footer">
+  <span>&copy; 2022 <a href="https://rexhub.space/">Rex中心站</a></span>
+  <span>
+    Powered by
+    <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+    <a href="https://git.io/hugopapermod" rel="noopener" target="_blank">PaperMod</a>
+  </span>
+  <span><a href="https://beian.miit.gov.cn/">浙ICP备2021016765号-2</a></span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+    <path d="M12 6H0l6-6z" />
+  </svg>
+</a>
+
+<script>
+  let menu = document.getElementById('menu')
+  menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+  menu.onscroll = function () {
+    localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+  }
+
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener("click", function (e) {
+      e.preventDefault();
+      var id = this.getAttribute("href").substr(1);
+      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+          behavior: "smooth"
+        });
+      } else {
+        document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+      }
+      if (id === "top") {
+        history.replaceState(null, null, " ");
+      } else {
+        history.pushState(null, null, `#${id}`);
+      }
+    });
+  });
+
+</script>
+<script>
+  var mybutton = document.getElementById("top-link");
+  window.onscroll = function () {
+    if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+      mybutton.style.visibility = "visible";
+      mybutton.style.opacity = "1";
+    } else {
+      mybutton.style.visibility = "hidden";
+      mybutton.style.opacity = "0";
+    }
+  };
+
+</script>
+<script>
+  document.getElementById("theme-toggle").addEventListener("click", () => {
+    if (document.body.className.includes("dark")) {
+      document.body.classList.remove('dark');
+      localStorage.setItem("pref-theme", 'light');
+    } else {
+      document.body.classList.add('dark');
+      localStorage.setItem("pref-theme", 'dark');
+    }
+  })
+
+</script>
+<script>
+  document.querySelectorAll('pre > code').forEach((codeblock) => {
+    const container = codeblock.parentNode.parentNode;
+
+    const copybutton = document.createElement('button');
+    copybutton.classList.add('copy-code');
+    copybutton.innerText = 'copy';
+
+    function copyingDone() {
+      copybutton.innerText = 'copied!';
+      setTimeout(() => {
+        copybutton.innerText = 'copy';
+      }, 2000);
+    }
+
+    copybutton.addEventListener('click', (cb) => {
+      if ('clipboard' in navigator) {
+        navigator.clipboard.writeText(codeblock.textContent);
+        copyingDone();
+        return;
+      }
+
+      const range = document.createRange();
+      range.selectNodeContents(codeblock);
+      const selection = window.getSelection();
+      selection.removeAllRanges();
+      selection.addRange(range);
+      try {
+        document.execCommand('copy');
+        copyingDone();
+      } catch (e) { };
+      selection.removeRange(range);
+    });
+
+    if (container.classList.contains("highlight")) {
+      container.appendChild(copybutton);
+    } else if (container.parentNode.firstChild == container) {
+      
+    } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+      
+      codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+    } else {
+      
+      codeblock.parentNode.appendChild(copybutton);
+    }
+  });
+</script>
+
+<script src="/assets/js/mermaid.min.js"></script>
+<script>
+  
+  
+  const mermaidKeywords = [
+    "graph TD",
+    "graph TB",
+    "graph BT",
+    "graph RL",
+    "graph LR",
+    "sequenceDiagram",
+    "gantt",
+    "classDiagram",
+    "gitGraph",
+    "erDiagram",
+    "journey"
+  ];
+  var htmlCollection = document.getElementsByClassName('language-fallback')
+  console.log(htmlCollection)
+  Array.prototype.slice.call(htmlCollection)
+  console.log(Array.prototype.slice.call(htmlCollection))
+  Array.from(htmlCollection).forEach(ele => {
+    var graphDefinition = ele.innerText;
+    if (mermaidKeywords.some((keyword) => graphDefinition.startsWith(keyword))) {
+      ele.parentElement.parentElement.outerHTML = `<div class="mermaid">${ele.innerText}</div>`
+    }
+  })
+  Array.from(document.getElementsByClassName('language-mermaid')).forEach(ele => {
+    ele.parentElement.outerHTML = `<div class="mermaid">${ele.innerText}</div>`
+  })
+</script>
+<style>
+   
+  .mermaid svg {
+    display: block;
+    margin: auto;
+  }
+</style>
+</body>
+
+</html>

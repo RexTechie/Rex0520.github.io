@@ -11,20 +11,20 @@
     <generator>Hugo -- gohugo.io</generator>
     <lastBuildDate>Wed, 26 Oct 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://rexhub.space/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Build Tool</title>
-      <link>https://rexhub.space/tags/build-tool/</link>
+      <title>构建工具</title>
+      <link>https://rexhub.space/tags/%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7/</link>
       <pubDate>Wed, 26 Oct 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://rexhub.space/tags/build-tool/</guid>
+      <guid>https://rexhub.space/tags/%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>SpringBoot</title>
-      <link>https://rexhub.space/tags/springboot/</link>
+      <title>Spring系列</title>
+      <link>https://rexhub.space/tags/spring%E7%B3%BB%E5%88%97/</link>
       <pubDate>Sun, 23 Oct 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://rexhub.space/tags/springboot/</guid>
+      <guid>https://rexhub.space/tags/spring%E7%B3%BB%E5%88%97/</guid>
       <description></description>
     </item>
     
@@ -34,15 +34,6 @@
       <pubDate>Fri, 07 Oct 2022 00:00:00 +0000</pubDate>
       
       <guid>https://rexhub.space/tags/jdbc/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Java</title>
-      <link>https://rexhub.space/tags/java/</link>
-      <pubDate>Tue, 05 Jul 2022 00:00:00 +0000</pubDate>
-      
-      <guid>https://rexhub.space/tags/java/</guid>
       <description></description>
     </item>
     
@@ -65,24 +56,6 @@
     </item>
     
     <item>
-      <title>文档</title>
-      <link>https://rexhub.space/tags/%E6%96%87%E6%A1%A3/</link>
-      <pubDate>Thu, 24 Mar 2022 00:00:00 +0000</pubDate>
-      
-      <guid>https://rexhub.space/tags/%E6%96%87%E6%A1%A3/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>工具</title>
-      <link>https://rexhub.space/tags/%E5%B7%A5%E5%85%B7/</link>
-      <pubDate>Wed, 19 Jan 2022 00:00:00 +0000</pubDate>
-      
-      <guid>https://rexhub.space/tags/%E5%B7%A5%E5%85%B7/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Go</title>
       <link>https://rexhub.space/tags/go/</link>
       <pubDate>Fri, 24 Dec 2021 00:00:00 +0000</pubDate>
@@ -101,20 +74,20 @@
     </item>
     
     <item>
-      <title>trtc</title>
-      <link>https://rexhub.space/tags/trtc/</link>
-      <pubDate>Tue, 12 Oct 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://rexhub.space/tags/trtc/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>音视频</title>
       <link>https://rexhub.space/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/</link>
       <pubDate>Tue, 12 Oct 2021 00:00:00 +0000</pubDate>
       
       <guid>https://rexhub.space/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>工具</title>
+      <link>https://rexhub.space/tags/%E5%B7%A5%E5%85%B7/</link>
+      <pubDate>Mon, 11 Oct 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rexhub.space/tags/%E5%B7%A5%E5%85%B7/</guid>
       <description></description>
     </item>
     
@@ -128,20 +101,20 @@
     </item>
     
     <item>
-      <title>NoSQL</title>
-      <link>https://rexhub.space/tags/nosql/</link>
+      <title>非关系型数据库</title>
+      <link>https://rexhub.space/tags/%E9%9D%9E%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93/</link>
       <pubDate>Fri, 09 Jul 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://rexhub.space/tags/nosql/</guid>
+      <guid>https://rexhub.space/tags/%E9%9D%9E%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>CSS</title>
-      <link>https://rexhub.space/tags/css/</link>
+      <title>前端基础</title>
+      <link>https://rexhub.space/tags/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80/</link>
       <pubDate>Fri, 18 Jun 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://rexhub.space/tags/css/</guid>
+      <guid>https://rexhub.space/tags/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80/</guid>
       <description></description>
     </item>
     
@@ -155,83 +128,20 @@
     </item>
     
     <item>
-      <title>HTML</title>
-      <link>https://rexhub.space/tags/html/</link>
-      <pubDate>Fri, 14 May 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://rexhub.space/tags/html/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>HTML5</title>
-      <link>https://rexhub.space/tags/html5/</link>
-      <pubDate>Wed, 12 May 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://rexhub.space/tags/html5/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Vue</title>
-      <link>https://rexhub.space/tags/vue/</link>
+      <title>Vue系列</title>
+      <link>https://rexhub.space/tags/vue%E7%B3%BB%E5%88%97/</link>
       <pubDate>Thu, 25 Mar 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://rexhub.space/tags/vue/</guid>
+      <guid>https://rexhub.space/tags/vue%E7%B3%BB%E5%88%97/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Lambda</title>
-      <link>https://rexhub.space/tags/lambda/</link>
+      <title>开发规范</title>
+      <link>https://rexhub.space/tags/%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83/</link>
       <pubDate>Tue, 09 Mar 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://rexhub.space/tags/lambda/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Restful</title>
-      <link>https://rexhub.space/tags/restful/</link>
-      <pubDate>Tue, 09 Mar 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://rexhub.space/tags/restful/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>SpringMVC</title>
-      <link>https://rexhub.space/tags/springmvc/</link>
-      <pubDate>Tue, 09 Mar 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://rexhub.space/tags/springmvc/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Spring</title>
-      <link>https://rexhub.space/tags/spring/</link>
-      <pubDate>Wed, 06 Jan 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://rexhub.space/tags/spring/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Reflect</title>
-      <link>https://rexhub.space/tags/reflect/</link>
-      <pubDate>Fri, 23 Oct 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://rexhub.space/tags/reflect/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Spring Boot</title>
-      <link>https://rexhub.space/tags/spring-boot/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://rexhub.space/tags/spring-boot/</guid>
+      <guid>https://rexhub.space/tags/%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83/</guid>
       <description></description>
     </item>
     

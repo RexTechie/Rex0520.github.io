@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
 <title>SpringBoot学习（核心功能篇-配置功能） | Rex中心站</title>
-<meta name="keywords" content="SpringBoot" />
+<meta name="keywords" content="Spring系列" />
 <meta name="description" content="SpringBoot学习">
 <meta name="author" content="Rex">
 <link rel="canonical" href="https://rexhub.space/posts/back/java/framework/springboot/springboot%E5%AD%A6%E4%B9%A0%E6%A0%B8%E5%BF%83%E5%8A%9F%E8%83%BD%E7%AF%87-%E9%85%8D%E7%BD%AE%E5%8A%9F%E8%83%BD/" />
@@ -99,7 +99,7 @@
   "name": "SpringBoot学习（核心功能篇-配置功能）",
   "description": "SpringBoot学习",
   "keywords": [
-    "SpringBoot"
+    "Spring系列"
   ],
   "articleBody": "SpringBoot学习（核心功能篇-配置功能） properties yaml YAML 是 “YAML Ain’t Markup Language”（YAML 不是一种标记语言）的递归缩写。在开发的这种语言时，YAML 的意思其实是：“Yet Another Markup Language”（仍是一种标记语言）。\n非常适合用来做以数据为中心的配置文件\n基本语法 key: value；kv之间有空格 大小写敏感 使用缩进表示层级关系 缩进不允许使用tab，只允许空格 缩进的空格数不重要，只要相同层级的元素左对齐即可 ‘#‘表示注释 字符串无需加引号，如果要加，‘‘与\"“表示字符串内容 会被 转义/不转义 数据类型 字面量：单个的、不可再分的值。date、boolean、string、number、null\nk: v 对象：键值对的集合。map、hash、set、object\n行内写法：k: (k1:v1, k2:v2, k3:v3) # 或 k: k1: v1 k2: v2 k3: v3 数组：一组按次序排序的值。array、list、queue\n行内写法：k: [v1, v3, v4] # 或 k: - v1 - v2 - v3 示例 ​\tjava\npackage xyz.rexhub.xyz.bean; import lombok.Data; import lombok.ToString; import org.springframework.boot.context.properties.ConfigurationProperties; import org.springframework.stereotype.Component; import java.util.Date; import java.util.List; import java.util.Map; import java.util.Set; /** * Description: 人 * * @author rex * @date 2022-07-19 21:20 */ @ConfigurationProperties(prefix = \"person\") @Component @ToString @Data public class Person { private String userName; private Boolean boss; private Date birth; private Integer age; private Pet pet; private String[] interests; private List\u003cString\u003e animal; private Map\u003cString, Object\u003e score; private Set\u003cDouble\u003e salarys; private Map\u003cString, List\u003cPet\u003e\u003e allPets; } package xyz.rexhub.xyz.bean; import lombok.Data; import lombok.ToString; /** * Description: 宠物 * * @author rex * @date 2022-07-19 21:22 */ @Data @ToString public class Pet { private String name; private Double weight; } application.yml\nperson: userName: 张三 boss: true birth: 2019/12/9 age: 18 # interests: [🏀, ⚽️] interests: - 🏀 - ⚽️ animal: [🐱, 🐶] # score: # english: 80 # math: 90 score: {english: 80, math: 90} salarys: - 9999.98 - 9999.99 pet: name: 阿狗 weight: 99.99 allPets: sick: - {name: 阿狗, weight: 99.99} - name: 阿猫 weight: 88.88 - name: 阿虫 weight: 77.77 health: [{name: 阿花, weight: 199.99}, {name: 阿明, weight: 199.99}] ",
   "wordCount" : "238",
@@ -384,7 +384,7 @@
 
   <footer class="post-footer">
     <ul class="post-tags">
-      <li><a href="https://rexhub.space/tags/springboot/">SpringBoot</a></li>
+      <li><a href="https://rexhub.space/tags/spring%E7%B3%BB%E5%88%97/">Spring系列</a></li>
     </ul>
 <nav class="paginav">
   <a class="prev" href="https://rexhub.space/posts/back/java/framework/springboot/springboot%E5%AD%A6%E4%B9%A0%E5%85%A5%E9%97%A8%E7%AF%87/">
@@ -402,7 +402,7 @@
 
 <div class="share-buttons">
     <a target="_blank" rel="noopener noreferrer" aria-label="share SpringBoot学习（核心功能篇-配置功能） on twitter"
-        href="https://twitter.com/intent/tweet/?text=SpringBoot%e5%ad%a6%e4%b9%a0%ef%bc%88%e6%a0%b8%e5%bf%83%e5%8a%9f%e8%83%bd%e7%af%87-%e9%85%8d%e7%bd%ae%e5%8a%9f%e8%83%bd%ef%bc%89&amp;url=https%3a%2f%2frexhub.space%2fposts%2fback%2fjava%2fframework%2fspringboot%2fspringboot%25E5%25AD%25A6%25E4%25B9%25A0%25E6%25A0%25B8%25E5%25BF%2583%25E5%258A%259F%25E8%2583%25BD%25E7%25AF%2587-%25E9%2585%258D%25E7%25BD%25AE%25E5%258A%259F%25E8%2583%25BD%2f&amp;hashtags=SpringBoot">
+        href="https://twitter.com/intent/tweet/?text=SpringBoot%e5%ad%a6%e4%b9%a0%ef%bc%88%e6%a0%b8%e5%bf%83%e5%8a%9f%e8%83%bd%e7%af%87-%e9%85%8d%e7%bd%ae%e5%8a%9f%e8%83%bd%ef%bc%89&amp;url=https%3a%2f%2frexhub.space%2fposts%2fback%2fjava%2fframework%2fspringboot%2fspringboot%25E5%25AD%25A6%25E4%25B9%25A0%25E6%25A0%25B8%25E5%25BF%2583%25E5%258A%259F%25E8%2583%25BD%25E7%25AF%2587-%25E9%2585%258D%25E7%25BD%25AE%25E5%258A%259F%25E8%2583%25BD%2f&amp;hashtags=Spring%e7%b3%bb%e5%88%97">
         <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
             <path
                 d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-253.927,424.544c135.939,0 210.268,-112.643 210.268,-210.268c0,-3.218 0,-6.437 -0.153,-9.502c14.406,-10.421 26.973,-23.448 36.935,-38.314c-13.18,5.824 -27.433,9.809 -42.452,11.648c15.326,-9.196 26.973,-23.602 32.49,-40.92c-14.252,8.429 -30.038,14.56 -46.896,17.931c-13.487,-14.406 -32.644,-23.295 -53.946,-23.295c-40.767,0 -73.87,33.104 -73.87,73.87c0,5.824 0.613,11.494 1.992,16.858c-61.456,-3.065 -115.862,-32.49 -152.337,-77.241c-6.284,10.881 -9.962,23.601 -9.962,37.088c0,25.594 13.027,48.276 32.95,61.456c-12.107,-0.307 -23.448,-3.678 -33.41,-9.196l0,0.92c0,35.862 25.441,65.594 59.311,72.49c-6.13,1.686 -12.72,2.606 -19.464,2.606c-4.751,0 -9.348,-0.46 -13.946,-1.38c9.349,29.426 36.628,50.728 68.965,51.341c-25.287,19.771 -57.164,31.571 -91.8,31.571c-5.977,0 -11.801,-0.306 -17.625,-1.073c32.337,21.15 71.264,33.41 112.95,33.41Z" />

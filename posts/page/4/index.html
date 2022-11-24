@@ -161,87 +161,6 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2>微信支付接口
-    </h2>
-  </header>
-  <section class="entry-content">
-    <p>微信支付 微信支付功能的实现需要调用微信官方的支付接口，而微信支付也有多种形式，如:JSAPI支付、APP支付、Native支付、小程序支付等等，接口也有V2、V3版本，这里主要说明Native的V3版本的使用。特别需要注意的是，使用微信支付功能的接口需要有商户号。
-在支付的功能中，必不可少的是商品订单和支付订单，商品订单是本地后台系统生成的，而我这里使用的案例是用罚款单为例并非商品。支付订单是微信服务器生成的，只需要调用微信支付API
-微信支付官方文档
-微信支付前期准备 开通微信支付功能 对于商家来说，想要开通微信支付，必须要去微信商户平台注册（https://pay.weixin.qq.com/index.php/core/home/login?return_url=%2F），然后把工商登记证明、企业银行账户开户证明、组织机构代码证提交上去，经过半天的审核，如果没有问题，你就开通了微信支付功能。
-如果想要在网站或者小程序上面使用微信支付，还要在微信公众平台上面关联你自己的微信商户账号。前提是你的微信开发者账号必须是企业身份，个人身份的开发者账号是无法调用微信支付API的。
-引入官方的SDK包 说明下这里的微信官方sdk主要对签名方面、加密解密方面做了较好的支持，其他方面还是要自己构造参数、发送请求。
-sdk官方文档
-&lt;dependency&gt; &lt;groupId&gt;com.github.wechatpay-apiv3&lt;/groupId&gt; &lt;artifactId&gt;wechatpay-apache-httpclient&lt;/artifactId&gt; &lt;version&gt;0.2.2&lt;/version&gt; &lt;/dependency&gt; WechatPay.java
-这个是我对sdk做了个进一步的封装，这里是初始化
-package com.example.emos.api.common.util; import cn.hutool.json.JSONObject; import cn.hutool.json.JSONUtil; import com.example.emos.api.common.exception.EmosException; import com.fasterxml.jackson.databind.ObjectMapper; import com.fasterxml.jackson.databind.node.ObjectNode; import com.wechat.pay.contrib.apache.httpclient.WechatPayHttpClientBuilder; import com.wechat.pay.contrib.apache.httpclient.auth.AutoUpdateCertificatesVerifier; import com.wechat.pay.contrib.apache.httpclient.auth.PrivateKeySigner; import com.wechat.pay.contrib.apache.httpclient.auth.WechatPay2Credentials; import com.wechat.pay.contrib.apache.httpclient.auth.WechatPay2Validator; import com.wechat.pay.contrib.apache.httpclient.util.AesUtil; import com.wechat.pay.contrib.apache.httpclient.util.PemUtil; import lombok.extern.slf4j.Slf4j; import org.apache.http.HttpEntity; import org.apache.http.StatusLine; import org.apache.http.client.methods.CloseableHttpResponse; import org.apache.http.client.methods.HttpGet; import org.apache.http.client.methods.HttpPost; import org.apache.http.client.utils.URIBuilder; import org.apache.http.entity.StringEntity; import org.apache.http.impl.client.CloseableHttpClient; import org.apache.http.util.EntityUtils; import org.springframework.beans.factory.annotation.Value; import org.springframework.stereotype.Component; import java.io.*; import java....</p>
-  </section>
-  <footer class="entry-footer">2021-10-15&nbsp;·&nbsp;3 min&nbsp;·&nbsp;Rex</footer>
-  <a class="entry-link" aria-label="post link to 微信支付接口" href="https://rexhub.space/posts/api/pay/%E5%BE%AE%E4%BF%A1%E6%94%AF%E4%BB%98%E6%8E%A5%E5%8F%A3/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>腾讯TRTC
-    </h2>
-  </header>
-  <section class="entry-content">
-    <p>腾讯视频会议的使用-TRTC技术 概述： TRTC全称(Tencent Real-Time Communication) 即腾讯实时音视频服务，定位是解决实时通信的云服务，主要功能就是通过互联网，接受、处理、转发和保存大流量的音视频流数据，主要用于直播、视频会议场景。本文简略说明TRTC技术的使用，案例基于前端-vue，后端-java的springboot框架，具体的内容参考一下文档
-后端的准备 首先前端调用TRTC服务需要创建TrtcClient对象来管理，创建TrtcClient需要用到三个参数，分别是AppID，用户UserId，还有用户签名(UserSig)。而这里的用户签名是用Trtc的AppID和密钥，任意开发者查看HTML都能看到这些信息，所以生成用户签名的工作不能在前端完成，正确的做法应该是在后端项目生成用户签名
-用户签名(UserSig) （UserSig）是腾讯云设计的一种安全保护签名，使用HMAC SHA256加密算法计算得出。
-//UserSig 计算公式，其中 secretkey 为计算 usersig 用的加密密钥 usersig = hmacsha256(secretkey, (userid &#43; sdkappid &#43; currtime &#43; expire &#43; base64(userid &#43; sdkappid &#43; currtime &#43; expire))) 关于userSig的各种语言生成方法在腾讯云的官方文档都有介绍
-这边我使用的springboot框架，所以用是java生成userSig的方式，需要在项目中创建一个TrtcUtil.java
-package com.example.emos.api.config.tencet; import cn.hutool.core.util.StrUtil; import cn.hutool.json.JSONObject; import org.bson.internal.Base64; import org.springframework.beans.factory.annotation.Value; import org.springframework.stereotype.Component; import javax.crypto.Mac; import javax.crypto.spec.SecretKeySpec; import java.nio.charset.StandardCharsets; import java.security.InvalidKeyException; import java.security.NoSuchAlgorithmException; import java.util.Arrays; import java.util.zip.Deflater; /** * Description: 腾讯TRTC工具类 * * @author Rex * @date 2021-09-29 10:48 */ import java....</p>
-  </section>
-  <footer class="entry-footer">2021-10-12&nbsp;·&nbsp;5 min&nbsp;·&nbsp;Rex</footer>
-  <a class="entry-link" aria-label="post link to 腾讯TRTC" href="https://rexhub.space/posts/api/%E8%85%BE%E8%AE%AFtrtc/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>前端常用轮子
-    </h2>
-  </header>
-  <section class="entry-content">
-    <p>前端常用轮子 简介 这篇文章主要是记录下一些常见的组件库，以后开发的时候方便点。（持续更新中……）
-React UI组件库 Ant Design 文档齐全、社区生态好 支持PC端和手机端 详情见官网
-React Bootstrap 可用于快速搭建个人项目 详情见官网
-MATERIAL-UI(Mui) 实现了谷歌的Material Design github有超过50k的关注量，是目前最受欢迎的React组件库之一 详情见官网
-Vue UI组件库 Element 饿了么旗下的组件库，国内最流行的Vue组件库 文档齐全 支持Vue3 同时有React版本和Angular版本 详情见官网
-Vant 有赞公司旗下的开源组件库 适用于移动端开发 组件齐全，使用简单，UI美观 详情见官网
-View UI UI精美 含免费版和收费版 详情见官网
-Vue工具类 vue-draggable：vue拖拽组件 详情见官网
-vue-qr：生成二维码组件 详情见官网
-vue-cropper：vue图片裁切工具 详情见官网
-vue-lazyload：图片懒加载 不会和vue其他组件库冲突 详情见官网
-vue-simple-upload：vue上传组件 详情见官网
-动画库 Animate.css：动画库 纯css的动画库，适用于各种框架 功能齐全 详情见官网
-swiper：轮播图组件 提供的轮播图效果多 文档齐全，社区强大 支持原生、React、Vue、Angular等任何前端开发场景 有PC端、移动端之分 缺点：官网广告较多…… 详情见官网
-mescroll.js：滚动插件 解决移动端滚动不流畅、延迟等问题 基于H5，侵入性很小，实用性很强，不依赖于其他前端框架 详情见官网
-工具类轮子 lodash.js：前端函数库 支持原生、React、Vue、Angular等任何前端开发场景 封装了常用的函数开发库 详情见官网...</p>
-  </section>
-  <footer class="entry-footer">2021-10-11&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Rex</footer>
-  <a class="entry-link" aria-label="post link to 前端常用轮子" href="https://rexhub.space/posts/front/tools/%E5%89%8D%E7%AB%AF%E5%B8%B8%E7%94%A8%E8%BD%AE%E5%AD%90/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>Zookeeper
-    </h2>
-  </header>
-  <section class="entry-content">
-    <p>Zookeeper 定义： Zookeeper：A Distributed Coordination Service for Distributed Applications(
-Zookeeper是开源的高性能的分布式应用协调系统，一个高性能的分布式数据一致性解决方案
-5大特点 顺序一致性：发出去的顺序==执行的顺序 原子性：请求同步到各个节点要么都成果要么都失败 单一视图：多个节点无论连哪个看的东西都是一致的 可靠性：给节点写了数据，这个数据会一直保留，直到有另外的操作把数据写掉，才会发生变化 及时性：在一定的时间段（可接受的时间段）内能从服务器上读到最新的数据状态 架构图、集群、工作过程 Zookeeper和CAP的关系 CP：一致性&#43;分区容错性 能得到一致的数据结果，同时系统对网络具备容错性 但是它不能保证每次服务请求的可用性 作用 分布式服务注册与订阅 统一配置文件 生成分布式唯一ID Master节点选举 分布式锁 节点znode 模型-树结构 节点性质 树形结构，也可以理解为linux的文件目录 每一个节点都是znode，里面可以包含数据，也可以有子节点 点分为永久节点和临时节点(session失效，也就是客户端段凯后，临时节点消失) 每个znode都有版本号，每当数据变化，版本号会累加（乐观锁） 删除或修改节点，版本号不匹配的话（版本号已过时），会报错 每个节点存储的数据不宜过大，几k即可 节点可以设置权限，来限制用户的访问 Zookeeper保证读和写都是原子操作，且每次读写操作都是对数据的完整读取或完整写入 节点类型 持久节点 临时节点 顺序节点 节点属性 dataVersion 数据版本号，每次对内容修改dataVersion&#43;1 cversion 子节点版本号，如果子节点内容发送变化cversion&#43;1 aclVersion acl-权限控制列表，权限发生变化的时候aclVersion&#43;1 常用命令 查看节点ls 查看节点的数据和状态get 创建(create [-s 顺序节点] [-e 临时节点])、修改(set)、删除(delete)节点 Watcher机制 触发器、监督者
-事件类型
-EventType 触发条件 NodeCreated（节点创建） Watcher监听的对应数据节点被创建 NodeDeleted（节点删除） Watcher监听的对应数据节点被删除 NodeDataChanged（节点数据修改） Watcher监听的对应数据节点的数据内容发送变更 NodeChildrenChanged（子节点变更） Watcher监听的对应数据节点的子节点列表发送变更 ACL access control list 权限控制 它使用权限位来允许/禁止对节点极其所用域的各种操作 ACL仅与特点的znode有关，与子节点无关 Schema ACL:[schema采用的权限机制: id用户:permissions权限组合字符串] world id: anyone auth 需要设定对应的用户和密码（明文） digest 同auth，不同的是加密使用密文 ip 指定ip super 超级权限 权限字符串crdwa Created 创建子节点的权限 Read 读 Delete 删除子节点的权限 Write 写 Admin 最高权限 使用权限 区分开发/测试/运维环境，防止误操作 可以针对不同IP而产生具体的配置，更安全 代码 java原生 导入依赖...</p>
-  </section>
-  <footer class="entry-footer">2021-08-21&nbsp;·&nbsp;4 min&nbsp;·&nbsp;Rex</footer>
-  <a class="entry-link" aria-label="post link to Zookeeper" href="https://rexhub.space/posts/back/java/microservices/zookeeper/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
     <h2>Dubbo基础
     </h2>
   </header>
@@ -256,6 +175,95 @@ EventType 触发条件 NodeCreated（节点创建） Watcher监听的对应数�
   </section>
   <footer class="entry-footer">2021-07-23&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Rex</footer>
   <a class="entry-link" aria-label="post link to Dubbo基础" href="https://rexhub.space/posts/back/java/microservices/dubbo%E5%9F%BA%E7%A1%80/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>Mongodb基础
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>MongoDB 简介： MongoDB是为快速开发互联网Web应用而设计的数据库系统。 MongoDB的设许目标是极简、灵活、作为Web应用栈的一部分。 MongoDB的数据模型是面向文档的,所谓文档是- - -种类似于JSON的结构,简单理解MongoDB这个数据库中存的是各种各样的JSON。 ( BSON ) 三个概念 数据库( database )
+数据库是-个仓库,在仓库中可以存放集合。
+集合( collection )
+集合类似于数组,在集合中可以存放文档。
+文档( dotument )
+文档数据库中的最小单位,我们存储和操作的 内容都是文档。
+基本指令 show dbs
+显示当前的所有数据库
+use 数据库名
+进入指定的数据库中
+db
+显示当前所处的数据库
+show collections
+显示数据库中所有的集合
+db.&lt;collection&gt;.insert(doc)
+向集合中插入一个文档
+db.&lt;collections&gt;.find()
+查看数据库字段
+插入文档 /* 向数据库插入文档	db.&lt;collection&gt;.insert( &lt;document or array of documents&gt;， { wirteConcern: &lt;document&gt;, ordered: &lt;boolean&gt; } ) documents: 必填，表示需要插入的文档，可以是多个文档 writeConcern：可选项，写策略 ordered：可选，表示多个文档是否按照文档顺序写入 -- 向集合中插入一个或多个文档 -- 当我们向集合中插入文档时，如果没有给文档指定_id属性，则数据库会自动为文档添加_id， 该属性用来作为文档的唯一标识 -- _id可以自己指定，如果指定了数据库就不会再添加了，如果自己指定_id，也必须确保他的唯一性 db.collection.insertOne() -- 插入一个文档对象 db....</p>
+  </section>
+  <footer class="entry-footer">2021-07-09&nbsp;·&nbsp;9 min&nbsp;·&nbsp;Rex</footer>
+  <a class="entry-link" aria-label="post link to Mongodb基础" href="https://rexhub.space/posts/nosql/mongodb/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>Docker基础
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>Docker 概念 Docker是一个用来装程序及其环境的容器,属于Linux容器的 一种封装,提供简单易用的容器使用接口。它是目前最流行的 Linux容器解决方案。
+痛点 环境配置 虚拟机 资源占用多 冗余步骤多 启动时间慢 Docker的基础 — Linux容器 启动快 占用资源少 体积小 用途 提供统一的环境 提供快速拓展、弹性伸缩的云服务 防止其他用户的进程把服务器资源占用过多 特点 标准化
+运输方式（把程序和环境从一个机器运到另一个机器） 存储方式（程序和环境的存储） API接口（不需要Tomcat等应用的命令了，都标准化了） 灵活：即使是最复杂的应用也可以集装箱化
+轻量级：容器利用并共享主机内核
+便携式：可以在本地构建
+Docker的组成、架构、重要概念 images（镜像）: 存储：联合文件系统，UnionFS Container（容器）： 镜像类似于Java中的类，而容器就是实例 容器的这一层是可以修改的，而镜像是不可以修改的 同一个镜像可以生成多个容器独立运行，而他们之间没有任何的干扰 Repository（仓库）： 官方仓库
+阿里云仓库
+网易云仓库
+时速云
+DaoCloud
+共有 vs 私有
+client和daemon client提供给用户一个终端，用户输入Docker提供的命令来管理本地或远程的服务 daemon：服务端守护进程，接受client发送的命令并执行相应的操作 Docker的网络模式 Bridge 桥接：独立（网卡独立、路由独立、iptable规则独立）的网络，与主机桥接 Host 主机：不是独立的网络，与主机使用同一个网络 None 没有网络 端口映射技术 制作自己的Docker容器，dockerfile实战 dockerfile作用：文本文件，用来配置镜像，docker根据这个来生成对应的镜像文件
+dockerfile的好处：
+便于版本控制 便于维护环境 便于新人初步了解程序 写自己的dockerfile
+FROM alpine:latest # alpine--极小型的Linux环境，表示这个镜像基于这个系统 MAINTAINER imooc # 描述这个镜像由谁来维护 CMD echo &#39;hello my dockerfile&#39; # 根据自己的业务需求来写 常用命令 docker images # 查询当前镜像列表 docker pull image # 拉取镜像到本地 docker run images image # 前台运行 docker run -d image # 后台运行 d表示detech docker ps # 查看当前后台运行的容器 docker exec -it status bash # -i代表容器输入有效 -t分配一个终端 docker stop status # 关闭容器 docker run -p 8080:80 # 本机8080端口映射到容器的80端口 -p自己定义 -P随机分配主机端口 netstat -na|grep 8080 # 查询端口状态 docker build -t hello_docker ....</p>
+  </section>
+  <footer class="entry-footer">2021-06-25&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Rex</footer>
+  <a class="entry-link" aria-label="post link to Docker基础" href="https://rexhub.space/posts/back/java/microservices/docker%E5%9F%BA%E7%A1%80/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>Nginx使用
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>Nginx Nginx介绍 使用场景 HTTP的反向代理服务器 负载均衡 缓存 动态静态资源分离 优点 高并发、高性能 可扩展性好，体现在模块化设计 高可靠性，可以持续不断数十年运行 热部署，不停止服务来升级nginx 开源、可商用 Nginx常用命令 ./nginx # 启动nginx ps -aux|grep nginx # 查看nginx相关进程，也可以查到nginx运行的路径 nginx -h # 帮助 nginx -c # 读取指定配置文件 nginx -s stop # 关闭nginx nginx -t # 检查当前配置文件是否有问题，查看当前配置文件路径 nginx -v # 简要版本信息 -V详细信息 nginx -s stop|quit| # -s信号 stop立即停止，quit优雅停止，reload重启，reopen更换日志文件 Nginx配置文件 语法
+;结尾 {}组织多条指令 include 引入 #注释 $ 变量 默认配置文件分析
+nginx.conf
+# 运行用户，默认是nginx user nginx; # nginx进程数,一般设置为和cpu核数一样 worker_processes 1; # 全局错误日志路径 error_log /var/log/nginx/error....</p>
+  </section>
+  <footer class="entry-footer">2021-06-22&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Rex</footer>
+  <a class="entry-link" aria-label="post link to Nginx使用" href="https://rexhub.space/posts/back/java/microservices/nginx%E4%BD%BF%E7%94%A8/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>微服务
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>微服务 微服务概述 单体应用的痛点 部署效率低下 团队写作开发成本高 系统高可用性差 服务化 把传统的单机应用中的本地方法调用，改造成通过RPC、HTTP产生的远程方法调用 把模块从单体应用中拆分出来，独立成一个服务部署 用户模块就可以独立开发、测试、上线和运维，可以交由专门的团队来做，与主模块不耦合 从单体到微服务架构 微服务 一种架构风格 开发单个应用作为一系列小型服务的套件，其中每个服务都运行在自己的进程中，并且通过轻量级的机制实现彼此间的通信，这通常是HTTP资源API 这些服务是围绕着业务功能构建的，并且可以通过完全自动化的部署机制进行独立部署 这些服务的集中式管理做到了最小化（例如docker相关技术），每一种服务都可以通过不同的变成语言进行编写，并且可以使用不同的数据存储技术 微服务的特点 组件以服务形式来提供
+产品不是项目
+轻量级通信、独立进程
+分散治理、去中心化治理
+容错性设计
+会带来团队组织架构的调整
+微服务优点 服务简单、便于学习和上手，先对易于维护 独立部署，灵活扩展 技术栈丰富 微服务缺点 运维成本过高 接口可能不匹配 代码可能重复 架构复杂度提高 微服务有两大门派 Spring Cloud：众多子项目 dubbo：高性能、轻量级的开源Java RPC框架，它提供了三大核心能力：面向接口的远程方法调用，智能容错和负载均衡以及服务自动注册和发现 核心组件 Dubbo Spring Cloud 服务注册中心 Zookeeper Spring Cloud Netflix Eureka 服务调用方式 RPC REST API 服务网关 无 Spring Cloud Netflix Zuul 断路器 不完善 Spring Cloud Netflix Hystrix 分布式配置 无/百度的disconf、百度的diamond Spring Cloud Config 服务跟踪 无/京东开源Hydra Spring Cloud Sleuth 消息总线 无 Spring Cloud Bus 数据流 无 Spring Cloud Stream 批量任务 无/当当开源Elastic-Job Spring Cloud Task 通信协议对比 RPC vs REST 服务提供方与调用方接口依赖方式太强 服务对平台敏感，难以简单服务 微服务拆分 服务化拆分 第一阶段的主要目标是快速开发和验证想法 进一步增加更多的新特性来吸引更多的目标用户 同时进行开发的人员超过10人，这个时候就该考虑服务化拆分了 不适合拆分的情况 小团队，技术基础较薄弱 流量不够，压力小，业务变化也不大 对延迟很敏感的低延迟高并发系统 拆分方式 纵向拆分，按照业务维度拆分 横向拆分，按照公共领域拆分 结合业务综合分析 服务扩展 x轴-水平复制，作为整体复制多个系统，重新部署几套，加一个负载均衡器 y轴-功能解耦，微服务拆解 z轴-数据分区，拆分数据库 自动按需扩展 根据CPU负载程度、特定时间（比如周末）、消息中间件的队列长度、业务具体规则、预测等来决定是否扩展 自动分配了一个新的服务实例，提高可用性 提高了可伸缩性（双11之后，自动减少了服务器） 具有最佳使用率，节约成本 微服务重要模块 服务描述 注册服务中心 服务框架 负载均衡 熔断和降级，兜底策略 网关：统一转换，校验，过滤器 </p>
+  </section>
+  <footer class="entry-footer">2021-06-22&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Rex</footer>
+  <a class="entry-link" aria-label="post link to 微服务" href="https://rexhub.space/posts/back/java/microservices/%E5%BE%AE%E6%9C%8D%E5%8A%A1/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
